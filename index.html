@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Español A0→B1 — Дашборд</title>
+<script src="data.js"></script>
+<style>
+:root {
+  --bg:       #0d0f14;
+  --bg2:      #13161e;
+  --bg3:      #1c2030;
+  --border:   #2a2f42;
+  --text:     #e8eaf0;
+  --muted:    #7a8099;
+  --accent0:  #ffd60a;
+  --accent1:  #2dc653;
+  --accent2:  #457b9d;
+  --accent3:  #e63946;
+  --accent4:  #9d4edd;
+  --gold:     #f4a261;
+  --radius:   10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size:15px; line-height:1.6; }
+a { color: var(--accent2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── Layout ─────────────────────────────────────── */
+.page { max-width: 1280px; margin: 0 auto; padding: 20px 16px 60px; }
+
+/* ─── Header ─────────────────────────────────────── */
+.header { display:flex; align-items:center; justify-content:space-between; padding: 24px 28px; background: linear-gradient(135deg, #1a1d2e 0%, #12141f 100%); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 20px; }
+.header-left h1 { font-size: 1.8rem; font-weight:700; }
+.header-left h1 span { color: var(--accent0); }
+.header-left p { color: var(--muted); margin-top:4px; font-size:0.9rem; }
+.level-badge { background: var(--accent0); color: #000; font-weight:800; font-size:1.1rem; padding: 6px 18px; border-radius:20px; }
+
+/* ─── Progress Ring ──────────────────────────────── */
+.stats-row { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px; margin-bottom:20px; }
+.stat-card { background: var(--bg2); border:1px solid var(--border); border-radius: var(--radius); padding:16px 18px; display:flex; flex-direction:column; gap:4px; }
+.stat-card .val { font-size:1.8rem; font-weight:700; }
+.stat-card .lbl { font-size:0.78rem; color: var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.stat-card .bar { height:4px; background: var(--bg3); border-radius:2px; margin-top:6px; overflow:hidden; }
+.stat-card .bar-fill { height:100%; border-radius:2px; transition: width .6s ease; }
+
+/* ─── Today's Lesson ─────────────────────────────── */
+.today-box { background: linear-gradient(135deg, var(--bg3) 0%, #1a1f30 100%); border: 1px solid var(--accent0); border-radius: var(--radius); padding: 20px 24px; margin-bottom:20px; display:flex; align-items:center; gap:20px; }
+.today-icon { font-size:2.4rem; flex-shrink:0; }
+.today-info { flex:1; }
+.today-info .tag { font-size:0.75rem; font-weight:600; text-transform:uppercase; color: var(--accent0); letter-spacing:.08em; }
+.today-info h2 { font-size:1.2rem; margin:4px 0 2px; }
+.today-info p { color: var(--muted); font-size:0.88rem; }
+.today-btn { background: var(--accent0); color:#000; font-weight:700; border:none; border-radius:8px; padding:10px 22px; cursor:pointer; font-size:0.95rem; flex-shrink:0; transition:.2s; }
+.today-btn:hover { opacity:.88; transform:translateY(-1px); }
+.today-btn.done { background: var(--accent1); color:#fff; }
+
+/* ─── Phase Timeline ─────────────────────────────── */
+.phases-row { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+.phase-pill { flex:1; min-width:120px; background: var(--bg2); border:1px solid var(--border); border-radius:8px; padding:10px 12px; cursor:pointer; transition:.2s; }
+.phase-pill:hover { border-color: var(--muted); }
+.phase-pill.active { border-color: var(--accent0) !important; }
+.phase-pill .ph-label { font-size:0.72rem; color: var(--muted); text-transform:uppercase; }
+.phase-pill .ph-name { font-weight:700; font-size:0.95rem; margin:2px 0; }
+.phase-pill .ph-bar { height:3px; background: var(--bg3); border-radius:2px; margin-top:6px; overflow:hidden; }
+.phase-pill .ph-fill { height:100%; border-radius:2px; }
+.phase-pill .ph-count { font-size:0.72rem; color: var(--muted); margin-top:4px; }
+
+/* ─── Lesson Grid ────────────────────────────────── */
+.grid-section { margin-bottom:28px; }
+.grid-section h3 { font-size:0.9rem; color: var(--muted); text-transform:uppercase; letter-spacing:.07em; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.lesson-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:10px; }
+.lesson-card { background: var(--bg2); border:1px solid var(--border); border-radius:8px; padding:14px; cursor:pointer; transition:.2s; position:relative; }
+.lesson-card:hover { border-color: var(--muted); transform:translateY(-2px); }
+.lesson-card.done { border-color: var(--accent1) !important; opacity:.7; }
+.lesson-card.done::after { content:'✓'; position:absolute; top:10px; right:12px; color: var(--accent1); font-weight:700; }
+.lesson-card.current { border-color: var(--accent0) !important; box-shadow: 0 0 0 2px rgba(255,214,10,.12); }
+.lesson-card.locked { opacity:.35; cursor:default; }
+.lesson-card .lc-num { font-size:0.7rem; color: var(--muted); font-weight:600; }
+.lesson-card .lc-title { font-weight:600; font-size:0.92rem; margin:3px 0 2px; }
+.lesson-card .lc-sub { font-size:0.78rem; color: var(--muted); }
+.lesson-card .lc-tags { display:flex; gap:4px; flex-wrap:wrap; margin-top:8px; }
+.lc-tag { font-size:0.65rem; padding:2px 7px; border-radius:10px; background: var(--bg3); color: var(--muted); }
+.lc-tag.polyglot { background: rgba(69,123,157,.2); color: #8fc5e0; }
+.lc-tag.lt { background: rgba(255,214,10,.12); color: #ffd60a; }
+
+/* ─── Resources ──────────────────────────────────── */
+.resources-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:10px; margin-bottom:28px; }
+.res-card { background: var(--bg2); border:1px solid var(--border); border-radius:8px; padding:14px; display:flex; gap:12px; align-items:flex-start; }
+.res-icon { font-size:1.5rem; flex-shrink:0; margin-top:2px; }
+.res-info a { font-weight:600; color: var(--text); font-size:0.92rem; }
+.res-info .res-type { font-size:0.7rem; color: var(--accent0); text-transform:uppercase; font-weight:600; margin:2px 0; }
+.res-info .res-note { font-size:0.78rem; color: var(--muted); }
+
+/* ─── Sections ────────────────────────────────────── */
+.section-title { font-size:1.05rem; font-weight:700; margin:24px 0 12px; display:flex; align-items:center; gap:8px; }
+.section-title::after { content:''; flex:1; height:1px; background: var(--border); }
+
+/* ─── Streak / Calendar ──────────────────────────── */
+.calendar-row { display:flex; gap:3px; flex-wrap:wrap; margin-bottom:20px; }
+.cal-day { width:14px; height:14px; border-radius:2px; background: var(--bg3); transition:.2s; title:attr(data-date); }
+.cal-day.studied { background: var(--accent1); }
+.cal-day.today { outline:2px solid var(--accent0); outline-offset:1px; }
+
+/* ─── Modal ──────────────────────────────────────── */
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:100; align-items:center; justify-content:center; }
+.modal-overlay.open { display:flex; }
+.modal { background: var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:28px; max-width:520px; width:90%; max-height:85vh; overflow-y:auto; }
+.modal h2 { font-size:1.2rem; margin-bottom:6px; }
+.modal .modal-sub { color: var(--muted); font-size:0.88rem; margin-bottom:16px; }
+.modal-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+.modal-tag { font-size:0.75rem; padding:3px 10px; border-radius:12px; background: var(--bg3); color: var(--muted); }
+.modal-info { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px; }
+.modal-info .mi { background: var(--bg3); border-radius:6px; padding:10px 12px; }
+.modal-info .mi .mi-lbl { font-size:0.7rem; color: var(--muted); text-transform:uppercase; }
+.modal-info .mi .mi-val { font-size:0.9rem; font-weight:600; margin-top:2px; }
+.modal-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.btn { padding:9px 18px; border-radius:8px; border:none; cursor:pointer; font-size:0.9rem; font-weight:600; transition:.2s; }
+.btn-primary { background: var(--accent0); color:#000; }
+.btn-primary:hover { opacity:.88; }
+.btn-secondary { background: var(--bg3); color: var(--text); border:1px solid var(--border); }
+.btn-secondary:hover { border-color: var(--muted); }
+.btn-success { background: var(--accent1); color:#fff; }
+.btn-close { background:none; border:none; color: var(--muted); font-size:1.2rem; cursor:pointer; margin-left:auto; display:block; margin-bottom:8px; }
+
+/* ─── Polyglot reference ─────────────────────────── */
+.polyglot-banner { background: rgba(69,123,157,.08); border:1px solid rgba(69,123,157,.3); border-radius:8px; padding:14px 16px; margin-bottom:20px; }
+.polyglot-banner h4 { font-size:0.88rem; color:#8fc5e0; font-weight:600; margin-bottom:6px; }
+.polyglot-banner p { font-size:0.82rem; color: var(--muted); }
+.polyglot-links { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.polyglot-link { font-size:0.78rem; padding:3px 10px; border-radius:10px; background: rgba(69,123,157,.15); color:#8fc5e0; cursor:pointer; }
+.polyglot-link:hover { background: rgba(69,123,157,.25); }
+
+@media(max-width:600px){
+  .header { flex-direction:column; gap:12px; text-align:center; }
+  .today-box { flex-direction:column; text-align:center; }
+  .phases-row { flex-direction:column; }
+  .lesson-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>🇪🇸 <span>Español</span> A0 → B1</h1>
+    <p id="header-sub">Полный курс. 122 урока. 1 год. 45 мин/день.</p>
+  </div>
+  <div id="level-badge" class="level-badge">A0</div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row" id="stats-row"></div>
+
+<!-- TODAY'S LESSON -->
+<div class="today-box" id="today-box">
+  <div class="today-icon" id="today-icon">🎯</div>
+  <div class="today-info">
+    <div class="tag" id="today-tag">Сегодня</div>
+    <h2 id="today-title">Загружаю...</h2>
+    <p id="today-sub"></p>
+  </div>
+  <button class="today-btn" id="today-btn" onclick="openTodayLesson()">Начать урок</button>
+</div>
+
+<!-- POLYGLOT INTEGRATION -->
+<div class="polyglot-banner">
+  <h4>📚 16 уроков Полиглота (Дмитрий Петров) — уже включены в курс</h4>
+  <p>Твои существующие уроки и 205 Анки-карточек интегрированы в план. Нажми на урок со значком <strong style="color:#8fc5e0">Polyglot</strong>, чтобы перейти к нему напрямую.</p>
+  <div class="polyglot-links" id="polyglot-links"></div>
+</div>
+
+<!-- PHASE PILLS -->
+<div class="phases-row" id="phases-row"></div>
+
+<!-- CALENDAR -->
+<div class="section-title">📅 Трекер занятий</div>
+<div class="calendar-row" id="calendar-row"></div>
+
+<!-- LESSON GRID (by phase) -->
+<div id="lessons-container"></div>
+
+<!-- RESOURCES -->
+<div class="section-title">🔗 Ресурсы</div>
+<div class="resources-grid" id="resources-grid"></div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="btn-close" onclick="closeModal()">✕</button>
+    <h2 id="modal-title"></h2>
+    <div class="modal-sub" id="modal-sub"></div>
+    <div class="modal-tags" id="modal-tags"></div>
+    <div class="modal-info" id="modal-info"></div>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// APP STATE
+// ═══════════════════════════════════════════════════════════
+const LS_KEY = 'esp_course_progress';
+let state = loadState();
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return {
+    completed: [],       // array of lesson ids
+    start_date: new Date().toISOString().slice(0,10),
+    study_days: {},      // { "YYYY-MM-DD": true }
+    active_phase: 0,
+    vocab_count: 0,
+    total_minutes: 0
+  };
+}
+function saveState() { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+
+// ═══════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════
+function getLessonStatus(lid) {
+  if (state.completed.includes(lid)) return 'done';
+  const idx = COURSE.lessons.findIndex(l=>l.id===lid);
+  const nextIdx = COURSE.lessons.findIndex(l=>!state.completed.includes(l.id));
+  if (idx === nextIdx) return 'current';
+  if (idx < nextIdx || state.completed.length === 0 && idx === 0) return 'current';
+  return idx <= (nextIdx + 2) ? 'available' : 'locked';
+}
+
+function getTodayLesson() {
+  return COURSE.lessons.find(l => !state.completed.includes(l.id)) || COURSE.lessons[COURSE.lessons.length-1];
+}
+
+function getLevelFromCompleted() {
+  const n = state.completed.length;
+  if (n >= 101) return 'B1';
+  if (n >= 61)  return 'A2→B1';
+  if (n >= 31)  return 'A1→A2';
+  if (n >= 2)   return 'A0→A1';
+  return 'A0';
+}
+
+function getPhaseColor(phaseId) {
+  return COURSE.phases.find(p=>p.id===phaseId)?.color || '#fff';
+}
+
+function phaseProgress(pid) {
+  const phase = COURSE.phases.find(p=>p.id===pid);
+  if (!phase) return 0;
+  const [from, to] = phase.range;
+  const inPhase = COURSE.lessons.filter(l=>l.num>=from && l.num<=to);
+  const done = inPhase.filter(l=>state.completed.includes(l.id));
+  return inPhase.length ? Math.round(done.length/inPhase.length*100) : 0;
+}
+
+function markToday() {
+  const today = new Date().toISOString().slice(0,10);
+  state.study_days[today] = true;
+  saveState();
+}
+
+// ═══════════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════════
+function render() {
+  renderStats();
+  renderToday();
+  renderPhases();
+  renderPolyglotLinks();
+  renderCalendar();
+  renderLessons();
+  renderResources();
+}
+
+function renderStats() {
+  const total = COURSE.lessons.length;
+  const done  = state.completed.length;
+  const pct   = Math.round(done/total*100);
+  const days  = Object.keys(state.study_days).length;
+  const today = getTodayLesson();
+
+  document.getElementById('level-badge').textContent = getLevelFromCompleted();
+
+  const stats = [
+    { val: `${done}/${total}`, lbl:'Уроков пройдено', pct, color:'var(--accent1)' },
+    { val: `${pct}%`,          lbl:'Прогресс курса',  pct, color:'var(--accent0)' },
+    { val: `${days}`,          lbl:'Дней занятий',    pct: Math.min(100,Math.round(days/365*100)), color:'var(--accent2)' },
+    { val: `L${today.num}`,    lbl:'Следующий урок',  pct:0, color:'var(--accent3)' },
+    { val: `A${today.level||'0'}`, lbl:'Текущий уровень', pct:0, color:'var(--accent4)' },
+  ];
+  const container = document.getElementById('stats-row');
+  container.innerHTML = stats.map(s=>`
+    <div class="stat-card">
+      <div class="val" style="color:${s.color}">${s.val}</div>
+      <div class="lbl">${s.lbl}</div>
+      ${s.pct ? `<div class="bar"><div class="bar-fill" style="width:${s.pct}%;background:${s.color}"></div></div>` : ''}
+    </div>`).join('');
+}
+
+function renderToday() {
+  const l = getTodayLesson();
+  const done = state.completed.includes(l.id);
+  document.getElementById('today-icon').textContent = done ? '✅' : '🎯';
+  document.getElementById('today-tag').textContent  = done ? 'Выполнен' : `Урок ${l.num+1} · Фаза ${l.phase}`;
+  document.getElementById('today-title').textContent = `L${l.num}: ${l.title}`;
+  document.getElementById('today-sub').textContent   = l.subtitle;
+  const btn = document.getElementById('today-btn');
+  btn.textContent = done ? '✓ Пройден' : 'Начать урок';
+  btn.className = 'today-btn' + (done ? ' done' : '');
+}
+
+function renderPhases() {
+  const container = document.getElementById('phases-row');
+  container.innerHTML = COURSE.phases.map(p => {
+    const pct = phaseProgress(p.id);
+    const [from,to] = p.range;
+    const count = to-from+1;
+    const doneCnt = COURSE.lessons.filter(l=>l.num>=from&&l.num<=to&&state.completed.includes(l.id)).length;
+    return `<div class="phase-pill" onclick="setActivePhase(${p.id})" id="phase-pill-${p.id}" style="border-color:${pct>0?p.color:''};opacity:${pct>0||p.id<=getCurrentPhase()?1:.5}">
+      <div class="ph-label">Фаза ${p.id}</div>
+      <div class="ph-name" style="color:${p.color}">${p.name}</div>
+      <div class="ph-bar"><div class="ph-fill" style="width:${pct}%;background:${p.color}"></div></div>
+      <div class="ph-count">${doneCnt}/${count} уроков · ${p.level} · ${p.months}</div>
+    </div>`;
+  }).join('');
+}
+
+function getCurrentPhase() {
+  const l = getTodayLesson();
+  return l.phase;
+}
+
+function setActivePhase(pid) {
+  state.active_phase = pid;
+  saveState();
+  document.querySelectorAll('.phase-pill').forEach(el=>el.classList.remove('active'));
+  document.getElementById(`phase-pill-${pid}`)?.classList.add('active');
+  document.getElementById(`phase-section-${pid}`)?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderPolyglotLinks() {
+  const withPoly = COURSE.lessons.filter(l=>l.polyglot);
+  const container = document.getElementById('polyglot-links');
+  container.innerHTML = withPoly.slice(0,8).map(l=>`
+    <span class="polyglot-link" onclick="openModal('${l.id}')">
+      L${l.num} ← Polyglot ${typeof l.polyglot==='number'?'#'+l.polyglot:l.polyglot}
+    </span>`).join('');
+}
+
+function renderCalendar() {
+  const container = document.getElementById('calendar-row');
+  const today = new Date();
+  const start = new Date(state.start_date || today);
+  const days = [];
+  for (let i=0; i<90; i++) {
+    const d = new Date(start);
+    d.setDate(d.getDate() + i);
+    if (d > today) break;
+    days.push(d.toISOString().slice(0,10));
+  }
+  container.innerHTML = days.map(d=>{
+    const isToday = d === today.toISOString().slice(0,10);
+    const studied = state.study_days[d];
+    return `<div class="cal-day ${studied?'studied':''} ${isToday?'today':''}" title="${d}"></div>`;
+  }).join('');
+}
+
+function renderLessons() {
+  const container = document.getElementById('lessons-container');
+  container.innerHTML = '';
+  COURSE.phases.forEach(phase => {
+    const [from, to] = phase.range;
+    const phaseLessons = COURSE.lessons.filter(l=>l.num>=from && l.num<=to);
+    const blocks = [...new Set(phaseLessons.map(l=>l.block))];
+    const sectionEl = document.createElement('div');
+    sectionEl.id = `phase-section-${phase.id}`;
+    sectionEl.innerHTML = `<div class="section-title" style="color:${phase.color}">
+      Фаза ${phase.id}: ${phase.name} <small style="font-size:.75rem;color:var(--muted);font-weight:400">${phase.level} · ${phase.months}</small>
+    </div>`;
+    blocks.forEach(blockId => {
+      const blockMeta = COURSE.blocks.find(b=>b.id===blockId);
+      const blockLessons = phaseLessons.filter(l=>l.block===blockId);
+      const blockEl = document.createElement('div');
+      blockEl.className = 'grid-section';
+      blockEl.innerHTML = `<h3>${blockMeta?.name || blockId}</h3>`;
+      const grid = document.createElement('div');
+      grid.className = 'lesson-grid';
+      blockLessons.forEach(l => {
+        const status = getLessonStatus(l.id);
+        const fileExists = !!l.file;
+        const card = document.createElement('div');
+        card.className = `lesson-card ${status}`;
+        card.onclick = () => openModal(l.id);
+        let tags = '';
+        if (l.polyglot) tags += `<span class="lc-tag polyglot">Polyglot ${typeof l.polyglot==='number'?'#'+l.polyglot:l.polyglot}</span>`;
+        if (l.lt_episodes?.length) tags += `<span class="lc-tag lt">LT ${l.lt_episodes.join(',')}</span>`;
+        const fileIcon = fileExists && status!=='locked' ? '' : (status==='locked'?'🔒 ':'📝 ');
+        card.innerHTML = `
+          <div class="lc-num">Урок ${l.num} · ${l.level} · Нед. ${l.week}</div>
+          <div class="lc-title">${fileIcon}${l.title}</div>
+          <div class="lc-sub">${l.subtitle}</div>
+          ${tags?`<div class="lc-tags">${tags}</div>`:''}`;
+        grid.appendChild(card);
+      });
+      blockEl.appendChild(grid);
+      sectionEl.appendChild(blockEl);
+    });
+    container.appendChild(sectionEl);
+  });
+}
+
+function renderResources() {
+  const container = document.getElementById('resources-grid');
+  container.innerHTML = COURSE.resources.map(r=>`
+    <div class="res-card">
+      <div class="res-icon">${r.icon}</div>
+      <div class="res-info">
+        <a href="${r.url}" target="_blank">${r.name}</a>
+        <div class="res-type">${r.type}</div>
+        <div class="res-note">${r.note}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════
+// MODAL
+// ═══════════════════════════════════════════════════════════
+let currentLesson = null;
+
+function openModal(lid) {
+  const l = COURSE.lessons.find(x=>x.id===lid);
+  if (!l) return;
+  currentLesson = l;
+  const status = getLessonStatus(l.id);
+  const phase = COURSE.phases.find(p=>p.id===l.phase);
+  const block = COURSE.blocks.find(b=>b.id===l.block);
+
+  document.getElementById('modal-title').textContent = `L${l.num}: ${l.title}`;
+  document.getElementById('modal-sub').textContent   = l.subtitle;
+
+  const tags = [];
+  tags.push(`<span class="modal-tag" style="background:rgba(255,255,255,.07);color:${phase?.color}">${phase?.name||''}</span>`);
+  tags.push(`<span class="modal-tag">${l.level}</span>`);
+  tags.push(`<span class="modal-tag">Неделя ${l.week}</span>`);
+  tags.push(`<span class="modal-tag">День ${l.day}</span>`);
+  if (l.polyglot) tags.push(`<span class="modal-tag" style="color:#8fc5e0">Polyglot #${l.polyglot}</span>`);
+  if (l.lt_episodes?.length) tags.push(`<span class="modal-tag" style="color:var(--accent0)">LT ${l.lt_episodes.join(', ')}</span>`);
+  document.getElementById('modal-tags').innerHTML = tags.join('');
+
+  const infos = [
+    { lbl:'Блок', val: block?.name || l.block },
+    { lbl:'Говорение', val: l.speaking_focus.slice(0,60)+'...' },
+    { lbl:'Dreaming Spanish', val: l.ds_level?.replace('_',' ') || '—' },
+    { lbl:'Статус', val: status==='done'?'✅ Пройден':status==='current'?'🎯 Текущий':'⏳ Ожидает' },
+  ];
+  document.getElementById('modal-info').innerHTML = infos.map(i=>`
+    <div class="mi"><div class="mi-lbl">${i.lbl}</div><div class="mi-val">${i.val}</div></div>`).join('');
+
+  const actions = document.getElementById('modal-actions');
+  actions.innerHTML = '';
+  if (l.file) {
+    const openBtn = document.createElement('button');
+    openBtn.className = 'btn btn-primary';
+    openBtn.textContent = status==='done' ? '📖 Повторить' : '📖 Открыть урок';
+    openBtn.onclick = () => { window.open(l.file, '_blank'); closeModal(); };
+    actions.appendChild(openBtn);
+  }
+  if (l.polyglot) {
+    const polyBtn = document.createElement('button');
+    polyBtn.className = 'btn btn-secondary';
+    polyBtn.textContent = `📚 Polyglot урок ${l.polyglot}`;
+    polyBtn.onclick = () => { window.open(`../lessons/lesson_${String(l.polyglot).padStart(2,'0')}.html`,'_blank'); closeModal(); };
+    actions.appendChild(polyBtn);
+  }
+  if (status !== 'locked') {
+    const markBtn = document.createElement('button');
+    if (status === 'done') {
+      markBtn.className = 'btn btn-secondary';
+      markBtn.textContent = '↩ Отметить как непройденный';
+      markBtn.onclick = () => { unmarkDone(lid); closeModal(); };
+    } else {
+      markBtn.className = 'btn btn-success';
+      markBtn.textContent = '✓ Отметить пройденным';
+      markBtn.onclick = () => { markDone(lid); closeModal(); };
+    }
+    actions.appendChild(markBtn);
+  }
+
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.getElementById('modal').addEventListener('click', e => { if(e.target.id==='modal') closeModal(); });
+
+function openTodayLesson() {
+  const l = getTodayLesson();
+  if (l.file) {
+    markToday();
+    window.open(l.file, '_blank');
+  } else {
+    openModal(l.id);
+  }
+}
+
+function markDone(lid) {
+  if (!state.completed.includes(lid)) state.completed.push(lid);
+  markToday();
+  saveState();
+  render();
+}
+
+function unmarkDone(lid) {
+  state.completed = state.completed.filter(x=>x!==lid);
+  saveState();
+  render();
+}
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+render();
+setActivePhase(getCurrentPhase());
+</script>
+</body>
+</html>
