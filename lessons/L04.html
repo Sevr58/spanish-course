@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L04: Артикли и род существительных — el, la, un, una</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;transition:.2s;padding:0 4px;color:var(--gold)}
+.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.speak-btn-big:hover{opacity:.88}
+.articles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+.article-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.article-card.m{border-color:rgba(69,123,157,.4)}
+.article-card.f{border-color:rgba(230,57,70,.4)}
+.article-card .label{font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.article-card.m .label{color:var(--blue)}
+.article-card.f .label{color:var(--red)}
+.article-card .word{font-size:1.6rem;font-weight:800;color:var(--gold);font-family:Consolas,monospace}
+.article-card .example{font-size:.85rem;color:var(--muted);margin-top:6px}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.vocab-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.vocab-table .es{font-weight:600;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-style:italic;font-size:.82rem}
+.vocab-table .m{color:var(--blue);font-weight:700}
+.vocab-table .f{color:var(--red);font-weight:700}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);font-weight:700}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.mistakes-table .wrong{color:var(--red);font-weight:600;text-decoration:line-through;opacity:.7}
+.mistakes-table .right{color:var(--green);font-weight:600}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--gold)}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}
+.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem;color:var(--text)}
+.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);line-height:1.5;background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+.anki-export-btn:hover{opacity:.85}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}.articles-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A0 · Фаза 1 · День 7</span>
+  <a href="L05.html">L05 →</a>
+</div>
+
+<div class="hero">
+  <div class="phase-tag">🌱 Фаза 1 · Основы · Первый контакт</div>
+  <h1>Артикли и <span class="hl">род существительных</span></h1>
+  <p class="sub">El, la, un, una, los, las. Кофе — мужского рода, дом — мужского, рука — женского. Понимаешь — и говоришь правильно с первого слова.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Правильно определять род + ставить артикль ко 100 базовым словам</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + 15 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>Language Transfer эп. 8</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Называем 20 предметов вокруг с артиклем</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- SECTION 1: Повторение L03 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">1</div><h2>Повторение L03 — числа</h2></div>
+
+  <div class="quiz" id="quiz-review">
+    <h3>🔄 Быстрый тест по L03</h3>
+
+    <div class="quiz-q" id="r1">
+      <div class="q-text">1. <button class="speak-btn-big" onclick="speak('treinta y cinco')">🔊</button> — какое число?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r1','b')">25</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','a')">35</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','c')">55</div>
+      </div>
+      <div class="feedback" id="fb-r1"></div>
+    </div>
+
+    <div class="quiz-q" id="r2">
+      <div class="q-text">2. «Мне 30 лет» по-испански:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r2','a')">Tengo treinta años.</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','b')">Soy treinta años.</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','c')">Estoy treinta.</div>
+      </div>
+      <div class="feedback" id="fb-r2"></div>
+    </div>
+
+    <div class="quiz-q" id="r3">
+      <div class="q-text">3. «Один кофе, пожалуйста» = ?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r3','c')">Uno café, por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','a')">Un café, por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','b')">Una café, por favor.</div>
+      </div>
+      <div class="feedback" id="fb-r3"></div>
+    </div>
+
+    <div class="quiz-q" id="r4">
+      <div class="q-text">4. 21 по-испански = ?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r4','b')">veinte y uno</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','a')">veintiuno</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','c')">veintiunos</div>
+      </div>
+      <div class="feedback" id="fb-r4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: Зачем нужен род -->
+<div class="section">
+  <div class="section-header"><div class="section-num">2</div><h2>Зачем нужен род и артикли</h2></div>
+
+  <p style="margin-bottom:14px">В русском у каждого существительного тоже есть род: «стол» (м.р.), «кошка» (ж.р.), «окно» (ср.р.). В испанском то же самое, но <strong>только 2 рода</strong>: мужской (masculino) и женский (femenino). Среднего рода нет.</p>
+
+  <p style="margin-bottom:14px">Артикль — это маленькое слово перед существительным, которое <strong>показывает род и определённость</strong>. В русском артиклей нет вообще — это новая концепция. Но она простая: 4 определённых артикля, 4 неопределённых. Всё.</p>
+
+  <div class="callout tip">
+    <h4>💡 Сравнение с английским</h4>
+    <p>В английском один определённый артикль: «the» (the cat, the book, the rivers). Один неопределённый: «a/an» (a cat, an apple). В испанском то же самое, но с разделением по родам И числам. Если знаешь английский — просто умножь на 4.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: 4 определённых артикля -->
+<div class="section">
+  <div class="section-header"><div class="section-num">3</div><h2>Определённые артикли: el / la / los / las</h2></div>
+
+  <p style="margin-bottom:14px">Определённый артикль = «тот самый, известный». В английском это «the». В испанском — 4 варианта по роду и числу:</p>
+
+  <div class="articles-grid">
+    <div class="article-card m">
+      <div class="label">м.р., ед.ч.</div>
+      <div class="word">el</div>
+      <div class="example">el café <button class="speak-btn" onclick="speak('el café')">🔊</button> — тот самый кофе</div>
+    </div>
+    <div class="article-card f">
+      <div class="label">ж.р., ед.ч.</div>
+      <div class="word">la</div>
+      <div class="example">la casa <button class="speak-btn" onclick="speak('la casa')">🔊</button> — тот самый дом</div>
+    </div>
+    <div class="article-card m">
+      <div class="label">м.р., мн.ч.</div>
+      <div class="word">los</div>
+      <div class="example">los cafés <button class="speak-btn" onclick="speak('los cafés')">🔊</button> — те самые кофе</div>
+    </div>
+    <div class="article-card f">
+      <div class="label">ж.р., мн.ч.</div>
+      <div class="word">las</div>
+      <div class="example">las casas <button class="speak-btn" onclick="speak('las casas')">🔊</button> — те самые дома</div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <h4>💡 Когда определённый артикль</h4>
+    <ul>
+      <li>Когда говорим о КОНКРЕТНОМ объекте: «Где КОФЕ?» (тот, что мы пили) — «¿Dónde está <strong>el café</strong>?»</li>
+      <li>С общими понятиями и категориями: «Я люблю КОФЕ» (вообще) — «Me gusta <strong>el café</strong>»</li>
+      <li>С названиями стран (иногда): «Россия» — «<strong>Rusia</strong>» (без артикля), но «Латинская Америка» — «<strong>la</strong> América Latina»</li>
+      <li>С днями недели, временем, языками: «el lunes», «las dos», «el español»</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 4: 4 неопределённых артикля -->
+<div class="section">
+  <div class="section-header"><div class="section-num">4</div><h2>Неопределённые артикли: un / una / unos / unas</h2></div>
+
+  <p style="margin-bottom:14px">Неопределённый артикль = «какой-то, один из» (как в английском «a/an»). 4 формы:</p>
+
+  <div class="articles-grid">
+    <div class="article-card m">
+      <div class="label">м.р., ед.ч.</div>
+      <div class="word">un</div>
+      <div class="example">un café <button class="speak-btn" onclick="speak('un café')">🔊</button> — один кофе</div>
+    </div>
+    <div class="article-card f">
+      <div class="label">ж.р., ед.ч.</div>
+      <div class="word">una</div>
+      <div class="example">una casa <button class="speak-btn" onclick="speak('una casa')">🔊</button> — один дом (какой-то)</div>
+    </div>
+    <div class="article-card m">
+      <div class="label">м.р., мн.ч.</div>
+      <div class="word">unos</div>
+      <div class="example">unos cafés <button class="speak-btn" onclick="speak('unos cafés')">🔊</button> — несколько кофе</div>
+    </div>
+    <div class="article-card f">
+      <div class="label">ж.р., мн.ч.</div>
+      <div class="word">unas</div>
+      <div class="example">unas casas <button class="speak-btn" onclick="speak('unas casas')">🔊</button> — несколько домов</div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <h4>💡 Когда неопределённый артикль</h4>
+    <ul>
+      <li>Первое упоминание объекта: «Я вижу <strong>один</strong> магазин» — «Veo <strong>una</strong> tienda»</li>
+      <li>«Какой-то» в смысле неконкретный: «Дай <strong>какую-то</strong> книгу» — «Dame <strong>un</strong> libro»</li>
+      <li>«Несколько» — это unos/unas: «Купи <strong>несколько</strong> яблок» — «Compra <strong>unas</strong> manzanas»</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Когда артикль НЕ нужен (важно для русских!)</h4>
+    <p>В русском мы не используем артикли. В испанском их НЕТ:</p>
+    <ul>
+      <li>С профессиями после ser: «Soy profesor» (Я учитель), а не «Soy un profesor»</li>
+      <li>С национальностями: «Es ruso» (Он русский), не «Es un ruso»</li>
+      <li>В отрицании с «no hay»: «No hay café» (Нет кофе), не «No hay un café»</li>
+      <li>В обобщениях с глаголом «hablar»: «Habla español», не «Habla el español»</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 5: Как определить род -->
+<div class="section">
+  <div class="section-header"><div class="section-num">5</div><h2>Как определить род существительного</h2></div>
+
+  <p style="margin-bottom:14px">85% слов следуют простому правилу окончания. Запомни 4 группы:</p>
+
+  <h3 style="font-size:1rem;margin-bottom:10px">✅ Правило 1: Окончание -O = мужской род</h3>
+  <table class="vocab-table">
+    <tr><th>Слово</th><th>🔊</th><th>Род</th><th>Перевод</th></tr>
+    <tr><td class="es">el libro</td><td><button class="speak-btn" onclick="speak('el libro')">🔊</button></td><td class="m">м.р.</td><td>книга</td></tr>
+    <tr><td class="es">el coche</td><td><button class="speak-btn" onclick="speak('el coche')">🔊</button></td><td class="m">м.р.</td><td>машина (-e чаще м.р.)</td></tr>
+    <tr><td class="es">el niño</td><td><button class="speak-btn" onclick="speak('el niño')">🔊</button></td><td class="m">м.р.</td><td>ребёнок (мальчик)</td></tr>
+    <tr><td class="es">el dinero</td><td><button class="speak-btn" onclick="speak('el dinero')">🔊</button></td><td class="m">м.р.</td><td>деньги</td></tr>
+    <tr><td class="es">el trabajo</td><td><button class="speak-btn" onclick="speak('el trabajo')">🔊</button></td><td class="m">м.р.</td><td>работа</td></tr>
+  </table>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">✅ Правило 2: Окончание -A = женский род</h3>
+  <table class="vocab-table">
+    <tr><th>Слово</th><th>🔊</th><th>Род</th><th>Перевод</th></tr>
+    <tr><td class="es">la casa</td><td><button class="speak-btn" onclick="speak('la casa')">🔊</button></td><td class="f">ж.р.</td><td>дом</td></tr>
+    <tr><td class="es">la mesa</td><td><button class="speak-btn" onclick="speak('la mesa')">🔊</button></td><td class="f">ж.р.</td><td>стол</td></tr>
+    <tr><td class="es">la niña</td><td><button class="speak-btn" onclick="speak('la niña')">🔊</button></td><td class="f">ж.р.</td><td>девочка</td></tr>
+    <tr><td class="es">la comida</td><td><button class="speak-btn" onclick="speak('la comida')">🔊</button></td><td class="f">ж.р.</td><td>еда</td></tr>
+    <tr><td class="es">la oficina</td><td><button class="speak-btn" onclick="speak('la oficina')">🔊</button></td><td class="f">ж.р.</td><td>офис</td></tr>
+  </table>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">✅ Правило 3: Окончание -CIÓN, -SIÓN, -DAD, -TAD = ВСЕГДА женский род</h3>
+  <p style="margin-bottom:10px">Это «правило когнатов из L00» работает и для рода. Любое слово с этими окончаниями = ж.р.</p>
+  <table class="vocab-table">
+    <tr><th>Слово</th><th>🔊</th><th>Перевод</th></tr>
+    <tr><td class="es">la nación</td><td><button class="speak-btn" onclick="speak('la nación')">🔊</button></td><td>нация</td></tr>
+    <tr><td class="es">la información</td><td><button class="speak-btn" onclick="speak('la información')">🔊</button></td><td>информация</td></tr>
+    <tr><td class="es">la ciudad</td><td><button class="speak-btn" onclick="speak('la ciudad')">🔊</button></td><td>город</td></tr>
+    <tr><td class="es">la universidad</td><td><button class="speak-btn" onclick="speak('la universidad')">🔊</button></td><td>университет</td></tr>
+    <tr><td class="es">la libertad</td><td><button class="speak-btn" onclick="speak('la libertad')">🔊</button></td><td>свобода</td></tr>
+  </table>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">⚠️ Исключения, которые надо знать наизусть</h3>
+  <table class="mistakes-table">
+    <thead><tr><th>Слово</th><th>Окончание</th><th>Род (вопреки правилу)</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td class="es">la mano</td><td>-o</td><td class="right">ж.р.!</td><td>рука</td></tr>
+      <tr><td class="es">la foto</td><td>-o</td><td class="right">ж.р.!</td><td>фото (сокр. от la fotografía)</td></tr>
+      <tr><td class="es">el día</td><td>-a</td><td class="right">м.р.!</td><td>день</td></tr>
+      <tr><td class="es">el mapa</td><td>-a</td><td class="right">м.р.!</td><td>карта</td></tr>
+      <tr><td class="es">el problema</td><td>-a</td><td class="right">м.р.!</td><td>проблема</td></tr>
+      <tr><td class="es">el sistema</td><td>-a</td><td class="right">м.р.!</td><td>система</td></tr>
+      <tr><td class="es">el agua</td><td>-a (ударная)</td><td class="right">ж.р., но с EL!</td><td>вода (артикль для звучания)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Лайфхак: учить существительное С АРТИКЛЕМ</h4>
+    <p>Не учи слово «libro» — учи «el libro». Не учи «mano» — учи «la mano». Тогда род запоминается автоматически. Это самое важное, что ты можешь сделать сейчас, чтобы не путаться через год.</p>
+  </div>
+</div>
+
+<!-- SECTION 6: Образование множественного числа -->
+<div class="section">
+  <div class="section-header"><div class="section-num">6</div><h2>Множественное число — 2 правила</h2></div>
+
+  <p style="margin-bottom:14px">Очень просто: оканчивается на гласную → добавь S. Оканчивается на согласную → добавь ES.</p>
+
+  <table class="vocab-table">
+    <thead><tr><th>Ед.ч.</th><th>Мн.ч.</th><th>🔊</th><th>Правило</th></tr></thead>
+    <tbody>
+      <tr><td class="es">el libro</td><td class="es">los libros</td><td><button class="speak-btn" onclick="speak('libros')">🔊</button></td><td>+S (на гласную)</td></tr>
+      <tr><td class="es">la casa</td><td class="es">las casas</td><td><button class="speak-btn" onclick="speak('casas')">🔊</button></td><td>+S (на гласную)</td></tr>
+      <tr><td class="es">el café</td><td class="es">los cafés</td><td><button class="speak-btn" onclick="speak('cafés')">🔊</button></td><td>+S (на гласную)</td></tr>
+      <tr><td class="es">la ciudad</td><td class="es">las ciudades</td><td><button class="speak-btn" onclick="speak('ciudades')">🔊</button></td><td>+ES (на согласную)</td></tr>
+      <tr><td class="es">el doctor</td><td class="es">los doctores</td><td><button class="speak-btn" onclick="speak('doctores')">🔊</button></td><td>+ES (на согласную)</td></tr>
+      <tr><td class="es">el mes</td><td class="es">los meses</td><td><button class="speak-btn" onclick="speak('meses')">🔊</button></td><td>+ES (на S — добавляем ES)</td></tr>
+      <tr><td class="es">la nación</td><td class="es">las naciones</td><td><button class="speak-btn" onclick="speak('naciones')">🔊</button></td><td>+ES (теряет ´: nación → naciones)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <h4>💡 Ловушка: nación → naciones (без знака ударения)</h4>
+    <p>Когда слово на -ción переходит во мн.ч., знак ´ ИСЧЕЗАЕТ: «nación» → «naciones». Это потому что в мн.ч. ударение и так становится на «o» по правилу 1 (оканчивается на S).</p>
+  </div>
+</div>
+
+<!-- SECTION 7: Типичные ошибки -->
+<div class="section">
+  <div class="section-header"><div class="section-num">7</div><h2>Типичные ошибки русскоговорящих</h2></div>
+
+  <table class="mistakes-table">
+    <thead><tr><th>Ситуация</th><th>❌ Ошибка</th><th>✅ Правильно</th><th>Почему</th></tr></thead>
+    <tbody>
+      <tr><td>«Я учитель»</td><td><span class="wrong">Soy un profesor</span></td><td><span class="right">Soy profesor</span></td><td>С профессиями после ser артикль не нужен</td></tr>
+      <tr><td>«Где рука?»</td><td><span class="wrong">¿Dónde está el mano?</span></td><td><span class="right">¿Dónde está la mano?</span></td><td>la mano — ИСКЛЮЧЕНИЕ, ж.р. на -o</td></tr>
+      <tr><td>«Эта проблема»</td><td><span class="wrong">la problema</span></td><td><span class="right">el problema</span></td><td>«problema» — м.р., вопреки -a</td></tr>
+      <tr><td>«Города»</td><td><span class="wrong">las ciudads</span></td><td><span class="right">las ciudades</span></td><td>Согласная → +ES, не +S</td></tr>
+      <tr><td>«Я говорю по-испански»</td><td><span class="wrong">Hablo el español</span></td><td><span class="right">Hablo español</span></td><td>С hablar нет артикля</td></tr>
+      <tr><td>«Один кофе»</td><td><span class="wrong">una café</span></td><td><span class="right">un café</span></td><td>café — м.р. (на -e чаще м.р.)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 8: Словарь -->
+<div class="section">
+  <div class="section-header"><div class="section-num">8</div><h2>Словарь урока — 15 предметов с артиклями</h2></div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Учи КАЖДОЕ слово С АРТИКЛЕМ. Так род запомнится навсегда.</p>
+
+  <table class="vocab-table">
+    <thead><tr><th>Слово</th><th>🔊</th><th>Род</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td class="es">el café</td><td><button class="speak-btn" onclick="speak('el café')">🔊</button></td><td class="m">м.р.</td><td>кофе</td></tr>
+      <tr><td class="es">la cafetería</td><td><button class="speak-btn" onclick="speak('la cafetería')">🔊</button></td><td class="f">ж.р.</td><td>кафе</td></tr>
+      <tr><td class="es">el libro</td><td><button class="speak-btn" onclick="speak('el libro')">🔊</button></td><td class="m">м.р.</td><td>книга</td></tr>
+      <tr><td class="es">la casa</td><td><button class="speak-btn" onclick="speak('la casa')">🔊</button></td><td class="f">ж.р.</td><td>дом</td></tr>
+      <tr><td class="es">el coche</td><td><button class="speak-btn" onclick="speak('el coche')">🔊</button></td><td class="m">м.р.</td><td>машина</td></tr>
+      <tr><td class="es">la calle</td><td><button class="speak-btn" onclick="speak('la calle')">🔊</button></td><td class="f">ж.р.</td><td>улица</td></tr>
+      <tr><td class="es">el agua</td><td><button class="speak-btn" onclick="speak('el agua')">🔊</button></td><td class="f">ж.р.*</td><td>вода (исключение)</td></tr>
+      <tr><td class="es">la leche</td><td><button class="speak-btn" onclick="speak('la leche')">🔊</button></td><td class="f">ж.р.</td><td>молоко</td></tr>
+      <tr><td class="es">el pan</td><td><button class="speak-btn" onclick="speak('el pan')">🔊</button></td><td class="m">м.р.</td><td>хлеб</td></tr>
+      <tr><td class="es">la fruta</td><td><button class="speak-btn" onclick="speak('la fruta')">🔊</button></td><td class="f">ж.р.</td><td>фрукт/фрукты</td></tr>
+      <tr><td class="es">la mano</td><td><button class="speak-btn" onclick="speak('la mano')">🔊</button></td><td class="f">ж.р.</td><td>рука (исключение!)</td></tr>
+      <tr><td class="es">el día</td><td><button class="speak-btn" onclick="speak('el día')">🔊</button></td><td class="m">м.р.</td><td>день (исключение!)</td></tr>
+      <tr><td class="es">la ciudad</td><td><button class="speak-btn" onclick="speak('la ciudad')">🔊</button></td><td class="f">ж.р.</td><td>город (-dad)</td></tr>
+      <tr><td class="es">el problema</td><td><button class="speak-btn" onclick="speak('el problema')">🔊</button></td><td class="m">м.р.</td><td>проблема (исключение!)</td></tr>
+      <tr><td class="es">la información</td><td><button class="speak-btn" onclick="speak('la información')">🔊</button></td><td class="f">ж.р.</td><td>информация (-ción)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 9: Тест 1 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">9</div><h2>Тест 1 — Угадай артикль</h2></div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Правильный артикль</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. ___ libro está aquí. (книга здесь)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">El</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">La</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Los</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. ___ universidad es grande. (университет большой)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">El</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">La</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Los</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. ___ niños están en casa. (дети дома)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Las</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Los</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">El</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Один кофе с молоком, пожалуйста.» = ___ café con leche, por favor.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Una</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Un</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">El</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. ___ mano derecha. (правая рука) — какой артикль?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">el (т.к. -o)</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">la (mano = исключение!)</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">los</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Я учитель» (я мужчина) =</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Soy un profesor.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Soy profesor.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Soy el profesor.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 10: Тест 2 — впиши артикль -->
+<div class="section">
+  <div class="section-header"><div class="section-num">10</div><h2>Тест 2 — Впиши правильный артикль</h2></div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Введи артикль (el, la, los, las, un, una) в нижнем регистре.</p>
+
+  <div class="quiz">
+    <h3>✏️ Артикль перед словом</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. ___ ciudad es Barcelona. (определённый артикль)</div>
+      <input type="text" class="text-input" placeholder="el / la / los / las" id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','la','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ la. Окончание -dad всегда ж.р.</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. ___ problema es grande. (определённый артикль)</div>
+      <input type="text" class="text-input" placeholder="el / la" id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','el','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ el. «problema» — исключение, м.р. вопреки -a.</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. Quiero ___ casa grande. (неопределённый артикль, «какой-то»)</div>
+      <input type="text" class="text-input" placeholder="un / una" id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','una','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ una. casa — ж.р. (на -a), неопределённый ж.р. = una.</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. ___ niños juegan en el parque. (дети играют в парке)</div>
+      <input type="text" class="text-input" placeholder="los / las" id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','los','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ los. niños — м.р., мн.ч.</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. Множественное от «el doctor» = ___ doctores.</div>
+      <input type="text" class="text-input" placeholder="los / las" id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','los','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ los doctores. doctor → doctores (+es на согласную), ел → los.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 11: Диалоги -->
+<div class="section">
+  <div class="section-header"><div class="section-num">11</div><h2>Диалоги — слушай и повторяй</h2></div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: В булочной (panadería)
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog1()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+      <div class="dlg-es">Buenos días. ¿Qué desea? <button class="speak-btn" onclick="speak('Buenos días. ¿Qué desea?')">🔊</button></div>
+      <div class="dlg-ru translation">— Добрый день. Что Вы желаете?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+      <div class="dlg-es">Una barra de pan, por favor. <button class="speak-btn" onclick="speak('Una barra de pan, por favor.')">🔊</button></div>
+      <div class="dlg-ru translation">— Один батон хлеба, пожалуйста.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+      <div class="dlg-es">¿Algo más? Tenemos los croissants frescos. <button class="speak-btn" onclick="speak('¿Algo más? Tenemos los croissants frescos.')">🔊</button></div>
+      <div class="dlg-ru translation">— Что-то ещё? У нас свежие круассаны.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+      <div class="dlg-es">Sí, dos croissants. <button class="speak-btn" onclick="speak('Sí, dos croissants.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, два круассана.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+      <div class="dlg-es">¿Quiere también la leche? Está rebajada. <button class="speak-btn" onclick="speak('¿Quiere también la leche? Está rebajada.')">🔊</button></div>
+      <div class="dlg-ru translation">— Хотите ещё молоко? Со скидкой.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+      <div class="dlg-es">No, gracias. ¿Cuánto es? <button class="speak-btn" onclick="speak('No, gracias. ¿Cuánto es?')">🔊</button></div>
+      <div class="dlg-ru translation">— Нет, спасибо. Сколько с меня?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+      <div class="dlg-es">Son cuatro euros con veinte. <button class="speak-btn" onclick="speak('Son cuatro euros con veinte.')">🔊</button></div>
+      <div class="dlg-ru translation">— С Вас 4 евро 20.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+      <div class="dlg-es">Aquí tiene. ¡Hasta luego! <button class="speak-btn" onclick="speak('Aquí tiene. ¡Hasta luego!')">🔊</button></div>
+      <div class="dlg-ru translation">— Вот, держите. До свидания!</div>
+    </div></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Спрашиваем дорогу
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog2()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
+      <div class="dlg-es">Disculpe, ¿dónde está el supermercado? <button class="speak-btn" onclick="speak('Disculpe, ¿dónde está el supermercado?')">🔊</button></div>
+      <div class="dlg-ru translation">— Извините, где супермаркет?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">С</div><div>
+      <div class="dlg-es">El supermercado está en la calle Mayor. <button class="speak-btn" onclick="speak('El supermercado está en la calle Mayor.')">🔊</button></div>
+      <div class="dlg-ru translation">— Супермаркет на улице Mayor.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
+      <div class="dlg-es">¿Está lejos? <button class="speak-btn" onclick="speak('¿Está lejos?')">🔊</button></div>
+      <div class="dlg-ru translation">— Это далеко?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">С</div><div>
+      <div class="dlg-es">No, son cinco minutos. Sigue por esta calle. <button class="speak-btn" onclick="speak('No, son cinco minutos. Sigue por esta calle.')">🔊</button></div>
+      <div class="dlg-ru translation">— Нет, 5 минут. Иди прямо по этой улице.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
+      <div class="dlg-es">¿Hay una farmacia cerca? <button class="speak-btn" onclick="speak('¿Hay una farmacia cerca?')">🔊</button></div>
+      <div class="dlg-ru translation">— Есть аптека рядом?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">С</div><div>
+      <div class="dlg-es">Sí, hay dos farmacias en esta zona. La más cerca está al lado del supermercado. <button class="speak-btn" onclick="speak('Sí, hay dos farmacias en esta zona. La más cerca está al lado del supermercado.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, в этом районе 2 аптеки. Ближайшая рядом с супермаркетом.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
+      <div class="dlg-es">Muchas gracias. ¡Hasta luego! <button class="speak-btn" onclick="speak('Muchas gracias. ¡Hasta luego!')">🔊</button></div>
+      <div class="dlg-ru translation">— Большое спасибо. До свидания!</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">С</div><div>
+      <div class="dlg-es">De nada. ¡Hasta luego! <button class="speak-btn" onclick="speak('De nada. ¡Hasta luego!')">🔊</button></div>
+      <div class="dlg-ru translation">— Не за что. До скорого!</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- SECTION 12: Говорение -->
+<div class="section">
+  <div class="section-header"><div class="section-num">12</div><h2>Говорение — твоя очередь</h2></div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — назови 10 предметов вокруг тебя</div>
+    <p>Посмотри вокруг. Назови 10 предметов с правильным артиклем. Произнеси вслух:</p>
+    <div class="es" style="line-height:1.9">la mesa, el libro, la silla, el teléfono, la ventana, el ordenador, la lámpara, la puerta, el agua, los papeles <button class="speak-btn" onclick="speak('la mesa, el libro, la silla, el teléfono, la ventana, el ordenador, la lámpara, la puerta, el agua, los papeles')">🔊</button></div>
+    <div class="hint">[стол, книга, стул, телефон, окно, компьютер, лампа, дверь, вода, бумаги] Это твоя «домашняя тренировка» — повторяй каждое утро.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — расскажи про свой день</div>
+    <p>Прочитай вслух, заменяя элементы:</p>
+    <div class="es">Por la mañana bebo el café. Voy al trabajo. Por la tarde como una manzana y leo el libro. <button class="speak-btn" onclick="speak('Por la mañana bebo el café. Voy al trabajo. Por la tarde como una manzana y leo el libro.')">🔊</button></div>
+    <div class="hint">[Утром я пью кофе. Иду на работу. Днём ем яблоко и читаю книгу.] Обрати внимание: с «por la mañana», «por la tarde» — артикль la. С «el café» — конкретный кофе (тот, что обычно пьёшь).</div>
+  </div>
+</div>
+
+<!-- SECTION 13: Испания на практике -->
+<div class="section">
+  <div class="section-header"><div class="section-num">13</div><h2>🇪🇸 Испания на практике — На рынке (Mercat)</h2></div>
+
+  <div class="spain-card">
+    <div class="stag">🥬 Реальный сценарий</div>
+    <h3>Покупка фруктов на Mercat de Sant Antoni (Барселона)</h3>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:6px">В Барселоне есть знаменитые рынки: La Boqueria, Sant Antoni, El Born. Там покупают свежие фрукты, овощи, рыбу. Цены пишутся за килограмм (€/kg). Артикли — ключ: «un kilo de manzanas», «la fruta», «los tomates».</p>
+
+    <div class="phrase-list">
+      <div class="phrase">
+        <span class="es">Quiero un kilo de manzanas.</span>
+        <button class="speak-btn" onclick="speak('Quiero un kilo de manzanas.')">🔊</button>
+        <span class="tr">Я хочу килограмм яблок.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Cuánto cuestan los tomates?</span>
+        <button class="speak-btn" onclick="speak('¿Cuánto cuestan los tomates?')">🔊</button>
+        <span class="tr">Сколько стоят помидоры? (cuestan = мн.ч., так как помидоров много)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Tiene fresas?</span>
+        <button class="speak-btn" onclick="speak('¿Tiene fresas?')">🔊</button>
+        <span class="tr">У вас есть клубника? (без артикля — в общем)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Medio kilo de plátanos.</span>
+        <button class="speak-btn" onclick="speak('Medio kilo de plátanos.')">🔊</button>
+        <span class="tr">Полкило бананов.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Esta fruta es de aquí?</span>
+        <button class="speak-btn" onclick="speak('¿Esta fruta es de aquí?')">🔊</button>
+        <span class="tr">Эти фрукты местные?</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Eso es todo, gracias.</span>
+        <button class="speak-btn" onclick="speak('Eso es todo, gracias.')">🔊</button>
+        <span class="tr">Это всё, спасибо.</span>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">
+        🥬 Мини-диалог: на фруктовом прилавке
+        <button class="speak-btn-big" onclick="playMercat()">▶ Воспроизвести</button>
+      </div>
+      <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+        <div class="dlg-es">¡Hola! ¿Qué le pongo? <button class="speak-btn" onclick="speak('¡Hola! ¿Qué le pongo?')">🔊</button></div>
+        <div class="dlg-ru">— Привет! Что Вам положить?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Buenos días. Un kilo de manzanas, por favor. <button class="speak-btn" onclick="speak('Buenos días. Un kilo de manzanas, por favor.')">🔊</button></div>
+        <div class="dlg-ru">— Добрый день. Килограмм яблок, пожалуйста.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+        <div class="dlg-es">¿Cuáles? Las rojas o las verdes? <button class="speak-btn" onclick="speak('¿Cuáles? Las rojas o las verdes?')">🔊</button></div>
+        <div class="dlg-ru">— Какие? Красные или зелёные?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Las rojas. Y también medio kilo de tomates. <button class="speak-btn" onclick="speak('Las rojas. Y también medio kilo de tomates.')">🔊</button></div>
+        <div class="dlg-ru">— Красные. И ещё полкило помидоров.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+        <div class="dlg-es">¿Algo más? Las naranjas están muy dulces hoy. <button class="speak-btn" onclick="speak('¿Algo más? Las naranjas están muy dulces hoy.')">🔊</button></div>
+        <div class="dlg-ru">— Что-нибудь ещё? Сегодня апельсины очень сладкие.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">No, gracias. Eso es todo. ¿Cuánto es? <button class="speak-btn" onclick="speak('No, gracias. Eso es todo. ¿Cuánto es?')">🔊</button></div>
+        <div class="dlg-ru">— Нет, спасибо. Это всё. Сколько с меня?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+        <div class="dlg-es">Son seis euros con cincuenta. <button class="speak-btn" onclick="speak('Son seis euros con cincuenta.')">🔊</button></div>
+        <div class="dlg-ru">— С Вас 6 евро 50.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Aquí tiene. ¡Gracias, hasta luego! <button class="speak-btn" onclick="speak('Aquí tiene. ¡Gracias, hasta luego!')">🔊</button></div>
+        <div class="dlg-ru">— Вот, держите. Спасибо, до свидания!</div>
+      </div></div>
+    </div>
+
+    <div class="callout info" style="margin-top:14px">
+      <h4>💡 Барселонские рынки — что нужно знать</h4>
+      <ul>
+        <li><strong>Часы:</strong> большинство рынков открыты пн-сб 8:00-14:00 и 17:00-20:00. В воскресенье большинство закрыто.</li>
+        <li><strong>Местные слова:</strong> на каталонском «manzana» = «poma», «tomate» = «tomàquet». Но продавцы понимают испанский.</li>
+        <li><strong>Стандарт:</strong> цена за килограмм. Просишь либо в кило/полкило, либо штуками: «3 manzanas».</li>
+        <li><strong>Артикль с «la fruta»:</strong> когда спрашиваешь в общем — без артикля. Когда указываешь на конкретные — с артиклем. «¿Tiene fresas?» (есть клубника?) vs «¿Cuánto cuestan las fresas?» (сколько стоят эти конкретные?).</li>
+        <li><strong>Платить наличкой</strong> на маленьких рынках — норма. На больших (La Boqueria) принимают карты.</li>
+        <li><strong>«¿Qué le pongo?»</strong> — буквально «что Вам положить?», это «¿Что Вам?» по-нашему. Стандартный вопрос продавца на рынке.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 14: Anki + Домашнее задание -->
+<div class="section">
+  <div class="section-header"><div class="section-num">14</div><h2>Культура + Anki + Домашнее задание</h2></div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культура</div>
+    <h4>Почему в испанском нет среднего рода</h4>
+    <p>Латынь имела 3 рода: мужской, женский и средний. Но в романских языках (испанский, итальянский, французский, португальский) средний род исчез — слов среднего рода стало мало, и они «перешли» в мужской. Например, латинское «templum» (храм, ср.р.) стало испанским «el templo» (м.р.). Только местоимения «esto/eso» (это/то) и слово «lo» сохранили средний оттенок: «¿Qué es esto?» (Что это?). А существительные — только два рода.</p>
+    <p style="margin-top:8px">Для русских это удобнее, чем кажется: меньше рода = меньше окончаний = меньше ошибок.</p>
+  </div>
+
+  <div class="anki" style="margin-top:16px">
+    <div class="atag">🃏 Anki — 20 карточек урока L04</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:8px">Нажми на карточку — переворот. Скачай .txt для импорта в Anki.</p>
+    <div class="anki-preview" id="anki-preview-L04"></div>
+    <button class="anki-export-btn" onclick="exportAnkiL04()">📥 Скачать колоду L04 для Anki (.txt)</button>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до L05</h4>
+    <ul>
+      <li>Language Transfer эп. 8</li>
+      <li>15 мин Dreaming Spanish Super Beginner</li>
+      <li>Импортируй колоду L04 в Anki, повтори все 20 карточек</li>
+      <li><strong>Тренировка артиклей:</strong> весь день, когда видишь предмет — добавляй мысленно артикль: «la lámpara, el ordenador, los libros». Делай так 1 час — мозг привыкнет.</li>
+      <li>Сходи в любой магазин и попробуй сказать «Quiero un X, por favor»</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Ты закончил L04!</h4>
+    <p>Род и артикли — это «грамматическая инфраструктура» испанского. Без них не работает ни одно предложение. В L05 мы начнём настоящие глаголы: настоящее время на -AR. «Hablo español, vivo en Barcelona, trabajo en mi estudio».</p>
+  </div>
+</div>
+
+</div>
+
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L03.html" class="nav-link-btn">← L03</a>
+    <a href="L05.html" class="nav-link-btn">L05 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID='L04';
+const LS_KEY='esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed&&st.completed.includes(LESSON_ID)){
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+
+function speak(text,lang){
+  if(!('speechSynthesis' in window)){alert('Браузер не поддерживает озвучку.');return;}
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=lang||'es-ES';u.rate=0.85;u.pitch=1;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+function speakSequence(phrases,delay){
+  delay=delay||2400;
+  window.speechSynthesis.cancel();
+  phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});
+}
+
+function playDialog1(){
+  speakSequence([
+    'Buenos días. ¿Qué desea?',
+    'Una barra de pan, por favor.',
+    '¿Algo más? Tenemos los croissants frescos.',
+    'Sí, dos croissants.',
+    '¿Quiere también la leche? Está rebajada.',
+    'No, gracias. ¿Cuánto es?',
+    'Son cuatro euros con veinte.',
+    'Aquí tiene. ¡Hasta luego!'
+  ],2600);
+}
+
+function playDialog2(){
+  speakSequence([
+    'Disculpe, ¿dónde está el supermercado?',
+    'El supermercado está en la calle Mayor.',
+    '¿Está lejos?',
+    'No, son cinco minutos. Sigue por esta calle.',
+    '¿Hay una farmacia cerca?',
+    'Sí, hay dos farmacias en esta zona. La más cerca está al lado del supermercado.',
+    'Muchas gracias. ¡Hasta luego!',
+    'De nada. ¡Hasta luego!'
+  ],2700);
+}
+
+function playMercat(){
+  speakSequence([
+    '¡Hola! ¿Qué le pongo?',
+    'Buenos días. Un kilo de manzanas, por favor.',
+    '¿Cuáles? Las rojas o las verdes?',
+    'Las rojas. Y también medio kilo de tomates.',
+    '¿Algo más? Las naranjas están muy dulces hoy.',
+    'No, gracias. Eso es todo. ¿Cuánto es?',
+    'Son seis euros con cincuenta.',
+    'Aquí tiene. ¡Gracias, hasta luego!'
+  ],2600);
+}
+
+const quizExpl={
+  r1:'treinta y cinco = 35.',
+  r2:'Tengo treinta años. Возраст = «иметь».',
+  r3:'Un café — м.р. перед существительным.',
+  r4:'veintiuno — 21 пишется слитно.',
+  q1:'el libro — libro м.р. (на -o).',
+  q2:'la universidad — окончание -dad всегда ж.р.',
+  q3:'los niños — м.р., мн.ч.',
+  q4:'un café — café м.р. (на -e обычно м.р.).',
+  q5:'la mano — ИСКЛЮЧЕНИЕ! ж.р., несмотря на -o.',
+  q6:'Soy profesor — с профессиями после ser артикль не нужен.'
+};
+
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  if(container.dataset.answered==='true')return;
+  container.dataset.answered='true';
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(function(o){
+    const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+    o.onclick=null;o.style.cursor='default';
+  });
+  const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);
+  const userKey=um&&um[1];
+  if(userKey!==correctKey)el.classList.add('wrong');
+  const fb=document.getElementById('fb-'+qId);
+  fb.className='feedback show '+(userKey===correctKey?'ok':'no');
+  fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ Не совсем. Подсказка: '+answer[0]+'...';}
+}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+let showingTrans=false;
+function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
+
+const totalSections=14;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=sectionsRead+' / '+totalSections+' разделов';
+}
+window.addEventListener('scroll',updateProgress);
+
+const ANKI_DECK_L04=[
+  {front:"el / la / los / las",back:"Определённый артикль (the)\n\nПример: el libro, la casa, los niños, las casas\nЗаметка: меняется по роду и числу"},
+  {front:"un / una / unos / unas",back:"Неопределённый артикль (a / some)\n\nПример: un café, una mesa, unos libros, unas mesas\nЗаметка: для «один», «какой-то», «несколько»"},
+  {front:"el libro",back:"Книга (м.р.)\n\nПример: El libro está en la mesa. — Книга на столе.\nЗаметка: на -o = м.р."},
+  {front:"la casa",back:"Дом (ж.р.)\n\nПример: Mi casa es grande. — Мой дом большой.\nЗаметка: на -a = ж.р."},
+  {front:"el café",back:"Кофе / кафе (м.р.)\n\nПример: Un café con leche. — Кофе с молоком.\nЗаметка: на -e чаще м.р."},
+  {front:"la calle",back:"Улица (ж.р.)\n\nПример: Vivo en la calle Mayor. — Живу на улице Mayor.\nЗаметка: некоторые на -e — ж.р."},
+  {front:"la mano",back:"Рука (ж.р.) — ИСКЛЮЧЕНИЕ!\n\nПример: La mano derecha. — Правая рука.\nЗаметка: на -o, но женский род!"},
+  {front:"el día",back:"День (м.р.) — ИСКЛЮЧЕНИЕ!\n\nПример: Buenos días. — Добрый день.\nЗаметка: на -a, но мужской!"},
+  {front:"el problema",back:"Проблема (м.р.) — ИСКЛЮЧЕНИЕ!\n\nПример: No hay problema. — Нет проблем.\nЗаметка: греческого происхождения, м.р."},
+  {front:"el agua (ж.р.)",back:"Вода — ж.р., но с EL\n\nПример: El agua está fría. — Вода холодная.\nЗаметка: артикль EL перед ударным «а» для звучания"},
+  {front:"la ciudad",back:"Город (ж.р.)\n\nПример: Barcelona es la ciudad más bonita. — Барселона — самый красивый город.\nЗаметка: окончание -dad → ВСЕГДА ж.р."},
+  {front:"la información",back:"Информация (ж.р.)\n\nПример: Necesito información. — Мне нужна информация.\nЗаметка: окончание -ción → ВСЕГДА ж.р."},
+  {front:"la universidad",back:"Университет (ж.р.)\n\nПример: Voy a la universidad. — Иду в университет.\nЗаметка: -dad → ж.р."},
+  {front:"Множ.: гласная → +S",back:"libro → libros, casa → casas\n\nПример: dos libros, tres casas\nЗаметка: простое правило для гласных окончаний"},
+  {front:"Множ.: согласная → +ES",back:"ciudad → ciudades, doctor → doctores\n\nПример: dos ciudades, los doctores\nЗаметка: для согласных окончаний"},
+  {front:"nación → naciones",back:"Знак ударения исчезает в мн.ч.\n\nПример: una nación → las naciones\nЗаметка: ударение и так становится правильным"},
+  {front:"Soy profesor",back:"Я учитель (без артикля!)\n\nПример: Soy profesor. — Я учитель.\nЗаметка: с профессиями после ser НЕТ артикля"},
+  {front:"el pan",back:"Хлеб (м.р.)\n\nПример: Una barra de pan. — Батон хлеба.\nЗаметка: ежедневное слово в Барселоне"},
+  {front:"la leche",back:"Молоко (ж.р.)\n\nПример: Un café con leche. — Кофе с молоком.\nЗаметка: на -e, но ж.р. (учить с артиклем)"},
+  {front:"¿Qué le pongo?",back:"Что Вам положить?\n\nПример: ¡Hola! ¿Qué le pongo? — Привет! Чем могу помочь?\nЗаметка: стандарт продавца на рынке/в булочной"}
+];
+
+function renderAnkiPreview(){
+  const container=document.getElementById('anki-preview-L04');
+  if(!container)return;
+  const preview=ANKI_DECK_L04.slice(0,5);
+  container.innerHTML=preview.map(function(c){
+    return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')">'+
+      '<div class="anki-card-inner">'+
+      '<div class="anki-card-front">'+c.front+'</div>'+
+      '<div class="anki-card-back">'+c.back.replace(/\n/g,'<br>')+'</div>'+
+      '</div></div>';
+  }).join('');
+}
+renderAnkiPreview();
+
+function exportAnkiL04(){
+  const tsv=ANKI_DECK_L04.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');
+  const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='L04_spanish_anki.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>

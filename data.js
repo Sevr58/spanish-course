@@ -94,7 +94,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:1,
       speaking_focus:"Познакомиться с кем-то по-испански (полный диалог)",
-      file:"lessons/L02.html", status:"done"
+      file:"lessons/L02.html", status:"improved"
     },
     {
       id:"L03", num:3, phase:1, block:"B1A", level:"A0", day:5, week:1,
@@ -106,7 +106,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:4,
       speaking_focus:"Называть числа, возраст, номер телефона",
-      file:"lessons/L03.html", status:"pending"
+      file:"lessons/L03.html", status:"improved"
     },
     {
       id:"L04", num:4, phase:1, block:"B1A", level:"A0", day:7, week:1,
@@ -118,7 +118,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Называть предметы в комнате с правильным артиклем",
-      file:"lessons/L04.html", status:"pending"
+      file:"lessons/L04.html", status:"improved"
     },
     {
       id:"L05", num:5, phase:1, block:"B1A", level:"A0", day:9, week:2,

@@ -3,19 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L02: Привет, ¡Hola! — Приветствия и знакомство</title>
+<title>L02: Привет, ¡Hola! — приветствия и знакомство</title>
 <style>
 :root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
 .wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
-
-/* Nav */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
 .nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
 .nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
-
-/* Hero */
 .hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
 .hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
 .hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
@@ -25,20 +21,13 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
 .obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
 .obj strong{display:block;font-size:.9rem;margin-bottom:2px}
-
-/* Progress bar */
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
-
-/* Section */
 .section{margin-bottom:36px}
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .section-header h2{font-size:1.15rem;font-weight:700}
 .section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.divider{height:1px;background:var(--border);margin:32px 0}
-
-/* Callout */
 .callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
 .callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
 .callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
@@ -46,29 +35,32 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
-
-/* Vocab table */
-.vocab-table{width:100%;border-collapse:collapse;margin:12px 0}
-.vocab-table th{background:var(--bg3);padding:9px 12px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left;border-bottom:1px solid var(--border)}
-.vocab-table td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid var(--bg3);vertical-align:top}
-.vocab-table tr:last-child td{border-bottom:none}
-.vocab-table tr:hover td{background:var(--bg2)}
-.vocab-table .es{font-weight:700;color:var(--text)}
-.vocab-table .pron{color:var(--muted);font-size:.82rem}
-.vocab-table .ru{color:var(--green)}
-.vocab-table .ex{font-size:.82rem;color:var(--muted);font-style:italic}
-.cognate-badge{background:rgba(255,214,10,.15);color:var(--gold);font-size:.72rem;padding:1px 6px;border-radius:4px;margin-left:4px;font-weight:700}
-
-/* Speaking bubble */
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;transition:.2s;padding:0 4px;color:var(--gold)}
+.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.speak-btn-big:hover{opacity:.88}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.vocab-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.vocab-table .es{font-weight:600;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-style:italic;font-size:.82rem}
+.compare-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.compare-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);font-weight:700}
+.compare-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.compare-table .formal{color:var(--purple);font-weight:600}
+.compare-table .informal{color:var(--gold);font-weight:600}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);font-weight:700}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.mistakes-table .wrong{color:var(--red);font-weight:600;text-decoration:line-through;opacity:.7}
+.mistakes-table .right{color:var(--green);font-weight:600}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
 .speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
 .speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
-
-/* Quiz */
 .quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
 .quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
 .quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
@@ -80,12 +72,9 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .opt:hover{border-color:var(--muted)}
 .opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
 .opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
-.opt:disabled,.opt[disabled]{cursor:default}
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
-
-/* Text exercise */
 .text-ex{margin-bottom:14px}
 .text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
 .text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
@@ -97,767 +86,697 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
 .answer-reveal.show{display:block}
-
-/* Dialogue */
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
 .dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
 .dlg-speaker.b{color:var(--blue)}
-.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-es{font-size:.95rem;font-weight:500;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
 .dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
-
-/* Grammar grid */
-.grammar-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
-.gram-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
-.gram-card h4{font-size:.82rem;font-weight:700;color:var(--gold);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
-.gram-card .line{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bg3);font-size:.88rem}
-.gram-card .line:last-child{border-bottom:none}
-.gram-card .line .sp{color:var(--text);font-weight:600}
-.gram-card .line .ru{color:var(--muted)}
-
-/* Cultural note */
 .culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-
-/* Anki box */
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--gold)}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}
+.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
 .anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
 .anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
-
-/* Polyglot link */
-.polyglot-link{display:inline-flex;align-items:center;gap:6px;background:rgba(157,78,221,.12);border:1px solid rgba(157,78,221,.35);border-radius:8px;padding:8px 14px;font-size:.85rem;color:var(--purple);text-decoration:none;font-weight:600;margin:8px 0}
-.polyglot-link:hover{background:rgba(157,78,221,.2)}
-
-/* Done button */
-.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem;color:var(--text)}
+.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);line-height:1.5;background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+.anki-export-btn:hover{opacity:.85}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
 .done-btn.marked{background:var(--muted)}
-.nav-links{display:flex;gap:10px}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.grammar-grid{grid-template-columns:1fr}.vocab-table th:last-child,.vocab-table td:last-child{display:none}}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">A0 · Фаза 1 · День 3</span>
   <a href="L03.html">L03 →</a>
 </div>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="phase-tag">🌱 Фаза 1 · Первый контакт · Language Transfer эп. 6</div>
-  <h1>Привет, <span class="hl">¡Hola!</span></h1>
-  <p class="sub">Приветствия, знакомство, первые фразы — твой первый реальный разговор по-испански</p>
+  <div class="phase-tag">🌱 Фаза 1 · Основы · Первый контакт</div>
+  <h1>Привет, <span class="hl">¡Hola!</span> — твой первый разговор</h1>
+  <p class="sub">Приветствия, формальное «Вы» vs неформальное «ты», представление, вежливые фразы. После урока ты сможешь познакомиться с любым испанцем.</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Познакомиться с кем-то по-испански — полный диалог от начала до конца</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
-    <div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>Language Transfer эп. 6 + Dreaming Spanish Super Beginner</p></div></div>
-    <div class="obj"><div class="ico">📚</div><div><strong>Связь</strong><p>Расширение урока #1 из курса Polyglot (Дмитрий Петров)</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Провести 2-минутный разговор при знакомстве</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + 15 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>Language Transfer эп. 6 · Polyglot #1</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Знакомимся вслух 5 раз с разными собеседниками</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<a href="../../lessons/lesson_1.html" class="polyglot-link">📚 Polyglot #1 — Урок Дмитрия Петрова по приветствиям</a>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!-- SECTION 1: ТЕОРИЯ — Как устроены приветствия -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 1: Повторение L01 -->
 <div class="section">
-  <div class="section-header">
-    <div class="section-num">1</div>
-    <h2>Теория — Как устроены приветствия по-испански</h2>
-  </div>
+  <div class="section-header"><div class="section-num">1</div><h2>Повторение L01 — произношение</h2></div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Проверь, что правила произношения закрепились перед знакомством с новой темой.</p>
 
-  <p style="margin-bottom:14px">В испанском языке, как и в русском, существует <strong>два уровня вежливости</strong>: неформальный (tú — «ты») и формальный (usted — «Вы»). Но в отличие от русского, в испанском это отражается не только на местоимении, но и на <em>форме глагола</em>. Пока запомни только факт — подробно разберём в уроке L07.</p>
+  <div class="quiz" id="quiz-review">
+    <h3>🔄 Быстрый тест по L01</h3>
 
-  <div class="callout tip">
-    <h4>💡 Сравнение с русским</h4>
-    <p>По-русски ты говоришь <em>«Привет»</em> другу и <em>«Здравствуйте»</em> незнакомому — форма приветствия меняется. В испанском то же самое: <em>¡Hola!</em> — для всех, но следующие слова будут разными в зависимости от ситуации. Это очень похоже на нашу логику.</p>
-  </div>
-
-  <div class="callout info">
-    <h4>🎧 Language Transfer — эпизод 6</h4>
-    <p>В этом эпизоде Михаилис объясняет как строятся базовые предложения. Послушай его до или после этого урока на <a href="https://www.youtube.com/@LanguageTransfer" target="_blank" style="color:var(--gold)">@LanguageTransfer</a>. Главная идея: испанский очень логичен — ты можешь вывести большинство форм из правил.</p>
-  </div>
-
-  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 10px">Формальные и неформальные ситуации</h3>
-
-  <div class="grammar-grid">
-    <div class="gram-card">
-      <h4>😊 Неформально (tú)</h4>
-      <div class="line"><span class="sp">¡Hola!</span><span class="ru">Привет!</span></div>
-      <div class="line"><span class="sp">¡Buenos días!</span><span class="ru">Доброе утро!</span></div>
-      <div class="line"><span class="sp">¡Buenas tardes!</span><span class="ru">Добрый день!</span></div>
-      <div class="line"><span class="sp">¡Buenas noches!</span><span class="ru">Добрый вечер!</span></div>
-      <div class="line"><span class="sp">¡Buenas!</span><span class="ru">Привет! (сокр.)</span></div>
-      <div class="line"><span class="sp">¿Qué tal?</span><span class="ru">Как дела?</span></div>
-      <div class="line"><span class="sp">¿Cómo estás?</span><span class="ru">Как ты?</span></div>
+    <div class="quiz-q" id="r1">
+      <div class="q-text">1. Как читается <strong>«hola»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r1','b')">[Хо-ла]</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','a')">[О-ла]</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','c')">[Хо-ле]</div>
+      </div>
+      <div class="feedback" id="fb-r1"></div>
     </div>
-    <div class="gram-card">
-      <h4>👔 Формально (usted)</h4>
-      <div class="line"><span class="sp">Buenos días.</span><span class="ru">Добрый день.</span></div>
-      <div class="line"><span class="sp">Buenas tardes.</span><span class="ru">Добрый день/вечер.</span></div>
-      <div class="line"><span class="sp">¿Cómo está usted?</span><span class="ru">Как Вы?</span></div>
-      <div class="line"><span class="sp">Mucho gusto.</span><span class="ru">Очень приятно.</span></div>
-      <div class="line"><span class="sp">Un placer.</span><span class="ru">Pleasure to meet you.</span></div>
-      <div class="line"><span class="sp">Encantado/a.</span><span class="ru">Рад(а) познакомиться.</span></div>
+
+    <div class="quiz-q" id="r2">
+      <div class="q-text">2. В слове <strong>«amigo»</strong> ударение на:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r2','b')">A-mi-go</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','a')">a-MI-go</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','c')">a-mi-GO</div>
+      </div>
+      <div class="feedback" id="fb-r2"></div>
     </div>
-  </div>
 
-  <div class="callout warning">
-    <h4>⚠️ Типичная ошибка русскоговорящих</h4>
-    <ul>
-      <li>По-русски мы говорим «<em>Как дела?</em>» → «<em>Нормально</em>». В испанском нельзя ответить просто «normalmente» — это наречие. Нужно: <strong>Bien</strong> (хорошо), <strong>Muy bien</strong> (очень хорошо), <strong>Regular</strong> (так себе), <strong>Mal</strong> (плохо).</li>
-      <li>Знак <strong>¡</strong> и <strong>¿</strong> — перевёрнутые восклицательный и вопросительный знаки в начале предложения. Это обязательная часть испанской пунктуации, не декорация.</li>
-      <li><strong>Buenos / Buenas</strong> — форма меняется по роду: días (м.р.) → Buenos, tardes/noches (ж.р.) → Buenas.</li>
-    </ul>
-  </div>
-
-  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 10px">Как представиться</h3>
-  <p style="margin-bottom:12px">Это самое важное: как сказать «меня зовут» и «я из...». В испанском используют два разных глагола там, где в русском один «быть»:</p>
-
-  <div class="grammar-grid">
-    <div class="gram-card">
-      <h4>🪪 Имя и происхождение</h4>
-      <div class="line"><span class="sp">Me llamo Ana.</span><span class="ru">Меня зовут Ана.</span></div>
-      <div class="line"><span class="sp">Soy Pedro.</span><span class="ru">Я — Педро.</span></div>
-      <div class="line"><span class="sp">Soy de Rusia.</span><span class="ru">Я из России.</span></div>
-      <div class="line"><span class="sp">Soy ruso/rusa.</span><span class="ru">Я русский/русская.</span></div>
-      <div class="line"><span class="sp">Soy estudiante.</span><span class="ru">Я студент.</span></div>
-      <div class="line"><span class="sp">Tengo 30 años.</span><span class="ru">Мне 30 лет.</span></div>
+    <div class="quiz-q" id="r3">
+      <div class="q-text">3. Буква <strong>«J»</strong> в «jamón» читается как:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r3','a')">[х] (как «хорошо»)</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','b')">[ж]</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','c')">[дж]</div>
+      </div>
+      <div class="feedback" id="fb-r3"></div>
     </div>
-    <div class="gram-card">
-      <h4>❓ Спросить у другого</h4>
-      <div class="line"><span class="sp">¿Cómo te llamas?</span><span class="ru">Как тебя зовут?</span></div>
-      <div class="line"><span class="sp">¿Cómo se llama usted?</span><span class="ru">Как Вас зовут?</span></div>
-      <div class="line"><span class="sp">¿De dónde eres?</span><span class="ru">Откуда ты?</span></div>
-      <div class="line"><span class="sp">¿Cuántos años tienes?</span><span class="ru">Сколько тебе лет?</span></div>
-      <div class="line"><span class="sp">¿A qué te dedicas?</span><span class="ru">Чем ты занимаешься?</span></div>
-      <div class="line"><span class="sp">¿Hablas español?</span><span class="ru">Ты говоришь по-исп.?</span></div>
-    </div>
-  </div>
 
-  <div class="callout tip">
-    <h4>💡 «Me llamo» vs «Soy» — в чём разница?</h4>
-    <p><strong>Me llamo</strong> буквально означает «я называю себя» (возвратный глагол llamar). Это самый частотный способ. <strong>Soy</strong> — это глагол «ser» (быть), форма для «я». Оба варианта правильны, но <em>Me llamo</em> звучит мягче и естественнее в разговоре. По-русски аналогии нет — у нас просто «меня зовут». По-английски: «My name is» ≈ «Me llamo», «I am» ≈ «Soy».</p>
-  </div>
-
-  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 10px">Прощание</h3>
-  <div class="grammar-grid">
-    <div class="gram-card">
-      <h4>👋 До свидания</h4>
-      <div class="line"><span class="sp">Adiós.</span><span class="ru">До свидания.</span></div>
-      <div class="line"><span class="sp">Hasta luego.</span><span class="ru">До скорого.</span></div>
-      <div class="line"><span class="sp">Hasta mañana.</span><span class="ru">До завтра.</span></div>
-      <div class="line"><span class="sp">Hasta pronto.</span><span class="ru">До скорой встречи.</span></div>
-      <div class="line"><span class="sp">Nos vemos.</span><span class="ru">Увидимся.</span></div>
-      <div class="line"><span class="sp">Chao.</span><span class="ru">Пока! (разг.)</span></div>
+    <div class="quiz-q" id="r4">
+      <div class="q-text">4. «¡Hola!» произнесёшь в магазине? Правильное произношение:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r4','b')">[Хо-ла]</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','a')">[О-ла] (H не читается)</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','c')">[Гhola]</div>
+      </div>
+      <div class="feedback" id="fb-r4"></div>
     </div>
-    <div class="gram-card">
-      <h4>🙏 Вежливые фразы</h4>
-      <div class="line"><span class="sp">Por favor.</span><span class="ru">Пожалуйста.</span></div>
-      <div class="line"><span class="sp">Gracias.</span><span class="ru">Спасибо.</span></div>
-      <div class="line"><span class="sp">Muchas gracias.</span><span class="ru">Большое спасибо.</span></div>
-      <div class="line"><span class="sp">De nada.</span><span class="ru">Пожалуйста (ответ).</span></div>
-      <div class="line"><span class="sp">Perdón / Perdona.</span><span class="ru">Извините.</span></div>
-      <div class="line"><span class="sp">Lo siento.</span><span class="ru">Мне жаль / Извини.</span></div>
-    </div>
-  </div>
-
-  <div class="callout info">
-    <h4>ℹ️ «Hasta luego» — буквальный перевод</h4>
-    <p>«Hasta» = «до», «luego» = «потом/позже». Дословно: «до потом». По-английски аналог — «see you later». Испанцы используют это выражение даже когда не планируют встречаться снова — просто вежливая формула прощания, как русское «до свидания» (буквально: «до нового видания»).</p>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- SECTION 2: СЛОВАРЬ -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 2: Приветствия по времени -->
 <div class="section">
-  <div class="section-header">
-    <div class="section-num">2</div>
-    <h2>Словарь урока — 15 ключевых слов и фраз</h2>
+  <div class="section-header"><div class="section-num">2</div><h2>Приветствия по времени суток</h2></div>
+
+  <p style="margin-bottom:14px">В испанском приветствия привязаны к времени суток. «Buenos días» — утром и днём до обеда. «Buenas tardes» — после обеда (после 14:00). «Buenas noches» — вечером и ночью. Универсальное «Hola» — в любое время и с любым человеком.</p>
+
+  <div class="vocab-table" style="margin-bottom:14px">
+    <table style="width:100%">
+      <tr><th>Фраза</th><th>🔊</th><th>Когда</th><th>Дословно</th></tr>
+      <tr><td class="es">¡Hola!</td><td><button class="speak-btn" onclick="speak('Hola')">🔊</button></td><td>Всегда, со всеми</td><td>Привет</td></tr>
+      <tr><td class="es">Buenos días</td><td><button class="speak-btn" onclick="speak('Buenos días')">🔊</button></td><td>До ~14:00</td><td>Добрые дни (м.р., мн.ч.)</td></tr>
+      <tr><td class="es">Buenas tardes</td><td><button class="speak-btn" onclick="speak('Buenas tardes')">🔊</button></td><td>14:00–20:00</td><td>Добрые вечера (ж.р., мн.ч.)</td></tr>
+      <tr><td class="es">Buenas noches</td><td><button class="speak-btn" onclick="speak('Buenas noches')">🔊</button></td><td>После 20:00 + спокойной ночи</td><td>Добрые ночи (ж.р., мн.ч.)</td></tr>
+    </table>
   </div>
 
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Транскрипция: ударный слог выделен ЗАГЛАВНЫМИ буквами. Учи вместе с произношением!</p>
+  <div class="callout tip">
+    <h4>💡 Лайфхак: почему «días», «tardes», «noches» во множественном числе?</h4>
+    <p>Это идиома, оставшаяся со средневекового испанского. Можно перевести как «многих тебе добрых дней». Не пытайся понять логику — просто запомни: ВСЕГДА множественное число. «Buen día» (ед.ч.) — формально ошибка, хотя в Лат. Америке так говорят.</p>
+  </div>
 
-  <table class="vocab-table">
+  <div class="callout info">
+    <h4>🕐 Барселона: когда что говорить</h4>
+    <ul>
+      <li><strong>До 14:00:</strong> «Buenos días» (даже если уже 13:55)</li>
+      <li><strong>14:00–20:00:</strong> «Buenas tardes» (после обеда — это «послеобеденное»)</li>
+      <li><strong>После 20:00:</strong> «Buenas noches» (включая прощание перед сном)</li>
+      <li><strong>В сомнении:</strong> универсальное «¡Hola!» — всегда подойдёт</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 3: TÚ vs USTED — формальность -->
+<div class="section">
+  <div class="section-header"><div class="section-num">3</div><h2>«Ты» vs «Вы» — главный выбор</h2></div>
+
+  <p style="margin-bottom:14px">В испанском, как и в русском, есть разделение на «ты» и «вы» (вежливое). Но границы немного другие. <strong>Tú</strong> = ты, неформально. <strong>Usted</strong> = Вы, формально-уважительно (сокращается Ud./Vd.).</p>
+
+  <table class="compare-table">
     <thead>
-      <tr>
-        <th>Испанский</th>
-        <th>Произношение</th>
-        <th>Русский</th>
-        <th>Пример</th>
-      </tr>
+      <tr><th>Ситуация</th><th>В России</th><th>В Испании</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="es">¡Hola!</td>
-        <td class="pron">[О-ла]</td>
-        <td class="ru">Привет!</td>
-        <td class="ex">¡Hola! ¿Qué tal? — Привет! Как дела?</td>
-      </tr>
-      <tr>
-        <td class="es">Buenos días</td>
-        <td class="pron">[БУЭЙ-нос ДИ-ас]</td>
-        <td class="ru">Доброе утро</td>
-        <td class="ex">Buenos días, señora García. — Доброе утро, г-жа Гарсиа.</td>
-      </tr>
-      <tr>
-        <td class="es">Buenas tardes</td>
-        <td class="pron">[БУЭЙ-нас ТАР-дес]</td>
-        <td class="ru">Добрый день</td>
-        <td class="ex">Buenas tardes a todos. — Добрый день всем.</td>
-      </tr>
-      <tr>
-        <td class="es">Buenas noches</td>
-        <td class="pron">[БУЭЙ-нас НО-чес]</td>
-        <td class="ru">Добрый вечер / Спокойной ночи</td>
-        <td class="ex">Buenas noches, hasta mañana. — Спокойной ночи, до завтра.</td>
-      </tr>
-      <tr>
-        <td class="es">¿Cómo te llamas?</td>
-        <td class="pron">[КО-мо те ЙА-мас]</td>
-        <td class="ru">Как тебя зовут?</td>
-        <td class="ex">¿Cómo te llamas? — Me llamo Carlos.</td>
-      </tr>
-      <tr>
-        <td class="es">Me llamo...</td>
-        <td class="pron">[ме ЙА-мо]</td>
-        <td class="ru">Меня зовут...</td>
-        <td class="ex">Me llamo Ana, soy de Madrid.</td>
-      </tr>
-      <tr>
-        <td class="es">Soy de...</td>
-        <td class="pron">[сой де]</td>
-        <td class="ru">Я из...</td>
-        <td class="ex">Soy de Rusia. — Я из России.</td>
-      </tr>
-      <tr>
-        <td class="es">Mucho gusto</td>
-        <td class="pron">[МУ-чо ГУС-то]</td>
-        <td class="ru">Очень приятно</td>
-        <td class="ex">Mucho gusto, señor López. — Очень приятно, г-н Лопес.</td>
-      </tr>
-      <tr>
-        <td class="es">Encantado/a <span class="cognate-badge">≈ EN</span></td>
-        <td class="pron">[эн-кан-ТА-до]</td>
-        <td class="ru">Рад/рада познакомиться</td>
-        <td class="ex">Encantada de conocerte. — Рада с тобой познакомиться.</td>
-      </tr>
-      <tr>
-        <td class="es">Gracias</td>
-        <td class="pron">[ГРА-сьяс]</td>
-        <td class="ru">Спасибо</td>
-        <td class="ex">Muchas gracias por tu ayuda. — Большое спасибо за помощь.</td>
-      </tr>
-      <tr>
-        <td class="es">De nada</td>
-        <td class="pron">[де НА-да]</td>
-        <td class="ru">Не за что / Пожалуйста</td>
-        <td class="ex">—Gracias. —De nada. — Спасибо. — Не за что.</td>
-      </tr>
-      <tr>
-        <td class="es">Por favor</td>
-        <td class="pron">[пор фа-ВОР]</td>
-        <td class="ru">Пожалуйста (просьба)</td>
-        <td class="ex">Un café, por favor. — Кофе, пожалуйста.</td>
-      </tr>
-      <tr>
-        <td class="es">Hasta luego</td>
-        <td class="pron">[АС-та ЛУЭЙ-го]</td>
-        <td class="ru">До свидания / До скорого</td>
-        <td class="ex">¡Hasta luego! — До свидания!</td>
-      </tr>
-      <tr>
-        <td class="es">Lo siento</td>
-        <td class="pron">[ло СЬЕН-то]</td>
-        <td class="ru">Извините / Мне жаль</td>
-        <td class="ex">Lo siento mucho. — Мне очень жаль.</td>
-      </tr>
-      <tr>
-        <td class="es">¿Hablas español? <span class="cognate-badge">≈ EN</span></td>
-        <td class="pron">[А-блас эс-пан-ЙОЛ]</td>
-        <td class="ru">Ты говоришь по-испански?</td>
-        <td class="ex">¿Hablas español? Sí, un poco. — Да, немного.</td>
-      </tr>
+      <tr><td>Друг, ровесник</td><td>ты</td><td><span class="informal">tú</span></td></tr>
+      <tr><td>Незнакомый молодой человек</td><td>часто «вы»</td><td><span class="informal">tú</span> (Испания свободнее!)</td></tr>
+      <tr><td>Кассир в Mercadona</td><td>«вы» (по этикету)</td><td><span class="informal">tú</span> (обычно)</td></tr>
+      <tr><td>Пожилой человек</td><td>«вы»</td><td><span class="formal">usted</span></td></tr>
+      <tr><td>Врач, чиновник</td><td>«вы»</td><td><span class="formal">usted</span></td></tr>
+      <tr><td>Босс на работе</td><td>часто «вы»</td><td><span class="informal">tú</span> (Испания свободнее)</td></tr>
+      <tr><td>Сосед / соседка</td><td>«вы» сначала</td><td><span class="informal">tú</span> в Барселоне</td></tr>
     </tbody>
   </table>
 
   <div class="callout warning">
-    <h4>⚠️ Ложный друг: «embarazada» — НЕ «embarrassed»!</h4>
-    <p><strong>Embarazada</strong> = беременная (не смущённая!). Если ты хочешь сказать «мне неловко», говори <strong>estoy avergonzado/a</strong>. Это один из самых знаменитых ложных друзей испанского — многие туристы попадают в неловкую ситуацию, используя это слово не по назначению.</p>
+    <h4>⚠️ Главная ловушка для русскоговорящих</h4>
+    <p>В России мы по умолчанию говорим «вы» с незнакомцами — это вежливо. В Испании <strong>наоборот</strong>: «usted» с молодым человеком звучит холодно и отстранённо, как будто ты подчёркиваешь дистанцию. Молодые испанцы переходят на «tú» сразу. Используй «usted» ТОЛЬКО с явно пожилыми людьми, чиновниками и в формальных ситуациях.</p>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">Как меняется глагол</h3>
+  <p style="margin-bottom:10px">Запомни сейчас ключевую пару — пригодится в каждом разговоре:</p>
+
+  <table class="vocab-table">
+    <tr><th>Tú (ты)</th><th>🔊</th><th>Usted (Вы)</th><th>🔊</th><th>Значение</th></tr>
+    <tr><td class="es">¿Cómo estás?</td><td><button class="speak-btn" onclick="speak('¿Cómo estás?')">🔊</button></td><td class="es">¿Cómo está?</td><td><button class="speak-btn" onclick="speak('¿Cómo está?')">🔊</button></td><td>Как дела?</td></tr>
+    <tr><td class="es">¿Cómo te llamas?</td><td><button class="speak-btn" onclick="speak('¿Cómo te llamas?')">🔊</button></td><td class="es">¿Cómo se llama?</td><td><button class="speak-btn" onclick="speak('¿Cómo se llama?')">🔊</button></td><td>Как тебя/Вас зовут?</td></tr>
+    <tr><td class="es">¿De dónde eres?</td><td><button class="speak-btn" onclick="speak('¿De dónde eres?')">🔊</button></td><td class="es">¿De dónde es?</td><td><button class="speak-btn" onclick="speak('¿De dónde es?')">🔊</button></td><td>Откуда ты/Вы?</td></tr>
+    <tr><td class="es">¿Hablas inglés?</td><td><button class="speak-btn" onclick="speak('¿Hablas inglés?')">🔊</button></td><td class="es">¿Habla inglés?</td><td><button class="speak-btn" onclick="speak('¿Habla inglés?')">🔊</button></td><td>Говоришь/Говорите по-английски?</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Простое правило</h4>
+    <p>Глагол с «usted» — это та же форма, что и с «он/она». То есть «usted habla» = «он говорит». Поэтому исп. фраза «¿Habla inglés?» — это и «он говорит по-английски?», и «Вы говорите по-английски?». Контекст подскажет.</p>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- SECTION 3: ТЕСТ 1 — Множественный выбор -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 4: Представление себя -->
 <div class="section">
-  <div class="section-header">
-    <div class="section-num">3</div>
-    <h2>Тест 1 — Выбери правильный вариант</h2>
+  <div class="section-header"><div class="section-num">4</div><h2>Как представиться — 3 способа</h2></div>
+
+  <p style="margin-bottom:14px">В испанском есть 3 способа сказать «меня зовут». Они равнозначны, но каждый звучит чуть по-своему.</p>
+
+  <div class="speak-box">
+    <div class="speak-tag">Способ 1 — самый частый</div>
+    <p>Me llamo + имя <button class="speak-btn" onclick="speak('Me llamo Evgeni')">🔊</button></p>
+    <div class="es">Me llamo Evgeni.</div>
+    <div class="hint">Буквально: «Я зову себя Евгений». Возвратный глагол llamarse. Самый нейтральный, подходит всем.</div>
   </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на ответ — сразу увидишь объяснение.</p>
+
+  <div class="speak-box">
+    <div class="speak-tag">Способ 2 — короче</div>
+    <p>Soy + имя <button class="speak-btn" onclick="speak('Soy Evgeni')">🔊</button></p>
+    <div class="es">Soy Evgeni.</div>
+    <div class="hint">«Я Евгений». Глагол ser. Короткий, прямой — как в английском «I'm John».</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">Способ 3 — формальный</div>
+    <p>Mi nombre es + имя <button class="speak-btn" onclick="speak('Mi nombre es Evgeni')">🔊</button></p>
+    <div class="es">Mi nombre es Evgeni.</div>
+    <div class="hint">«Моё имя есть Евгений». Используется в анкетах, на собеседованиях, по телефону. На улице — слишком формально.</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">Полная фраза знакомства</h3>
+  <div class="speak-box">
+    <div class="speak-tag">🎯 Шаблон для запоминания</div>
+    <div class="es" style="line-height:2">¡Hola! Me llamo <strong style="color:var(--gold)">Evgeni</strong>. Soy de <strong style="color:var(--gold)">Rusia</strong>. Vivo en <strong style="color:var(--gold)">Barcelona</strong>. Mucho gusto. <button class="speak-btn" onclick="speak('¡Hola! Me llamo Evgeni. Soy de Rusia. Vivo en Barcelona. Mucho gusto.')">🔊</button></div>
+    <div class="hint">[Привет! Меня зовут Евгений. Я из России. Я живу в Барселоне. Очень приятно.] Замени выделенные слова на свои. Эту фразу будешь произносить раз 20 в первый месяц в Испании.</div>
+  </div>
+
+  <div class="callout info">
+    <h4>💬 «Mucho gusto» — обязательная завершающая фраза</h4>
+    <p>После знакомства всегда говори «Mucho gusto» («Очень приятно») или «Encantado/Encantada» (по родам). Без этого финала испанцы могут подумать, что ты грубый. Если ты мужчина — «Encantado». Если женщина — «Encantada».</p>
+  </div>
+</div>
+
+<!-- SECTION 5: Прилагательные — м.р./ж.р. -->
+<div class="section">
+  <div class="section-header"><div class="section-num">5</div><h2>Род прилагательных — почему «cansado/cansada»</h2></div>
+
+  <p style="margin-bottom:14px">В русском прилагательное меняется по родам: «уставший/уставшая». В испанском — то же самое, но окончания другие. Базовое правило: <strong>-O для мужского, -A для женского</strong>.</p>
+
+  <table class="vocab-table">
+    <tr><th>Мужской род</th><th>🔊</th><th>Женский род</th><th>🔊</th><th>Перевод</th></tr>
+    <tr><td class="es">cansado</td><td><button class="speak-btn" onclick="speak('cansado')">🔊</button></td><td class="es">cansada</td><td><button class="speak-btn" onclick="speak('cansada')">🔊</button></td><td>уставший / уставшая</td></tr>
+    <tr><td class="es">contento</td><td><button class="speak-btn" onclick="speak('contento')">🔊</button></td><td class="es">contenta</td><td><button class="speak-btn" onclick="speak('contenta')">🔊</button></td><td>довольный / довольная</td></tr>
+    <tr><td class="es">encantado</td><td><button class="speak-btn" onclick="speak('encantado')">🔊</button></td><td class="es">encantada</td><td><button class="speak-btn" onclick="speak('encantada')">🔊</button></td><td>очень приятно (м/ж)</td></tr>
+    <tr><td class="es">ruso</td><td><button class="speak-btn" onclick="speak('ruso')">🔊</button></td><td class="es">rusa</td><td><button class="speak-btn" onclick="speak('rusa')">🔊</button></td><td>русский / русская</td></tr>
+    <tr><td class="es">español</td><td><button class="speak-btn" onclick="speak('español')">🔊</button></td><td class="es">española</td><td><button class="speak-btn" onclick="speak('española')">🔊</button></td><td>испанец / испанка</td></tr>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ Прилагательные на -E или согласную = не меняются</h4>
+    <p>Не все прилагательные меняют окончание. На -E (grande, inteligente) и на согласную (joven, fácil) — форма одна для обоих родов: «un hombre inteligente / una mujer inteligente». Меняются только те, что на -O.</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Что говорить о себе</h4>
+    <p>Если ты <strong>мужчина</strong>, ВСЕГДА используй -O окончание для себя: «Soy ruso», «Estoy cansado», «Encantado». Если <strong>женщина</strong> — -A: «Soy rusa», «Estoy cansada», «Encantada». Самая частая ошибка иностранцев — забыть про род.</p>
+  </div>
+</div>
+
+<!-- SECTION 6: Таблица типичных ошибок -->
+<div class="section">
+  <div class="section-header"><div class="section-num">6</div><h2>Типичные ошибки русскоговорящих</h2></div>
+
+  <table class="mistakes-table">
+    <thead>
+      <tr><th>Ситуация</th><th>❌ Ошибка</th><th>✅ Правильно</th><th>Почему</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Кассиру в Mercadona</td><td><span class="wrong">Buenos días, ¿cómo está?</span></td><td><span class="right">Buenos días, ¿qué tal?</span></td><td>«¿Cómo está?» — слишком формально с молодым кассиром</td></tr>
+      <tr><td>Утром в 11:00</td><td><span class="wrong">Buenas tardes</span></td><td><span class="right">Buenos días</span></td><td>«Tardes» — только после обеда (14:00+)</td></tr>
+      <tr><td>Незнакомец 25 лет</td><td><span class="wrong">¿Cómo se llama usted?</span></td><td><span class="right">¿Cómo te llamas?</span></td><td>С ровесником в Испании — всегда tú</td></tr>
+      <tr><td>Женщина говорит</td><td><span class="wrong">Encantado</span></td><td><span class="right">Encantada</span></td><td>Прилагательное согласуется с говорящим</td></tr>
+      <tr><td>Прощание днём</td><td><span class="wrong">Adiós, buenas noches</span></td><td><span class="right">Adiós, hasta luego</span></td><td>«Buenas noches» — только вечером/ночью</td></tr>
+      <tr><td>«Buen día» (ед.ч.)</td><td><span class="wrong">Buen día (в Испании)</span></td><td><span class="right">Buenos días</span></td><td>В Испании всегда мн.ч.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 7: Словарь -->
+<div class="section">
+  <div class="section-header"><div class="section-num">7</div><h2>Словарь урока — 18 фраз</h2></div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми 🔊 — повтори вслух 2-3 раза. Это фразы, которые ты произнесёшь в первую же неделю в Барселоне.</p>
+
+  <table class="vocab-table">
+    <thead><tr><th>Испанский</th><th>🔊</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td class="es">¡Hola!</td><td><button class="speak-btn" onclick="speak('¡Hola!')">🔊</button></td><td>Привет!</td></tr>
+      <tr><td class="es">Buenos días</td><td><button class="speak-btn" onclick="speak('Buenos días')">🔊</button></td><td>Добрый день (до 14:00)</td></tr>
+      <tr><td class="es">Buenas tardes</td><td><button class="speak-btn" onclick="speak('Buenas tardes')">🔊</button></td><td>Добрый вечер (14:00–20:00)</td></tr>
+      <tr><td class="es">Buenas noches</td><td><button class="speak-btn" onclick="speak('Buenas noches')">🔊</button></td><td>Доброй ночи / спокойной ночи</td></tr>
+      <tr><td class="es">¿Cómo te llamas?</td><td><button class="speak-btn" onclick="speak('¿Cómo te llamas?')">🔊</button></td><td>Как тебя зовут? (tú)</td></tr>
+      <tr><td class="es">Me llamo...</td><td><button class="speak-btn" onclick="speak('Me llamo')">🔊</button></td><td>Меня зовут...</td></tr>
+      <tr><td class="es">Soy...</td><td><button class="speak-btn" onclick="speak('Soy')">🔊</button></td><td>Я (есть)... / Я (есть, имя)</td></tr>
+      <tr><td class="es">¿De dónde eres?</td><td><button class="speak-btn" onclick="speak('¿De dónde eres?')">🔊</button></td><td>Откуда ты?</td></tr>
+      <tr><td class="es">Soy de Rusia.</td><td><button class="speak-btn" onclick="speak('Soy de Rusia.')">🔊</button></td><td>Я из России.</td></tr>
+      <tr><td class="es">Vivo en Barcelona.</td><td><button class="speak-btn" onclick="speak('Vivo en Barcelona.')">🔊</button></td><td>Я живу в Барселоне.</td></tr>
+      <tr><td class="es">¿Cómo estás?</td><td><button class="speak-btn" onclick="speak('¿Cómo estás?')">🔊</button></td><td>Как дела? (tú)</td></tr>
+      <tr><td class="es">¿Qué tal?</td><td><button class="speak-btn" onclick="speak('¿Qué tal?')">🔊</button></td><td>Как ты? (универсально)</td></tr>
+      <tr><td class="es">Muy bien, gracias.</td><td><button class="speak-btn" onclick="speak('Muy bien, gracias.')">🔊</button></td><td>Очень хорошо, спасибо.</td></tr>
+      <tr><td class="es">Mucho gusto</td><td><button class="speak-btn" onclick="speak('Mucho gusto')">🔊</button></td><td>Очень приятно</td></tr>
+      <tr><td class="es">Encantado/a</td><td><button class="speak-btn" onclick="speak('Encantado, Encantada')">🔊</button></td><td>Очень приятно (м/ж)</td></tr>
+      <tr><td class="es">Por favor</td><td><button class="speak-btn" onclick="speak('Por favor')">🔊</button></td><td>Пожалуйста (просьба)</td></tr>
+      <tr><td class="es">Perdón / Disculpe</td><td><button class="speak-btn" onclick="speak('Perdón, Disculpe')">🔊</button></td><td>Извини / Извините</td></tr>
+      <tr><td class="es">Adiós / Hasta luego</td><td><button class="speak-btn" onclick="speak('Adiós, Hasta luego')">🔊</button></td><td>Пока / До скорого</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 8: Тест 1 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">8</div><h2>Тест 1 — Приветствия и формальность</h2></div>
 
   <div class="quiz" id="quiz1">
-    <h3>🎯 Приветствия и знакомство</h3>
+    <h3>🎯 Выбери правильное</h3>
 
-    <!-- Q1 -->
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. Как ты скажешь <strong>«Как тебя зовут?»</strong> по-испански?</div>
+      <div class="q-text">1. Какое приветствие сказать в 10 утра кассиру в Mercadona?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">¿Cómo te llamas?</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">¿Cómo te nombre?</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">¿Cuál es tu nombre?</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Buenas noches</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Buenos días</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Adiós</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
 
-    <!-- Q2 -->
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. Сейчас 14:30. Какое приветствие правильное?</div>
+      <div class="q-text">2. Молодой человек (25 лет) на улице. Какая форма обращения?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Buenas noches</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Buenas tardes</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Buenos días</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">usted (формально)</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">tú (неформально, испанцы свободные)</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">señor (как «господин»)</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
 
-    <!-- Q3 -->
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. Тебе говорят «Gracias!». Что ты отвечаешь?</div>
+      <div class="q-text">3. Женщина говорит «Очень приятно». Правильная форма?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">De nada.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Lo siento.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Encantado</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Encantada</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Encanto</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
 
-    <!-- Q4 -->
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. Ты встречаешь нового человека на деловой встрече. Что говоришь?</div>
+      <div class="q-text">4. Как сказать «Меня зовут Анна»?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">¡Hola, tío!</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">¡Buenas!</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Mucho gusto.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Me llamo Anna.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Mi nombre Anna.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Yo soy Anna llamo.</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
 
-    <!-- Q5 -->
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. Как по-испански «Я из Москвы»?</div>
+      <div class="q-text">5. Прощание в 22:00 — какой вариант лучше?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Soy de Moscú.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Estoy de Moscú.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Tengo de Moscú.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Buenos días</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Buenas noches</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Buenas tardes</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
 
-    <!-- Q6 -->
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. Девушка отвечает на комплимент. Что она говорит: «Рада познакомиться» (она — женщина)?</div>
+      <div class="q-text">6. Незнакомец в формальной ситуации (банк, чиновник). «¿Откуда Вы?»</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Encantado</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Encantada</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Encantamiento</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">¿De dónde eres?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">¿De dónde es?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">¿De dónde son?</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
     </div>
   </div>
-  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- SECTION 4: ТЕСТ 2 — Заполни пропуски -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 9: Тест 2 — заполнение пропусков -->
 <div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 2 — Заполни пропуск</h2>
-  </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Напиши правильное слово или фразу. Регистр не важен.</p>
+  <div class="section-header"><div class="section-num">9</div><h2>Тест 2 — Заполни пропуски</h2></div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Введи правильный ответ в нижнем регистре.</p>
 
   <div class="quiz">
-    <h3>✏️ Пиши по-испански</h3>
+    <h3>✏️ Используй фразу из урока</h3>
 
-    <div class="text-ex">
-      <div class="tex-q">1. — ¡Hola! ¿Cómo te llamas? — <strong>_____ llamo Carlos.</strong> (Меня зовут Карлос.)</div>
-      <input type="text" class="text-input" placeholder="Напиши первое слово..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','me','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. «Привет, меня зовут Мария.» = ¡Hola! ___ ___ María. (две слова)</div>
+      <input type="text" class="text-input" placeholder="me llamo" id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','me llamo','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать</button>
       <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ Me — «Me llamo» = возвратная конструкция «я называю себя»</div>
+      <div class="answer-reveal" id="ans-te1">✅ me llamo — буквально «я зову себя».</div>
     </div>
 
-    <div class="text-ex">
-      <div class="tex-q">2. — ¿De dónde eres? — <strong>Soy _____ España.</strong> (Я из Испании.)</div>
-      <input type="text" class="text-input" placeholder="Предлог..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','de','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. «Я живу в Барселоне.» = ___ en Barcelona. (одно слово, форма глагола vivir для «я»)</div>
+      <input type="text" class="text-input" placeholder="vivo" id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','vivo','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать</button>
       <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ de — «Soy de» = «Я из». Предлог de используется для происхождения.</div>
+      <div class="answer-reveal" id="ans-te2">✅ vivo (я живу). От глагола vivir.</div>
     </div>
 
-    <div class="text-ex">
-      <div class="tex-q">3. — ¡Muchas gracias! — <strong>De _____.</strong> (Не за что.)</div>
-      <input type="text" class="text-input" placeholder="Второе слово..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','nada','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. «Откуда ты?» = ¿De ___ eres? (вопросительное слово)</div>
+      <input type="text" class="text-input" placeholder="dónde" id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','dónde','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать</button>
       <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ nada — «De nada» буквально «из ничего» = не за что.</div>
+      <div class="answer-reveal" id="ans-te3">✅ dónde (откуда/где). С ударением, отличается от dónde без вопроса.</div>
     </div>
 
-    <div class="text-ex">
-      <div class="tex-q">4. Сейчас 8 утра. Ты входишь в офис: «_____ días, señores.» (Доброе утро, господа.)</div>
-      <input type="text" class="text-input" placeholder="Прилагательное..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','buenos','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. Очень приятно (говорит мужчина) = ___ (одно слово)</div>
+      <input type="text" class="text-input" placeholder="encantado" id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','encantado','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать</button>
       <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ Buenos — мужской род (días — мужской), значит Buenos (не Buenas).</div>
+      <div class="answer-reveal" id="ans-te4">✅ encantado (м.р.). Для женщины: encantada.</div>
     </div>
 
-    <div class="text-ex">
-      <div class="tex-q">5. Ты случайно задел кого-то в метро: «_____ mucho.» (Мне очень жаль.)</div>
-      <input type="text" class="text-input" placeholder="Два слова..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','lo siento','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. Утреннее приветствие. = ___ días (одно слово)</div>
+      <input type="text" class="text-input" placeholder="buenos" id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','buenos','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать</button>
       <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ Lo siento — буквально «я это чувствую» = мне жаль. Глагол sentir = чувствовать.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">6. В конце встречи: «¡_____ luego!» (До свидания!)</div>
-      <input type="text" class="text-input" placeholder="Первое слово..." id="ti6">
-      <button class="check-btn" onclick="checkText('ti6','hasta','fb-te6')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
-      <div class="feedback" id="fb-te6"></div>
-      <div class="answer-reveal" id="ans-te6">✅ Hasta — «Hasta luego» = «до потом» = до скорого.</div>
+      <div class="answer-reveal" id="ans-te5">✅ buenos. «días» — м.р., поэтому «buenos» (мн.ч., м.р.).</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- SECTION 5: ДИАЛОГИ -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 10: Диалоги -->
 <div class="section">
-  <div class="section-header">
-    <div class="section-num">5</div>
-    <h2>Диалоги — Читай вслух обе роли</h2>
-  </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прочитай каждый диалог вслух минимум дважды — сначала одну роль, потом другую. Это тренирует память лучше, чем чтение про себя.</p>
+  <div class="section-header"><div class="section-num">10</div><h2>Диалоги — слушай и повторяй</h2></div>
 
-  <!-- Диалог 1 -->
   <div class="dialogue">
     <div class="dlg-header">
-      💬 Диалог 1: Случайное знакомство — неформально
-      <button class="dlg-toggle" onclick="toggleDlg('dlg1')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">АНА</div>
-      <div>
-        <div class="dlg-es">¡Hola! ¿Cómo te llamas?</div>
-        <div class="dlg-ru" id="dlg1-1" style="display:none">Привет! Как тебя зовут?</div>
+      💬 Диалог 1: Знакомство на улице (неформально)
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog1()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переключить переводы</button>
       </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">КАРЛ.</div>
-      <div>
-        <div class="dlg-es">Me llamo Carlos. ¿Y tú?</div>
-        <div class="dlg-ru" id="dlg1-2" style="display:none">Меня зовут Карлос. А ты?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">АНА</div>
-      <div>
-        <div class="dlg-es">Yo soy Ana. ¿De dónde eres, Carlos?</div>
-        <div class="dlg-ru" id="dlg1-3" style="display:none">Я Ана. Откуда ты, Карлос?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">КАРЛ.</div>
-      <div>
-        <div class="dlg-es">Soy de Rusia, de Moscú. ¿Y tú?</div>
-        <div class="dlg-ru" id="dlg1-4" style="display:none">Я из России, из Москвы. А ты?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">АНА</div>
-      <div>
-        <div class="dlg-es">Soy de Madrid. ¡Encantada, Carlos!</div>
-        <div class="dlg-ru" id="dlg1-5" style="display:none">Я из Мадрида. Рада познакомиться, Карлос!</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">КАРЛ.</div>
-      <div>
-        <div class="dlg-es">Igualmente, Ana. ¡Hasta luego!</div>
-        <div class="dlg-ru" id="dlg1-6" style="display:none">Взаимно, Ана. До свидания!</div>
-      </div>
-    </div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">¡Hola! ¿Cómo te llamas? <button class="speak-btn" onclick="speak('¡Hola! ¿Cómo te llamas?')">🔊</button></div>
+      <div class="dlg-ru translation">— Привет! Как тебя зовут?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Me llamo Carlos. ¿Y tú? <button class="speak-btn" onclick="speak('Me llamo Carlos. ¿Y tú?')">🔊</button></div>
+      <div class="dlg-ru translation">— Меня зовут Карлос. А тебя?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Soy Evgeni. Mucho gusto. <button class="speak-btn" onclick="speak('Soy Evgeni. Mucho gusto.')">🔊</button></div>
+      <div class="dlg-ru translation">— Я Евгений. Очень приятно.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Encantado. ¿De dónde eres? <button class="speak-btn" onclick="speak('Encantado. ¿De dónde eres?')">🔊</button></div>
+      <div class="dlg-ru translation">— Очень приятно. Откуда ты?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Soy de Rusia, de Penza. ¿Y tú? <button class="speak-btn" onclick="speak('Soy de Rusia, de Penza. ¿Y tú?')">🔊</button></div>
+      <div class="dlg-ru translation">— Я из России, из Пензы. А ты?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Soy de aquí, de Barcelona. ¿Vives aquí ahora? <button class="speak-btn" onclick="speak('Soy de aquí, de Barcelona. ¿Vives aquí ahora?')">🔊</button></div>
+      <div class="dlg-ru translation">— Я отсюда, из Барселоны. Ты здесь сейчас живёшь?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Sí, vivo aquí con mi familia. <button class="speak-btn" onclick="speak('Sí, vivo aquí con mi familia.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, я живу здесь с семьёй.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">¡Qué bien! ¡Bienvenido a Barcelona! <button class="speak-btn" onclick="speak('¡Qué bien! ¡Bienvenido a Barcelona!')">🔊</button></div>
+      <div class="dlg-ru translation">— Как хорошо! Добро пожаловать в Барселону!</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Gracias. Hasta luego. <button class="speak-btn" onclick="speak('Gracias. Hasta luego.')">🔊</button></div>
+      <div class="dlg-ru translation">— Спасибо. Пока.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">¡Hasta pronto! <button class="speak-btn" onclick="speak('¡Hasta pronto!')">🔊</button></div>
+      <div class="dlg-ru translation">— До скорого!</div>
+    </div></div>
   </div>
 
-  <!-- Диалог 2 -->
   <div class="dialogue">
     <div class="dlg-header">
-      👔 Диалог 2: Деловое знакомство — формально
-      <button class="dlg-toggle" onclick="toggleDlg('dlg2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Г-НА Г.</div>
-      <div>
-        <div class="dlg-es">Buenos días. ¿Cómo se llama usted?</div>
-        <div class="dlg-ru" id="dlg2-1" style="display:none">Добрый день. Как Вас зовут?</div>
+      💬 Диалог 2: В банке (формально, usted)
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog2()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переключить переводы</button>
       </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">ЛУИС</div>
-      <div>
-        <div class="dlg-es">Me llamo Luis Fernández. Mucho gusto.</div>
-        <div class="dlg-ru" id="dlg2-2" style="display:none">Меня зовут Луис Фернандес. Очень приятно.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Г-НА Г.</div>
-      <div>
-        <div class="dlg-es">Igualmente. Soy la señora García. ¿De dónde es usted?</div>
-        <div class="dlg-ru" id="dlg2-3" style="display:none">Взаимно. Я госпожа Гарсиа. Откуда Вы?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">ЛУИС</div>
-      <div>
-        <div class="dlg-es">Soy de Valencia, señora García.</div>
-        <div class="dlg-ru" id="dlg2-4" style="display:none">Я из Валенсии, госпожа Гарсиа.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Г-НА Г.</div>
-      <div>
-        <div class="dlg-es">¡Qué bien! Buenas tardes, señor Fernández.</div>
-        <div class="dlg-ru" id="dlg2-5" style="display:none">Замечательно! Добрый день, г-н Фернандес.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">ЛУИС</div>
-      <div>
-        <div class="dlg-es">Hasta luego, señora. Fue un placer.</div>
-        <div class="dlg-ru" id="dlg2-6" style="display:none">До свидания, госпожа. Было приятно.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Диалог 3 -->
-  <div class="dialogue">
-    <div class="dlg-header">
-      ☕ Диалог 3: В кафе — заказ и вежливость
-      <button class="dlg-toggle" onclick="toggleDlg('dlg3')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">ОФИЦ.</div>
-      <div>
-        <div class="dlg-es">¡Buenos días! ¿Qué desea?</div>
-        <div class="dlg-ru" id="dlg3-1" style="display:none">Доброе утро! Что желаете?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">КЛИЕНТ</div>
-      <div>
-        <div class="dlg-es">Un café con leche, por favor.</div>
-        <div class="dlg-ru" id="dlg3-2" style="display:none">Кофе с молоком, пожалуйста.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">ОФИЦ.</div>
-      <div>
-        <div class="dlg-es">¡Por supuesto! ¿Algo más?</div>
-        <div class="dlg-ru" id="dlg3-3" style="display:none">Конечно! Что-нибудь ещё?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">КЛИЕНТ</div>
-      <div>
-        <div class="dlg-es">No, gracias. ¿Cuánto es?</div>
-        <div class="dlg-ru" id="dlg3-4" style="display:none">Нет, спасибо. Сколько это стоит?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">ОФИЦ.</div>
-      <div>
-        <div class="dlg-es">Son dos euros, por favor.</div>
-        <div class="dlg-ru" id="dlg3-5" style="display:none">Два евро, пожалуйста.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">КЛИЕНТ</div>
-      <div>
-        <div class="dlg-es">Aquí tiene. ¡Muchas gracias!</div>
-        <div class="dlg-ru" id="dlg3-6" style="display:none">Вот, пожалуйста. Большое спасибо!</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">ОФИЦ.</div>
-      <div>
-        <div class="dlg-es">De nada. ¡Que tenga un buen día!</div>
-        <div class="dlg-ru" id="dlg3-7" style="display:none">Не за что. Хорошего дня!</div>
-      </div>
-    </div>
+    <div class="dlg-line"><div class="dlg-speaker">М</div><div>
+      <div class="dlg-es">Buenos días, señor. ¿Cómo se llama? <button class="speak-btn" onclick="speak('Buenos días, señor. ¿Cómo se llama?')">🔊</button></div>
+      <div class="dlg-ru translation">— Добрый день, сеньор. Как Вас зовут?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">К</div><div>
+      <div class="dlg-es">Buenos días. Me llamo Evgeni Sevriugin. <button class="speak-btn" onclick="speak('Buenos días. Me llamo Evgeni Sevriugin.')">🔊</button></div>
+      <div class="dlg-ru translation">— Добрый день. Меня зовут Евгений Севрюгин.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">М</div><div>
+      <div class="dlg-es">¿De dónde es usted? <button class="speak-btn" onclick="speak('¿De dónde es usted?')">🔊</button></div>
+      <div class="dlg-ru translation">— Откуда Вы?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">К</div><div>
+      <div class="dlg-es">Soy de Rusia, pero vivo en Barcelona. <button class="speak-btn" onclick="speak('Soy de Rusia, pero vivo en Barcelona.')">🔊</button></div>
+      <div class="dlg-ru translation">— Я из России, но живу в Барселоне.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">М</div><div>
+      <div class="dlg-es">¿Habla español o inglés? <button class="speak-btn" onclick="speak('¿Habla español o inglés?')">🔊</button></div>
+      <div class="dlg-ru translation">— Вы говорите по-испански или по-английски?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">К</div><div>
+      <div class="dlg-es">Hablo un poco de español y bien inglés. <button class="speak-btn" onclick="speak('Hablo un poco de español y bien inglés.')">🔊</button></div>
+      <div class="dlg-ru translation">— Я говорю немного по-испански и хорошо по-английски.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">М</div><div>
+      <div class="dlg-es">Perfecto. ¿Tiene su pasaporte? <button class="speak-btn" onclick="speak('Perfecto. ¿Tiene su pasaporte?')">🔊</button></div>
+      <div class="dlg-ru translation">— Отлично. У Вас есть Ваш паспорт?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">К</div><div>
+      <div class="dlg-es">Sí, aquí lo tiene. <button class="speak-btn" onclick="speak('Sí, aquí lo tiene.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, вот, держите.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">М</div><div>
+      <div class="dlg-es">Muchas gracias. Un momento, por favor. <button class="speak-btn" onclick="speak('Muchas gracias. Un momento, por favor.')">🔊</button></div>
+      <div class="dlg-ru translation">— Большое спасибо. Минутку, пожалуйста.</div>
+    </div></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- SECTION 6: ГОВОРЕНИЕ — Сценарий знакомства -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 11: Говорение -->
 <div class="section">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <h2>Говорение — Полное знакомство за 2 минуты</h2>
-  </div>
+  <div class="section-header"><div class="section-num">11</div><h2>Говорение — твоя очередь</h2></div>
 
-  <div class="callout tip">
-    <h4>🎯 Конкретный сценарий</h4>
-    <p>Ты приходишь на языковой курс в Барселоне. Рядом с тобой садится незнакомый человек. Познакомься с ним: скажи как тебя зовут, откуда ты, что ты делаешь, спроси то же у него, попрощайся. Весь разговор — по-испански!</p>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — стандартное знакомство</div>
+    <p>Произнеси вслух эту фразу 5 раз. Это твой «комплект для первой встречи» — выучи как стихотворение.</p>
+    <div class="es">¡Hola! Me llamo <strong style="color:var(--gold)">[твоё имя]</strong>. Soy de Rusia. Vivo en Barcelona con mi familia. Mucho gusto. <button class="speak-btn" onclick="speak('¡Hola! Me llamo Evgeni. Soy de Rusia. Vivo en Barcelona con mi familia. Mucho gusto.')">🔊</button></div>
+    <div class="hint">[Привет! Меня зовут [имя]. Я из России. Я живу в Барселоне с семьёй. Очень приятно.]</div>
   </div>
 
   <div class="speak-box">
-    <div class="speak-tag">🎙 Базовый уровень — говори вслух</div>
-    <p>Произнеси вслух эти предложения, подставив свои данные:</p>
-    <div class="es">
-      — ¡Hola! Me llamo [имя]. Soy de [город].<br>
-      — ¿Cómo te llamas tú?<br>
-      — ¡Mucho gusto, [имя]! Encantado/a.<br>
-      — ¿De dónde eres?<br>
-      — ¡Hasta luego!
-    </div>
-    <div class="hint">Говори медленно. Каждую фразу повтори 2–3 раза, пока она не «встанет» на язык.</div>
-  </div>
-
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Продвинутый уровень — полный диалог</div>
-    <p>Сыграй ОБЕ роли в этом разговоре вслух. Говори за обоих собеседников:</p>
-    <div class="es">
-      А: ¡Buenos días! ¿Cómo te llamas?<br>
-      Б: Me llamo [твоё имя]. ¿Y tú?<br>
-      А: Soy María. ¿De dónde eres?<br>
-      Б: Soy de [твой город], de Rusia. ¿Y tú?<br>
-      А: Soy de Madrid. ¿Hablas mucho español?<br>
-      Б: Un poco. Estoy aprendiendo.<br>
-      А: ¡Qué bien! Mucho gusto.<br>
-      Б: Igualmente. ¡Hasta luego!
-    </div>
-    <div class="hint">«Estoy aprendiendo» = я учусь (сейчас). «¡Qué bien!» = Как хорошо!</div>
+    <div class="speak-tag">🎙 Упражнение 2 — формальное знакомство в банке</div>
+    <p>Прочитай вслух, представь что заходишь в Banco Santander для открытия счёта (это случится в первые недели в Барселоне):</p>
+    <div class="es">Buenos días. Me llamo Evgeni Sevriugin. Soy de Rusia. Quiero abrir una cuenta, por favor. <button class="speak-btn" onclick="speak('Buenos días. Me llamo Evgeni Sevriugin. Soy de Rusia. Quiero abrir una cuenta, por favor.')">🔊</button></div>
+    <div class="hint">[Добрый день. Меня зовут Евгений Севрюгин. Я из России. Я хочу открыть счёт, пожалуйста.] «Quiero» — хочу. «Abrir» — открыть. «Cuenta» — счёт.</div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- SECTION 7: АУДИРОВАНИЕ -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 12: Испания на практике -->
 <div class="section">
-  <div class="section-header">
-    <div class="section-num">7</div>
-    <h2>Аудирование — Слушай сегодня</h2>
-  </div>
+  <div class="section-header"><div class="section-num">12</div><h2>🇪🇸 Испания на практике — Знакомство с соседями</h2></div>
 
-  <div class="callout info">
-    <h4>🎧 Language Transfer — Эпизод 6</h4>
-    <p>Открой <a href="https://www.youtube.com/@LanguageTransfer" target="_blank" style="color:var(--gold)">@LanguageTransfer</a> и найди «Complete Spanish» → Episode 6. Михаилис объясняет как строить базовые предложения. После этого урока это слушать будет намного легче — ты уже знаешь все слова.</p>
-  </div>
+  <div class="spain-card">
+    <div class="stag">🏘 Реальный сценарий</div>
+    <h3>Первая встреча с соседями в подъезде</h3>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:6px">В Испании отношения с соседями (vecinos) тёплые. В подъезде здороваются ВСЕГДА — это норма. Если ты переехал в новый дом и не представился соседям в первую неделю — это странно. Вот сценарий, как познакомиться.</p>
 
-  <div class="callout info">
-    <h4>📺 Dreaming Spanish — Super Beginner</h4>
-    <p>Найди на канале <a href="https://www.youtube.com/@DreamingSpanish" target="_blank" style="color:var(--gold)">Dreaming Spanish</a> видео с тегом «Super Beginner» или «Comprehensible Input». Смотри 10–15 минут. Не пытайся понять каждое слово — просто привыкай к испанской речи. Тема «знакомство» или «приветствия» будет особенно полезна сегодня.</p>
-  </div>
+    <div class="phrase-list">
+      <div class="phrase">
+        <span class="es">¡Hola, buenos días!</span>
+        <button class="speak-btn" onclick="speak('¡Hola, buenos días!')">🔊</button>
+        <span class="tr">Привет, добрый день! (При встрече в подъезде — всегда)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Soy su nuevo vecino.</span>
+        <button class="speak-btn" onclick="speak('Soy su nuevo vecino.')">🔊</button>
+        <span class="tr">Я Ваш новый сосед. (Для женщины: vecina)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Me llamo Evgeni, vivo en el cuarto.</span>
+        <button class="speak-btn" onclick="speak('Me llamo Evgeni, vivo en el cuarto.')">🔊</button>
+        <span class="tr">Меня зовут Евгений, я живу на четвёртом.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Acabo de mudarme con mi familia.</span>
+        <button class="speak-btn" onclick="speak('Acabo de mudarme con mi familia.')">🔊</button>
+        <span class="tr">Я только что переехал с семьёй.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Encantado/a de conocerle.</span>
+        <button class="speak-btn" onclick="speak('Encantado de conocerle.')">🔊</button>
+        <span class="tr">Очень приятно познакомиться (формально).</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¡Hasta luego, que tenga buen día!</span>
+        <button class="speak-btn" onclick="speak('¡Hasta luego, que tenga buen día!')">🔊</button>
+        <span class="tr">До скорого, хорошего дня! (Прощание с пожилым соседом)</span>
+      </div>
+    </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">👂 Задание после прослушивания</div>
-    <p>После просмотра Dreaming Spanish произнеси вслух 3 фразы, которые тебе запомнились. Не страшно, если произношение не идеально — главное говорить.</p>
-    <div class="es">Ejemplo: «Me llamo... Soy de... ¡Mucho gusto!»</div>
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">
+        🏘 Мини-диалог: встреча с пожилой соседкой в лифте
+        <button class="speak-btn-big" onclick="playVecina()">▶ Воспроизвести</button>
+      </div>
+      <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
+        <div class="dlg-es">Buenos días, señora. <button class="speak-btn" onclick="speak('Buenos días, señora.')">🔊</button></div>
+        <div class="dlg-ru">— Добрый день, сеньора.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">С</div><div>
+        <div class="dlg-es">Buenos días. ¿Usted es nuevo aquí? <button class="speak-btn" onclick="speak('Buenos días. ¿Usted es nuevo aquí?')">🔊</button></div>
+        <div class="dlg-ru">— Добрый день. Вы здесь новенький?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
+        <div class="dlg-es">Sí, soy su nuevo vecino. Me llamo Evgeni. <button class="speak-btn" onclick="speak('Sí, soy su nuevo vecino. Me llamo Evgeni.')">🔊</button></div>
+        <div class="dlg-ru">— Да, я Ваш новый сосед. Меня зовут Евгений.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">С</div><div>
+        <div class="dlg-es">Mucho gusto, Evgeni. Yo soy María, del segundo. <button class="speak-btn" onclick="speak('Mucho gusto, Evgeni. Yo soy María, del segundo.')">🔊</button></div>
+        <div class="dlg-ru">— Очень приятно, Евгений. Я Мария, со второго этажа.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
+        <div class="dlg-es">Encantado, María. Vivo aquí con mi familia. <button class="speak-btn" onclick="speak('Encantado, María. Vivo aquí con mi familia.')">🔊</button></div>
+        <div class="dlg-ru">— Очень приятно, Мария. Я живу здесь с семьёй.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">С</div><div>
+        <div class="dlg-es">¡Qué bien! Bienvenidos. Si necesita algo, llame al timbre. <button class="speak-btn" onclick="speak('¡Qué bien! Bienvenidos. Si necesita algo, llame al timbre.')">🔊</button></div>
+        <div class="dlg-ru">— Как хорошо! Добро пожаловать. Если что-то понадобится, звоните в дверь.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
+        <div class="dlg-es">Muchas gracias. Hasta luego. <button class="speak-btn" onclick="speak('Muchas gracias. Hasta luego.')">🔊</button></div>
+        <div class="dlg-ru">— Большое спасибо. До свидания.</div>
+      </div></div>
+    </div>
+
+    <div class="callout info" style="margin-top:14px">
+      <h4>💡 Чем Барселона отличается от Москвы</h4>
+      <ul>
+        <li>В подъезде <strong>обязательно здороваются</strong> с каждым — даже если не знаешь. Игнорировать = грубо.</li>
+        <li>С пожилыми соседями (60+) → <strong>usted</strong>. С молодыми (до 40) → <strong>tú</strong>.</li>
+        <li>В Барселоне (Каталония) могут поздороваться на каталонском: «Bon dia!» — это норма, можешь ответить «Bon dia!» или испанским «Buenos días».</li>
+        <li>Если живёшь в доме > 6 квартир — там есть <strong>comunidad de vecinos</strong> (товарищество), собрания, общие траты. Председатель (presidente) обходит соседей по очереди — раз в год это будешь ты.</li>
+        <li>В отличие от России, дверь подъезда часто открыта днём. Соседи здороваются на улице рядом с домом.</li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- SECTION 8: КУЛЬТУРНАЯ ЗАМЕТКА -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 13: Культурная заметка -->
 <div class="section">
-  <div class="section-header">
-    <div class="section-num">8</div>
-    <h2>Культурная заметка</h2>
-  </div>
+  <div class="section-header"><div class="section-num">13</div><h2>Культурная заметка — двойное «ola»</h2></div>
 
   <div class="culture">
     <div class="ctag">🌍 Культура</div>
-    <h4>Почему испанцы целуют в щёку при знакомстве?</h4>
-    <p>В Испании принято приветствовать друзей и новых знакомых двумя поцелуями в щёку (dos besos) — сначала в правую, потом в левую. Это делают все: мужчины с женщинами, женщины с женщинами. Два мужчины обычно жмут руку. В Латинской Америке традиции разные: в Мексике — один поцелуй, в Аргентине — тоже один, но более тёплый. Во время пандемии испанцы перешли на рукопожатие, но после неё «два поцелуя» вернулись. Когда ты приезжаешь в Испанию впервые — просто следи за тем, что делает собеседник, и повторяй. Никто не осудит иностранца за рукопожатие.</p>
+    <h4>Почему испанцы здороваются с тобой 5 раз в день</h4>
+    <p>В Испании ритм взаимодействия другой. Зашёл в булочную — «¡Hola!». Уходишь — «¡Adiós!». Через 20 минут возвращаешься за хлебом — снова «¡Hola!», и продавщица ответит, даже если только что прощалась. В лифте сосед сел на 3-м этаже, ты заходишь на 5-м — «¡Hola!». Это не «лицемерие», это <strong>социальная смазка</strong>. Не сказать «Hola» — значит подчеркнуть отдалённость.</p>
+    <p style="margin-top:8px">Для русских это сначала странно: дома мы здороваемся раз в день. В Испании каждое микро-взаимодействие начинается с «Hola». Адаптируешься за 2 недели — и потом наоборот будет странно, что в России молча открывают дверь.</p>
+    <p style="margin-top:8px">В Барселоне есть нюанс: на каталонском «привет» = <strong>Hola</strong> (так же), но «пока» = <strong>Adéu</strong> (а не Adiós). «Спасибо» = <strong>Gràcies</strong>. Если хочешь расположить местных — просто скажи «Bon dia!» (добрый день по-каталонски) — оценят.</p>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- SECTION 9: ANKI + ДОМАШНЕЕ ЗАДАНИЕ -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- SECTION 14: Anki + Домашнее задание -->
 <div class="section">
-  <div class="section-header">
-    <div class="section-num">9</div>
-    <h2>Anki-карточки и домашнее задание</h2>
-  </div>
+  <div class="section-header"><div class="section-num">14</div><h2>Anki-колода + Домашнее задание</h2></div>
 
   <div class="anki">
-    <div class="atag">🃏 Создай карточки в Anki — 8 штук</div>
-    <ul>
-      <li><strong>¡Hola!</strong> → Привет!</li>
-      <li><strong>Me llamo...</strong> → Меня зовут... (я называю себя)</li>
-      <li><strong>Soy de...</strong> → Я из... (происхождение)</li>
-      <li><strong>¿Cómo te llamas?</strong> → Как тебя зовут?</li>
-      <li><strong>Mucho gusto / Encantado/a</strong> → Очень приятно / Рад познакомиться</li>
-      <li><strong>De nada</strong> → Не за что (ответ на «gracias»)</li>
-      <li><strong>Hasta luego</strong> → До свидания / До скорого</li>
-      <li><strong>Lo siento</strong> → Мне жаль / Извините</li>
-    </ul>
-    <p style="margin-top:8px;font-size:.78rem;color:var(--muted)">Добавь к колоде Polyglot или создай новую колоду «Español L02».</p>
+    <div class="atag">🃏 Anki — 18 карточек урока L02</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:8px">Нажми на любую карточку, чтобы перевернуть. Скачай полную колоду для импорта в Anki.</p>
+
+    <div class="anki-preview" id="anki-preview-L02"></div>
+
+    <button class="anki-export-btn" onclick="exportAnkiL02()">📥 Скачать колоду L02 для Anki (.txt)</button>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:8px">Импорт в Anki: File → Import → выбери .txt → разделитель Tab.</p>
   </div>
 
   <div class="callout info" style="margin-top:16px">
-    <h4>📅 Домашнее задание — до урока L03</h4>
+    <h4>📅 Домашнее задание — до L03</h4>
     <ul>
-      <li>Поприветствуй себя в зеркале утром по-испански: «¡Buenos días! Me llamo [имя]...»</li>
-      <li>Слушай Language Transfer эп. 6 ещё раз (в транспорте, фоном)</li>
-      <li>15 минут Dreaming Spanish Super Beginner</li>
-      <li>Повтори Anki-карточки этого урока</li>
-      <li>Следующий урок L03 — числа 1–100: выучи числа 1–10 заранее</li>
+      <li>Language Transfer эп. 6 — слушай в дороге</li>
+      <li>15 мин Dreaming Spanish Super Beginner</li>
+      <li>Это расширение урока #1 из курса Polyglot (Дмитрий Петров). Посмотри: <a href="../../lessons/lesson_01.html" target="_blank" style="color:var(--gold)">📚 Polyglot #1</a></li>
+      <li>Импортируй колоду L02 в Anki, повтори все 18 карточек</li>
+      <li>Произнеси вслух свою «карточку знакомства» 10 раз: имя, страна, город</li>
+      <li>Завтра в магазине или кофейне — попробуй сказать «¡Buenos días!» при входе и «¡Adiós!» при уходе</li>
     </ul>
   </div>
 
   <div class="callout success" style="margin-top:14px">
-    <h4>🎉 Урок L02 завершён!</h4>
-    <p>Теперь ты можешь познакомиться по-испански, спросить имя и происхождение, вежливо попрощаться. Это звучит просто — но это <strong>реальный навык</strong>. Следующий урок: числа 1–100. Без чисел нельзя назвать возраст, цену, дату. Это основа основ.</p>
+    <h4>🎉 Ты закончил L02!</h4>
+    <p>Ты знаешь, как познакомиться, представиться, выбрать формальность. В следующем уроке — числа от 1 до 100: возраст, телефон, цены в Mercadona.</p>
   </div>
 </div>
 
-</div><!-- .wrap -->
+</div>
 
-<!-- DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
     <a href="L01.html" class="nav-link-btn">← L01</a>
-    <a href="L03.html" class="nav-link-btn">L03: Числа →</a>
+    <a href="L03.html" class="nav-link-btn">L03 →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
@@ -866,104 +785,179 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 const LESSON_ID = 'L02';
 const LS_KEY = 'esp_course_progress';
 
-function getState() {
-  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
-  catch(e) { return {completed:[]}; }
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
 }
-function markDone() {
-  const s = getState();
-  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
-  const today = new Date().toISOString().slice(0,10);
-  if (!s.study_days) s.study_days = {};
-  s.study_days[today] = true;
-  localStorage.setItem(LS_KEY, JSON.stringify(s));
-  const btn = document.getElementById('done-btn');
-  btn.textContent = '✅ Пройден!';
-  btn.className = 'done-btn marked';
-}
-const st = getState();
-if (st.completed?.includes(LESSON_ID)) {
-  const btn = document.getElementById('done-btn');
-  btn.textContent = '✅ Пройден!';
-  btn.className = 'done-btn marked';
+const st=getState();
+if(st.completed&&st.completed.includes(LESSON_ID)){
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
 }
 
-// Quiz
-const quizExpl = {
-  q1:'¿Cómo te llamas? — буквально «как ты себя называешь?». Это стандартная форма. ¿Cuál es tu nombre? тоже правильно, но менее разговорно.',
-  q2:'14:30 — это послеполудня, значит Buenas tardes (добрый день/вечер). Buenos días — до ~12:00. Buenas noches — с ~21:00.',
-  q3:'De nada — стандартный ответ на Gracias. Дословно «из ничего» = не за что.',
-  q4:'На деловой встрече Mucho gusto — правильный формальный вариант. ¡Hola, tío! — слишком разговорно.',
-  q5:'Soy de Moscú — правильно. «Estoy de» — неправильный оборот. «Tengo de» — вообще не имеет смысла.',
-  q6:'Encantada — женская форма. Encantado — мужская. Это прилагательное согласуется с тем, кто говорит.'
+function speak(text,lang){
+  if(!('speechSynthesis' in window)){alert('Браузер не поддерживает озвучку. Используй Chrome/Edge/Firefox.');return;}
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=lang||'es-ES';u.rate=0.85;u.pitch=1;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+function speakSequence(phrases,delay){
+  delay=delay||2400;
+  window.speechSynthesis.cancel();
+  phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});
+}
+
+function playDialog1(){
+  speakSequence([
+    '¡Hola! ¿Cómo te llamas?',
+    'Me llamo Carlos. ¿Y tú?',
+    'Soy Evgeni. Mucho gusto.',
+    'Encantado. ¿De dónde eres?',
+    'Soy de Rusia, de Penza. ¿Y tú?',
+    'Soy de aquí, de Barcelona. ¿Vives aquí ahora?',
+    'Sí, vivo aquí con mi familia.',
+    '¡Qué bien! ¡Bienvenido a Barcelona!',
+    'Gracias. Hasta luego.',
+    '¡Hasta pronto!'
+  ],2500);
+}
+
+function playDialog2(){
+  speakSequence([
+    'Buenos días, señor. ¿Cómo se llama?',
+    'Buenos días. Me llamo Evgeni Sevriugin.',
+    '¿De dónde es usted?',
+    'Soy de Rusia, pero vivo en Barcelona.',
+    '¿Habla español o inglés?',
+    'Hablo un poco de español y bien inglés.',
+    'Perfecto. ¿Tiene su pasaporte?',
+    'Sí, aquí lo tiene.',
+    'Muchas gracias. Un momento, por favor.'
+  ],2700);
+}
+
+function playVecina(){
+  speakSequence([
+    'Buenos días, señora.',
+    'Buenos días. ¿Usted es nuevo aquí?',
+    'Sí, soy su nuevo vecino. Me llamo Evgeni.',
+    'Mucho gusto, Evgeni. Yo soy María, del segundo.',
+    'Encantado, María. Vivo aquí con mi familia.',
+    '¡Qué bien! Bienvenidos. Si necesita algo, llame al timbre.',
+    'Muchas gracias. Hasta luego.'
+  ],2600);
+}
+
+const quizExpl={
+  r1:'hola = [О-ла]. H никогда не читается.',
+  r2:'a-MI-go. Ударение на предпоследний слог (правило 1: оканчивается на гласную).',
+  r3:'J = [х] всегда. «jamón» = [ха-мон].',
+  r4:'[О-ла]. H в испанском не читается.',
+  q1:'Buenos días — до 14:00. После — Buenas tardes.',
+  q2:'tú. В Испании молодые сразу переходят на «ты».',
+  q3:'Encantada — женский род. Согласуется с говорящим.',
+  q4:'«Me llamo» — самое частое выражение для имени.',
+  q5:'Buenas noches — вечером и ночью (после 20:00).',
+  q6:'«es» — это форма usted (Вы). С «tú» было бы «eres».'
 };
 
-let quizScore = 0, quizTotal = 0;
-function answerQuiz(el, qId, correctKey) {
-  const container = el.closest('.quiz-q');
-  const opts = container.querySelectorAll('.opt');
-  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
-  opts.forEach(o => {
-    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
-    if (m && m[1] === correctKey) o.classList.add('correct');
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  if(container.dataset.answered==='true')return;
+  container.dataset.answered='true';
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(function(o){
+    const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+    o.onclick=null;o.style.cursor='default';
   });
-  const clickedKey = el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];
-  if (clickedKey !== correctKey) el.classList.add('wrong');
-  const fb = document.getElementById(`fb-${qId}`);
-  const isCorrect = clickedKey === correctKey;
-  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
-  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + quizExpl[qId];
-  if (isCorrect) quizScore++;
-  quizTotal++;
-  document.getElementById('quiz-score').textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+  const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);
+  const userKey=um&&um[1];
+  if(userKey!==correctKey)el.classList.add('wrong');
+  const fb=document.getElementById('fb-'+qId);
+  fb.className='feedback show '+(userKey===correctKey?'ok':'no');
+  fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');
 }
 
-function checkText(inputId, answer, fbId) {
-  const input = document.getElementById(inputId);
-  const val = input.value.toLowerCase().trim();
-  const correct = answer.toLowerCase().trim();
-  const fb = document.getElementById(fbId);
-  fb.className = 'feedback show';
-  if (val === correct) {
-    input.className = 'text-input correct';
-    fb.className += ' ok';
-    fb.textContent = '✅ Правильно! ' + answer;
-  } else {
-    input.className = 'text-input wrong';
-    fb.className += ' no';
-    fb.textContent = `❌ Не совсем. Подсказка: начинается на "${answer[0]}"`;
-  }
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ Не совсем. Подсказка: '+answer.split('-')[0]+'-...';}
 }
 
-function showAns(id) { document.getElementById(id).classList.add('show'); }
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+let showingTrans=false;
+function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
 
-function toggleDlg(dlgId) {
-  const dlgNum = dlgId.replace('dlg','');
-  let i = 1;
-  while (true) {
-    const el = document.getElementById(`${dlgId}-${i}`);
-    if (!el) break;
-    el.style.display = el.style.display === 'none' ? 'block' : 'none';
-    i++;
-  }
+const totalSections=14;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=sectionsRead+' / '+totalSections+' разделов';
 }
+window.addEventListener('scroll',updateProgress);
 
-function toggleTranslation(id) {
-  const el = document.getElementById(id);
-  el.style.display = el.style.display === 'none' ? 'block' : 'none';
-}
+const ANKI_DECK_L02=[
+  {front:"¡Hola!",back:"Привет!\n\nПример: ¡Hola, Carlos! — Привет, Карлос!\nЗаметка: универсально, в любое время"},
+  {front:"Buenos días",back:"Добрый день (до 14:00)\n\nПример: Buenos días, señora. — Добрый день, сеньора.\nЗаметка: ВСЕГДА мн.ч. — días (не día)"},
+  {front:"Buenas tardes",back:"Добрый день (14:00–20:00)\n\nПример: Buenas tardes, ¿qué tal? — Добрый день, как дела?\nЗаметка: после обеда"},
+  {front:"Buenas noches",back:"Доброй ночи / спокойной ночи\n\nПример: Buenas noches, hasta mañana. — Спокойной ночи, до завтра.\nЗаметка: и приветствие вечером, и пожелание перед сном"},
+  {front:"¿Cómo te llamas?",back:"Как тебя зовут? (tú)\n\nПример: ¡Hola! ¿Cómo te llamas? — Привет! Как тебя зовут?\nЗаметка: с usted = ¿Cómo se llama?"},
+  {front:"Me llamo...",back:"Меня зовут...\n\nПример: Me llamo Evgeni. — Меня зовут Евгений.\nЗаметка: буквально «я зову себя»"},
+  {front:"Soy + имя",back:"Я (имя)\n\nПример: Soy Carlos. — Я Карлос.\nЗаметка: короткий вариант, как в англ. I am"},
+  {front:"¿De dónde eres?",back:"Откуда ты? (tú)\n\nПример: ¿De dónde eres? — Soy de Rusia. — Откуда ты? — Я из России.\nЗаметка: с usted = ¿De dónde es?"},
+  {front:"Soy de Rusia",back:"Я из России\n\nПример: Soy de Rusia, de Penza. — Я из России, из Пензы.\nЗаметка: «de» = из (предлог происхождения)"},
+  {front:"Vivo en Barcelona",back:"Я живу в Барселоне\n\nПример: Vivo en Barcelona con mi familia. — Я живу в Барселоне с семьёй.\nЗаметка: vivo от глагола vivir"},
+  {front:"¿Cómo estás?",back:"Как дела? (tú)\n\nПример: ¡Hola! ¿Cómo estás? — Привет! Как дела?\nЗаметка: tú-форма. usted = ¿Cómo está?"},
+  {front:"¿Qué tal?",back:"Как ты? / Как дела? (универсально)\n\nПример: ¿Qué tal? — Bien. — Как дела? — Хорошо.\nЗаметка: подходит и для tú, и для usted"},
+  {front:"Muy bien, gracias",back:"Очень хорошо, спасибо\n\nПример: — ¿Cómo estás? — Muy bien, gracias. ¿Y tú?\nЗаметка: muy = очень"},
+  {front:"Mucho gusto",back:"Очень приятно\n\nПример: Soy Evgeni. Mucho gusto. — Я Евгений. Очень приятно.\nЗаметка: «много удовольствия»"},
+  {front:"Encantado / Encantada",back:"Очень приятно (м.р. / ж.р.)\n\nПример: Encantado de conocerle. — Очень приятно познакомиться.\nЗаметка: -o для мужчины, -a для женщины"},
+  {front:"Por favor",back:"Пожалуйста (при просьбе)\n\nПример: Un café, por favor. — Кофе, пожалуйста.\nЗаметка: в конце фразы"},
+  {front:"Perdón / Disculpe",back:"Извини / Извините\n\nПример: Disculpe, ¿dónde está el baño? — Извините, где туалет?\nЗаметка: Perdón = неформ, Disculpe = форм."},
+  {front:"Adiós / Hasta luego",back:"Пока / До скорого\n\nПример: ¡Hasta luego, amigo! — До скорого, друг!\nЗаметка: Hasta luego — самое частое прощание"}
+];
 
-// Progress bar
-const totalSections = 9;
-function updateProgress() {
-  const scrolled = window.scrollY;
-  const total = document.body.scrollHeight - window.innerHeight;
-  const pct = Math.min(100, Math.round(scrolled / total * 100));
-  const sectionsRead = Math.round(pct / 100 * totalSections);
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+function renderAnkiPreview(){
+  const container=document.getElementById('anki-preview-L02');
+  if(!container)return;
+  const preview=ANKI_DECK_L02.slice(0,5);
+  container.innerHTML=preview.map(function(c){
+    return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')">'+
+      '<div class="anki-card-inner">'+
+      '<div class="anki-card-front">'+c.front+'</div>'+
+      '<div class="anki-card-back">'+c.back.replace(/\n/g,'<br>')+'</div>'+
+      '</div></div>';
+  }).join('');
 }
-window.addEventListener('scroll', updateProgress);
+renderAnkiPreview();
+
+function exportAnkiL02(){
+  const tsv=ANKI_DECK_L02.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');
+  const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='L02_spanish_anki.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
 </script>
 </body>
 </html>
