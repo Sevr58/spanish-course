@@ -66,7 +66,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Читать испанский текст вслух, узнавая знакомые слова",
-      file:"lessons/L00.html", status:"pending"
+      file:"lessons/L00.html", status:"improved"
     },
     {
       id:"L01", num:1, phase:0, block:"B0", level:"A0", day:2, week:1,
@@ -130,7 +130,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Рассказать о своём распорядке дня",
-      file:"lessons/L05.html", status:"pending"
+      file:"lessons/L05.html", status:"improved"
     },
     {
       id:"L06", num:6, phase:1, block:"B1A", level:"A0", day:11, week:2,
