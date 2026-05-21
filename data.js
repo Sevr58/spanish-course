@@ -94,7 +94,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:1,
       speaking_focus:"Познакомиться с кем-то по-испански (полный диалог)",
-      file:"lessons/L02.html", status:"pending"
+      file:"lessons/L02.html", status:"done"
     },
     {
       id:"L03", num:3, phase:1, block:"B1A", level:"A0", day:5, week:1,
