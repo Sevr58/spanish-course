@@ -3,15 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L01: Звучи как испанец — Произношение</title>
+<title>L01: Звучи как испанец — произношение с нуля</title>
 <style>
 :root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
 .wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+
+/* Nav */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
 .nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
 .nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+
+/* Hero */
 .hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
 .hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
 .hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
@@ -21,14 +25,20 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
 .obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
 .obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+
+/* Progress bar */
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+
+/* Section */
 .section{margin-bottom:36px}
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .section-header h2{font-size:1.15rem;font-weight:700}
 .section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .divider{height:1px;background:var(--border);margin:32px 0}
+
+/* Callout */
 .callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
 .callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
 .callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
@@ -38,20 +48,50 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
 .callout ul{margin-left:16px}
 .callout li{margin-bottom:3px}
-.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
-.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
-.cog-rule .rule-title{font-weight:700;font-size:1rem}
-.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
-.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
-.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
-.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
-.wp .sep{color:var(--border);font-size:.8rem}
+
+/* Speak button — Web Speech API */
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;transition:.2s;padding:0 4px;color:var(--gold)}
+.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn:active{transform:scale(.95)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.speak-btn-big:hover{opacity:.88}
+
+/* Vocab table */
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.vocab-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.vocab-table .es{font-weight:600;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-style:italic;font-size:.82rem}
+.vocab-table .ex{color:var(--muted);font-size:.82rem}
+
+/* Sound rule card */
+.sound-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.sound-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.sound-letter{background:var(--gold);color:#000;font-weight:900;font-size:1.2rem;width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sound-rule{font-weight:700;font-size:1rem;flex:1}
+.sound-hint{font-size:.82rem;color:var(--muted)}
+.sound-examples{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:10px}
+.se{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.se .w{font-weight:600;font-size:.92rem}
+.se .ipa{font-family:Consolas,monospace;font-size:.78rem;color:var(--blue)}
+.se .tr{font-size:.76rem;color:var(--muted)}
+
+/* Mistakes table */
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);font-weight:700}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.mistakes-table .wrong{color:var(--red);font-weight:600;text-decoration:line-through;opacity:.7}
+.mistakes-table .right{color:var(--green);font-weight:600}
+
+/* Speaking bubble */
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
 .speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
 .speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+
+/* Quiz */
 .quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
 .quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
 .quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
@@ -63,10 +103,11 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .opt:hover{border-color:var(--muted)}
 .opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
 .opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
-.opt:disabled,.opt[disabled]{cursor:default}
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+
+/* Text exercise */
 .text-ex{margin-bottom:14px}
 .text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
 .text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
@@ -78,67 +119,56 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
 .answer-reveal.show{display:block}
+
+/* Dialogue */
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
 .dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
 .dlg-speaker.b{color:var(--blue)}
-.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-es{font-size:.95rem;font-weight:500;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
 .dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+
+/* Cultural note */
 .culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
+
+/* Spain practice section */
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--gold)}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}
+.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+
+/* Anki deck */
 .anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
 .anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
-.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem;color:var(--text)}
+.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);line-height:1.5;background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+.anki-export-btn:hover{opacity:.85}
+
+/* Done button */
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
 .done-btn.marked{background:var(--muted)}
-.nav-links{display:flex;gap:10px}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-/* Pronunciation-specific */
-.vowel-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0}
-.vowel-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px 8px;text-align:center}
-.vowel-card .v-letter{font-size:2.4rem;font-weight:800;color:var(--gold);line-height:1}
-.vowel-card .v-pron{font-size:.78rem;color:var(--blue);margin-top:6px;font-family:monospace}
-.vowel-card .v-ru{font-size:.74rem;color:var(--text);margin-top:3px}
-.vowel-card .v-ex{font-size:.7rem;color:var(--muted);margin-top:2px}
-.cons-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px}
-.cons-block h4{font-size:.93rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.cons-letter{display:inline-block;background:var(--gold);color:#000;font-weight:800;font-size:.88rem;padding:2px 10px;border-radius:6px}
-.cons-block .rule-text{font-size:.88rem;color:var(--muted);margin-bottom:8px}
-.ex-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.ex-word{background:var(--bg3);border-radius:5px;padding:4px 10px;font-size:.83rem}
-.ex-word .es{color:var(--text);font-weight:600}
-.ex-word .tr{color:var(--muted);margin-left:5px}
-.accent-box{background:var(--bg3);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:10px}
-.accent-box h4{font-size:.9rem;font-weight:700;margin-bottom:5px}
-.accent-box .ex{font-size:.85rem;color:var(--muted)}
-.accent-box .ex strong{color:var(--text)}
-.vocab-table{width:100%;border-collapse:collapse;font-size:.85rem;margin:10px 0}
-.vocab-table th{background:var(--bg3);padding:9px 12px;text-align:left;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid var(--border)}
-.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
-.vocab-table tr:hover td{background:rgba(255,255,255,.02)}
-.v-es{font-weight:700;color:var(--text)}
-.v-tr{color:var(--blue);font-family:monospace;font-size:.82rem}
-.v-ru{color:var(--muted)}
-.v-ex{color:var(--muted);font-style:italic;font-size:.8rem}
-.rule-tag{display:inline-block;background:rgba(255,214,10,.12);color:var(--gold);font-size:.65rem;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:5px;vertical-align:middle}
-.trap-tag{display:inline-block;background:rgba(230,57,70,.12);color:var(--red);font-size:.65rem;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:5px;vertical-align:middle}
-.compare-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
-.compare-cell{background:var(--bg3);border-radius:6px;padding:10px 12px;text-align:center}
-.compare-cell .lang{font-size:.68rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.compare-cell .word{font-size:1rem;font-weight:600}
-.compare-cell.ru-cell .word{color:var(--blue)}
-.compare-cell.en-cell .word{color:var(--purple)}
-.compare-cell.es-cell .word{color:var(--gold)}
-@media(max-width:520px){.vowel-grid{grid-template-columns:repeat(3,1fr)}.compare-row{grid-template-columns:1fr}.vocab-table .v-ex{display:none}}
+
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.sound-examples{grid-template-columns:1fr}.anki-card{width:160px;height:110px}}
 </style>
 </head>
 <body>
@@ -153,734 +183,964 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 
 <!-- HERO -->
 <div class="hero">
-  <div class="phase-tag">🔊 Фаза 0 · Быстрый старт · Language Transfer эп. 4–5</div>
-  <h1>Звучи как <span class="hl">испанец</span></h1>
-  <p class="sub">5 гласных, 10 проблемных согласных, правила ударения. После этого урока ты читаешь любое испанское слово вслух — правильно.</p>
+  <div class="phase-tag">⚡ Фаза 0 · Быстрый старт · Произношение</div>
+  <h1>Звучи как <span class="hl">испанец</span> с первого дня</h1>
+  <p class="sub">5 гласных, 10 правил согласных, 3 правила ударения. После этого урока ты будешь читать любое испанское слово вслух — правильно.</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Освоить произношение и читать испанский текст вслух без ошибок</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
-    <div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>Language Transfer эп. 4–5, Dreaming Spanish Super Beginner</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Читаем слова и предложения вслух — каждое правило сразу практикуем</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Читать любое испанское слово, видя его впервые</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + 15 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>Language Transfer эп. 4–5</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Читаем 30+ слов вслух с озвучкой 🔊</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- SECTION 1: 5 Гласных -->
+<!-- SECTION 1: Повторение L00 (когнаты) -->
 <!-- ══════════════════════════════════════════════ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>5 чистых гласных — фундамент произношения</h2>
+    <h2>Сначала повтори L00 — когнаты</h2>
   </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прежде чем учить произношение, проверь, помнишь ли ты правила когнатов из прошлого урока.</p>
 
-  <p style="margin-bottom:14px">В испанском ровно <strong>5 гласных</strong>: <strong style="color:var(--gold)">A, E, I, O, U</strong>. Запомни самое главное правило: <strong>каждая гласная всегда звучит одинаково</strong> — под ударением и без, в начале слова и в конце. Никаких сюрпризов.</p>
+  <div class="quiz" id="quiz-review">
+    <h3>🔄 Быстрый тест по L00</h3>
 
-  <div class="callout warning">
-    <h4>⚠️ Главная ловушка для русскоговорящих</h4>
-    <p>В русском языке безударные гласные <em>редуцируются</em>: молоко → [малако], говорить → [гавар'ить]. В испанском — НИКОГДА. Слово «banana» звучит как чёткое <strong>[ба-НА-на]</strong>, все три А одинаковы. Попробуй прямо сейчас: произнеси «hola» как [О-ла], оба звука полные и чёткие.</p>
-  </div>
-
-  <div class="vowel-grid">
-    <div class="vowel-card">
-      <div class="v-letter">A</div>
-      <div class="v-pron">[а]</div>
-      <div class="v-ru">как в слове «рАд»</div>
-      <div class="v-ex">casa, habla</div>
+    <div class="quiz-q" id="r1">
+      <div class="q-text">1. Английское <strong>«organization»</strong> по правилу когнатов на испанском?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r1','a')">organización</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','b')">organizamiento</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','c')">organisation</div>
+      </div>
+      <div class="feedback" id="fb-r1"></div>
     </div>
-    <div class="vowel-card">
-      <div class="v-letter">E</div>
-      <div class="v-pron">[е]</div>
-      <div class="v-ru">как в слове «мЭр», без йотирования</div>
-      <div class="v-ex">leche, este</div>
-    </div>
-    <div class="vowel-card">
-      <div class="v-letter">I</div>
-      <div class="v-pron">[и]</div>
-      <div class="v-ru">как в слове «мИр»</div>
-      <div class="v-ex">vida, así</div>
-    </div>
-    <div class="vowel-card">
-      <div class="v-letter">O</div>
-      <div class="v-pron">[о]</div>
-      <div class="v-ru">как в слове «кОт», не [оу]!</div>
-      <div class="v-ex">hola, todo</div>
-    </div>
-    <div class="vowel-card">
-      <div class="v-letter">U</div>
-      <div class="v-pron">[у]</div>
-      <div class="v-ru">как в слове «мУж», губы трубочкой</div>
-      <div class="v-ex">mucho, tú</div>
-    </div>
-  </div>
 
-  <div class="callout info">
-    <h4>🆚 Испанский vs. английский vs. русский</h4>
-    <p>Английское <em>O</em> в слове «go» дифтонгизируется в [гоу]. Испанское <em>O</em> — всегда чистое [о]. Русские в плюсе: наши гласные тоже чистые, просто мы не должны их ослаблять в безударной позиции. Представь, что ты говоришь по слогам очень чётко — вот это и есть испанское произношение.</p>
-  </div>
+    <div class="quiz-q" id="r2">
+      <div class="q-text">2. Правило «-ity → ?» преобразует «university» в:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r2','b')">universita</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','a')">universidad</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','c')">universino</div>
+      </div>
+      <div class="feedback" id="fb-r2"></div>
+    </div>
 
-  <div class="callout tip">
-    <h4>💡 Дифтонги — два гласных слиты в один слог</h4>
-    <p>Когда рядом стоят I или U с другой гласной, они сливаются: <strong>quiero</strong> = [кье-ро] (не [ки-е-ро]), <strong>ciudad</strong> = [сью-дад], <strong>Europa</strong> = [эу-ро-па]. Это не два слога, а один. Тренируй быстрое скольжение от одного звука к другому.</p>
-  </div>
+    <div class="quiz-q" id="r3">
+      <div class="q-text">3. Сколько примерно слов даёт знание 12 правил когнатов?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r3','c')">300</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','a')">2 000+</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','b')">10 000</div>
+      </div>
+      <div class="feedback" id="fb-r3"></div>
+    </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🗣 Практика прямо сейчас</div>
-    <p>Произнеси вслух 5 раз подряд — сначала медленно, потом быстрее:</p>
-    <div class="es">a — e — i — o — u &nbsp;|&nbsp; casa — leche — vida — hola — mucho</div>
-    <div class="hint">Все гласные чёткие. Никакой «каши». Рот двигается заметно.</div>
+    <div class="quiz-q" id="r4">
+      <div class="q-text">4. «-ist → ?» — окончание для профессий, одинаковое в м.р./ж.р.:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r4','b')">-ismo</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','a')">-ista</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','c')">-ero</div>
+      </div>
+      <div class="feedback" id="fb-r4"></div>
+    </div>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- SECTION 2: Проблемные согласные -->
+<!-- SECTION 2: Главный лайфхак испанского -->
 <!-- ══════════════════════════════════════════════ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>10 проблемных согласных — учи правила, не угадывай</h2>
+    <h2>Главный лайфхак — испанский читается КАК ПИШЕТСЯ</h2>
   </div>
 
-  <p style="margin-bottom:16px">Испанский алфавит почти совпадает с латинским, но <strong>некоторые буквы звучат совсем не так</strong>, как ты ожидаешь. Вот десять правил, которые нужно знать, чтобы не ошибиться.</p>
+  <p style="margin-bottom:14px">В отличие от английского (где «though», «through», «tough» читаются по-разному), испанский — фонетический язык. <strong>Одна буква = один звук</strong>. Освой 20 правил — и ты прочитаешь любое слово, даже которое видишь впервые.</p>
 
-  <!-- H -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">H</span> — всегда молчит</h4>
-    <div class="rule-text">Буква H в испанском <strong>никогда не произносится</strong>. Всегда. Это не исключение, это правило. В русском нет немых букв, поэтому мы рефлекторно пытаемся произнести H — но не надо.</div>
-    <div class="ex-row">
-      <span class="ex-word"><span class="es">hola</span><span class="tr">[о-ла]</span></span>
-      <span class="ex-word"><span class="es">hotel</span><span class="tr">[о-тель]</span></span>
-      <span class="ex-word"><span class="es">hablar</span><span class="tr">[а-блар]</span></span>
-      <span class="ex-word"><span class="es">hombre</span><span class="tr">[ом-бре]</span></span>
-      <span class="ex-word"><span class="es">hora</span><span class="tr">[о-ра]</span></span>
-    </div>
+  <div class="callout tip">
+    <h4>💡 Почему это важно для нас, русскоговорящих</h4>
+    <p>Русский тоже фонетический (в отличие от английского). Это огромное преимущество! Большинство испанских звуков очень похожи на русские. Главные отличия — всего в 5-6 буквах. Мы пройдём их все.</p>
   </div>
 
-  <!-- B / V -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">B</span> и <span class="cons-letter">V</span> — одинаковый звук!</h4>
-    <div class="rule-text">Это шок для русскоязычных: <strong>B и V произносятся одинаково</strong>. В начале слова или после паузы — как русское <strong>[б]</strong>. В остальных позициях — мягкий губно-губной звук (губы почти смыкаются, но не до конца). На практике: просто говори [б] везде — тебя поймут.</div>
-    <div class="ex-row">
-      <span class="ex-word"><span class="es">vino</span><span class="tr">[би-но]</span></span>
-      <span class="ex-word"><span class="es">vamos</span><span class="tr">[ба-мос]</span></span>
-      <span class="ex-word"><span class="es">vivir</span><span class="tr">[би-бир]</span></span>
-      <span class="ex-word"><span class="es">bolsa</span><span class="tr">[боль-са]</span></span>
-    </div>
-    <div class="callout warning" style="margin-top:10px">
-      <h4>⚠️ Ловушка</h4>
-      <p>Русские произносят V как в английском или немецком — с нижней губой на зубах. Испанцы так никогда не делают. Vino = [би-но], не [вино].</p>
-    </div>
-  </div>
-
-  <!-- J -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">J</span> — как русское «Х»</h4>
-    <div class="rule-text">Буква J всегда читается как <strong>русское «х»</strong> — то же самое «х» что в слове «хорошо». Это хорошая новость для нас: у нас есть этот звук! Англоязычным сложнее.</div>
-    <div class="ex-row">
-      <span class="ex-word"><span class="es">jefe</span><span class="tr">[хе-фе]</span></span>
-      <span class="ex-word"><span class="es">viaje</span><span class="tr">[бья-хе]</span></span>
-      <span class="ex-word"><span class="es">bajo</span><span class="tr">[ба-хо]</span></span>
-      <span class="ex-word"><span class="es">hijo</span><span class="tr">[и-хо]</span></span>
-      <span class="ex-word"><span class="es">trabajo</span><span class="tr">[тра-ба-хо]</span></span>
-    </div>
-  </div>
-
-  <!-- G -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">G</span> — два варианта произношения</h4>
-    <div class="rule-text">
-      <strong>G перед A, O, U</strong> → звучит как русское <strong>[г]</strong>: <em>gato</em> = [га-то], <em>gordo</em> = [гор-до].<br>
-      <strong>G перед E, I</strong> → звучит как русское <strong>[х]</strong>: <em>gente</em> = [хен-те], <em>general</em> = [хе-не-раль].
-    </div>
-    <div class="ex-row">
-      <span class="ex-word"><span class="es">gato</span><span class="tr">[га-то] = кот</span></span>
-      <span class="ex-word"><span class="es">gente</span><span class="tr">[хен-те] = люди</span></span>
-      <span class="ex-word"><span class="es">gordo</span><span class="tr">[гор-до] = толстый</span></span>
-      <span class="ex-word"><span class="es">general</span><span class="tr">[хе-не-раль]</span></span>
-    </div>
-  </div>
-
-  <!-- C / Z -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">C</span> и <span class="cons-letter">Z</span> — испанский и латиноамериканский варианты</h4>
-    <div class="rule-text">
-      <strong>C перед A, O, U</strong> → <strong>[к]</strong>: <em>casa</em> = [ка-са], <em>comer</em> = [ко-мер].<br>
-      <strong>C перед E, I</strong> → в Испании <strong>[θ]</strong> (как английское «th» в «think»), в Латинской Америке <strong>[с]</strong>.<br>
-      <strong>Z</strong> → аналогично: в Испании [θ], в Латинской Америке [с].
-    </div>
-    <div class="compare-row" style="grid-template-columns:1fr 1fr;margin:10px 0">
-      <div class="compare-cell" style="background:var(--bg3);border-radius:6px;padding:10px 12px">
-        <div style="font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:4px">🇪🇸 Испания</div>
-        <div style="font-size:.95rem">cerveza = [θер-бе-θа]</div>
-        <div style="font-size:.72rem;color:var(--muted)">звучит с межзубным [θ]</div>
-      </div>
-      <div class="compare-cell" style="background:var(--bg3);border-radius:6px;padding:10px 12px">
-        <div style="font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:4px">🌎 Латинская Америка</div>
-        <div style="font-size:.95rem">cerveza = [сер-бе-са]</div>
-        <div style="font-size:.72rem;color:var(--muted)">звучит с обычным [с]</div>
-      </div>
-    </div>
-    <div class="callout tip" style="margin-top:8px">
-      <h4>💡 Совет</h4>
-      <p>Для начала используй латиноамериканский вариант [с] — он проще и понятен везде. Позже можешь освоить кастильское [θ] для красоты.</p>
-    </div>
-  </div>
-
-  <!-- QU -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">QU</span> перед E/I — буква U молчит, читай [К]</h4>
-    <div class="rule-text">Сочетание QUE и QUI: U <strong>не произносится</strong>, всё сочетание читается как <strong>[ке]</strong> или <strong>[ки]</strong>. Чтобы произнести [ку-э] или [ку-и], испанцы пишут QÜ с двумя точками (трема).</div>
-    <div class="ex-row">
-      <span class="ex-word"><span class="es">que</span><span class="tr">[ке] = что</span></span>
-      <span class="ex-word"><span class="es">quiero</span><span class="tr">[кье-ро] = я хочу</span></span>
-      <span class="ex-word"><span class="es">queso</span><span class="tr">[ке-со] = сыр</span></span>
-      <span class="ex-word"><span class="es">aquí</span><span class="tr">[а-ки] = здесь</span></span>
-    </div>
-  </div>
-
-  <!-- Ñ -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">Ñ</span> — мягкое [НЬ]</h4>
-    <div class="rule-text">Буква Ñ (эньэ) — отдельная буква испанского алфавита. Произносится как русское <strong>[нь]</strong> — как в слове «каньон». Для русских это легко: у нас есть это мягкое Н!</div>
-    <div class="ex-row">
-      <span class="ex-word"><span class="es">año</span><span class="tr">[а-ньо] = год</span></span>
-      <span class="ex-word"><span class="es">España</span><span class="tr">[эс-па-нья] = Испания</span></span>
-      <span class="ex-word"><span class="es">mañana</span><span class="tr">[ма-нья-на] = завтра</span></span>
-      <span class="ex-word"><span class="es">señor</span><span class="tr">[се-ньор] = господин</span></span>
-    </div>
-  </div>
-
-  <!-- LL -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">LL</span> — звучит как русское [Й]</h4>
-    <div class="rule-text">Сочетание LL в большинстве диалектов читается как <strong>[й]</strong> — как русское «й» в слове «йогурт». В некоторых регионах (Аргентина, Уругвай) — как [ж]. Пока учи вариант [й].</div>
-    <div class="ex-row">
-      <span class="ex-word"><span class="es">lluvia</span><span class="tr">[йу-вья] = дождь</span></span>
-      <span class="ex-word"><span class="es">llamar</span><span class="tr">[йа-мар] = звать</span></span>
-      <span class="ex-word"><span class="es">llegar</span><span class="tr">[йе-гар] = приехать</span></span>
-      <span class="ex-word"><span class="es">llevar</span><span class="tr">[йе-бар] = нести</span></span>
-    </div>
-  </div>
-
-  <!-- RR -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">RR</span> и <span class="cons-letter">R</span> в начале слова — вибрирующий звук</h4>
-    <div class="rule-text">Испанский RR — это <strong>сильно вибрирующий, раскатистый [р]</strong>. Хорошая новость: русское Р уже трелированное! Просто делай его подольше. Одиночный R между гласными — мягкое, краткое. RR и R в начале слова — сильное.<br>
-    <strong>Важно:</strong> pero [пе-ро] = но &nbsp;|&nbsp; perro [пе-рро] = собака — разные слова!</div>
-    <div class="ex-row">
-      <span class="ex-word"><span class="es">pero</span><span class="tr">[пе-ро] = но</span></span>
-      <span class="ex-word"><span class="es">perro</span><span class="tr">[пе-рро] = собака</span></span>
-      <span class="ex-word"><span class="es">rápido</span><span class="tr">[ра-пи-до] = быстро</span></span>
-      <span class="ex-word"><span class="es">corro</span><span class="tr">[ко-рро] = я бегу</span></span>
-    </div>
-  </div>
-
-  <!-- CH -->
-  <div class="cons-block">
-    <h4><span class="cons-letter">CH</span> — всегда [Ч]</h4>
-    <div class="rule-text">CH в испанском всегда читается как русское <strong>[ч]</strong>. Никаких исключений. Как в русском «чай».</div>
-    <div class="ex-row">
-      <span class="ex-word"><span class="es">mucho</span><span class="tr">[му-чо] = много</span></span>
-      <span class="ex-word"><span class="es">noche</span><span class="tr">[но-че] = ночь</span></span>
-      <span class="ex-word"><span class="es">chocolate</span><span class="tr">[чо-ко-ла-те]</span></span>
-      <span class="ex-word"><span class="es">muchacho</span><span class="tr">[му-ча-чо] = парень</span></span>
-    </div>
-  </div>
-
-  <div class="callout success">
-    <h4>✅ Хорошие новости для русскоязычных</h4>
-    <ul>
-      <li><strong>RR</strong> — трель. Русское Р уже трелированное, тебе легче, чем англоязычным</li>
-      <li><strong>Ñ</strong> — мягкое [нь]. У нас это есть: «каньон», «ньюанс»</li>
-      <li><strong>J</strong> — звучит как наше «Х». Идеально!</li>
-      <li><strong>LL</strong> — звучит как наше «Й»</li>
-      <li><strong>Чистые гласные</strong> — как в русском, только без редукции</li>
-    </ul>
+  <div class="callout info">
+    <h4>🔊 Кнопка озвучки в этом уроке</h4>
+    <p>Возле каждого слова и фразы есть кнопка 🔊 — нажми, и встроенный в браузер испанский голос произнесёт. Это работает в Chrome, Edge и Firefox. Подключи наушники и слушай каждое слово 2-3 раза вслух за голосом.</p>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- SECTION 3: Ударение и тильды -->
+<!-- SECTION 3: 5 гласных -->
 <!-- ══════════════════════════════════════════════ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Ударение и знак тильды — три чётких правила</h2>
+    <h2>5 гласных — основа всего</h2>
   </div>
 
-  <p style="margin-bottom:16px">В испанском ударение предсказуемо. Три правила покрывают <strong>99% слов</strong>. Знак ударения (тильда ´) — это не украшение, это <strong>дорожный знак</strong>: он говорит «ударение здесь».</p>
+  <p style="margin-bottom:14px">В испанском всего 5 гласных: <strong>A, E, I, O, U</strong>. И они <em>всегда</em> звучат одинаково. Не как в английском, где «a» в «cat», «car», «cake» — три разных звука. В испанском: «a» = всегда [а]. Точка.</p>
 
-  <div class="accent-box">
-    <h4>Правило 1 — Слово оканчивается на гласную, N или S</h4>
-    <div class="ex">→ Ударение на <strong>предпоследний слог</strong><br>
-    <strong>ha-BLA</strong> (habla), <strong>co-MEN</strong> (comen), <strong>ca-SAS</strong> (casas), <strong>NO-che</strong> (noche)<br>
-    Запомни: большинство испанских слов попадает именно в это правило.</div>
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">A</div>
+      <div class="sound-rule">Всегда [а] — как в русском «мама»</div>
+      <button class="speak-btn" onclick="speak('casa, mapa, hola, mañana, gracias')">🔊</button>
+    </div>
+    <p class="sound-hint">Чёткий, открытый звук. Не редуцируется как русское «а» в безударной позиции.</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">casa</span><button class="speak-btn" onclick="speak('casa')">🔊</button><span class="tr">дом</span></div>
+      <div class="se"><span class="w">mapa</span><button class="speak-btn" onclick="speak('mapa')">🔊</button><span class="tr">карта</span></div>
+      <div class="se"><span class="w">hola</span><button class="speak-btn" onclick="speak('hola')">🔊</button><span class="tr">привет</span></div>
+      <div class="se"><span class="w">mañana</span><button class="speak-btn" onclick="speak('mañana')">🔊</button><span class="tr">завтра</span></div>
+      <div class="se"><span class="w">gracias</span><button class="speak-btn" onclick="speak('gracias')">🔊</button><span class="tr">спасибо</span></div>
+    </div>
   </div>
 
-  <div class="accent-box">
-    <h4>Правило 2 — Слово оканчивается на согласную (кроме N и S)</h4>
-    <div class="ex">→ Ударение на <strong>последний слог</strong><br>
-    <strong>ciu-DAD</strong> (ciudad), <strong>ha-BLAR</strong> (hablar), <strong>pro-fe-SOR</strong> (profesor)<br>
-    Слова на -R, -D, -L, -Z: ударение в конце.</div>
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">E</div>
+      <div class="sound-rule">Всегда [э] — как в русском «эти», без «й»</div>
+      <button class="speak-btn" onclick="speak('mesa, leche, café, tres, pero')">🔊</button>
+    </div>
+    <p class="sound-hint">Ловушка: НЕ читай как русское «е» (которое = «йэ»). Только чистое [э].</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">mesa</span><button class="speak-btn" onclick="speak('mesa')">🔊</button><span class="tr">стол</span></div>
+      <div class="se"><span class="w">leche</span><button class="speak-btn" onclick="speak('leche')">🔊</button><span class="tr">молоко</span></div>
+      <div class="se"><span class="w">café</span><button class="speak-btn" onclick="speak('café')">🔊</button><span class="tr">кофе</span></div>
+      <div class="se"><span class="w">tres</span><button class="speak-btn" onclick="speak('tres')">🔊</button><span class="tr">три</span></div>
+      <div class="se"><span class="w">pero</span><button class="speak-btn" onclick="speak('pero')">🔊</button><span class="tr">но</span></div>
+    </div>
   </div>
 
-  <div class="accent-box">
-    <h4>Правило 3 — На слове стоит тильда ´</h4>
-    <div class="ex">→ Ударение <strong>там, где тильда</strong>. Всегда. Без исключений.<br>
-    <strong>ca-FÉ</strong> (café), <strong>MÚ-si-ca</strong> (música), <strong>te-LÉ-fo-no</strong> (teléfono), <strong>RA-pi-do</strong> (rápido)<br>
-    Тильда нужна только когда слово нарушает правила 1–2, или для различения омонимов (el/él, si/sí, tu/tú).</div>
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">I</div>
+      <div class="sound-rule">Всегда [и] — как в русском «и»</div>
+      <button class="speak-btn" onclick="speak('libro, sí, mi, vino, cinco')">🔊</button>
+    </div>
+    <div class="sound-examples">
+      <div class="se"><span class="w">libro</span><button class="speak-btn" onclick="speak('libro')">🔊</button><span class="tr">книга</span></div>
+      <div class="se"><span class="w">sí</span><button class="speak-btn" onclick="speak('sí')">🔊</button><span class="tr">да</span></div>
+      <div class="se"><span class="w">mi</span><button class="speak-btn" onclick="speak('mi')">🔊</button><span class="tr">мой</span></div>
+      <div class="se"><span class="w">vino</span><button class="speak-btn" onclick="speak('vino')">🔊</button><span class="tr">вино</span></div>
+      <div class="se"><span class="w">cinco</span><button class="speak-btn" onclick="speak('cinco')">🔊</button><span class="tr">пять</span></div>
+    </div>
   </div>
 
-  <div class="callout info">
-    <h4>🔍 Практика — читай, соблюдая ударение</h4>
-    <p>Попробуй вслух, выделяя заглавные слоги:<br>
-    <strong>HAB-la</strong> · <strong>co-MER</strong> · <strong>ciu-DAD</strong> · <strong>MÚ-si-ca</strong> · <strong>te-LÉ-fo-no</strong> · <strong>pro-fe-SOR</strong> · <strong>rÁ-pi-do</strong> · <strong>ca-FÉ</strong></p>
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">O</div>
+      <div class="sound-rule">Всегда [о] — как в русском «окно» под ударением</div>
+      <button class="speak-btn" onclick="speak('oso, no, hola, ocho, todo')">🔊</button>
+    </div>
+    <p class="sound-hint">Ловушка: НЕ редуцируй до [а] как мы делаем в русском «карова». В испанском «no» — это чёткое [но], не [на].</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">oso</span><button class="speak-btn" onclick="speak('oso')">🔊</button><span class="tr">медведь</span></div>
+      <div class="se"><span class="w">no</span><button class="speak-btn" onclick="speak('no')">🔊</button><span class="tr">нет</span></div>
+      <div class="se"><span class="w">ocho</span><button class="speak-btn" onclick="speak('ocho')">🔊</button><span class="tr">восемь</span></div>
+      <div class="se"><span class="w">todo</span><button class="speak-btn" onclick="speak('todo')">🔊</button><span class="tr">всё</span></div>
+      <div class="se"><span class="w">color</span><button class="speak-btn" onclick="speak('color')">🔊</button><span class="tr">цвет</span></div>
+    </div>
   </div>
 
-  <div class="callout warning">
-    <h4>⚠️ Частая ошибка русских</h4>
-    <p>Мы переносим русское ударение на испанские слова. Например: «телефон» по-русски — те-ле-ФОН, по-испански «teléfono» — ТЕ-ле-фо-но (тильда на первом Е!). Всегда смотри на тильду.</p>
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">U</div>
+      <div class="sound-rule">Всегда [у] — как в русском «утро»</div>
+      <button class="speak-btn" onclick="speak('uno, luna, tú, usted, gusto')">🔊</button>
+    </div>
+    <div class="sound-examples">
+      <div class="se"><span class="w">uno</span><button class="speak-btn" onclick="speak('uno')">🔊</button><span class="tr">один</span></div>
+      <div class="se"><span class="w">luna</span><button class="speak-btn" onclick="speak('luna')">🔊</button><span class="tr">луна</span></div>
+      <div class="se"><span class="w">tú</span><button class="speak-btn" onclick="speak('tú')">🔊</button><span class="tr">ты</span></div>
+      <div class="se"><span class="w">usted</span><button class="speak-btn" onclick="speak('usted')">🔊</button><span class="tr">Вы (вежл.)</span></div>
+      <div class="se"><span class="w">gusto</span><button class="speak-btn" onclick="speak('gusto')">🔊</button><span class="tr">вкус</span></div>
+    </div>
+  </div>
+
+  <div class="callout success">
+    <h4>✅ Главный принцип</h4>
+    <p>5 гласных = 5 чистых звуков. Никаких «йэ», «йо», «йу», как в русском. Никаких «эй», «ай», «оу», как в английском. Скажи их прямо, чётко, кратко. Это уже половина испанского произношения.</p>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- SECTION 4: Словарь — слова для практики -->
+<!-- SECTION 4: 10 правил согласных -->
 <!-- ══════════════════════════════════════════════ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Словарь — 14 слов с произношением</h2>
+    <h2>10 правил согласных — все ловушки сразу</h2>
   </div>
-  <p style="margin-bottom:12px;font-size:.9rem;color:var(--muted)">Каждое слово иллюстрирует правило. Читай ВСЛУХ — не просто смотри! Таблица — это план для произношения, не для запоминания.</p>
 
-  <table class="vocab-table">
-    <thead>
-      <tr>
-        <th>Испанский</th>
-        <th>Произношение</th>
-        <th>Русский</th>
-        <th>Пример</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="v-es">hola</span> <span class="rule-tag">H=молчит</span></td>
-        <td class="v-tr">[о-ла]</td>
-        <td class="v-ru">привет</td>
-        <td class="v-ex">¡Hola! ¿Cómo estás?</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">hotel</span> <span class="rule-tag">H=молчит</span></td>
-        <td class="v-tr">[о-тель]</td>
-        <td class="v-ru">отель</td>
-        <td class="v-ex">El hotel es caro.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">hablar</span> <span class="rule-tag">H=молчит</span></td>
-        <td class="v-tr">[а-блар]</td>
-        <td class="v-ru">говорить</td>
-        <td class="v-ex">Quiero hablar español.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">jefe</span> <span class="rule-tag">J=[х]</span></td>
-        <td class="v-tr">[хе-фе]</td>
-        <td class="v-ru">шеф, начальник</td>
-        <td class="v-ex">Mi jefe es simpático.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">viaje</span> <span class="rule-tag">J=[х]</span></td>
-        <td class="v-tr">[бья-хе]</td>
-        <td class="v-ru">путешествие</td>
-        <td class="v-ex">El viaje es largo.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">gente</span> <span class="rule-tag">G+E=[х]</span></td>
-        <td class="v-tr">[хен-те]</td>
-        <td class="v-ru">люди, народ</td>
-        <td class="v-ex">La gente habla español.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">ciudad</span> <span class="rule-tag">C+I=[с]</span></td>
-        <td class="v-tr">[сью-дад]</td>
-        <td class="v-ru">город</td>
-        <td class="v-ex">La ciudad es grande.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">cerveza</span> <span class="rule-tag">C+E=[с]</span></td>
-        <td class="v-tr">[сер-бе-са]</td>
-        <td class="v-ru">пиво</td>
-        <td class="v-ex">Una cerveza, por favor.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">año</span> <span class="rule-tag">Ñ=[нь]</span></td>
-        <td class="v-tr">[а-ньо]</td>
-        <td class="v-ru">год</td>
-        <td class="v-ex">Este año aprendo español.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">España</span> <span class="rule-tag">Ñ=[нь]</span></td>
-        <td class="v-tr">[эс-па-нья]</td>
-        <td class="v-ru">Испания</td>
-        <td class="v-ex">Voy a España.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">lluvia</span> <span class="rule-tag">LL=[й]</span></td>
-        <td class="v-tr">[йу-вья]</td>
-        <td class="v-ru">дождь</td>
-        <td class="v-ex">Hay mucha lluvia hoy.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">perro</span> <span class="rule-tag">RR=трель</span></td>
-        <td class="v-tr">[пе-рро]</td>
-        <td class="v-ru">собака</td>
-        <td class="v-ex">El perro es grande.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">quiero</span> <span class="rule-tag">QU=[к]</span></td>
-        <td class="v-tr">[кье-ро]</td>
-        <td class="v-ru">я хочу</td>
-        <td class="v-ex">Quiero aprender español.</td>
-      </tr>
-      <tr>
-        <td><span class="v-es">mucho</span> <span class="rule-tag">CH=[ч]</span></td>
-        <td class="v-tr">[му-чо]</td>
-        <td class="v-ru">много, очень</td>
-        <td class="v-ex">¡Muchas gracias!</td>
-      </tr>
-    </tbody>
-  </table>
+  <p style="margin-bottom:14px">Большинство согласных читаются как в русском: m, n, p, t, d, b, f, l, s. Но есть 10 букв, которые работают по-своему. Учим их сейчас — и забываем про ошибки навсегда.</p>
 
-  <div class="callout tip">
-    <h4>💡 Как работать с этой таблицей</h4>
-    <p>Закрой столбец «Произношение» и попробуй прочитать слова сам по правилам. Потом сверься. Повторяй до тех пор, пока не сможешь читать все 14 слов с закрытым столбцом транскрипции.</p>
+  <!-- C -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">C</div>
+      <div class="sound-rule">Перед E, I = [θ] (в Испании) / [с] (в Лат. Америке). Перед A, O, U = [к]</div>
+      <button class="speak-btn" onclick="speak('cinco, centro, casa, cosa, cubano')">🔊</button>
+    </div>
+    <p class="sound-hint">«θ» — это межзубный звук как в английском «think». В Барселоне говорят именно так. В Аргентине, Мексике — обычное [с].</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">cinco</span><button class="speak-btn" onclick="speak('cinco')">🔊</button><span class="tr">[θин-ко] пять</span></div>
+      <div class="se"><span class="w">centro</span><button class="speak-btn" onclick="speak('centro')">🔊</button><span class="tr">[θен-тро] центр</span></div>
+      <div class="se"><span class="w">cero</span><button class="speak-btn" onclick="speak('cero')">🔊</button><span class="tr">[θе-ро] ноль</span></div>
+      <div class="se"><span class="w">casa</span><button class="speak-btn" onclick="speak('casa')">🔊</button><span class="tr">[ка-са] дом</span></div>
+      <div class="se"><span class="w">cosa</span><button class="speak-btn" onclick="speak('cosa')">🔊</button><span class="tr">[ко-са] вещь</span></div>
+      <div class="se"><span class="w">cuatro</span><button class="speak-btn" onclick="speak('cuatro')">🔊</button><span class="tr">[ку-а-тро] четыре</span></div>
+    </div>
+  </div>
+
+  <!-- G -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">G</div>
+      <div class="sound-rule">Перед E, I = [х] (как в «хорошо»). Перед A, O, U = [г]</div>
+      <button class="speak-btn" onclick="speak('gente, gigante, gato, gota, gusto')">🔊</button>
+    </div>
+    <div class="sound-examples">
+      <div class="se"><span class="w">gente</span><button class="speak-btn" onclick="speak('gente')">🔊</button><span class="tr">[хен-те] люди</span></div>
+      <div class="se"><span class="w">gigante</span><button class="speak-btn" onclick="speak('gigante')">🔊</button><span class="tr">[хи-ган-те] гигант</span></div>
+      <div class="se"><span class="w">gato</span><button class="speak-btn" onclick="speak('gato')">🔊</button><span class="tr">[га-то] кот</span></div>
+      <div class="se"><span class="w">gusto</span><button class="speak-btn" onclick="speak('gusto')">🔊</button><span class="tr">[гу-сто] вкус</span></div>
+      <div class="se"><span class="w">amigo</span><button class="speak-btn" onclick="speak('amigo')">🔊</button><span class="tr">[а-ми-го] друг</span></div>
+    </div>
+  </div>
+
+  <!-- J -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">J</div>
+      <div class="sound-rule">Всегда [х] — как наше «хорошо», даже сильнее</div>
+      <button class="speak-btn" onclick="speak('jamón, jefe, joven, junio, hijo')">🔊</button>
+    </div>
+    <p class="sound-hint">Ловушка №1 для русских: J — НЕ «дж» как в английском «John». В испанском «John» был бы «джон», но «Juan» = [Хуан].</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">jamón</span><button class="speak-btn" onclick="speak('jamón')">🔊</button><span class="tr">[ха-мон] хамон</span></div>
+      <div class="se"><span class="w">jefe</span><button class="speak-btn" onclick="speak('jefe')">🔊</button><span class="tr">[хе-фе] шеф</span></div>
+      <div class="se"><span class="w">joven</span><button class="speak-btn" onclick="speak('joven')">🔊</button><span class="tr">[хо-вен] молодой</span></div>
+      <div class="se"><span class="w">junio</span><button class="speak-btn" onclick="speak('junio')">🔊</button><span class="tr">[ху-нио] июнь</span></div>
+      <div class="se"><span class="w">hijo</span><button class="speak-btn" onclick="speak('hijo')">🔊</button><span class="tr">[и-хо] сын</span></div>
+    </div>
+  </div>
+
+  <!-- H -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">H</div>
+      <div class="sound-rule">Всегда НЕ ЧИТАЕТСЯ — нулевой звук</div>
+      <button class="speak-btn" onclick="speak('hola, hijo, hora, hospital, hombre')">🔊</button>
+    </div>
+    <p class="sound-hint">«Hola» = [О-ла], не [Хо-ла]. «Hospital» = [ос-пи-таль], не [хос-пи-таль]. Просто игнорируй её.</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">hola</span><button class="speak-btn" onclick="speak('hola')">🔊</button><span class="tr">[о-ла] привет</span></div>
+      <div class="se"><span class="w">hijo</span><button class="speak-btn" onclick="speak('hijo')">🔊</button><span class="tr">[и-хо] сын</span></div>
+      <div class="se"><span class="w">hora</span><button class="speak-btn" onclick="speak('hora')">🔊</button><span class="tr">[о-ра] час</span></div>
+      <div class="se"><span class="w">hospital</span><button class="speak-btn" onclick="speak('hospital')">🔊</button><span class="tr">[ос-пи-таль] больница</span></div>
+      <div class="se"><span class="w">hombre</span><button class="speak-btn" onclick="speak('hombre')">🔊</button><span class="tr">[ом-бре] мужчина</span></div>
+    </div>
+  </div>
+
+  <!-- LL -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">LL</div>
+      <div class="sound-rule">Чаще всего [й] (Испания), иногда [ж] (Аргентина)</div>
+      <button class="speak-btn" onclick="speak('llamar, llave, calle, lluvia, ella')">🔊</button>
+    </div>
+    <p class="sound-hint">В Барселоне будут говорить [й]: «calle» = [ка-йе]. В Буэнос-Айресе скажут [ка-же].</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">llamar</span><button class="speak-btn" onclick="speak('llamar')">🔊</button><span class="tr">[йа-мар] звонить</span></div>
+      <div class="se"><span class="w">llave</span><button class="speak-btn" onclick="speak('llave')">🔊</button><span class="tr">[йа-ве] ключ</span></div>
+      <div class="se"><span class="w">calle</span><button class="speak-btn" onclick="speak('calle')">🔊</button><span class="tr">[ка-йе] улица</span></div>
+      <div class="se"><span class="w">lluvia</span><button class="speak-btn" onclick="speak('lluvia')">🔊</button><span class="tr">[йу-вья] дождь</span></div>
+      <div class="se"><span class="w">ella</span><button class="speak-btn" onclick="speak('ella')">🔊</button><span class="tr">[э-йа] она</span></div>
+    </div>
+  </div>
+
+  <!-- Ñ -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">Ñ</div>
+      <div class="sound-rule">Мягкое [нь] — как в русском «няня»</div>
+      <button class="speak-btn" onclick="speak('mañana, niño, año, señor, España')">🔊</button>
+    </div>
+    <div class="sound-examples">
+      <div class="se"><span class="w">mañana</span><button class="speak-btn" onclick="speak('mañana')">🔊</button><span class="tr">[ма-нья-на] завтра/утро</span></div>
+      <div class="se"><span class="w">niño</span><button class="speak-btn" onclick="speak('niño')">🔊</button><span class="tr">[ни-ньо] ребёнок</span></div>
+      <div class="se"><span class="w">año</span><button class="speak-btn" onclick="speak('año')">🔊</button><span class="tr">[а-ньо] год</span></div>
+      <div class="se"><span class="w">señor</span><button class="speak-btn" onclick="speak('señor')">🔊</button><span class="tr">[се-ньор] господин</span></div>
+      <div class="se"><span class="w">España</span><button class="speak-btn" onclick="speak('España')">🔊</button><span class="tr">[эс-па-нья] Испания</span></div>
+    </div>
+  </div>
+
+  <!-- R / RR -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">R</div>
+      <div class="sound-rule">Одиночное R = короткое [р]. RR / R в начале слова = раскатистое [ррр]</div>
+      <button class="speak-btn" onclick="speak('pero, perro, rojo, restaurante, mira')">🔊</button>
+    </div>
+    <p class="sound-hint">Самое сложное для русских — раскатистое RR. Тренируйся! «Pero» = «но» (короткое р), «perro» = «собака» (раскат). Это меняет смысл!</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">pero</span><button class="speak-btn" onclick="speak('pero')">🔊</button><span class="tr">[пе-ро] но</span></div>
+      <div class="se"><span class="w">perro</span><button class="speak-btn" onclick="speak('perro')">🔊</button><span class="tr">[пе-ррро] собака</span></div>
+      <div class="se"><span class="w">rojo</span><button class="speak-btn" onclick="speak('rojo')">🔊</button><span class="tr">[ррро-хо] красный</span></div>
+      <div class="se"><span class="w">restaurante</span><button class="speak-btn" onclick="speak('restaurante')">🔊</button><span class="tr">[ррес-тау-ран-те]</span></div>
+      <div class="se"><span class="w">mira</span><button class="speak-btn" onclick="speak('mira')">🔊</button><span class="tr">[ми-ра] смотри</span></div>
+    </div>
+  </div>
+
+  <!-- V / B -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">V/B</div>
+      <div class="sound-rule">Одинаковый звук! Между [б] и [в]. Для русских можно произносить как [б]</div>
+      <button class="speak-btn" onclick="speak('vino, vaca, beso, bueno, vivir')">🔊</button>
+    </div>
+    <p class="sound-hint">Испанцы сами могут перепутать «v» и «b» на письме — потому что слышат одно. «¿Se escribe con b o con v?» — частый вопрос.</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">vino</span><button class="speak-btn" onclick="speak('vino')">🔊</button><span class="tr">[би-но] вино</span></div>
+      <div class="se"><span class="w">vaca</span><button class="speak-btn" onclick="speak('vaca')">🔊</button><span class="tr">[ба-ка] корова</span></div>
+      <div class="se"><span class="w">beso</span><button class="speak-btn" onclick="speak('beso')">🔊</button><span class="tr">[бе-со] поцелуй</span></div>
+      <div class="se"><span class="w">bueno</span><button class="speak-btn" onclick="speak('bueno')">🔊</button><span class="tr">[буэ-но] хорошо</span></div>
+      <div class="se"><span class="w">vivir</span><button class="speak-btn" onclick="speak('vivir')">🔊</button><span class="tr">[би-бир] жить</span></div>
+    </div>
+  </div>
+
+  <!-- Z -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">Z</div>
+      <div class="sound-rule">Всегда [θ] в Испании / [с] в Лат. Америке. Как «c» перед e/i</div>
+      <button class="speak-btn" onclick="speak('zapato, zumo, plaza, manzana, vez')">🔊</button>
+    </div>
+    <div class="sound-examples">
+      <div class="se"><span class="w">zapato</span><button class="speak-btn" onclick="speak('zapato')">🔊</button><span class="tr">[θа-па-то] туфля</span></div>
+      <div class="se"><span class="w">zumo</span><button class="speak-btn" onclick="speak('zumo')">🔊</button><span class="tr">[θу-мо] сок</span></div>
+      <div class="se"><span class="w">plaza</span><button class="speak-btn" onclick="speak('plaza')">🔊</button><span class="tr">[пла-θа] площадь</span></div>
+      <div class="se"><span class="w">manzana</span><button class="speak-btn" onclick="speak('manzana')">🔊</button><span class="tr">[ман-θа-на] яблоко</span></div>
+      <div class="se"><span class="w">vez</span><button class="speak-btn" onclick="speak('vez')">🔊</button><span class="tr">[беθ] раз</span></div>
+    </div>
+  </div>
+
+  <!-- QU / GU -->
+  <div class="sound-card">
+    <div class="sound-header">
+      <div class="sound-letter">QU</div>
+      <div class="sound-rule">QU = [к] (U не читается). GUE/GUI = [ге/ги] (U не читается)</div>
+      <button class="speak-btn" onclick="speak('queso, quince, guitarra, guerra, pequeño')">🔊</button>
+    </div>
+    <p class="sound-hint">QUE — всегда [ке], НЕ [кве]. Также: GUE = [ге], GUI = [ги].</p>
+    <div class="sound-examples">
+      <div class="se"><span class="w">queso</span><button class="speak-btn" onclick="speak('queso')">🔊</button><span class="tr">[ке-со] сыр</span></div>
+      <div class="se"><span class="w">quince</span><button class="speak-btn" onclick="speak('quince')">🔊</button><span class="tr">[кин-θе] пятнадцать</span></div>
+      <div class="se"><span class="w">guitarra</span><button class="speak-btn" onclick="speak('guitarra')">🔊</button><span class="tr">[ги-та-рра] гитара</span></div>
+      <div class="se"><span class="w">guerra</span><button class="speak-btn" onclick="speak('guerra')">🔊</button><span class="tr">[ге-рра] война</span></div>
+      <div class="se"><span class="w">pequeño</span><button class="speak-btn" onclick="speak('pequeño')">🔊</button><span class="tr">[пе-ке-ньо] маленький</span></div>
+    </div>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- SECTION 5: Тест 1 — множественный выбор -->
+<!-- SECTION 5: Таблица ошибок русскоговорящих -->
 <!-- ══════════════════════════════════════════════ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Тест 1 — Правила произношения</h2>
+    <h2>Типичные ошибки русскоговорящих</h2>
   </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Выбери правильный ответ. Нажми на вариант — получишь объяснение.</p>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Знаешь правила — проверяй себя</h3>
+  <p style="margin-bottom:14px">За 15 лет работы со студентами я выделил 7 системных ошибок, которые делают почти все — пока не узнают про них. Запомни их СЕЙЧАС, и забудешь навсегда.</p>
 
-    <!-- Q1 -->
-    <div class="quiz-q" id="q1">
-      <div class="q-text">1. Как произносится буква <strong>H</strong> в слове «hola»?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Как русское «г» (мягкое)</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Не произносится — H всегда молчит</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Как английское придыхательное «h»</div>
-      </div>
-      <div class="feedback" id="fb-q1"></div>
-    </div>
+  <table class="mistakes-table">
+    <thead>
+      <tr><th>Слово</th><th>❌ Как говорят русские</th><th>✅ Как правильно</th><th>Почему</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>hola</strong></td><td><span class="wrong">[Хо-ла]</span></td><td><span class="right">[О-ла]</span></td><td>H в испанском не читается</td></tr>
+      <tr><td><strong>jamón</strong></td><td><span class="wrong">[Жа-мон/Дж-]</span></td><td><span class="right">[Ха-мон]</span></td><td>J = [х], не «ж» и не «дж»</td></tr>
+      <tr><td><strong>casa</strong></td><td><span class="wrong">[Ка-зА]</span></td><td><span class="right">[Ка-са]</span></td><td>Безударная «о/а» не редуцируется, S = всегда [с] (не [з])</td></tr>
+      <tr><td><strong>queso</strong></td><td><span class="wrong">[Кве-со]</span></td><td><span class="right">[Ке-со]</span></td><td>QU = [к], U не читается перед E/I</td></tr>
+      <tr><td><strong>perro</strong></td><td><span class="wrong">[Пе-ро]</span></td><td><span class="right">[Пе-ррро]</span></td><td>RR = раскат. Без него — другое слово (pero = «но»)</td></tr>
+      <tr><td><strong>tres</strong></td><td><span class="wrong">[Трэс с «й»]</span></td><td><span class="right">[Тре-с] чистое</span></td><td>E = [э], а не [йэ] как русское «е»</td></tr>
+      <tr><td><strong>color</strong></td><td><span class="wrong">[Ка-лор]</span></td><td><span class="right">[Ко-лор]</span></td><td>Безударное O не редуцируется до [а]</td></tr>
+    </tbody>
+  </table>
 
-    <!-- Q2 -->
-    <div class="quiz-q" id="q2">
-      <div class="q-text">2. В слове «<strong>perro</strong>» (собака) двойная RR означает:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Две отдельные буквы R — произносятся раздельно</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Первая R произносится, вторая молчит</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Сильный раскатистый, вибрирующий звук [рр]</div>
-      </div>
-      <div class="feedback" id="fb-q2"></div>
-    </div>
-
-    <!-- Q3 -->
-    <div class="quiz-q" id="q3">
-      <div class="q-text">3. Буквы <strong>B</strong> и <strong>V</strong> в испанском языке:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Произносятся одинаково — оба как [б] или мягкий билабиальный звук</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">B=[б], V=[в] — как в русском языке</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">B=[б], V=[ф] — как в немецком</div>
-      </div>
-      <div class="feedback" id="fb-q3"></div>
-    </div>
-
-    <!-- Q4 -->
-    <div class="quiz-q" id="q4">
-      <div class="q-text">4. Слово «<strong>gente</strong>» (люди) произносится как:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">[ге-не-те] — G всегда как «г»</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">[дже-нте] — G перед E как «дж»</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">[хен-те] — G перед E/I читается как «х»</div>
-      </div>
-      <div class="feedback" id="fb-q4"></div>
-    </div>
-
-    <!-- Q5 -->
-    <div class="quiz-q" id="q5">
-      <div class="q-text">5. По правилу ударения слово «<strong>hablar</strong>» (оканчивается на R) — где ударение?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">На последнем слоге: а-БЛАР — слово на согласную (не N/S)</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">На первом слоге: А-блар — ударение всегда в начале</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">На втором слоге: а-БЛА — ударение всегда на предпоследнем</div>
-      </div>
-      <div class="feedback" id="fb-q5"></div>
-    </div>
-
-    <!-- Q6 -->
-    <div class="quiz-q" id="q6">
-      <div class="q-text">6. Сочетание «<strong>QUE</strong>» в слове «queso» (сыр) произносится как:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">[кве-со] — QU = [кв]</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">[ке-со] — U молчит, QUE = [ке]</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">[гве-со] — Q перед U как «г»</div>
-      </div>
-      <div class="feedback" id="fb-q6"></div>
-    </div>
+  <div class="callout warning">
+    <h4>⚠️ Важно: гласные не редуцируются</h4>
+    <p>В русском «корова» = [карова] — безударные «о» становятся [а]. В испанском такого <strong>нет</strong>. Каждая гласная произносится так, как написана. Это сильно отличает звучание — испанский «звучит ровно», без «глотания» гласных.</p>
   </div>
-  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- SECTION 6: Тест 2 — Заполни пропуск -->
+<!-- SECTION 6: Ударение — 3 правила -->
 <!-- ══════════════════════════════════════════════ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Тест 2 — Заполни пропуск</h2>
+    <h2>Ударение — всего 3 правила</h2>
   </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Ответь на вопрос одним словом или буквой. Все ответы — на русском (кириллицей), кроме вопроса с цифрой.</p>
 
-  <div class="quiz">
-    <h3>✏️ Проверь свои знания правил произношения</h3>
+  <p style="margin-bottom:14px">В русском ударение непредсказуемое (нужно учить для каждого слова). В испанском — 3 простых правила. После них ты будешь знать ударение в любом слове с первого взгляда.</p>
 
-    <div class="text-ex" id="te1">
-      <div class="tex-q">1. В испанском языке ровно <strong>___</strong> чистых гласных. Напиши цифру.</div>
-      <input type="text" class="text-input" placeholder="Напиши цифру..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','5','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ 5 гласных: A, E, I, O, U — каждая всегда чётко произносится</div>
+  <div class="callout tip">
+    <h4>📌 Правило 1: Слово заканчивается на гласную, N или S → ударение на предпоследний слог</h4>
+    <p>Это самый частый случай (~80% слов): <strong>ca-SA, A-mi-go, HA-blan, gra-CIAS, MAR-tes</strong>.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+      <span class="se"><span class="w">casa</span><button class="speak-btn" onclick="speak('casa')">🔊</button></span>
+      <span class="se"><span class="w">amigo</span><button class="speak-btn" onclick="speak('amigo')">🔊</button></span>
+      <span class="se"><span class="w">hablan</span><button class="speak-btn" onclick="speak('hablan')">🔊</button></span>
+      <span class="se"><span class="w">martes</span><button class="speak-btn" onclick="speak('martes')">🔊</button></span>
     </div>
+  </div>
 
-    <div class="text-ex" id="te2">
-      <div class="tex-q">2. Буква J в испанском читается как русская буква <strong>___</strong>. (Ответ: одна буква кириллицей)</div>
-      <input type="text" class="text-input" placeholder="Одна буква..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','х','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ Х — как в слове «хорошо». jefe = [хе-фе], trabajo = [тра-ба-хо]</div>
+  <div class="callout tip">
+    <h4>📌 Правило 2: Слово заканчивается на любую согласную (кроме N, S) → ударение на последний слог</h4>
+    <p>Примеры: <strong>ha-BLAR, fe-LIZ, doc-TOR, ciu-DAD, pro-FE-sor</strong>.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+      <span class="se"><span class="w">hablar</span><button class="speak-btn" onclick="speak('hablar')">🔊</button></span>
+      <span class="se"><span class="w">feliz</span><button class="speak-btn" onclick="speak('feliz')">🔊</button></span>
+      <span class="se"><span class="w">doctor</span><button class="speak-btn" onclick="speak('doctor')">🔊</button></span>
+      <span class="se"><span class="w">ciudad</span><button class="speak-btn" onclick="speak('ciudad')">🔊</button></span>
     </div>
+  </div>
 
-    <div class="text-ex" id="te3">
-      <div class="tex-q">3. Буква H в испанском всегда <strong>___</strong>. (Ответ: одно слово)</div>
-      <input type="text" class="text-input" placeholder="Одно слово..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','молчит','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ Молчит — hola = [о-ла], hotel = [о-тель], hablar = [а-блар]</div>
+  <div class="callout tip">
+    <h4>📌 Правило 3: Если над гласной стоит знак ´ → ударение именно на эту гласную</h4>
+    <p>Знак ´ (acento) — это нарушение правил 1-2. Он ставится только когда обычные правила НЕ работают: <strong>ca-FÉ, na-CIÓN, MÉ-di-co, PÁ-ja-ro, lec-CIÓN</strong>.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+      <span class="se"><span class="w">café</span><button class="speak-btn" onclick="speak('café')">🔊</button></span>
+      <span class="se"><span class="w">nación</span><button class="speak-btn" onclick="speak('nación')">🔊</button></span>
+      <span class="se"><span class="w">médico</span><button class="speak-btn" onclick="speak('médico')">🔊</button></span>
+      <span class="se"><span class="w">pájaro</span><button class="speak-btn" onclick="speak('pájaro')">🔊</button></span>
     </div>
+  </div>
 
-    <div class="text-ex" id="te4">
-      <div class="tex-q">4. Сочетание «QUE» произносится [<strong>___</strong>-э] — буква U молчит. Напиши первый звук.</div>
-      <input type="text" class="text-input" placeholder="Одна буква (кириллица)..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','к','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ К — que=[ке], quiero=[кье-ро], queso=[ке-со]</div>
-    </div>
-
-    <div class="text-ex" id="te5">
-      <div class="tex-q">5. Слово «hablar» оканчивается на R. Значит ударение на <strong>___</strong> слоге. (ответ одним словом)</div>
-      <input type="text" class="text-input" placeholder="Напиши: первом / последнем / предпоследнем..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','последнем','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ На последнем — правило 2: слово на согласную (не N/S) → ударение на последний слог. а-БЛАР.</div>
-    </div>
-
-    <div class="text-ex" id="te6">
-      <div class="tex-q">6. Буква LL в испанском произносится как русская буква <strong>___</strong>. (Ответ: одна буква кириллицей)</div>
-      <input type="text" class="text-input" placeholder="Одна буква..." id="ti6">
-      <button class="check-btn" onclick="checkText('ti6','й','fb-te6')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
-      <div class="feedback" id="fb-te6"></div>
-      <div class="answer-reveal" id="ans-te6">✅ Й — lluvia=[йу-вья], llamar=[йа-мар], llegar=[йе-гар]</div>
-    </div>
+  <div class="callout info">
+    <h4>💡 Метод запоминания</h4>
+    <p>Сравнение с английским: в английском ударение нужно учить отдельно для каждого слова (record/record, present/present). В испанском — никогда. 3 правила покрывают 100% случаев. Это уровень удобства, который английский никогда не даст.</p>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- SECTION 7: Диалоги и говорение -->
+<!-- SECTION 7: Словарь — 15 слов с озвучкой -->
 <!-- ══════════════════════════════════════════════ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Диалоги — читай вслух с правильным произношением</h2>
-  </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух, играя обе роли. Трудные звуки выделены жёлтым.</p>
-
-  <!-- DIALOGUE 1 -->
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Знакомство в кафе
-      <button class="dlg-toggle" onclick="toggleAll()">Показать/скрыть переводы</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">А</div>
-      <div>
-        <div class="dlg-es">¡<span style="color:var(--gold)">H</span>ola! ¿<span style="color:var(--gold)">H</span>ablas español?</div>
-        <div class="dlg-ru translation">[Привет! Ты говоришь по-испански? / H молчит в обоих словах!]</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Б</div>
-      <div>
-        <div class="dlg-es">Sí, un poco. Me llamo <span style="color:var(--gold)">LL</span>uisa. ¿Y tú?</div>
-        <div class="dlg-ru translation">[Да, немного. Меня зовут Луиса. А ты? / llamo=[йа-мо], Llуisa=[йу-и-са]]</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">А</div>
-      <div>
-        <div class="dlg-es">Me llamo <span style="color:var(--gold)">J</span>orge. Soy de España.</div>
-        <div class="dlg-ru translation">[Меня зовут Хорхе. Я из Испании. / Jorge=[хор-хе], España=[эс-па-нья]]</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Б</div>
-      <div>
-        <div class="dlg-es">¡Qué bueno! ¿Cuántos años tienes?</div>
-        <div class="dlg-ru translation">[Как здорово! Сколько тебе лет? / años=[а-ньос] — ñ=[нь]!]</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">А</div>
-      <div>
-        <div class="dlg-es">Tengo treinta años. ¿Y tú, Luisa?</div>
-        <div class="dlg-ru translation">[Мне тридцать лет. А ты, Луиса?]</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Б</div>
-      <div>
-        <div class="dlg-es">Tengo veintiocho. ¡Mucho gusto, <span style="color:var(--gold)">J</span>orge!</div>
-        <div class="dlg-ru translation">[Мне двадцать восемь. Очень приятно, Хорхе!]</div>
-      </div>
-    </div>
+    <h2>Словарь урока — 15 базовых слов</h2>
   </div>
 
-  <!-- DIALOGUE 2 -->
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: В отеле — все проблемные звуки
-      <button class="dlg-toggle" onclick="toggleTranslation('dlg2-tr')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Турист</div>
-      <div>
-        <div class="dlg-es">¡<span style="color:var(--gold)">H</span>ola! <span style="color:var(--gold)">Qu</span>iero una <span style="color:var(--gold)">h</span>abitación, por favor.</div>
-        <div class="dlg-ru" id="dlg2-tr" style="display:none">[Привет! Я хочу номер, пожалуйста. / habitación=[а-би-та-сьон] — H молчит, C перед I = [с]]</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Портье</div>
-      <div>
-        <div class="dlg-es">¡Buenos días! ¿Para cuántas no<span style="color:var(--gold)">ch</span>es?</div>
-        <div class="dlg-ru" id="dlg2-tr2" style="display:none">[Добрый день! На сколько ночей? / noches=[но-чес] — CH=[ч]]</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Турист</div>
-      <div>
-        <div class="dlg-es">Para tres no<span style="color:var(--gold)">ch</span>es. ¿Hay <span style="color:var(--gold)">j</span>ardín en el <span style="color:var(--gold)">h</span>otel?</div>
-        <div class="dlg-ru" id="dlg2-tr3" style="display:none">[На три ночи. В отеле есть сад? / jardín=[хар-дин] — J=[х]]</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Портье</div>
-      <div>
-        <div class="dlg-es">Sí, tenemos un <span style="color:var(--gold)">j</span>ardín muy <span style="color:var(--gold)">h</span>ermoso.</div>
-        <div class="dlg-ru" id="dlg2-tr4" style="display:none">[Да, у нас очень красивый сад. / jardín=[хар-дин], hermoso=[эр-мо-со] — оба H молчат]</div>
-      </div>
-    </div>
-  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми 🔊 — браузер произнесёт. Повтори вслух 2-3 раза. Это слова, которые ты услышишь в первый же день в Барселоне.</p>
 
-  <!-- SPEAKING TASK -->
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание: читай слова вслух</div>
-    <p><strong>Базовый уровень:</strong> Прочитай каждое слово вслух, применяя правила. Не спеши — правильность важнее скорости:</p>
-    <div class="es" style="font-size:.9rem;line-height:2.2">
-      hola · hotel · hablar · jefe · hijo · viaje · trabajo<br>
-      gente · general · ciudad · cerveza · quiero · queso<br>
-      año · España · mañana · lluvia · llamar · llegar<br>
-      perro · pero · rápido · mucho · noche · chocolate
-    </div>
-    <div class="hint">Попробуй назвать правило для каждого выделенного звука. Например: «hola — H молчит — [о-ла]».</div>
-  </div>
-
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Продвинутое задание: прочитай абзац вслух</div>
-    <p>Прочитай текст полностью вслух, соблюдая все правила. Слова с проблемными звуками выделены:</p>
-    <div class="es" style="font-size:.9rem;line-height:2.2">
-      <span style="color:var(--gold)">H</span>ola, me <span style="color:var(--gold)">ll</span>amo <span style="color:var(--gold)">J</span>orge. Soy de España y <span style="color:var(--gold)">h</span>ablo español. Tengo treinta años. Mi trabajo es interesante — soy <span style="color:var(--gold)">j</span>efe de un <span style="color:var(--gold)">h</span>otel en Madrid. Me gusta <span style="color:var(--gold)">mu</span>cho la <span style="color:var(--gold)">g</span>ente de la <span style="color:var(--gold)">ciu</span>dad.
-    </div>
-    <div class="hint">Перевод: «Привет, меня зовут Хорхе. Я из Испании и говорю по-испански. Мне тридцать лет. Моя работа интересная — я управляющий отелем в Мадриде. Мне очень нравятся люди этого города.»</div>
-  </div>
+  <table class="vocab-table">
+    <thead><tr><th>Испанский</th><th>🔊</th><th>Транскрипция</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td class="es">hola</td><td><button class="speak-btn" onclick="speak('hola')">🔊</button></td><td class="tr">[о-ла]</td><td>привет</td></tr>
+      <tr><td class="es">adiós</td><td><button class="speak-btn" onclick="speak('adiós')">🔊</button></td><td class="tr">[а-дьос]</td><td>пока</td></tr>
+      <tr><td class="es">gracias</td><td><button class="speak-btn" onclick="speak('gracias')">🔊</button></td><td class="tr">[гра-θьяс]</td><td>спасибо</td></tr>
+      <tr><td class="es">por favor</td><td><button class="speak-btn" onclick="speak('por favor')">🔊</button></td><td class="tr">[пор фа-вор]</td><td>пожалуйста</td></tr>
+      <tr><td class="es">sí / no</td><td><button class="speak-btn" onclick="speak('sí, no')">🔊</button></td><td class="tr">[си / но]</td><td>да / нет</td></tr>
+      <tr><td class="es">¿Cómo estás?</td><td><button class="speak-btn" onclick="speak('¿Cómo estás?')">🔊</button></td><td class="tr">[ко-мо эс-тас]</td><td>Как дела?</td></tr>
+      <tr><td class="es">bien</td><td><button class="speak-btn" onclick="speak('bien')">🔊</button></td><td class="tr">[бьен]</td><td>хорошо</td></tr>
+      <tr><td class="es">mal</td><td><button class="speak-btn" onclick="speak('mal')">🔊</button></td><td class="tr">[маль]</td><td>плохо</td></tr>
+      <tr><td class="es">amigo / amiga</td><td><button class="speak-btn" onclick="speak('amigo, amiga')">🔊</button></td><td class="tr">[а-ми-го / а-ми-га]</td><td>друг / подруга</td></tr>
+      <tr><td class="es">casa</td><td><button class="speak-btn" onclick="speak('casa')">🔊</button></td><td class="tr">[ка-са]</td><td>дом</td></tr>
+      <tr><td class="es">calle</td><td><button class="speak-btn" onclick="speak('calle')">🔊</button></td><td class="tr">[ка-йе]</td><td>улица</td></tr>
+      <tr><td class="es">agua</td><td><button class="speak-btn" onclick="speak('agua')">🔊</button></td><td class="tr">[а-гуа]</td><td>вода</td></tr>
+      <tr><td class="es">café</td><td><button class="speak-btn" onclick="speak('café')">🔊</button></td><td class="tr">[ка-фе]</td><td>кофе</td></tr>
+      <tr><td class="es">jamón</td><td><button class="speak-btn" onclick="speak('jamón')">🔊</button></td><td class="tr">[ха-мон]</td><td>хамон</td></tr>
+      <tr><td class="es">Barcelona</td><td><button class="speak-btn" onclick="speak('Barcelona')">🔊</button></td><td class="tr">[бар-θе-ло-на]</td><td>Барселона</td></tr>
+    </tbody>
+  </table>
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- SECTION 8: Культура + Anki + ДЗ -->
+<!-- SECTION 8: Тест 1 — на распознавание звуков -->
 <!-- ══════════════════════════════════════════════ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Культура, Anki и план на завтра</h2>
+    <h2>Тест 1 — Угадай звук</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Правила произношения</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как читается слово <strong>«hola»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">[Хо-ла]</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">[Хо-лай]</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">[О-ла]</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Как читается <strong>«jamón»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">[ха-МОН]</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">[ЖА-мон]</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">[дЖА-мон]</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Как читается <strong>«queso»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">[КВЕ-со]</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">[КЕ-со]</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">[КВЕ-зо]</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. В слове <strong>«hablar»</strong> ударение падает на:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">первый слог: HA-blar</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">последний: ha-BLAR</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">не имеет значения</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Слово <strong>«gente»</strong> читается как:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">[ГЕН-те]</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">[ХЕН-те]</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">[ДЖЕН-те]</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. В чём разница между <strong>«pero»</strong> и <strong>«perro»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">pero = «но» (короткое р), perro = «собака» (раскат рр)</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">это одно слово в двух написаниях</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">pero = собака, perro = кот</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 9: Тест 2 — Транскрипция -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Тест 2 — Напиши, как читается</h2>
+  </div>
+
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Напиши транскрипцию русскими буквами в нижнем регистре. Пример: <code>hola → о-ла</code></p>
+
+  <div class="quiz">
+    <h3>✏️ Применяй правила сам</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. <strong>amigo</strong> → транскрипция (используй «-»):</div>
+      <input type="text" class="text-input" placeholder="а-...-..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','а-ми-го','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ а-ми-го. Ударение на «ми» (правило 1: оканчивается на гласную).</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. <strong>hospital</strong> → транскрипция:</div>
+      <input type="text" class="text-input" placeholder="...-..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','ос-пи-таль','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ ос-пи-таль. H не читается. Ударение на «таль» (правило 2: оканчивается на согласную, не N/S).</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. <strong>queso</strong> → транскрипция:</div>
+      <input type="text" class="text-input" placeholder="...-..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','ке-со','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ ке-со. QU = [к], U не читается.</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. <strong>España</strong> → транскрипция:</div>
+      <input type="text" class="text-input" placeholder="...-...-..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','эс-па-нья','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ эс-па-нья. Ñ = [нь].</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. <strong>gigante</strong> → транскрипция:</div>
+      <input type="text" class="text-input" placeholder="...-...-..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','хи-ган-те','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ хи-ган-те. G перед I = [х], G перед A = [г].</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 10: Диалоги с озвучкой -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>Диалоги — слушай и повторяй</h2>
+  </div>
+
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Каждый диалог: сначала послушай целиком (кнопка «Воспроизвести»), потом построчно. Затем читай вслух за голосом 3 раза.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Встреча на улице Барселоны
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog1()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переключить переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div>
+        <div class="dlg-es">¡Hola! ¿Cómo estás? <button class="speak-btn" onclick="speak('¡Hola! ¿Cómo estás?')">🔊</button></div>
+        <div class="dlg-ru translation">— Привет! Как дела?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div>
+        <div class="dlg-es">¡Hola! Muy bien, gracias. ¿Y tú? <button class="speak-btn" onclick="speak('¡Hola! Muy bien, gracias. ¿Y tú?')">🔊</button></div>
+        <div class="dlg-ru translation">— Привет! Очень хорошо, спасибо. А ты?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div>
+        <div class="dlg-es">Bien también. ¿Quieres un café? <button class="speak-btn" onclick="speak('Bien también. ¿Quieres un café?')">🔊</button></div>
+        <div class="dlg-ru translation">— Тоже хорошо. Хочешь кофе?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div>
+        <div class="dlg-es">Sí, por favor. Vamos a la cafetería de la calle. <button class="speak-btn" onclick="speak('Sí, por favor. Vamos a la cafetería de la calle.')">🔊</button></div>
+        <div class="dlg-ru translation">— Да, пожалуйста. Пойдём в кафе на улице.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div>
+        <div class="dlg-es">Perfecto. ¿Tienes tiempo ahora? <button class="speak-btn" onclick="speak('Perfecto. ¿Tienes tiempo ahora?')">🔊</button></div>
+        <div class="dlg-ru translation">— Идеально. У тебя есть время сейчас?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div>
+        <div class="dlg-es">Sí, tengo una hora libre. <button class="speak-btn" onclick="speak('Sí, tengo una hora libre.')">🔊</button></div>
+        <div class="dlg-ru translation">— Да, у меня свободный час.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div>
+        <div class="dlg-es">Genial. Hasta luego, amigo. <button class="speak-btn" onclick="speak('Genial. Hasta luego, amigo.')">🔊</button></div>
+        <div class="dlg-ru translation">— Здорово. Пока, друг.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div>
+        <div class="dlg-es">¡Hasta luego! <button class="speak-btn" onclick="speak('¡Hasta luego!')">🔊</button></div>
+        <div class="dlg-ru translation">— До скорого!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: В кафе на La Rambla
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog2()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переключить переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">К</div>
+      <div>
+        <div class="dlg-es">Buenos días. ¿Qué quieres tomar? <button class="speak-btn" onclick="speak('Buenos días. ¿Qué quieres tomar?')">🔊</button></div>
+        <div class="dlg-ru translation">— Добрый день. Что будешь?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Я</div>
+      <div>
+        <div class="dlg-es">Un café con leche, por favor. <button class="speak-btn" onclick="speak('Un café con leche, por favor.')">🔊</button></div>
+        <div class="dlg-ru translation">— Кофе с молоком, пожалуйста.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">К</div>
+      <div>
+        <div class="dlg-es">¿Algo de comer? Tenemos jamón y queso. <button class="speak-btn" onclick="speak('¿Algo de comer? Tenemos jamón y queso.')">🔊</button></div>
+        <div class="dlg-ru translation">— Что-то поесть? У нас есть хамон и сыр.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Я</div>
+      <div>
+        <div class="dlg-es">Sí, un bocadillo de jamón, por favor. <button class="speak-btn" onclick="speak('Sí, un bocadillo de jamón, por favor.')">🔊</button></div>
+        <div class="dlg-ru translation">— Да, бутерброд с хамоном, пожалуйста.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">К</div>
+      <div>
+        <div class="dlg-es">Perfecto. ¿Algo más? <button class="speak-btn" onclick="speak('Perfecto. ¿Algo más?')">🔊</button></div>
+        <div class="dlg-ru translation">— Хорошо. Ещё что-нибудь?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Я</div>
+      <div>
+        <div class="dlg-es">No, gracias. Es todo. <button class="speak-btn" onclick="speak('No, gracias. Es todo.')">🔊</button></div>
+        <div class="dlg-ru translation">— Нет, спасибо. Это всё.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">К</div>
+      <div>
+        <div class="dlg-es">Son cinco euros con cincuenta. <button class="speak-btn" onclick="speak('Son cinco euros con cincuenta.')">🔊</button></div>
+        <div class="dlg-ru translation">— С вас 5 евро 50.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Я</div>
+      <div>
+        <div class="dlg-es">Aquí tienes. ¡Gracias! <button class="speak-btn" onclick="speak('Aquí tienes. ¡Gracias!')">🔊</button></div>
+        <div class="dlg-ru translation">— Вот, держите. Спасибо!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 11: Говорение -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Говорение — твоя очередь</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — повтори за голосом</div>
+    <p>Нажми 🔊 и повтори вслух фразу 3 раза. Старайся попасть в ритм и звук.</p>
+    <div class="es">¡Hola! Soy Evgeni y vivo en Barcelona. <button class="speak-btn" onclick="speak('¡Hola! Soy Evgeni y vivo en Barcelona.')">🔊</button></div>
+    <div class="hint">[Привет! Я Евгений и живу в Барселоне.] Обрати внимание: H в Hola не читается, J в Evgeni звучит как [х].</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — представь себя в Барселоне</div>
+    <p>Прочитай вслух, заменив выделенные слова на свои данные:</p>
+    <div class="es">Buenos días. Me llamo <strong style="color:var(--gold)">Evgeni</strong>. Soy de <strong style="color:var(--gold)">Rusia</strong>. Vivo en <strong style="color:var(--gold)">Barcelona</strong>. <button class="speak-btn" onclick="speak('Buenos días. Me llamo Evgeni. Soy de Rusia. Vivo en Barcelona.')">🔊</button></div>
+    <div class="hint">[Добрый день. Меня зовут Евгений. Я из России. Я живу в Барселоне.] Скажи это вслух 5 раз — это первая фраза, которую ты произнесёшь в Испании.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 12: Испания на практике -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h2>🇪🇸 Испания на практике — В Mercadona</h2>
+  </div>
+
+  <div class="spain-card">
+    <div class="stag">🛒 Реальный сценарий</div>
+    <h3>Первый поход в Mercadona после переезда</h3>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:6px">Mercadona — самая популярная сеть супермаркетов в Испании. Уже на 3-й день в Барселоне ты пойдёшь туда. Эти 6 фраз — твой первый разговорный комплект.</p>
+
+    <div class="phrase-list">
+      <div class="phrase">
+        <span class="es">Hola, buenos días.</span>
+        <button class="speak-btn" onclick="speak('Hola, buenos días.')">🔊</button>
+        <span class="tr">Привет, добрый день. (Всегда здоровайся на кассе!)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Tiene bolsas?</span>
+        <button class="speak-btn" onclick="speak('¿Tiene bolsas?')">🔊</button>
+        <span class="tr">У вас есть пакеты? (Пакеты платные — 5 центов)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Cuánto cuesta?</span>
+        <button class="speak-btn" onclick="speak('¿Cuánto cuesta?')">🔊</button>
+        <span class="tr">Сколько стоит?</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Con tarjeta, por favor.</span>
+        <button class="speak-btn" onclick="speak('Con tarjeta, por favor.')">🔊</button>
+        <span class="tr">Картой, пожалуйста. (Apple Pay тоже работает)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">No, gracias.</span>
+        <button class="speak-btn" onclick="speak('No, gracias.')">🔊</button>
+        <span class="tr">Нет, спасибо. (Когда спрашивают «¿Algo más?»)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¡Hasta luego!</span>
+        <button class="speak-btn" onclick="speak('¡Hasta luego!')">🔊</button>
+        <span class="tr">Пока! / До скорого! (Прощание стандартное)</span>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">🛒 Мини-диалог: на кассе Mercadona
+        <button class="speak-btn-big" onclick="playMercadona()">▶ Воспроизвести</button>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">К</div>
+        <div>
+          <div class="dlg-es">Hola, buenos días. <button class="speak-btn" onclick="speak('Hola, buenos días.')">🔊</button></div>
+          <div class="dlg-ru">— Привет, добрый день.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Я</div>
+        <div>
+          <div class="dlg-es">Buenos días. <button class="speak-btn" onclick="speak('Buenos días.')">🔊</button></div>
+          <div class="dlg-ru">— Добрый день.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">К</div>
+        <div>
+          <div class="dlg-es">¿Tiene bolsa? <button class="speak-btn" onclick="speak('¿Tiene bolsa?')">🔊</button></div>
+          <div class="dlg-ru">— У вас есть пакет?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Я</div>
+        <div>
+          <div class="dlg-es">Sí, una grande, por favor. <button class="speak-btn" onclick="speak('Sí, una grande, por favor.')">🔊</button></div>
+          <div class="dlg-ru">— Да, один большой, пожалуйста.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">К</div>
+        <div>
+          <div class="dlg-es">Son 23 euros con 40. <button class="speak-btn" onclick="speak('Son veintitrés euros con cuarenta.')">🔊</button></div>
+          <div class="dlg-ru">— С вас 23 евро 40.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Я</div>
+        <div>
+          <div class="dlg-es">Con tarjeta. <button class="speak-btn" onclick="speak('Con tarjeta.')">🔊</button></div>
+          <div class="dlg-ru">— Картой.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">К</div>
+        <div>
+          <div class="dlg-es">Perfecto. ¡Hasta luego! <button class="speak-btn" onclick="speak('Perfecto. ¡Hasta luego!')">🔊</button></div>
+          <div class="dlg-ru">— Хорошо. До свидания!</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Я</div>
+        <div>
+          <div class="dlg-es">¡Gracias, hasta luego! <button class="speak-btn" onclick="speak('¡Gracias, hasta luego!')">🔊</button></div>
+          <div class="dlg-ru">— Спасибо, до свидания!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info" style="margin-top:14px">
+      <h4>💡 Чем Испания отличается от России</h4>
+      <ul>
+        <li>В Испании <strong>обязательно здороваются</strong> на кассе. Не сказать «Hola» — это грубо.</li>
+        <li>Кассиры часто говорят быстро и слитно: «Son veintitrés con cuarenta» → звучит как «сонбейн-ти-трес-кон-куаренте». Не бойся переспросить: «¿Cuánto?»</li>
+        <li>Пакеты <strong>платные</strong> (5–15 центов). Возьми с собой сумку — это норма.</li>
+        <li>В Mercadona <strong>нет</strong> бесплатных пробников и нет «Спасибо за покупку» — это формальная сеть.</li>
+        <li>Картой можно везде, даже за 1 евро. Наличку используют редко.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 13: Культурная заметка -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h2>Культурная заметка — почему «θ» в Барселоне</h2>
   </div>
 
   <div class="culture">
-    <div class="ctag">🌍 Культурная заметка</div>
-    <h4>Почему буква H в испанском молчит? История из средневековья</h4>
-    <p>Это не случайность — это след тысячелетней истории. В латинском языке слова начинались с F: <em>filius</em> (сын), <em>fabulare</em> (разговаривать), <em>fabulam</em> (история). В средневековом испанском это F превратилось в H: hijo, hablar, hablar. А потом произошло уникальное: аспирация исчезла, и H стала полностью немой. Только испанский среди романских языков прошёл этот путь F→H→∅. Французский сохранил F (fils, fable), итальянский тоже (figlio). Поэтому «hijo» и «file» — родственные слова, просто испанский прошёл длиннее. Буква H — живой ископаемый из 1000 лет назад.</p>
+    <div class="ctag">🌍 Культура</div>
+    <h4>Откуда взялся межзубный «θ»</h4>
+    <p>В средние века в кастильском испанском было два разных звука: [θ] (передаваемый буквой «z» или «c+e/i») и [s] (буквой «s»). Это позволяло различать: «casa» (дом) и «caza» (охота). При колонизации Латинской Америки в XVI веке этот «θ» постепенно исчез — испанцы из Андалусии (откуда было больше всего переселенцев) уже к тому времени превращали его в [s]. Так возник <strong>seseo</strong> — произношение «z» и «c» как [s] во всей Лат. Америке.</p>
+    <p style="margin-top:8px">В Испании [θ] сохранился — и сегодня это маркер «европейского» испанского. В Барселоне будут говорить именно так: «cinco» = [θин-ко], «gracias» = [гра-θьяс]. Если ты будешь говорить с [с] вместо [θ] — поймут, но сразу определят «латиноамериканский» или иностранный акцент. Учи с [θ] — это «правильный» Барселоны.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 14: Anki + Домашнее задание -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <h2>Anki-колода + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — 16 карточек урока L01</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:8px">Нажми на любую карточку, чтобы перевернуть. После урока скачай полную колоду (.txt) и импортируй в Anki напрямую.</p>
+
+    <div class="anki-preview" id="anki-preview-L01">
+      <!-- Cards generated by JS -->
+    </div>
+
+    <button class="anki-export-btn" onclick="exportAnkiL01()">📥 Скачать всю колоду L01 для Anki (.txt)</button>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:8px">Импорт в Anki: открой Anki Desktop → File → Import → выбери скачанный .txt → выбери разделитель Tab → готово.</p>
   </div>
 
   <div class="callout info" style="margin-top:16px">
-    <h4>🎧 Что слушать сегодня</h4>
+    <h4>📅 Домашнее задание — до L02</h4>
     <ul>
-      <li><strong>Language Transfer Complete Spanish</strong> — эпизоды 4 и 5 (<a href="https://www.youtube.com/@LanguageTransfer" target="_blank" style="color:var(--gold)">@LanguageTransfer</a>). Михаилис объясняет как угадывать испанские слова. Слушай по дороге.</li>
-      <li><strong>Dreaming Spanish Super Beginner</strong> — любые 10–15 минут. Просто слушай, не напрягайся. Тренируй слух на испанское произношение.</li>
-      <li><strong>Forvo</strong> — зайди на <a href="https://forvo.com/languages/es/" target="_blank" style="color:var(--gold)">forvo.com</a> и послушай как носители произносят слова из урока.</li>
-    </ul>
-  </div>
-
-  <div style="margin-top:16px" class="anki">
-    <div class="atag">🃏 Anki — карточки для этого урока (добавь в колоду)</div>
-    <ul>
-      <li><strong>H в испанском</strong> → всегда молчит | hola = [о-ла], hotel = [о-тель]</li>
-      <li><strong>J в испанском</strong> → как русское «х» | jefe = [хе-фе], viaje = [бья-хе]</li>
-      <li><strong>LL в испанском</strong> → как русское «й» | lluvia = [йу-вья], llamar = [йа-мар]</li>
-      <li><strong>Ñ в испанском</strong> → как русское «нь» | año = [а-ньо], España = [эс-па-нья]</li>
-      <li><strong>RR в испанском</strong> → сильная трель | perro = [пе-рро] (≠ pero = [пе-ро])</li>
-      <li><strong>B и V</strong> → одинаковый звук | vino = [би-но], vamos = [ба-мос]</li>
-      <li><strong>QUE/QUI</strong> → U молчит, звук [к] | quiero = [кье-ро], que = [ке]</li>
-      <li><strong>Правило ударения 1</strong> → слово на гласную/N/S → предпоследний слог | habla = ХА-бла</li>
-    </ul>
-    <p style="margin-top:8px;font-size:.78rem;color:var(--muted)">Добавь эти карточки в Anki. Повторяй каждый день по 10 мин. Уже через неделю произношение станет автоматическим.</p>
-  </div>
-
-  <div class="callout info" style="margin-top:16px">
-    <h4>📅 Домашнее задание — до следующего урока</h4>
-    <ul>
-      <li>Прослушай Language Transfer эп. 4–5, потом эп. 6 (если есть время)</li>
-      <li>Запиши себя на телефон, читая абзац из секции «Говорение». Прослушай — нашёл ошибки?</li>
-      <li>Возьми любое испанское слово из интернета (меню, вывеска, песня) и прочитай его по правилам</li>
-      <li>Повтори карточки Anki из этого урока + L00</li>
-      <li>Следующий урок: L02 — приветствия и первые фразы</li>
+      <li>Прослушай Language Transfer эп. 4–5 (<a href="https://www.youtube.com/@LanguageTransfer" target="_blank" style="color:var(--gold)">@LanguageTransfer</a>) — по дороге, в машине</li>
+      <li>15 мин Dreaming Spanish Super Beginner (<a href="https://www.youtube.com/@DreamingSpanish" target="_blank" style="color:var(--gold)">@DreamingSpanish</a>) — смотри картинки и слушай</li>
+      <li>Импортируй колоду L01 в Anki, повтори все 16 карточек</li>
+      <li>Запиши голосовое сообщение себе: прочитай все 15 слов из словаря урока вслух</li>
+      <li>Покажи кому-то из семьи слово «hola» и расскажи, почему оно читается без «х»</li>
     </ul>
   </div>
 
   <div class="callout success" style="margin-top:14px">
-    <h4>🎉 Урок 1 завершён!</h4>
-    <p>Ты освоил произношение испанского. Теперь ты читаешь любое испанское слово вслух. Это фундамент — всё остальное строится на нём. В следующем уроке ты начнёшь говорить настоящие фразы: привет, знакомство, базовые вопросы.</p>
+    <h4>🎉 Ты закончил L01!</h4>
+    <p>Теперь ты можешь прочитать ЛЮБОЕ испанское слово вслух. Это огромный шаг. В следующем уроке (L02) — приветствия, представление и первый полноценный разговор. До встречи!</p>
   </div>
 </div>
 
@@ -889,13 +1149,15 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 <!-- DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L00.html" class="nav-link-btn">← L00: Когнаты</a>
-    <a href="L02.html" class="nav-link-btn">L02: Привет, Hola! →</a>
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L00.html" class="nav-link-btn">← L00</a>
+    <a href="L02.html" class="nav-link-btn">L02 →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+// ─── Progress tracking ────────────────────────────────────
 const LESSON_ID = 'L01';
 const LS_KEY = 'esp_course_progress';
 
@@ -921,42 +1183,97 @@ if (st.completed?.includes(LESSON_ID)) {
   btn.className = 'done-btn marked';
 }
 
-const quizAnswers = {
-  q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a'
-};
-const quizExpl = {
-  q1:'Правильно! H в испанском ВСЕГДА молчит. hola=[о-ла], hotel=[о-тель], hablar=[а-блар]. В русском нет немых букв, поэтому мозг хочет её произнести — не давай ему!',
-  q2:'Правильно! RR — сильная раскатистая трель. Русское «р» уже трелированное, просто делай его сильнее и длиннее. perro=[пе-рро] vs pero=[пе-ро] — разные слова!',
-  q3:'Правильно! В испанском B и V — один звук. vino=[би-но], no [вино]. Это шокирует русскоязычных, но так устроен язык — историческое слияние.',
-  q4:'Правильно! G перед E и I = [х]: gente=[хен-те], general=[хе-не-раль]. G перед A/O/U = [г]: gato=[га-то]. Запомни: мягкие гласные E/I делают G «мягким» = [х].',
-  q5:'Правильно! Слово на согласную (кроме N/S) → ударение на последний слог. habLAR, ciudAD, profeSOr. Это правило 2.',
-  q6:'Правильно! QUE = [ке], QUI = [ки] — U всегда молчит в этих сочетаниях. queso=[ке-со], quiero=[кье-ро], aquí=[а-ки].'
-};
-
-let quizScore = 0; let quizTotal = 0;
-function answerQuiz(el, qId, correctKey) {
-  const container = el.closest('.quiz-q');
-  const opts = container.querySelectorAll('.opt');
-  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
-  opts.forEach(o => {
-    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
-    if (m && m[1] === correctKey) o.classList.add('correct');
-  });
-  el.classList.add(el === [...opts].find(o => {
-    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
-    return m && m[1] === correctKey;
-  }) ? 'correct' : 'wrong');
-  const fb = document.getElementById(`fb-${qId}`);
-  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
-  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
-  if (el.classList.contains('correct')) quizScore++;
-  quizTotal++;
-  updateScore();
+// ─── Web Speech API ─────────────────────────────────────
+function speak(text, lang) {
+  if (!('speechSynthesis' in window)) {
+    alert('Браузер не поддерживает озвучку. Используй Chrome, Edge или Firefox.');
+    return;
+  }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  u.pitch = 1;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
 }
 
-function updateScore() {
-  const el = document.getElementById('quiz-score');
-  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+function speakSequence(phrases, delay) {
+  delay = delay || 2200;
+  window.speechSynthesis.cancel();
+  phrases.forEach(function(p, i) {
+    setTimeout(function(){ speak(p); }, i * delay);
+  });
+}
+
+function playDialog1() {
+  speakSequence([
+    '¡Hola! ¿Cómo estás?',
+    '¡Hola! Muy bien, gracias. ¿Y tú?',
+    'Bien también. ¿Quieres un café?',
+    'Sí, por favor. Vamos a la cafetería de la calle.',
+    'Perfecto. ¿Tienes tiempo ahora?',
+    'Sí, tengo una hora libre.',
+    'Genial. Hasta luego, amigo.',
+    '¡Hasta luego!'
+  ], 2600);
+}
+
+function playDialog2() {
+  speakSequence([
+    'Buenos días. ¿Qué quieres tomar?',
+    'Un café con leche, por favor.',
+    '¿Algo de comer? Tenemos jamón y queso.',
+    'Sí, un bocadillo de jamón, por favor.',
+    'Perfecto. ¿Algo más?',
+    'No, gracias. Es todo.',
+    'Son cinco euros con cincuenta.',
+    'Aquí tienes. ¡Gracias!'
+  ], 2700);
+}
+
+function playMercadona() {
+  speakSequence([
+    'Hola, buenos días.',
+    'Buenos días.',
+    '¿Tiene bolsa?',
+    'Sí, una grande, por favor.',
+    'Son veintitrés euros con cuarenta.',
+    'Con tarjeta.',
+    'Perfecto. ¡Hasta luego!',
+    '¡Gracias, hasta luego!'
+  ], 2400);
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizExpl = {
+  r1: 'organización — правило -tion→-ción.',
+  r2: 'universidad — правило -ity→-idad.',
+  r3: '2 000+ слов — реальная оценка.',
+  r4: '-ista — одинаково для мужского и женского рода (artista, turista).',
+  q1: 'hola = [О-ла]. H в испанском никогда не читается.',
+  q2: 'jamón = [ха-МОН]. J = [х], всегда. Ударение на «mon» (правило 3: знак ´).',
+  q3: 'queso = [КЕ-со]. QU = [к], буква U после Q не читается.',
+  q4: 'hablar — ударение на последний слог (правило 2: оканчивается на R, согласную не N/S).',
+  q5: 'gente = [ХЕН-те]. G перед E/I = [х], точно как J.',
+  q6: 'pero (но) и perro (собака) — это РАЗНЫЕ слова. R = короткое, RR = раскат. Различай!'
+};
+
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  if (container.dataset.answered === 'true') return;
+  container.dataset.answered = 'true';
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(function(o) {
+    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+    o.onclick = null; o.style.cursor='default';
+  });
+  const userMatch = el.getAttribute('onclick') && el.getAttribute('onclick').match(/'([abc])'\)/);
+  const userKey = userMatch && userMatch[1];
+  if (userKey !== correctKey) el.classList.add('wrong');
+  const fb = document.getElementById('fb-'+qId);
+  fb.className = 'feedback show ' + (userKey === correctKey ? 'ok' : 'no');
+  fb.textContent = (userKey === correctKey ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
 }
 
 function checkText(inputId, answer, fbId) {
@@ -965,14 +1282,14 @@ function checkText(inputId, answer, fbId) {
   const correct = answer.toLowerCase().trim();
   const fb = document.getElementById(fbId);
   fb.className = 'feedback show';
-  if (val === correct || (correct.startsWith(val) && val.length >= correct.length - 2)) {
+  if (val === correct) {
     input.className = 'text-input correct';
     fb.className += ' ok';
     fb.textContent = '✅ Правильно! ' + answer;
   } else {
     input.className = 'text-input wrong';
     fb.className += ' no';
-    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+    fb.textContent = '❌ Не совсем. Подсказка: ' + answer.split('-')[0] + '-...';
   }
 }
 
@@ -986,23 +1303,72 @@ function toggleTranslation(id) {
 let showingTrans = false;
 function toggleAll() {
   showingTrans = !showingTrans;
-  document.querySelectorAll('.translation').forEach(el => {
+  document.querySelectorAll('.translation').forEach(function(el) {
     el.style.display = showingTrans ? 'block' : 'none';
   });
 }
+document.querySelectorAll('.translation').forEach(function(el) { el.style.display='none'; });
 
-document.querySelectorAll('.translation').forEach(el => { el.style.display = 'none'; });
-
-const totalSections = 8;
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 14;
 function updateProgress() {
   const scrolled = window.scrollY;
   const total = document.body.scrollHeight - window.innerHeight;
-  const pct = Math.min(100, Math.round(scrolled / total * 100));
-  const sectionsRead = Math.round(pct / 100 * totalSections);
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = sectionsRead+' / '+totalSections+' разделов';
 }
 window.addEventListener('scroll', updateProgress);
+
+// ─── Anki deck L01 ────────────────────────────────────────
+const ANKI_DECK_L01 = [
+  {front:"hola", back:"привет\n\nПример: ¡Hola! ¿Cómo estás? — Привет! Как дела?\nЗаметка: H не читается — [О-ла]"},
+  {front:"adiós", back:"пока, до свидания\n\nПример: ¡Adiós, amigo! — Пока, друг!\nЗаметка: ударение на ó (правило 3)"},
+  {front:"gracias", back:"спасибо\n\nПример: Muchas gracias. — Большое спасибо.\nЗаметка: c перед i = [θ] в Испании"},
+  {front:"por favor", back:"пожалуйста (при просьбе)\n\nПример: Un café, por favor. — Кофе, пожалуйста.\nЗаметка: r в favor — короткое"},
+  {front:"sí / no", back:"да / нет\n\nПример: Sí, gracias. / No, gracias.\nЗаметка: sí — с акцентом, чтобы отличить от si (если)"},
+  {front:"¿Cómo estás?", back:"Как дела?\n\nПример: ¡Hola! ¿Cómo estás? — Привет! Как дела?\nЗаметка: tú-форма. На «вы» = ¿Cómo está?"},
+  {front:"bien", back:"хорошо\n\nПример: Muy bien, gracias. — Очень хорошо, спасибо.\nЗаметка: i+e = дифтонг [бьен]"},
+  {front:"mal", back:"плохо\n\nПример: Estoy mal hoy. — Мне сегодня плохо.\nЗаметка: ударение на mal (правило 2: оканчивается на L)"},
+  {front:"amigo / amiga", back:"друг (м.р.) / подруга (ж.р.)\n\nПример: Mi amigo se llama Pedro. — Моего друга зовут Педро.\nЗаметка: -o / -a — стандартное окончание"},
+  {front:"casa", back:"дом\n\nПример: Voy a casa. — Иду домой.\nЗаметка: безударное a НЕ редуцируется"},
+  {front:"calle", back:"улица\n\nПример: ¿En qué calle vives? — На какой улице живёшь?\nЗаметка: ll = [й] в Барселоне"},
+  {front:"agua", back:"вода\n\nПример: Un vaso de agua, por favor. — Стакан воды.\nЗаметка: исключение: el agua (м.р. артикль перед ударным а)"},
+  {front:"café", back:"кофе\n\nПример: Quiero un café con leche. — Хочу кофе с молоком.\nЗаметка: знак ´ показывает ударение"},
+  {front:"jamón", back:"хамон, испанский окорок\n\nПример: Un bocadillo de jamón. — Бутерброд с хамоном.\nЗаметка: J = [х], не [ж]"},
+  {front:"Barcelona", back:"Барселона\n\nПример: Vivo en Barcelona. — Я живу в Барселоне.\nЗаметка: c перед e = [θ]: [бар-θе-ло-на]"},
+  {front:"¿Cuánto cuesta?", back:"Сколько стоит?\n\nПример: ¿Cuánto cuesta el agua? — Сколько стоит вода?\nЗаметка: универсальная фраза в любом магазине"}
+];
+
+function renderAnkiPreview() {
+  const container = document.getElementById('anki-preview-L01');
+  if (!container) return;
+  const preview = ANKI_DECK_L01.slice(0, 5);
+  container.innerHTML = preview.map(function(c) {
+    return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')">' +
+      '<div class="anki-card-inner">' +
+      '<div class="anki-card-front">' + c.front + '</div>' +
+      '<div class="anki-card-back">' + c.back.replace(/\n/g,'<br>') + '</div>' +
+      '</div></div>';
+  }).join('');
+}
+renderAnkiPreview();
+
+function exportAnkiL01() {
+  const tsv = ANKI_DECK_L01.map(function(c) {
+    return c.front + '\t' + c.back.replace(/\n/g, '<br>');
+  }).join('\n');
+  const blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'L01_spanish_anki.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 </script>
 </body>
 </html>
