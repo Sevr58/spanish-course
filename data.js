@@ -78,7 +78,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Читать слова и предложения с правильным произношением",
-      file:"lessons/L01.html", status:"pending"
+      file:"lessons/L01.html", status:"done"
     },
 
     // ═══════════════════════════════════════════════════════════
