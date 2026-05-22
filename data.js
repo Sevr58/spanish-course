@@ -228,7 +228,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Объяснить врачу, что болит",
-      file:"lessons/L13.html", status:"pending"
+      file:"lessons/L13.html", status:"improved"
     },
     {
       id:"L14", num:14, phase:1, block:"B1B", level:"A1", day:28, week:5,
@@ -240,7 +240,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Описать свой дом или квартиру в Барселоне",
-      file:"lessons/L14.html", status:"pending"
+      file:"lessons/L14.html", status:"improved"
     },
     {
       id:"L15", num:15, phase:1, block:"B1B", level:"A1", day:30, week:5,
