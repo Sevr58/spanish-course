@@ -204,7 +204,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:4,
       speaking_focus:"Рассказать о своей семье по-испански (1–2 минуты)",
-      file:"lessons/L11.html", status:"pending"
+      file:"lessons/L11.html", status:"improved"
     },
     {
       id:"L12", num:12, phase:1, block:"B1B", level:"A1", day:24, week:4,
@@ -216,7 +216,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:13,
       speaking_focus:"Заказать блюдо в кафе, спросить что-то в меню",
-      file:"lessons/L12.html", status:"pending"
+      file:"lessons/L12.html", status:"improved"
     },
     {
       id:"L13", num:13, phase:1, block:"B1B", level:"A1", day:26, week:4,

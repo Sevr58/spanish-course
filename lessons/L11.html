@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L11: Семья и отношения — la familia</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;transition:.2s;padding:0 4px;color:var(--gold)}
+.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.speak-btn-big:hover{opacity:.88}
+.family-tree{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:14px 0}
+.fam-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.fam-card .icon{font-size:1.4rem}
+.fam-card .es{font-weight:700;color:var(--gold)}
+.fam-card .tr{font-size:.8rem;color:var(--muted)}
+.poss-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.9rem}
+.poss-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);font-weight:700}
+.poss-table td{padding:10px 12px;border-top:1px solid var(--border)}
+.poss-table .form{font-weight:700;color:var(--green);font-family:Consolas,monospace}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.vocab-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.vocab-table .es{font-weight:600;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-style:italic;font-size:.82rem}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);font-weight:700}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.mistakes-table .wrong{color:var(--red);font-weight:600;text-decoration:line-through;opacity:.7}
+.mistakes-table .right{color:var(--green);font-weight:600}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}.culture p{font-size:.86rem;color:var(--muted)}
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--gold)}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem;color:var(--text)}
+.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);line-height:1.5;background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+.anki-export-btn:hover{opacity:.85}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A1 · Фаза 1 · День 22</span>
+  <a href="L12.html">L12 →</a>
+</div>
+
+<div class="hero">
+  <div class="phase-tag">🌱 Фаза 1 · Основы · Базовая лексика</div>
+  <h1>Семья и <span class="hl">отношения</span></h1>
+  <p class="sub">Mi mujer, mis hijas, mi padre... 25 слов про семью + притяжательные «мой/твой/его». Без этого в Барселоне ни на одной встрече.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Рассказать о своей семье 1-2 минуты вслух</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + 15 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>Language Transfer эп. 17 · Polyglot #4</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Представляем семью: «Mi mujer es...»</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- SECTION 1: Повторение L10 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">1</div><h2>Повторение L10 — описание</h2></div>
+
+  <div class="quiz" id="quiz-review">
+    <h3>🔄 Тест по предыдущему уроку</h3>
+
+    <div class="quiz-q" id="r1">
+      <div class="q-text">1. «Высокая женщина» = la mujer ___.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r1','a')">alta</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','b')">alto</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','c')">altos</div>
+      </div>
+      <div class="feedback" id="fb-r1"></div>
+    </div>
+
+    <div class="quiz-q" id="r2">
+      <div class="q-text">2. «Зелёная книга» = el libro ___.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r2','b')">verda</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','a')">verde</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','c')">verdo</div>
+      </div>
+      <div class="feedback" id="fb-r2"></div>
+    </div>
+
+    <div class="quiz-q" id="r3">
+      <div class="q-text">3. «У него голубые глаза» = Tiene los ojos ___.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r3','c')">azul</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','a')">azules</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','b')">azulas</div>
+      </div>
+      <div class="feedback" id="fb-r3"></div>
+    </div>
+
+    <div class="quiz-q" id="r4">
+      <div class="q-text">4. Прилагательное в испанском стоит:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r4','b')">перед существительным</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','a')">после существительного</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','c')">в любом месте</div>
+      </div>
+      <div class="feedback" id="fb-r4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: Члены семьи -->
+<div class="section">
+  <div class="section-header"><div class="section-num">2</div><h2>Члены семьи — 15 ключевых слов</h2></div>
+
+  <div class="family-tree">
+    <div class="fam-card"><span class="icon">👨</span><span class="es">el padre</span><span class="tr">отец / папа</span><button class="speak-btn" onclick="speak('el padre')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👩</span><span class="es">la madre</span><span class="tr">мать / мама</span><button class="speak-btn" onclick="speak('la madre')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👫</span><span class="es">los padres</span><span class="tr">родители</span><button class="speak-btn" onclick="speak('los padres')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👦</span><span class="es">el hijo</span><span class="tr">сын</span><button class="speak-btn" onclick="speak('el hijo')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👧</span><span class="es">la hija</span><span class="tr">дочь</span><button class="speak-btn" onclick="speak('la hija')">🔊</button></div>
+    <div class="fam-card"><span class="icon">🧒</span><span class="es">los hijos</span><span class="tr">дети</span><button class="speak-btn" onclick="speak('los hijos')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👨‍🦱</span><span class="es">el hermano</span><span class="tr">брат</span><button class="speak-btn" onclick="speak('el hermano')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👩‍🦱</span><span class="es">la hermana</span><span class="tr">сестра</span><button class="speak-btn" onclick="speak('la hermana')">🔊</button></div>
+    <div class="fam-card"><span class="icon">💍</span><span class="es">el marido</span><span class="tr">муж</span><button class="speak-btn" onclick="speak('el marido')">🔊</button></div>
+    <div class="fam-card"><span class="icon">💍</span><span class="es">la mujer</span><span class="tr">жена / женщина</span><button class="speak-btn" onclick="speak('la mujer')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👴</span><span class="es">el abuelo</span><span class="tr">дедушка</span><button class="speak-btn" onclick="speak('el abuelo')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👵</span><span class="es">la abuela</span><span class="tr">бабушка</span><button class="speak-btn" onclick="speak('la abuela')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👨‍🦳</span><span class="es">el tío</span><span class="tr">дядя</span><button class="speak-btn" onclick="speak('el tío')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👩‍🦳</span><span class="es">la tía</span><span class="tr">тётя</span><button class="speak-btn" onclick="speak('la tía')">🔊</button></div>
+    <div class="fam-card"><span class="icon">👶</span><span class="es">el primo / la prima</span><span class="tr">двоюродный/ая</span><button class="speak-btn" onclick="speak('el primo, la prima')">🔊</button></div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Лайфхак: ж.р. → -a, м.р. → -o, для пары → м.р. мн.ч.</h4>
+    <p>el hijo (сын) / la hija (дочь) → <strong>los hijos</strong> = дети (или «сыновья»)<br>el hermano (брат) / la hermana (сестра) → <strong>los hermanos</strong> = братья и сёстры (siblings)<br>То есть «hijos» = все дети, даже если только одна девочка и один мальчик. Мужской род «доминирует».</p>
+  </div>
+
+  <div class="callout info">
+    <h4>💡 «Mujer» — и «жена», и «женщина»</h4>
+    <p>«Mi mujer» = моя жена (контекстно). «Una mujer» = (некая) женщина. Так что «mi mujer» — стандартное обращение мужа к жене, в семейных разговорах. Альтернатива: «mi esposa» (моя супруга, чуть формальнее).</p>
+  </div>
+</div>
+
+<!-- SECTION 3: Притяжательные -->
+<div class="section">
+  <div class="section-header"><div class="section-num">3</div><h2>Притяжательные: мой, твой, его</h2></div>
+
+  <p style="margin-bottom:14px">Притяжательные прилагательные согласуются по <strong>числу</strong> (а в «nuestro/vuestro» — ещё и по роду) с тем, что они описывают.</p>
+
+  <table class="poss-table">
+    <thead><tr><th>Кто</th><th>Ед.ч.</th><th>Мн.ч.</th><th>Пример</th></tr></thead>
+    <tbody>
+      <tr><td>я (мой)</td><td class="form">mi</td><td class="form">mis</td><td>mi hijo, mis hijas</td></tr>
+      <tr><td>ты (твой)</td><td class="form">tu</td><td class="form">tus</td><td>tu padre, tus hermanos</td></tr>
+      <tr><td>он/она/Вы (его/её/Ваш)</td><td class="form">su</td><td class="form">sus</td><td>su madre, sus hijos</td></tr>
+      <tr><td>мы (наш/наша)</td><td class="form">nuestro/a</td><td class="form">nuestros/as</td><td>nuestra casa, nuestros hijos</td></tr>
+      <tr><td>вы (ваш/ваша)</td><td class="form">vuestro/a</td><td class="form">vuestros/as</td><td>vuestra hija, vuestros padres</td></tr>
+      <tr><td>они/Вы мн. (их/Ваш)</td><td class="form">su</td><td class="form">sus</td><td>su coche, sus libros</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ Главная ловушка: НЕ «mi» отличается от «mí»</h4>
+    <p><strong>mi</strong> (без ударения) = мой (притяжательное): <em>mi casa</em>.<br><strong>mí</strong> (с ударением) = меня/мне (после предлога): <em>para mí</em>, <em>conmigo</em>.<br>В произношении одинаково, на письме — другие слова.</p>
+  </div>
+
+  <div class="callout info">
+    <h4>💡 mi vs el mío</h4>
+    <p><strong>mi</strong> — перед существительным: <em>mi hijo</em> (мой сын).<br><strong>mío/mía</strong> — после или вместо существительного: <em>el hijo mío</em> или <em>el mío</em> (мой, тот, который).<br>В этом уроке учим только «mi, tu, su...» — короткие формы.</p>
+  </div>
+</div>
+
+<!-- SECTION 4: TENER для родства -->
+<div class="section">
+  <div class="section-header"><div class="section-num">4</div><h2>Tener — «иметь» семью</h2></div>
+
+  <p style="margin-bottom:14px">Для разговоров о семье главный глагол — <strong>tener</strong> (иметь). «У меня есть 2 дочки» = <em>Tengo dos hijas</em>.</p>
+
+  <table class="poss-table">
+    <thead><tr><th>Местоимение</th><th>Форма tener</th><th>🔊</th><th>Пример</th></tr></thead>
+    <tbody>
+      <tr><td>yo</td><td class="form">tengo</td><td><button class="speak-btn" onclick="speak('tengo')">🔊</button></td><td>Tengo dos hijas.</td></tr>
+      <tr><td>tú</td><td class="form">tienes</td><td><button class="speak-btn" onclick="speak('tienes')">🔊</button></td><td>¿Tienes hermanos?</td></tr>
+      <tr><td>él/ella/usted</td><td class="form">tiene</td><td><button class="speak-btn" onclick="speak('tiene')">🔊</button></td><td>Mi hermana tiene un hijo.</td></tr>
+      <tr><td>nosotros</td><td class="form">tenemos</td><td><button class="speak-btn" onclick="speak('tenemos')">🔊</button></td><td>Tenemos una familia grande.</td></tr>
+      <tr><td>vosotros</td><td class="form">tenéis</td><td><button class="speak-btn" onclick="speak('tenéis')">🔊</button></td><td>¿Tenéis hijos?</td></tr>
+      <tr><td>ellos/ellas/uds.</td><td class="form">tienen</td><td><button class="speak-btn" onclick="speak('tienen')">🔊</button></td><td>Mis padres tienen tres hijos.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Tener — irregular, но логично</h4>
+    <p>tener — неправильный глагол. yo: tengo (с -g- вставкой). tú/él: e → ie (tienes, tiene). Мы и вы — без изменений: tenemos, tenéis. Они: tienen. Запомни yo + tú + ellos — остальные легче.</p>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">Готовые фразы:</h3>
+  <div class="speak-box"><div class="es">Tengo una familia grande. <button class="speak-btn" onclick="speak('Tengo una familia grande.')">🔊</button></div><div class="hint">[У меня большая семья.]</div></div>
+  <div class="speak-box"><div class="es">¿Tienes hermanos? — Sí, tengo dos hermanas. <button class="speak-btn" onclick="speak('¿Tienes hermanos? Sí, tengo dos hermanas.')">🔊</button></div></div>
+  <div class="speak-box"><div class="es">Mi hija mayor tiene diez años. <button class="speak-btn" onclick="speak('Mi hija mayor tiene diez años.')">🔊</button></div><div class="hint">[Старшей дочке 10 лет.] «Mayor» = старший. «menor» = младший.</div></div>
+</div>
+
+<!-- SECTION 5: Семейное положение -->
+<div class="section">
+  <div class="section-header"><div class="section-num">5</div><h2>Семейное положение и статус</h2></div>
+
+  <table class="vocab-table">
+    <thead><tr><th>М.р. / Ж.р.</th><th>🔊</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td class="es">soltero / soltera</td><td><button class="speak-btn" onclick="speak('soltero, soltera')">🔊</button></td><td>холост / не замужем</td></tr>
+      <tr><td class="es">casado / casada</td><td><button class="speak-btn" onclick="speak('casado, casada')">🔊</button></td><td>женат / замужем</td></tr>
+      <tr><td class="es">divorciado / divorciada</td><td><button class="speak-btn" onclick="speak('divorciado, divorciada')">🔊</button></td><td>разведён / разведена</td></tr>
+      <tr><td class="es">viudo / viuda</td><td><button class="speak-btn" onclick="speak('viudo, viuda')">🔊</button></td><td>вдовец / вдова</td></tr>
+      <tr><td class="es">novio / novia</td><td><button class="speak-btn" onclick="speak('novio, novia')">🔊</button></td><td>парень / девушка (отношения)</td></tr>
+      <tr><td class="es">pareja</td><td><button class="speak-btn" onclick="speak('pareja')">🔊</button></td><td>партнёр (нейтрально, любого пола)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <h4>💡 Стандартный вопрос в Испании</h4>
+    <p>«¿Estás casado?» (Ты женат?) — это нормальный вопрос при знакомстве. Не считается интрузивным. Можешь спросить «¿Tienes pareja?» — «У тебя есть партнёр?» (нейтрально к полу).</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Estar или ser?</h4>
+    <p>Семейное положение — это <strong>ESTAR</strong>! Потому что оно может меняться.<br>«Estoy casado» — я женат (сейчас).<br>«Soy casado» — теоретически тоже сказать можно (как идентификация), но в Испании 95% случаев — «estar».</p>
+  </div>
+</div>
+
+<!-- SECTION 6: Типичные ошибки -->
+<div class="section">
+  <div class="section-header"><div class="section-num">6</div><h2>Типичные ошибки русскоговорящих</h2></div>
+
+  <table class="mistakes-table">
+    <thead><tr><th>Хочешь сказать</th><th>❌ Ошибка</th><th>✅ Правильно</th><th>Почему</th></tr></thead>
+    <tbody>
+      <tr><td>«Моя жена»</td><td><span class="wrong">Mía mujer</span></td><td><span class="right">Mi mujer</span></td><td>«Mi» = короткая форма перед существительным</td></tr>
+      <tr><td>«Мои дети»</td><td><span class="wrong">Mi hijos</span></td><td><span class="right">Mis hijos</span></td><td>Притяж. согласуется по числу: +s</td></tr>
+      <tr><td>«Я женат»</td><td><span class="wrong">Soy casado</span></td><td><span class="right">Estoy casado</span></td><td>Сем. положение в Испании — estar</td></tr>
+      <tr><td>«У меня есть брат»</td><td><span class="wrong">Yo hay un hermano</span></td><td><span class="right">Tengo un hermano</span></td><td>Для «у меня есть» — tener (иметь)</td></tr>
+      <tr><td>«Сестра моей жены»</td><td><span class="wrong">Mi mujer hermana</span></td><td><span class="right">La hermana de mi mujer</span></td><td>«de» для родительного падежа: la X de Y</td></tr>
+      <tr><td>«Мне 41»</td><td><span class="wrong">Soy 41 años</span></td><td><span class="right">Tengo 41 años</span></td><td>Возраст = «иметь»</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 7: Тест 1 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">7</div><h2>Тест 1 — Семья и притяжательные</h2></div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Семейный квиз</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Мои родители» по-испански:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">mis padres</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">mi padres</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">míos padres</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Твоя сестра» = ___ hermana.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Tus</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Tu</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Tuya</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «У меня 2 дочки» = ___ dos hijas.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Soy</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Tengo</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Hay</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Я женат» (мужчина) = ___ casado.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Soy</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Estoy</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Tengo</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Жена моего брата» = la mujer ___ mi hermano.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">a</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">de</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">para</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Наша дочка» = ___ hija.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Nuestro</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Nuestra</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Nuestros</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: Тест 2 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">8</div><h2>Тест 2 — Впиши слово</h2></div>
+
+  <div class="quiz">
+    <h3>✏️ Семейный пропуск</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. У меня одна сестра. = ___ una hermana.</div>
+      <input type="text" class="text-input" placeholder="форма tener" id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','tengo','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ tengo. Yo + tener = tengo.</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. «Мой отец врач» = ___ padre es médico.</div>
+      <input type="text" class="text-input" placeholder="..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','mi','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ mi (без ударения, перед существительным).</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. «Их сын» = ___ hijo.</div>
+      <input type="text" class="text-input" placeholder="..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','su','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ su. «Su» = и его, и её, и их, и Ваш.</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. «Наши дети» = ___ hijos.</div>
+      <input type="text" class="text-input" placeholder="..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','nuestros','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ nuestros. Мн.ч. + м.р.</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. «У моего брата 3 дочки» = Mi hermano ___ tres hijas.</div>
+      <input type="text" class="text-input" placeholder="форма tener" id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','tiene','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ tiene. Él (mi hermano) + tener = tiene.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 9: Диалоги -->
+<div class="section">
+  <div class="section-header"><div class="section-num">9</div><h2>Диалоги — слушай и повторяй</h2></div>
+
+  <div class="dialogue">
+    <div class="dlg-header">💬 Диалог 1: Рассказ о семье
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog1()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">¿Tienes una familia grande? <button class="speak-btn" onclick="speak('¿Tienes una familia grande?')">🔊</button></div>
+      <div class="dlg-ru translation">— У тебя большая семья?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Sí, bastante grande. Estoy casado y tengo dos hijas. <button class="speak-btn" onclick="speak('Sí, bastante grande. Estoy casado y tengo dos hijas.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, довольно большая. Я женат, две дочки.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">¿Y tus padres? ¿Viven aquí también? <button class="speak-btn" onclick="speak('¿Y tus padres? ¿Viven aquí también?')">🔊</button></div>
+      <div class="dlg-ru translation">— А родители? Тоже здесь живут?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">No, mis padres viven en Rusia. Mi madre tiene 70 años. <button class="speak-btn" onclick="speak('No, mis padres viven en Rusia. Mi madre tiene setenta años.')">🔊</button></div>
+      <div class="dlg-ru translation">— Нет, они в России. Маме 70.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">¿Tienes hermanos? <button class="speak-btn" onclick="speak('¿Tienes hermanos?')">🔊</button></div>
+      <div class="dlg-ru translation">— Братья-сёстры есть?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Sí, una hermana. Vive en Moscú con su marido y su hijo. <button class="speak-btn" onclick="speak('Sí, una hermana. Vive en Moscú con su marido y su hijo.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, сестра. Живёт в Москве с мужем и сыном.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">¡Qué familia tan internacional! ¿Tus hijas hablan ruso? <button class="speak-btn" onclick="speak('¡Qué familia tan internacional! ¿Tus hijas hablan ruso?')">🔊</button></div>
+      <div class="dlg-ru translation">— Какая международная семья! Дочки по-русски говорят?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Sí, en casa hablamos ruso. En la escuela aprenden español y catalán. <button class="speak-btn" onclick="speak('Sí, en casa hablamos ruso. En la escuela aprenden español y catalán.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, дома говорим по-русски. В школе учат испанский и каталанский.</div>
+    </div></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">💬 Диалог 2: Свадьба сестры — кого пригласить
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog2()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Mi hermana se casa en septiembre. <button class="speak-btn" onclick="speak('Mi hermana se casa en septiembre.')">🔊</button></div>
+      <div class="dlg-ru translation">— Моя сестра выходит замуж в сентябре.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">¡Felicidades! ¿Es su primer matrimonio? <button class="speak-btn" onclick="speak('¡Felicidades! ¿Es su primer matrimonio?')">🔊</button></div>
+      <div class="dlg-ru translation">— Поздравляю! Первый брак?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Sí. Su novio es muy buena persona, simpático y amable. <button class="speak-btn" onclick="speak('Sí. Su novio es muy buena persona, simpático y amable.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да. Её парень очень хороший человек, милый и добрый.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">¿Cuántos invitados van? <button class="speak-btn" onclick="speak('¿Cuántos invitados van?')">🔊</button></div>
+      <div class="dlg-ru translation">— Сколько гостей будет?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Toda nuestra familia: mis padres, mis tíos, mis primos. Unas 50 personas. <button class="speak-btn" onclick="speak('Toda nuestra familia: mis padres, mis tíos, mis primos. Unas cincuenta personas.')">🔊</button></div>
+      <div class="dlg-ru translation">— Вся семья: родители, дяди-тёти, двоюродные. Человек 50.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">¡Una boda grande! ¿Vas con tu mujer y tus hijas? <button class="speak-btn" onclick="speak('¡Una boda grande! ¿Vas con tu mujer y tus hijas?')">🔊</button></div>
+      <div class="dlg-ru translation">— Большая свадьба! С женой и дочками поедешь?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Sí, vamos todos. Es la primera vez que mis hijas conocen a su tía y a sus primos. <button class="speak-btn" onclick="speak('Sí, vamos todos. Es la primera vez que mis hijas conocen a su tía y a sus primos.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, всей семьёй. Дочки впервые увидят свою тётю и двоюродных.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- SECTION 10: Говорение -->
+<div class="section">
+  <div class="section-header"><div class="section-num">10</div><h2>Говорение — твоя очередь</h2></div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — представь свою семью</div>
+    <p>Расскажи вслух про свою семью (8 предложений):</p>
+    <div class="es" style="line-height:1.9">Tengo una familia grande. Estoy casado. Mi mujer se llama Anastasia y tiene 38 años. Tenemos dos hijas: la mayor tiene 10 años y la pequeña tiene 6. Mis padres viven en Rusia. Tengo una hermana que vive en Moscú. Sus hijos son mis sobrinos. <button class="speak-btn" onclick="speak('Tengo una familia grande. Estoy casado. Mi mujer se llama Anastasia y tiene treinta y ocho años. Tenemos dos hijas: la mayor tiene diez años y la pequeña tiene seis. Mis padres viven en Rusia. Tengo una hermana que vive en Moscú. Sus hijos son mis sobrinos.')">🔊</button></div>
+    <div class="hint">[У меня большая семья. Я женат. Жену зовут Анастасия, ей 38. У нас 2 дочки: старшей 10, младшей 6. Родители в России. Сестра в Москве. Её дети — мои племянники.]</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — вопросы о собеседнике</div>
+    <p>Произнеси 8 вопросов о семье собеседника:</p>
+    <div class="es" style="line-height:1.9">¿Tienes hermanos? ¿Estás casado? ¿Cómo se llama tu mujer? ¿Tenéis hijos? ¿Cuántos años tienen? ¿Tus padres viven aquí? ¿Tienes primos en Barcelona? ¿Vienen tus padres de visita? <button class="speak-btn" onclick="speak('¿Tienes hermanos? ¿Estás casado? ¿Cómo se llama tu mujer? ¿Tenéis hijos? ¿Cuántos años tienen? ¿Tus padres viven aquí? ¿Tienes primos en Barcelona? ¿Vienen tus padres de visita?')">🔊</button></div>
+  </div>
+</div>
+
+<!-- SECTION 11: Испания на практике -->
+<div class="section">
+  <div class="section-header"><div class="section-num">11</div><h2>🇪🇸 Испания на практике — Школа для дочерей</h2></div>
+
+  <div class="spain-card">
+    <div class="stag">🏫 Реальный сценарий</div>
+    <h3>Запись детей в школу (matriculación)</h3>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:6px">При переезде с детьми — главная задача первого месяца: записать в школу. В Каталонии есть государственные (públicas, бесплатные) и частные (concertadas или privadas). Запись через Generalitat. На встрече с директором — нужен словарь семьи.</p>
+
+    <div class="phrase-list">
+      <div class="phrase">
+        <span class="es">Quiero matricular a mi hija.</span>
+        <button class="speak-btn" onclick="speak('Quiero matricular a mi hija.')">🔊</button>
+        <span class="tr">Хочу записать дочку (в школу).</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Tengo dos hijas, de seis y diez años.</span>
+        <button class="speak-btn" onclick="speak('Tengo dos hijas, de seis y diez años.')">🔊</button>
+        <span class="tr">У меня 2 дочки, 6 и 10 лет.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Mi hija mayor habla un poco de español.</span>
+        <button class="speak-btn" onclick="speak('Mi hija mayor habla un poco de español.')">🔊</button>
+        <span class="tr">Старшая дочка немного говорит по-испански.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Cómo es el horario escolar?</span>
+        <button class="speak-btn" onclick="speak('¿Cómo es el horario escolar?')">🔊</button>
+        <span class="tr">Какое школьное расписание?</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Hay comedor?</span>
+        <button class="speak-btn" onclick="speak('¿Hay comedor?')">🔊</button>
+        <span class="tr">Есть столовая? (важно — там обедают)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Cuándo empieza el curso?</span>
+        <button class="speak-btn" onclick="speak('¿Cuándo empieza el curso?')">🔊</button>
+        <span class="tr">Когда начинается учебный год?</span>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">🏫 Мини-диалог: с директором школы
+        <button class="speak-btn-big" onclick="playEscuela()">▶ Воспроизвести</button>
+      </div>
+      <div class="dlg-line"><div class="dlg-speaker">Д</div><div>
+        <div class="dlg-es">Buenos días. ¿En qué puedo ayudarle? <button class="speak-btn" onclick="speak('Buenos días. ¿En qué puedo ayudarle?')">🔊</button></div>
+        <div class="dlg-ru">— Добрый день. Чем могу помочь?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Buenos días. Soy nuevo en Barcelona. Quiero matricular a mis hijas. <button class="speak-btn" onclick="speak('Buenos días. Soy nuevo en Barcelona. Quiero matricular a mis hijas.')">🔊</button></div>
+        <div class="dlg-ru">— Добрый день. Я новенький в Барселоне. Хочу записать дочерей.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">Д</div><div>
+        <div class="dlg-es">¿Cuántas hijas? ¿Qué edad? <button class="speak-btn" onclick="speak('¿Cuántas hijas? ¿Qué edad?')">🔊</button></div>
+        <div class="dlg-ru">— Сколько дочерей? Какого возраста?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Dos. La mayor tiene diez años, la pequeña, seis. <button class="speak-btn" onclick="speak('Dos. La mayor tiene diez años, la pequeña, seis.')">🔊</button></div>
+        <div class="dlg-ru">— Две. Старшей 10, младшей 6.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">Д</div><div>
+        <div class="dlg-es">Vale, una en primaria, otra empezando. ¿Hablan español o catalán? <button class="speak-btn" onclick="speak('Vale, una en primaria, otra empezando. ¿Hablan español o catalán?')">🔊</button></div>
+        <div class="dlg-ru">— Хорошо, одна в началке, другая начинает. По-испански или по-каталански говорят?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Hablan ruso y un poco de inglés. Aún no hablan español. <button class="speak-btn" onclick="speak('Hablan ruso y un poco de inglés. Aún no hablan español.')">🔊</button></div>
+        <div class="dlg-ru">— По-русски и немного по-английски. Испанский пока нет.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">Д</div><div>
+        <div class="dlg-es">No se preocupe. Tenemos un programa de acogida. Los niños aprenden rápido. <button class="speak-btn" onclick="speak('No se preocupe. Tenemos un programa de acogida. Los niños aprenden rápido.')">🔊</button></div>
+        <div class="dlg-ru">— Не переживайте. У нас есть программа адаптации. Дети учатся быстро.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">¡Genial! Gracias. <button class="speak-btn" onclick="speak('¡Genial! Gracias.')">🔊</button></div>
+        <div class="dlg-ru">— Здорово! Спасибо.</div>
+      </div></div>
+    </div>
+
+    <div class="callout info" style="margin-top:14px">
+      <h4>💡 Школьная система в Каталонии</h4>
+      <ul>
+        <li><strong>Educación Infantil (3-6 лет):</strong> детский сад при школе. Не обязательно, но 99% детей ходят.</li>
+        <li><strong>Educación Primaria (6-12 лет):</strong> 6 классов начальной школы. Обязательно.</li>
+        <li><strong>ESO (12-16 лет):</strong> средняя школа.</li>
+        <li><strong>Bachillerato (16-18 лет):</strong> старшая школа, готовит к универу.</li>
+        <li><strong>Языки в школе Каталонии:</strong> главный — каталанский. Испанский — как «второй». Английский с 6 лет.</li>
+        <li><strong>Документы для записи:</strong> empadronamiento, паспорт/NIE родителей, мед.справки детей, прививки.</li>
+        <li><strong>Сроки записи:</strong> февраль-март для следующего учебного года (с сентября).</li>
+        <li><strong>Программы адаптации (aula d'acollida):</strong> для иностранных детей — отдельные часы испанского/каталанского.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 12: Культура -->
+<div class="section">
+  <div class="section-header"><div class="section-num">12</div><h2>Культурная заметка</h2></div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культура</div>
+    <h4>Испанская семья — два сюрприза для русских</h4>
+    <p><strong>1. Дети дольше живут с родителями.</strong> Средний возраст «вылета из гнезда» в Испании — <strong>30 лет</strong> (один из самых высоких в ЕС). Причины: дорогое жильё, сложный рынок труда для молодёжи. Молодой 28-летний испанец, живущий с мамой — это норма, а не «маменькин сынок».</p>
+    <p style="margin-top:8px"><strong>2. Бабушки и дедушки — главные «няни».</strong> В Испании очень распространено, что <em>los abuelos</em> забирают детей из школы, кормят обедом, водят в кружки. Семейные связи близкие, часто живут в одном городе или районе.</p>
+    <p style="margin-top:8px"><strong>3. Воскресный обед — святое.</strong> В семьях есть традиция собираться всей семьёй (3 поколения) на обед в воскресенье. Pulpo / paella / cocido — что-то особенное. Это не «ужин с родителями», это <strong>la comida familiar del domingo</strong>, ритуал.</p>
+    <p style="margin-top:8px">В Каталонии есть отдельное слово: <strong>les sobres</strong> (католич. остатки еды) — то, что остаётся после семейного обеда и едят в понедельник.</p>
+  </div>
+</div>
+
+<!-- SECTION 13: Anki + ДЗ -->
+<div class="section">
+  <div class="section-header"><div class="section-num">13</div><h2>Anki + Домашнее задание</h2></div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — 20 карточек урока L11</div>
+    <div class="anki-preview" id="anki-preview-L11"></div>
+    <button class="anki-export-btn" onclick="exportAnkiL11()">📥 Скачать колоду L11 для Anki (.txt)</button>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до L12</h4>
+    <ul>
+      <li>Language Transfer эп. 17</li>
+      <li>15 мин Dreaming Spanish Super Beginner</li>
+      <li>Это расширение урока #4 из курса Polyglot. <a href="../../lessons/lesson_04.html" target="_blank" style="color:var(--gold)">📚 Polyglot #4</a></li>
+      <li>Импортируй колоду L11 в Anki</li>
+      <li>Запиши голосом: 1-минутный рассказ о своей семье вслух</li>
+      <li>Нарисуй своё семейное древо и подпиши испанские слова: el padre, la madre...</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Ты закончил L11!</h4>
+    <p>Теперь у тебя есть весь словарь, чтобы рассказать о семье. В L12 — еда и напитки. Заказать в кафе, понять меню, попросить bocadillo с jamón.</p>
+  </div>
+</div>
+
+</div>
+
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L10.html" class="nav-link-btn">← L10</a>
+    <a href="L12.html" class="nav-link-btn">L12 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID='L11';const LS_KEY='esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+function speak(text,lang){
+  if(!('speechSynthesis' in window)){alert('Браузер не поддерживает озвучку.');return;}
+  const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;u.pitch=1;
+  window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+}
+function speakSequence(phrases,delay){
+  delay=delay||2400;window.speechSynthesis.cancel();
+  phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});
+}
+
+function playDialog1(){
+  speakSequence([
+    '¿Tienes una familia grande?',
+    'Sí, bastante grande. Estoy casado y tengo dos hijas.',
+    '¿Y tus padres? ¿Viven aquí también?',
+    'No, mis padres viven en Rusia. Mi madre tiene setenta años.',
+    '¿Tienes hermanos?',
+    'Sí, una hermana. Vive en Moscú con su marido y su hijo.',
+    '¡Qué familia tan internacional! ¿Tus hijas hablan ruso?',
+    'Sí, en casa hablamos ruso. En la escuela aprenden español y catalán.'
+  ],2700);
+}
+function playDialog2(){
+  speakSequence([
+    'Mi hermana se casa en septiembre.',
+    '¡Felicidades! ¿Es su primer matrimonio?',
+    'Sí. Su novio es muy buena persona, simpático y amable.',
+    '¿Cuántos invitados van?',
+    'Toda nuestra familia: mis padres, mis tíos, mis primos. Unas cincuenta personas.',
+    '¡Una boda grande! ¿Vas con tu mujer y tus hijas?',
+    'Sí, vamos todos. Es la primera vez que mis hijas conocen a su tía y a sus primos.'
+  ],2700);
+}
+function playEscuela(){
+  speakSequence([
+    'Buenos días. ¿En qué puedo ayudarle?',
+    'Buenos días. Soy nuevo en Barcelona. Quiero matricular a mis hijas.',
+    '¿Cuántas hijas? ¿Qué edad?',
+    'Dos. La mayor tiene diez años, la pequeña, seis.',
+    'Vale, una en primaria, otra empezando. ¿Hablan español o catalán?',
+    'Hablan ruso y un poco de inglés. Aún no hablan español.',
+    'No se preocupe. Tenemos un programa de acogida. Los niños aprenden rápido.',
+    '¡Genial! Gracias.'
+  ],2700);
+}
+
+const quizExpl={
+  r1:'la mujer alta. mujer — ж.р.',
+  r2:'verde. На -e не меняется по роду.',
+  r3:'azules. azul во мн.ч. → azules.',
+  r4:'после существительного. el coche rojo.',
+  q1:'mis padres. Мн.ч. для padres.',
+  q2:'tu hermana. Перед существительным короткая форма «tu».',
+  q3:'Tengo. Для «у меня есть» — tener.',
+  q4:'Estoy casado. Семейное положение = estar.',
+  q5:'de. «la mujer de X» = жена кого-то.',
+  q6:'nuestra hija. hija — ж.р., притяж. согласуется по роду.'
+};
+
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  if(container.dataset.answered==='true')return;
+  container.dataset.answered='true';
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(function(o){
+    const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+    o.onclick=null;o.style.cursor='default';
+  });
+  const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);
+  const userKey=um&&um[1];
+  if(userKey!==correctKey)el.classList.add('wrong');
+  const fb=document.getElementById('fb-'+qId);
+  fb.className='feedback show '+(userKey===correctKey?'ok':'no');
+  fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ Не совсем. Подсказка: '+answer.substring(0,2)+'...';}
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+let showingTrans=false;
+function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
+
+const totalSections=14;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=sectionsRead+' / '+totalSections+' разделов';
+}
+window.addEventListener('scroll',updateProgress);
+
+const ANKI_DECK_L11=[
+  {front:"el padre / la madre",back:"Отец / мать\n\nПример: Mi padre es ingeniero. Mi madre es profesora.\nЗаметка: los padres = родители (мн.ч., м.р.)"},
+  {front:"los padres",back:"Родители\n\nПример: Mis padres viven en Rusia.\nЗаметка: мужской род «доминирует» — оба родителя"},
+  {front:"el hijo / la hija",back:"Сын / дочь\n\nПример: Tengo dos hijas. — У меня 2 дочки.\nЗаметка: los hijos = дети (мн.ч.)"},
+  {front:"el hermano / la hermana",back:"Брат / сестра\n\nПример: ¿Tienes hermanos? — Братья-сёстры есть?\nЗаметка: los hermanos = братья и сёстры"},
+  {front:"el marido / la mujer",back:"Муж / жена\n\nПример: Mi mujer se llama Anna.\nЗаметка: la mujer — и «жена», и «женщина»"},
+  {front:"el abuelo / la abuela",back:"Дедушка / бабушка\n\nПример: Mi abuela tiene 80 años.\nЗаметка: los abuelos = бабушка с дедушкой"},
+  {front:"el tío / la tía",back:"Дядя / тётя\n\nПример: Mi tía vive en Madrid.\nЗаметка: ВНИМАНИЕ: tío/tía в разг. речи = «парень/девушка» (как dude)"},
+  {front:"el primo / la prima",back:"Двоюродный брат / сестра\n\nПример: Tengo cinco primos.\nЗаметка: los primos = все двоюродные"},
+  {front:"mi / mis",back:"Мой / мои\n\nПример: mi hijo, mis hijos\nЗаметка: согласуется по числу: +s во мн.ч."},
+  {front:"tu / tus",back:"Твой / твои\n\nПример: tu padre, tus hermanos\nЗаметка: без ударения «tu» = твой. С ударением «tú» = ты"},
+  {front:"su / sus",back:"Его / её / их / Ваш\n\nПример: su hijo (=его сын / её сын / их сын)\nЗаметка: одна форма для много значений"},
+  {front:"nuestro/a / nuestros/as",back:"Наш / наша / наши\n\nПример: nuestra hija, nuestros hijos\nЗаметка: ОДНО из двух притяж., меняющихся по роду"},
+  {front:"vuestro/a / vuestros/as",back:"Ваш / ваша / ваши\n\nПример: vuestra casa, vuestros padres\nЗаметка: используется только в Испании, не в Лат. Америке"},
+  {front:"tener — tengo, tienes, tiene",back:"Иметь (yo, tú, él/ella)\n\nПример: Tengo dos hijas.\nЗаметка: irregular: yo + g вставка, e → ie"},
+  {front:"tener — tenemos, tenéis, tienen",back:"Иметь (мы, вы, они)\n\nПример: Tenemos una familia grande.\nЗаметка: nosotros/vosotros — без изменений в корне"},
+  {front:"Estoy casado / casada",back:"Я женат / замужем\n\nПример: Estoy casado con dos hijas.\nЗаметка: семейное положение = estar"},
+  {front:"soltero / soltera",back:"Холост / не замужем\n\nПример: Soy soltero. — Я не женат.\nЗаметка: и ser, и estar работают"},
+  {front:"mayor / menor",back:"Старший / младший\n\nПример: Mi hija mayor tiene 10 años.\nЗаметка: lit. = больший/меньший по возрасту"},
+  {front:"Tengo X años",back:"Мне X лет\n\nПример: Tengo cuarenta y un años.\nЗаметка: возраст = «иметь», не «быть»"},
+  {front:"la familia",back:"Семья (ж.р.)\n\nПример: Tengo una familia grande.\nЗаметка: ВСЕГДА «la», даже когда мн.ч. — «las familias»"}
+];
+
+function renderAnkiPreview(){
+  const container=document.getElementById('anki-preview-L11');
+  if(!container)return;
+  const preview=ANKI_DECK_L11.slice(0,5);
+  container.innerHTML=preview.map(function(c){
+    return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')">'+
+      '<div class="anki-card-inner">'+
+      '<div class="anki-card-front">'+c.front+'</div>'+
+      '<div class="anki-card-back">'+c.back.replace(/\n/g,'<br>')+'</div>'+
+      '</div></div>';
+  }).join('');
+}
+renderAnkiPreview();
+
+function exportAnkiL11(){
+  const tsv=ANKI_DECK_L11.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');
+  const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='L11_spanish_anki.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>
