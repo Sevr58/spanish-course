@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L10: Цвета, прилагательные, внешность — ¿Cómo es?</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;transition:.2s;padding:0 4px;color:var(--gold)}
+.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.speak-btn-big:hover{opacity:.88}
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin:14px 0}
+.color-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px;justify-content:space-between}
+.color-card .swatch{width:24px;height:24px;border-radius:6px;border:1px solid var(--border);flex-shrink:0}
+.color-card .w{font-weight:600;font-size:.9rem;flex:1}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.vocab-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.vocab-table .es{font-weight:600;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-style:italic;font-size:.82rem}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);font-weight:700}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.mistakes-table .wrong{color:var(--red);font-weight:600;text-decoration:line-through;opacity:.7}
+.mistakes-table .right{color:var(--green);font-weight:600}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}.culture p{font-size:.86rem;color:var(--muted)}
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--gold)}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem;color:var(--text)}
+.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);line-height:1.5;background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+.anki-export-btn:hover{opacity:.85}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A1 · Фаза 1 · День 19</span>
+  <a href="L11.html">L11 →</a>
+</div>
+
+<div class="hero">
+  <div class="phase-tag">🌱 Фаза 1 · Основы · Первый контакт</div>
+  <h1>Цвета, прилагательные, <span class="hl">внешность</span></h1>
+  <p class="sub">¿Cómo es? Высокий или низкий? Красный или синий? Учим описывать людей и вещи — это базовый навык общения.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Описать любого человека и любую вещь</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + 15 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>Language Transfer эп. 16 · Polyglot #11</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Описываем 3 человек по 5 признаков</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- SECTION 1: Повторение L09 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">1</div><h2>Повторение L09 — даты</h2></div>
+
+  <div class="quiz" id="quiz-review">
+    <h3>🔄 Тест по предыдущему уроку</h3>
+
+    <div class="quiz-q" id="r1">
+      <div class="q-text">1. «В среду» = ___ miércoles.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r1','a')">El</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','b')">En</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','c')">A</div>
+      </div>
+      <div class="feedback" id="fb-r1"></div>
+    </div>
+
+    <div class="quiz-q" id="r2">
+      <div class="q-text">2. «15 мая» = el 15 ___ mayo.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r2','b')">en</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','a')">de</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','c')">a</div>
+      </div>
+      <div class="feedback" id="fb-r2"></div>
+    </div>
+
+    <div class="quiz-q" id="r3">
+      <div class="q-text">3. «Летом» = ?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r3','c')">En el verano</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','a')">En verano</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','b')">A verano</div>
+      </div>
+      <div class="feedback" id="fb-r3"></div>
+    </div>
+
+    <div class="quiz-q" id="r4">
+      <div class="q-text">4. «По воскресеньям»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r4','b')">El domingo</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','a')">Los domingos</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','c')">En domingo</div>
+      </div>
+      <div class="feedback" id="fb-r4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: Принципы согласования -->
+<div class="section">
+  <div class="section-header"><div class="section-num">2</div><h2>3 правила прилагательных</h2></div>
+
+  <p style="margin-bottom:14px">В русском прилагательное согласуется по 3 параметрам: род + число + падеж (стол<strong>а</strong>, стол<strong>у</strong>). В испанском проще — только род и число.</p>
+
+  <div class="callout tip">
+    <h4>💡 Правило 1: Окончание -O меняется на -A для женского рода</h4>
+    <p>alto / alta (высокий / высокая), rojo / roja, viejo / vieja</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Правило 2: Окончание -E или согласная — не меняются по роду</h4>
+    <p>grande (большой/большая), inteligente, joven, fácil</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Правило 3: Множественное — +S или +ES (как у существительных)</h4>
+    <p>alto → altos, grande → grandes, joven → jóvenes (с акцентом!)</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Прилагательное СТОИТ ПОСЛЕ существительного</h4>
+    <p>В русском: <strong>красная</strong> машина. В английском: <strong>red</strong> car. В испанском: el coche <strong>rojo</strong>. Прилагательное идёт после! Исключения есть, но это базовое правило.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: 12 цветов -->
+<div class="section">
+  <div class="section-header"><div class="section-num">3</div><h2>12 основных цветов</h2></div>
+
+  <div class="color-grid">
+    <div class="color-card"><span class="swatch" style="background:#e63946"></span><span class="w">rojo</span><button class="speak-btn" onclick="speak('rojo')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#457b9d"></span><span class="w">azul</span><button class="speak-btn" onclick="speak('azul')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#2dc653"></span><span class="w">verde</span><button class="speak-btn" onclick="speak('verde')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#ffd60a"></span><span class="w">amarillo</span><button class="speak-btn" onclick="speak('amarillo')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#ff7f00"></span><span class="w">naranja</span><button class="speak-btn" onclick="speak('naranja')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#9d4edd"></span><span class="w">morado</span><button class="speak-btn" onclick="speak('morado')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#ff69b4"></span><span class="w">rosa</span><button class="speak-btn" onclick="speak('rosa')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#8b4513"></span><span class="w">marrón</span><button class="speak-btn" onclick="speak('marrón')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#000"></span><span class="w">negro</span><button class="speak-btn" onclick="speak('negro')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#fff"></span><span class="w">blanco</span><button class="speak-btn" onclick="speak('blanco')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:#808080"></span><span class="w">gris</span><button class="speak-btn" onclick="speak('gris')">🔊</button></div>
+    <div class="color-card"><span class="swatch" style="background:linear-gradient(45deg,#ffd60a,#8b4513)"></span><span class="w">dorado</span><button class="speak-btn" onclick="speak('dorado')">🔊</button></div>
+  </div>
+
+  <div class="callout info">
+    <h4>💡 Какие цвета меняются по роду</h4>
+    <ul>
+      <li><strong>Меняются:</strong> rojo/roja, amarillo/amarilla, blanco/blanca, negro/negra, morado/morada, dorado/dorada, marrón/marrón (только мн.ч.)</li>
+      <li><strong>НЕ меняются:</strong> azul, verde, naranja, rosa, gris (одинаковые формы для м/ж)</li>
+    </ul>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">Примеры:</h3>
+  <div class="speak-box"><div class="es">El coche rojo. La casa roja. <button class="speak-btn" onclick="speak('El coche rojo. La casa roja.')">🔊</button></div></div>
+  <div class="speak-box"><div class="es">El cielo azul. La camiseta azul. <button class="speak-btn" onclick="speak('El cielo azul. La camiseta azul.')">🔊</button></div></div>
+  <div class="speak-box"><div class="es">Los zapatos negros. Las botas negras. <button class="speak-btn" onclick="speak('Los zapatos negros. Las botas negras.')">🔊</button></div></div>
+</div>
+
+<!-- SECTION 4: Прилагательные внешности -->
+<div class="section">
+  <div class="section-header"><div class="section-num">4</div><h2>Внешность — описываем человека</h2></div>
+
+  <table class="vocab-table">
+    <thead><tr><th>М.р.</th><th>Ж.р.</th><th>🔊</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td class="es">alto</td><td class="es">alta</td><td><button class="speak-btn" onclick="speak('alto, alta')">🔊</button></td><td>высокий / высокая</td></tr>
+      <tr><td class="es">bajo</td><td class="es">baja</td><td><button class="speak-btn" onclick="speak('bajo, baja')">🔊</button></td><td>низкий / низкая</td></tr>
+      <tr><td class="es">delgado</td><td class="es">delgada</td><td><button class="speak-btn" onclick="speak('delgado, delgada')">🔊</button></td><td>худой / худая</td></tr>
+      <tr><td class="es">gordo</td><td class="es">gorda</td><td><button class="speak-btn" onclick="speak('gordo, gorda')">🔊</button></td><td>полный / полная</td></tr>
+      <tr><td class="es">guapo</td><td class="es">guapa</td><td><button class="speak-btn" onclick="speak('guapo, guapa')">🔊</button></td><td>красивый / красивая</td></tr>
+      <tr><td class="es">feo</td><td class="es">fea</td><td><button class="speak-btn" onclick="speak('feo, fea')">🔊</button></td><td>некрасивый / некрасивая</td></tr>
+      <tr><td class="es">joven</td><td class="es">joven</td><td><button class="speak-btn" onclick="speak('joven')">🔊</button></td><td>молодой / молодая</td></tr>
+      <tr><td class="es">viejo</td><td class="es">vieja</td><td><button class="speak-btn" onclick="speak('viejo, vieja')">🔊</button></td><td>старый / старая (для людей лучше «mayor»)</td></tr>
+      <tr><td class="es">moreno</td><td class="es">morena</td><td><button class="speak-btn" onclick="speak('moreno, morena')">🔊</button></td><td>брюнет / смуглый</td></tr>
+      <tr><td class="es">rubio</td><td class="es">rubia</td><td><button class="speak-btn" onclick="speak('rubio, rubia')">🔊</button></td><td>блондин / блондинка</td></tr>
+      <tr><td class="es">pelirrojo</td><td class="es">pelirroja</td><td><button class="speak-btn" onclick="speak('pelirrojo, pelirroja')">🔊</button></td><td>рыжий / рыжая</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">Описание через tener (иметь)</h3>
+  <p style="margin-bottom:10px">Для волос, глаз — используем «tener»: «он имеет голубые глаза».</p>
+  <div class="speak-box"><div class="es">Tiene los ojos azules. <button class="speak-btn" onclick="speak('Tiene los ojos azules.')">🔊</button></div><div class="hint">[У него голубые глаза.]</div></div>
+  <div class="speak-box"><div class="es">Tiene el pelo largo y moreno. <button class="speak-btn" onclick="speak('Tiene el pelo largo y moreno.')">🔊</button></div><div class="hint">[У неё длинные тёмные волосы.]</div></div>
+  <div class="speak-box"><div class="es">Tengo barba. <button class="speak-btn" onclick="speak('Tengo barba.')">🔊</button></div><div class="hint">[У меня борода.]</div></div>
+</div>
+
+<!-- SECTION 5: Прилагательные характера -->
+<div class="section">
+  <div class="section-header"><div class="section-num">5</div><h2>Характер — какой человек</h2></div>
+
+  <table class="vocab-table">
+    <thead><tr><th>М.р. / Ж.р.</th><th>🔊</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td class="es">inteligente</td><td><button class="speak-btn" onclick="speak('inteligente')">🔊</button></td><td>умный (не меняется)</td></tr>
+      <tr><td class="es">simpático/a</td><td><button class="speak-btn" onclick="speak('simpático, simpática')">🔊</button></td><td>милый / симпатичный</td></tr>
+      <tr><td class="es">amable</td><td><button class="speak-btn" onclick="speak('amable')">🔊</button></td><td>добрый, любезный</td></tr>
+      <tr><td class="es">divertido/a</td><td><button class="speak-btn" onclick="speak('divertido, divertida')">🔊</button></td><td>весёлый</td></tr>
+      <tr><td class="es">serio/a</td><td><button class="speak-btn" onclick="speak('serio, seria')">🔊</button></td><td>серьёзный</td></tr>
+      <tr><td class="es">tímido/a</td><td><button class="speak-btn" onclick="speak('tímido, tímida')">🔊</button></td><td>застенчивый</td></tr>
+      <tr><td class="es">paciente</td><td><button class="speak-btn" onclick="speak('paciente')">🔊</button></td><td>терпеливый</td></tr>
+      <tr><td class="es">honesto/a</td><td><button class="speak-btn" onclick="speak('honesto, honesta')">🔊</button></td><td>честный</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Описание характера = ser, состояние = estar</h4>
+    <p>«Es alegre» — он весёлый (по характеру). «Está alegre» — он сейчас радостный (настроение).<br>«Es serio» — он серьёзный человек. «Está serio» — он сейчас серьёзный (с лица).</p>
+  </div>
+</div>
+
+<!-- SECTION 6: Типичные ошибки -->
+<div class="section">
+  <div class="section-header"><div class="section-num">6</div><h2>Типичные ошибки русскоговорящих</h2></div>
+
+  <table class="mistakes-table">
+    <thead><tr><th>Хочешь сказать</th><th>❌ Ошибка</th><th>✅ Правильно</th><th>Почему</th></tr></thead>
+    <tbody>
+      <tr><td>«Красная машина»</td><td><span class="wrong">Roja coche</span></td><td><span class="right">El coche rojo</span></td><td>Прилагательное ПОСЛЕ существительного. «coche» — м.р.</td></tr>
+      <tr><td>«Большие дома»</td><td><span class="wrong">Las casas grande</span></td><td><span class="right">Las casas grandes</span></td><td>Прил. согласуется по числу: +s</td></tr>
+      <tr><td>«Высокая женщина»</td><td><span class="wrong">La mujer alto</span></td><td><span class="right">La mujer alta</span></td><td>mujer — ж.р., прил. на -a</td></tr>
+      <tr><td>«Я красивая» (девушка)</td><td><span class="wrong">Soy guapo</span></td><td><span class="right">Soy guapa</span></td><td>Согласуется с говорящим</td></tr>
+      <tr><td>«Молодые люди»</td><td><span class="wrong">Los jovenes</span></td><td><span class="right">Los jóvenes</span></td><td>В мн.ч. появляется ударение для сохранения произношения</td></tr>
+      <tr><td>«Голубые глаза»</td><td><span class="wrong">Los azules ojos</span></td><td><span class="right">Los ojos azules</span></td><td>Прил. ПОСЛЕ + согласование (oje — м.р., azul без -s в ед.ч.)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 7: Тест 1 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">7</div><h2>Тест 1 — Прилагательные</h2></div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Согласование</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Высокая девушка» = la chica ___.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">alta</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">alto</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">altos</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Красные машины» = los coches ___.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">rojas</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">rojos</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">rojo</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Зелёная дверь» = la puerta ___.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">verda</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">verde</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">verdo</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Большие города» = las ciudades ___.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">grande</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">grandes</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">grandos</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Молодой человек» (м.р.) = un chico ___.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">jóven</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">joven</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">jovena</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «У неё голубые глаза» = Ella tiene los ojos ___.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">azulas</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">azules</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">azul</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: Тест 2 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">8</div><h2>Тест 2 — Согласуй прилагательное</h2></div>
+
+  <div class="quiz">
+    <h3>✏️ Дополни форму</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. Las flores ___ (rojo, мн.ч., ж.р.).</div>
+      <input type="text" class="text-input" placeholder="rojas / rojos" id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','rojas','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ rojas. Flores — ж.р., мн.ч.</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. El libro ___ (большой).</div>
+      <input type="text" class="text-input" placeholder="..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','grande','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ grande. На -e не меняется по роду.</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. Mi mujer es ___ (высокая, ж.р.).</div>
+      <input type="text" class="text-input" placeholder="..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','alta','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ alta. mujer — ж.р., -o → -a.</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. Tengo el pelo ___ (тёмный).</div>
+      <input type="text" class="text-input" placeholder="..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','moreno','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ moreno. pelo — м.р.</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. Las niñas son ___ (умные).</div>
+      <input type="text" class="text-input" placeholder="..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','inteligentes','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ inteligentes. На -e не меняется по роду, +s во мн.ч.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 9: Диалоги -->
+<div class="section">
+  <div class="section-header"><div class="section-num">9</div><h2>Диалоги — слушай и повторяй</h2></div>
+
+  <div class="dialogue">
+    <div class="dlg-header">💬 Диалог 1: Покупаем рубашку
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog1()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+      <div class="dlg-es">¿Le ayudo? <button class="speak-btn" onclick="speak('¿Le ayudo?')">🔊</button></div>
+      <div class="dlg-ru translation">— Помочь Вам?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+      <div class="dlg-es">Sí, busco una camisa azul. <button class="speak-btn" onclick="speak('Sí, busco una camisa azul.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, ищу синюю рубашку.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+      <div class="dlg-es">¿De qué talla? ¿Grande, mediana o pequeña? <button class="speak-btn" onclick="speak('¿De qué talla? ¿Grande, mediana o pequeña?')">🔊</button></div>
+      <div class="dlg-ru translation">— Какой размер? L, M или S?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+      <div class="dlg-es">Mediana, por favor. <button class="speak-btn" onclick="speak('Mediana, por favor.')">🔊</button></div>
+      <div class="dlg-ru translation">— Средний, пожалуйста.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+      <div class="dlg-es">Tenemos esta azul clara y esta azul oscura. ¿Cuál prefiere? <button class="speak-btn" onclick="speak('Tenemos esta azul clara y esta azul oscura. ¿Cuál prefiere?')">🔊</button></div>
+      <div class="dlg-ru translation">— Есть светло-синяя и тёмно-синяя. Какую предпочитаете?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+      <div class="dlg-es">La azul oscura me gusta más. <button class="speak-btn" onclick="speak('La azul oscura me gusta más.')">🔊</button></div>
+      <div class="dlg-ru translation">— Тёмно-синяя нравится больше.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">П</div><div>
+      <div class="dlg-es">Perfecto. Son veinticinco euros. <button class="speak-btn" onclick="speak('Perfecto. Son veinticinco euros.')">🔊</button></div>
+      <div class="dlg-ru translation">— Отлично. С Вас 25 евро.</div>
+    </div></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">💬 Диалог 2: Описываем общего знакомого
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog2()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">¿Conoces a Pedro? <button class="speak-btn" onclick="speak('¿Conoces a Pedro?')">🔊</button></div>
+      <div class="dlg-ru translation">— Знаешь Педро?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">No, no lo conozco. ¿Cómo es? <button class="speak-btn" onclick="speak('No, no lo conozco. ¿Cómo es?')">🔊</button></div>
+      <div class="dlg-ru translation">— Нет, не знаю. Какой он?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Es alto y delgado. Tiene el pelo moreno y los ojos verdes. <button class="speak-btn" onclick="speak('Es alto y delgado. Tiene el pelo moreno y los ojos verdes.')">🔊</button></div>
+      <div class="dlg-ru translation">— Высокий и худой. Тёмные волосы, зелёные глаза.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">¿Y de carácter? <button class="speak-btn" onclick="speak('¿Y de carácter?')">🔊</button></div>
+      <div class="dlg-ru translation">— А по характеру?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Es muy simpático y divertido. También es inteligente. <button class="speak-btn" onclick="speak('Es muy simpático y divertido. También es inteligente.')">🔊</button></div>
+      <div class="dlg-ru translation">— Очень милый и весёлый. И умный.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">¿Cuántos años tiene? <button class="speak-btn" onclick="speak('¿Cuántos años tiene?')">🔊</button></div>
+      <div class="dlg-ru translation">— Сколько ему лет?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Treinta y cinco, más o menos. <button class="speak-btn" onclick="speak('Treinta y cinco, más o menos.')">🔊</button></div>
+      <div class="dlg-ru translation">— 35, примерно.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Suena bien. ¿Me lo presentas? <button class="speak-btn" onclick="speak('Suena bien. ¿Me lo presentas?')">🔊</button></div>
+      <div class="dlg-ru translation">— Звучит хорошо. Познакомишь?</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- SECTION 10: Говорение -->
+<div class="section">
+  <div class="section-header"><div class="section-num">10</div><h2>Говорение — твоя очередь</h2></div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — опиши себя</div>
+    <p>5 предложений о своей внешности и характере:</p>
+    <div class="es" style="line-height:1.9">Soy alto y delgado. Tengo el pelo moreno y los ojos marrones. Tengo barba. Soy simpático y paciente. <button class="speak-btn" onclick="speak('Soy alto y delgado. Tengo el pelo moreno y los ojos marrones. Tengo barba. Soy simpático y paciente.')">🔊</button></div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — опиши члена семьи</div>
+    <p>Расскажи про жену или ребёнка (5 предложений):</p>
+    <div class="es" style="line-height:1.9">Mi mujer es rubia y guapa. Es bastante alta. Tiene los ojos azules. Es muy inteligente y honesta. Mis hijas son pequeñas y divertidas. <button class="speak-btn" onclick="speak('Mi mujer es rubia y guapa. Es bastante alta. Tiene los ojos azules. Es muy inteligente y honesta. Mis hijas son pequeñas y divertidas.')">🔊</button></div>
+  </div>
+</div>
+
+<!-- SECTION 11: Испания на практике -->
+<div class="section">
+  <div class="section-header"><div class="section-num">11</div><h2>🇪🇸 Испания на практике — Заявление в полиции</h2></div>
+
+  <div class="spain-card">
+    <div class="stag">👮 Реальный сценарий</div>
+    <h3>Потерял документы или украли — описать происшествие</h3>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:6px">Не дай бог, но статистика: туристы в Барселоне теряют/у них крадут документы каждый день. Полицейский запрос: описать вора и/или пропавшую вещь. Без прилагательных не получится.</p>
+
+    <div class="phrase-list">
+      <div class="phrase">
+        <span class="es">Me han robado.</span>
+        <button class="speak-btn" onclick="speak('Me han robado.')">🔊</button>
+        <span class="tr">Меня обокрали.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">He perdido mi pasaporte.</span>
+        <button class="speak-btn" onclick="speak('He perdido mi pasaporte.')">🔊</button>
+        <span class="tr">Я потерял паспорт.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Es una cartera negra de cuero.</span>
+        <button class="speak-btn" onclick="speak('Es una cartera negra de cuero.')">🔊</button>
+        <span class="tr">Это чёрный кожаный кошелёк.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">El ladrón era alto, joven, moreno.</span>
+        <button class="speak-btn" onclick="speak('El ladrón era alto, joven, moreno.')">🔊</button>
+        <span class="tr">Вор был высокий, молодой, тёмный.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Llevaba una camiseta roja.</span>
+        <button class="speak-btn" onclick="speak('Llevaba una camiseta roja.')">🔊</button>
+        <span class="tr">Был в красной футболке. (llevar = носить)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Quiero poner una denuncia.</span>
+        <button class="speak-btn" onclick="speak('Quiero poner una denuncia.')">🔊</button>
+        <span class="tr">Хочу подать заявление.</span>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">👮 Мини-диалог: comisaría на Las Ramblas
+        <button class="speak-btn-big" onclick="playPolicia()">▶ Воспроизвести</button>
+      </div>
+      <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+        <div class="dlg-es">Buenos días. ¿Qué le pasó? <button class="speak-btn" onclick="speak('Buenos días. ¿Qué le pasó?')">🔊</button></div>
+        <div class="dlg-ru">— Добрый день. Что случилось?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Me robaron la cartera en el metro. <button class="speak-btn" onclick="speak('Me robaron la cartera en el metro.')">🔊</button></div>
+        <div class="dlg-ru">— У меня украли кошелёк в метро.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+        <div class="dlg-es">¿Cómo era la cartera? <button class="speak-btn" onclick="speak('¿Cómo era la cartera?')">🔊</button></div>
+        <div class="dlg-ru">— Какой был кошелёк?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Era negra, de cuero, pequeña. Tenía mi NIE y dos tarjetas. <button class="speak-btn" onclick="speak('Era negra, de cuero, pequeña. Tenía mi NIE y dos tarjetas.')">🔊</button></div>
+        <div class="dlg-ru">— Чёрный, кожаный, маленький. Внутри NIE и 2 карты.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+        <div class="dlg-es">¿Vio al ladrón? <button class="speak-btn" onclick="speak('¿Vio al ladrón?')">🔊</button></div>
+        <div class="dlg-ru">— Вы видели вора?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Sí, era un chico joven, alto, moreno. Llevaba una sudadera gris. <button class="speak-btn" onclick="speak('Sí, era un chico joven, alto, moreno. Llevaba una sudadera gris.')">🔊</button></div>
+        <div class="dlg-ru">— Да, молодой парень, высокий, тёмный. В сером худи.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+        <div class="dlg-es">Vale, voy a registrar la denuncia. Su DNI o pasaporte, por favor. <button class="speak-btn" onclick="speak('Vale, voy a registrar la denuncia. Su DNI o pasaporte, por favor.')">🔊</button></div>
+        <div class="dlg-ru">— Хорошо, зарегистрирую заявление. Ваше удостоверение или паспорт.</div>
+      </div></div>
+    </div>
+
+    <div class="callout info" style="margin-top:14px">
+      <h4>💡 Если тебя обокрали в Барселоне</h4>
+      <ul>
+        <li><strong>Comisaría на Las Ramblas, 43</strong> — туристическая полиция, говорят на нескольких языках.</li>
+        <li>Заявление = <strong>denuncia</strong>. Без него страховка не выплатит.</li>
+        <li>Заблокировать карту — звонок в банк (на карте бесплатный номер +34).</li>
+        <li>Потерял паспорт — в Российское консульство Барселоны (Av. Pearson 34): заявление + фото + 50€ за новый.</li>
+        <li>Потерял NIE — заявление в полицию + поход в Oficina de Extranjería за дубликатом.</li>
+        <li>Карманники работают в метро L3, на Las Ramblas, в Готическом квартале. Не носи кошелёк в заднем кармане.</li>
+        <li>Экстренный номер: <strong>112</strong> (полиция + скорая + пожарные).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 12: Культура -->
+<div class="section">
+  <div class="section-header"><div class="section-num">12</div><h2>Культурная заметка</h2></div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культура</div>
+    <h4>«Eres muy guapo» — комплимент или оскорбление?</h4>
+    <p>В испаноязычной культуре <strong>прямые комплименты внешности — это нормально</strong>. Незнакомый официант может сказать «¡Qué guapa estás hoy!» — это не флирт, это вежливость. Аналогично, можно сказать другу «¡Estás muy delgado!» — «Ты похудел!» — это <strong>не критика</strong>, это констатация (часто с подтекстом «выглядишь лучше»).</p>
+    <p style="margin-top:8px">Русским это поначалу странно — у нас комментировать чужое тело = табу. В Испании это норма. Главное помни: «<strong>estás guapo</strong>» (сейчас выглядишь красиво — про текущее состояние) ≠ «<strong>eres guapo</strong>» (ты красивый как человек — про постоянное качество).</p>
+    <p style="margin-top:8px">Также: «morena» в Испании = брюнетка/смуглая, БЕЗ негативного оттенка. «Rubia» = блондинка, тоже нейтрально. В Лат. Америке используют ещё «trigueña» (золотистая) для среднего тона. В Каталонии часто услышишь «moreno» от каталонцев — они сами обычно тёмные.</p>
+  </div>
+</div>
+
+<!-- SECTION 13: Anki + ДЗ -->
+<div class="section">
+  <div class="section-header"><div class="section-num">13</div><h2>Anki + Домашнее задание</h2></div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — 20 карточек урока L10</div>
+    <div class="anki-preview" id="anki-preview-L10"></div>
+    <button class="anki-export-btn" onclick="exportAnkiL10()">📥 Скачать колоду L10 для Anki (.txt)</button>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до L11</h4>
+    <ul>
+      <li>Language Transfer эп. 16</li>
+      <li>15 мин Dreaming Spanish Super Beginner</li>
+      <li>Это расширение урока #11 из курса Polyglot. Открой: <a href="../../lessons/lesson_11.html" target="_blank" style="color:var(--gold)">📚 Polyglot #11</a></li>
+      <li>Импортируй колоду L10 в Anki</li>
+      <li>Возьми 10 предметов в доме и опиши каждый: цвет, размер, материал (4 признака)</li>
+      <li>Опиши вслух 3-х знакомых: внешность + характер (по 5 признаков)</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Ты закончил L10!</h4>
+    <p>Описывать людей и вещи — это базовый навык. Теперь ты сможешь рассказать о ком угодно. В L11 — семья: мама, папа, брат, дочка, муж, родственники. И притяжательные «мой/твой/его».</p>
+  </div>
+</div>
+
+</div>
+
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L09.html" class="nav-link-btn">← L09</a>
+    <a href="L11.html" class="nav-link-btn">L11 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID='L10';const LS_KEY='esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+function speak(text,lang){
+  if(!('speechSynthesis' in window)){alert('Браузер не поддерживает озвучку.');return;}
+  const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;u.pitch=1;
+  window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+}
+function speakSequence(phrases,delay){
+  delay=delay||2400;window.speechSynthesis.cancel();
+  phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});
+}
+
+function playDialog1(){
+  speakSequence([
+    '¿Le ayudo?',
+    'Sí, busco una camisa azul.',
+    '¿De qué talla? ¿Grande, mediana o pequeña?',
+    'Mediana, por favor.',
+    'Tenemos esta azul clara y esta azul oscura. ¿Cuál prefiere?',
+    'La azul oscura me gusta más.',
+    'Perfecto. Son veinticinco euros.'
+  ],2600);
+}
+function playDialog2(){
+  speakSequence([
+    '¿Conoces a Pedro?',
+    'No, no lo conozco. ¿Cómo es?',
+    'Es alto y delgado. Tiene el pelo moreno y los ojos verdes.',
+    '¿Y de carácter?',
+    'Es muy simpático y divertido. También es inteligente.',
+    '¿Cuántos años tiene?',
+    'Treinta y cinco, más o menos.',
+    'Suena bien. ¿Me lo presentas?'
+  ],2600);
+}
+function playPolicia(){
+  speakSequence([
+    'Buenos días. ¿Qué le pasó?',
+    'Me robaron la cartera en el metro.',
+    '¿Cómo era la cartera?',
+    'Era negra, de cuero, pequeña. Tenía mi NIE y dos tarjetas.',
+    '¿Vio al ladrón?',
+    'Sí, era un chico joven, alto, moreno. Llevaba una sudadera gris.',
+    'Vale, voy a registrar la denuncia. Su DNI o pasaporte, por favor.'
+  ],2700);
+}
+
+const quizExpl={
+  r1:'El miércoles. Артикль «el» перед днём.',
+  r2:'de. «15 de mayo» — предлог обязателен.',
+  r3:'En verano. С сезонами без артикля.',
+  r4:'Los domingos — регулярно, мн.ч.',
+  q1:'la chica alta. chica — ж.р., alta.',
+  q2:'los coches rojos. coches — м.р. (на -e чаще м.р.), мн.ч.',
+  q3:'la puerta verde. verde не меняется по роду.',
+  q4:'las ciudades grandes. grande во мн.ч. → grandes.',
+  q5:'joven. На согласную — без -o/-a.',
+  q6:'los ojos azules. azul в мн.ч. → azules.'
+};
+
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  if(container.dataset.answered==='true')return;
+  container.dataset.answered='true';
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(function(o){
+    const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+    o.onclick=null;o.style.cursor='default';
+  });
+  const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);
+  const userKey=um&&um[1];
+  if(userKey!==correctKey)el.classList.add('wrong');
+  const fb=document.getElementById('fb-'+qId);
+  fb.className='feedback show '+(userKey===correctKey?'ok':'no');
+  fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ Не совсем. Подсказка: '+answer.substring(0,3)+'...';}
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+let showingTrans=false;
+function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
+
+const totalSections=14;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=sectionsRead+' / '+totalSections+' разделов';
+}
+window.addEventListener('scroll',updateProgress);
+
+const ANKI_DECK_L10=[
+  {front:"rojo / roja",back:"Красный / красная\n\nПример: El coche rojo. La casa roja.\nЗаметка: меняется по роду"},
+  {front:"azul",back:"Синий / голубой\n\nПример: Los ojos azules — голубые глаза.\nЗаметка: НЕ меняется по роду, +es во мн.ч."},
+  {front:"verde",back:"Зелёный\n\nПример: La hierba verde — зелёная трава.\nЗаметка: -e окончание, не меняется по роду"},
+  {front:"amarillo / amarilla",back:"Жёлтый\n\nПример: El sol amarillo.\nЗаметка: меняется"},
+  {front:"negro / negra",back:"Чёрный\n\nПример: Los zapatos negros — чёрные туфли.\nЗаметка: меняется по роду и числу"},
+  {front:"blanco / blanca",back:"Белый\n\nПример: La nieve blanca — белый снег.\nЗаметка: меняется"},
+  {front:"gris",back:"Серый\n\nПример: El cielo gris.\nЗаметка: не меняется по роду, +es во мн.ч."},
+  {front:"alto / alta",back:"Высокий / высокая\n\nПример: Mi mujer es alta. — Моя жена высокая.\nЗаметка: согласуется по роду"},
+  {front:"bajo / baja",back:"Низкий / низкая\n\nПример: Mi hija es baja para su edad.\nЗаметка: согласуется"},
+  {front:"delgado / delgada",back:"Худой / худая\n\nПример: Está delgado últimamente.\nЗаметка: «está» если временное"},
+  {front:"guapo / guapa",back:"Красивый / красивая\n\nПример: ¡Estás muy guapa hoy!\nЗаметка: estar (сейчас) или ser (всегда)"},
+  {front:"joven",back:"Молодой / молодая\n\nПример: Es muy joven, tiene 22 años.\nЗаметка: не меняется по роду, мн.ч. — jóvenes (с акцентом!)"},
+  {front:"moreno / morena",back:"Тёмный (волосы) / смуглый\n\nПример: Tiene el pelo moreno.\nЗаметка: в Барселоне нейтральное, не оскорбительное"},
+  {front:"rubio / rubia",back:"Блондин / блондинка\n\nПример: Es rubia y de ojos azules.\nЗаметка: нейтральное"},
+  {front:"inteligente",back:"Умный\n\nПример: Mis hijas son inteligentes.\nЗаметка: -e окончание, не меняется"},
+  {front:"simpático / simpática",back:"Милый / симпатичный (характер)\n\nПример: Es muy simpática.\nЗаметка: ser для характера, не путать с simpathic (англ.)"},
+  {front:"amable",back:"Добрый, любезный\n\nПример: El camarero es muy amable.\nЗаметка: для людей с хорошими манерами"},
+  {front:"Tiene el pelo + цвет",back:"У него/неё волосы (какие)\n\nПример: Tiene el pelo moreno.\nЗаметка: el pelo — м.р., прил. согласуется"},
+  {front:"Tiene los ojos + цвет",back:"У него/неё глаза (какие)\n\nПример: Tiene los ojos azules.\nЗаметка: los ojos — м.р., мн.ч."},
+  {front:"¿Cómo es?",back:"Какой он/она? (характеристика, ser)\n\nПример: ¿Cómo es tu marido? — Es alto y guapo.\nЗаметка: ¿Cómo está? — это «как он себя чувствует?», estar"}
+];
+
+function renderAnkiPreview(){
+  const container=document.getElementById('anki-preview-L10');
+  if(!container)return;
+  const preview=ANKI_DECK_L10.slice(0,5);
+  container.innerHTML=preview.map(function(c){
+    return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')">'+
+      '<div class="anki-card-inner">'+
+      '<div class="anki-card-front">'+c.front+'</div>'+
+      '<div class="anki-card-back">'+c.back.replace(/\n/g,'<br>')+'</div>'+
+      '</div></div>';
+  }).join('');
+}
+renderAnkiPreview();
+
+function exportAnkiL10(){
+  const tsv=ANKI_DECK_L10.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');
+  const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='L10_spanish_anki.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>

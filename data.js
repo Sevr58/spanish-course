@@ -178,7 +178,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:5,
       speaking_focus:"Назначить встречу, рассказать о планах на неделю",
-      file:"lessons/L09.html", status:"pending"
+      file:"lessons/L09.html", status:"improved"
     },
     {
       id:"L10", num:10, phase:1, block:"B1A", level:"A1", day:19, week:3,
@@ -190,7 +190,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:11,
       speaking_focus:"Описать внешность человека и характер",
-      file:"lessons/L10.html", status:"pending"
+      file:"lessons/L10.html", status:"improved"
     },
 
     // ─── Block 1B: Essential Vocabulary ─────────────────────────
