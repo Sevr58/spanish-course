@@ -142,7 +142,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:2,
       speaking_focus:"Расспросить собеседника о его жизни: ¿Qué haces? ¿Dónde vives?",
-      file:"lessons/L06.html", status:"pending"
+      file:"lessons/L06.html", status:"improved"
     },
     {
       id:"L07", num:7, phase:1, block:"B1A", level:"A1", day:13, week:2,
@@ -154,7 +154,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Описать себя, своё состояние, своё местонахождение",
-      file:"lessons/L07.html", status:"pending"
+      file:"lessons/L07.html", status:"improved"
     },
     {
       id:"L08", num:8, phase:1, block:"B1A", level:"A1", day:15, week:3,
@@ -166,7 +166,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Задать 10 вопросов и ответить на них",
-      file:"lessons/L08.html", status:"pending"
+      file:"lessons/L08.html", status:"improved"
     },
     {
       id:"L09", num:9, phase:1, block:"B1A", level:"A1", day:17, week:3,

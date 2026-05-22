@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L07: Ser vs Estar — сердце испанского</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;transition:.2s;padding:0 4px;color:var(--gold)}
+.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.speak-btn-big:hover{opacity:.88}
+.ser-estar-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.se-card{background:var(--bg2);border-radius:8px;padding:16px 18px}
+.se-card.ser{border:1px solid var(--blue)}
+.se-card.estar{border:1px solid var(--gold)}
+.se-card .label{font-size:.78rem;font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.se-card.ser .label{color:var(--blue)}
+.se-card.estar .label{color:var(--gold)}
+.se-card h3{font-size:1.3rem;font-weight:800;font-family:Consolas,monospace;margin-bottom:8px}
+.se-card ul{margin-left:16px;font-size:.85rem;color:var(--muted)}
+.se-card li{margin-bottom:3px}
+.conjugation-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.9rem}
+.conjugation-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);font-weight:700}
+.conjugation-table td{padding:10px 12px;border-top:1px solid var(--border)}
+.conjugation-table .pron{color:var(--gold);font-weight:600;width:130px}
+.conjugation-table .form{font-weight:700;font-family:Consolas,monospace;font-size:1.05rem;color:var(--green)}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.vocab-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.vocab-table .es{font-weight:600;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-style:italic;font-size:.82rem}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);font-weight:700}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:top}
+.mistakes-table .wrong{color:var(--red);font-weight:600;text-decoration:line-through;opacity:.7}
+.mistakes-table .right{color:var(--green);font-weight:600}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}.culture p{font-size:.86rem;color:var(--muted)}
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--gold)}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem;color:var(--text)}
+.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);line-height:1.5;background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+.anki-export-btn:hover{opacity:.85}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}.ser-estar-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A1 · Фаза 1 · День 13</span>
+  <a href="L08.html">L08 →</a>
+</div>
+
+<div class="hero">
+  <div class="phase-tag">🌱 Фаза 1 · Основы · Первый контакт</div>
+  <h1><span class="hl">Ser vs. Estar</span> — сердце испанского</h1>
+  <p class="sub">Два глагола «быть». Один — постоянное, второй — временное. Понимаешь разницу — говоришь правильно. Не понимаешь — звучишь как турист.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Уверенно выбирать ser или estar в любой ситуации</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут + 15 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>Language Transfer эп. 12–13</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Описываем себя постоянно и временно</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- SECTION 1: Повторение L06 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">1</div><h2>Повторение L06 — глаголы -ER / -IR</h2></div>
+
+  <div class="quiz" id="quiz-review">
+    <h3>🔄 Тест по предыдущему уроку</h3>
+
+    <div class="quiz-q" id="r1">
+      <div class="q-text">1. «Мы живём в Барселоне» = ___ en Barcelona.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r1','a')">Vivimos</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','b')">Vivemos</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','c')">Vivamos</div>
+      </div>
+      <div class="feedback" id="fb-r1"></div>
+    </div>
+
+    <div class="quiz-q" id="r2">
+      <div class="q-text">2. «Они пишут email» — escribir для «они»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r2','b')">escribimos</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','a')">escriben</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','c')">escribe</div>
+      </div>
+      <div class="feedback" id="fb-r2"></div>
+    </div>
+
+    <div class="quiz-q" id="r3">
+      <div class="q-text">3. «Что ты ешь?» = ___ comes?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r3','c')">¿Dónde</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','a')">¿Qué</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','b')">¿Cómo</div>
+      </div>
+      <div class="feedback" id="fb-r3"></div>
+    </div>
+
+    <div class="quiz-q" id="r4">
+      <div class="q-text">4. В Испании обедают примерно в:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r4','b')">12:00</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','a')">14:00–16:00</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','c')">18:00</div>
+      </div>
+      <div class="feedback" id="fb-r4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: Зачем 2 глагола «быть» -->
+<div class="section">
+  <div class="section-header"><div class="section-num">2</div><h2>Зачем испанскому 2 глагола «быть»</h2></div>
+
+  <p style="margin-bottom:14px">В русском один глагол: «быть» (он сейчас опускается: «Я учитель», «Я уставший»). В английском один: «to be» (I am tired, I am Russian). А в испанском — <strong>два разных глагола</strong> для «быть»: <span style="color:var(--blue);font-weight:700">ser</span> и <span style="color:var(--gold);font-weight:700">estar</span>.</p>
+
+  <div class="ser-estar-grid">
+    <div class="se-card ser">
+      <div class="label">SER</div>
+      <h3>Постоянное</h3>
+      <ul>
+        <li>Имя, профессия</li>
+        <li>Национальность, происхождение</li>
+        <li>Внешность, характер</li>
+        <li>Время и дата</li>
+        <li>Описание вещей (большой, красный)</li>
+      </ul>
+    </div>
+    <div class="se-card estar">
+      <div class="label">ESTAR</div>
+      <h3>Временное</h3>
+      <ul>
+        <li>Местоположение</li>
+        <li>Настроение, состояние</li>
+        <li>Здоровье, болезнь</li>
+        <li>Текущее действие</li>
+        <li>Результат (открыт/закрыт)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Простой тест-вопрос</h4>
+    <p>«Если бы я не родился этим, я бы этим и не был» → <strong>ser</strong> (я русский, мужчина, высокий)<br>«Это может измениться через час/день/неделю» → <strong>estar</strong> (я устал, я в кафе, кофе горячий)</p>
+  </div>
+</div>
+
+<!-- SECTION 3: Спряжение SER -->
+<div class="section">
+  <div class="section-header"><div class="section-num">3</div><h2>Спряжение SER</h2></div>
+
+  <p style="margin-bottom:14px">SER — неправильный глагол. Запомни каждую форму отдельно. К счастью, ты уже знаешь «soy» и «eres» из L02.</p>
+
+  <table class="conjugation-table">
+    <thead><tr><th>Местоимение</th><th>Форма</th><th>🔊</th><th>Пример</th></tr></thead>
+    <tbody>
+      <tr><td class="pron">yo</td><td class="form">soy</td><td><button class="speak-btn" onclick="speak('soy')">🔊</button></td><td>Soy ruso.</td></tr>
+      <tr><td class="pron">tú</td><td class="form">eres</td><td><button class="speak-btn" onclick="speak('eres')">🔊</button></td><td>Eres alto.</td></tr>
+      <tr><td class="pron">él/ella/usted</td><td class="form">es</td><td><button class="speak-btn" onclick="speak('es')">🔊</button></td><td>Es médico.</td></tr>
+      <tr><td class="pron">nosotros</td><td class="form">somos</td><td><button class="speak-btn" onclick="speak('somos')">🔊</button></td><td>Somos rusos.</td></tr>
+      <tr><td class="pron">vosotros</td><td class="form">sois</td><td><button class="speak-btn" onclick="speak('sois')">🔊</button></td><td>Sois jóvenes.</td></tr>
+      <tr><td class="pron">ellos/ellas/uds.</td><td class="form">son</td><td><button class="speak-btn" onclick="speak('son')">🔊</button></td><td>Son las dos.</td></tr>
+    </tbody>
+  </table>
+
+  <button class="speak-btn-big" onclick="speak('soy, eres, es, somos, sois, son')">▶ Послушай спряжение</button>
+</div>
+
+<!-- SECTION 4: Спряжение ESTAR -->
+<div class="section">
+  <div class="section-header"><div class="section-num">4</div><h2>Спряжение ESTAR</h2></div>
+
+  <p style="margin-bottom:14px">ESTAR — тоже неправильный, но проще: все формы кроме «yo» имеют ударение на последний слог.</p>
+
+  <table class="conjugation-table">
+    <thead><tr><th>Местоимение</th><th>Форма</th><th>🔊</th><th>Пример</th></tr></thead>
+    <tbody>
+      <tr><td class="pron">yo</td><td class="form">estoy</td><td><button class="speak-btn" onclick="speak('estoy')">🔊</button></td><td>Estoy cansado.</td></tr>
+      <tr><td class="pron">tú</td><td class="form">estás</td><td><button class="speak-btn" onclick="speak('estás')">🔊</button></td><td>¿Estás bien?</td></tr>
+      <tr><td class="pron">él/ella/usted</td><td class="form">está</td><td><button class="speak-btn" onclick="speak('está')">🔊</button></td><td>Está en casa.</td></tr>
+      <tr><td class="pron">nosotros</td><td class="form">estamos</td><td><button class="speak-btn" onclick="speak('estamos')">🔊</button></td><td>Estamos en Barcelona.</td></tr>
+      <tr><td class="pron">vosotros</td><td class="form">estáis</td><td><button class="speak-btn" onclick="speak('estáis')">🔊</button></td><td>¿Estáis contentos?</td></tr>
+      <tr><td class="pron">ellos/ellas/uds.</td><td class="form">están</td><td><button class="speak-btn" onclick="speak('están')">🔊</button></td><td>Están enfermos.</td></tr>
+    </tbody>
+  </table>
+
+  <button class="speak-btn-big" onclick="speak('estoy, estás, está, estamos, estáis, están')">▶ Послушай спряжение</button>
+</div>
+
+<!-- SECTION 5: Когда SER -->
+<div class="section">
+  <div class="section-header"><div class="section-num">5</div><h2>Когда использовать SER — 6 случаев</h2></div>
+
+  <h3 style="font-size:1rem;margin-bottom:10px">1. Идентификация: имя, профессия, родство</h3>
+  <div class="speak-box">
+    <div class="es">Soy Evgeni. Soy productor. Es mi hija. <button class="speak-btn" onclick="speak('Soy Evgeni. Soy productor. Es mi hija.')">🔊</button></div>
+    <div class="hint">[Я Евгений. Я продюсер. Это моя дочь.]</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">2. Происхождение и национальность</h3>
+  <div class="speak-box">
+    <div class="es">Soy de Rusia. Soy ruso. Mi mujer es rusa. <button class="speak-btn" onclick="speak('Soy de Rusia. Soy ruso. Mi mujer es rusa.')">🔊</button></div>
+    <div class="hint">[Я из России. Я русский. Моя жена русская.]</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">3. Постоянные качества (внешность, характер)</h3>
+  <div class="speak-box">
+    <div class="es">Es alto y delgado. Es inteligente y amable. <button class="speak-btn" onclick="speak('Es alto y delgado. Es inteligente y amable.')">🔊</button></div>
+    <div class="hint">[Он высокий и худой. Он умный и добрый.]</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">4. Время, дата, день недели</h3>
+  <div class="speak-box">
+    <div class="es">Son las dos. Es lunes. Es el 22 de mayo. <button class="speak-btn" onclick="speak('Son las dos. Es lunes. Es el veintidós de mayo.')">🔊</button></div>
+    <div class="hint">[Сейчас два часа. Сегодня понедельник. 22 мая.]</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">5. Из чего сделано / кому принадлежит</h3>
+  <div class="speak-box">
+    <div class="es">La mesa es de madera. Este libro es de Carlos. <button class="speak-btn" onclick="speak('La mesa es de madera. Este libro es de Carlos.')">🔊</button></div>
+    <div class="hint">[Стол из дерева. Эта книга — Карлоса.]</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">6. Описание характеристик предмета/места</h3>
+  <div class="speak-box">
+    <div class="es">Barcelona es grande y bonita. La casa es nueva. <button class="speak-btn" onclick="speak('Barcelona es grande y bonita. La casa es nueva.')">🔊</button></div>
+    <div class="hint">[Барселона большая и красивая. Дом новый.]</div>
+  </div>
+</div>
+
+<!-- SECTION 6: Когда ESTAR -->
+<div class="section">
+  <div class="section-header"><div class="section-num">6</div><h2>Когда использовать ESTAR — 5 случаев</h2></div>
+
+  <h3 style="font-size:1rem;margin-bottom:10px">1. МЕСТОПОЛОЖЕНИЕ — ВСЕГДА estar</h3>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:8px">Это самое важное правило. ЛЮБОЕ «где находится» = estar, без исключений.</p>
+  <div class="speak-box">
+    <div class="es">Estoy en casa. Barcelona está en España. ¿Dónde está el baño? <button class="speak-btn" onclick="speak('Estoy en casa. Barcelona está en España. ¿Dónde está el baño?')">🔊</button></div>
+    <div class="hint">[Я дома. Барселона в Испании. Где туалет?]</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">2. Состояние и настроение (временное)</h3>
+  <div class="speak-box">
+    <div class="es">Estoy cansado. Estoy feliz. Estoy ocupado. <button class="speak-btn" onclick="speak('Estoy cansado. Estoy feliz. Estoy ocupado.')">🔊</button></div>
+    <div class="hint">[Я устал. Я счастлив. Я занят.] Завтра может быть по-другому.</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">3. Здоровье и болезни</h3>
+  <div class="speak-box">
+    <div class="es">Estoy enfermo. Mi hija está mejor hoy. <button class="speak-btn" onclick="speak('Estoy enfermo. Mi hija está mejor hoy.')">🔊</button></div>
+    <div class="hint">[Я болен. Моей дочке сегодня лучше.]</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">4. Результат действия / состояние объекта</h3>
+  <div class="speak-box">
+    <div class="es">La tienda está abierta. El café está caliente. La puerta está cerrada. <button class="speak-btn" onclick="speak('La tienda está abierta. El café está caliente. La puerta está cerrada.')">🔊</button></div>
+    <div class="hint">[Магазин открыт. Кофе горячий. Дверь закрыта.]</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:18px 0 10px">5. Сейчас происходит (Gerundio)</h3>
+  <div class="speak-box">
+    <div class="es">Estoy comiendo. Está lloviendo. Estamos estudiando. <button class="speak-btn" onclick="speak('Estoy comiendo. Está lloviendo. Estamos estudiando.')">🔊</button></div>
+    <div class="hint">[Я сейчас ем. Сейчас идёт дождь. Мы сейчас учимся.] Эта конструкция в L20.</div>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Главное правило</h4>
+    <p>МЕСТОПОЛОЖЕНИЕ — всегда <strong>estar</strong>, даже если оно «постоянное» по логике русского! «Барселона В Испании» = está. «Школа на углу» = está. Это самая частая ошибка русских — пытаются использовать ser, потому что «школа всегда там».</p>
+  </div>
+</div>
+
+<!-- SECTION 7: Прилагательные меняют смысл -->
+<div class="section">
+  <div class="section-header"><div class="section-num">7</div><h2>Одно прилагательное, разный смысл</h2></div>
+
+  <p style="margin-bottom:14px">С некоторыми прилагательными ser/estar меняют смысл целиком. Знай их!</p>
+
+  <table class="vocab-table">
+    <thead><tr><th>Прилагательное</th><th>SER (постоянное)</th><th>ESTAR (временное)</th></tr></thead>
+    <tbody>
+      <tr><td class="es">aburrido</td><td><strong>скучный</strong> (характер): <em>Es aburrido.</em></td><td><strong>скучает</strong>: <em>Está aburrido.</em></td></tr>
+      <tr><td class="es">listo</td><td><strong>умный</strong>: <em>Es listo.</em></td><td><strong>готов</strong>: <em>Está listo.</em></td></tr>
+      <tr><td class="es">malo</td><td><strong>плохой/злой</strong>: <em>Es malo.</em></td><td><strong>болеет</strong>: <em>Está malo.</em></td></tr>
+      <tr><td class="es">rico</td><td><strong>богатый</strong>: <em>Es rico.</em></td><td><strong>вкусный</strong>: <em>Está rico.</em></td></tr>
+      <tr><td class="es">verde</td><td><strong>зелёный</strong> (цвет): <em>Es verde.</em></td><td><strong>незрелый</strong>: <em>Está verde.</em></td></tr>
+      <tr><td class="es">vivo</td><td><strong>живой/яркий</strong>: <em>Es vivo.</em></td><td><strong>жив (сейчас)</strong>: <em>Está vivo.</em></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Самый частый пример — «rico»</h4>
+    <p>«¡Está rico!» = «Вкусно!» (про еду). А «Es rico» = «Он богатый» (про человека). Перепутаешь — будет смешно.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: Типичные ошибки -->
+<div class="section">
+  <div class="section-header"><div class="section-num">8</div><h2>Типичные ошибки русскоговорящих</h2></div>
+
+  <table class="mistakes-table">
+    <thead><tr><th>Хочешь сказать</th><th>❌ Ошибка</th><th>✅ Правильно</th><th>Почему</th></tr></thead>
+    <tbody>
+      <tr><td>«Я в Барселоне»</td><td><span class="wrong">Soy en Barcelona</span></td><td><span class="right">Estoy en Barcelona</span></td><td>Местоположение = ВСЕГДА estar</td></tr>
+      <tr><td>«Сегодня я устал»</td><td><span class="wrong">Soy cansado</span></td><td><span class="right">Estoy cansado</span></td><td>Усталость — временное состояние</td></tr>
+      <tr><td>«Я русский»</td><td><span class="wrong">Estoy ruso</span></td><td><span class="right">Soy ruso</span></td><td>Национальность — постоянная</td></tr>
+      <tr><td>«Магазин открыт»</td><td><span class="wrong">La tienda es abierta</span></td><td><span class="right">La tienda está abierta</span></td><td>Результат действия = estar</td></tr>
+      <tr><td>«Сейчас 2 часа»</td><td><span class="wrong">Están las dos</span></td><td><span class="right">Son las dos</span></td><td>Время = ser (мн.ч., son)</td></tr>
+      <tr><td>«Вкусно!»</td><td><span class="wrong">¡Es rico!</span></td><td><span class="right">¡Está rico!</span></td><td>Про еду — состояние блюда = estar</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 9: Тест 1 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">9</div><h2>Тест 1 — Ser или Estar?</h2></div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильную форму</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Я из России» = Yo ___ de Rusia.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">soy</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">estoy</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">tengo</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Барселона в Испании» = Barcelona ___ en España.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">es</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">está</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">tiene</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Я очень устал сегодня» = ___ muy cansado hoy.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Soy</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Estoy</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Tengo</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Сейчас 3 часа» = ___ las tres.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Está</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Son</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Están</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Кофе горячий!» = ¡El café ___ caliente!</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">es</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">está</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">tiene</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Он врач» = ___ médico.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Está</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Es</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Tiene</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 10: Тест 2 -->
+<div class="section">
+  <div class="section-header"><div class="section-num">10</div><h2>Тест 2 — Впиши форму ser или estar</h2></div>
+
+  <div class="quiz">
+    <h3>✏️ Какая форма правильная?</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. Mi familia ___ en Barcelona ahora. (мы там сейчас)</div>
+      <input type="text" class="text-input" placeholder="одно слово" id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','está','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ está. Местоположение = estar. La familia (ед.ч.) → está.</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. La puerta ___ cerrada. (дверь закрыта)</div>
+      <input type="text" class="text-input" placeholder="es / está" id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','está','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ está. Результат действия = estar.</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. Mi hija ___ alta para su edad. (постоянное качество)</div>
+      <input type="text" class="text-input" placeholder="es / está" id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','es','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ es. Постоянная характеристика (рост) = ser.</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. Mis amigos ___ rusos. (национальность)</div>
+      <input type="text" class="text-input" placeholder="одно слово" id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','son','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ son. Национальность = ser. Они (мн.) → son.</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. Hoy ___ lunes. (сегодня понедельник)</div>
+      <input type="text" class="text-input" placeholder="одно слово" id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','es','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ es. День недели = ser.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 11: Диалоги -->
+<div class="section">
+  <div class="section-header"><div class="section-num">11</div><h2>Диалоги — слушай и повторяй</h2></div>
+
+  <div class="dialogue">
+    <div class="dlg-header">💬 Диалог 1: Знакомство — кто ты и как ты
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog1()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">Hola, ¿quién eres? <button class="speak-btn" onclick="speak('Hola, ¿quién eres?')">🔊</button></div>
+      <div class="dlg-ru translation">— Привет, ты кто?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Soy Evgeni. Soy ruso, soy productor de radio. <button class="speak-btn" onclick="speak('Soy Evgeni. Soy ruso, soy productor de radio.')">🔊</button></div>
+      <div class="dlg-ru translation">— Я Евгений. Я русский, я радиопродюсер.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">¡Genial! ¿Estás en Barcelona ahora? <button class="speak-btn" onclick="speak('¡Genial! ¿Estás en Barcelona ahora?')">🔊</button></div>
+      <div class="dlg-ru translation">— Здорово! Ты сейчас в Барселоне?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Sí, vivo aquí. Mi mujer y mis hijas también están aquí. <button class="speak-btn" onclick="speak('Sí, vivo aquí. Mi mujer y mis hijas también están aquí.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, живу здесь. Моя жена и дочки тоже здесь.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">¿Cómo estás hoy? Pareces cansado. <button class="speak-btn" onclick="speak('¿Cómo estás hoy? Pareces cansado.')">🔊</button></div>
+      <div class="dlg-ru translation">— Как ты сегодня? Выглядишь усталым.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Estoy un poco cansado pero feliz. Mi trabajo es interesante. <button class="speak-btn" onclick="speak('Estoy un poco cansado pero feliz. Mi trabajo es interesante.')">🔊</button></div>
+      <div class="dlg-ru translation">— Немного устал, но счастлив. Моя работа интересная.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+      <div class="dlg-es">¿Y tu mujer? ¿Cómo es ella? <button class="speak-btn" onclick="speak('¿Y tu mujer? ¿Cómo es ella?')">🔊</button></div>
+      <div class="dlg-ru translation">— А твоя жена? Какая она?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
+      <div class="dlg-es">Es inteligente, paciente y muy guapa. <button class="speak-btn" onclick="speak('Es inteligente, paciente y muy guapa.')">🔊</button></div>
+      <div class="dlg-ru translation">— Она умная, терпеливая и очень красивая.</div>
+    </div></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">💬 Диалог 2: У врача — описываем состояние
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playDialog2()">▶ Воспроизвести</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line"><div class="dlg-speaker">М</div><div>
+      <div class="dlg-es">Buenos días. ¿Cómo se llama y qué le pasa? <button class="speak-btn" onclick="speak('Buenos días. ¿Cómo se llama y qué le pasa?')">🔊</button></div>
+      <div class="dlg-ru translation">— Добрый день. Как Вас зовут и что случилось?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">П</div><div>
+      <div class="dlg-es">Soy Evgeni. Estoy enfermo desde ayer. Estoy muy cansado. <button class="speak-btn" onclick="speak('Soy Evgeni. Estoy enfermo desde ayer. Estoy muy cansado.')">🔊</button></div>
+      <div class="dlg-ru translation">— Я Евгений. Болею со вчера. Очень устал.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">М</div><div>
+      <div class="dlg-es">¿Tiene fiebre? <button class="speak-btn" onclick="speak('¿Tiene fiebre?')">🔊</button></div>
+      <div class="dlg-ru translation">— У Вас температура?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">П</div><div>
+      <div class="dlg-es">Sí, estoy a 38 grados. Estoy resfriado. <button class="speak-btn" onclick="speak('Sí, estoy a treinta y ocho grados. Estoy resfriado.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, у меня 38. Простужен.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">М</div><div>
+      <div class="dlg-es">¿De dónde es usted? Su acento es interesante. <button class="speak-btn" onclick="speak('¿De dónde es usted? Su acento es interesante.')">🔊</button></div>
+      <div class="dlg-ru translation">— Откуда Вы? Интересный акцент.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">П</div><div>
+      <div class="dlg-es">Soy de Rusia, pero ahora estoy aquí, en Barcelona. <button class="speak-btn" onclick="speak('Soy de Rusia, pero ahora estoy aquí, en Barcelona.')">🔊</button></div>
+      <div class="dlg-ru translation">— Я из России, но сейчас здесь, в Барселоне.</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker">М</div><div>
+      <div class="dlg-es">Perfecto. La consulta es de quince euros. ¿Está bien con tarjeta? <button class="speak-btn" onclick="speak('Perfecto. La consulta es de quince euros. ¿Está bien con tarjeta?')">🔊</button></div>
+      <div class="dlg-ru translation">— Хорошо. Приём стоит 15 евро. Картой удобно?</div>
+    </div></div>
+    <div class="dlg-line"><div class="dlg-speaker b">П</div><div>
+      <div class="dlg-es">Sí, está bien. <button class="speak-btn" onclick="speak('Sí, está bien.')">🔊</button></div>
+      <div class="dlg-ru translation">— Да, хорошо.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- SECTION 12: Говорение -->
+<div class="section">
+  <div class="section-header"><div class="section-num">12</div><h2>Говорение — твоя очередь</h2></div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — представь себя через ser</div>
+    <p>Произнеси 5 предложений о себе, используя только SER (постоянное):</p>
+    <div class="es" style="line-height:1.9">Soy Evgeni. Soy ruso. Soy productor de radio. Soy alto y delgado. Mi familia es importante para mí. <button class="speak-btn" onclick="speak('Soy Evgeni. Soy ruso. Soy productor de radio. Soy alto y delgado. Mi familia es importante para mí.')">🔊</button></div>
+    <div class="hint">[Я Евгений. Я русский. Я радиопродюсер. Я высокий и худой. Моя семья важна для меня.]</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — опиши себя сейчас через estar</div>
+    <p>5 предложений о текущем состоянии (используй только ESTAR):</p>
+    <div class="es" style="line-height:1.9">Estoy en Barcelona. Estoy bien hoy. Estoy un poco cansado. Estoy aprendiendo español. Mi café está caliente. <button class="speak-btn" onclick="speak('Estoy en Barcelona. Estoy bien hoy. Estoy un poco cansado. Estoy aprendiendo español. Mi café está caliente.')">🔊</button></div>
+    <div class="hint">[Я в Барселоне. Сегодня я в порядке. Немного устал. Учу испанский. Мой кофе горячий.]</div>
+  </div>
+</div>
+
+<!-- SECTION 13: Испания на практике -->
+<div class="section">
+  <div class="section-header"><div class="section-num">13</div><h2>🇪🇸 Испания на практике — В аптеке</h2></div>
+
+  <div class="spain-card">
+    <div class="stag">💊 Реальный сценарий</div>
+    <h3>Объяснить аптекарю что у тебя болит</h3>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:6px">В Испании аптеки (farmacias) — это первая линия помощи. Аптекари дают советы, выписывают без рецепта много лекарств. Для общения нужны фразы со словом «estar».</p>
+
+    <div class="phrase-list">
+      <div class="phrase">
+        <span class="es">Estoy enfermo / enferma.</span>
+        <button class="speak-btn" onclick="speak('Estoy enfermo.')">🔊</button>
+        <span class="tr">Я болею.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Estoy resfriado.</span>
+        <button class="speak-btn" onclick="speak('Estoy resfriado.')">🔊</button>
+        <span class="tr">У меня простуда.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">Tengo fiebre / dolor.</span>
+        <button class="speak-btn" onclick="speak('Tengo fiebre. Tengo dolor.')">🔊</button>
+        <span class="tr">У меня температура / боль.</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Tiene algo para la tos?</span>
+        <button class="speak-btn" onclick="speak('¿Tiene algo para la tos?')">🔊</button>
+        <span class="tr">Есть что-то от кашля?</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Es con receta?</span>
+        <button class="speak-btn" onclick="speak('¿Es con receta?')">🔊</button>
+        <span class="tr">По рецепту? (Receta = рецепт)</span>
+      </div>
+      <div class="phrase">
+        <span class="es">¿Dónde está la farmacia de guardia?</span>
+        <button class="speak-btn" onclick="speak('¿Dónde está la farmacia de guardia?')">🔊</button>
+        <span class="tr">Где дежурная аптека? (ночью)</span>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">💊 Мини-диалог: купить лекарство от простуды
+        <button class="speak-btn-big" onclick="playFarmacia()">▶ Воспроизвести</button>
+      </div>
+      <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+        <div class="dlg-es">Buenas tardes. ¿Qué le pasa? <button class="speak-btn" onclick="speak('Buenas tardes. ¿Qué le pasa?')">🔊</button></div>
+        <div class="dlg-ru">— Добрый день. Что у Вас?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Estoy resfriado. Tengo dolor de cabeza y fiebre. <button class="speak-btn" onclick="speak('Estoy resfriado. Tengo dolor de cabeza y fiebre.')">🔊</button></div>
+        <div class="dlg-ru">— Простужен. Болит голова и температура.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+        <div class="dlg-es">¿Es alérgico a algo? <button class="speak-btn" onclick="speak('¿Es alérgico a algo?')">🔊</button></div>
+        <div class="dlg-ru">— У Вас на что-то аллергия?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">No, no soy alérgico. <button class="speak-btn" onclick="speak('No, no soy alérgico.')">🔊</button></div>
+        <div class="dlg-ru">— Нет, аллергии нет.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+        <div class="dlg-es">Vale. Le recomiendo paracetamol y este jarabe para la tos. <button class="speak-btn" onclick="speak('Vale. Le recomiendo paracetamol y este jarabe para la tos.')">🔊</button></div>
+        <div class="dlg-ru">— Хорошо. Рекомендую парацетамол и этот сироп от кашля.</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">¿Cuánto es? <button class="speak-btn" onclick="speak('¿Cuánto es?')">🔊</button></div>
+        <div class="dlg-ru">— Сколько с меня?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker">А</div><div>
+        <div class="dlg-es">Son ocho con cincuenta. ¿Está bien? <button class="speak-btn" onclick="speak('Son ocho con cincuenta. ¿Está bien?')">🔊</button></div>
+        <div class="dlg-ru">— 8 с 50. Подходит?</div>
+      </div></div>
+      <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
+        <div class="dlg-es">Sí, está bien. Gracias. <button class="speak-btn" onclick="speak('Sí, está bien. Gracias.')">🔊</button></div>
+        <div class="dlg-ru">— Да, хорошо. Спасибо.</div>
+      </div></div>
+    </div>
+
+    <div class="callout info" style="margin-top:14px">
+      <h4>💡 Аптеки в Барселоне — что нужно знать</h4>
+      <ul>
+        <li>Аптек очень много. Зелёный крест над дверью — это аптека.</li>
+        <li>Часть аптек работает ночью — <strong>farmacia de guardia</strong>. Список вывешен на дверях всех аптек.</li>
+        <li>Многие лекарства продаются <strong>без рецепта</strong>: парацетамол, ибупрофен, антигистамин, сироп от кашля.</li>
+        <li>С серьёзной болезнью аптекарь скажет: «Vaya al médico» («Идите к врачу»). Это значит надо записаться в свой Centro de Salud.</li>
+        <li>Если ты в Испании больше 3 месяцев и оформил empadronamiento + tarjeta sanitaria — приём врача бесплатный.</li>
+        <li>В аптеке часто говорят «¿Qué le pasa?» (что у Вас) — отвечай через estar: «Estoy resfriado», «Tengo fiebre», «Me duele la cabeza».</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 14: Культура + Anki + ДЗ -->
+<div class="section">
+  <div class="section-header"><div class="section-num">14</div><h2>Культура + Anki + Домашнее задание</h2></div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культура</div>
+    <h4>Почему ser/estar — это «философия испанского»</h4>
+    <p>Лингвисты считают, что разделение ser/estar отражает важную часть мировоззрения: <strong>что является сущностью, а что — состоянием</strong>. Если я «soy triste» (грустный человек по характеру), это часть меня. Если я «estoy triste» (грущу сейчас), это пройдёт. Эта разница в русском передаётся контекстом, в испанском — отдельным глаголом.</p>
+    <p style="margin-top:8px">Для иностранцев это самая сложная грамматика испанского. Носители путают её редко, но если перепутаешь — поймут, что иностранец. Хорошая новость: 80% случаев следуют простым правилам, которые мы прошли. Остальные 20% — это опыт и слух, который придёт за полгода-год.</p>
+    <p style="margin-top:8px">Английская «to be» — это сюрприз: один глагол на оба смысла. Когда испанцы учат английский, они часто говорят: «How can you English-people NOT distinguish?» — для них это естественно как для нас разница «писать» / «писать» (с ударением).</p>
+  </div>
+
+  <div class="anki" style="margin-top:16px">
+    <div class="atag">🃏 Anki — 18 карточек урока L07</div>
+    <div class="anki-preview" id="anki-preview-L07"></div>
+    <button class="anki-export-btn" onclick="exportAnkiL07()">📥 Скачать колоду L07 для Anki (.txt)</button>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до L08</h4>
+    <ul>
+      <li>Language Transfer эп. 12–13</li>
+      <li>15 мин Dreaming Spanish Super Beginner — обрати внимание на использование ser/estar</li>
+      <li>Импортируй колоду L07 в Anki</li>
+      <li>Запиши голос: 10 предложений о себе — 5 с ser, 5 с estar</li>
+      <li>В течение дня: каждый раз когда хочешь сказать «есть/быть» по-испански, делай паузу и выбирай ser или estar</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Ты закончил L07!</h4>
+    <p>Ты разобрался с самой сложной темой испанского. В L08 — вопросы и отрицания. Как задавать любой вопрос и красиво говорить «нет».</p>
+  </div>
+</div>
+
+</div>
+
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L06.html" class="nav-link-btn">← L06</a>
+    <a href="L08.html" class="nav-link-btn">L08 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID='L07';const LS_KEY='esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+function speak(text,lang){
+  if(!('speechSynthesis' in window)){alert('Браузер не поддерживает озвучку.');return;}
+  const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;u.pitch=1;
+  window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+}
+function speakSequence(phrases,delay){
+  delay=delay||2400;window.speechSynthesis.cancel();
+  phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});
+}
+
+function playDialog1(){
+  speakSequence([
+    'Hola, ¿quién eres?',
+    'Soy Evgeni. Soy ruso, soy productor de radio.',
+    '¡Genial! ¿Estás en Barcelona ahora?',
+    'Sí, vivo aquí. Mi mujer y mis hijas también están aquí.',
+    '¿Cómo estás hoy? Pareces cansado.',
+    'Estoy un poco cansado pero feliz. Mi trabajo es interesante.',
+    '¿Y tu mujer? ¿Cómo es ella?',
+    'Es inteligente, paciente y muy guapa.'
+  ],2600);
+}
+
+function playDialog2(){
+  speakSequence([
+    'Buenos días. ¿Cómo se llama y qué le pasa?',
+    'Soy Evgeni. Estoy enfermo desde ayer. Estoy muy cansado.',
+    '¿Tiene fiebre?',
+    'Sí, estoy a treinta y ocho grados. Estoy resfriado.',
+    '¿De dónde es usted? Su acento es interesante.',
+    'Soy de Rusia, pero ahora estoy aquí, en Barcelona.',
+    'Perfecto. La consulta es de quince euros. ¿Está bien con tarjeta?',
+    'Sí, está bien.'
+  ],2700);
+}
+
+function playFarmacia(){
+  speakSequence([
+    'Buenas tardes. ¿Qué le pasa?',
+    'Estoy resfriado. Tengo dolor de cabeza y fiebre.',
+    '¿Es alérgico a algo?',
+    'No, no soy alérgico.',
+    'Vale. Le recomiendo paracetamol y este jarabe para la tos.',
+    '¿Cuánto es?',
+    'Son ocho con cincuenta. ¿Está bien?',
+    'Sí, está bien. Gracias.'
+  ],2700);
+}
+
+const quizExpl={
+  r1:'vivimos — для nosotros + -IR = -imos.',
+  r2:'escriben — для ellos + -IR = -en.',
+  r3:'¿Qué comes? Что = qué.',
+  r4:'14:00-16:00 — стандартное время обеда в Испании.',
+  q1:'Soy de Rusia. Происхождение = ser.',
+  q2:'está en España. Местоположение = ВСЕГДА estar.',
+  q3:'Estoy cansado. Усталость = временное = estar.',
+  q4:'Son las tres. Время = ser (мн.ч., son).',
+  q5:'está caliente. Состояние объекта = estar.',
+  q6:'Es médico. Профессия = ser.'
+};
+
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  if(container.dataset.answered==='true')return;
+  container.dataset.answered='true';
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(function(o){
+    const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+    o.onclick=null;o.style.cursor='default';
+  });
+  const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);
+  const userKey=um&&um[1];
+  if(userKey!==correctKey)el.classList.add('wrong');
+  const fb=document.getElementById('fb-'+qId);
+  fb.className='feedback show '+(userKey===correctKey?'ok':'no');
+  fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ Не совсем. Подсказка: '+answer.substring(0,2)+'...';}
+}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+let showingTrans=false;
+function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
+
+const totalSections=14;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=sectionsRead+' / '+totalSections+' разделов';
+}
+window.addEventListener('scroll',updateProgress);
+
+const ANKI_DECK_L07=[
+  {front:"ser — soy, eres, es",back:"Я, ты, он/она ЕСТЬ (постоянное)\n\nПример: Soy ruso. Eres alto. Es médico.\nЗаметка: для имени, профессии, национальности"},
+  {front:"ser — somos, sois, son",back:"Мы, вы, они ЕСТЬ (постоянное)\n\nПример: Somos rusos. Sois jóvenes. Son las dos.\nЗаметка: «son las dos» = «сейчас 2 часа»"},
+  {front:"estar — estoy, estás, está",back:"Я, ты, он/она НАХОЖУСЬ (временное)\n\nПример: Estoy cansado. ¿Estás bien? Está en casa.\nЗаметка: для места, состояния"},
+  {front:"estar — estamos, estáis, están",back:"Мы, вы, они НАХОДИМСЯ\n\nПример: Estamos en Barcelona. Están enfermos.\nЗаметка: ударение на последний слог во всех формах кроме yo"},
+  {front:"SER vs ESTAR — главное правило",back:"Постоянное → ser\nВременное → estar\n\nПример: Soy ruso (всегда). Estoy cansado (сегодня).\nЗаметка: исключение — местоположение ВСЕГДА estar!"},
+  {front:"Местоположение = estar (ВСЕГДА)",back:"Где находится — только estar\n\nПример: Barcelona está en España. La tienda está en la calle Mayor.\nЗаметка: даже если место «постоянное» по логике"},
+  {front:"Soy de + страна",back:"Я из + страна (происхождение, постоянное)\n\nПример: Soy de Rusia. Es de México.\nЗаметка: предлог «de» обязателен"},
+  {front:"Es la una / Son las dos",back:"Сейчас 1 час / Сейчас 2 часа\n\nПример: Son las tres y media. — Сейчас 3:30.\nЗаметка: время = ser, в 1-м часе ед.ч. «es», с 2-х — «son»"},
+  {front:"Es lunes / Es el 22 de mayo",back:"Сегодня понедельник / 22 мая\n\nПример: ¿Qué día es hoy? — Es martes.\nЗаметка: день недели, дата = ser"},
+  {front:"Estoy cansado / cansada",back:"Я устал / устала (м.р./ж.р.)\n\nПример: ¡Estoy muy cansado hoy! — Я очень устал сегодня!\nЗаметка: согласуется по роду с говорящим"},
+  {front:"Estoy bien / mal",back:"Мне хорошо / плохо\n\nПример: ¿Cómo estás? — Estoy bien, gracias.\nЗаметка: НЕ «soy bien», только estoy!"},
+  {front:"Estoy enfermo / enferma",back:"Я болею (м.р./ж.р.)\n\nПример: Estoy enfermo desde ayer. — Болею со вчера.\nЗаметка: болезнь = временное = estar"},
+  {front:"Es médico / profesor / etc.",back:"Он врач / учитель (профессия)\n\nПример: Mi padre es ingeniero. — Мой отец инженер.\nЗаметка: профессии без артикля после ser"},
+  {front:"Está abierto / cerrado",back:"Открыто / Закрыто\n\nПример: La tienda está abierta. — Магазин открыт.\nЗаметка: результат действия = estar"},
+  {front:"¡Está rico!",back:"Вкусно! (про еду)\n\nПример: ¡Está rico el pollo! — Курица вкусная!\nЗаметка: НЕ путать с «Es rico» = он богатый!"},
+  {front:"Es interesante / aburrido (характер)",back:"Интересный / скучный (как качество)\n\nПример: La película es interesante. El libro es aburrido.\nЗаметка: ser для постоянной характеристики"},
+  {front:"Estoy resfriado",back:"Простужен\n\nПример: Estoy resfriado, no voy al trabajo. — Простужен, не иду на работу.\nЗаметка: частая фраза в аптеке"},
+  {front:"¿Dónde está + место?",back:"Где находится...\n\nПример: ¿Dónde está la farmacia? — Где аптека?\nЗаметка: для вопроса «где?» — всегда está/están"}
+];
+
+function renderAnkiPreview(){
+  const container=document.getElementById('anki-preview-L07');
+  if(!container)return;
+  const preview=ANKI_DECK_L07.slice(0,5);
+  container.innerHTML=preview.map(function(c){
+    return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')">'+
+      '<div class="anki-card-inner">'+
+      '<div class="anki-card-front">'+c.front+'</div>'+
+      '<div class="anki-card-back">'+c.back.replace(/\n/g,'<br>')+'</div>'+
+      '</div></div>';
+  }).join('');
+}
+renderAnkiPreview();
+
+function exportAnkiL07(){
+  const tsv=ANKI_DECK_L07.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');
+  const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='L07_spanish_anki.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>
