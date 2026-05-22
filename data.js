@@ -252,7 +252,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:11,
       speaking_focus:"Купить вещь в магазине: спросить размер, цену, попросить другой цвет",
-      file:"lessons/L15.html", status:"pending"
+      file:"lessons/L15.html", status:"improved"
     },
     {
       id:"L16", num:16, phase:1, block:"B1B", level:"A1", day:32, week:5,
@@ -264,7 +264,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:15,
       speaking_focus:"Объяснить как добраться до места / спросить дорогу",
-      file:"lessons/L16.html", status:"pending"
+      file:"lessons/L16.html", status:"improved"
     },
     {
       id:"L17", num:17, phase:1, block:"B1B", level:"A1", day:34, week:6,

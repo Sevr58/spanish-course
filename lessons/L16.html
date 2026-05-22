@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L16: Город и транспорт — ¿Cómo llego?</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(69,123,157,.05));border:1px solid rgba(255,214,10,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1. NAV -->
+<div class="nav">
+  <a href="L15.html">← L15</a>
+  <span class="level">A1 · Фаза 1 · День 32</span>
+  <a href="L17.html">L17 →</a>
+</div>
+
+<!-- 2. HERO -->
+<div class="hero">
+  <div class="phase-tag">🚇 Фаза 1 · Блок 1B · Language Transfer эп. 22 · Polyglot #15</div>
+  <h1>Город и <span class="hl">транспорт</span></h1>
+  <p class="sub">¿Cómo llego? — Ориентируемся в городе. Метро, автобус, улицы, направления.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🗺️</div><div><strong>Цель 1</strong><p>Знать 18 слов: места в городе и транспорт</p></div></div>
+    <div class="obj"><div class="ico">🚇</div><div><strong>Цель 2</strong><p>Использовать ir en metro/autobús/taxi</p></div></div>
+    <div class="obj"><div class="ico">↗️</div><div><strong>Цель 3</strong><p>Объяснить и понять маршрут на испанском</p></div></div>
+    <div class="obj"><div class="ico">🏙️</div><div><strong>Цель 4</strong><p>Ориентироваться в испанском городе самостоятельно</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- 3. WARM-UP REVIEW (L15: Одежда) -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Повторение — Урок 15: Одежда и покупки</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Быстрая проверка предыдущего урока. Вспомни: llevar, ponerse, цвета, фразы в магазине.</p>
+  <div class="quiz">
+    <h3>👗 Что ты помнишь об уроке 15?</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Как сказать «Сегодня на мне красная рубашка»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Hoy llevo una camisa roja</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Hoy llevo una camisa rojo</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Hoy pongo una camisa roja</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Что означает <strong>«las rebajas»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">примерочная</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">касса</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">сезонная распродажа</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Как сказать «Беру (это — платье, el vestido — мужской род)»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Me la llevo</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Me lo llevo</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Me las llevo</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Как спросить размер одежды?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">¿Qué número tiene?</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">¿Cuánto mide?</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">¿Qué talla tiene?</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
+  <div class="callout success">
+    <h4>✅ Связь с сегодняшним уроком</h4>
+    <p>В прошлом уроке ты нашёл магазин. В этом — научишься <strong>добраться</strong> до него. Метро до Passeig de Gràcia — и ты в Zara! Фраза: <em>¿Cómo llego a Passeig de Gràcia?</em></p>
+  </div>
+</div>
+
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — Город, транспорт и направления</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>🎧 Language Transfer эп. 22 · Polyglot урок #15</h4>
+    <p>Это расширение урока #15 из курса Polyglot (Дмитрий Петров) — там тема направлений и предлогов места. Language Transfer эп. 22 — слушай сегодня параллельно: <a href="https://www.youtube.com/@LanguageTransfer" target="_blank" style="color:var(--gold)">@LanguageTransfer</a></p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 1</span>
+      <span class="rule-title">IR EN + транспорт — как добираться</span>
+      <span class="rule-arrow">Voy en metro [бой эн мэ́тро]</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">
+      Конструкция <strong>ir en + транспорт</strong> означает «ехать на чём-то». Глагол <em>ir</em> неправильный — запомни все формы! Важно: предлог <strong>en</strong>, а не «con» или «por». Исключение: <em>ir a pie</em> [а пьэ] = «идти пешком» (без en, с «a»).
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">voy en metro</span><span class="sep">→</span><span class="ar">еду на метро</span></div>
+      <div class="wp"><span class="en">vas en autobús</span><span class="sep">→</span><span class="ar">едешь на автобусе</span></div>
+      <div class="wp"><span class="en">va en taxi</span><span class="sep">→</span><span class="ar">едет на такси</span></div>
+      <div class="wp"><span class="en">vamos en tren</span><span class="sep">→</span><span class="ar">едем на поезде</span></div>
+      <div class="wp"><span class="en">vais en bici</span><span class="sep">→</span><span class="ar">едете на велосипеде</span></div>
+      <div class="wp"><span class="en">van en coche</span><span class="sep">→</span><span class="ar">едут на машине</span></div>
+    </div>
+    <div style="margin-top:12px;font-size:.88rem">
+      <p style="margin-bottom:8px"><strong>Спряжение IR (неправильное — запомнить!):</strong></p>
+      <p style="background:var(--bg3);padding:8px 12px;border-radius:6px;font-family:monospace">yo voy · tú vas · él/ella va · nosotros vamos · vosotros vais · ellos van</p>
+      <p style="margin-top:10px;margin-bottom:6px"><strong>7 примеров с транспортом:</strong></p>
+      <p>• <em>¿Cómo vas al trabajo?</em> [ко́мо бас аль трабáхо] — Как ты добираешься на работу?</p>
+      <p>• <em>Voy en metro — es más rápido.</em> — Еду на метро — это быстрее.</p>
+      <p>• <em>Ella va en bici al parque cada mañana.</em> — Она ездит на велосипеде в парк каждое утро.</p>
+      <p>• <em>Vamos en taxi porque llueve mucho.</em> — Едем на такси, потому что сильный дождь.</p>
+      <p>• <em>¿Van en coche o en tren a Madrid?</em> — Они едут в Мадрид на машине или на поезде?</p>
+      <p>• <em>Prefiero ir a pie — el metro está muy lleno.</em> — Предпочитаю идти пешком — метро очень переполнено.</p>
+      <p>• <em>Normalmente voy en autobús, pero hoy voy en metro.</em> — Обычно еду на автобусе, но сегодня на метро.</p>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 2</span>
+      <span class="rule-title">Направления — как объяснить маршрут</span>
+      <span class="rule-arrow">gira a la derecha [хи́ра а ла дэрэ́ча]</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">
+      Для объяснения маршрута используем <strong>повелительное наклонение</strong> (imperativo) глаголов движения. Самые важные команды: <em>gira</em> (поверни), <em>sigue</em> (иди прямо/продолжай), <em>cruza</em> (пересеки), <em>toma</em> (возьми/садись на). Запомни: derecha = право, izquierda = лево, todo recto = прямо.
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">gira a la derecha</span><span class="sep">→</span><span class="ar">поверни направо</span></div>
+      <div class="wp"><span class="en">gira a la izquierda</span><span class="sep">→</span><span class="ar">поверни налево</span></div>
+      <div class="wp"><span class="en">sigue todo recto</span><span class="sep">→</span><span class="ar">иди прямо</span></div>
+      <div class="wp"><span class="en">cruza la calle</span><span class="sep">→</span><span class="ar">перейди улицу</span></div>
+      <div class="wp"><span class="en">toma la primera calle</span><span class="sep">→</span><span class="ar">возьми первую улицу</span></div>
+      <div class="wp"><span class="en">al llegar a la esquina</span><span class="sep">→</span><span class="ar">дойдя до угла</span></div>
+    </div>
+    <div style="margin-top:12px;font-size:.88rem">
+      <p style="margin-bottom:8px"><strong>7 примеров объяснения пути:</strong></p>
+      <p>• <em>Sigue todo recto dos manzanas.</em> [си́гэ то́до рэ́кто] — Иди прямо два квартала.</p>
+      <p>• <em>Gira a la derecha en la esquina.</em> — Поверни направо на углу.</p>
+      <p>• <em>Cruza la calle y está a tu izquierda.</em> — Перейди улицу, и будет слева.</p>
+      <p>• <em>Toma la segunda calle a la izquierda.</em> — Возьми вторую улицу слева.</p>
+      <p>• <em>Está a cinco minutos a pie.</em> — Это в пяти минутах пешком.</p>
+      <p>• <em>Pasa por delante del banco y sigue recto.</em> — Пройди мимо банка и иди прямо.</p>
+      <p>• <em>Cuando llegues a la plaza, gira a la derecha.</em> — Когда дойдёшь до площади, поверни направо.</p>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 3</span>
+      <span class="rule-title">ESTAR + место — где находится что-то в городе</span>
+      <span class="rule-arrow">El banco está al lado [аль ла́до]</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">
+      Для местонахождения в городе используем <strong>estar + предлог места</strong>. Главные предлоги: <em>al lado de</em> (рядом), <em>enfrente de</em> (напротив), <em>cerca de</em> (близко), <em>lejos de</em> (далеко), <em>detrás de</em> (за, позади), <em>delante de</em> (перед). Важно: <em>al</em> = a + el (слияние!).
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">al lado de</span><span class="sep">→</span><span class="ar">рядом с [аль ла́до дэ]</span></div>
+      <div class="wp"><span class="en">enfrente de</span><span class="sep">→</span><span class="ar">напротив [энфрэ́нтэ дэ]</span></div>
+      <div class="wp"><span class="en">cerca de</span><span class="sep">→</span><span class="ar">близко от [сэ́рка дэ]</span></div>
+      <div class="wp"><span class="en">lejos de</span><span class="sep">→</span><span class="ar">далеко от [лэ́хос дэ]</span></div>
+      <div class="wp"><span class="en">detrás de</span><span class="sep">→</span><span class="ar">позади / за [дэтра́с дэ]</span></div>
+      <div class="wp"><span class="en">delante de</span><span class="sep">→</span><span class="ar">перед / впереди [дэла́нтэ дэ]</span></div>
+    </div>
+    <div style="margin-top:12px;font-size:.88rem">
+      <p style="margin-bottom:8px"><strong>7 примеров местонахождения в городе:</strong></p>
+      <p>• <em>El banco está al lado de la farmacia.</em> — Банк находится рядом с аптекой.</p>
+      <p>• <em>La parada de metro está enfrente del hospital.</em> — Остановка метро напротив больницы.</p>
+      <p>• <em>¿El supermercado está cerca de aquí?</em> — Супермаркет близко отсюда?</p>
+      <p>• <em>La estación de tren está un poco lejos del centro.</em> — Вокзал немного далеко от центра.</p>
+      <p>• <em>El restaurante está detrás del parque.</em> — Ресторан за парком.</p>
+      <p>• <em>Hay una farmacia delante de mi casa.</em> — Перед моим домом есть аптека.</p>
+      <p>• <em>El Ayuntamiento está entre la plaza y el mercado.</em> — Мэрия находится между площадью и рынком.</p>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 4</span>
+      <span class="rule-title">Спрашиваем дорогу — полные формулы</span>
+      <span class="rule-arrow">¿Cómo llego a...? [ко́мо льэ́го а]</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">
+      Есть три способа спросить дорогу: <em>¿Cómo llego a...?</em> (Как добраться до...?), <em>¿Dónde está...?</em> (Где находится...?), <em>¿Por dónde se va a...?</em> (Как пройти к...?). Вежливое начало: <em>Perdone</em> [пэрдо́нэ] (Извините — к незнакомому) или <em>Oye</em> [о́йэ] (Слушай — к другу).
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Perdone, ¿cómo llego a...?</span><span class="sep">→</span><span class="ar">Извините, как добраться до...?</span></div>
+      <div class="wp"><span class="en">¿Dónde está la parada?</span><span class="sep">→</span><span class="ar">Где остановка?</span></div>
+      <div class="wp"><span class="en">¿Está lejos?</span><span class="sep">→</span><span class="ar">Это далеко?</span></div>
+      <div class="wp"><span class="en">¿Cuánto tiempo se tarda?</span><span class="sep">→</span><span class="ar">Сколько времени займёт?</span></div>
+      <div class="wp"><span class="en">¿Qué metro tomo?</span><span class="sep">→</span><span class="ar">Какое метро взять?</span></div>
+      <div class="wp"><span class="en">¿Hay que hacer transbordo?</span><span class="sep">→</span><span class="ar">Нужна ли пересадка?</span></div>
+    </div>
+    <div style="margin-top:12px;font-size:.88rem">
+      <p style="margin-bottom:8px"><strong>7 реальных вопросов о пути:</strong></p>
+      <p>• <em>Perdone, ¿cómo llego a la Sagrada Familia?</em> — Извините, как добраться до Саграды Фамилии?</p>
+      <p>• <em>¿Dónde está la parada de metro más cercana?</em> — Где ближайшая станция метро?</p>
+      <p>• <em>¿Cuánto tiempo se tarda en metro?</em> — Сколько ехать на метро?</p>
+      <p>• <em>¿Qué línea tomo para ir al aeropuerto?</em> — Какую линию взять до аэропорта?</p>
+      <p>• <em>¿Hay que hacer transbordo?</em> — Нужна ли пересадка?</p>
+      <p>• <em>¿Está lejos? ¿Puedo ir a pie?</em> — Это далеко? Можно пойти пешком?</p>
+      <p>• <em>¿El autobús número 7 va al centro?</em> — Автобус номер 7 идёт в центр?</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Предлог с транспортом</td><td class="wrong-ex">Voy con metro</td><td class="right-ex">Voy en metro</td><td>IR + EN + транспорт. Con = «с кем-то», не «на чём-то»</td></tr>
+    <tr><td>Пешком — неверный предлог</td><td class="wrong-ex">Voy en pie</td><td class="right-ex">Voy a pie</td><td>Только: ir a pie. Без «en» с пешей ходьбой</td></tr>
+    <tr><td>Путать derecha и izquierda</td><td class="wrong-ex">Gira a la derecha (налево!)</td><td class="right-ex">Gira a la izquierda</td><td>Derecha = право, izquierda = лево. Мнемоника: izquierda длиннее, как «левый, длинный»</td></tr>
+    <tr><td>Слияние a + el = al</td><td class="wrong-ex">Voy a el banco</td><td class="right-ex">Voy al banco</td><td>a + el всегда сливается в «al». Исключение: имена собственные с El: «a El Salvador»</td></tr>
+    <tr><td>Cerca без «de»</td><td class="wrong-ex">Está cerca la farmacia</td><td class="right-ex">Está cerca de la farmacia</td><td>Cerca de, lejos de, al lado de — всегда с «de»</td></tr>
+    <tr><td>Направление без артикля</td><td class="wrong-ex">Gira a derecha</td><td class="right-ex">Gira a la derecha</td><td>Обязательно: a LA derecha, a LA izquierda — с артиклем</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Мнемоника для derecha / izquierda</h4>
+    <p>Правая рука обычно доминирующая — слово короче: <strong>DE-re-cha</strong>. Левая — длиннее слово: <strong>iz-QUIER-da</strong>. Или: «правая — короткое слово, левая — длинное слово»!</p>
+  </div>
+</div>
+
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — 18 слов: город и транспорт</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Уровень A1: каждое слово с транскрипцией [в скобках]. Нажимай 🔊 для прослушивания.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">la calle</div><div class="vocab-pron">[ла ка́льэ]</div><div class="vocab-ru">улица</div></div><button class="speak-btn" onclick="speak('la calle')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la plaza</div><div class="vocab-pron">[ла пла́са]</div><div class="vocab-ru">площадь</div></div><button class="speak-btn" onclick="speak('la plaza')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el metro</div><div class="vocab-pron">[эль мэ́тро]</div><div class="vocab-ru">метро</div></div><button class="speak-btn" onclick="speak('el metro')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el autobús</div><div class="vocab-pron">[эль аутобу́с]</div><div class="vocab-ru">автобус</div></div><button class="speak-btn" onclick="speak('el autobús')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el taxi</div><div class="vocab-pron">[эль та́кси]</div><div class="vocab-ru">такси</div></div><button class="speak-btn" onclick="speak('el taxi')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la parada</div><div class="vocab-pron">[ла пара́да]</div><div class="vocab-ru">остановка / станция</div></div><button class="speak-btn" onclick="speak('la parada')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la estación</div><div class="vocab-pron">[ла эстасьо́н]</div><div class="vocab-ru">станция / вокзал</div></div><button class="speak-btn" onclick="speak('la estación')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el banco</div><div class="vocab-pron">[эль ба́нко]</div><div class="vocab-ru">банк (также скамейка!)</div></div><button class="speak-btn" onclick="speak('el banco')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la farmacia</div><div class="vocab-pron">[ла фарма́сья]</div><div class="vocab-ru">аптека</div></div><button class="speak-btn" onclick="speak('la farmacia')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el supermercado</div><div class="vocab-pron">[эль супэрмэрка́до]</div><div class="vocab-ru">супермаркет</div></div><button class="speak-btn" onclick="speak('el supermercado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la derecha</div><div class="vocab-pron">[ла дэрэ́ча]</div><div class="vocab-ru">правая сторона / направо</div></div><button class="speak-btn" onclick="speak('la derecha')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la izquierda</div><div class="vocab-pron">[ла искьэ́рда]</div><div class="vocab-ru">левая сторона / налево</div></div><button class="speak-btn" onclick="speak('la izquierda')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">todo recto</div><div class="vocab-pron">[то́до рэ́кто]</div><div class="vocab-ru">прямо / всё прямо</div></div><button class="speak-btn" onclick="speak('todo recto')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la esquina</div><div class="vocab-pron">[ла эски́на]</div><div class="vocab-ru">угол (здания/улицы)</div></div><button class="speak-btn" onclick="speak('la esquina')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">cerca de</div><div class="vocab-pron">[сэ́рка дэ]</div><div class="vocab-ru">близко от / рядом</div></div><button class="speak-btn" onclick="speak('cerca de aquí')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">lejos de</div><div class="vocab-pron">[лэ́хос дэ]</div><div class="vocab-ru">далеко от</div></div><button class="speak-btn" onclick="speak('lejos de aquí')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la manzana</div><div class="vocab-pron">[ла манса́на]</div><div class="vocab-ru">квартал (также яблоко!)</div></div><button class="speak-btn" onclick="speak('la manzana')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el transbordo</div><div class="vocab-pron">[эль трансбо́рдо]</div><div class="vocab-ru">пересадка</div></div><button class="speak-btn" onclick="speak('el transbordo')">🔊</button></div>
+  </div>
+</div>
+
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Множественный выбор</h2>
+  </div>
+  <div class="quiz">
+    <h3>🚇 Город и транспорт — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как правильно сказать «Я еду на метро»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Voy en metro</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Voy con metro</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Voy por metro</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Что означает «Sigue todo recto»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Поверни направо</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Иди прямо</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Поверни налево</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «El banco ___ al lado ___ la farmacia» — вставь предлоги:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">es / de</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">hay / a</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">está / de</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Как вежливо остановить незнакомца и спросить дорогу?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Perdone, ¿cómo llego a la estación?</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Oye, ¿cómo llego a la estación?</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Hola amigo, ¿cómo llego a la estación?</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Что означает «ir a pie»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">ехать на велосипеде</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">ехать на такси</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">идти пешком</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Правильная форма: «Voy ___ banco»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">a el</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">de el</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">al</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «La farmacia está ___ del hospital» — она напротив:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">cerca</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">enfrente</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">lejos</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуски</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи слово в нижнем регистре. Нажми «Проверить».</p>
+  <div class="quiz">
+    <div class="text-ex">
+      <div class="tex-q">1. Normalmente voy ________ metro al trabajo. (на метро — предлог)</div>
+      <input class="text-input" id="t1" placeholder="введи предлог...">
+      <button class="check-btn" onclick="checkText('t1','en','fb-t1')">Проверить</button>
+      <div class="feedback" id="fb-t1"></div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. Gira a la ________ en la esquina. (направо)</div>
+      <input class="text-input" id="t2" placeholder="введи слово...">
+      <button class="check-btn" onclick="checkText('t2','derecha','fb-t2')">Проверить</button>
+      <div class="feedback" id="fb-t2"></div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. El banco ________ al lado de la farmacia. (глагол «находиться»)</div>
+      <input class="text-input" id="t3" placeholder="введи глагол...">
+      <button class="check-btn" onclick="checkText('t3','está','fb-t3')">Проверить</button>
+      <div class="feedback" id="fb-t3"></div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. Perdone, ¿cómo ________ a la Sagrada Familia? (Как добраться?)</div>
+      <input class="text-input" id="t4" placeholder="введи глагол...">
+      <button class="check-btn" onclick="checkText('t4','llego','fb-t4')">Проверить</button>
+      <div class="feedback" id="fb-t4"></div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. ¿Hay que hacer ________? (пересадка — нужна ли?)</div>
+      <input class="text-input" id="t5" placeholder="введи слово...">
+      <button class="check-btn" onclick="checkText('t5','transbordo','fb-t5')">Проверить</button>
+      <div class="feedback" id="fb-t5"></div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. Sigue todo ________ dos manzanas. (прямо)</div>
+      <input class="text-input" id="t6" placeholder="введи слово...">
+      <button class="check-btn" onclick="checkText('t6','recto','fb-t6')">Проверить</button>
+      <div class="feedback" id="fb-t6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — В городе и в транспорте</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми 🔊 у каждой реплики. «Перевод» — показать/скрыть. «▶ Диалог» — автовоспроизведение.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>💬 Диалог 1: Спрашиваем дорогу на улице</span>
+      <div style="display:flex;gap:8px">
+        <button class="dlg-toggle" onclick="toggleAll()">Перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue1()">▶ Диалог</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Турист</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perdone, ¿puede ayudarme? Estoy buscando la Sagrada Família. <button class="speak-btn" onclick="speak('Perdone, ¿puede ayudarme? Estoy buscando la Sagrada Família.')">🔊</button></div>
+        <div class="dlg-ru translation">[Извините, вы можете помочь? Я ищу Саграду Фамилию.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Местный</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro. ¿Va en metro o a pie? <button class="speak-btn" onclick="speak('Claro. ¿Va en metro o a pie?')">🔊</button></div>
+        <div class="dlg-ru translation">[Конечно. Вы поедете на метро или пешком?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Турист</div>
+      <div style="flex:1">
+        <div class="dlg-es">Prefiero el metro. ¿Qué línea tomo? <button class="speak-btn" onclick="speak('Prefiero el metro. ¿Qué línea tomo?')">🔊</button></div>
+        <div class="dlg-ru translation">[Предпочитаю метро. Какую линию взять?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Местный</div>
+      <div style="flex:1">
+        <div class="dlg-es">Tome la línea 2, la morada. Baje en la parada «Sagrada Família». Son tres paradas desde aquí. <button class="speak-btn" onclick="speak('Tome la línea dos, la morada. Baje en la parada Sagrada Família. Son tres paradas desde aquí.')">🔊</button></div>
+        <div class="dlg-ru translation">[Возьмите линию 2, фиолетовую. Выйдите на остановке «Саграда Фамилья». Это три остановки отсюда.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Турист</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Hay que hacer transbordo? <button class="speak-btn" onclick="speak('¿Hay que hacer transbordo?')">🔊</button></div>
+        <div class="dlg-ru translation">[Нужна ли пересадка?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Местный</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, es directo. Y al salir del metro, siga todo recto unos cien metros. La verá enseguida — ¡es enorme! <button class="speak-btn" onclick="speak('No, es directo. Al salir del metro, siga todo recto. La verá enseguida.')">🔊</button></div>
+        <div class="dlg-ru translation">[Нет, прямой маршрут. Выйдя из метро, идите прямо метров сто. Увидите сразу — она огромная!]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Турист</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y dónde está la entrada al metro? <button class="speak-btn" onclick="speak('¿Y dónde está la entrada al metro?')">🔊</button></div>
+        <div class="dlg-ru translation">[А где вход в метро?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Местный</div>
+      <div style="flex:1">
+        <div class="dlg-es">Gire a la izquierda en la esquina, cruze la calle y está enfrente del banco. <button class="speak-btn" onclick="speak('Gire a la izquierda en la esquina, cruce la calle y está enfrente del banco.')">🔊</button></div>
+        <div class="dlg-ru translation">[Поверните налево на углу, перейдите улицу, и вход напротив банка.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Турист</div>
+      <div style="flex:1">
+        <div class="dlg-es">Muchísimas gracias. ¡Es usted muy amable! <button class="speak-btn" onclick="speak('Muchísimas gracias. ¡Es usted muy amable!')">🔊</button></div>
+        <div class="dlg-ru translation">[Огромное спасибо. Вы очень любезны!]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Местный</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡De nada! ¡Buen paseo por Barcelona! <button class="speak-btn" onclick="speak('¡De nada! ¡Buen paseo por Barcelona!')">🔊</button></div>
+        <div class="dlg-ru translation">[Пожалуйста! Приятной прогулки по Барселоне!]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>💬 Диалог 2: В автобусе и на остановке</span>
+      <div style="display:flex;gap:8px">
+        <button class="dlg-toggle" onclick="toggleAll2()">Перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue2()">▶ Диалог</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пассажир</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perdone, ¿este autobús va al aeropuerto? <button class="speak-btn" onclick="speak('Perdone, ¿este autobús va al aeropuerto?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Извините, этот автобус идёт в аэропорт?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Водитель</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, señor. Para el aeropuerto tiene que tomar el Aerobus o el metro L9. <button class="speak-btn" onclick="speak('No, señor. Para el aeropuerto tiene que tomar el Aerobús o el metro línea nueve.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Нет, сеньор. До аэропорта вам нужен Аэробус или метро линия L9.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пассажир</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Dónde para el Aerobus? <button class="speak-btn" onclick="speak('¿Dónde para el Aerobús?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Где останавливается Аэробус?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Водитель</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sale de la plaza de Cataluña, cada cinco minutos. Es muy fácil. <button class="speak-btn" onclick="speak('Sale de la plaza de Cataluña, cada cinco minutos. Es muy fácil.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Отправляется с площади Каталонии, каждые пять минут. Очень просто.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пассажир</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y cuánto cuesta el billete? <button class="speak-btn" onclick="speak('¿Y cuánto cuesta el billete?')">🔊</button></div>
+        <div class="dlg-ru translation2">[А сколько стоит билет?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Водитель</div>
+      <div style="flex:1">
+        <div class="dlg-es">El Aerobus cuesta unos seis euros. El metro es más barato pero tarda más. <button class="speak-btn" onclick="speak('El Aerobús cuesta unos seis euros. El metro es más barato pero tarda más.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Аэробус стоит около шести евро. Метро дешевле, но дольше.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пассажир</div>
+      <div style="flex:1">
+        <div class="dlg-es">Gracias, voy a tomar el metro entonces. ¿Está lejos de aquí la estación? <button class="speak-btn" onclick="speak('Gracias, voy a tomar el metro entonces. ¿Está lejos de aquí la estación?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Спасибо, возьму тогда метро. Станция далеко отсюда?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Водитель</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, está muy cerca. Siga recto dos manzanas y gire a la derecha. ¡Buen viaje! <button class="speak-btn" onclick="speak('No, está muy cerca. Siga recto dos manzanas y gire a la derecha. ¡Buen viaje!')">🔊</button></div>
+        <div class="dlg-ru translation2">[Нет, очень близко. Идите прямо два квартала и направо. Счастливого пути!]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>💬 Диалог 3: Описываем маршрут другу</span>
+      <div style="display:flex;gap:8px">
+        <button class="dlg-toggle" onclick="toggleAll3()">Перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue3()">▶ Диалог</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Oye, ¿cómo voy a tu casa? No conozco el barrio. <button class="speak-btn" onclick="speak('Oye, ¿cómo voy a tu casa? No conozco el barrio.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Слушай, как добраться до твоего дома? Я не знаю этот район.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Es fácil. Toma el metro línea 1, la roja, y baja en la parada «Clot». <button class="speak-btn" onclick="speak('Es fácil. Toma el metro línea uno, la roja, y baja en la parada Clot.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Легко. Сядь на метро линию 1, красную, и выйди на остановке «Клот».]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y desde la parada? <button class="speak-btn" onclick="speak('¿Y desde la parada?')">🔊</button></div>
+        <div class="dlg-ru translation3">[И от остановки?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Al salir, gira a la izquierda. Sigue todo recto hasta la farmacia. Mi calle está justo enfrente. <button class="speak-btn" onclick="speak('Al salir, gira a la izquierda. Sigue todo recto hasta la farmacia. Mi calle está justo enfrente.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Выйдя, поверни налево. Иди прямо до аптеки. Моя улица прямо напротив.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuánto tiempo se tarda desde el metro? <button class="speak-btn" onclick="speak('¿Cuánto tiempo se tarda desde el metro?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Сколько идти от метро?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Unos cinco minutos a pie. El número de mi casa es el cuarenta y dos. <button class="speak-btn" onclick="speak('Unos cinco minutos a pie. El número de mi casa es el cuarenta y dos.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Минут пять пешком. Номер моего дома — сорок два.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto, ¡nos vemos en una hora! <button class="speak-btn" onclick="speak('Perfecto, ¡nos vemos en una hora!')">🔊</button></div>
+        <div class="dlg-ru translation3">[Отлично, увидимся через час!]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Hasta luego! Si te pierdes, llámame. <button class="speak-btn" onclick="speak('¡Hasta luego! Si te pierdes, llámame.')">🔊</button></div>
+        <div class="dlg-ru translation3">[До скорого! Если заблудишься, позвони мне.]</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Твоя очередь!</h2>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Как ты добираешься на работу?</div>
+    <p>Расскажи вслух: как ты обычно добираешься до работы или учёбы? Используй <strong>ir en</strong> + транспорт. Минимум 4 предложения.</p>
+    <div class="es">Normalmente voy al trabajo en [транспорт]. Tardo unos [число] minutos. La parada/estación está [близко/далеко] de mi casa. A veces voy a pie cuando hace buen tiempo.</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Normalmente voy al trabajo en metro. Tardo unos veinte minutos. La estación está cerca de mi casa. A veces voy a pie cuando hace buen tiempo.')">🔊 Пример</button>
+    <div class="hint">Замени слова на реальные детали твоего маршрута. Практикуй числа — «tardo... minutos»!</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Испании: объясни маршрут</div>
+    <p>Ты живёшь в Барселоне. Друг пишет: «¿Cómo llego a tu casa?» Объясни маршрут от метро вслух — используй gira, sigue, cruza, está enfrente de...</p>
+    <div class="es">Toma el metro línea [номер] y baja en [остановка]. Al salir, gira a la [derecha/izquierda]. Sigue todo recto [число] manzanas. Mi casa está enfrente de [ориентир]. El número es [число].</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Toma el metro línea dos y baja en Sagrada Família. Al salir, gira a la derecha. Sigue todo recto dos manzanas. Mi casa está enfrente del supermercado. El número es cuarenta y dos.')">🔊 Пример</button>
+    <div class="hint">Это реальный жизненный навык для Барселоны! Можешь использовать Google Maps для подготовки реального маршрута.</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Метро Барселоны</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🚇 Реальная ситуация — Метрополитан де Барселона (TMB)</div>
+    <p style="margin-bottom:12px">Ты переехал в Барселону. Главный транспорт — <strong>метро TMB</strong> (12 линий, цветные) и <strong>автобусы</strong>. Карточка T-Casual (10 поездок) — самый выгодный вариант. Также есть <strong>T-Mes</strong> — безлимитный месячный проездной. Такси в Барселоне жёлто-чёрные — всегда с работающим счётчиком.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Dónde se saca el billete? <button class="speak-btn" onclick="speak('¿Dónde se saca el billete?')">🔊</button></div>
+          <div class="phrase-ru">Где купить билет? (в метро)</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Quiero una T-Casual, por favor. <button class="speak-btn" onclick="speak('Quiero una T-Casual, por favor.')">🔊</button></div>
+          <div class="phrase-ru">Хочу карточку T-Casual (10 поездок), пожалуйста.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuántas paradas hay hasta...? <button class="speak-btn" onclick="speak('¿Cuántas paradas hay hasta allí?')">🔊</button></div>
+          <div class="phrase-ru">Сколько остановок до...?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Está validado mi billete? <button class="speak-btn" onclick="speak('¿Está validado mi billete?')">🔊</button></div>
+          <div class="phrase-ru">Мой билет прокомпостирован?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Perdone, ¿este tren va a...? <button class="speak-btn" onclick="speak('Perdone, ¿este tren va a Barceloneta?')">🔊</button></div>
+          <div class="phrase-ru">Извините, этот поезд идёт в...?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿A qué hora cierra el metro? <button class="speak-btn" onclick="speak('¿A qué hora cierra el metro?')">🔊</button></div>
+          <div class="phrase-ru">В котором часу закрывается метро?</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Метро Барселоны работает с 5:00 до 00:00 (пн-чт), в пятницу до 2:00, в субботу — круглосуточно, в воскресенье до 00:00. Билет обязателен при входе И при выходе на некоторых станциях. Штраф за безбилетный проезд — 100 евро. Приложение TMB — лучшая навигация по metro barcelona.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🏙️ Барселона: город, спроектированный на бумаге</div>
+    <h4>Эшампле — идеальный квадратный город</h4>
+    <p>Барселона уникальна: её центральный район Эшампле (Eixample) был спроектирован в 1859 году инженером Ильдефонсом Серда практически с нуля. Серда создал систему квадратных кварталов со срезанными углами (las esquinas cortadas) — это позволяет видеть перекрёсток сразу с двух сторон и улучшает циркуляцию движения. Именно поэтому в Барселоне так легко ориентироваться: улицы прямые, кварталы одинаковые. «La manzana» (квартал) — то же слово, что и «яблоко» — случайное совпадение, которое испанцы находят забавным. Шедевр Гауди Саграда Фамилья строится уже 140 лет — и до сих пор не достроена. Планируется завершение в 2030 году.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все 18 для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">ir en metro</div>
+        <div class="anki-card-back">ехать на метро<br>Voy en metro al trabajo.<br>ir EN (не «con»!)</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">sigue todo recto</div>
+        <div class="anki-card-back">иди прямо<br>[си́гэ то́до рэ́кто]<br>направление движения</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">la derecha / izquierda</div>
+        <div class="anki-card-back">право / лево<br>a la derecha = направо<br>a la izquierda = налево</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">al lado de</div>
+        <div class="anki-card-back">рядом с<br>El banco está al lado de la farmacia.<br>[аль ла́до дэ]</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">¿Cómo llego a...?</div>
+        <div class="anki-card-back">Как добраться до...?<br>[ко́мо льэ́го а]<br>Perdone, ¿cómo llego al metro?</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL16()">📥 Скачать колоду Anki (.txt, 18 карточек)</button>
+  <div class="callout info" style="margin-top:14px">
+    <h4>Как импортировать в Anki</h4>
+    <p>Скачай файл → Anki → File → Import → выбери .txt → Tab separator, HTML enabled. Карточки появятся автоматически.</p>
+  </div>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L17: Числа 100+ и деньги)</h4>
+    <ul>
+      <li><strong>Language Transfer эп. 22</strong> — слушай по дороге, 20 минут: <a href="https://www.youtube.com/@LanguageTransfer" target="_blank" style="color:var(--gold)">@LanguageTransfer</a></li>
+      <li><strong>Dreaming Spanish Super Beginner</strong> — найди видео про город или транспорт. 10–15 мин.</li>
+      <li><strong>Anki</strong> — повторяй 18 карточек ежедневно (10 мин)</li>
+      <li><strong>Маршрут на испанском</strong>: опиши свой обычный маршрут (дом → работа/магазин) используя gira, sigue, está cerca de...</li>
+      <li><strong>Google Maps по-испански</strong>: поставь язык интерфейса на испанский и прочитай маршрут — это реальная практика!</li>
+      <li><strong>Dreaming Spanish задание</strong>: найди на YouTube видео «Barcelona metro guide» — слушай испанскую речь о знакомом тебе контексте</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок 16 завершён!</h4>
+    <p>Ты умеешь спросить дорогу, объяснить маршрут, использовать транспорт и ориентироваться в испанском городе. Следующий урок — Числа 100+ и деньги: цены, банк, зарплата.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L15.html" class="nav-link-btn">← L15</a>
+    <a href="L17.html" class="nav-link-btn">L17: Числа 100+ →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L16 = [
+  {front:"ir en metro",back:"Русский: ехать на метро<br><br>Пример: Voy en metro al trabajo.<br>Заметка: IR + EN + транспорт (не «con»!)"},
+  {front:"el metro",back:"Русский: метро<br><br>Пример: ¿Dónde está la parada de metro?<br>Заметка: [эль мэ́тро]"},
+  {front:"el autobús",back:"Русский: автобус<br><br>Пример: Tomo el autobús número siete.<br>Заметка: [эль аутобу́с] — ударение на -BUS"},
+  {front:"la parada",back:"Русский: остановка<br><br>Пример: La parada está a dos manzanas.<br>Заметка: [ла пара́да]"},
+  {front:"sigue todo recto",back:"Русский: иди прямо<br><br>Пример: Sigue todo recto dos manzanas.<br>Заметка: [си́гэ то́до рэ́кто]"},
+  {front:"gira a la derecha",back:"Русский: поверни направо<br><br>Пример: Gira a la derecha en la esquina.<br>Заметка: derecha = право"},
+  {front:"gira a la izquierda",back:"Русский: поверни налево<br><br>Пример: Gira a la izquierda al llegar al banco.<br>Заметка: izquierda = лево"},
+  {front:"la esquina",back:"Русский: угол (улицы/здания)<br><br>Пример: Gira en la esquina.<br>Заметка: [ла эски́на]"},
+  {front:"al lado de",back:"Русский: рядом с<br><br>Пример: El banco está al lado de la farmacia.<br>Заметка: al = a + el (слияние!)"},
+  {front:"enfrente de",back:"Русский: напротив<br><br>Пример: La parada está enfrente del hospital.<br>Заметка: [энфрэ́нтэ дэ]"},
+  {front:"cerca de",back:"Русский: близко от / рядом<br><br>Пример: ¿Está cerca de aquí?<br>Заметка: cerca DE (всегда с «de»!)"},
+  {front:"lejos de",back:"Русский: далеко от<br><br>Пример: El aeropuerto está lejos del centro.<br>Заметка: lejos DE (всегда с «de»!)"},
+  {front:"¿Cómo llego a...?",back:"Русский: Как добраться до...?<br><br>Пример: Perdone, ¿cómo llego al museo?<br>Заметка: [ко́мо льэ́го а] — вежливее: Perdone"},
+  {front:"el transbordo",back:"Русский: пересадка<br><br>Пример: ¿Hay que hacer transbordo?<br>Заметка: [эль трансбо́рдо]"},
+  {front:"ir a pie",back:"Русский: идти пешком<br><br>Пример: Prefiero ir a pie — está cerca.<br>Заметка: a pie (не «en pie»!)"},
+  {front:"la manzana",back:"Русский: квартал (и яблоко!)<br><br>Пример: Sigue recto dos manzanas.<br>Заметка: одно слово — два значения"},
+  {front:"la estación",back:"Русский: станция / вокзал<br><br>Пример: La estación de tren está lejos.<br>Заметка: [ла эстасьо́н] — когнат от station"},
+  {front:"¿Cuánto tiempo se tarda?",back:"Русский: Сколько времени займёт?<br><br>Пример: ¿Cuánto se tarda en metro?<br>Заметка: tardarse = занимать время"},
+];
+
+function exportAnkiL16() {
+  const tsv = ANKI_DECK_L16.map(c => c.front + '\t' + c.back).join('\n');
+  const blob = new Blob(['﻿' + tsv], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L16_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = ['Perdone, ¿puede ayudarme? Estoy buscando la Sagrada Família.','Claro. ¿Va en metro o a pie?','Prefiero el metro. ¿Qué línea tomo?','Tome la línea dos. Baje en la parada Sagrada Família. Son tres paradas.','¿Hay que hacer transbordo?','No, es directo. Al salir, siga todo recto. La verá enseguida.','¿Y dónde está la entrada al metro?','Gire a la izquierda en la esquina, cruce la calle y está enfrente del banco.','Muchísimas gracias. ¡Es usted muy amable!','¡De nada! ¡Buen paseo por Barcelona!'];
+  let i=0; function next(){if(i>=lines.length)return;const u=new SpeechSynthesisUtterance(lines[i++]);u.lang='es-ES';u.rate=0.85;u.onend=()=>setTimeout(next,800);window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}next();
+}
+
+function playDialogue2() {
+  const lines = ['Perdone, ¿este autobús va al aeropuerto?','No, señor. Para el aeropuerto tome el Aerobús o el metro L9.','¿Dónde para el Aerobús?','Sale de la plaza de Cataluña, cada cinco minutos.','¿Y cuánto cuesta el billete?','El Aerobús cuesta unos seis euros. El metro es más barato pero tarda más.','Gracias, voy a tomar el metro. ¿Está lejos la estación?','No, está muy cerca. Siga recto dos manzanas y gire a la derecha. ¡Buen viaje!'];
+  let i=0; function next(){if(i>=lines.length)return;const u=new SpeechSynthesisUtterance(lines[i++]);u.lang='es-ES';u.rate=0.85;u.onend=()=>setTimeout(next,800);window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}next();
+}
+
+function playDialogue3() {
+  const lines = ['Oye, ¿cómo voy a tu casa? No conozco el barrio.','Es fácil. Toma el metro línea uno y baja en la parada Clot.','¿Y desde la parada?','Al salir, gira a la izquierda. Sigue todo recto hasta la farmacia. Mi calle está enfrente.','¿Cuánto tiempo se tarda desde el metro?','Unos cinco minutos a pie. El número de mi casa es el cuarenta y dos.','Perfecto, ¡nos vemos en una hora!','¡Hasta luego! Si te pierdes, llámame.'];
+  let i=0; function next(){if(i>=lines.length)return;const u=new SpeechSynthesisUtterance(lines[i++]);u.lang='es-ES';u.rate=0.85;u.onend=()=>setTimeout(next,800);window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}next();
+}
+
+const LESSON_ID = 'L16';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl = {
+  w1:'Llevar = описываем состояние одежды сейчас. Camisa — женского рода, цвет согласуется: roja (а не rojo). Ponerse = процесс надевания.',
+  w2:'Las rebajas = сезонная распродажа в Испании (январь и июль). El probador = примерочная. La caja = касса.',
+  w3:'Vestido — мужского рода (el vestido), значит местоимение мужского рода: me LO llevo. La = женский род.',
+  w4:'¿Qué talla? = размер одежды (S/M/L). ¿Qué número? = размер обуви. ¿Cuánto mide? = какой размер (рост/длина).',
+  q1:'Ir EN + транспорт — это устойчивая конструкция. Con = «с кем-то». Por = «через/по». Только EN для средств передвижения.',
+  q2:'Sigue todo recto = иди всё прямо. Gira a la derecha = повора направо. Gira a la izquierda = поворот налево.',
+  q3:'Estar — для местонахождения. Al lado DE — предлог «de» обязателен. «Es al lado» — неверно.',
+  q4:'Perdone — вежливое обращение к незнакомому (уважительное). Oye — к другу. «Hola amigo» — слишком фамильярно с незнакомцем.',
+  q5:'A pie = пешком. Ir A pie (не «en pie»!). En bici = на велосипеде. En taxi = на такси.',
+  q6:'a + el = AL (слияние!). «A el» — грамматически неверно в испанском. De + el = DEL.',
+  q7:'Enfrente DE = напротив. Cerca DE = близко. Lejos DE = далеко. Все с «de»!',
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});const clickedKey=el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];if(clickedKey!==correctKey)el.classList.add('wrong');const isCorrect=clickedKey===correctKey;const fb=document.getElementById('fb-'+qId);fb.className='feedback show '+(isCorrect?'ok':'no');fb.textContent=(isCorrect?'✅ ':'❌ ')+(quizExpl[qId]||'');if(isCorrect)quizScore++;quizTotal++;}
+
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+
+let showingTrans=false;
+function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(el=>{el.style.display=showingTrans?'block':'none';});}
+let showingTrans2=false;
+function toggleAll2(){showingTrans2=!showingTrans2;document.querySelectorAll('.translation2').forEach(el=>{el.style.display=showingTrans2?'block':'none';});}
+let showingTrans3=false;
+function toggleAll3(){showingTrans3=!showingTrans3;document.querySelectorAll('.translation3').forEach(el=>{el.style.display=showingTrans3?'block':'none';});}
+
+document.querySelectorAll('.translation,.translation2,.translation3').forEach(el=>{el.style.display='none';});
+
+const totalSections=14;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>
