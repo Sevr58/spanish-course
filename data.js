@@ -498,7 +498,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:6,
       speaking_focus:"Рассказать о своём жизненном опыте: ¿Has estado en España?",
-      file:"lessons/L35.html", status:"pending"
+      file:"lessons/L35.html", status:"improved"
     },
     {
       id:"L36", num:36, phase:2, block:"B2A", level:"A2", day:75, week:12,
@@ -510,7 +510,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Пересказать историю, правильно чередуя оба прошедших времени",
-      file:"lessons/L36.html", status:"pending"
+      file:"lessons/L36.html", status:"improved"
     },
     {
       id:"L37", num:37, phase:2, block:"B2A", level:"A2", day:77, week:13,
