@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L104: Ложные друзья переводчика</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--purple);color:#fff;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--red)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--red);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--red)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.ff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;margin-bottom:16px}
+.ff-card{background:var(--bg2);border:1px solid rgba(230,57,70,.3);border-radius:8px;padding:14px 16px}
+.ff-card .ff-word{font-size:1rem;font-weight:700;color:var(--red);margin-bottom:4px}
+.ff-card .ff-wrong{font-size:.82rem;color:var(--red);opacity:.7;margin-bottom:4px}
+.ff-card .ff-right{font-size:.88rem;color:var(--green);font-weight:600;margin-bottom:6px}
+.ff-card .ff-ex{font-size:.82rem;color:var(--muted);border-left:2px solid var(--border);padding-left:8px}
+.ff-card .ff-en{font-size:.78rem;color:var(--blue);margin-top:4px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.ff-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L103.html">← L103</a>
+  <span class="level">B1 · Фаза 4 · День 222</span>
+  <a href="L105.html">L105 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">⚠️ Фаза 4 · Блок B4A · Беглость</div>
+  <h1>Ложные <span class="hl">друзья</span></h1>
+  <p class="sub">Embarazada ≠ embarrassed — 40 ловушек для англо- и русскоязычных студентов испанского.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">⚠️</div><div><strong>Цель</strong><p>Запомнить 40 ложных друзей и никогда не попадать в ловушку</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + тест на себе 10 мин</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Обращай внимание — ложные друзья встречаются в любом тексте</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Тест на ложных друзей: услышишь слово — объяснишь значение</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Что такое ложные друзья и почему они опасны</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Ложные друзья переводчика (falsos amigos) — слова, которые похожи на английские (или русские), но значат совсем другое. Они особенно опасны именно потому, что <strong>кажутся знакомыми</strong>.</p>
+
+  <div class="callout warning">
+    <h4>⚠️ Классический ужас: embarazada</h4>
+    <p>Представь: ты встречаешь испанку и хочешь сказать «Я смущён» = «I'm embarrassed». Ты говоришь: <em>«Estoy embarazada»</em>. Ты только что сказал «Я беременна». Правильно: <em>«Estoy avergonzado/a»</em>. Это реальная ловушка для сотен тысяч студентов.</p>
+  </div>
+
+  <div class="callout info">
+    <h4>🔍 Три типа ложных друзей</h4>
+    <ul>
+      <li><strong>Англо-испанские:</strong> слово похоже на английское, но значит другое (embarazada)</li>
+      <li><strong>Частично ложные:</strong> слово иногда совпадает, иногда нет (actual = нынешний, иногда = actual)</li>
+      <li><strong>Русско-испанские:</strong> слово похоже на русское, но значит другое (фамилия ≠ familia)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: 40 ЛОЖНЫХ ДРУЗЕЙ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>40 ложных друзей — красные карточки</h2>
+  </div>
+
+  <div class="ff-grid">
+    <div class="ff-card">
+      <div class="ff-word">embarazada</div>
+      <div class="ff-wrong">❌ НЕ: embarrassed (смущённая)</div>
+      <div class="ff-right">✅ беременная</div>
+      <div class="ff-ex">Está embarazada de tres meses.</div>
+      <div class="ff-en">en: embarrassed = avergonzada</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">actual</div>
+      <div class="ff-wrong">❌ НЕ: actual (настоящий, реальный)</div>
+      <div class="ff-right">✅ нынешний, текущий</div>
+      <div class="ff-ex">El presidente actual lleva tres años en el cargo.</div>
+      <div class="ff-en">en: actual = real, verdadero</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">sensible</div>
+      <div class="ff-wrong">❌ НЕ: sensible (разумный, здравомыслящий)</div>
+      <div class="ff-right">✅ чувствительный, ранимый</div>
+      <div class="ff-ex">Es muy sensible a las críticas.</div>
+      <div class="ff-en">en: sensible = sensato, razonable</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">realizar</div>
+      <div class="ff-wrong">❌ НЕ: to realize (понять, осознать)</div>
+      <div class="ff-right">✅ осуществлять, выполнять</div>
+      <div class="ff-ex">Vamos a realizar el proyecto este mes.</div>
+      <div class="ff-en">en: to realize = darse cuenta de</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">exitoso</div>
+      <div class="ff-wrong">❌ НЕ: excited (взволнованный)</div>
+      <div class="ff-right">✅ успешный</div>
+      <div class="ff-ex">Es un empresario muy exitoso.</div>
+      <div class="ff-en">en: excited = emocionado, entusiasmado</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">éxito</div>
+      <div class="ff-wrong">❌ НЕ: exit (выход)</div>
+      <div class="ff-right">✅ успех</div>
+      <div class="ff-ex">La película fue un gran éxito.</div>
+      <div class="ff-en">en: exit = salida</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">librería</div>
+      <div class="ff-wrong">❌ НЕ: library (библиотека)</div>
+      <div class="ff-right">✅ книжный магазин</div>
+      <div class="ff-ex">Compré el libro en esa librería.</div>
+      <div class="ff-en">en: library = biblioteca</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">constipado</div>
+      <div class="ff-wrong">❌ НЕ: constipated (страдающий запором)</div>
+      <div class="ff-right">✅ простуженный (насморк)</div>
+      <div class="ff-ex">Estoy constipado, me duele la garganta.</div>
+      <div class="ff-en">en: constipated = estreñido</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">emocionado</div>
+      <div class="ff-wrong">❌ НЕ: emotional (эмоциональный)</div>
+      <div class="ff-right">✅ взволнованный, растроганный</div>
+      <div class="ff-ex">Estaba muy emocionado en su graduación.</div>
+      <div class="ff-en">en: emotional = con mucha carga emocional</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">molestar</div>
+      <div class="ff-wrong">❌ НЕ: to molest (домогаться)</div>
+      <div class="ff-right">✅ беспокоить, мешать</div>
+      <div class="ff-ex">¿Te molesta si fumo aquí?</div>
+      <div class="ff-en">en: to molest = acosar sexualmente</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">largo</div>
+      <div class="ff-wrong">❌ НЕ: large (большой)</div>
+      <div class="ff-right">✅ длинный, долгий</div>
+      <div class="ff-ex">Es un libro muy largo — tiene 600 páginas.</div>
+      <div class="ff-en">en: large = grande</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">pretender</div>
+      <div class="ff-wrong">❌ НЕ: to pretend (притворяться)</div>
+      <div class="ff-right">✅ намереваться, стремиться</div>
+      <div class="ff-ex">Pretendo aprender español en un año.</div>
+      <div class="ff-en">en: to pretend = fingir, aparentar</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">soportar</div>
+      <div class="ff-wrong">❌ НЕ: to support (поддерживать)</div>
+      <div class="ff-right">✅ терпеть, выносить</div>
+      <div class="ff-ex">No soporto el calor extremo.</div>
+      <div class="ff-en">en: to support = apoyar, respaldar</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">ropa</div>
+      <div class="ff-wrong">❌ НЕ: rope (верёвка)</div>
+      <div class="ff-right">✅ одежда</div>
+      <div class="ff-ex">¿Dónde compras tu ropa?</div>
+      <div class="ff-en">en: rope = cuerda, soga</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">lectura</div>
+      <div class="ff-wrong">❌ НЕ: lecture (лекция, выговор)</div>
+      <div class="ff-right">✅ чтение</div>
+      <div class="ff-ex">La lectura es mi hobby favorito.</div>
+      <div class="ff-en">en: lecture = conferencia, charla</div>
+    </div>
+    <div class="ff-card">
+      <div class="ff-word">firma</div>
+      <div class="ff-wrong">❌ НЕ: firm (твёрдый, компания)</div>
+      <div class="ff-right">✅ подпись</div>
+      <div class="ff-ex">Pon tu firma aquí, por favor.</div>
+      <div class="ff-en">en: firm = empresa (иногда совпадает!)</div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Самые опасные — molestar и embarazada</h4>
+    <p>Эти два слова создают самые неловкие ситуации. <em>Molestar</em> = мешать, беспокоить (нейтрально). <em>«¿Te molesta si...?»</em> = «Тебе не мешает, если...?» — абсолютно нормальная фраза. Никакого сексуального подтекста в испанском нет. Но если ты будешь бояться использовать слово — потеряешь натуральность речи.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: АУТЕНТИЧНЫЙ ТЕКСТ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Найди ловушки в тексте</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай текст и найди 5 ложных друзей. Сначала попробуй сам, потом нажми «Показать» для проверки.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📖 Текст с ловушками (найди ложных друзей!)
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-text1')">Показать ответ</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:1.9">
+          La empresa actual pretende <strong style="color:var(--red)">realizar</strong> un proyecto muy exitoso en el mercado. La directora, que está <strong style="color:var(--red)">embarazada</strong>, es una persona muy <strong style="color:var(--red)">sensible</strong> pero también muy <strong style="color:var(--red)">exitosa</strong> en su carrera. El proyecto tendrá una duración <strong style="color:var(--red)">larga</strong> y requerirá mucho esfuerzo del equipo.
+        </div>
+        <div class="dlg-ru" id="tr-text1" style="display:none;margin-top:10px;font-size:.84rem">
+          Нынешняя (НЕ actual→настоящая) компания намеревается (НЕ pretende→притворяется) осуществить (НЕ realizar→осознать) очень успешный (НЕ exitoso→взволнованный) проект. Директор, которая беременна (НЕ embarazada→смущена), — очень чувствительный (НЕ sensible→разумный) человек, но также очень успешный. Проект будет длинным (НЕ largo→большим) и потребует много усилий.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Правильное значение</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>⚠️ Не попадись в ловушку!</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Estoy muy <strong>emocionado</strong> con la noticia» — говорящий:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Взволнован, растроган новостью</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Эмоциональный человек</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Злится на новость</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «No soporto el ruido» — говорящий:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Поддерживает шум</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Не выносит, не терпит шума</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Любит шум</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Necesito ir a la <strong>librería</strong>» — он идёт в:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Книжный магазин</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Библиотеку</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Библиотечный отдел</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «El presidente <strong>actual</strong>» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Настоящий, реальный президент</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Нынешний, текущий президент</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Бывший президент</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Хочешь сказать «Я осознал ошибку» — как правильно?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Me di cuenta del error.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Realicé el error.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Realizé el error.</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «¿Te <strong>molesta</strong> si abro la ventana?» — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Грубый / неприличный вопрос</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Вежливый вопрос «Тебе не мешает, если открою окно?»</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Вопрос о погоде</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Переведи правильно</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Дай правильный испанский эквивалент</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Как сказать «Я смущён» (embarrassed) по-испански: <strong>Estoy _____.</strong></div>
+      <input type="text" class="text-input" placeholder="прилагательное (мужской род)..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','avergonzado','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ avergonzado — от vergüenza (стыд). Embarazado = беременный (о мужчине — кстати, это редкость, обычно embarazada)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Как сказать «библиотека» (library): <strong>_____</strong></div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','biblioteca','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ biblioteca — librería = книжный магазин! Не путай!</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Как сказать «Я осознал» (I realized): <strong>Me _____ _____.</strong></div>
+      <input type="text" class="text-input" placeholder="два слова..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','di cuenta','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ di cuenta — darse cuenta (de) = осознать, понять. Realizar = осуществлять.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Как сказать «поддерживать друга» (to support): <strong>_____ a un amigo.</strong></div>
+      <input type="text" class="text-input" placeholder="глагол, not soportar..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','Apoyar','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ Apoyar — apoyar = поддерживать (морально). Soportar = терпеть, выносить.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «Большая книга» (large book) → <strong>Un libro _____.</strong></div>
+      <input type="text" class="text-input" placeholder="прилагательное..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','grande','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ grande — large/big = grande. Largo = длинный, долгий.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — ложные друзья в контексте</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог: Неловкое недопонимание
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¿Por qué no fuiste a la conferencia de ayer?</div>
+      <div class="dlg-ru" id="tr-d1" style="display:none">Почему ты не пошёл на вчерашнюю конференцию?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Estaba constipado y no me encontraba bien. Además, me di cuenta de que no tenía los documentos.</div>
+      <div class="dlg-ru" id="tr-d1b" style="display:none">Я был простужен и чувствовал себя плохо. Кроме того, я осознал, что у меня нет документов.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¡Qué lástima! La conferencia fue muy larga pero muy exitosa. El ponente actual es uno de los mejores del sector.</div>
+      <div class="dlg-ru" id="tr-d1c" style="display:none">Жаль! Конференция была очень долгой, но очень успешной. Нынешний докладчик — один из лучших в отрасли.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Sí, lo sé. Pretendo ir al próximo evento en junio. Espero estar mejor para entonces.</div>
+      <div class="dlg-ru" id="tr-d1d" style="display:none">Да, знаю. Я намереваюсь пойти на следующее мероприятие в июне. Надеюсь, к тому времени буду в порядке.</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог: В книжном магазине
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">Disculpe, ¿tiene usted este libro en la librería?</div>
+      <div class="dlg-ru" id="tr-d2" style="display:none">Простите, у вас есть эта книга в магазине?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Sí, pero es bastante largo — tiene 800 páginas. ¿Le molesta eso?</div>
+      <div class="dlg-ru" id="tr-d2b" style="display:none">Да, но она довольно длинная — 800 страниц. Вас это не беспокоит?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">Para nada. Me gusta la lectura larga. ¿Puede apoyarme en poner la firma aquí?</div>
+      <div class="dlg-ru" id="tr-d2c" style="display:none">Нисколько. Мне нравится длинное чтение. Можете помочь мне поставить подпись здесь?</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — тест на ложных друзей</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание — Скоростной тест</div>
+    <p>Я называю английское слово — ты немедленно говоришь правильный испанский перевод (не ложного друга). Без паузы. Тренируй быстроту реакции.</p>
+    <div class="es">
+      embarrassed → ? (avergonzado/a)<br>
+      library → ? (biblioteca)<br>
+      to support → ? (apoyar)<br>
+      large → ? (grande)<br>
+      to realize → ? (darse cuenta de)<br>
+      sensible → ? (sensato/a)<br>
+      exit → ? (salida)<br>
+      rope → ? (cuerda)
+    </div>
+    <div class="hint">Прикрой ответы и произноси вслух. Если колебался — это слово ещё не закреплено. Повтори 3 раза подряд.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый уровень — Объясни разницу</div>
+    <p>Для каждой пары «ложных друзей» объясни разницу по-испански одним предложением. Например: <em>«Embarazada significa 'pregnant', no 'embarrassed'. Para decir 'embarrassed' usamos avergonzada.»</em></p>
+    <div class="es">Explica las diferencias: librería/biblioteca, soportar/apoyar, actual/real, largo/grande</div>
+    <div class="hint">Умение объяснить разницу самому себе — лучший способ запомнить навсегда.</div>
+  </div>
+</div>
+
+<!-- SECTION 8: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Falsos amigos en la historia</div>
+    <h4>Ложные друзья в дипломатии — цена ошибки</h4>
+    <p>Ложные друзья — проблема не только для студентов. В дипломатической истории известны случаи, когда неточный перевод менял ход переговоров. Испанское слово <em>embarazada</em> стало хрестоматийным примером: в нескольких известных случаях дипломаты или актёры на международных площадках создавали неловкие ситуации. Лингвисты шутят: «Ложные друзья хуже прямых врагов — ты не ждёшь удара от того, кто кажется знакомым». В испанском мире даже есть специальный термин: <em>«falsos cognados»</em> — ложные когнаты, слова, кажущиеся родственными, но не являющиеся ими.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki — топ-10 ловушек</div>
+    <ul>
+      <li><strong>embarazada</strong> = беременная (НЕ смущённая!)</li>
+      <li><strong>avergonzado/a</strong> = смущённый, пристыжённый</li>
+      <li><strong>actual</strong> = нынешний, текущий (НЕ настоящий)</li>
+      <li><strong>librería vs. biblioteca</strong> = книжный магазин vs. библиотека</li>
+      <li><strong>darse cuenta de</strong> = осознать (НЕ realizar)</li>
+      <li><strong>apoyar</strong> = поддерживать (НЕ soportar)</li>
+      <li><strong>largo</strong> = длинный (НЕ большой = grande)</li>
+      <li><strong>sensible</strong> = чувствительный (НЕ разумный = sensato)</li>
+      <li><strong>éxito</strong> = успех (НЕ выход = salida)</li>
+      <li><strong>molestar</strong> = беспокоить (НЕ домогаться)</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Создай 10 Anki-карточек с ложными друзьями. На лицевой — испанское слово, на обороте — значение + «ловушка» (чем не является).</li>
+      <li>Напиши 5 предложений, намеренно используя правильный перевод там, где мог бы попасть в ловушку.</li>
+      <li>Найди ещё 3 ложных друга самостоятельно (используй поиск «falsos amigos español inglés»).</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок 104 завершён!</h4>
+    <p>Теперь ложные друзья тебя не поймают. Следующий — L105: Испания vs. Латинская Америка. Vosotros, vos, tú — три способа говорить «вы».</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L103.html" class="nav-link-btn">← L103</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L105.html" class="nav-link-btn">L105 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L104';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'Emocionado = взволнованный, растроганный. Emotional (эмоциональный по характеру) = emotivo.',
+  q2:'Soportar = терпеть, выносить. To support (поддерживать) = apoyar.',
+  q3:'Librería = книжный магазин. Library = biblioteca.',
+  q4:'Actual = нынешний, текущий. Actual (настоящий, реальный) = real, verdadero.',
+  q5:'Me di cuenta del error — darse cuenta de = осознать. Realizar = осуществлять, выполнять.',
+  q6:'¿Te molesta? — абсолютно нормальная вежливая фраза «Тебе не мешает?». Molestar ≠ to molest.'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+  });
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})? 'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

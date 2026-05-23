@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L113: DELE B1 — Говорение: путешествия и туризм</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--purple);color:#fff;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout.dele{background:rgba(157,78,221,.1);border-color:var(--purple)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(157,78,221,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--purple)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--purple);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker.b{color:var(--purple)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.vocab-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.vocab-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es-word{color:var(--gold);font-weight:600}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · DELE Prep · День 243</span>
+  <a href="L114.html">L114 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
+  <h1>DELE B1: Говорение — <span class="hl">путешествия</span></h1>
+  <p class="sub">Viajes, turismo, cultura — говорить убедительно о поездках и планах</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">✈️</div><div><strong>Тема</strong><p>Путешествия, туризм, планирование поездки</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут + Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Видео о путешествиях, странах</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Mock</strong><p>Планировать поездку в Испанию с аргументами</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Говорить о путешествиях: структуры B1</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Тема путешествий встречается в DELE B1 почти на каждом экзамене — как в устной, так и в письменной части. Главное: не просто называть места, а <strong>аргументировать, сравнивать и выражать мнение</strong>.</p>
+
+  <div class="callout tip">
+    <h4>💡 Ключевые структуры для темы путешествий</h4>
+    <ul>
+      <li><strong>Prefiero... porque...</strong> — Предпочитаю... потому что...</li>
+      <li><strong>Lo que más me gusta de viajar es...</strong> — Больше всего мне нравится в путешествиях...</li>
+      <li><strong>A diferencia de..., en España...</strong> — В отличие от..., в Испании...</li>
+      <li><strong>Si tuviera la oportunidad, viajaría a...</strong> — Если бы у меня была возможность, поехал бы в...</li>
+      <li><strong>Recomendaría... porque...</strong> — Порекомендовал бы... потому что...</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>📝 Как строить аргументацию</h4>
+    <ul>
+      <li><strong>Tesis:</strong> Creo que el turismo cultural es más enriquecedor que el turismo de playa.</li>
+      <li><strong>Argumento 1:</strong> En primer lugar, permite conocer la historia y las tradiciones locales.</li>
+      <li><strong>Argumento 2:</strong> Además, ayuda a aprender el idioma del país.</li>
+      <li><strong>Contraargumento:</strong> Sin embargo, es verdad que el turismo de sol y playa permite descansar.</li>
+      <li><strong>Conclusión:</strong> En definitiva, depende de los objetivos de cada viajero.</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ошибка: hablar solo del pasado</h4>
+    <p>Многие говорят только «Fui a París, vi la Torre Eiffel, comí croissants» — это скучно. Нужно: описывать впечатления, делать сравнения, строить предположения, давать рекомендации. Разнообразие = высокий балл.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — путешествия и туризм B1</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="es-word">el destino turístico</td><td>[дестино]</td><td>туристическое направление</td><td>Barcelona es un destino turístico muy popular.</td></tr>
+      <tr><td class="es-word">el patrimonio cultural</td><td>[патримонио]</td><td>культурное наследие</td><td>España tiene un patrimonio cultural increíble.</td></tr>
+      <tr><td class="es-word">la gastronomía</td><td>[гастрономиа]</td><td>гастрономия, кухня</td><td>La gastronomía española es mundialmente famosa.</td></tr>
+      <tr><td class="es-word">alojarse</td><td>[алохарсэ]</td><td>останавливаться (в отеле, Airbnb)</td><td>Me alojé en un hotel boutique en el centro.</td></tr>
+      <tr><td class="es-word">recorrer</td><td>[рэкорер]</td><td>объехать, обойти</td><td>Quiero recorrer toda la costa mediterránea.</td></tr>
+      <tr><td class="es-word">el paisaje</td><td>[паисахэ]</td><td>пейзаж, ландшафт</td><td>El paisaje de los Pirineos es impresionante.</td></tr>
+      <tr><td class="es-word">la temporada alta/baja</td><td>[тэмпорада]</td><td>высокий/низкий сезон</td><td>Viajo en temporada baja para evitar las multitudes.</td></tr>
+      <tr><td class="es-word">el turismo sostenible</td><td>[состэниблэ]</td><td>устойчивый туризм</td><td>El turismo sostenible protege el medioambiente.</td></tr>
+      <tr><td class="es-word">la excursión</td><td>[экскурсьон]</td><td>экскурсия, вылазка</td><td>Hicimos una excursión a Montserrat.</td></tr>
+      <tr><td class="es-word">maravillarse</td><td>[маравиьарсэ]</td><td>восхищаться</td><td>Me maravillé con la arquitectura de Gaudí.</td></tr>
+      <tr><td class="es-word">la temporada de turismo</td><td>[тэмпорада]</td><td>туристический сезон</td><td>En verano la ciudad se llena de turistas.</td></tr>
+      <tr><td class="es-word">el equipaje</td><td>[экипахэ]</td><td>багаж</td><td>Viajo siempre con equipaje de mano solamente.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Путешествия и туризм</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Лексика и аргументация</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как правильно порекомендовать город?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Recomendaría Barcelona porque tiene mucho que ofrecer culturalmente.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Barcelona es buena.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Fui a Barcelona y fue bien.</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Temporada baja» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Высокий сезон, много туристов</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Праздничный сезон</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Низкий сезон, меньше туристов и цены ниже</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Какая структура правильная для гипотетического путешествия?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Si tuviera más tiempo, viajaría a Sudamérica.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Si tendré más tiempo, viajaré.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Si tengo más tiempo, viajaría.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Me maravillé con la arquitectura» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Меня утомила архитектура</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Я изучил архитектуру</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Я восхитился архитектурой</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Как сказать «в отличие от России, в Испании...»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">A diferencia de Rusia, en España...</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Contrario de Rusia, en España...</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Diferente que Rusia, en España...</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «El patrimonio cultural» — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Туристический паспорт</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Культурный центр</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Культурное наследие</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Заполни пропуски</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Лексика путешествий</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «Me _____ en un pequeño hostal cerca del centro.» (остановился)</div>
+      <input type="text" class="text-input" placeholder="alojé / quedé..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','alojé','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ alojé (alojarse) — остановиться/проживать. «Me quedé» тоже возможно.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «Barcelona es uno de los principales _____ _____ de Europa.» (туристических направлений)</div>
+      <input type="text" class="text-input" placeholder="destinos turísticos..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','destinos turísticos','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ destinos turísticos — туристические направления.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «Si _____ la oportunidad, viajaría a Japón.» (тuviera)</div>
+      <input type="text" class="text-input" placeholder="tuviera / tendría..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','tuviera','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ tuviera — imperfecto de subjuntivo. «Si tuviera + condicional» = гипотетическое условие.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «Prefiero viajar en temporada _____ para evitar las multitudes.» (низком сезоне)</div>
+      <input type="text" class="text-input" placeholder="baja / alta..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','baja','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ baja — temporada baja = низкий сезон, меньше туристов.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «Hicimos una _____ de un día a los pueblos de la costa.» (экскурсия)</div>
+      <input type="text" class="text-input" placeholder="excursión / visita..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','excursión','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ excursión — экскурсия, однодневная поездка. «Visita» тоже возможно.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — планирование поездки</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Планирование поездки в Испанию
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div>
+        <div class="dlg-es">¿Has visitado algún país hispanohablante? ¿Cuál te gustaría visitar y por qué?</div>
+        <div class="dlg-ru" id="tr-d1" style="display:none">Ты посещал какую-нибудь испаноязычную страну? Какую хотел бы посетить и почему?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div>
+        <div class="dlg-es">Todavía no he visitado ningún país hispanohablante, pero me gustaría mucho ir a España. En primer lugar, me fascina su patrimonio cultural — la arquitectura de Gaudí en Barcelona, por ejemplo. Además, la gastronomía española es famosa en todo el mundo. Si tuviera la oportunidad, me alojaría en el barrio Gótico y recorrería toda la ciudad a pie.</div>
+        <div class="dlg-ru" id="tr-d1b" style="display:none">Я ещё не посещал ни одной испаноязычной страны, но очень хотел бы поехать в Испанию. Во-первых, меня восхищает её культурное наследие — архитектура Гауди в Барселоне, например. Кроме того, испанская гастрономия знаменита во всём мире. Если бы у меня была возможность, я остановился бы в Готическом квартале и обошёл весь город пешком.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div>
+        <div class="dlg-es">¿Preferirías el turismo de sol y playa o el turismo cultural? ¿Por qué?</div>
+        <div class="dlg-ru" id="tr-d1c" style="display:none">Ты предпочёл бы пляжный туризм или культурный? Почему?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div>
+        <div class="dlg-es">Personalmente, prefiero el turismo cultural porque me permite aprender sobre la historia y las costumbres locales. Sin embargo, no descarto disfrutar también de la playa, especialmente en la Costa Brava. A diferencia de mi país, en España se puede combinar perfectamente el turismo cultural con el de sol y playa.</div>
+        <div class="dlg-ru" id="tr-d1d" style="display:none">Лично я предпочитаю культурный туризм, потому что он позволяет узнавать историю и местные обычаи. Однако не исключаю и пляжный отдых, особенно на Коста Браве. В отличие от моей страны, в Испании можно прекрасно совмещать культурный туризм с пляжным.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: В туристическом бюро (Tarea 3)
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Agente</div>
+      <div>
+        <div class="dlg-es">Buenos días. ¿En qué le puedo ayudar?</div>
+        <div class="dlg-ru" id="tr-d2" style="display:none">Доброе утро. Чем могу помочь?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div>
+        <div class="dlg-es">Buenos días. Quería informarme sobre excursiones por Andalucía. Somos un grupo de cuatro personas y nos interesan especialmente la arquitectura árabe y la gastronomía local.</div>
+        <div class="dlg-ru" id="tr-d2b" style="display:none">Доброе утро. Я хотел узнать об экскурсиях по Андалусии. Нас четверо, и нас особенно интересует арабская архитектура и местная гастрономия.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Agente</div>
+      <div>
+        <div class="dlg-es">¡Perfecto! Les recomiendo el paquete de cinco días por Granada, Sevilla y Córdoba. Incluye visitas a la Alhambra, la Mezquita y el Alcázar, además de cenas típicas.</div>
+        <div class="dlg-ru" id="tr-d2c" style="display:none">Отлично! Рекомендую пятидневный тур по Гранаде, Севилье и Кордове. Включает посещение Альгамбры, Мечети и Алькасара, плюс традиционные ужины.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div>
+        <div class="dlg-es">¿Y en qué época del año recomendaría ir? ¿Es mejor evitar el verano por el calor?</div>
+        <div class="dlg-ru" id="tr-d2d" style="display:none">А в какое время года рекомендуете ехать? Лучше избегать лета из-за жары?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Agente</div>
+      <div>
+        <div class="dlg-es">Exactamente. En julio y agosto las temperaturas superan los 40 grados. Le aconsejo la primavera, especialmente la época de la Semana Santa, cuando Sevilla es especialmente impresionante.</div>
+        <div class="dlg-ru" id="tr-d2e" style="display:none">Именно так. В июле и августе температура превышает 40 градусов. Советую весну, особенно период Страстной недели, когда Севилья особенно впечатляет.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAKING MOCK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Mock Speaking — планирование поездки</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 DELE B1 Mock — Tarea 1 (туризм)</div>
+    <p>Прокомментируй и дай своё мнение о следующих данных (4 минуты):</p>
+    <div class="es" style="font-size:.9rem;background:var(--bg2);padding:12px;border-radius:6px;margin:8px 0">«Según un informe de la OMT, el 58% de los turistas prefiere el turismo cultural y patrimonial, mientras que el 27% prefiere el turismo de sol y playa y el 15% el turismo de aventura.»</div>
+    <div class="hint">Структура: описать данные → твоё мнение → аргументы → личный опыт или пример → вывод. Минимум 5 различных структур.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Уровень 2 — Ролевая игра</div>
+    <p>Ты звонишь в отель в Барселоне. Заброни номер на 3 ночи (15–17 июня), уточни цену и спроси о завтраке.</p>
+    <div class="es">«Buenos días. Querría reservar una habitación doble para tres noches, del 15 al 17 de junio. ¿Podría decirme el precio por noche y si incluye desayuno?»</div>
+    <div class="hint">Играй обе роли — и клиента, и сотрудника отеля. Практикуй вежливые формы: «¿podría...?», «me gustaría...»</div>
+  </div>
+</div>
+
+<!-- SECTION 7: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 El turismo en España</div>
+    <h4>Испания — вторая по посещаемости страна мира</h4>
+    <p>Испания ежегодно принимает более 80 миллионов туристов — это второй результат в мире после Франции. Туризм составляет около 12% ВВП страны. Несмотря на это, многие испанские города страдают от «overtourism» (масштурисмо) — Барселона, Малага и Пальма де Майорка периодически организуют протесты местных жителей против наплыва туристов. На DELE эта тема — «turismo sostenible» против «masturismo» — один из популярных дискуссионных вопросов. Подготовь аргументы с обеих сторон!</p>
+  </div>
+</div>
+
+<!-- SECTION 8: ANKI + HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки Anki — путешествия B1</div>
+    <ul>
+      <li><strong>el patrimonio cultural</strong> — культурное наследие</li>
+      <li><strong>la gastronomía</strong> — гастрономия, кухня</li>
+      <li><strong>alojarse</strong> — остановиться | Me alojé en...</li>
+      <li><strong>temporada alta / baja</strong> — высокий / низкий сезон</li>
+      <li><strong>Recomendaría... porque...</strong> — шаблон рекомендации</li>
+      <li><strong>Si tuviera la oportunidad, viajaría...</strong> — гипотетическое путешествие</li>
+      <li><strong>A diferencia de..., en España...</strong> — сравнение стран</li>
+      <li><strong>el turismo sostenible</strong> — устойчивый туризм</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Задание до следующего урока</h4>
+    <ul>
+      <li>Запиши монолог 4 мин: «El viaje más memorable de mi vida» — используй прошедшие времена + оценки + рекомендации</li>
+      <li>Dreaming Spanish Intermediate — видео о путешествиях по Испании или Латинской Америке</li>
+      <li>Следующий урок: DELE B1 — социальные темы (medio ambiente, tecnología)</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L112.html" class="nav-link-btn">← L112</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L114.html" class="nav-link-btn">L114 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L113';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'Развёрнутая рекомендация с аргументом — это стиль B1. Короткие ответы не дают высокий балл.',
+  q2:'Temporada baja = низкий сезон = меньше туристов, более низкие цены. Temporada alta = пик туризма.',
+  q3:'«Si tuviera + condicional» — правильная структура для гипотетического условия в испанском.',
+  q4:'Maravillarse con = восхититься. Me maravillé con la arquitectura = я был восхищён архитектурой.',
+  q5:'«A diferencia de» = в отличие от. Это фиксированное выражение сравнения.',
+  q6:'Patrimonio cultural = культурное наследие. UNESCO охраняет patrimonio cultural mundial.'
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})?'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;quizTotal++;
+}
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||val.includes(correct.split(' ')[0])&&val.length>=correct.length-3){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Правильный ответ: ${answer}`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

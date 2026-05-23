@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L115: DELE B1 — Чтение: стратегии и практика</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--purple);color:#fff;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--blue)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--blue);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout.dele{background:rgba(157,78,221,.1);border-color:var(--purple)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.vocab-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.vocab-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es-word{color:var(--gold);font-weight:600}
+.reading-text{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px 22px;margin:14px 0;font-size:.92rem;line-height:1.8}
+.reading-text h4{color:var(--gold);font-size:.95rem;margin-bottom:10px}
+.reading-text p{margin-bottom:10px;color:var(--text)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · DELE Prep · День 249</span>
+  <a href="L116.html">L116 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
+  <h1>DELE B1: <span class="hl">Чтение</span> — стратегии и практика</h1>
+  <p class="sub">4 типа заданий: множественный выбор, соответствие, пропуски — полная тренировка</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">📖</div><div><strong>DELE Prueba 1</strong><p>Comprensión de lectura — 4 задания, 45 мин</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~60 минут (имитация реального экзамена)</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Читай субтитры во время просмотра</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Стратегия</strong><p>Skimming, scanning, contextual guessing</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY — DELE READING FORMAT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Формат DELE B1 — раздел чтения</h2>
+  </div>
+
+  <div class="callout dele">
+    <h4>📋 Prueba 1: Comprensión de lectura (45 минут)</h4>
+    <ul>
+      <li><strong>Tarea 1:</strong> Читаешь 6 коротких текстов → соединяешь с 8 заголовками (6 правильных + 2 лишних)</li>
+      <li><strong>Tarea 2:</strong> Читаешь один длинный текст → отвечаешь на 6 вопросов с тройным выбором (a/b/c)</li>
+      <li><strong>Tarea 3:</strong> Текст с 6 пропусками → выбираешь из 12 вариантов (словосочетания/фразы)</li>
+      <li><strong>Tarea 4:</strong> Читаешь 4 коротких текста на одну тему → соединяешь 6 утверждений с нужным автором</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Три ключевые стратегии чтения</h4>
+    <ul>
+      <li><strong>Skimming</strong> — быстро просматривай весь текст за 30–60 секунд, чтобы понять тему и структуру. Читай первое и последнее предложение каждого абзаца.</li>
+      <li><strong>Scanning</strong> — ищи конкретную информацию (имена, числа, даты). Не читай всё — ищи целевую деталь.</li>
+      <li><strong>Contextual guessing</strong> — незнакомое слово? Определи по контексту: часть речи + смысл соседних слов.</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Главная ошибка: переводить всё подряд</h4>
+    <p>Никогда не переводи весь текст — на это нет времени. Читай с задачей: «Что спрашивается?» → «Где в тексте это может быть?» → «Найди доказательство». Ответ всегда можно найти дословно или перефразировано в тексте.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: READING TEXT 1 — TAREA 2 STYLE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Tarea 2 — Comprensión lectora (аутентичный текст)</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай текст полностью. Затем ответь на вопросы. Время: 8 минут.</p>
+
+  <div class="reading-text">
+    <h4>El auge del turismo digital en España</h4>
+    <p>En los últimos años, España ha experimentado una transformación radical en la forma en que los turistas planifican y viven sus viajes. La pandemia aceleró un proceso que ya estaba en marcha: la digitalización del sector turístico. Hoy, más del 85% de los viajeros que visitan España reservan su alojamiento a través de plataformas digitales, y casi el 70% utiliza aplicaciones móviles para organizar sus rutas y encontrar restaurantes.</p>
+    <p>Sin embargo, este cambio no ha sido igualmente positivo para todos. Los pequeños negocios tradicionales —hostales familiares, tiendas de artesanía, restaurantes de barrio— se han visto obligados a adaptarse rápidamente o perder clientes. Muchos propietarios mayores han tenido dificultades para entender las plataformas digitales, lo que ha aumentado la brecha entre los negocios que prosperan y los que luchan por sobrevivir.</p>
+    <p>Por otro lado, el turismo digital ha democratizado el acceso a destinos menos conocidos. Gracias a los blogs de viaje y las redes sociales, regiones como la Ribeira Sacra en Galicia o Las Médulas en León han ganado visibilidad internacional, atrayendo a un turismo más sostenible y culturalmente interesado, a diferencia del turismo masivo que satura ciudades como Barcelona o Sevilla.</p>
+    <p>Los expertos señalan que el futuro del turismo español dependerá de su capacidad para equilibrar la digitalización con la preservación de la experiencia auténtica. Como afirma la investigadora María Sánchez: «El turista del siglo XXI no quiere solo fotografías para Instagram; quiere conexión genuina con la cultura local.» Este reto —combinar tecnología con autenticidad— será el gran desafío del sector en los próximos años.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: QUIZ 1 — READING COMPREHENSION -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Comprensión del texto (Tarea 2)</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Вопросы по тексту о туризме</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Согласно тексту, какой процент туристов в Испании бронирует жильё через цифровые платформы?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Более 85%</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Около 70%</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Примерно 50%</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Кто больше всего пострадал от цифровизации, по тексту?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Крупные отели и авиакомпании</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Молодые туристы</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Малый бизнес: семейные хостелы и магазины ремесел</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Что из перечисленного является ПОЛОЖИТЕЛЬНЫМ следствием цифрового туризма?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Малоизвестные регионы получили международную видимость</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Барселона и Севилья стали менее переполнены</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Все туристы научились пользоваться технологиями</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Что утверждает исследователь Мария Санчес?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Что туристы хотят только дешёвых цен</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Что Инстаграм разрушает туризм</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Что современный турист ищет не только фото, но и настоящую связь с культурой</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Какова главная тема текста?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Трансформация испанского туризма под влиянием цифровых технологий</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">История туризма в Испании с 1950-х годов</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Сравнение туристических платформ</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Слово «democratizar» в тексте означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Уничтожать</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Управлять</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Делать доступным для всех</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: READING TEXT 2 — TAREA 3 (gap fill) -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Tarea 3 — Заполни пропуски (gap-fill)</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Вставь подходящее слово/выражение в каждый пропуск.</p>
+
+  <div class="reading-text">
+    <h4>El teletrabajo y la calidad de vida</h4>
+    <p>Desde que se generalizó el teletrabajo, muchas personas han descubierto que trabajar desde casa puede mejorar significativamente su calidad de vida. <strong>[1]</strong>, los desplazamientos diarios al trabajo pueden ser muy estresantes, especialmente en las grandes ciudades. Trabajar desde casa elimina este problema completamente.</p>
+    <p><strong>[2]</strong>, no todo son ventajas. Muchos trabajadores se sienten aislados y echan de menos la interacción social con sus compañeros. Además, la frontera entre el trabajo y la vida personal puede volverse borrosa, lo que dificulta desconectarse al final del día.</p>
+    <p>Los expertos sugieren que el modelo híbrido —trabajar algunos días en la oficina y otros desde casa— podría ser la solución ideal. <strong>[3]</strong>, combina lo mejor de ambos mundos: la flexibilidad del teletrabajo y la interacción humana de la oficina.</p>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Заполни пропуски [1], [2], [3]</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">Пропуск [1]: «___, los desplazamientos diarios...» — нужен коннектор, добавляющий аргумент ЗА</div>
+      <input type="text" class="text-input" placeholder="Por un lado / En primer lugar..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','por un lado','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ Por un lado — с одной стороны. «En primer lugar» тоже подходит.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">Пропуск [2]: «___, no todo son ventajas.» — нужен коннектор-контраст</div>
+      <input type="text" class="text-input" placeholder="Sin embargo / Por otro lado..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','sin embargo','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ Sin embargo — однако. «Por otro lado» тоже правильно.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">Пропуск [3]: «___, combina lo mejor...» — нужен пояснительный коннектор «то есть»</div>
+      <input type="text" class="text-input" placeholder="Es decir / O sea..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','es decir','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ Es decir — то есть, иными словами. «O sea» тоже правильно.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">Доп. вопрос: Что значит «borrosa» (la frontera puede volverse borrosa)?</div>
+      <input type="text" class="text-input" placeholder="размытой / нечёткой..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','размытой','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ Borrosa = размытой, нечёткой. Контекст: граница между работой и личной жизнью становится нечёткой.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Словарь — лексика чтения DELE B1</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Контекст</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="es-word">el auge</td><td>[аухэ]</td><td>подъём, расцвет</td><td>El auge del teletrabajo tras la pandemia.</td></tr>
+      <tr><td class="es-word">prosperar</td><td>[проспэрар]</td><td>процветать</td><td>Los negocios digitales prosperan.</td></tr>
+      <tr><td class="es-word">señalar</td><td>[сэнялар]</td><td>указывать, отмечать</td><td>Los expertos señalan que...</td></tr>
+      <tr><td class="es-word">saturar</td><td>[сатурар]</td><td>перегружать, насыщать</td><td>El turismo masivo satura las ciudades.</td></tr>
+      <tr><td class="es-word">la autenticidad</td><td>[аутэнтисидад]</td><td>подлинность, аутентичность</td><td>Los turistas buscan autenticidad.</td></tr>
+      <tr><td class="es-word">equilibrar</td><td>[экилибрар]</td><td>балансировать, уравновешивать</td><td>Hay que equilibrar tecnología y tradición.</td></tr>
+      <tr><td class="es-word">acelerado</td><td>[асэлэрадо]</td><td>ускоренный</td><td>Un cambio acelerado en el sector.</td></tr>
+      <tr><td class="es-word">la visibilidad</td><td>[висибилидад]</td><td>видимость, известность</td><td>La región ganó visibilidad internacional.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 6: TAREA 1 MATCHING PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Tarea 1 — Práctica de correspondencias</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай 4 коротких текста. Сопоставь каждый с подходящим заголовком.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📖 Четыре коротких текста — прочитай и определи тему
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-tarea1')">Показать ответы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Texto A</div>
+      <div>
+        <div class="dlg-es">«Desde hace tres años, Ana trabaja desde casa tres días a la semana. Al principio le costó adaptarse, pero ahora asegura que su productividad ha aumentado un 30% y que tiene más tiempo para su familia.»</div>
+        <div class="dlg-ru" id="tr-tarea1" style="display:none">Текст A → Заголовок: «Los beneficios del teletrabajo» (Преимущества удалённой работы)</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Texto B</div>
+      <div>
+        <div class="dlg-es">«La ciudad de Cáceres ha visto incrementar su número de visitantes en un 45% en los últimos dos años gracias a la presencia de varios influencers de viajes que han publicado contenido sobre su casco histórico medieval.»</div>
+        <div class="dlg-ru" id="tr-tarea1b" style="display:none">Текст B → Заголовок: «El poder de las redes sociales para el turismo» (Сила соцсетей для туризма)</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Texto C</div>
+      <div>
+        <div class="dlg-es">«Un nuevo estudio señala que el 62% de los adolescentes españoles preferiría tener un teléfono que una bicicleta como regalo. Esto refleja cómo la tecnología ha redefinido las prioridades de las nuevas generaciones.»</div>
+        <div class="dlg-ru" id="tr-tarea1c" style="display:none">Texto C → Заголовок: «La tecnología en la vida de los jóvenes» (Технологии в жизни молодёжи)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — реакция на прочитанное</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 После чтения: выскажи мнение</div>
+    <p>Прочитал текст о цифровом туризме. Теперь — скажи вслух (2–3 мин):</p>
+    <div class="es">«En mi opinión, el turismo digital tiene ventajas e inconvenientes. Por un lado... Sin embargo... En mi propia experiencia... En definitiva...»</div>
+    <div class="hint">Практика: читать + сразу реагировать устно = тренировка DELE Tarea 1+3 одновременно.</div>
+  </div>
+</div>
+
+<!-- SECTION 8: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 La prensa en español</div>
+    <h4>Читай испанскую прессу — лучшая подготовка к DELE</h4>
+    <p>Тексты на DELE чтения берутся из реальных испанских газет и журналов: El País, El Mundo, La Vanguardia, Muy Interesante. Стиль — журналистский, академический, с коннекторами и сложными синтаксическими конструкциями. Лучшая подготовка: читай одну статью из El País ежедневно. Начни с разделов «Sociedad» или «Ciencia» — там тексты объективного стиля, идеальные для тренировки. Ресурс: elpais.com (бесплатно). Инвестиция 15 минут в день = +30% к результату на DELE.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки Anki — стратегии чтения</div>
+    <ul>
+      <li><strong>Skimming</strong> — быстрый просмотр для понимания общей темы</li>
+      <li><strong>Scanning</strong> — поиск конкретной детали в тексте</li>
+      <li><strong>el auge</strong> — подъём, расцвет | El auge del teletrabajo.</li>
+      <li><strong>señalar</strong> — указывать | Los expertos señalan que...</li>
+      <li><strong>equilibrar</strong> — балансировать | Hay que equilibrar...</li>
+      <li><strong>prosperar</strong> — процветать | El negocio prospera.</li>
+      <li><strong>democratizar</strong> — делать доступным для всех</li>
+      <li><strong>Tarea 1/2/3/4</strong> — структура раздела чтения DELE B1</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Задание до следующего урока</h4>
+    <ul>
+      <li>Прочитай одну статью на elpais.com (раздел Sociedad) — подчеркни незнакомые слова, угадывай по контексту</li>
+      <li>Пройди тест 1 из этого урока ещё раз без подглядывания — цель: 5/6 или 6/6</li>
+      <li>Следующий урок: DELE B1 — аудирование. Самый сложный раздел!</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L114.html" class="nav-link-btn">← L114</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L116.html" class="nav-link-btn">L116 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L115';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'В тексте: «más del 85% de los viajeros...reservan su alojamiento a través de plataformas digitales». 85%.',
+  q2:'В тексте: «Los pequeños negocios tradicionales —hostales familiares, tiendas de artesanía...— se han visto obligados a adaptarse».',
+  q3:'В тексте: «el turismo digital ha democratizado el acceso a destinos menos conocidos... regiones como la Ribeira Sacra...han ganado visibilidad internacional».',
+  q4:'Мария Санчес: «El turista del siglo XXI no quiere solo fotografías para Instagram; quiere conexión genuina con la cultura local.»',
+  q5:'Главная тема: трансформация испанского туризма под влиянием цифровизации. Текст рассматривает и плюсы, и минусы.',
+  q6:'Democratizar = делать доступным для всех. Контекст: «el turismo digital ha democratizado el acceso a destinos menos conocidos».'
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})?'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;quizTotal++;
+}
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||val.includes(correct.split(' ')[0])&&val.length>=correct.length-3){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Правильный ответ: ${answer}`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

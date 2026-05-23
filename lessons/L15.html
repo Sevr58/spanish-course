@@ -928,7 +928,7 @@ const ANKI_DECK_L15 = [
 
 function exportAnkiL15() {
   const tsv = ANKI_DECK_L15.map(c => c.front + '\t' + c.back).join('\n');
-  const blob = new Blob(['﻿' + tsv], {type:'text/plain;charset=utf-8'});
+  const header = '#separator:Tab\n#html:true\n#deck:L15 Spanish\n'; const blob = new Blob([header + tsv], {type:'text/plain;charset=utf-8'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'L15_spanish.txt';

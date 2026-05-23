@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L43: Сравнения и превосходная степень</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid var(--bg3)}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:600;color:var(--gold)}
+.formula-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:12px 0}
+.formula-box .fb-title{font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.formula-box .formula{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.formula-box .fb-example{font-size:.88rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 90</span>
+  <a href="L44.html">L44 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">⚖️ Фаза 2 · Блок 2B · Сравнения</div>
+  <h1>Сравнения и <span class="hl">превосходная степень</span></h1>
+  <p class="sub">Más que, menos que, tan como, el más — сравниваем города, людей, варианты. Это расширение урока #9 из курса Polyglot.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Сравнивать людей, места и предметы на испанском</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📚</div><div><strong>Polyglot</strong><p>Связь с уроком #9 курса Polyglot</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Сравниваем два города, два варианта</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Три типа сравнений в испанском</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Испанский сравнивает проще, чем русский — нет падежных форм. Всё строится по чётким формулам.</p>
+
+  <div class="formula-box">
+    <div class="fb-title">Сравнение превосходства (больше)</div>
+    <div class="formula">más + прилагательное/наречие + que</div>
+    <div class="fb-example">Barcelona es más grande que Valencia. — Барселона больше, чем Валенсия.<br>
+    Habla más rápido que yo. — Он говорит быстрее, чем я.</div>
+  </div>
+
+  <div class="formula-box">
+    <div class="fb-title">Сравнение уступки (меньше)</div>
+    <div class="formula">menos + прилагательное/наречие + que</div>
+    <div class="fb-example">Este hotel es menos caro que el otro. — Этот отель менее дорогой, чем другой.<br>
+    Duermo menos que antes. — Я сплю меньше, чем раньше.</div>
+  </div>
+
+  <div class="formula-box">
+    <div class="fb-title">Сравнение равенства (так же как)</div>
+    <div class="formula">tan + прилагательное + como / tanto/a/os/as + как + como</div>
+    <div class="fb-example">Es tan interesante como el otro. — Это так же интересно, как другое.<br>
+    Trabaja tanto como tú. — Он работает столько же, сколько ты.</div>
+  </div>
+
+  <div class="formula-box">
+    <div class="fb-title">Превосходная степень</div>
+    <div class="formula">el/la/los/las + más/menos + прилагательное + de</div>
+    <div class="fb-example">Es el más alto de la clase. — Он самый высокий в классе.<br>
+    Barcelona es la ciudad más bonita de España. — Барселона — самый красивый город Испании.</div>
+  </div>
+
+  <h3 style="margin:16px 0 10px;font-size:1rem">Неправильные сравнения (как в английском good→better→best)</h3>
+  <table>
+    <tr><th>Прилагательное</th><th>Сравнительная</th><th>Превосходная</th></tr>
+    <tr><td>bueno (хороший)</td><td>mejor (лучше)</td><td>el mejor (лучший)</td></tr>
+    <tr><td>malo (плохой)</td><td>peor (хуже)</td><td>el peor (худший)</td></tr>
+    <tr><td>grande (большой)</td><td>mayor (больше, старше)</td><td>el mayor (самый большой/старший)</td></tr>
+    <tr><td>pequeño (маленький)</td><td>menor (меньше, младше)</td><td>el menor (самый маленький/младший)</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 mayor/menor — возраст!</h4>
+    <p>В испанском, когда речь о людях, «mayor» и «menor» часто означают «старший/младший»:<br>
+    Mi hermano mayor — мой старший брат.<br>
+    Mi hermana menor — моя младшая сестра.<br>
+    В английском: «elder/younger» — похожая система.</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ tan vs. tanto</h4>
+    <p><strong>tan</strong> + прилагательное/наречие: «tan bueno como» (так же хорошо как)<br>
+    <strong>tanto/a</strong> + существительное: «tanto dinero como» (столько же денег как)<br>
+    <strong>tanto</strong> (наречие): «trabaja tanto como» (работает столько же как)<br>
+    Ошибка: «tan dinero» — НЕЛЬЗЯ. Нужно: «tanto dinero».</p>
+  </div>
+
+  <div class="callout info">
+    <h4>🇬🇧 Сравнение с английским и русским</h4>
+    <p>Английский: more beautiful than → <strong>más hermosa que</strong><br>
+    Английский: as beautiful as → <strong>tan hermosa como</strong><br>
+    Английский: the most beautiful → <strong>la más hermosa</strong><br>
+    Русский: красивее, чем → más bonita que (испанский не меняет форму прилагательного, только добавляет «más»!)</p>
+  </div>
+</div>
+
+<!-- SECTION 2: СЛОВАРЬ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — прилагательные для сравнений</h2>
+  </div>
+
+  <table>
+    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Сравнение</th></tr>
+    <tr><td>caro/barato</td><td>[КАро/баРАто]</td><td>дорогой/дешёвый</td><td>Es más caro que el otro. — Дороже, чем другой.</td></tr>
+    <tr><td>grande/pequeño</td><td>[ГРАНде/пеКЕНьо]</td><td>большой/маленький</td><td>Madrid es más grande que Bilbao.</td></tr>
+    <tr><td>bonito/feo</td><td>[боНИто/ФЕо]</td><td>красивый/некрасивый</td><td>Barcelona es más bonita que... (по мнению многих)</td></tr>
+    <tr><td>rápido/lento</td><td>[РАПидо/ЛЕНто]</td><td>быстрый/медленный</td><td>El AVE es más rápido que el autobús.</td></tr>
+    <tr><td>fácil/difícil</td><td>[ФАсиль/диФИсиль]</td><td>лёгкий/трудный</td><td>El español es más fácil que el chino.</td></tr>
+    <tr><td>mejor/peor</td><td>[меХОР/пеОР]</td><td>лучше/хуже</td><td>Este es mejor que el anterior.</td></tr>
+    <tr><td>mayor/menor</td><td>[маЙОР/меНОР]</td><td>старше-больше/младше-меньше</td><td>Mi hermano mayor tiene 30 años.</td></tr>
+    <tr><td>lejano/cercano</td><td>[леХАно/серКАно]</td><td>далёкий/близкий</td><td>El aeropuerto es más lejano que la estación.</td></tr>
+    <tr><td>antiguo/moderno</td><td>[антиГУо/моДЕРно]</td><td>старинный/современный</td><td>Roma es más antigua que Madrid.</td></tr>
+    <tr><td>tranquilo/ruidoso</td><td>[транКИло/руиДОсо]</td><td>спокойный/шумный</td><td>El campo es más tranquilo que la ciudad.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Сравнения</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильную форму</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как сказать «Мадрид больше, чем Барселона»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Madrid es más grande que Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Madrid es grande que Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Madrid es más grande como Barcelona</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Mi hermano es mayor que yo» — что это значит?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Мой брат старше меня</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Мой брат больше меня</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Мой брат лучше меня</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Переведи: «Это так же дорого, как тот»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Es tan caro como ese</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Es tanto caro como ese</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Es más caro como ese</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Превосходная степень от «bueno»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">el mejor</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">el más bueno</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">el buenísimo</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Barcelona es la ciudad más bonita de España» — de здесь означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">из (в превосходной степени)</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">для</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">от</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Что правильно: «trabaja tan» или «trabaja tanto»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">trabaja tanto como tú (наречие)</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">trabaja tan como tú</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">оба варианта верны</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Составь сравнение</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Заполни нужным словом</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. El tren es más rápido ___ el autobús. (чем)</div>
+      <input type="text" class="text-input" placeholder="que / como / de..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','que','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ que — при неравных сравнениях (más/menos) используется «que».</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Este restaurante es tan bueno ___ el otro. (как)</div>
+      <input type="text" class="text-input" placeholder="que / como / de..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','como','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ como — при равных сравнениях (tan...como) используется «como».</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Es el ___ película del año. (лучший — форма для женского рода)</div>
+      <input type="text" class="text-input" placeholder="mejor / peor / mayor..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','mejor','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ mejor — неправильная форма, не меняется по роду: «la mejor película».</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. El español es ___ difícil que el ruso. (менее трудный)</div>
+      <input type="text" class="text-input" placeholder="más / menos / tan..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','menos','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ menos — «menos difícil que» = «менее трудный, чем».</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Barcelona es la ciudad más bonita ___ España. (в/из Испании)</div>
+      <input type="text" class="text-input" placeholder="de / en / por..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','de','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ de — после превосходной степени «самый... в/из...» используется «de»: la más bonita DE España.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — Сравниваем города</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Барселона vs Мадрид
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабл</div>
+      <div><div class="dlg-es">¿Cuál te gusta más, Barcelona o Madrid?</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Что тебе больше нравится — Барселона или Мадрид?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Эва</div>
+      <div><div class="dlg-es">Barcelona, sin duda. Es más bonita que Madrid y tiene mejor clima. Además, el mar está muy cerca.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Барселона, без сомнения. Она красивее Мадрида и имеет лучший климат. К тому же море очень близко.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабл</div>
+      <div><div class="dlg-es">Pero Madrid es más grande y tiene más oportunidades de trabajo.</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Но Мадрид больше и имеет больше рабочих возможностей.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Эва</div>
+      <div><div class="dlg-es">Es verdad. Pero la calidad de vida en Barcelona es tan buena como en Madrid, y es menos estresante. Para mí, Barcelona es la mejor ciudad de España.</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Правда. Но качество жизни в Барселоне так же хорошо, как в Мадриде, и она менее стрессовая. Для меня Барселона — лучший город Испании.</div></div>
+    </div>
+    <div id="tr-dlg1" style="display:none"></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Выбор квартиры
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div><div class="dlg-es">Tenemos dos apartamentos. El primero es más grande pero más caro. El segundo es más pequeño pero está más cerca del metro.</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">У нас две квартиры. Первая больше, но дороже. Вторая меньше, но ближе к метро.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">¿Y cuál tiene mejor luz natural?</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">А у какой лучше естественное освещение?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div><div class="dlg-es">El primero tiene más luz. Las habitaciones son tan luminosas como en un ático.</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">В первой больше света. Комнаты такие же светлые, как в пентхаусе.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">Entonces el primero es mejor para nosotros. El precio es alto, pero la calidad es la mejor del barrio.</div>
+      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Тогда первая лучше для нас. Цена высокая, но качество — лучшее в районе.</div></div>
+    </div>
+    <div id="tr-dlg2" style="display:none"></div>
+  </div>
+</div>
+
+<!-- SECTION 6: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — Сравниваем два варианта</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Базовый — Два города</div>
+    <p>Сравни Москву и Барселону по 5 параметрам. Используй más que, menos que, tan como.</p>
+    <div class="es">Moscú es más fría que Barcelona pero tiene... Barcelona es más... que... El metro es tan... como...</div>
+    <div class="hint">Параметры: климат, размер, цены, транспорт, культура, природа, язык.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый — Лучший выбор</div>
+    <p>Тебе нужно выбрать между двумя квартирами в Барселоне. Опиши обе и объясни свой выбор, используя все типы сравнений.</p>
+    <div class="es">La primera es más... pero la segunda es menos... La mejor opción es... porque es la más... de las dos.</div>
+    <div class="hint">Параметры квартир: цена, размер, расположение, свет, шум, соседи, транспорт.</div>
+  </div>
+</div>
+
+<!-- SECTION 7: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Барселона vs Мадрид: вечное соперничество</h4>
+    <p>Испанцы обожают сравнивать Барселону и Мадрид. Это своего рода национальный спорт. Мадридцы скажут: «Madrid es la mejor ciudad de España — cosmopolita, con mucha cultura y trabajo». Барселонцы ответят: «Barcelona es más bonita, más internacional y tiene el mar». Это соперничество отражается в футболе (Real Madrid vs FC Barcelona — «El Clásico»), в политике и в культуре. Интересный факт: туристы чаще едут в Барселону (один из самых посещаемых городов Европы), но испанцы чаще переезжают в Мадрид — там больше работы.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: ANKI + ДОМАШНЕЕ ЗАДАНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — карточки для этого урока</div>
+    <ul>
+      <li><strong>más ... que</strong> — больше/более ... чем</li>
+      <li><strong>menos ... que</strong> — меньше/менее ... чем</li>
+      <li><strong>tan ... como</strong> — так же ... как</li>
+      <li><strong>el/la más ... de</strong> — самый/самая ... в/из</li>
+      <li><strong>mejor / peor</strong> — лучше / хуже (неправильные формы!)</li>
+      <li><strong>mayor / menor</strong> — старше/больше / младше/меньше</li>
+      <li><strong>tanto como</strong> — столько же как (наречие)</li>
+      <li><strong>sin duda</strong> — без сомнения</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Сравни 5 пар: два города, два фильма, два языка, два телефона, двух людей</li>
+      <li>Запомни 4 неправильных формы: bueno→mejor, malo→peor, grande→mayor, pequeño→menor</li>
+      <li>Посмотри Dreaming Spanish и найди конструкции más...que, tan...como</li>
+      <li>Прочитай Polyglot #9 для дополнительной практики сравнений</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок L43 завершён!</h4>
+    <p>Отлично! Теперь ты умеешь сравнивать всё что угодно по-испански. Следующий урок — двойные объектные местоимения: me lo da, te los envía.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L42.html" class="nav-link-btn">← L42</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="../../lessons/lesson_09.html" class="nav-link-btn">📚 Polyglot #9</a>
+    <a href="L44.html" class="nav-link-btn">L44 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L43';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'más grande QUE — при сравнении неравных объектов используется «que». «Como» — только при равенстве.',
+  q2:'mayor = старший (о возрасте людей). «Grande» = большой по размеру, «mayor» = старший по возрасту.',
+  q3:'tan + прилагательное + COMO — при сравнении равных. «tanto» — только с существительными или как наречие.',
+  q4:'el mejor — неправильная превосходная степень от bueno. «Más bueno» — так НЕ говорят!',
+  q5:'В превосходной степени «самый... В классе / В Испании» — используется «de», не «en».',
+  q6:'tanto (наречие) + como — для сравнения действий. tan (без -to) только перед прилагательными.',
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
+function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const rows=document.querySelectorAll(`[id^="${id}-"]`);rows.forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

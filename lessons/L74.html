@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L74: Последовательность времён</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+th{background:var(--bg3);color:var(--gold);padding:8px 12px;text-align:left;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+td{padding:8px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.tense-map{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;margin:14px 0}
+.tense-map h4{color:var(--gold);font-size:.9rem;margin-bottom:10px}
+.tense-row{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:8px;font-size:.87rem}
+.tense-row .arr{color:var(--muted);text-align:center}
+.tense-row .main{background:var(--bg3);padding:6px 10px;border-radius:6px}
+.tense-row .dep{background:rgba(69,123,157,.1);padding:6px 10px;border-radius:6px;color:var(--blue)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 157</span>
+  <a href="L75.html">L75 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">Фаза 3 · Блок B3B · Сложная коммуникация</div>
+  <h1>Последовательность <span class="hl">времён</span></h1>
+  <p class="sub">Как времена сочетаются между собой — общая карта. Почему «сказал, что придёт» — это другое время, чем «скажет».</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🗺</div><div><strong>Карта времён</strong><p>Понять, какое время тянет за собой какое в придаточных предложениях</p></div></div>
+    <div class="obj"><div class="ico">📰</div><div><strong>Аутентичный текст</strong><p>Читать новостные статьи и понимать все временны́е формы</p></div></div>
+    <div class="obj"><div class="ico">🎧</div><div><strong>Dreaming Spanish</strong><p>Intermediate — истории с нарративом в прошлом</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорение</strong><p>Пересказать сложный текст, сохранив логику времён</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: Теория -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Карта согласования времён</h2>
+  </div>
+
+  <p style="margin-bottom:14px">В испанском, как и в русском, главное предложение «диктует» время придаточному. Если главный глагол в настоящем или будущем — придаточное тоже живёт в настоящем-будущем. Если главный глагол ушёл в прошлое — придаточное тоже смещается назад. Это называется <strong>concordancia de tiempos</strong>.</p>
+
+  <div class="callout tip">
+    <h4>💡 Главный принцип</h4>
+    <p>В русском: «Он говорит, что придёт» vs «Он сказал, что придёт». В испанском принцип тот же, но смещение времён более строгое и системное. Настоящее время в главном → настоящее/будущее в придаточном. Прошедшее в главном → прошедшее/условное в придаточном.</p>
+  </div>
+
+  <div class="tense-map">
+    <h4>Карта согласования</h4>
+    <div style="font-size:.8rem;color:var(--muted);margin-bottom:10px">Главное предложение → Придаточное предложение</div>
+    <div class="tense-row">
+      <div class="main">Presente / Futuro<br><span style="color:var(--muted);font-size:.8rem">Creo que / Diré que</span></div>
+      <div class="arr">→</div>
+      <div class="dep">Presente / Futuro<br><span style="font-size:.8rem">...viene / ...vendrá</span></div>
+    </div>
+    <div class="tense-row">
+      <div class="main">Pretérito Perfecto<br><span style="color:var(--muted);font-size:.8rem">He dicho que</span></div>
+      <div class="arr">→</div>
+      <div class="dep">Presente / Pretérito<br><span style="font-size:.8rem">...viene / ...venía</span></div>
+    </div>
+    <div class="tense-row">
+      <div class="main">Pretérito Indefinido<br><span style="color:var(--muted);font-size:.8rem">Dijo que / Pensó que</span></div>
+      <div class="arr">→</div>
+      <div class="dep">Imperfecto / Condicional<br><span style="font-size:.8rem">...venía / ...vendría</span></div>
+    </div>
+    <div class="tense-row">
+      <div class="main">Imperfecto<br><span style="color:var(--muted);font-size:.8rem">Decía que / Pensaba que</span></div>
+      <div class="arr">→</div>
+      <div class="dep">Imperfecto / Condicional<br><span style="font-size:.8rem">...venía / ...vendría</span></div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <h4>🔍 Примеры в действии</h4>
+    <ul>
+      <li><strong>Creo que <span style="color:var(--gold)">viene</span> mañana.</strong> — Думаю, что он придёт завтра. (настоящее → настоящее)</li>
+      <li><strong>Dijo que <span style="color:var(--gold)">vendría</span> mañana.</strong> — Он сказал, что придёт завтра. (прошедшее → условное)</li>
+      <li><strong>Pensaba que <span style="color:var(--gold)">era</span> difícil.</strong> — Думал, что это сложно. (имперфект → имперфект)</li>
+      <li><strong>Me informó de que el vuelo <span style="color:var(--gold)">había salido</span>.</strong> — Сообщил, что рейс уже вылетел. (прош. → плюсквамперфект)</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Главная ловушка для русскоговорящих</h4>
+    <p>По-русски мы говорим «он сказал, что <em>придёт</em>» — будущее время остаётся будущим. По-испански прошедшее в главном «притягивает» придаточное: <em>dijo que <strong>vendría</strong></em> — будущее становится кондиционалем. Никогда не говорите *<em>dijo que vendrá</em> — это звучит как ошибка.</p>
+  </div>
+
+  <p style="margin-bottom:12px"><strong>Плюсквамперфект как «прошлое прошлого»:</strong></p>
+  <p style="margin-bottom:14px;font-size:.9rem;color:var(--muted)">Если в прошлом описывается действие, которое произошло ещё раньше, используется <strong>había + participio</strong>:</p>
+
+  <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;font-size:.9rem;margin-bottom:14px">
+    <p>«Cuando llegué, Juan <strong>ya se había ido</strong>.» — Когда я пришёл, Хуан уже ушёл.</p>
+    <p style="margin-top:8px">«Me dijo que <strong>había estudiado</strong> toda la noche.» — Он сказал мне, что учился всю ночь (до нашего разговора).</p>
+  </div>
+</div>
+
+<!-- SECTION 2: Словарь -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — Выражения согласования времён</h2>
+  </div>
+
+  <table>
+    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td><strong>afirmar</strong></td><td>[афир-МАР]</td><td>утверждать</td><td>Afirmó que todo estaba bien.</td></tr>
+    <tr><td><strong>asegurar</strong></td><td>[асегу-РАР]</td><td>заверять, заявлять</td><td>Me aseguró que llegaría a tiempo.</td></tr>
+    <tr><td><strong>comentar</strong></td><td>[комен-ТАР]</td><td>комментировать, заметить</td><td>Comentó que el precio había subido.</td></tr>
+    <tr><td><strong>reconocer</strong></td><td>[реконо-СЕР]</td><td>признавать</td><td>Reconoció que se había equivocado.</td></tr>
+    <tr><td><strong>negar</strong></td><td>[не-ГАР]</td><td>отрицать, отказывать</td><td>Negó que hubiera mentido.</td></tr>
+    <tr><td><strong>suponer</strong></td><td>[супо-НЕР]</td><td>предполагать</td><td>Supuse que estarías cansado.</td></tr>
+    <tr><td><strong>cuando</strong></td><td>[КУАН-до]</td><td>когда (+ сослагат.)</td><td>Cuando llegues, llámame.</td></tr>
+    <tr><td><strong>mientras</strong></td><td>[МЬЕН-трас]</td><td>пока, в то время как</td><td>Mientras estudiaba, sonó el teléfono.</td></tr>
+    <tr><td><strong>antes de que</strong></td><td>[АН-тес де ке]</td><td>до того как</td><td>Antes de que te vayas, firma esto.</td></tr>
+    <tr><td><strong>después de que</strong></td><td>[дес-ПУЭС де ке]</td><td>после того как</td><td>Después de que llegó, descansamos.</td></tr>
+    <tr><td><strong>la concordancia</strong></td><td>[кон-кор-ДАН-сья]</td><td>согласование</td><td>La concordancia de tiempos es esencial.</td></tr>
+    <tr><td><strong>el pluscuamperfecto</strong></td><td>[плюскуам-ПЕР-фекто]</td><td>плюсквамперфект</td><td>Usamos el pluscuamperfecto para el pasado del pasado.</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Глаголы сообщения — самые важные</h4>
+    <p>Decir, afirmar, asegurar, comentar, reconocer, negar, suponer — запомни их, потому что именно они «запускают» согласование времён в косвенной речи. Каждый из них работает по одной и той же схеме.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: Тест 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Выбери правильное время</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Согласование времён</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Él me dijo que _____ tarde.» (llegar)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">llegaría</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">llegará</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">llega</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Creo que María _____ en casa.» (estar)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">estuvo</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">está</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">estaría</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Cuando llegué, ella ya _____.» (irse)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">se fue</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">se va</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">se había ido</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Pensaba que el examen _____ fácil.» (ser)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">era</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">es</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">sería</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Me aseguró que lo _____ antes del lunes.» (terminar)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">terminará</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">terminaría</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">termina</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Negó que _____ la verdad.» (saber)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">sabe</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">sabría</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">supiera</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: Тест 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Трансформация прямой речи</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Перефразируй прямую речь в косвенную с правильным согласованием времён.</p>
+
+  <div class="quiz">
+    <h3>✏️ Трансформируй предложения</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. «Estoy cansado» → Dijo que _____ (estar, él)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','estaba','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ estaba — прямая речь «estoy» (наст.) → косвенная после dijo (прош.) = estaba (имперфект)</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. «Voy a venir mañana» → Me dijo que _____ al día siguiente (venir)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','vendría','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ vendría — будущее «voy a venir» после прошедшего главного = конд. vendría</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. «Ya he terminado» → Afirmó que ya _____ (terminar)</div>
+      <input type="text" class="text-input" placeholder="два слова..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','había terminado','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ había terminado — «he terminado» (prét. perfecto) после прошедшего = pluscuamperfecto</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. «No sé nada» → Dijo que no _____ nada (saber)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','sabía','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ sabía — «no sé» (наст.) → после dijo (прош.) = sabía (имперф.)</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. «Quiero hablar contigo» → Me comentó que _____ hablar conmigo (querer)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','quería','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ quería — хотел (тогда), поэтому имперфект</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: Аутентичный текст -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Аутентичный текст — Новостной отрывок</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>📰 Отрывок из испанской прессы</h4>
+    <p style="font-style:italic;margin-top:6px">Прочитай текст и определи все выделенные времена. Почему они использованы именно так?</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📰 El Periódico — стиль новостного репортажа
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-news')">Показать анализ</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:2">
+          El ministro <strong style="color:var(--gold)">declaró</strong> ayer que la nueva ley <strong style="color:var(--blue)">entraría</strong> en vigor en enero. Afirmó que su equipo <strong style="color:var(--blue)">había trabajado</strong> durante meses en el proyecto y que los ciudadanos <strong style="color:var(--blue)">verían</strong> los resultados pronto. Sin embargo, la oposición <strong style="color:var(--gold)">señaló</strong> que <strong style="color:var(--blue)">era</strong> demasiado pronto para celebrar.
+        </div>
+        <div class="dlg-ru" id="tr-news" style="display:none;margin-top:10px">
+          <strong>Анализ времён:</strong><br>
+          • declaró, señaló — основные действия репортажа (pretérito indefinido)<br>
+          • entraría — будущее от лица прошлого (condicional, согласование с declaró)<br>
+          • había trabajado — действие, завершившееся ещё до declaró (pluscuamperfecto)<br>
+          • verían — ещё одно будущее-от-прошлого (condicional)<br>
+          • era — состояние в прошлом (imperfecto)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание для говорения</div>
+    <p>Перескажи этот новостной отрывок от первого лица, как будто ты журналист. Сохрани согласование времён.</p>
+    <div class="es">El ministro dijo que la ley _____ en vigor en enero y que su equipo _____...</div>
+    <div class="hint">Заполни пробелы и прочитай весь пересказ вслух. Это ключевой навык B1.</div>
+  </div>
+</div>
+
+<!-- SECTION 6: Диалоги -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Пересказ разговора</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Что сказал Пабло?
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div><div class="dlg-es">¿Qué te dijo Pablo sobre la reunión?</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Что тебе сказал Пабло о встрече?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Luis</div>
+      <div><div class="dlg-es">Dijo que no podría venir porque tenía otro compromiso.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Сказал, что не сможет прийти, потому что у него было другое дело.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div><div class="dlg-es">¿Y cuándo dijo que vendría?</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">И когда он сказал, что придёт?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Luis</div>
+      <div><div class="dlg-es">Me comentó que había llamado antes pero que nadie contestó. Que lo intentaría el jueves.</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Сказал мне, что звонил раньше, но никто не ответил. Что попробует в четверг.</div></div>
+    </div>
+    <div id="tr-dlg1" style="display:none"></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Что писали в новостях?
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Marta</div>
+      <div><div class="dlg-es">¿Has visto las noticias? Decían que el aeropuerto estaba cerrado.</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Ты видел новости? Говорили, что аэропорт закрыт.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Carlos</div>
+      <div><div class="dlg-es">Sí, lo vi. Informaron de que había habido una huelga y que no se sabía cuándo reanudarían los vuelos.</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Да, видел. Сообщили, что прошла забастовка и что не известно, когда возобновятся рейсы.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Marta</div>
+      <div><div class="dlg-es">¿Y dijeron cuándo se solucionaría?</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">И они сказали, когда это разрешится?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Carlos</div>
+      <div><div class="dlg-es">Afirmaron que para el viernes estaría todo normalizado. Pero yo no me fiaría mucho...</div>
+      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Заявили, что к пятнице всё нормализуется. Но я бы не очень доверял...</div></div>
+    </div>
+    <div id="tr-dlg2" style="display:none"></div>
+  </div>
+
+  <div class="callout tip">
+    <h4>🗣 Прочитай оба диалога вслух!</h4>
+    <p>Играй обе роли. Обращай особое внимание на выделенные глаголы — именно они показывают согласование времён в живой речи.</p>
+  </div>
+</div>
+
+<!-- SECTION 7: Говорение -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Пересказ сложного текста</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий A — Базовый</div>
+    <p>Прочитал новость: «Испания откроет новые визовые центры в России». Перескажи её другу, используя dijo que / informaron de que.</p>
+    <div class="es">El periódico informó de que España _____ nuevos centros de visado y que el proceso _____ más rápido.</div>
+    <div class="hint">Шаблон: informó de que + imperfecto / condicional</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий B — Продвинутый</div>
+    <p>Перескажи собеседнику разговор с работодателем. Используй минимум 4 разных глагола сообщения (dijo, comentó, afirmó, preguntó).</p>
+    <div class="es">El jefe me dijo que el proyecto _____ bien. Me preguntó si yo _____ con el equipo. Comentó que los resultados _____ a finales de mes...</div>
+    <div class="hint">Запиши или произнеси вслух минимум 6 предложений.</div>
+  </div>
+</div>
+
+<!-- SECTION 8: Культурная заметка -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">Культура языка</div>
+    <h4>Почему в испанских новостях столько condicional?</h4>
+    <p>Испанские журналисты активно используют конд. для «непроверенных» сведений: вместо «murió» (умер — факт) пишут «habría muerto» (якобы умер). Это называется <em>condicional de rumor</em> или <em>condicional de probabilidad</em>. Этот приём защищает от судебных претензий и одновременно сигнализирует читателю: информация из второисточников. Когда видишь подобное в новостях — теперь знаешь, что это значит.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: Anki + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">Карточки Anki</div>
+    <ul>
+      <li><strong>dijo que + imperfecto</strong> — он сказал, что... (был) | Dijo que estaba cansado.</li>
+      <li><strong>dijo que + condicional</strong> — он сказал, что... (сделает) | Dijo que vendría.</li>
+      <li><strong>había + participio</strong> — плюсквамперфект | Cuando llegué, ya se había ido.</li>
+      <li><strong>afirmar</strong> [афир-МАР] | утверждать | Afirmó que era verdad.</li>
+      <li><strong>suponer</strong> [супо-НЕР] | предполагать | Supuse que estabas ocupado.</li>
+      <li><strong>concordancia de tiempos</strong> | согласование времён</li>
+      <li><strong>negar que + subj</strong> | отрицать что-то | Negó que supiera nada.</li>
+      <li><strong>mientras + imperfecto</strong> | пока (одновременно) | Mientras hablaba, yo escribía.</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>Домашнее задание</h4>
+    <ul>
+      <li>Найди испанскую новостную статью (elpais.com, elmundo.es) — выпиши 5 предложений с косвенной речью, определи согласование времён</li>
+      <li>Dreaming Spanish Intermediate: посмотри историю с нарративом в прошлом (20 мин)</li>
+      <li>Запиши аудио: перескажи сегодняшние новости другу (2–3 минуты)</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L73.html" class="nav-link-btn">← L73</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L75.html" class="nav-link-btn">L75 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L74';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizAnswers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a'};
+const quizExpl={
+  q1:'llegaría — главное в прошлом (dijo) → придаточное: condicional. Никогда не "llegará" после dijo.',
+  q2:'está — creo (настоящее) → придаточное в настоящем. Всё просто.',
+  q3:'se había ido — «ya» + действие раньше другого прошлого = pluscuamperfecto.',
+  q4:'era — pensaba (имперфект) → придаточное тоже в имперфекте.',
+  q5:'terminaría — me aseguró (прош.) → будущее становится condicional.',
+  q6:'supiera — negar que требует сослагательного (subjuntivo imperfecto). Это особый случай!'
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))? 'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
+function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Не совсем. Ответ: "${answer}". Проверь согласование.`;}}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
+const totalSections=9;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

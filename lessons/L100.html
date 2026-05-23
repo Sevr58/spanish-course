@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L100: Контрольная точка A2→B1 — MILESTONE</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.milestone-banner{background:linear-gradient(135deg,rgba(255,214,10,.12),rgba(45,198,83,.08));border:2px solid var(--gold);border-radius:12px;padding:24px 28px;margin-bottom:28px;text-align:center}
+.milestone-banner h2{font-size:1.5rem;font-weight:800;color:var(--gold);margin-bottom:8px}
+.milestone-banner p{color:var(--muted);font-size:.92rem}
+.checklist-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:12px}
+.checklist-block h4{font-size:.9rem;font-weight:700;color:var(--gold);margin-bottom:10px}
+.checklist-block ul{list-style:none;padding:0;margin:0}
+.checklist-block li{padding:6px 0;border-bottom:1px solid var(--bg3);font-size:.88rem;display:flex;gap:10px}
+.checklist-block li:last-child{border-bottom:none}
+.check-mark{color:var(--green);flex-shrink:0}
+.score-display{background:var(--bg3);border-radius:8px;padding:16px;text-align:center;margin:16px 0}
+.score-display .score-num{font-size:2.5rem;font-weight:800;color:var(--gold)}
+.score-display .score-label{font-size:.85rem;color:var(--muted);margin-top:4px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L99.html">← L99</a>
+  <span class="level">B1 · Фаза 3 · MILESTONE · День 212</span>
+  <a href="L101.html">L101 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🏆 Фаза 3 → Фаза 4 · MILESTONE · Контрольная точка</div>
+  <h1>Рубеж <span class="hl">A2 → B1</span></h1>
+  <p class="sub">Полная оценка прогресса по всем 4 навыкам CEFR. Честно измерь, где ты сейчас — и прими это как факт.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🏆</div><div><strong>Milestone</strong><p>Урок 100 из 122. Ты прошёл 82% курса.</p></div></div>
+    <div class="obj"><div class="ico">📊</div><div><strong>4 навыка</strong><p>Чтение, аудирование, говорение, письмо</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Честность</strong><p>Самооценка без завышений и занижений</p></div></div>
+    <div class="obj"><div class="ico">🚀</div><div><strong>Далее</strong><p>Фаза 4 B1 — беглость и DELE подготовка</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- MILESTONE BANNER -->
+<div class="milestone-banner">
+  <h2>¡Enhorabuena! Урок 100</h2>
+  <p>Ты дошёл до рубежа A2→B1. Это один из самых трудных переходов в языке — и ты его прошёл. Сейчас не время расслабляться — время честно проверить, где ты на самом деле.</p>
+</div>
+
+<!-- SECTION 1: ЧТО ЗНАЧИТ B1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Что такое B1 по CEFR — без воды</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>📋 B1 по определению Совета Европы</h4>
+    <p>Носитель уровня B1 может: (1) понять основные идеи ясной речи на знакомые темы, (2) ориентироваться в большинстве ситуаций в стране языка, (3) создавать простой связный текст на знакомые темы, (4) описывать опыт, события, мечты, объяснять взгляды и кратко обосновывать мнения.</p>
+  </div>
+
+  <div class="checklist-block">
+    <h4>Чек-лист B1 — отметь то, что ты умеешь делать</h4>
+    <ul>
+      <li><span class="check-mark">□</span> Понимаю основные идеи в разговоре на знакомые темы (работа, учёба, отдых)</li>
+      <li><span class="check-mark">□</span> Могу путешествовать в испаноязычной стране без серьёзных трудностей</li>
+      <li><span class="check-mark">□</span> Могу рассказать историю или событие из прошлого, используя оба прошедших времени</li>
+      <li><span class="check-mark">□</span> Понимаю аутентичный испанский текст на знакомую тему (со словарём)</li>
+      <li><span class="check-mark">□</span> Могу выразить мнение и коротко его обосновать</li>
+      <li><span class="check-mark">□</span> Знаю и использую сослагательное наклонение в базовых ситуациях</li>
+      <li><span class="check-mark">□</span> Понимаю News in Slow Spanish на медленной скорости</li>
+      <li><span class="check-mark">□</span> Могу написать email или короткий текст на испанском</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Честная самооценка</h4>
+    <p>Если ты отметил 6-8 пунктов — ты уже B1. Если 4-5 — ты на пороге B1, некоторые навыки нужно усилить. Меньше 4 — не расстраивайся: ты на A2+, это тоже отличный результат за несколько месяцев. Пройди курс ещё раз быстро с фокусом на пробелы.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: ТЕСТ — ГРАММАТИКА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Тест 1 — Грамматика B1</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Комплексный тест на всё, что изучалось в Phase 3. 8 вопросов из разных тем.</p>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Грамматика уровня B1</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Выбери правильную форму: «Quiero que tú ___ a tiempo.» (вернуться)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">vuelvas</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">vuelves</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">volviste</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Si tuviera dinero, ___ un apartamento en Barcelona.» (купил бы)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">compro</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">compraría</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">compré</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Han ___ todos los documentos.» (потерять, перфект)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">perdido</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">perdieron</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">perder</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Me ___ que haya tanta gente.» (удивляет)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">gusto</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">sorprende</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">sorprendo</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Правильный порядок: «Le ___ su libro a María.» (devolver, indefinido, yo)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">devolví</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">devolver</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">devolvería</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Выбери правильный вариант пассивного: «El libro ___ por García Márquez.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">escribió</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">fue escrito</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">estaba escrito</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «Para que ___ bien el examen, hay que estudiar.» (сдать, субхунтиво)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">apruebes</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">apruebas</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">aprobaste</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+
+    <div class="quiz-q" id="q8">
+      <div class="q-text">8. «Cuando ___ a Madrid, te llamo.» (приехать, будущий контекст)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q8','b')">llegaré</div>
+        <div class="opt" onclick="answerQuiz(this,'q8','a')">llegue</div>
+        <div class="opt" onclick="answerQuiz(this,'q8','c')">llegaba</div>
+      </div>
+      <div class="feedback" id="fb-q8"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 3: ТЕСТ — ЛЕКСИКА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 2 — Лексика и фразы</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Переведи и заполни</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «Больше всего меня удивило...» (начало предложения): <strong>Lo que más me _____ fue...</strong></div>
+      <input type="text" class="text-input" placeholder="глагол sorprender, indefinido..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','sorprendió','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ sorprendió</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Как сказать «Несмотря на то что...»: <strong>A _____ de que...</strong></div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','pesar','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ pesar — A pesar de que = несмотря на то что</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «С одной стороны..., с другой стороны...»: <strong>Por un lado..., por _____ lado...</strong></div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','otro','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ otro — Por un lado... por otro lado = с одной стороны... с другой</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «В итоге / в конечном счёте»: <strong>En _____</strong></div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','definitiva','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ definitiva — En definitiva = в итоге, в конечном счёте</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «Обязательный к посещению» (о достопримечательности): <strong>_____</strong></div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','imprescindible','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ imprescindible — «Es imprescindible visitar...»</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">6. «Я бы хотел зарезервировать столик на двоих»: <strong>Quisiera _____ una mesa para dos.</strong></div>
+      <input type="text" class="text-input" placeholder="глагол..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','reservar','fb-te6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
+      <div class="feedback" id="fb-te6"></div>
+      <div class="answer-reveal" id="ans-te6">✅ reservar — Quisiera reservar = форма вежливого запроса через imperfecto subj. de querer</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: АУТЕНТИЧНЫЙ ТЕКСТ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Аутентичный текст — читай без словаря</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Это текст реального уровня B1. Попробуй понять его без перевода. Это ключевой тест — если понимаешь 70%+, ты B1.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📖 El País: fragmento de artículo (адаптировано для B1)
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-text1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:1.9">
+          <em>España registró el año pasado un récord de turistas internacionales: más de 85 millones de visitantes, superando las cifras previas a la pandemia. Este fenómeno, que los expertos denominan "turismofobia", genera un debate creciente en las ciudades más visitadas del país.</em><br><br>
+          <em>Por un lado, el turismo aporta miles de millones de euros a la economía española y mantiene empleos en sectores como la hostelería y el transporte. Por otro lado, muchos residentes se quejan de que los precios del alquiler han subido de forma desorbitada y de que sus barrios han perdido el carácter original.</em><br><br>
+          <em>«Antes conocía a mis vecinos. Ahora el edificio está lleno de apartamentos turísticos», afirma una barcelonesa de 67 años. «Ya no reconozco mi propio barrio.»</em>
+        </div>
+        <div class="dlg-ru" id="tr-text1" style="display:none;margin-top:10px;font-size:.84rem">
+          В прошлом году Испания зафиксировала рекорд международных туристов: более 85 миллионов посетителей, превысив допандемийные показатели. Это явление, которое эксперты называют «туристофобией», порождает растущие дебаты в наиболее посещаемых городах страны.<br><br>
+          С одной стороны, туризм приносит миллиарды евро в испанскую экономику и сохраняет рабочие места в таких секторах, как гостиничный бизнес и транспорт. С другой стороны, многие жители жалуются, что арендная плата выросла до неприличных уровней и их кварталы утратили первоначальный характер.<br><br>
+          «Раньше я знала своих соседей. Теперь здание полно туристических апартаментов», — говорит барселонянка 67 лет. «Я уже не узнаю свой собственный район».
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Вопросы для самопроверки понимания</h4>
+    <ul>
+      <li>О чём статья? (туризм в Испании, дебаты о турфобии)</li>
+      <li>Какие два аргумента приводятся? (экономика vs. жизнь жителей)</li>
+      <li>Что думает пожилая барселонянка? (не узнаёт свой район)</li>
+    </ul>
+    <p>Если ответил без перевода — ты уже читаешь B1.</p>
+  </div>
+</div>
+
+<!-- SECTION 5: ГОВОРЕНИЕ — САМООЦЕНКА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Говорение — финальная самооценка</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание B1 — Монолог 3 минуты</div>
+    <p>Выбери одну тему и говори 3 минуты без остановки. Не читай заранее написанное — только живая речь.</p>
+    <div class="es">
+      Опция 1: «Расскажи о самом важном путешествии в твоей жизни»<br>
+      Опция 2: «Объясни, почему ты учишь испанский и что планируешь с ним делать»<br>
+      Опция 3: «Какие изменения произошли в твоей жизни за последний год?»
+    </div>
+    <div class="hint">Оцени себя: мог ли говорить 3 минуты? Использовал ли сложные конструкции? Делал ли паузы для поиска слов? Это нормально на B1 — важно не молчать.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание B1 — Дебаты с собой</div>
+    <p>Возьми тему из статьи: туризм в Испании. Сначала 1 минуту говори «за» (туризм — это хорошо). Потом 1 минуту «против» (туризм причиняет вред). Используй структуры: <em>Por un lado..., Sin embargo..., En mi opinión...</em></p>
+    <div class="es">Por un lado, el turismo genera empleo y riqueza. Sin embargo, también puede destruir la identidad de las ciudades. En mi opinión, hay que encontrar un equilibrio.</div>
+    <div class="hint">Умение занять и защитить позицию — это именно B1 / B2. Это навык, который не тестируется в A2.</div>
+  </div>
+</div>
+
+<!-- SECTION 6: ДИАЛОГ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалог — сложный разговор на B1</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Разговор о жизненных планах
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¿Has pensado en mudarte al extranjero alguna vez?</div>
+      <div class="dlg-ru" id="tr-d1" style="display:none">Ты когда-нибудь думал об переезде за рубеж?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Sí, de hecho estoy considerando seriamente España. Me atrae la calidad de vida, el clima y que el español ya lo llevo estudiando un año.</div>
+      <div class="dlg-ru" id="tr-d1b" style="display:none">Да, фактически я серьёзно рассматриваю Испанию. Меня привлекает качество жизни, климат и то, что испанский я уже учу год.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¿Y qué es lo que más te frena para dar el paso?</div>
+      <div class="dlg-ru" id="tr-d1c" style="display:none">А что тебя больше всего удерживает от того, чтобы сделать этот шаг?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Lo más difícil es dejar a la familia. A pesar de que entiendo que es una gran oportunidad, me preocupa que los niños tarden en adaptarse. Aunque, por otro lado, sería una experiencia increíble para ellos también.</div>
+      <div class="dlg-ru" id="tr-d1d" style="display:none">Самое трудное — оставить семью. Несмотря на то, что понимаю, что это большая возможность, меня беспокоит, что дети долго будут адаптироваться. Хотя, с другой стороны, это была бы невероятная опыт и для них.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¿Y si no consigues el visado?</div>
+      <div class="dlg-ru" id="tr-d1e" style="display:none">А если не получишь визу?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Si no lo lograra, seguiría con mi plan B: trabajar desde casa con clientes europeos mientras aprendo más el idioma. En definitiva, el objetivo es cambiar de vida, y hay más de un camino para hacerlo.</div>
+      <div class="dlg-ru" id="tr-d1f" style="display:none">Если бы не получилось, продолжал бы план Б: работать из дома с европейскими клиентами, пока учу язык лучше. В итоге, цель — изменить жизнь, и есть более одного пути это сделать.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: ШКАЛА ПРОГРЕССА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Твоя личная шкала прогресса</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>📊 Оцени каждый навык от 1 до 5</h4>
+    <ul>
+      <li><strong>Чтение (Lectura):</strong> 1=нет, 3=понимаю простые тексты, 5=читаю статьи без словаря</li>
+      <li><strong>Аудирование (Comprensión auditiva):</strong> 1=нет, 3=понимаю медленную речь, 5=понимаю быструю речь</li>
+      <li><strong>Говорение (Expresión oral):</strong> 1=нет, 3=говорю с остановками, 5=говорю свободно</li>
+      <li><strong>Письмо (Expresión escrita):</strong> 1=нет, 3=пишу простые предложения, 5=пишу развёрнутые тексты</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Типичный профиль студента после 100 уроков</h4>
+    <p>Большинство студентов после структурированного курса: Чтение 4/5, Грамматика 4/5, Аудирование 2-3/5, Говорение 2-3/5. Это нормально. Грамматика и чтение развиваются быстрее. Говорение и аудирование нужно специально тренировать — через практику с носителями или интенсивный comprehensible input.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 100 уроков — что значит этот рубеж?</div>
+    <h4>Сколько часов испанского ты уже сделал?</h4>
+    <p>100 уроков по 45 минут = 75 часов структурированного обучения. Плюс Anki, Dreaming Spanish, Language Transfer — вероятно ещё 30-50 часов. Итого: около 100-125 часов total input. По исследованиям Института Сервантеса, для носителей русского языка достижение B1 требует около 400-600 часов. Значит, ты примерно на 25-30% пути к полному B1. Но самое важное: фундамент заложен. Каждый последующий час работает эффективнее первых.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Итоги и план фазы 4</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Повторить ключевые конструкции B1</div>
+    <ul>
+      <li><strong>Quiero que + subj.</strong> — Хочу, чтобы... (субхунтиво)</li>
+      <li><strong>Si tuviera..., + cond.</strong> — Если бы у меня было... (нереал. условие)</li>
+      <li><strong>Para que + subj.</strong> — Чтобы... (цель + субхунтиво)</li>
+      <li><strong>Cuando + subj.</strong> — Когда (будущее) (субхунтиво)</li>
+      <li><strong>A pesar de que...</strong> — Несмотря на то что...</li>
+      <li><strong>Por un lado..., por otro lado...</strong> — С одной стороны... с другой...</li>
+      <li><strong>fue escrito por</strong> — пассивный залог (был написан)</li>
+      <li><strong>En definitiva...</strong> — В итоге...</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 План Фазы 4 (L101–L121)</h4>
+    <ul>
+      <li><strong>L101-L110:</strong> Блок B4A — беглость: дискурс, регистры, идиомы, чтение/аудирование</li>
+      <li><strong>L111-L121:</strong> Блок B4B — DELE B1 подготовка: форматы экзамена, стратегии</li>
+      <li>Рекомендация: увеличь время на Dreaming Spanish до 20-30 минут в день</li>
+      <li>Начни слушать News in Slow Spanish (промежуточный уровень)</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🏆 Урок 100 завершён — ты достиг рубежа!</h4>
+    <p>99 уроков позади. Впереди — Фаза 4: беглость и B1 мастерство. Ты строил фундамент. Теперь строишь здание. ¡Adelante!</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L99.html" class="nav-link-btn">← L99</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L101.html" class="nav-link-btn">L101 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L100';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizAnswers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a'};
+const quizExpl={
+  q1:'vuelvas — субхунтиво после "quiero que". После que + желание всегда субхунтиво.',
+  q2:'compraría — кондисионал в главном предложении нереального условия Si+imperfectoSubj → cond.',
+  q3:'perdido — причастие прошедшего времени в перфекте (han + participio).',
+  q4:'sorprende — глагол по модели gustar: me sorprende = меня удивляет (ед.ч., ср. verbo).',
+  q5:'devolví — yo, indefinido от devolver (neregular: o→ue только в наст., indefinido правильный).',
+  q6:'fue escrito — пассив с ser (акцент на действии): ser + participio. Estuvo escrito = состояние.',
+  q7:'apruebes — субхунтиво после "para que" (цель всегда требует субхунтиво).',
+  q8:'llegue — субхунтиво после "cuando" в будущем контексте. Это классическое правило B1.'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+  });
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})? 'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+  const el2=document.getElementById('quiz-score');
+  if(el2)el2.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

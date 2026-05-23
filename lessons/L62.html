@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L62: Subjuntivo presente — правильные глаголы</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table.conj{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
+table.conj th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:700;font-size:.8rem;color:var(--muted);border-bottom:1px solid var(--border)}
+table.conj td{padding:8px 12px;border-bottom:1px solid var(--bg3)}
+table.conj td:first-child{color:var(--muted);font-size:.85rem}
+table.conj td:not(:first-child){color:var(--gold);font-weight:600}
+table.vocab{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+table.vocab th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;color:var(--muted);border-bottom:1px solid var(--border)}
+table.vocab td{padding:8px 10px;border-bottom:1px solid var(--bg3);vertical-align:top}
+table.vocab td:first-child{font-weight:700;color:var(--gold)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 132</span>
+  <a href="L63.html">L63 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · Блок 3A — Сослагательное наклонение</div>
+  <h1>Subjuntivo presente — <span class="hl">правильные глаголы</span></h1>
+  <p class="sub">Hable, coma, viva — как образовать и когда использовать первые формы сослагательного наклонения</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Образовывать subjuntivo presente от правильных глаголов -ar/-er/-ir</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Dreaming Spanish Intermediate — ищи видео с «quiero que»</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Выражаем желания для других: Quiero que vengas.</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Теория — как образовать subjuntivo presente</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Сослагательное наклонение — не отдельное «время», а отдельный <strong>режим глагола</strong>. В русском его нет в таком виде, но идея знакома: «Хочу, <em>чтобы</em> он пришёл» — вот это «чтобы» и есть сигнал субхунтиво.</p>
+
+  <div class="callout tip">
+    <h4>💡 Ключевой секрет образования: «переключи окончание»</h4>
+    <p>Глаголы на <strong>-ar</strong> берут окончания как у <strong>-er</strong>, а глаголы на <strong>-er/-ir</strong> берут окончания как у <strong>-ar</strong>. Это называют «правилом переключения». Запомни один раз — и схема работает для всех правильных глаголов.</p>
+  </div>
+
+  <p style="margin:12px 0">Алгоритм образования: возьми форму <strong>yo в presente indicativo</strong> → убери <strong>-o</strong> → добавь окончания субхунтиво.</p>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">-AR глаголы</span>
+      <span class="rule-title">hablar → hable, hables, hable...</span>
+    </div>
+    <table class="conj">
+      <tr><th>Местоимение</th><th>Indicativo (обычное)</th><th>Subjuntivo (сослагательное)</th></tr>
+      <tr><td>yo</td><td>hablo</td><td>hable</td></tr>
+      <tr><td>tú</td><td>hablas</td><td>hables</td></tr>
+      <tr><td>él/ella</td><td>habla</td><td>hable</td></tr>
+      <tr><td>nosotros</td><td>hablamos</td><td>hablemos</td></tr>
+      <tr><td>vosotros</td><td>habláis</td><td>habléis</td></tr>
+      <tr><td>ellos</td><td>hablan</td><td>hablen</td></tr>
+    </table>
+    <p style="font-size:.85rem;color:var(--muted)">Окончания -AR: <strong>-e, -es, -e, -emos, -éis, -en</strong></p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">-ER глаголы</span>
+      <span class="rule-title">comer → coma, comas, coma...</span>
+    </div>
+    <table class="conj">
+      <tr><th>Местоимение</th><th>Indicativo</th><th>Subjuntivo</th></tr>
+      <tr><td>yo</td><td>como</td><td>coma</td></tr>
+      <tr><td>tú</td><td>comes</td><td>comas</td></tr>
+      <tr><td>él/ella</td><td>come</td><td>coma</td></tr>
+      <tr><td>nosotros</td><td>comemos</td><td>comamos</td></tr>
+      <tr><td>vosotros</td><td>coméis</td><td>comáis</td></tr>
+      <tr><td>ellos</td><td>comen</td><td>coman</td></tr>
+    </table>
+    <p style="font-size:.85rem;color:var(--muted)">Окончания -ER/-IR: <strong>-a, -as, -a, -amos, -áis, -an</strong></p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">-IR глаголы</span>
+      <span class="rule-title">vivir → viva, vivas, viva...</span>
+    </div>
+    <table class="conj">
+      <tr><th>Местоимение</th><th>Indicativo</th><th>Subjuntivo</th></tr>
+      <tr><td>yo</td><td>vivo</td><td>viva</td></tr>
+      <tr><td>tú</td><td>vives</td><td>vivas</td></tr>
+      <tr><td>él/ella</td><td>vive</td><td>viva</td></tr>
+      <tr><td>nosotros</td><td>vivimos</td><td>vivamos</td></tr>
+      <tr><td>vosotros</td><td>vivís</td><td>viváis</td></tr>
+      <tr><td>ellos</td><td>viven</td><td>vivan</td></tr>
+    </table>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка для русскоговорящих: «что» vs. «чтобы»</h4>
+    <ul>
+      <li>По-русски: «Хочу, <em>что он пришёл</em>» — так не говорят, нужно «<em>чтобы</em>»</li>
+      <li>По-испански: «Quiero <em>que</em> venga» — союз <strong>que</strong>, но глагол в subjuntivo</li>
+      <li>Ошибка: Quiero que <del>viene</del> — так не работает! После «quiero que» всегда subjuntivo.</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>📺 Dreaming Spanish Intermediate</h4>
+    <p>Сегодня ищи видео, где испанец что-то рекомендует или желает. Обращай внимание на конструкции «quiero que», «espero que», «necesito que» — ты будешь слышать subjuntivo вживую. Это ключ к пассивному освоению наклонения.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — глаголы-триггеры и ключевые слова</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Эти глаголы <strong>требуют</strong> subjuntivo в придаточном предложении. Их нужно знать наизусть.</p>
+
+  <table class="vocab">
+    <tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td>querer que</td><td>[ке-РЕР ке]</td><td>хотеть чтобы</td><td>Quiero que <em>hables</em> más.</td></tr>
+    <tr><td>esperar que</td><td>[эс-пе-РАР ке]</td><td>надеяться что / ждать что</td><td>Espero que <em>llegues</em> pronto.</td></tr>
+    <tr><td>necesitar que</td><td>[не-се-си-ТАР ке]</td><td>нуждаться в том чтобы</td><td>Necesito que <em>trabajen</em> hoy.</td></tr>
+    <tr><td>pedir que</td><td>[пе-ДИР ке]</td><td>просить чтобы</td><td>Te pido que <em>escuches</em>.</td></tr>
+    <tr><td>desear que</td><td>[де-сеАР ке]</td><td>желать чтобы</td><td>Deseo que <em>seas</em> feliz.</td></tr>
+    <tr><td>recomendar que</td><td>[ре-ко-мен-ДАР ке]</td><td>рекомендовать чтобы</td><td>Recomiendo que <em>comas</em> bien.</td></tr>
+    <tr><td>permitir que</td><td>[пер-ми-ТИР ке]</td><td>позволять чтобы</td><td>Te permito que <em>salgas</em>.</td></tr>
+    <tr><td>prohibir que</td><td>[про-и-БИР ке]</td><td>запрещать чтобы</td><td>Prohíbo que <em>fumen</em> aquí.</td></tr>
+    <tr><td>ojalá (que)</td><td>[о-ха-ЛА]</td><td>хотелось бы / дай бог</td><td>Ojalá <em>llegue</em> a tiempo.</td></tr>
+    <tr><td>que + subjuntivo</td><td>—</td><td>пусть (пожелание)</td><td>¡Que <em>tengas</em> suerte!</td></tr>
+    <tr><td>cuando (будущее)</td><td>[КУАН-до]</td><td>когда (в будущем)</td><td>Cuando <em>llegues</em>, llámame.</td></tr>
+    <tr><td>venir → venga</td><td>[ве-НИР / ВЕНГА]</td><td>приходить → subjuntivo</td><td>Quiero que <em>vengas</em>.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Выбери правильную форму subjuntivo</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Правильные формы subjuntivo presente</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Quiero que tú <strong>___ (hablar)</strong> más despacio.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">hables</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">hablas</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">hablar</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Espero que él <strong>___ (comer)</strong> algo antes del viaje.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">come</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">coma</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">comer</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Necesitamos que vosotros <strong>___ (escribir)</strong> el informe.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">escribís</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">escriben</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">escribáis</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Te pido que <strong>___ (escuchar)</strong> con atención.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">escuches</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">escuchas</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">escuchar</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Ojalá ellos <strong>___ (llegar)</strong> a tiempo mañana.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">llegan</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">llegaron</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">lleguen</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Recomiendo que <strong>___ (vivir, tú)</strong> en el centro de la ciudad.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">vivas</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">vives</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">vivir</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Вставь форму subjuntivo</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Образуй форму сам</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Deseo que ella <strong>___ (trabajar)</strong> aquí. → <em>форма subjuntivo 3 л. ед.ч.</em></div>
+      <input type="text" class="text-input" placeholder="trabajar → ella..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','trabaje','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ trabaje — trabajar (-ar): основа trabaj- + окончание -e</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Quiero que nosotros <strong>___ (aprender)</strong> juntos. → <em>subjuntivo nosotros</em></div>
+      <input type="text" class="text-input" placeholder="aprender → nosotros..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','aprendamos','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ aprendamos — aprender (-er): aprend- + -amos</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Espero que vosotros <strong>___ (abrir)</strong> la ventana. → <em>subjuntivo vosotros</em></div>
+      <input type="text" class="text-input" placeholder="abrir → vosotros..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','abráis','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ abráis — abrir (-ir): abr- + -áis (vosotros)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Necesito que tú <strong>___ (llamar)</strong> mañana. → <em>subjuntivo tú</em></div>
+      <input type="text" class="text-input" placeholder="llamar → tú..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','llames','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ llames — llamar (-ar): llam- + -es (tú)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Ojalá ellas <strong>___ (beber)</strong> agua suficiente. → <em>subjuntivo ellas</em></div>
+      <input type="text" class="text-input" placeholder="beber → ellas..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','beban','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ beban — beber (-er): beb- + -an (ellas)</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — subjuntivo в живой речи</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Читай вслух, играя обе роли. Обрати внимание на структуру: глагол желания + que + subjuntivo.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Менеджер и сотрудник
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">JEFA</div>
+      <div>
+        <div class="dlg-es">Necesito que <strong>termines</strong> el informe antes del viernes.</div>
+        <div class="dlg-ru" id="tr-dlg1" style="display:none">Мне нужно, чтобы ты закончил отчёт до пятницы.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">ALEX</div>
+      <div>
+        <div class="dlg-es">De acuerdo. ¿Quieres que lo <strong>envíe</strong> por email también?</div>
+        <div class="dlg-ru" style="display:none">Хорошо. Хочешь, чтобы я отправил его и по email?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">JEFA</div>
+      <div>
+        <div class="dlg-es">Sí, te pido que lo <strong>mandes</strong> a todos en el equipo.</div>
+        <div class="dlg-ru" style="display:none">Да, прошу тебя разослать его всем в команде.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">ALEX</div>
+      <div>
+        <div class="dlg-es">Perfecto. Espero que el cliente <strong>quede</strong> satisfecho.</div>
+        <div class="dlg-ru" style="display:none">Отлично. Надеюсь, что клиент останется доволен.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Мать и ребёнок
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">MAMÁ</div>
+      <div>
+        <div class="dlg-es">Quiero que <strong>comas</strong> las verduras. Son importantes.</div>
+        <div class="dlg-ru" id="tr-dlg2" style="display:none">Хочу, чтобы ты ел овощи. Они важны.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">NIÑO</div>
+      <div>
+        <div class="dlg-es">Mamá, ¡no me gusta que <strong>insistas</strong> tanto!</div>
+        <div class="dlg-ru" style="display:none">Мама, мне не нравится, что ты так настаиваешь!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">MAMÁ</div>
+      <div>
+        <div class="dlg-es">Deseo que <strong>seas</strong> sano. ¡Ojalá lo <strong>entiendas</strong> algún día!</div>
+        <div class="dlg-ru" style="display:none">Хочу, чтобы ты был здоровым. Дай бог, когда-нибудь поймёшь!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — выражаем желания</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий: Ты — руководитель нового проекта</div>
+    <p>Представь, что ты запускаешь стартап в Барселоне. Расскажи своей команде, чего ты от них ожидаешь — используй субхунтиво.</p>
+    <div class="es">Quiero que el equipo trabaje unido. Necesito que todos lleguen puntualmente. Espero que el proyecto tenga éxito. Pido que cada uno contribuya con sus ideas.</div>
+    <div class="hint">[Хочу, чтобы команда работала слаженно. Мне нужно, чтобы все приходили вовремя. Надеюсь, что проект преуспеет. Прошу каждого вносить свои идеи.]</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый уровень — твои личные желания</div>
+    <p>Используй «Ojalá que...» и «Espero que...» чтобы говорить о своих желаниях на ближайший год. Скажи вслух 4–5 предложений.</p>
+    <div class="es">Ojalá que mi familia viva bien en España. Espero que mis hijas aprendan español rápido. Deseo que el negocio crezca este año...</div>
+    <div class="hint">Шаблон: Ojalá que + [имя/местоимение] + [глагол в subjuntivo]</div>
+  </div>
+</div>
+
+<!-- SECTION 7: AUTHENTIC TEXT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Аутентичный текст — subjuntivo в реальной речи</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📰 Отрывок из испанской статьи о воспитании детей
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-auth')">Mostrar traducción</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:2">
+          Los expertos recomiendan que los padres <strong>hablen</strong> con sus hijos sobre las emociones desde pequeños. Es fundamental que los niños <strong>aprendan</strong> a expresar lo que sienten. Los psicólogos piden que las familias <strong>dediquen</strong> tiempo de calidad juntos — sin móviles, sin televisión. Ojalá más familias <strong>escuchen</strong> estos consejos.
+        </div>
+        <div class="dlg-ru" id="tr-auth" style="display:none;margin-top:8px">
+          Эксперты рекомендуют, чтобы родители разговаривали со своими детьми об эмоциях с раннего возраста. Важно, чтобы дети научились выражать то, что чувствуют. Психологи просят, чтобы семьи посвящали время качественному общению вместе — без телефонов, без телевизора. Дай бог, чтобы больше семей прислушались к этим советам.
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted);margin-top:8px">Выдели все формы subjuntivo в тексте. Их 4. Объясни каждую — какой глагол-триггер её вызвал.</p>
+</div>
+
+<!-- SECTION 8: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Ojalá — арабское наследие в испанском языке</h4>
+    <p>Слово <strong>ojalá</strong> — прямое заимствование из арабского «إن شاء الله» (inshallah) — «если Аллах пожелает». Испания находилась под управлением арабских правителей (Аль-Андалус) с 711 по 1492 год — почти 800 лет. За это время в испанский вошло около <strong>4 000 арабских слов</strong>: almohada (подушка), aceite (масло), álgebra, alcohol, azúcar... Когда испанец говорит «Ojalá que todo salga bien», он использует слово, которому больше 1 000 лет и которое пришло с другого континента.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + HW -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>hablar → hable</strong> | -ar глагол → subjuntivo yo/él: убери -o, добавь -e</li>
+      <li><strong>comer → coma</strong> | -er глагол → subjuntivo yo/él: убери -o, добавь -a</li>
+      <li><strong>vivir → viva</strong> | -ir глагол → subjuntivo yo/él: убери -o, добавь -a</li>
+      <li><strong>Quiero que hables</strong> | Хочу, чтобы ты говорил</li>
+      <li><strong>Espero que lleguen</strong> | Надеюсь, что они придут</li>
+      <li><strong>Ojalá</strong> | Дай бог / хотелось бы (всегда + subjuntivo)</li>
+      <li><strong>¡Que tengas suerte!</strong> | Удачи тебе! (пожелание)</li>
+      <li><strong>Necesito que trabajes</strong> | Мне нужно, чтобы ты работал</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Напиши 6 предложений о своей жизни с «Quiero que...», «Espero que...», «Ojalá...»</li>
+      <li>Dreaming Spanish Intermediate: найди 3 примера subjuntivo — запиши предложения</li>
+      <li>Повтори таблицу спряжений -ar/-er/-ir в subjuntivo по памяти</li>
+      <li>Следующий урок (L63): неправильные глаголы в subjuntivo — sea, esté, vaya, haya...</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L61.html" class="nav-link-btn">← L61</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L63.html" class="nav-link-btn">L63 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L62';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizAnswers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a'};
+const quizExpl={
+  q1:'hables — hablar (-ar), tú: основа habl- + окончание субхунтиво tú = -es',
+  q2:'coma — comer (-er), él: основа com- + окончание субхунтиво él/ella = -a',
+  q3:'escribáis — escribir (-ir), vosotros: escrib- + -áis',
+  q4:'escuches — escuchar (-ar), tú: escuch- + -es',
+  q5:'lleguen — llegar (-ar), ellos: llegu- + -en (g→gu перед e для сохранения звука)',
+  q6:'vivas — vivir (-ir), tú: viv- + -as'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
+  el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Не совсем. Ответ: ${answer}`;}
+}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=9;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

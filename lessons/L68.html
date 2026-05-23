@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L68: Subjuntivo vs. Indicativo — алгоритм выбора</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.decision-tree{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin:16px 0}
+.dt-node{background:var(--bg3);border-radius:8px;padding:12px 16px;margin-bottom:12px;position:relative}
+.dt-node.question{border-left:3px solid var(--blue)}
+.dt-node.answer-subj{border-left:3px solid var(--gold);background:rgba(255,214,10,.05)}
+.dt-node.answer-ind{border-left:3px solid var(--green);background:rgba(45,198,83,.05)}
+.dt-q{font-weight:700;font-size:.9rem;margin-bottom:6px}
+.dt-branches{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.dt-branch{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-size:.82rem;cursor:default}
+.dt-branch.yes{border-color:var(--gold);color:var(--gold)}
+.dt-branch.no{border-color:var(--muted);color:var(--muted)}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table.comp{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+table.comp th{background:var(--bg3);padding:9px 12px;text-align:left;font-size:.8rem;color:var(--muted);border-bottom:1px solid var(--border)}
+table.comp td{padding:9px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
+table.comp .s-col{color:var(--gold);font-weight:600}
+table.comp .i-col{color:var(--green);font-weight:600}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 144</span>
+  <a href="L69.html">L69 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · Блок 3A — Сослагательное наклонение</div>
+  <h1>Subjuntivo vs. Indicativo — <span class="hl">алгоритм выбора</span></h1>
+  <p class="sub">Когда subjuntivo, когда indicativo — чёткий алгоритм для любого случая</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Применять алгоритм выбора наклонения без ошибок</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Слушай и фиксируй: это subjuntivo или indicativo?</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>30 тренировочных предложений — без остановок</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: ALGORITHM -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Алгоритм выбора — 4 вопроса</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Пять уроков о субхунтиво — и теперь ты видишь всю картину. Здесь — финальный алгоритм, который работает для любого предложения.</p>
+
+  <div class="decision-tree">
+    <div class="dt-node question">
+      <div class="dt-q">Шаг 1. Есть ли союз «que» соединяющий два предложения?</div>
+      <div class="dt-branches">
+        <span class="dt-branch yes">Да → переходи к шагу 2</span>
+        <span class="dt-branch no">Нет → скорее всего indicativo или инфинитив</span>
+      </div>
+    </div>
+    <div class="dt-node question">
+      <div class="dt-q">Шаг 2. Главное предложение — это WEIRDO-триггер?</div>
+      <p style="font-size:.82rem;color:var(--muted);margin:4px 0 8px">W=желания, E=эмоции, I=безличные, R=просьбы/рекомендации, D=сомнения, O=ojalá</p>
+      <div class="dt-branches">
+        <span class="dt-branch yes">Да → subjuntivo ✅</span>
+        <span class="dt-branch no">Нет → indicativo</span>
+      </div>
+    </div>
+    <div class="dt-node question">
+      <div class="dt-q">Шаг 3. Это мнение/факт или оценка/нереальность?</div>
+      <div class="dt-branches">
+        <span class="dt-branch yes">Факт/уверенность → indicativo</span>
+        <span class="dt-branch no">Оценка/нереальность → subjuntivo</span>
+      </div>
+    </div>
+    <div class="dt-node question">
+      <div class="dt-q">Шаг 4. Действие относится к будущему после «cuando», «hasta que», «antes de que»?</div>
+      <div class="dt-branches">
+        <span class="dt-branch yes">Да (будущее) → subjuntivo</span>
+        <span class="dt-branch no">Нет (прошлое/привычное) → indicativo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Мнемоника для быстрого выбора</h4>
+    <p>Задай себе один вопрос: «Я <em>сообщаю факт</em> или <em>выражаю что-то субъективное</em> (желание, сомнение, эмоцию, оценку)?»<br>
+    Факт → indicativo. Субъективное → subjuntivo.</p>
+  </div>
+
+  <h3 style="font-size:1rem;margin:20px 0 10px">Сравнительная таблица — пары с изменением смысла</h3>
+  <table class="comp">
+    <tr><th>Subjuntivo (субъективное)</th><th>Indicativo (факт)</th></tr>
+    <tr>
+      <td><div class="s-col">No creo que <strong>sea</strong> verdad.</div><div style="font-size:.78rem;color:var(--muted)">Не думаю, что это правда.</div></td>
+      <td><div class="i-col">Creo que <strong>es</strong> verdad.</div><div style="font-size:.78rem;color:var(--muted)">Думаю, что это правда.</div></td>
+    </tr>
+    <tr>
+      <td><div class="s-col">Dudo que <strong>llegue</strong> a tiempo.</div><div style="font-size:.78rem;color:var(--muted)">Сомневаюсь, что придёт вовремя.</div></td>
+      <td><div class="i-col">Sé que <strong>llega</strong> a tiempo siempre.</div><div style="font-size:.78rem;color:var(--muted)">Знаю, что он всегда приходит вовремя.</div></td>
+    </tr>
+    <tr>
+      <td><div class="s-col">Es posible que <strong>haya</strong> problemas.</div><div style="font-size:.78rem;color:var(--muted)">Возможно, возникнут проблемы.</div></td>
+      <td><div class="i-col">Es evidente que <strong>hay</strong> problemas.</div><div style="font-size:.78rem;color:var(--muted)">Очевидно, что проблемы есть.</div></td>
+    </tr>
+    <tr>
+      <td><div class="s-col">Cuando <strong>llegues</strong>, llámame. (будущее)</div><div style="font-size:.78rem;color:var(--muted)">Когда придёшь, позвони. (ещё не пришёл)</div></td>
+      <td><div class="i-col">Cuando <strong>llega</strong>, siempre llama. (факт)</div><div style="font-size:.78rem;color:var(--muted)">Когда приходит, всегда звонит. (привычка)</div></td>
+    </tr>
+    <tr>
+      <td><div class="s-col">Me alegra que <strong>estés</strong> aquí.</div><div style="font-size:.78rem;color:var(--muted)">Рад(а), что ты здесь.</div></td>
+      <td><div class="i-col">Veo que <strong>estás</strong> aquí.</div><div style="font-size:.78rem;color:var(--muted)">Вижу, что ты здесь. (факт наблюдения)</div></td>
+    </tr>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ Глаголы восприятия — особый случай</h4>
+    <ul>
+      <li>«ver», «notar», «escuchar», «sentir» как глаголы восприятия → indicativo: «Veo que <strong>tiene</strong> razón.»</li>
+      <li>НО «sentir» в значении «сожалеть» → subjuntivo: «Siento que <strong>esté</strong> enfermo.»</li>
+      <li>«decir» как сообщение → indicativo. «decir» как приказ → subjuntivo: «Dice que <strong>viene</strong>» (сообщает) vs. «Dice que <strong>venga</strong>» (приказывает)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCAB -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — глаголы мнения и суждения</h2>
+  </div>
+
+  <table class="comp">
+    <tr><th>Глагол</th><th>+ indicativo (утверждение)</th><th>+ subjuntivo (сомнение/оценка)</th></tr>
+    <tr><td>creer</td><td>Creo que <strong>tiene</strong> razón.</td><td>No creo que <strong>tenga</strong> razón.</td></tr>
+    <tr><td>pensar</td><td>Pienso que <strong>es</strong> buena idea.</td><td>No pienso que <strong>sea</strong> buena idea.</td></tr>
+    <tr><td>decir</td><td>Dice que <strong>viene</strong> mañana. (hecho)</td><td>Dice que <strong>venga</strong> mañana. (orden)</td></tr>
+    <tr><td>saber</td><td>Sé que <strong>habla</strong> bien.</td><td>(saber почти всегда + ind.)</td></tr>
+    <tr><td>ver</td><td>Veo que <strong>estás</strong> cansado.</td><td>—</td></tr>
+    <tr><td>sentir</td><td>Siento que <strong>algo va</strong> mal. (intuition)</td><td>Siento que <strong>esté</strong> mal. (sorrow)</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Применяем алгоритм</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Subjuntivo или indicativo?</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Cuando <strong>___ (tener, tú)</strong> tiempo, llámame. (ещё не позвонил — будущее)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">tengas</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">tienes</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">tendrás</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Cuando <strong>___ (llegar, él)</strong> siempre trae flores. (привычка, регулярное)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">llegue</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">llegará</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">llega</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Veo que <strong>___ (estar, tú)</strong> muy cansado hoy.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">estés</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">estar</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">estás</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Dice que <strong>___ (venir, tú)</strong> a las ocho. (ему сказали, что ты придёшь — сообщение)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">vienes</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">vengas</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">venir</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Me alegra que <strong>___ (poder, tú)</strong> venir a la fiesta.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">puedes</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">podrás</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">puedas</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Sé que él <strong>___ (trabajar)</strong> muy duro cada día.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">trabaja</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">trabaje</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">trabajara</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Вставь нужную форму</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Выбери и вставь правильный глагол</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. No creo que eso ___ (ser) correcto. → subjuntivo ello</div>
+      <input type="text" class="text-input" placeholder="ser → neutro..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','sea','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ sea — no creer que → subjuntivo. ser → sea</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Cuando ___ (ser) mayor, quiero vivir en Barcelona. → subjuntivo (будущее событие)</div>
+      <input type="text" class="text-input" placeholder="ser → yo..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','sea','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ sea — cuando + futuro → subjuntivo. ser → yo sea</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Pienso que el proyecto ___ (tener) éxito. → indicativo (мнение без отрицания)</div>
+      <input type="text" class="text-input" placeholder="tener → él..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','tendrá','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ tendrá — pensar que (без отрицания) + indicativo. Можно также: «tiene» (presente)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Es raro que ella ___ (no llamar). → subjuntivo ella</div>
+      <input type="text" class="text-input" placeholder="llamar → ella (negado)..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','llame','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ llame — es raro que → subjuntivo. llamar (-ar), ella: llam- + -e</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Noto que hoy tú ___ (estar) más tranquilo. → indicativo (наблюдение)</div>
+      <input type="text" class="text-input" placeholder="estar → tú..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','estás','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ estás — notar que (наблюдение) → indicativo. estar tú → estás</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — смешанные наклонения</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">В каждом диалоге есть и subjuntivo, и indicativo. Читая вслух — объясни себе, почему каждая форма такова.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Обсуждение бизнеса
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">PEDRO</div>
+      <div>
+        <div class="dlg-es">Veo que el negocio <strong>va</strong> bien. ¿Crees que <strong>crecerá</strong> este año?</div>
+        <div class="dlg-ru" id="tr-dlg1" style="display:none">Вижу, что бизнес идёт хорошо. Думаешь, вырастет в этом году?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">LUCIA</div>
+      <div>
+        <div class="dlg-es">Espero que <strong>crezca</strong>, pero no estoy segura de que el mercado <strong>sea</strong> favorable.</div>
+        <div class="dlg-ru" style="display:none">Надеюсь, что вырастет, но не уверена, что рынок будет благоприятным.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">PEDRO</div>
+      <div>
+        <div class="dlg-es">Sé que tienes experiencia. Es importante que <strong>tomes</strong> una decisión pronto.</div>
+        <div class="dlg-ru" style="display:none">Знаю, что у тебя есть опыт. Важно, чтобы ты приняла решение скоро.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Планы на переезд
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">ALEX</div>
+      <div>
+        <div class="dlg-es">Cuando <strong>llegues</strong> a Barcelona, avísame. Conozco buenos barrios para familias.</div>
+        <div class="dlg-ru" id="tr-dlg2" style="display:none">Когда приедешь в Барселону, дай знать. Знаю хорошие районы для семей.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">EVGENI</div>
+      <div>
+        <div class="dlg-es">Gracias. No creo que <strong>sea</strong> fácil, pero sé que <strong>vale</strong> la pena.</div>
+        <div class="dlg-ru" style="display:none">Спасибо. Не думаю, что это будет легко, но знаю, что оно того стоит.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">ALEX</div>
+      <div>
+        <div class="dlg-es">Es verdad que <strong>cuesta</strong> adaptarse. Pero me alegra que <strong>hayáis tomado</strong> esta decisión.</div>
+        <div class="dlg-ru" style="display:none">Правда, что адаптироваться непросто. Но рад, что вы приняли это решение.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — 30-секундный тест</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Быстрая тренировка: 10 предложений без остановки</div>
+    <p>Скажи вслух 10 предложений — чередуй indicativo и subjuntivo. Не думай долго. Если ошибся — это нормально.</p>
+    <div class="es">Sé que hablas español. / Dudo que hables perfectamente. / Creo que eres inteligente. / Es importante que practiques. / Veo que tienes ganas. / Es posible que cometas errores. / No creo que sea imposible. / Cuando llegues a España, te adaptarás. / Me alegra que estudies. / Espero que tengas éxito.</div>
+    <div class="hint">Заметь чередование: факт-сомнение-факт-оценка-факт-вероятность-отрицание-будущее-эмоция-желание</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Монолог: «Что думаю о переезде в Испанию»</div>
+    <p>2 минуты без остановки — выразись максимально полно. Используй indicativo для фактов и subjuntivo для остального:</p>
+    <div class="es">Sé que la decisión es correcta. Creo que Barcelona es perfecta para nosotros. No creo que sea fácil, pero espero que valga la pena. Es importante que aprendamos el idioma antes de llegar. Cuando tengamos la visa, empezaremos a buscar piso...</div>
+    <div class="hint">B1: связный монолог с правильным чередованием наклонений — это настоящий уровень B1!</div>
+  </div>
+</div>
+
+<!-- SECTION 7: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Subjuntivo как маркер образованности в Испании</h4>
+    <p>Интересный факт: многие испанцы в разговорной речи иногда допускают ошибки с субхунтиво — особенно молодёжь. Но образованная речь и письмо всегда используют субхунтиво корректно. Когда иностранец правильно чередует subjuntivo и indicativo — это производит огромное впечатление. Испанцы немедленно воспринимают тебя как культурного и образованного человека. Это работает лучше любого акцента.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: ANKI -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>Indicativo = факт/уверенность</strong> | Creo que es verdad. / Sé que trabaja.</li>
+      <li><strong>Subjuntivo = субъективное</strong> | No creo que sea. / Es posible que llegue.</li>
+      <li><strong>Cuando + futuro = subjuntivo</strong> | Cuando llegues, llámame.</li>
+      <li><strong>Cuando + habitual = indicativo</strong> | Cuando llega, siempre llama.</li>
+      <li><strong>Decir + hecho = indicativo</strong> | Dice que viene.</li>
+      <li><strong>Decir + orden = subjuntivo</strong> | Dice que vengas.</li>
+      <li><strong>Ver/Notar = indicativo</strong> | Veo que estás cansado.</li>
+      <li><strong>A lo mejor + indicativo (исключение!)</strong> | A lo mejor viene.</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:16px">
+    <h4>🎉 Поздравляю — ты прошёл блок субхунтиво!</h4>
+    <p>Уроки L62–L68 — это полная система субхунтиво presente. Теперь ты знаешь: правильные и неправильные формы, все категории WEIRDO, безличные выражения, и алгоритм выбора. Следующий шаг: придаточные времени (cuando + subjuntivo) и imperfecto de subjuntivo.</p>
+  </div>
+
+  <div class="callout info" style="margin-top:14px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Напиши 10 предложений из реальной жизни — 5 с indicativo, 5 с subjuntivo</li>
+      <li>Объясни себе вслух каждый выбор: «это subjuntivo, потому что...»</li>
+      <li>Dreaming Spanish Intermediate: 20 минут — записывай примеры обоих наклонений</li>
+      <li>Следующий урок (L69): subjuntivo в придаточных времени — cuando llegues, hasta que termines</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L67.html" class="nav-link-btn">← L67</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L69.html" class="nav-link-btn">L69 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L68';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'tengas — cuando + будущее событие → subjuntivo. tener tú: teng- + -as',
+  q2:'llega — cuando + привычное/регулярное → indicativo. llegar он → llega',
+  q3:'estás — ver que = наблюдение факта → indicativo. estar tú → estás',
+  q4:'vienes — dice que (сообщение о факте) → indicativo. venir tú → vienes',
+  q5:'puedas — me alegra que (эмоция) → subjuntivo. poder tú: pued- + -as',
+  q6:'trabaja — saber que → всегда indicativo. trabajar él → trabaja'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
+  el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const correct=answer.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||val==='tiene'){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! Также допустимо: '+answer;}
+  else if(answer==='tendrá'&&val==='tiene'){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно!';}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Ответ: ${answer}`;}
+}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

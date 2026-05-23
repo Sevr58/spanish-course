@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L40: Futuro Simple — простое будущее время</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid var(--bg3)}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:600;color:var(--gold)}
+.conj-table{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;margin:14px 0}
+.conj-table h4{font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--gold)}
+.conj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.conj-row{display:flex;flex-direction:column;padding:8px 10px;background:var(--bg3);border-radius:6px;font-size:.85rem}
+.conj-pro{color:var(--muted);font-size:.75rem}.conj-form{font-weight:600;color:var(--text);font-size:.9rem}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.conj-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 84</span>
+  <a href="L41.html">L41 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔮 Фаза 2 · Блок 2B · Будущее время</div>
+  <h1>Futuro Simple — <span class="hl">простое будущее</span></h1>
+  <p class="sub">Hablaré, comerás, vivirá — «буду говорить, будешь есть, будет жить». Предсказания и обещания.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Образовывать и использовать Futuro Simple для предсказаний и обещаний</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>Аудирование</strong><p>Dreaming Spanish Beginner — прогнозы и предсказания</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Делаем предсказания и говорим о далёких планах</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Futuro Simple — образование</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Futuro Simple — официальное будущее время. В отличие от ir + a + infinitivo, оно образуется <strong>добавлением окончаний к инфинитиву</strong>. Окончания одинаковы для всех трёх спряжений (-AR, -ER, -IR) — это большая удача!</p>
+
+  <div class="callout tip">
+    <h4>💡 Правило образования</h4>
+    <p>Берёшь <strong>инфинитив целиком</strong> (hablar, comer, vivir) + добавляешь окончание:<br>
+    -é, -ás, -á, -emos, -éis, -án<br>
+    Никаких корневых изменений у правильных глаголов! hablar → hablaré, comerás, vivirá.</p>
+  </div>
+
+  <div class="conj-table">
+    <h4>Окончания Futuro Simple (для всех глаголов)</h4>
+    <div class="conj-grid">
+      <div class="conj-row"><span class="conj-pro">yo</span><span class="conj-form">-é</span></div>
+      <div class="conj-row"><span class="conj-pro">tú</span><span class="conj-form">-ás</span></div>
+      <div class="conj-row"><span class="conj-pro">él/ella</span><span class="conj-form">-á</span></div>
+      <div class="conj-row"><span class="conj-pro">nosotros</span><span class="conj-form">-emos</span></div>
+      <div class="conj-row"><span class="conj-pro">vosotros</span><span class="conj-form">-éis</span></div>
+      <div class="conj-row"><span class="conj-pro">ellos/ellas</span><span class="conj-form">-án</span></div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Глагол</th><th>yo</th><th>tú</th><th>él/ella</th><th>nosotros</th><th>ellos</th></tr>
+    <tr><td>hablar</td><td>hablaré</td><td>hablarás</td><td>hablará</td><td>hablaremos</td><td>hablarán</td></tr>
+    <tr><td>comer</td><td>comeré</td><td>comerás</td><td>comerá</td><td>comeremos</td><td>comerán</td></tr>
+    <tr><td>vivir</td><td>viviré</td><td>vivirás</td><td>vivirá</td><td>viviremos</td><td>vivirán</td></tr>
+  </table>
+
+  <h3 style="margin:16px 0 10px;font-size:1rem">Неправильные глаголы — только основа меняется</h3>
+  <p style="font-size:.9rem;color:var(--muted);margin-bottom:10px">Окончания те же! Меняется только корень (основа):</p>
+  <table>
+    <tr><th>Глагол</th><th>Изменённая основа</th><th>yo</th><th>ellos</th></tr>
+    <tr><td>tener</td><td>tendr-</td><td>tendré</td><td>tendrán</td></tr>
+    <tr><td>poder</td><td>podr-</td><td>podré</td><td>podrán</td></tr>
+    <tr><td>saber</td><td>sabr-</td><td>sabré</td><td>sabrán</td></tr>
+    <tr><td>querer</td><td>querr-</td><td>querré</td><td>querrán</td></tr>
+    <tr><td>venir</td><td>vendr-</td><td>vendré</td><td>vendrán</td></tr>
+    <tr><td>hacer</td><td>har-</td><td>haré</td><td>harán</td></tr>
+    <tr><td>decir</td><td>dir-</td><td>diré</td><td>dirán</td></tr>
+    <tr><td>ser/ir</td><td>ser- / ir-</td><td>seré / iré</td><td>serán / irán</td></tr>
+  </table>
+
+  <div class="callout info">
+    <h4>🎯 Когда использовать Futuro Simple</h4>
+    <ul>
+      <li><strong>Предсказания о будущем:</strong> Mañana lloverá. — Завтра будет дождь.</li>
+      <li><strong>Обещания:</strong> Te llamaré esta noche. — Я позвоню тебе сегодня вечером.</li>
+      <li><strong>Гипотезы о настоящем:</strong> ¿Dónde estará Juan? — Где же Хуан? (наверное, где-то...)</li>
+      <li><strong>Далёкие планы:</strong> Algún día viviré en España. — Когда-нибудь я буду жить в Испании.</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Главная ловушка: акцент на окончаниях</h4>
+    <p>Почти все окончания Futuro Simple несут ударение: hablaRÉ, hablaRÁS, hablaRÁ, hablaRÉIS, hablaRÁN.<br>
+    Исключение: hablaREmos (ударение на -re-). Русскоговорящие часто ставят ударение неправильно.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: СЛОВАРЬ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — предсказания и будущее</h2>
+  </div>
+
+  <table>
+    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример в будущем</th></tr>
+    <tr><td>llover</td><td>[льоВЕР]</td><td>идти (о дожде)</td><td>Mañana lloverá. — Завтра будет дождь.</td></tr>
+    <tr><td>mejorar</td><td>[мехоРАР]</td><td>улучшаться</td><td>Todo mejorará. — Всё улучшится.</td></tr>
+    <tr><td>cambiar</td><td>[камБЬАР]</td><td>меняться</td><td>Las cosas cambiarán. — Вещи изменятся.</td></tr>
+    <tr><td>crecer</td><td>[креСЕР]</td><td>расти</td><td>La ciudad crecerá. — Город вырастет.</td></tr>
+    <tr><td>algún día</td><td>[альГУН ДИа]</td><td>когда-нибудь</td><td>Algún día lo conseguiré. — Когда-нибудь я этого добьюсь.</td></tr>
+    <tr><td>en el futuro</td><td>[эн эль фуТУро]</td><td>в будущем</td><td>En el futuro todo será digital. — В будущем всё будет цифровым.</td></tr>
+    <tr><td>tarde o temprano</td><td>[ТАРде о темПРАно]</td><td>рано или поздно</td><td>Tarde o temprano aprenderé. — Рано или поздно выучу.</td></tr>
+    <tr><td>prometer</td><td>[промеТЕР]</td><td>обещать</td><td>Te lo prometo. — Обещаю тебе.</td></tr>
+    <tr><td>quizás / quizá</td><td>[киСАС / киСА]</td><td>может быть</td><td>Quizás vendrá mañana. — Может, придёт завтра.</td></tr>
+    <tr><td>seguramente</td><td>[сегураМЕНте]</td><td>наверняка</td><td>Seguramente llegará tarde. — Наверняка опоздает.</td></tr>
+    <tr><td>conseguir</td><td>[консеГИР]</td><td>добиться, получить</td><td>Lo conseguiré. — Я этого добьюсь.</td></tr>
+    <tr><td>suponer</td><td>[супоНЕР]</td><td>полагать, предполагать</td><td>Supongo que vendrá. — Полагаю, придёт.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Futuro Simple</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Правильная форма будущего</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Правильная форма для «yo hablar» в Futuro Simple:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">hablaré</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">hablaría</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">hablo</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Как будет «tener» для «ellos» в будущем?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">tendrán</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">tenerán</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">tenirán</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Переведи: «Мы будем жить в Испании»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Viviremos en España</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Vivimos en España</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Vivíamos en España</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «¿Dónde estará Juan?» — какой смысл этой фразы?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Где Хуан сидит?</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Где же может быть Хуан? (предположение)</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Где будет Хуан завтра?</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Форма «hacer» для «yo» в будущем:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">haré</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">haceré</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">hacerá</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Как сказать «Они придут»? (venir)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">vendrán</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">venirán</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">vienen</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Образуй форму</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Напиши форму Futuro Simple</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «trabajar» (trabajar) для «tú» — ты будешь работать</div>
+      <input type="text" class="text-input" placeholder="trabajar + ás = ?" id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','trabajarás','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ trabajarás — инфинитив + -ás: traba-jar-ás</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «poder» для «nosotros» — мы сможем</div>
+      <input type="text" class="text-input" placeholder="podr- + emos = ?" id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','podremos','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ podremos — poder → основа podr- + -emos</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «venir» для «él» — он придёт</div>
+      <input type="text" class="text-input" placeholder="vendr- + á = ?" id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','vendrá','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ vendrá — venir → основа vendr- + -á</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «decir» для «yo» — я скажу</div>
+      <input type="text" class="text-input" placeholder="dir- + é = ?" id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','diré','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ diré — decir → основа dir- + -é. Короткая основа!</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «llover» (llover, безличный) — будет дождь</div>
+      <input type="text" class="text-input" placeholder="llover + á = ?" id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','lloverá','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ lloverá — инфинитив + -á. Безличные глаголы используются только в 3-м лице ед.ч.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — Предсказания и обещания</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Предсказания о будущем
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Педр</div>
+      <div><div class="dlg-es">¿Crees que las cosas mejorarán pronto?</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Ты думаешь, что всё скоро улучшится?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Луч</div>
+      <div><div class="dlg-es">Sí, estoy seguro. La economía crecerá y habrá más trabajo.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Да, я уверен. Экономика вырастет и будет больше работы.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Педр</div>
+      <div><div class="dlg-es">¿Y qué harás tú el año que viene?</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">А что ты будешь делать в следующем году?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Луч</div>
+      <div><div class="dlg-es">Terminaré mi carrera, encontraré un buen trabajo y quizás me mudaré a otra ciudad.</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Закончу учёбу, найду хорошую работу и, может, перееду в другой город.</div></div>
+    </div>
+    <div id="tr-dlg1" style="display:none"></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Обещание
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мама</div>
+      <div><div class="dlg-es">¿Vendrás a cenar el domingo?</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Придёшь на ужин в воскресенье?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Сын</div>
+      <div><div class="dlg-es">Sí, mamá. Te lo prometo. Llegaré a las ocho y traeré algo rico.</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Да, мама. Обещаю тебе. Приеду в восемь и принесу что-нибудь вкусное.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мама</div>
+      <div><div class="dlg-es">¿Y tu hermana también vendrá?</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">И твоя сестра тоже придёт?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Сын</div>
+      <div><div class="dlg-es">No sé. Supongo que sí. Le diré que vengas... que vendremos todos juntos.</div>
+      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Не знаю. Думаю, да. Скажу ей... что мы все придём вместе.</div></div>
+    </div>
+    <div id="tr-dlg2" style="display:none"></div>
+  </div>
+</div>
+
+<!-- SECTION 6: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — Моё будущее</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Базовый уровень — Предсказания</div>
+    <p>Сделай 5 предсказаний о мире через 10 лет. Используй Futuro Simple.</p>
+    <div class="es">En diez años habrá robots en todas partes. Las ciudades serán más verdes. La gente vivirá más años...</div>
+    <div class="hint">Темы: технологии, климат, транспорт, медицина, образование, работа.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый уровень — Обещание</div>
+    <p>Дай торжественное обещание (например, обещание себе) — минимум 6 предложений в Futuro Simple.</p>
+    <div class="es">Este año aprenderé español bien. Estudiaré cada día... No abandonaré cuando sea difícil. Algún día hablaré con fluidez...</div>
+    <div class="hint">Используй: hablaré, estudiaré, aprenderé, podré, seré, haré, tendré, viviré. Говори искренне — это мотивирует!</div>
+  </div>
+</div>
+
+<!-- SECTION 7: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Испанский прогноз погоды — и жизнь</h4>
+    <p>В Испании прогноз погоды обожают обсуждать, хотя климат страны весьма предсказуем: на побережье Средиземного моря будет солнечно, на севере — дождь, в Мадриде — жара летом и морозы зимой. Интересный факт: испанское выражение «lloverá sobre mojado» (буквально «будет дождь на мокрое») — идиома, означающая «проблемы на проблемы». Futuro Simple особенно часто используется в новостях и прогнозах: «El año que viene crecerá la economía», «La temperatura subirá»... Учись читать испанские новостные заголовки — это отличная практика будущего времени.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: ANKI + ДОМАШНЕЕ ЗАДАНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — карточки для этого урока</div>
+    <ul>
+      <li><strong>hablaré</strong> — я буду говорить (окончание -é для yo)</li>
+      <li><strong>tendré / tendrás / tendrá</strong> — tener → основа tendr-</li>
+      <li><strong>haré</strong> — я сделаю (hacer → основа har-)</li>
+      <li><strong>vendrá</strong> — он/она придёт (venir → основа vendr-)</li>
+      <li><strong>diré</strong> — я скажу (decir → основа dir-)</li>
+      <li><strong>algún día</strong> — когда-нибудь</li>
+      <li><strong>tarde o temprano</strong> — рано или поздно</li>
+      <li><strong>quizás + futuro</strong> — может быть (+ будущее = предположение)</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Спряги 5 глаголов полностью в Futuro Simple (по всем лицам)</li>
+      <li>Напиши 10 предложений: 5 предсказаний о мире + 5 обещаний себе</li>
+      <li>Найди в Dreaming Spanish фразы с окончаниями -ré, -rás, -rá</li>
+      <li>Запомни 8 неправильных основ: tendr-, podr-, sabr-, querr-, vendr-, har-, dir-, ser-</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок L40 завершён!</h4>
+    <p>Futuro Simple в кармане! Ты умеешь делать предсказания и обещания по-испански. Следующий урок — условное наклонение: «говорил бы, ел бы» — Condicional Simple.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L39.html" class="nav-link-btn">← L39</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L41.html" class="nav-link-btn">L41 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L40';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'hablaré — инфинитив hablar + -é. Это форма для yo. -ía — это Condicional (следующий урок)!',
+  q2:'tendrán — tener → основа tendr- + -án. Никакого «tener» в основе нет — она сокращается.',
+  q3:'Viviremos — vivir + -emos. Это мы будем жить. Vivimos — настоящее. Vivíamos — прошлое (импрефект).',
+  q4:'Futuro Simple может выражать предположение о НАСТОЯЩЕМ: «где же он МОЖЕТ быть?» — это вопрос-догадка.',
+  q5:'haré — hacer → основа har- + -é. Обрати внимание: не «haceré»! Основа укорачивается.',
+  q6:'vendrán — venir → основа vendr- + -án. Никакого «ir» в форме нет.',
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
+function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const rows=document.querySelectorAll(`[id^="${id}-"]`);rows.forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

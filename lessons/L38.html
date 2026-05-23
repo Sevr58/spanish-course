@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L38: Выражения времени в прошлом</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid var(--bg3)}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:600;color:var(--gold)}
+.time-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.time-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.time-card h4{font-size:.85rem;color:var(--gold);font-weight:700;margin-bottom:8px}
+.time-card ul{margin-left:14px;font-size:.85rem;color:var(--muted)}
+.time-card li{margin-bottom:4px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.time-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 79</span>
+  <a href="L39.html">L39 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">📅 Фаза 2 · Блок 2A · Прошедшее время</div>
+  <h1>Выражения времени <span class="hl">в прошлом</span></h1>
+  <p class="sub">Ayer, hace tres días, el año pasado, desde que — точная временна́я карта прошлого</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Точно указывать временные рамки любого события в прошлом</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>Аудирование</strong><p>Dreaming Spanish Beginner — истории о прошлом</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Рассказываем события с точными временны́ми маркерами</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Временна́я карта прошлого</h2>
+  </div>
+
+  <p style="margin-bottom:14px">В испанском языке есть богатая система выражений для указания времени в прошлом. Без них твои истории будут неполными — непонятно <em>когда именно</em> произошло событие. Разбиваем на группы.</p>
+
+  <div class="time-grid">
+    <div class="time-card">
+      <h4>🔴 Точное прошлое</h4>
+      <ul>
+        <li><strong>ayer</strong> — вчера</li>
+        <li><strong>anteayer</strong> — позавчера</li>
+        <li><strong>el lunes pasado</strong> — в прошлый понедельник</li>
+        <li><strong>la semana pasada</strong> — на прошлой неделе</li>
+        <li><strong>el mes pasado</strong> — в прошлом месяце</li>
+        <li><strong>el año pasado</strong> — в прошлом году</li>
+      </ul>
+    </div>
+    <div class="time-card">
+      <h4>🟡 «Тому назад» — hace</h4>
+      <ul>
+        <li><strong>hace un momento</strong> — только что</li>
+        <li><strong>hace una hora</strong> — час назад</li>
+        <li><strong>hace dos días</strong> — два дня назад</li>
+        <li><strong>hace tres semanas</strong> — три недели назад</li>
+        <li><strong>hace un mes</strong> — месяц назад</li>
+        <li><strong>hace cinco años</strong> — пять лет назад</li>
+      </ul>
+    </div>
+    <div class="time-card">
+      <h4>🟢 Длительность — desde</h4>
+      <ul>
+        <li><strong>desde ayer</strong> — с вчерашнего дня</li>
+        <li><strong>desde hace dos días</strong> — вот уже два дня</li>
+        <li><strong>desde que llegué</strong> — с тех пор, как я приехал</li>
+        <li><strong>desde entonces</strong> — с тех пор</li>
+        <li><strong>desde el lunes</strong> — с понедельника</li>
+      </ul>
+    </div>
+    <div class="time-card">
+      <h4>🔵 Последовательность</h4>
+      <ul>
+        <li><strong>primero</strong> — сначала</li>
+        <li><strong>luego / después</strong> — потом / после</li>
+        <li><strong>antes de</strong> — до (чего-то)</li>
+        <li><strong>después de</strong> — после (чего-то)</li>
+        <li><strong>cuando</strong> — когда</li>
+        <li><strong>al final</strong> — в конце концов</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Конструкция hace + время</h4>
+    <p><strong>Hace</strong> — это «тому назад» в испанском. Важный момент: <strong>hace</strong> стоит В НАЧАЛЕ фразы (не в конце, как в русском!).<br>
+    Русский: «Я приехал <em>три года назад</em>» → Испанский: «<em>Hace tres años</em> que llegué» или «Llegué hace tres años».<br>
+    Оба варианта правильны. С «que» — hace идёт вначале, без «que» — может быть в конце.</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: desde hace vs. desde</h4>
+    <p><strong>Desde hace dos días</strong> = «вот уже два дня» (действие началось 2 дня назад и продолжается СЕЙЧАС).<br>
+    <strong>Desde el martes</strong> = «с вторника» (с конкретной даты).<br>
+    Русскоговорящие часто путают: «я работаю здесь с двух лет» — это <em>desde hace dos años</em>, не <em>desde dos años</em>.</p>
+  </div>
+
+  <h3 style="margin:16px 0 10px;font-size:1rem">Cuando — временны́е придаточные</h3>
+  <p style="font-size:.9rem;color:var(--muted);margin-bottom:10px">Конструкция <strong>cuando + претерит</strong> очень частотна в рассказах:</p>
+  <table>
+    <tr><th>Испанский</th><th>Русский</th></tr>
+    <tr><td>Cuando llegué a España...</td><td>Когда я приехал в Испанию...</td></tr>
+    <tr><td>Cuando era niño, vivía en...</td><td>Когда я был ребёнком, я жил в...</td></tr>
+    <tr><td>Cuando terminé el trabajo...</td><td>Когда я закончил работу...</td></tr>
+    <tr><td>Cuando la conocí...</td><td>Когда я познакомился с ней...</td></tr>
+  </table>
+
+  <div class="callout info">
+    <h4>🇬🇧 Сравнение с английским</h4>
+    <p><strong>hace + время</strong> = английское «ago» (three years ago = hace tres años).<br>
+    <strong>desde hace + время</strong> = «for» с present perfect (I have been here for two days = Estoy aquí desde hace dos días).<br>
+    Ключевое отличие: в испанском <em>настоящее время</em> с «desde hace» (не перфект!).</p>
+  </div>
+</div>
+
+<!-- SECTION 2: СЛОВАРЬ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — временны́е выражения</h2>
+  </div>
+
+  <table>
+    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td>ayer</td><td>[айЕр]</td><td>вчера</td><td>Ayer fui al médico. — Вчера я ходил к врачу.</td></tr>
+    <tr><td>anteayer</td><td>[антеайЕр]</td><td>позавчера</td><td>Anteayer llovió mucho. — Позавчера шёл сильный дождь.</td></tr>
+    <tr><td>hace + [время]</td><td>[АСе]</td><td>... тому назад</td><td>Llegué hace una semana. — Я приехал неделю назад.</td></tr>
+    <tr><td>desde</td><td>[ДЕСде]</td><td>с, с тех пор</td><td>Vivo aquí desde 2020. — Я живу здесь с 2020 года.</td></tr>
+    <tr><td>desde hace</td><td>[ДЕСде АСе]</td><td>вот уже (сколько)</td><td>Estudio español desde hace un año. — Я учу испанский уже год.</td></tr>
+    <tr><td>cuando</td><td>[КУАНдо]</td><td>когда</td><td>Cuando era joven... — Когда я был молод...</td></tr>
+    <tr><td>entonces</td><td>[энТОНсес]</td><td>тогда, в то время</td><td>Entonces no sabía nada. — Тогда я ничего не знал.</td></tr>
+    <tr><td>en aquel momento</td><td>[эн аКЕЛь моМЕНто]</td><td>в тот момент</td><td>En aquel momento entendí todo. — В тот момент я всё понял.</td></tr>
+    <tr><td>de repente</td><td>[де реПЕНте]</td><td>вдруг, внезапно</td><td>De repente sonó el teléfono. — Вдруг зазвонил телефон.</td></tr>
+    <tr><td>por fin</td><td>[пор ФИН]</td><td>наконец-то</td><td>Por fin llegó el verano. — Наконец-то наступило лето.</td></tr>
+    <tr><td>ya</td><td>[ЙА]</td><td>уже</td><td>Ya terminé. — Я уже закончил.</td></tr>
+    <tr><td>todavía no</td><td>[тодаВИа но]</td><td>ещё нет</td><td>Todavía no he comido. — Я ещё не ел.</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 «Ya» — маленькое слово, большой смысл</h4>
+    <p><strong>Ya</strong> с прошедшим временем = «уже» (завершённость): <em>Ya llegué.</em> — Я уже приехал.<br>
+    <strong>Todavía no</strong> = «ещё не»: <em>Todavía no he llegado.</em> — Я ещё не приехал.<br>
+    В английском: «already» и «not yet» — прямые аналоги.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Выбери правильное выражение</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Временны́е маркеры прошлого</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как сказать «три года назад»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">hace tres años</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">desde tres años</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">tres años pasados</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Я учу испанский уже два года» — как это по-испански?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Aprendí español hace dos años</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Aprendo español desde hace dos años</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">He aprendido español dos años</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Что означает «de repente»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">вдруг, внезапно</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">снова, опять</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">скоро, вскоре</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Переведи: «Когда я был ребёнком, я жил в Москве»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Cuando soy niño, vivo en Moscú</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Cuando era niño, vivía en Moscú</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Cuando fue niño, vivió en Moscú</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Что значит «todavía no»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">ещё не</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">уже не</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">никогда не</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «В прошлом году» по-испански:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">el año pasado</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">hace el año</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">el año anterior</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Заполни пропуски</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Временны́е выражения в контексте</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Llegué a Barcelona ___ cinco años. (пять лет назад)</div>
+      <input type="text" class="text-input" placeholder="hace / desde hace / desde..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','hace','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ hace — «Llegué a Barcelona hace cinco años» = Я приехал в Барселону пять лет назад.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Vivo en este piso ___ hace tres meses. (вот уже три месяца)</div>
+      <input type="text" class="text-input" placeholder="desde / hace / ayer..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','desde','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ desde — «Vivo en este piso desde hace tres meses» = Я живу в этой квартире уже три месяца.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. ___ era pequeño, me gustaba el fútbol. (когда я был маленьким)</div>
+      <input type="text" class="text-input" placeholder="Cuando / Hace / Desde..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','Cuando','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ Cuando — «Cuando era pequeño, me gustaba el fútbol» = Когда я был маленьким, мне нравился футбол.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. ___ llegué al aeropuerto, perdí mi maleta. (в тот момент, как / только)</div>
+      <input type="text" class="text-input" placeholder="Cuando / Ayer / Entonces..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','Cuando','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ Cuando — «Cuando llegué al aeropuerto, perdí mi maleta» = Когда я прибыл в аэропорт, я потерял чемодан.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. ___ terminé los estudios y empecé a trabajar. (наконец-то)</div>
+      <input type="text" class="text-input" placeholder="Por fin / Entonces / Ya..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','Por fin','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ Por fin — «Por fin terminé los estudios y empecé a trabajar» = Наконец-то я закончил учёбу и начал работать.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — Истории из прошлого</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай оба диалога вслух, играя обе роли. Обращай внимание на временны́е выражения.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Встреча после долгой разлуки
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div><div class="dlg-es">¡Hola, Marcos! ¿Cuándo llegaste a Madrid?</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Привет, Маркос! Когда ты приехал в Мадрид?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мар</div>
+      <div><div class="dlg-es">Llegué hace tres días. Vine para una conferencia.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Я приехал три дня назад. Приехал на конференцию.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div><div class="dlg-es">¿Y cuánto tiempo llevas sin venir aquí?</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">А сколько времени ты не приезжал сюда?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мар</div>
+      <div><div class="dlg-es">No he venido desde hace dos años. La última vez fue en el verano pasado.</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Я не приезжал уже два года. Последний раз был прошлым летом.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div><div class="dlg-es">¡Qué tiempo! ¿Y qué hiciste ayer cuando llegaste?</div>
+      <div class="dlg-ru" id="tr-dlg1-5" style="display:none">Сколько времени! А что ты делал вчера, когда приехал?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мар</div>
+      <div><div class="dlg-es">Ayer fui al centro. De repente empezó a llover. Por fin encontré un café y esperé allí.</div>
+      <div class="dlg-ru" id="tr-dlg1-6" style="display:none">Вчера я пошёл в центр. Вдруг начался дождь. Наконец-то я нашёл кафе и ждал там.</div></div>
+    </div>
+    <div id="tr-dlg1" style="display:none"></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Рассказ о переезде
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Луис</div>
+      <div><div class="dlg-es">¿Hace cuánto tiempo vives en Barcelona?</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Как давно ты живёшь в Барселоне?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ева</div>
+      <div><div class="dlg-es">Vivo aquí desde hace seis meses. Me mudé en diciembre del año pasado.</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Я живу здесь уже шесть месяцев. Переехала в декабре прошлого года.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Луис</div>
+      <div><div class="dlg-es">¿Y cómo fue el proceso? ¿Fue difícil?</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">И как прошёл процесс? Было трудно?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ева</div>
+      <div><div class="dlg-es">Sí, bastante. Primero busqué piso durante dos semanas. Luego tuve que conseguir todos los documentos. Cuando por fin conseguí el piso, me sentí muy aliviada.</div>
+      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Да, довольно. Сначала я искала квартиру две недели. Потом мне нужно было получить все документы. Когда я наконец нашла квартиру, я почувствовала большое облегчение.</div></div>
+    </div>
+    <div id="tr-dlg2" style="display:none"></div>
+  </div>
+</div>
+
+<!-- SECTION 6: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — Мой переезд в прошлом</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Базовый уровень</div>
+    <p>Расскажи о каком-то важном событии в прошлом. Используй как минимум 4 временны́х маркера из урока.</p>
+    <div class="es">Hace [время] yo [глагол]... Cuando [ситуация], [что произошло]... Por fin... Desde entonces...</div>
+    <div class="hint">Пример: Hace dos años me mudé a una nueva ciudad. Cuando llegué, no conocía a nadie. Por fin encontré trabajo. Desde entonces vivo aquí y estoy muy contento.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый уровень</div>
+    <p>Расскажи о своём опыте изучения испанского языка — с точными временны́ми рамками.</p>
+    <div class="es">Empecé a estudiar español hace... Desde hace... ya sé... Cuando [событие], entendí que...</div>
+    <div class="hint">Используй: hace, desde hace, cuando, ayer, la semana pasada, entonces, por fin, de repente — минимум 5 выражений в одном рассказе.</div>
+  </div>
+</div>
+
+<!-- SECTION 7: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Испанцы и отношение ко времени</h4>
+    <p>В испанской культуре есть знаменитое понятие «mañana» — буквально «завтра», но в народном употреблении это скорее «не сейчас, потом, когда-нибудь». Однако это стереотип: деловая Испания (особенно Барселона и Мадрид) работает в общеевропейском темпе. Зато разговорная культура богата нюансами времени: испанцы умеют точно рассказывать истории, детально расставляя временны́е маркеры. Рассказ «hace veinte años, cuando vivía en el pueblo...» — это целая поэзия. Умение правильно использовать hace, desde, entonces превратит твои истории в настоящие испанские нарративы.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: ANKI + ДОМАШНЕЕ ЗАДАНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — карточки для этого урока</div>
+    <ul>
+      <li><strong>hace + [время]</strong> — ... тому назад | Hace tres días llegué.</li>
+      <li><strong>desde hace + [время]</strong> — вот уже ... | Vivo aquí desde hace un año.</li>
+      <li><strong>cuando era niño/a</strong> — когда я был/а ребёнком</li>
+      <li><strong>de repente</strong> — вдруг, внезапно</li>
+      <li><strong>por fin</strong> — наконец-то</li>
+      <li><strong>el año pasado</strong> — в прошлом году</li>
+      <li><strong>todavía no</strong> — ещё нет</li>
+      <li><strong>desde entonces</strong> — с тех пор</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Напиши 8–10 предложений о своём прошлом, используя все изученные временны́е выражения</li>
+      <li>Послушай Dreaming Spanish Beginner — одну историю о прошлом, выпиши все hace/desde/cuando</li>
+      <li>Повтори карточки Anki из урока</li>
+      <li>Вспомни 3 важных события своей жизни и запиши когда они произошли — по-испански</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок L38 завершён!</h4>
+    <p>Теперь ты умеешь точно указывать время в прошлом. Hace, desde hace, cuando — твои главные инструменты нарратива. Следующий урок — будущее время: ir + a + infinitivo.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L37.html" class="nav-link-btn">← L37</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L39.html" class="nav-link-btn">L39 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L38';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'hace + время = «... тому назад». Desde — это «с (какого момента)». El año pasado — в прошлом году.',
+  q2:'desde hace + время = действие началось в прошлом и продолжается сейчас. Настоящее время глагола!',
+  q3:'de repente = вдруг, внезапно. Cognate с английским «repent» не помогает — это латинское repente (внезапно).',
+  q4:'Cuando era niño + imperfecto — описание состояния в прошлом. Pretérito использовался бы для однократного действия.',
+  q5:'todavía no = ещё не. Ya = уже. Nunca = никогда.',
+  q6:'el año pasado = в прошлом году. «Pasado» = прошедший, прошлый.',
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
+function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){
+  const rows=document.querySelectorAll(`[id^="${id}-"]`);
+  rows.forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});
+}
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

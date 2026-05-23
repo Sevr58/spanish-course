@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L95: Практика — Понимание новостей на испанском</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3)}
+.dlg-line:first-of-type{border-top:none}
+.dlg-es{font-size:.92rem;line-height:1.8}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:4px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.news-article{background:var(--bg2);border:1px solid rgba(69,123,157,.35);border-radius:10px;padding:20px 24px;margin:14px 0}
+.news-article .news-tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:6px}
+.news-article .news-headline{font-size:1.05rem;font-weight:700;margin-bottom:10px;line-height:1.4}
+.news-article .news-body{font-size:.9rem;line-height:1.8;color:var(--muted)}
+.news-article .news-body strong{color:var(--text)}
+.vocab-table{width:100%;border-collapse:collapse;margin:14px 0}
+.vocab-table th{background:var(--bg3);padding:8px 12px;font-size:.8rem;font-weight:700;text-align:left;color:var(--gold);border-bottom:2px solid var(--border)}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es-word{font-weight:600;color:var(--text)}
+.vocab-table .ru-word{color:var(--muted)}
+.vocab-table .example{color:var(--blue);font-size:.8rem;margin-top:2px}
+.reading-strategy{background:var(--bg3);border-radius:8px;padding:14px 16px;margin:10px 0;display:flex;gap:12px;align-items:flex-start}
+.rs-icon{font-size:1.4rem;flex-shrink:0}
+.rs-title{font-size:.88rem;font-weight:700;margin-bottom:3px}
+.rs-desc{font-size:.82rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L94.html">← L94</a>
+  <span class="level">B1 · Фаза 3 · День 201</span>
+  <a href="L96.html">L96 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · B1 · Блок 3D — Навыки и практика</div>
+  <h1>Практика: <span class="hl">понимание новостей</span></h1>
+  <p class="sub">Скорочтение испанских текстов, ключевые слова новостей, пересказ своими словами</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">📰</div><div><strong>Цель урока</strong><p>Читать новости на испанском за 2–3 минуты и понимать суть</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>DELE B1</strong><p>Comprensión lectora — понимание текстов СМИ</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Пересказ</strong><p>Передать главное за 60 секунд своими словами</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: STRATEGIES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Стратегии чтения новостей на испанском</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Испанские новостные тексты имеют предсказуемую структуру. Если знаешь, как их читать, можно понять суть за 60–90 секунд — даже при ограниченном словарном запасе.</p>
+
+  <div class="reading-strategy">
+    <div class="rs-icon">👁</div>
+    <div>
+      <div class="rs-title">1. Scanning (сканирование) — найти факты</div>
+      <div class="rs-desc">Смотри только на имена собственные, числа, даты, географические названия. Они не переводятся и сразу дают контекст. Кто? Где? Когда? Сколько?</div>
+    </div>
+  </div>
+
+  <div class="reading-strategy">
+    <div class="rs-icon">🔍</div>
+    <div>
+      <div class="rs-title">2. Skimming (просмотровое чтение) — понять тему</div>
+      <div class="rs-desc">Читай только первый абзац и первое предложение каждого следующего. Первый абзац испанских новостей — это всегда ответ на 5W: quién, qué, cuándo, dónde, por qué.</div>
+    </div>
+  </div>
+
+  <div class="reading-strategy">
+    <div class="rs-icon">🧩</div>
+    <div>
+      <div class="rs-title">3. Cognatos — мгновенные 30% слов</div>
+      <div class="rs-desc">economía, crisis, protesta, acuerdo, inversión, tecnología, conflicto, reforma — всё это когнаты. Не ищи их в словаре, читай как есть.</div>
+    </div>
+  </div>
+
+  <div class="reading-strategy">
+    <div class="rs-icon">🔑</div>
+    <div>
+      <div class="rs-title">4. Маркеры временной последовательности</div>
+      <div class="rs-desc"><em>ayer, hoy, la semana pasada, el próximo mes, desde hace, hace dos años</em> — помогают понять хронологию без глубокого грамматического анализа.</div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Структура новостной заметки (pirámide invertida)</h4>
+    <ul>
+      <li><strong>Titular (заголовок):</strong> тема в 6–10 словах, часто без артиклей</li>
+      <li><strong>1-й абзац (lead):</strong> все главные факты — кто, что, где, когда</li>
+      <li><strong>2–3-й абзацы:</strong> детали, контекст, цитаты</li>
+      <li><strong>Последний абзац:</strong> исторический контекст, перспектива</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: сослагательное в новостях</h4>
+    <p>В испанских новостях часто встречается subjuntivo в косвенной речи: <em>«El ministro afirmó que <strong>fuera</strong> necesario revisar la ley»</em> — это не ошибка, а стандартная норма официальной испанской прессы.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — Язык новостей</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Русский</th><th>Пример из прессы</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><div class="es-word">según fuentes</div></td><td><div class="ru-word">по данным источников</div></td><td><div class="example">Según fuentes del Gobierno...</div></td></tr>
+      <tr><td><div class="es-word">ha señalado que</div></td><td><div class="ru-word">указал/отметил, что</div></td><td><div class="example">El portavoz ha señalado que...</div></td></tr>
+      <tr><td><div class="es-word">se prevé que</div></td><td><div class="ru-word">ожидается, что</div></td><td><div class="example">Se prevé que el paro disminuya.</div></td></tr>
+      <tr><td><div class="es-word">en el marco de</div></td><td><div class="ru-word">в рамках</div></td><td><div class="example">En el marco de la cumbre...</div></td></tr>
+      <tr><td><div class="es-word">ha dado a conocer</div></td><td><div class="ru-word">объявил, обнародовал</div></td><td><div class="example">El INE ha dado a conocer los datos.</div></td></tr>
+      <tr><td><div class="es-word">cabe destacar</div></td><td><div class="ru-word">следует отметить</div></td><td><div class="example">Cabe destacar que la cifra ha subido.</div></td></tr>
+      <tr><td><div class="es-word">en vigor</div></td><td><div class="ru-word">в силе, действующий</div></td><td><div class="example">La ley entró en vigor en enero.</div></td></tr>
+      <tr><td><div class="es-word">convocatoria</div></td><td><div class="ru-word">созыв, объявление (о выборах/забастовке)</div></td><td><div class="example">La convocatoria de huelga...</div></td></tr>
+      <tr><td><div class="es-word">portavoz</div></td><td><div class="ru-word">пресс-секретарь, официальный представитель</div></td><td><div class="example">El portavoz negó los hechos.</div></td></tr>
+      <tr><td><div class="es-word">cifra récord</div></td><td><div class="ru-word">рекордный показатель</div></td><td><div class="example">Una cifra récord de turistas...</div></td></tr>
+      <tr><td><div class="es-word">poner en marcha</div></td><td><div class="ru-word">запустить, начать реализацию</div></td><td><div class="example">El plan se pondrá en marcha en mayo.</div></td></tr>
+      <tr><td><div class="es-word">a raíz de</div></td><td><div class="ru-word">вследствие, из-за</div></td><td><div class="example">A raíz del accidente, se cerró la vía.</div></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: NEWS TEXT 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Текст 1 — Аутентичная новость (читаем и разбираем)</h2>
+  </div>
+
+  <div class="news-article">
+    <div class="news-tag">El País · Economía</div>
+    <div class="news-headline">España registra una cifra récord de turistas extranjeros: 94 millones en 2025</div>
+    <div class="news-body">
+      <p>España cerró el año 2025 con la llegada de <strong>94 millones de turistas internacionales</strong>, lo que supone un incremento del 7,3% respecto al año anterior, según los datos publicados ayer por el Instituto Nacional de Estadística (INE). <strong>El sector turístico</strong> se consolida así como el principal motor de la economía española.</p>
+      <p style="margin-top:10px">El portavoz del Ministerio de Turismo ha señalado que <strong>la demanda procedente del Reino Unido, Alemania y Francia</strong> continúa siendo la más alta, aunque cabe destacar el creciente interés de viajeros procedentes de <strong>Norteamérica y Asia</strong>.</p>
+      <p style="margin-top:10px">A raíz del aumento de visitantes, las autoridades locales de Barcelona, Málaga y San Sebastián han puesto en marcha <strong>nuevas medidas de regulación</strong> del turismo urbano. Se prevé que dichas medidas entren en vigor a partir del próximo verano.</p>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <h4>🔍 Разбираем текст — метод 5W</h4>
+    <ul>
+      <li><strong>¿Quién?</strong> España (через INE как источник)</li>
+      <li><strong>¿Qué?</strong> 94 millones de turistas — cifra récord</li>
+      <li><strong>¿Cuándo?</strong> año 2025 (datos publicados ayer)</li>
+      <li><strong>¿Dónde?</strong> España, особенно Barcelona, Málaga, San Sebastián</li>
+      <li><strong>¿Por qué важно?</strong> мотор экономики + новые ограничения туризма</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Понимание текста о туризме</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Ответь на вопросы по тексту</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Сколько туристов приехало в Испанию в 2025 году?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">94 millones</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">84 millones</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">74 millones</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Какой источник опубликовал данные о туристах?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">El INE (Instituto Nacional de Estadística)</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">El Ministerio de Economía</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">El Banco de España</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Что означает фраза «se prevé que dichas medidas entren en vigor»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Ожидается, что меры вступят в силу</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Меры уже вступили в силу</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Меры были отменены</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Что значит «cabe destacar» в новостном тексте?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Следует отметить</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Не стоит упоминать</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Трудно понять</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Как переводится «a raíz de» в новостном контексте?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Вследствие, из-за</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Несмотря на</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">В связи с тем, что не</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: NEWS TEXT 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Текст 2 — Новость об ИИ (технологии)</h2>
+  </div>
+
+  <div class="news-article">
+    <div class="news-tag">El Mundo · Tecnología</div>
+    <div class="news-headline">La inteligencia artificial genera más de 400.000 empleos en España en dos años</div>
+    <div class="news-body">
+      <p>El auge de la <strong>inteligencia artificial</strong> ha generado en España más de <strong>400.000 puestos de trabajo</strong> relacionados con tecnología, datos y automatización en los últimos dos años, según un informe publicado por el Observatorio de la Economía Digital.</p>
+      <p style="margin-top:10px">Sin embargo, el mismo informe advierte que la IA también ha <strong>eliminado o transformado</strong> cerca de 180.000 empleos en sectores como la banca, los seguros y la logística. En el marco de esta transformación, el Gobierno ha anunciado un plan de <strong>reskilling</strong> —formación para nuevos empleos— que se pondrá en marcha a partir del segundo trimestre.</p>
+      <p style="margin-top:10px">«El desafío no es la tecnología en sí, sino la velocidad del cambio», ha señalado la directora del Observatorio. «Se prevé que para 2027, el 40% de las competencias actuales queden obsoletas».</p>
+    </div>
+  </div>
+
+  <div class="callout success">
+    <h4>✅ Подсказки для пересказа этой новости</h4>
+    <ul>
+      <li>Фраза для начала: <em>«La noticia trata sobre...»</em> / <em>«Según el artículo...»</em></li>
+      <li>Главный факт: 400.000 empleos creados por IA</li>
+      <li>Контраргумент: también eliminó 180.000 puestos</li>
+      <li>Реакция властей: plan de reskilling del Gobierno</li>
+      <li>Прогноз: 40% competencias obsoletas para 2027</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 6: QUIZ 2 — FILL IN THE BLANK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Тест 2 — Лексика новостей (вставь слово)</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✍️ Вставь подходящее слово из словаря новостей</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. El presidente <strong>______</strong> que era necesario revisar la ley. (указал, отметил)</div>
+      <input class="text-input" id="ti1" placeholder="Введи слово...">
+      <br><button class="check-btn" onclick="checkText('ti1','ha señalado','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans1')">Показать ответ</button>
+      <div class="answer-reveal" id="ans1">ha señalado</div>
+      <div class="feedback" id="fb-ti1"></div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. <strong>______</strong> los datos del INE, el paro bajó un 3%. (по данным)</div>
+      <input class="text-input" id="ti2" placeholder="Введи слово...">
+      <br><button class="check-btn" onclick="checkText('ti2','Según','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans2')">Показать ответ</button>
+      <div class="answer-reveal" id="ans2">Según</div>
+      <div class="feedback" id="fb-ti2"></div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. La nueva normativa entrará <strong>______</strong> en enero. (в силу)</div>
+      <input class="text-input" id="ti3" placeholder="en _____">
+      <br><button class="check-btn" onclick="checkText('ti3','en vigor','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans3')">Показать ответ</button>
+      <div class="answer-reveal" id="ans3">en vigor</div>
+      <div class="feedback" id="fb-ti3"></div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. <strong>______</strong> del accidente, el aeropuerto cerró durante tres horas. (вследствие)</div>
+      <input class="text-input" id="ti4" placeholder="Введи фразу...">
+      <br><button class="check-btn" onclick="checkText('ti4','A raíz','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans4')">Показать ответ</button>
+      <div class="answer-reveal" id="ans4">A raíz</div>
+      <div class="feedback" id="fb-ti4"></div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. El plan se <strong>______</strong> en marcha en el primer trimestre. (будет запущен)</div>
+      <input class="text-input" id="ti5" placeholder="pondrá / puso...">
+      <br><button class="check-btn" onclick="checkText('ti5','pondrá','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans5')">Показать ответ</button>
+      <div class="answer-reveal" id="ans5">pondrá</div>
+      <div class="feedback" id="fb-ti5"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: DIALOGUES — RETELLING NEWS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Диалоги — Обсуждение новостей</h2>
+  </div>
+
+  <!-- Dialogue 1 -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>Диалог 1 — Рассказываешь новость другу</span>
+      <button class="dlg-toggle" onclick="toggleDlg('dlg95-1')">показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-es">— ¿Has leído las noticias hoy? España batió un récord de turistas.</div>
+      <div class="dlg-ru dlg95-1-tr" style="display:none">— Ты читал новости сегодня? Испания побила рекорд по туристам.</div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-es">— Sí, lo vi. Según el INE, llegaron 94 millones en 2025. Increíble.</div>
+      <div class="dlg-ru dlg95-1-tr" style="display:none">— Да, видел. По данным INE, в 2025-м приехало 94 миллиона. Невероятно.</div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-es">— Claro, pero cabe destacar que Barcelona y Málaga ya están tomando medidas para regular el turismo.</div>
+      <div class="dlg-ru dlg95-1-tr" style="display:none">— Конечно, но стоит отметить, что Барселона и Малага уже принимают меры по регулированию туризма.</div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-es">— Se prevé que entren en vigor el próximo verano. Ya era hora.</div>
+      <div class="dlg-ru dlg95-1-tr" style="display:none">— Ожидается, что они вступят в силу следующим летом. Давно пора.</div>
+    </div>
+  </div>
+
+  <!-- Dialogue 2 -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>Диалог 2 — Экзамен: пересказ на DELE B1</span>
+      <button class="dlg-toggle" onclick="toggleDlg('dlg95-2')">показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-es">Examiner: Por favor, resuma brevemente el artículo que ha leído.</div>
+      <div class="dlg-ru dlg95-2-tr" style="display:none">Экзаменатор: Пожалуйста, кратко перескажите прочитанную статью.</div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-es">Candidate: La noticia trata sobre el impacto de la inteligencia artificial en el mercado laboral español. Según un informe reciente, la IA ha generado más de 400.000 empleos en dos años, aunque también ha eliminado cerca de 180.000 puestos en sectores como la banca y la logística.</div>
+      <div class="dlg-ru dlg95-2-tr" style="display:none">Кандидат: Новость о влиянии искусственного интеллекта на испанский рынок труда. Согласно недавнему докладу, ИИ создал более 400 000 рабочих мест за два года, хотя также ликвидировал около 180 000 позиций в секторах банкинга и логистики.</div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-es">Candidate: A raíz de esta situación, el Gobierno ha puesto en marcha un plan de formación para nuevas competencias. En mi opinión, es una medida necesaria, aunque quizás insuficiente dado que se prevé que el 40% de las habilidades actuales queden obsoletas para 2027.</div>
+      <div class="dlg-ru dlg95-2-tr" style="display:none">Кандидат: Вследствие этой ситуации Правительство запустило план переобучения для новых компетенций. На мой взгляд, это необходимая мера, хотя, возможно, недостаточная, учитывая, что ожидается: к 2027 году 40% нынешних навыков устареют.</div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-es">Examiner: ¿Y cuál es su opinión personal sobre este tema?</div>
+      <div class="dlg-ru dlg95-2-tr" style="display:none">Экзаменатор: А каково ваше личное мнение по этой теме?</div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-es">Candidate: En mi opinión, la tecnología en sí no es el problema. Lo importante es que las personas tengan acceso a la formación necesaria para adaptarse. Creo que el Estado tiene una responsabilidad clara en este proceso.</div>
+      <div class="dlg-ru dlg95-2-tr" style="display:none">Кандидат: На мой взгляд, сама технология — не проблема. Важно, чтобы люди имели доступ к необходимому обучению для адаптации. Думаю, что государство несёт чёткую ответственность в этом процессе.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Говорение — Пересказ новости своими словами</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Потренируй пересказ по шаблону. Цель — передать суть за 60–90 секунд, не зачитывая текст.</p>
+
+  <div class="callout info">
+    <h4>📋 Структура пересказа новости (DELE B1 format)</h4>
+    <ul>
+      <li><strong>Начало:</strong> «La noticia trata sobre...» / «El artículo habla de...»</li>
+      <li><strong>Ключевой факт:</strong> «Según [fuente], [dato principal]»</li>
+      <li><strong>Деталь:</strong> «Además, cabe destacar que...» / «Sin embargo...»</li>
+      <li><strong>Реакция/последствие:</strong> «A raíz de esto, [acción]»</li>
+      <li><strong>Мнение (опционально):</strong> «En mi opinión...» / «Creo que...»</li>
+    </ul>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">Задание 1 — пересказ (60 сек)</div>
+    <p>Перескажи новость о рекорде туристов в Испании. Используй: <em>según el INE, cifra récord, se prevé que, en vigor, a raíz de.</em></p>
+    <div class="hint">Начни: «La noticia trata sobre el turismo en España. Según el INE...»</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">Задание 2 — мнение (60 сек)</div>
+    <p>Прочитай заголовок и выскажи мнение: <em>«La IA elimina más empleos de los que crea»</em></p>
+    <div class="es">¿Estás de acuerdo con esta afirmación? ¿Por qué sí o por qué no?</div>
+    <div class="hint">Используй: en mi opinión, creo que, sin embargo, aunque, por un lado... por otro lado...</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">Задание 3 — ролевая игра (2 мин)</div>
+    <p>Объясни другу (партнёр или воображаемый собеседник) суть обеих новостей. Он не читал статьи и задаёт уточняющие вопросы.</p>
+    <div class="es">— ¿Y eso qué significa para los trabajadores? / ¿Cuándo entrará en vigor? / ¿Quién lo publicó?</div>
+  </div>
+</div>
+
+<!-- SECTION 9: CULTURE + ANKI + DONE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Медиасреда Испании + Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">Культурный контекст</div>
+    <h4>Испанские СМИ — что читают испанцы</h4>
+    <p>Главные онлайн-СМИ Испании: <strong>El País</strong> (центр-левый, наибольшая аудитория), <strong>El Mundo</strong> (центр-правый), <strong>ABC</strong> (традиционно-консервативный), <strong>La Vanguardia</strong> (каталонский взгляд). Для упрощённого чтения — <strong>20minutos.es</strong> и <strong>eldiario.es</strong>. Особенность испанской прессы: активное использование субъюнктива в цитатах и обилие когнатов с французским и итальянским — читателям этих языков легче вдвойне.</p>
+  </div>
+
+  <div class="anki" style="margin-top:16px">
+    <div class="atag">Anki — 10 карточек на сегодня</div>
+    <ul>
+      <li>según fuentes → по данным источников</li>
+      <li>ha señalado que → указал/отметил, что</li>
+      <li>se prevé que → ожидается, что</li>
+      <li>en vigor → в силе, в действии</li>
+      <li>cabe destacar → следует отметить</li>
+      <li>a raíz de → вследствие, из-за</li>
+      <li>poner en marcha → запустить, начать реализацию</li>
+      <li>portavoz → пресс-секретарь</li>
+      <li>en el marco de → в рамках</li>
+      <li>cifra récord → рекордный показатель</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:16px">
+    <h4>📚 Домашнее задание</h4>
+    <ul>
+      <li>Зайди на <strong>elpais.com</strong> и прочитай любую новость методом skimming (только 1-й абзац + первые предложения следующих).</li>
+      <li>Запиши 3 новых слова из текста в Anki.</li>
+      <li>Перескажи новость вслух за 60 секунд — по структуре «la noticia trata sobre...».</li>
+      <li>Найди в тексте хотя бы одно слово-когнат и одну конструкцию «se prevé / ha señalado».</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L94.html" class="nav-link-btn">← L94</a>
+    <a href="../index.html" class="nav-link-btn">📊 Дашборд</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">Урок пройден ✓</button>
+  <div class="nav-links">
+    <a href="L96.html" class="nav-link-btn">L96 →</a>
+  </div>
+</div>
+
+<script>
+const LESSON_ID = 'L95';
+let quizScore = 0, quizTotal = 0;
+const quizExpl = {
+  q1: '94 millones — это рекордный показатель 2025 года согласно тексту.',
+  q2: 'INE — Instituto Nacional de Estadística — опубликовал данные.',
+  q3: 'Se prevé que + subjuntivo = ожидается, что (futura previsión).',
+  q4: 'Cabe destacar = следует отметить — стандартная формула испанской прессы.',
+  q5: 'A raíz de = вследствие, из-за — причинно-следственная связь в новостях.'
+};
+
+function getState(){
+  try{ return JSON.parse(localStorage.getItem('esp_course_progress')||'{}'); }catch(e){ return {}; }
+}
+function markDone(){
+  const s = getState();
+  s[LESSON_ID] = true;
+  localStorage.setItem('esp_course_progress', JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройдено';
+  btn.classList.add('marked');
+}
+function answerQuiz(el, qId, correctKey){
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if(m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1] === correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if(el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+function checkText(inputId, answer, fbId){
+  const inp = document.getElementById(inputId);
+  const val = inp.value.trim().toLowerCase();
+  const ans = answer.toLowerCase();
+  const ok = val === ans || (val.length >= ans.length - 2 && ans.startsWith(val.substring(0,3)));
+  inp.className = 'text-input ' + (ok ? 'correct' : 'wrong');
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show ' + (ok ? 'ok' : 'no');
+  fb.textContent = ok ? '✅ Верно!' : `❌ Правильно: ${answer}`;
+  if(ok){ quizScore++; }
+  quizTotal++;
+  updateScore();
+}
+function showAns(id){
+  const el = document.getElementById(id);
+  el.classList.toggle('show');
+}
+function toggleTranslation(id){
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+function toggleDlg(cls){
+  const els = document.querySelectorAll('.' + cls + '-tr');
+  const hidden = [...els].some(e => e.style.display === 'none');
+  els.forEach(e => e.style.display = hidden ? 'block' : 'none');
+}
+function updateScore(){
+  const label = document.getElementById('progress-label');
+  const fill = document.getElementById('progress-fill');
+  const pct = quizTotal > 0 ? Math.round((quizScore/quizTotal)*100) : 0;
+  label.textContent = `${quizScore} / ${quizTotal} правильно (${pct}%)`;
+  fill.style.width = pct + '%';
+}
+(function init(){
+  const s = getState();
+  if(s[LESSON_ID]){
+    const btn = document.getElementById('done-btn');
+    btn.textContent = '✅ Пройдено';
+    btn.classList.add('marked');
+  }
+})();
+</script>
+</body>
+</html>

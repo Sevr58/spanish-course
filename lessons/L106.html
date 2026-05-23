@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L106: Юмор и игра слов — ¿Entiendes el chiste?</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+
+/* Nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--purple)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+
+/* Progress bar */
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+
+/* Section */
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+
+/* Callout */
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+
+/* Word pairs */
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+
+/* Speaking bubble */
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+
+/* Quiz */
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+
+/* Text exercise */
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+
+/* Dialogue */
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+
+/* Cultural note */
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+
+/* Anki box */
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+
+/* Done button */
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+
+/* Joke cards */
+.joke-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;margin-top:14px}
+.joke-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 18px}
+.joke-card .joke-setup{font-size:.95rem;margin-bottom:8px;font-style:italic;color:var(--text)}
+.joke-card .joke-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--purple);margin-bottom:6px}
+.joke-card .punch-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:6px 12px;color:var(--muted);font-size:.8rem;cursor:pointer;margin-top:8px;transition:.2s}
+.joke-card .punch-btn:hover{border-color:var(--muted);color:var(--text)}
+.joke-card .punchline{display:none;margin-top:8px;padding:8px 12px;background:rgba(157,78,221,.1);border-radius:6px;font-size:.9rem;color:var(--purple)}
+.joke-card .punchline.show{display:block}
+.joke-card .joke-explain{font-size:.8rem;color:var(--muted);margin-top:6px}
+
+/* Pun analysis */
+.pun-box{background:var(--bg3);border-radius:8px;padding:14px 16px;margin-bottom:12px}
+.pun-box .pun-es{font-size:1.05rem;font-weight:600;margin-bottom:6px}
+.pun-box .pun-analysis{font-size:.85rem;color:var(--muted)}
+.pun-box .word-play{color:var(--gold);font-weight:600}
+
+/* Responsive */
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.joke-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L105.html">← L105</a>
+  <span class="level">B1 · Фаза 4 · День 226</span>
+  <a href="L107.html">L107 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🟣 Фаза 4 · Блок B4A · Свободная речь</div>
+  <h1>Юмор и <span class="hl">игра слов</span></h1>
+  <p class="sub">¿Entiendes el chiste? — почему понимание юмора = настоящее владение языком</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">😂</div><div><strong>Цель урока</strong><p>Понять 5 испанских шуток и объяснить, почему они смешные</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>B1-навык</strong><p>Каламбуры, двойной смысл, культурный юмор</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Рассказываем анекдот и объясняем, в чём соль</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: Почему юмор — финальный экзамен -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Почему юмор — это финальный языковой экзамен</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Когда испанец спрашивает «¿Entiendes el chiste?» — это не просто вопрос. Это проверка: понимаешь ли ты язык <em>по-настоящему</em>. Юмор требует трёх вещей одновременно.</p>
+
+  <div class="callout tip">
+    <h4>💡 Три компонента языкового юмора</h4>
+    <ul>
+      <li><strong>Скорость обработки</strong> — шутка умирает, если ты думаешь две секунды</li>
+      <li><strong>Культурный контекст</strong> — многие шутки завязаны на реалии, которые нужно знать</li>
+      <li><strong>Двойной смысл</strong> — каламбуры (juegos de palabras) работают только если знаешь оба значения</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>🎭 Типы испанского юмора</h4>
+    <ul>
+      <li><strong>Chiste</strong> — классический анекдот с завязкой и пуантой</li>
+      <li><strong>Juego de palabras / Calambur</strong> — каламбур, игра со звучанием слов</li>
+      <li><strong>Ironía / sarcasmo</strong> — ирония (очень распространена в Испании)</li>
+      <li><strong>Humor absurdo</strong> — абсурдный юмор (Monty Python по-испански)</li>
+      <li><strong>Chiste verde</strong> — пикантный анекдот (часто про política или sexo)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2: Словарь юмора -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь юмора — 14 ключевых слов и выражений</h2>
+  </div>
+
+  <div class="word-pairs">
+    <div class="wp"><span class="en">el chiste</span><span class="sep">→</span><span class="ar">анекдот, шутка</span></div>
+    <div class="wp"><span class="en">el juego de palabras</span><span class="sep">→</span><span class="ar">каламбур</span></div>
+    <div class="wp"><span class="en">el calambur</span><span class="sep">→</span><span class="ar">омофонический каламбур</span></div>
+    <div class="wp"><span class="en">la ironía</span><span class="sep">→</span><span class="ar">ирония</span></div>
+    <div class="wp"><span class="en">el doble sentido</span><span class="sep">→</span><span class="ar">двойной смысл</span></div>
+    <div class="wp"><span class="en">la puntada / el remate</span><span class="sep">→</span><span class="ar">пуанта, соль шутки</span></div>
+    <div class="wp"><span class="en">contar un chiste</span><span class="sep">→</span><span class="ar">рассказать анекдот</span></div>
+    <div class="wp"><span class="en">hacer gracia</span><span class="sep">→</span><span class="ar">казаться смешным</span></div>
+    <div class="wp"><span class="en">No le veo la gracia</span><span class="sep">→</span><span class="ar">Не вижу в этом ничего смешного</span></div>
+    <div class="wp"><span class="en">reírse de</span><span class="sep">→</span><span class="ar">смеяться над (кем-то)</span></div>
+    <div class="wp"><span class="en">el humor negro</span><span class="sep">→</span><span class="ar">чёрный юмор</span></div>
+    <div class="wp"><span class="en">estar de broma</span><span class="sep">→</span><span class="ar">шутить, не всерьёз</span></div>
+    <div class="wp"><span class="en">tomar el pelo</span><span class="sep">→</span><span class="ar">разыгрывать кого-то</span></div>
+    <div class="wp"><span class="en">¡Qué gracioso/a!</span><span class="sep">→</span><span class="ar">Как смешно! (искр. и иронич.)</span></div>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: «gracioso»</h4>
+    <p>«¡Qué gracioso!» — может быть искренним («Как смешно!») или саркастическим («Ну-ну, очень смешно...»). Интонация решает всё. В письменном тексте без контекста — амбивалентно.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3: 5 испанских шуток с анализом -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>5 испанских шуток — разбираем, почему смешно</h2>
+  </div>
+
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми «Пуанта» после того, как подумаешь — не подглядывай сразу!</p>
+
+  <div class="joke-grid">
+
+    <div class="joke-card">
+      <div class="joke-tag">😄 Chiste clásico</div>
+      <div class="joke-setup">— Doctor, me duele la cabeza cuando bebo café.<br>— ¿Lo prueba antes de quitarle la cucharilla?</div>
+      <button class="punch-btn" onclick="this.nextElementSibling.classList.add('show');this.style.display='none'">👁 Пуанта и объяснение</button>
+      <div class="punchline">Пуанта: «¿Lo prueba antes de quitarle la cucharilla?» — Вы пробуете его до того, как вынимаете ложку? Голова болит, потому что ложка ещё в чашке, когда он пьёт. Абсурдный юмор + двойной смысл «le duele la cabeza».</div>
+      <div class="joke-explain">Тип: humor absurdo. Структура: жалоба → неожиданный практический вопрос, который меняет всё.</div>
+    </div>
+
+    <div class="joke-card">
+      <div class="joke-tag">🔤 Juego de palabras</div>
+      <div class="joke-setup">«Yo perseveré» — dijo el marinero antes de llegar a Persia.</div>
+      <button class="punch-btn" onclick="this.nextElementSibling.classList.add('show');this.style.display='none'">👁 Пуанта и объяснение</button>
+      <div class="punchline">Calambur: «Yo perseveré» звучит как «yo — Persia — veré» (я Персию увижу). Моряк говорит «Я perseveré (проявил настойчивость)» — и это звучит как предсказание маршрута.</div>
+      <div class="joke-explain">Тип: calambur (омофонический каламбур). Требует знания произношения и омонимии.</div>
+    </div>
+
+    <div class="joke-card">
+      <div class="joke-tag">🏛️ Humor político</div>
+      <div class="joke-setup">Un político dice: «Prometemos crear empleo para todos».<br>Al día siguiente, el periódico titula: «El Gobierno crea 50.000 empleos». Al otro día: «El Gobierno destroza 50.000 empleos». Al tercero: «El Gobierno mantiene el pleno empleo».</div>
+      <button class="punch-btn" onclick="this.nextElementSibling.classList.add('show');this.style.display='none'">👁 Пуанта и объяснение</button>
+      <div class="punchline">Иронический цикл: создали — уничтожили — теперь нет ни работающих, ни безработных, значит «полная занятость». Чёрный политический юмор на тему манипуляции статистикой.</div>
+      <div class="joke-explain">Тип: ironía / sarcasmo político. Очень популярный жанр в Испании.</div>
+    </div>
+
+    <div class="joke-card">
+      <div class="joke-tag">👶 Chiste inocente</div>
+      <div class="joke-setup">— ¿Cómo se llama el primo del tornillo?<br>— ¡La tornilla!<br>— No, ¡la tuerca!</div>
+      <button class="punch-btn" onclick="this.nextElementSibling.classList.add('show');this.style.display='none'">👁 Пуанта и объяснение</button>
+      <div class="punchline">«Tornillo» (болт) → логично предположить «tornilla» (феминизация), но правильно — «tuerca» (гайка). Юмор на ложном ожидании: слушатель идёт по предсказуемому пути, получает сюрприз.</div>
+      <div class="joke-explain">Тип: expectativa frustrada (обманутое ожидание). Популярен среди детей и взрослых.</div>
+    </div>
+
+    <div class="joke-card">
+      <div class="joke-tag">🐟 Chiste absurdo</div>
+      <div class="joke-setup">Un pez le dice a otro: «¿Tú crees en Dios?»<br>El otro responde: «¡Claro que no! ¿Y quién nos va a poner el agua entonces?»</div>
+      <button class="punch-btn" onclick="this.nextElementSibling.classList.add('show');this.style.display='none'">👁 Пуанта и объяснение</button>
+      <div class="punchline">Переворот логики: рыба отрицает Бога, потому что «если бы Бог был, кто бы наливал воду?» — то есть думает, что вода в аквариуме поступает от человека (= Бога). Абсурдная логика, которая одновременно правильна в их мире.</div>
+      <div class="joke-explain">Тип: absurdo filosófico. Игра с перспективой и ограниченностью знания.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4: Игра слов — механика каламбура -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Механика каламбура — juegos de palabras</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Классические испанские каламбуры — часть культуры. Некоторые встречаются в литературе, рекламе, поговорках.</p>
+
+  <div class="pun-box">
+    <div class="pun-es">«<span class="word-play">Vino el vino</span> y nos fuimos.»</div>
+    <div class="pun-analysis">«Vino» = глагол venir (пришло) + существительное «вино». «Пришло вино — и мы ушли». Омоним в двух значениях.</div>
+  </div>
+
+  <div class="pun-box">
+    <div class="pun-es">«No hay mal que por <span class="word-play">bien</span> no venga» → «No hay <span class="word-play">bien</span> que por mal no venga»</div>
+    <div class="pun-analysis">Перевёртыш поговорки. Оригинал: «Нет худа без добра». Сатирический вариант: «Нет добра без худа» — злой каламбур для пессимистов.</div>
+  </div>
+
+  <div class="pun-box">
+    <div class="pun-es">«¿Cuándo duerme un <span class="word-play">dentista</span>?» — «Cuando <span class="word-play">se le cae el sueño</span>.»</div>
+    <div class="pun-analysis">«Caerse el sueño» = буквально «сон падает» (засыпаешь), но «caerse» + «diente» (зуб) = «зуб выпадает». Стоматологический контекст активирует второй смысл.</div>
+  </div>
+
+  <div class="pun-box">
+    <div class="pun-es">Anuncio antiguo de Fever-Tree: «<span class="word-play">Menos es más</span>, especialmente en tónica.»</div>
+    <div class="pun-analysis">Игра: «menos es más» (меньше значит больше) — философия дизайна Мис ван дер Роэ. Плюс «tónica» = тоник-вода + «tónica» = тенденция/тон. Двойной смысл в рекламе.</div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Знаменитый calambur Кеведо</h4>
+    <p>Поэт Франсиско де Кеведо и принцесса: она встретила его, показывая на него пальцем со словами «Aquí fue Troya» (намёк на его хромоту — troyas = хромать). Кеведо ответил поклоном: «Entre bobas anda el juego» — двойной смысл: «среди дур идёт игра» и «entre vo... bas anda Él» (среди вас ходит Он). Мгновенный реванш.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5: Тест 1 — понимание юмора -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 1 — понимание механики шуток</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>😄 Разбираем шутки — 5 вопросов</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Что такое «calambur» в испанском юморе?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Каламбур — игра на схожем звучании слов с разным смыслом</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Политическая сатира</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Анекдот с неожиданной концовкой</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Фраза «No le veo la gracia» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Он очень грациозный</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Не вижу в этом ничего смешного</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Я хочу его поблагодарить</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Tomar el pelo a alguien» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Сделать кому-то причёску</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Разыгрывать, дурачить кого-то</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Грубо прикоснуться к кому-то</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Почему «¡Qué gracioso!» может быть не комплиментом?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Потому что это устаревшее слово</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Потому что с саркастической интонацией значит «ну и что такого»</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Потому что «gracioso» значит «жирный»</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. В шутке про пез (рыбу) и Бога — в чём соль?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Рыбы не верят в науку</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Рыба отрицает Бога, не понимая, что считает Богом человека-хозяина</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Это антирелигиозная пропаганда</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6: Диалог — рассказываем анекдот -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалог — рассказываем анекдот в компании</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>🍺 В баре после работы</span>
+      <button class="dlg-toggle" onclick="toggleAll()">показать/скрыть перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Marcos</div>
+      <div><div class="dlg-es">Oye, ¿habéis oído el último chiste del médico?</div>
+      <div class="dlg-ru translation">[Эй, вы слышали последний анекдот про врача?]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Lucía</div>
+      <div><div class="dlg-es">A ver, cuéntalo. Pero como sea malo, te invito al próximo café.</div>
+      <div class="dlg-ru translation">[Давай, рассказывай. Но если будет плохой — я угощаю кофе в следующий раз.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Marcos</div>
+      <div><div class="dlg-es">Va un hombre al médico y le dice: «Doctor, me duelen los huesos». Y el médico le responde: «Podría ser la edad». «Pues vaya», dice el hombre, «porque el otro brazo tiene la misma edad y no le duele nada».</div>
+      <div class="dlg-ru translation">[Приходит мужчина к врачу и говорит: «Доктор, у меня болят кости». Врач отвечает: «Может быть возраст». «Странно», говорит мужчина, «потому что другая рука того же возраста и ей совсем не больно».]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Lucía</div>
+      <div><div class="dlg-es">¡Ja, ja, ja! Ese está buenísimo. La lógica aplastante del paciente... no tiene desperdicio.</div>
+      <div class="dlg-ru translation">[Ха-ха-ха! Это отличная. Сокрушительная логика пациента... это бесподобно.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Marcos</div>
+      <div><div class="dlg-es">¿Lo ves? No pierdo el café. Aunque reconozco que es un chiste de los de toda la vida, no tiene mucha originalidad.</div>
+      <div class="dlg-ru translation">[Видишь? Кофе не теряю. Хотя признаю, что это старый анекдот, не очень оригинальный.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Lucía</div>
+      <div><div class="dlg-es">Que sea viejo no le quita la gracia. Algunos clásicos son clásicos por algo.</div>
+      <div class="dlg-ru translation">[То, что он старый, не делает его менее смешным. Некоторые классики — классики по причине.]</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>🤷 Объясняем шутку иностранцу</span>
+      <button class="dlg-toggle" onclick="toggleAll()">показать/скрыть перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Elena</div>
+      <div><div class="dlg-es">¿Puedes explicarme por qué es gracioso? No entiendo el remate.</div>
+      <div class="dlg-ru translation">[Можешь объяснить, почему это смешно? Я не понимаю пуанту.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Carlos</div>
+      <div><div class="dlg-es">Claro. La gracia está en que el médico da una explicación vaga — «puede ser la edad» — y el paciente la desmonta con una lógica perfecta: si fuera la edad, los dos brazos tendrían el mismo problema.</div>
+      <div class="dlg-ru translation">[Конечно. Соль в том, что врач даёт расплывчатое объяснение — «может быть возраст» — а пациент разбивает его идеальной логикой: если бы дело в возрасте, у обеих рук была бы та же проблема.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Elena</div>
+      <div><div class="dlg-es">¡Ah, ya lo pillo! Es que el paciente tiene razón desde un punto de vista lógico, pero la medicina no funciona así.</div>
+      <div class="dlg-ru translation">[А, теперь понимаю! Пациент прав с точки зрения логики, но медицина так не работает.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Carlos</div>
+      <div><div class="dlg-es">Exacto. Es el contraste entre la lógica ingenua del paciente y la realidad médica. Eso es lo que hace gracia.</div>
+      <div class="dlg-ru translation">[Именно. Это контраст между наивной логикой пациента и медицинской реальностью. Это и смешит.]</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7: Тест 2 — заполни пропуски -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Тест 2 — заполни пропуски</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Лексика юмора</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. Мне рассказали анекдот, но я не понял соль: «No le ________ la gracia».</div>
+      <input type="text" class="text-input" placeholder="глагол..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','veo','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ veo — «No le veo la gracia» = не вижу в этом ничего смешного</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. Он разыграл меня, что ему не понравилось — «Me tomó el ________».</div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','pelo','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ pelo — «tomar el pelo» = разыгрывать кого-то</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. Игра слов с двойным смыслом — «juego de ________».</div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','palabras','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ palabras — «juego de palabras» = каламбур, игра слов</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. Соль шутки, финальная фраза — «el ________» (слово начинается на r).</div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','remate','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ remate — также «la puntada». Финальная фраза, пуанта анекдота.</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. Я не шучу, говорю серьёзно: «No estoy de ________».</div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','broma','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ broma — «estar de broma» = шутить. «No estoy de broma» = я не шучу.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8: Культура + Anki + Задание -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культура, Anki и задание</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание — говорение</div>
+    <p>Выбери один из пяти анекдотов из раздела 3. Расскажи его вслух — как если бы ты рассказывал другу. Затем объясни по-испански, в чём соль: «La gracia está en que...» / «El chiste funciona porque...»</p>
+    <div class="es">La gracia de este chiste está en que... / Lo que me hace gracia es...</div>
+    <div class="hint">Цель: плавно и без паузы рассказать анекдот + дать объяснение 3-4 предложениями</div>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Юмор как маркер «свой/чужой» в Испании</h4>
+    <p>В Испании умение понять и рассказать шутку — важный социальный навык. Испанцы много шутят в повседневном общении: в баре, на работе, в семье. Отсутствие реакции на шутку или буквальное восприятие иронии — маркер «иностранца». Особенно ценится chiste de humor negro (чёрный юмор) — испанцы шутят на темы, которые в других культурах считаются запретными. Программа «El Intermedio» (La Sexta) — один из лучших примеров политического юмора. Монологи Бобо Рикардо де ла Вега — эталон испанского стендапа.</p>
+  </div>
+
+  <div style="margin-top:16px" class="anki">
+    <div class="atag">🃏 Anki — карточки урока</div>
+    <ul>
+      <li><strong>el chiste</strong> — анекдот, шутка</li>
+      <li><strong>el juego de palabras / calambur</strong> — каламбур</li>
+      <li><strong>No le veo la gracia</strong> — Не вижу в этом ничего смешного</li>
+      <li><strong>tomar el pelo (a alguien)</strong> — разыгрывать кого-то</li>
+      <li><strong>el remate / la puntada</strong> — пуанта, соль шутки</li>
+      <li><strong>estar de broma</strong> — шутить, не всерьёз</li>
+      <li><strong>hacer gracia</strong> — казаться смешным</li>
+      <li><strong>el doble sentido</strong> — двойной смысл</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Найди один испанский анекдот в интернете (поиск: «chiste en español gracioso»)</li>
+      <li>Запиши его и подготовь объяснение: почему смешно?</li>
+      <li>Посмотри 5 минут любого испанского стендапа на YouTube (поиск: «monólogo español»)</li>
+      <li>Выучи выражение «No le veo la gracia» — используй сегодня хотя бы мысленно</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Урок 106 завершён!</h4>
+    <p>Ты разобрал 5 анекдотов, освоил механику каламбура и выучил лексику юмора. Следующий урок — стратегии чтения: как читать испанский текст без словаря и извлекать максимум смысла.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L105.html" class="nav-link-btn">← L105</a>
+    <a href="L107.html" class="nav-link-btn">L107: Стратегии чтения →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+// ─── Progress tracking ────────────────────────────────────
+const LESSON_ID = 'L106';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizAnswers = {
+  q1:'a', q2:'a', q3:'a', q4:'a', q5:'a'
+};
+const quizExpl = {
+  q1:'Calambur — омофонический каламбур: слова/фразы звучат одинаково, но имеют разный смысл. Классика Кеведо.',
+  q2:'«No le veo la gracia» = буквально «не вижу изящества в этом» → идиоматически «не понимаю, что тут смешного».',
+  q3:'«Tomar el pelo» = идиома «дурачить, разыгрывать». Буквально: взять волосы — но это ничего не значит в прямом смысле.',
+  q4:'Интонация в испанском решает всё. Саркастическое «¡Qué gracioso!» = «ну да, очень смешно» (без энтузиазма).',
+  q5:'Абсурдная логика: рыба думает, что человек = Бог, потому что он «даёт» воду. Отрицая религию, рыба фактически признаёт человека богом.'
+};
+
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || (correct.startsWith(val) && val.length >= correct.length-2)) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+function toggleTranslation(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 8;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

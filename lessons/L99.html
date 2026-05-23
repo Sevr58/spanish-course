@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L99: Практика — собеседование на работу</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:.88rem}
+th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:700;font-size:.8rem;color:var(--muted);text-transform:uppercase}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+.qa-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:12px}
+.qa-block .qa-q{font-weight:700;font-size:.92rem;color:var(--gold);margin-bottom:8px}
+.qa-block .qa-a{font-size:.88rem;color:var(--muted);line-height:1.6}
+.qa-block .qa-es{font-size:.95rem;color:var(--text);margin-top:6px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L98.html">← L98</a>
+  <span class="level">B1 · Фаза 3 · День 209</span>
+  <a href="L100.html">L100 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">💼 Фаза 3 · Блок B3D · Навыки и практика</div>
+  <h1>Собеседование <span class="hl">на работу</span></h1>
+  <p class="sub">¿Por qué quiere trabajar aquí? — интервью на испанском: формальный регистр, самопрезентация, сложные вопросы.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Провести полное собеседование на испанском: представление, вопросы работодателя, твои ответы</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + ролевая игра 15 мин</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Найди интервью или диалог о работе на Dreaming Spanish</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Ответить на 10 типичных вопросов интервью вслух, не читая</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Формальный регистр в испанском собеседовании</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Испанское собеседование — это <strong>usted</strong>, не tú. Это касается всего: глаголов, местоимений, тона. В Испании уровень формальности в деловом контексте высокий, особенно первые встречи.</p>
+
+  <div class="callout tip">
+    <h4>💡 Usted в деловом контексте</h4>
+    <p>Когда говоришь о себе: нормально. Когда обращаешься к работодателю: <strong>¿Podría usted decirme...?</strong> (Не «¿Puedes decirme?»). Это знак уважения и профессионализма. Русскоязычные часто забывают переключаться, потому что в русском одно «Вы» для всего.</p>
+  </div>
+
+  <div class="callout info">
+    <h4>🏗️ Структура ответа на «Hábleme de usted»</h4>
+    <ul>
+      <li><strong>Quién soy:</strong> имя, профессия, специализация</li>
+      <li><strong>Experiencia clave:</strong> самый релевантный опыт (2-3 примера)</li>
+      <li><strong>Por qué aquí:</strong> конкретная причина, связанная с компанией</li>
+      <li><strong>Qué aporto:</strong> что ты принесёшь компании</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушки для иностранцев</h4>
+    <ul>
+      <li><em>«Soy muy trabajador»</em> без примера — слабо. Лучше: «Cuando trabajé en X, logré Y»</li>
+      <li>Прямой перевод «у меня есть опыт» → <em>Tengo experiencia en...</em> (не <em>«tengo un experiencia»</em> — experiencia не считается)</li>
+      <li>Не говори «No sé» на трудный вопрос — скажи <em>«Es una buena pregunta, déjeme pensar...»</em></li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: СЛОВАРЬ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь для собеседования</h2>
+  </div>
+
+  <table>
+    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td><strong>el puesto</strong></td><td>[пуэ́сто]</td><td>должность, вакансия</td><td><em>Me interesa el puesto de diseñador.</em></td></tr>
+    <tr><td><strong>la trayectoria</strong></td><td>[трайэкторья]</td><td>карьерный путь</td><td><em>Mi trayectoria profesional incluye...</em></td></tr>
+    <tr><td><strong>aportar</strong></td><td>[апортар]</td><td>привносить, добавлять ценность</td><td><em>Puedo aportar mi experiencia en marketing.</em></td></tr>
+    <tr><td><strong>los puntos fuertes</strong></td><td>[пу́нтос фуэ́ртэс]</td><td>сильные стороны</td><td><em>Mis puntos fuertes son la organización y la comunicación.</em></td></tr>
+    <tr><td><strong>los puntos débiles</strong></td><td>[пу́нтос дэ́билэс]</td><td>слабые стороны</td><td><em>A veces me exijo demasiado a mí mismo.</em></td></tr>
+    <tr><td><strong>el reto / desafío</strong></td><td>[рэ́то / дэсафи́о]</td><td>вызов, задача</td><td><em>El mayor reto fue coordinar un equipo de diez personas.</em></td></tr>
+    <tr><td><strong>lograr</strong></td><td>[логра́р]</td><td>достичь, добиться</td><td><em>Logré aumentar las ventas en un 30%.</em></td></tr>
+    <tr><td><strong>la incorporación</strong></td><td>[инкорпорасьо́н]</td><td>приступление к работе</td><td><em>La incorporación sería inmediata.</em></td></tr>
+    <tr><td><strong>las pretensiones salariales</strong></td><td>[прэтэнсьо́нэс]</td><td>зарплатные ожидания</td><td><em>¿Cuáles son sus pretensiones salariales?</em></td></tr>
+    <tr><td><strong>encajar</strong></td><td>[энкаха́р]</td><td>подходить, вписываться</td><td><em>Creo que encajaría bien en el equipo.</em></td></tr>
+    <tr><td><strong>la jornada laboral</strong></td><td>[хорна́да]</td><td>рабочий день / неполная ставка</td><td><em>¿La jornada es completa o parcial?</em></td></tr>
+    <tr><td><strong>el convenio colectivo</strong></td><td>[конвэ́нио]</td><td>коллективный договор</td><td><em>El sueldo sigue el convenio del sector.</em></td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: ТИПИЧНЫЕ ВОПРОСЫ И ОТВЕТЫ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>10 классических вопросов и шаблоны ответов</h2>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">1. «Hábleme de usted.» (Расскажите о себе.)</div>
+    <div class="qa-es">Me llamo [имя]. Soy [profesión] con más de [X] años de experiencia en [sector]. Mi trayectoria me ha llevado a especializarme en [área específica]. Actualmente busco un nuevo reto profesional que me permita seguir creciendo.</div>
+    <div class="qa-a">Структура: кто → опыт → специализация → зачем здесь</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">2. «¿Por qué quiere trabajar en nuestra empresa?»</div>
+    <div class="qa-es">He investigado su empresa y me ha impresionado [algo específico]. Creo que mi perfil encajaría muy bien con los valores que ustedes promueven, especialmente [valor concreto].</div>
+    <div class="qa-a">Золотое правило: никогда не говори «por el dinero» или «porque está cerca de casa».</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">3. «¿Cuáles son sus puntos fuertes?»</div>
+    <div class="qa-es">Uno de mis principales puntos fuertes es [habilidad]. Por ejemplo, en mi anterior trabajo, [situación concreta + resultado].</div>
+    <div class="qa-a">Используй метод STAR: Situación → Tarea → Acción → Resultado</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">4. «¿Dónde se ve dentro de cinco años?»</div>
+    <div class="qa-es">Me veo desarrollando mis competencias en [área], asumiendo más responsabilidades y contribuyendo de forma significativa al crecimiento de la empresa.</div>
+    <div class="qa-a">Покажи амбиции, но в контексте компании, а не только своего роста.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">5. «¿Cuáles son sus pretensiones salariales?»</div>
+    <div class="qa-es">Según mi experiencia y las referencias del mercado para este tipo de puesto, estaría buscando un salario en torno a [cifra]. Aunque estoy abierto/a a discutirlo según el conjunto del paquete retributivo.</div>
+    <div class="qa-a">Называй диапазон, а не точную цифру. «Estoy abierto/a» — показывает гибкость.</div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Мощная фраза на любой трудный вопрос</h4>
+    <p><em>«Es una pregunta interesante. Déjeme pensar un momento...»</em> (Интересный вопрос. Позвольте мне подумать секунду...) — профессионально звучит, даёт время собраться с мыслями.</p>
+  </div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Понимание ситуации</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Правильная реакция на вопросы интервью</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Работодатель говорит «Hábleme de usted». Правильный старт ответа:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Me llamo Ana y tengo cinco años de experiencia en...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Pues, no sé, soy una persona normal...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">¿Qué quiere saber exactamente?</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Вопрос: «¿Cuál es su mayor debilidad?» — лучший ответ на B1:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Soy perfectamente perfecto, no tengo debilidades.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">A veces me exijo demasiado, pero estoy trabajando en establecer prioridades mejor.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">No lo sé todavía.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Как правильно сказать «Я добился увеличения продаж на 30%»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Logré aumentar las ventas en un 30%.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">He llegado a subir ventas por 30%.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Conseguido ventas más 30%.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «¿Cuándo podría incorporarse?» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Когда вы могли бы приступить к работе?</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Сколько вы хотите зарабатывать?</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Где вы работали раньше?</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Ты хочешь спросить о зарплате вежливо. Правильная формулировка:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">¿Podría indicarme la horquilla salarial para este puesto?</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">¿Cuánto me van a pagar?</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">¿El sueldo es bueno?</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Фраза «encajaría bien en el equipo» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Я управлял бы командой</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Я бы хорошо вписался в команду</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Команда мне подходит</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Построй ответ</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Заполни пропуски в ответах на вопросы интервью</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «Tengo más de cinco años de _____ en diseño gráfico.» (опыт)</div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','experiencia','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ experiencia — без артикля, без «un»: «tengo experiencia en», не «tengo una experiencia»</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «Creo que _____ bien con los valores de su empresa.» (подходить, вписываться)</div>
+      <input type="text" class="text-input" placeholder="глагол encajar в конъюнктиве..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','encajaría','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ encajaría — условное наклонение (condicional), «я бы вписался»</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «_____ en el puesto de marketing digital.» (Меня интересует...)</div>
+      <input type="text" class="text-input" placeholder="два слова..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','Me interesa','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ Me interesa — «меня интересует», структура как с gustar</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «El mayor _____ fue coordinar un equipo internacional.» (вызов, задача)</div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','reto','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ reto — вызов, задача. Синоним: desafío</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «Mis puntos _____ son la creatividad y la atención al detalle.» (сильные стороны)</div>
+      <input type="text" class="text-input" placeholder="прилагательное во мн.ч..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','fuertes','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ fuertes — множественное число от fuerte. Puntos fuertes = сильные стороны</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — полное собеседование</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Собеседование: Маркетолог в испанскую компанию
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">RRHH</div>
+      <div><div class="dlg-es">Buenos días. Por favor, siéntese. Hábleme un poco de su trayectoria.</div>
+      <div class="dlg-ru" id="tr-d1" style="display:none">Доброе утро. Пожалуйста, садитесь. Расскажите немного о своём карьерном пути.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">CAND.</div>
+      <div><div class="dlg-es">Buenas días. Soy diseñador gráfico con ocho años de experiencia en agencias de comunicación. He trabajado principalmente en proyectos digitales y he logrado resultados muy buenos en campañas de redes sociales.</div>
+      <div class="dlg-ru" id="tr-d1b" style="display:none">Доброе утро. Я графический дизайнер с восемью годами опыта в коммуникационных агентствах. Я работал преимущественно над цифровыми проектами и добился очень хороших результатов в кампаниях в социальных сетях.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">RRHH</div>
+      <div><div class="dlg-es">¿Por qué quiere trabajar con nosotros específicamente?</div>
+      <div class="dlg-ru" id="tr-d1c" style="display:none">Почему вы хотите работать именно с нами?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">CAND.</div>
+      <div><div class="dlg-es">He investigado su empresa y me ha impresionado mucho su enfoque en sostenibilidad. Creo que mis competencias en diseño sostenible aportarían valor real a sus proyectos. Además, valoro mucho la cultura de innovación que tienen.</div>
+      <div class="dlg-ru" id="tr-d1d" style="display:none">Я изучил вашу компанию и меня очень впечатлил ваш подход к устойчивому развитию. Думаю, мои компетенции в устойчивом дизайне принесли бы реальную ценность вашим проектам. Кроме того, я высоко ценю культуру инноваций, которая у вас есть.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">RRHH</div>
+      <div><div class="dlg-es">¿Cuáles son sus pretensiones salariales?</div>
+      <div class="dlg-ru" id="tr-d1e" style="display:none">Каковы ваши зарплатные ожидания?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">CAND.</div>
+      <div><div class="dlg-es">Según mi experiencia y el mercado actual para este perfil, estaría buscando algo en torno a los 35.000–38.000 euros anuales. Aunque estoy abierto a negociarlo según el conjunto del paquete.</div>
+      <div class="dlg-ru" id="tr-d1f" style="display:none">По моему опыту и текущему рынку для такого профиля, я ищу что-то около 35 000–38 000 евро в год. Хотя готов обсудить это в зависимости от общего пакета.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">RRHH</div>
+      <div><div class="dlg-es">Perfecto. ¿Tiene alguna pregunta para nosotros?</div>
+      <div class="dlg-ru" id="tr-d1g" style="display:none">Отлично. У вас есть вопросы к нам?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">CAND.</div>
+      <div><div class="dlg-es">Sí, me gustaría saber más sobre el equipo con el que trabajaría y los proyectos más inmediatos. ¿Cómo describiría la cultura del equipo?</div>
+      <div class="dlg-ru" id="tr-d1h" style="display:none">Да, я хотел бы узнать больше о команде, с которой буду работать, и о ближайших проектах. Как бы вы описали культуру команды?</div></div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Последний вопрос — обязателен</h4>
+    <p>На вопрос «¿Tiene alguna pregunta?» нельзя отвечать «No». Это сигнал незаинтересованности. Всегда имей 2-3 вопроса о команде, проектах или культуре компании.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Сложный вопрос — поворот в карьере
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">RRHH</div>
+      <div><div class="dlg-es">Veo que viene del sector tecnológico y ahora solicita un puesto en educación. ¿Por qué este cambio tan radical?</div>
+      <div class="dlg-ru" id="tr-d2" style="display:none">Вижу, что вы из технологического сектора, а теперь подаёте заявку на должность в образовании. Почему такое радикальное изменение?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">CAND.</div>
+      <div><div class="dlg-es">Es una pregunta muy pertinente. Durante mis años en tecnología, tuve la oportunidad de formar a nuevos empleados, y descubrí que esa era mi verdadera vocación. La transferencia de conocimiento me apasiona mucho más que el desarrollo técnico en sí.</div>
+      <div class="dlg-ru" id="tr-d2b" style="display:none">Это очень уместный вопрос. За годы в технологиях у меня была возможность обучать новых сотрудников, и я обнаружил, что это моё настоящее призвание. Передача знаний меня увлекает гораздо больше, чем техническая разработка сама по себе.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — полное собеседование</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание — Ответь на 5 вопросов вслух</div>
+    <p>Запиши себя, отвечая на эти вопросы. Без чтения — только память и шаблоны из урока. Минимум 3 предложения на каждый вопрос.</p>
+    <div class="es">
+      1. Hábleme de usted.<br>
+      2. ¿Por qué quiere trabajar aquí?<br>
+      3. ¿Cuáles son sus puntos fuertes?<br>
+      4. ¿Dónde se ve dentro de cinco años?<br>
+      5. ¿Tiene alguna pregunta para nosotros?
+    </div>
+    <div class="hint">После записи прослушай: использовал ли ты usted? Были ли конкретные примеры? Звучало ли уверенно?</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый уровень — Ролевая игра</div>
+    <p>Попроси кого-нибудь сыграть роль HR или сделай это сам, переключаясь. Провёди полное 5-минутное собеседование от начала до конца. Включая приветствие, представление и финальные вопросы.</p>
+    <div class="es">Buenos días, tome asiento. / Con mucho gusto. / Muchas gracias por su tiempo.</div>
+    <div class="hint">Полное собеседование на испанском — это уровень B2. Если ты справился на 70% — это отличный B1.</div>
+  </div>
+</div>
+
+<!-- SECTION 8: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Рынок труда Испании</div>
+    <h4>Особенности испанского рынка труда для иностранцев</h4>
+    <p>Испания входит в топ стран по привлекательности для цифровых номадов. Barcelona Tech City — один из крупнейших технологических хабов Европы. На собеседованиях в Испании ценится личное отношение — работодатели часто смотрят не только на навыки, но и на «fit» с командой. Рукопожатие при встрече (или dos besos между женщинами и смешанными парами в неформальном контексте) — норма. Важно: испанцы ценят пунктуальность в деловых встречах, хотя в социальных контекстах опоздание на 15 минут — норма.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>Hábleme de usted.</strong> — Расскажите о себе. (формальное)</li>
+      <li><strong>aportar valor</strong> — привносить ценность</li>
+      <li><strong>encajar bien en el equipo</strong> — хорошо вписаться в команду</li>
+      <li><strong>los puntos fuertes / débiles</strong> — сильные / слабые стороны</li>
+      <li><strong>lograr + infinitivo</strong> — добиться, достичь чего-то</li>
+      <li><strong>la incorporación inmediata</strong> — немедленное вступление в должность</li>
+      <li><strong>las pretensiones salariales</strong> — зарплатные ожидания</li>
+      <li><strong>¿Podría indicarme...?</strong> — Не могли бы вы мне сказать...?</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Напиши свой ответ на «Hábleme de usted» применительно к твоей реальной профессии — 5-7 предложений на испанском.</li>
+      <li>Подготовь 3 вопроса, которые ты бы задал потенциальному работодателю в Испании.</li>
+      <li>Послушай интервью или подкаст на испанском о карьере (поиск: "entrevista de trabajo en español" на YouTube).</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок 99 завершён!</h4>
+    <p>Ты знаешь всю механику испанского собеседования. Следующий — L100: Контрольная точка A2→B1. Проверишь всё, что знаешь за последние месяцы.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L98.html" class="nav-link-btn">← L98</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L100.html" class="nav-link-btn">L100 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L99';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizAnswers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a'};
+const quizExpl={
+  q1:'Профессиональный старт: имя + опыт + специализация. Краткость и конкретность.',
+  q2:'Называешь слабость, но сразу показываешь, что работаешь над ней. Это зрелость.',
+  q3:'Logré aumentar — правильная конструкция: lograr + infinitivo = добиться чего-то.',
+  q4:'Incorporarse = приступить к работе, присоединиться к компании.',
+  q5:'Horquilla salarial = зарплатный диапазон. Вежливое и профессиональное обращение.',
+  q6:'Encajar = вписываться, подходить. Encajaría = conditional — «я бы вписался».'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+  });
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})? 'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

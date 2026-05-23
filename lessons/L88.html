@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L88: Общество и базовая политика — Gobierno, democracia, igualdad</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:10px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.vocab-table .ex{color:var(--muted);font-size:.82rem;font-style:italic}
+.cognate{background:rgba(255,214,10,.15);color:var(--gold);padding:1px 5px;border-radius:4px;font-size:.82rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.authentic-text{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin:14px 0}
+.authentic-text .src{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.authentic-text p{font-size:.92rem;line-height:1.8}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 186</span>
+  <a href="L89.html">L89 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · B1 · Блок 3C — Сложная коммуникация</div>
+  <h1>Общество и <span class="hl">политика</span></h1>
+  <p class="sub">Gobierno, democracia, igualdad, derechos — лексика для взрослых разговоров</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Высказаться на социальную тему за 2–3 минуты</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Dreaming Spanish: общество и культура</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Аргументируем позицию по социальным вопросам</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Политическая и социальная лексика — как не бояться этих тем</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Социальные темы — одни из самых частых на DELE B1 и в реальных разговорах с испанцами. Не нужно разбираться в испанской политике глубоко, но нужно уметь <strong>выразить своё мнение, согласиться или не согласиться</strong> грамотно.</p>
+
+  <div class="callout tip">
+    <h4>💡 Фразы для политических и социальных дискуссий</h4>
+    <ul>
+      <li><strong>En mi opinión, el problema principal es...</strong> — По моему мнению, главная проблема...</li>
+      <li><strong>Estoy a favor de / en contra de...</strong> — Я за / против...</li>
+      <li><strong>Creo que el gobierno debería...</strong> — Я считаю, что правительство должно...</li>
+      <li><strong>Es fundamental que todos tengamos...</strong> — Принципиально важно, чтобы у всех было...</li>
+      <li><strong>Sin igualdad no puede haber libertad.</strong> — Без равенства не может быть свободы.</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>📜 Нейтральный язык vs. партийный язык</h4>
+    <p>В Испании политическая тема чувствительна (Civil War, Cataluña, Franco). На DELE или в разговоре с незнакомым испанцем используй <strong>нейтральный язык</strong>: «Se dice que...», «Hay quienes creen que...», «Según algunos expertos...» вместо сильных утверждений. Это не трусость — это культурная компетентность.</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ложный друг: «sensible»</h4>
+    <p>В испанском <strong>sensible</strong> = чувствительный (sensitive). «Разумный» по-испански — <strong>sensato</strong> или <strong>razonable</strong>. Это классическая ловушка для носителей английского и русского: «Ты очень sensible» значит «Ты очень чувствительный», а не «умный».</p>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — Общество и политика</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="es">la democracia <span class="cognate">democracy</span></td><td class="tr">[ла де-мо-КРА-сья]</td><td>демократия</td><td class="ex">España es una democracia parlamentaria.</td></tr>
+      <tr><td class="es">los derechos humanos <span class="cognate">human rights</span></td><td class="tr">[лос де-РЕ-чос у-МА-нос]</td><td>права человека</td><td class="ex">Los derechos humanos son universales.</td></tr>
+      <tr><td class="es">la igualdad</td><td class="tr">[ла и-гуаль-ДАД]</td><td>равенство</td><td class="ex">Luchamos por la igualdad de género.</td></tr>
+      <tr><td class="es">la desigualdad <span class="cognate">inequality</span></td><td class="tr">[ла дес-и-гуаль-ДАД]</td><td>неравенство</td><td class="ex">La desigualdad social ha aumentado.</td></tr>
+      <tr><td class="es">el gobierno <span class="cognate">governs</span></td><td class="tr">[эль го-БЬЕР-но]</td><td>правительство</td><td class="ex">El gobierno ha aprobado una nueva ley.</td></tr>
+      <tr><td class="es">las elecciones <span class="cognate">elections</span></td><td class="tr">[лас э-лек-СЬОНЕ-с]</td><td>выборы</td><td class="ex">Las elecciones generales son en noviembre.</td></tr>
+      <tr><td class="es">la libertad <span class="cognate">liberty</span></td><td class="tr">[ла ли-бер-ТАД]</td><td>свобода</td><td class="ex">La libertad de expresión es fundamental.</td></tr>
+      <tr><td class="es">la corrupción <span class="cognate">corruption</span></td><td class="tr">[ла ко-рруп-СЬОН]</td><td>коррупция</td><td class="ex">La corrupción política debilita la democracia.</td></tr>
+      <tr><td class="es">la inmigración <span class="cognate">immigration</span></td><td class="tr">[ла ин-ми-гра-СЬОН]</td><td>иммиграция</td><td class="ex">La inmigración es un debate político intenso.</td></tr>
+      <tr><td class="es">la brecha social</td><td class="tr">[ла БРЕ-ча со-СЬЯЛЬ]</td><td>социальный разрыв</td><td class="ex">La brecha social entre ricos y pobres crece.</td></tr>
+      <tr><td class="es">la ciudadanía <span class="cognate">citizenship</span></td><td class="tr">[ла сью-да-да-НИ-а]</td><td>гражданство</td><td class="ex">Solicitó la ciudadanía española.</td></tr>
+      <tr><td class="es">el estado del bienestar</td><td class="tr">[эль эс-ТА-до]</td><td>государство всеобщего благосостояния</td><td class="ex">El estado del bienestar incluye sanidad y educación públicas.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: AUTHENTIC TEXT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Аутентичный текст — социальная колонка</h2>
+  </div>
+
+  <div class="authentic-text">
+    <div class="src">📰 Отрывок из колонки мнений (адаптировано из El Periódico)</div>
+    <p>
+      «La desigualdad económica en España ha llegado a niveles preocupantes. Según el último informe de Oxfam, el 1% más rico posee el 25% de la riqueza nacional. Mientras tanto, el 20% de la población vive en riesgo de pobreza. Los expertos señalan que es imprescindible que el sistema fiscal <em>sea más progresivo</em> y que el gasto en educación y sanidad <em>aumente</em>. "Sin igualdad de oportunidades, la democracia es solo una formalidad", afirma la socióloga Carmen Ruiz.»
+    </p>
+  </div>
+  <button style="margin-top:8px;background:none;border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--muted);cursor:pointer;font-size:.82rem" onclick="toggleTranslation('tr-news88')">Показать перевод</button>
+  <div id="tr-news88" style="display:none;margin-top:10px;font-size:.86rem;color:var(--muted);background:var(--bg2);padding:14px;border-radius:8px">
+    «Экономическое неравенство в Испании достигло тревожного уровня. По данным последнего доклада Oxfam, 1% самых богатых владеет 25% национального богатства. Тем временем 20% населения живёт под угрозой бедности. Эксперты указывают, что необходимо, чтобы налоговая система стала более прогрессивной и чтобы расходы на образование и здравоохранение увеличились. "Без равенства возможностей демократия — лишь формальность", — утверждает социолог Кармен Руис.»
+  </div>
+
+  <div class="callout tip" style="margin-top:14px">
+    <h4>🔍 Два subjuntivo в одном предложении</h4>
+    <p>«Es imprescindible que el sistema fiscal <strong>sea</strong>... y que el gasto <strong>aumente</strong>» — оба глагола в subjuntivo, потому что оба зависят от «es imprescindible que». Это модель для DELE B1: одно главное условие + несколько требований в subjuntivo.</p>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Общество и политика</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильный вариант</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Я за равенство» — как сказать по-испански?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Estoy a favor de la igualdad</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Soy para la igualdad</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Tengo igualdad</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Sensible» в испанском означает...</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">разумный</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">чувствительный</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">сенсационный</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «La ciudadanía» — это...</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">город</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">столица</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">гражданство / гражданское общество</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Как выразить нейтральную позицию в политическом разговоре?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Hay quienes creen que...</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Yo sé que tienes razón...</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Es totalmente falso que...</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «El estado del bienestar» — это...</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">хорошее состояние здоровья</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">богатое государство</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">государство всеобщего благосостояния</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Завершить: «Es fundamental que todos ________ igualdad de oportunidades.» (tener, subjuntivo)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">tienen</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">tengan</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">tendrán</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 5: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Вставь правильное слово</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. España celebra ________ cada cuatro años aproximadamente. (выборы)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','elecciones','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ elecciones — cognate с elections. Всегда множественное число.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Estoy en ________ de aumentar los impuestos a los ricos. (против)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','contra','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ contra — estar en contra de = быть против чего-либо</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. La ________ de expresión es un derecho fundamental. (свобода)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','libertad','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ libertad — libertad de expresión = свобода слова</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. La ________ política es uno de los problemas más graves de la democracia. (коррупция)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','corrupción','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ corrupción — cognate с corruption. Женский род: la corrupción.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Los ________ humanos deben ser protegidos en todo el mundo. (права)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','derechos','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ derechos — los derechos humanos = права человека. Также: derecho = право (закон).</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Социальные дискуссии</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Иммиграция — разные точки зрения
+      <button class="dlg-toggle" onclick="toggleDlg('dlg88-1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">MARTA</div>
+      <div><div class="dlg-es">¿Qué piensas tú sobre la inmigración en España?</div>
+      <div class="dlg-ru dlg88-1-tr" style="display:none">[Что ты думаешь об иммиграции в Испании?]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">DAVID</div>
+      <div><div class="dlg-es">En mi opinión, los inmigrantes contribuyen mucho a la economía. Hay que reconocer que muchos sectores, como la agricultura, dependen de ellos.</div>
+      <div class="dlg-ru dlg88-1-tr" style="display:none">[По моему мнению, иммигранты много вносят в экономику. Надо признать, что многие секторы, как сельское хозяйство, зависят от них.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">MARTA</div>
+      <div><div class="dlg-es">Estoy de acuerdo, pero hay quienes creen que el sistema de integración necesita mejoras urgentes.</div>
+      <div class="dlg-ru dlg88-1-tr" style="display:none">[Согласна, но есть те, кто считает, что система интеграции требует срочных улучшений.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">DAVID</div>
+      <div><div class="dlg-es">Sin duda. Es fundamental que el gobierno invierta más en programas de integración y aprendizaje del idioma.</div>
+      <div class="dlg-ru dlg88-1-tr" style="display:none">[Безусловно. Принципиально важно, чтобы правительство больше вкладывало в программы интеграции и изучения языка.]</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue" style="margin-top:20px">
+    <div class="dlg-header">
+      💬 Диалог 2: Молодёжь и политика
+      <button class="dlg-toggle" onclick="toggleDlg('dlg88-2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">LUCÍA</div>
+      <div><div class="dlg-es">¿Votas en las elecciones? Muchos jóvenes dicen que la política no les interesa.</div>
+      <div class="dlg-ru dlg88-2-tr" style="display:none">[Ты голосуешь на выборах? Многие молодые говорят, что политика их не интересует.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">ALEX</div>
+      <div><div class="dlg-es">Sí, siempre voto. Creo que si no participamos, otros deciden por nosotros. La democracia necesita ciudadanos activos.</div>
+      <div class="dlg-ru dlg88-2-tr" style="display:none">[Да, всегда голосую. Думаю, если мы не участвуем, другие решают за нас. Демократия нуждается в активных гражданах.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">LUCÍA</div>
+      <div><div class="dlg-es">Entiendo tu punto, pero también es verdad que muchos jóvenes sienten que los partidos no los representan.</div>
+      <div class="dlg-ru dlg88-2-tr" style="display:none">[Понимаю твою точку зрения, но также верно, что многие молодые чувствуют, что партии их не представляют.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">ALEX</div>
+      <div><div class="dlg-es">Por eso es importante involucrarse en la sociedad civil: asociaciones, movimientos sociales... Hay muchas formas de participar.</div>
+      <div class="dlg-ru dlg88-2-tr" style="display:none">[Именно поэтому важно участвовать в гражданском обществе: ассоциации, социальные движения... Есть много форм участия.]</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Социальная тема</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 1 — Базовый уровень</div>
+    <p>Выбери одну из тем и выскажись на 1 минуту: равенство полов / коррупция / образование.</p>
+    <div class="es">«En mi opinión, [la igualdad de género / la corrupción / la educación] es un tema muy importante porque... Creo que el gobierno debería... Además, es necesario que la sociedad...»</div>
+    <div class="hint">Используй: estoy a favor de, en contra de, hay que reconocer, creo que, es fundamental que</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 2 — Продвинутый уровень</div>
+    <p>Сценарий DELE B1: ты участвуешь в дискуссии о роли государства. Тема: «¿Debe el estado garantizar vivienda y sanidad para todos?» Дай развёрнутый ответ на 2–3 минуты с аргументами за и против.</p>
+    <div class="es">«Esta pregunta es muy relevante hoy en día. Por un lado, hay quienes argumentan que... Por otro lado, otros creen que... En mi opinión personal... Sin embargo, lo que está claro es que...»</div>
+    <div class="hint">Обязательно включи: subjuntivo после «es necesario/importante que», примеры из реальности, свою позицию в конце</div>
+  </div>
+</div>
+
+<!-- SECTION 8: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>La Transición: как Испания стала демократией</h4>
+    <p>После смерти диктатора Франко в 1975 году Испания за несколько лет мирно перешла к демократии — этот период называется <strong>«La Transición»</strong> (Переход). Это один из самых успешных примеров демократизации в истории: страна сохранила стабильность, провела свободные выборы и приняла конституцию 1978 года. Сегодня испанцы очень гордятся этим достижением. При этом многие социальные темы того времени — память о гражданской войне, роль Каталонии — остаются болезненными. Если хочешь понять современных испанцев, знание «La Transición» обязательно.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>la democracia</strong> — демократия</li>
+      <li><strong>los derechos humanos</strong> — права человека</li>
+      <li><strong>la igualdad</strong> — равенство</li>
+      <li><strong>estoy a favor de / en contra de</strong> — я за / против</li>
+      <li><strong>la corrupción</strong> — коррупция</li>
+      <li><strong>sensible</strong> ≠ разумный → чувствительный (ложный друг!)</li>
+      <li><strong>es fundamental que + subjuntivo</strong> — принципиально важно, чтобы...</li>
+      <li><strong>la ciudadanía</strong> — гражданство, гражданское общество</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Запиши себя на 2 минуты: выскажись на тему «Самая важная социальная проблема в мире сегодня» — на испанском</li>
+      <li>Прочитай 1 колонку мнений на elpais.com или 20minutos.es — выпиши 5 новых слов</li>
+      <li>Dreaming Spanish: видео о культуре/обществе — 15 минут</li>
+      <li>Повтори Anki-карточки</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L87.html" class="nav-link-btn">← L87</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L89.html" class="nav-link-btn">L89 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L88';
+const LS_KEY = 'esp_course_progress';
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const quizExpl = {
+  q1:'Estoy a favor de — это фиксированная конструкция. Estar a favor de = быть за что-то. Estar en contra de = быть против.',
+  q2:'Sensible в испанском = чувствительный (sensitive). "Разумный" = sensato или razonable. Классический ложный друг!',
+  q3:'La ciudadanía = гражданство И гражданское общество. Ciudadano/a = гражданин/гражданка.',
+  q4:'Hay quienes creen que... — нейтральная конструкция "есть те, кто считает". Идеально для представления чужих мнений без личной позиции.',
+  q5:'El estado del bienestar = welfare state. Включает бесплатную медицину, образование, пенсии.',
+  q6:'Tengan — subjuntivo presente от tener (yo tenga, tú tengas, él tenga, nosotros tengamos, vosotros tengáis, ellos tengan). После «es fundamental que» обязателен subjuntivo.'
+};
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || correct.startsWith(val) && val.length >= correct.length-2) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+function toggleTranslation(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+function toggleDlg(cls) {
+  document.querySelectorAll('.' + cls + '-tr').forEach(function(el){
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+}
+const totalSections = 9;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

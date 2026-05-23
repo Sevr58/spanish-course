@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L92: Практика — Описание фотографии (DELE B1)</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:10px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.vocab-table .ex{color:var(--muted);font-size:.82rem;font-style:italic}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.photo-box{background:var(--bg2);border:2px dashed var(--border);border-radius:10px;padding:20px;margin:14px 0;text-align:center}
+.photo-box .ph-desc{font-size:.78rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.photo-box .ph-scene{font-size:3.5rem;margin-bottom:8px}
+.photo-box .ph-title{font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+.photo-box p{font-size:.88rem;color:var(--muted);line-height:1.5}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 195</span>
+  <a href="L93.html">L93 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · B1 · Блок 3D — Навыки и практика</div>
+  <h1>Практика: <span class="hl">описание фотографии</span></h1>
+  <p class="sub">En la imagen se puede ver... — задание DELE B1 на описание изображения</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Описать 3 разные фотографии по 90 секунд каждую</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Dreaming Spanish: описательные нарративы</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Описываем, предполагаем, делаем выводы</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Структура описания фотографии — формула DELE B1</h2>
+  </div>
+
+  <p style="margin-bottom:14px">На DELE B1 тебе дадут фотографию и попросят описать её за 1–2 минуты. Ключ — <strong>структурированный подход</strong>: что вижу → что предполагаю → своё мнение.</p>
+
+  <div class="callout tip">
+    <h4>💡 Структура описания фото: 4 шага</h4>
+    <ul>
+      <li><strong>1. Общее описание:</strong> «En la imagen se puede ver... / En la foto aparece...»</li>
+      <li><strong>2. Детали и персонажи:</strong> «En primer plano... / Al fondo... / A la izquierda...»</li>
+      <li><strong>3. Предположения:</strong> «Parece que... / Creo que podría ser... / Quizás están...»</li>
+      <li><strong>4. Реакция/мнение:</strong> «Lo que más me llama la atención es... / Me hace pensar en...»</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>📍 Пространственные конструкции — обязательный набор</h4>
+    <ul>
+      <li><strong>en primer plano</strong> — на переднем плане</li>
+      <li><strong>al fondo / en el fondo</strong> — на заднем плане / вдали</li>
+      <li><strong>a la izquierda / a la derecha</strong> — слева / справа</li>
+      <li><strong>en el centro</strong> — в центре</li>
+      <li><strong>en la parte superior/inferior</strong> — в верхней/нижней части</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: «hay» vs. «está/están»</h4>
+    <p>При описании фото: <strong>hay</strong> = есть (упомянуть существование: «hay tres personas»), <strong>está/están</strong> = находится/находятся (указать место: «una mujer está sentada a la izquierda»). Смешивать их — частая ошибка на экзамене.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — Описание изображений</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Русский</th><th>Пример использования</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="es">En la imagen se puede ver...</td><td>На изображении можно увидеть...</td><td class="ex">En la imagen se puede ver una plaza concurrida.</td></tr>
+      <tr><td class="es">Parece que / Al parecer</td><td>Похоже, что / По всей видимости</td><td class="ex">Parece que la persona está esperando a alguien.</td></tr>
+      <tr><td class="es">podría ser / deber de ser</td><td>могло бы быть / должно быть</td><td class="ex">Podría ser una reunión de trabajo.</td></tr>
+      <tr><td class="es">llama la atención</td><td>привлекает внимание</td><td class="ex">Lo que más me llama la atención es la luz.</td></tr>
+      <tr><td class="es">en primer plano</td><td>на переднем плане</td><td class="ex">En primer plano hay una mujer joven.</td></tr>
+      <tr><td class="es">al fondo</td><td>на заднем плане / вдали</td><td class="ex">Al fondo se ven unas montañas.</td></tr>
+      <tr><td class="es">se aprecia / se observa</td><td>заметно / наблюдается</td><td class="ex">Se aprecia un ambiente festivo en la imagen.</td></tr>
+      <tr><td class="es">aparentar / tener aspecto de</td><td>казаться / выглядеть как</td><td class="ex">La persona aparenta unos 40 años.</td></tr>
+      <tr><td class="es">probablemente / seguramente</td><td>вероятно / наверняка</td><td class="ex">Probablemente están celebrando algo.</td></tr>
+      <tr><td class="es">la expresión facial</td><td>выражение лица</td><td class="ex">Su expresión facial transmite alegría.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: PHOTO PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Практика — Три сцены для описания</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Для каждой сцены прочитай описание, затем попробуй произнести свой вариант вслух — не читая текст. Засеки 90 секунд.</p>
+
+  <div class="photo-box">
+    <div class="ph-desc">Фото 1 — городская сцена</div>
+    <div class="ph-scene">🏙️</div>
+    <div class="ph-title">Рынок Ла Бокерия, Барселона</div>
+    <p>На переднем плане — прилавки с фруктами и овощами ярких цветов. Много людей, в центре — молодая пара с рюкзаками (туристы). Слева — продавец разговаривает с покупателем. Вдали видны другие торговцы. Естественное освещение, атмосфера оживлённая.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🎙 Образец описания — Фото 1
+      <button class="dlg-toggle" onclick="toggleTranslation('sample1')">Показать образец</button>
+    </div>
+    <div id="sample1" style="display:none;padding:14px 16px;font-size:.9rem;line-height:1.8">
+      <strong>Образец на испанском:</strong><br>
+      «En la imagen se puede ver lo que parece ser un mercado típico español, probablemente La Boqueria en Barcelona. En primer plano hay varios puestos de frutas y verduras con colores muy llamativos. En el centro de la imagen aparecen dos personas jóvenes con mochilas: parece que son turistas, ya que están mirando los productos con mucho interés. A la izquierda se observa un vendedor que está hablando con un cliente. Al fondo se aprecian más puestos y personas. Lo que más me llama la atención es la variedad de colores y el ambiente animado. Me transmite una sensación de vida y movimiento típica de los mercados mediterráneos.»
+      <br><br><span style="color:var(--muted);font-size:.82rem">Это ~90 секунд речи. Запиши себя и сравни!</span>
+    </div>
+  </div>
+
+  <div class="photo-box" style="margin-top:20px">
+    <div class="ph-desc">Фото 2 — рабочая сцена</div>
+    <div class="ph-scene">💼</div>
+    <div class="ph-title">Деловая встреча в офисе</div>
+    <p>За большим столом сидят 4-5 человек разного возраста. Один стоит и указывает на экран с графиками. Остальные слушают, некоторые делают записи. Современный офис, хорошее освещение. Атмосфера серьёзная, сосредоточенная.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🎙 Образец описания — Фото 2
+      <button class="dlg-toggle" onclick="toggleTranslation('sample2')">Показать образец</button>
+    </div>
+    <div id="sample2" style="display:none;padding:14px 16px;font-size:.9rem;line-height:1.8">
+      <strong>Образец на испанском:</strong><br>
+      «En esta fotografía se puede ver lo que parece ser una reunión de trabajo en una oficina moderna. Hay cuatro o cinco personas sentadas alrededor de una mesa grande. En primer plano, una persona de pie está señalando hacia una pantalla donde se ven gráficos. Las demás personas parecen estar escuchando con atención: algunas están tomando notas. La expresión facial de los participantes transmite concentración y profesionalidad. Al fondo se aprecia un entorno de oficina contemporánea con buena iluminación. Probablemente están presentando resultados o discutiendo algún proyecto. Lo que me llama la atención es el ambiente de colaboración y la diversidad de edades entre los participantes.»
+    </div>
+  </div>
+
+  <div class="photo-box" style="margin-top:20px">
+    <div class="ph-desc">Фото 3 — природная сцена</div>
+    <div class="ph-scene">🏖️</div>
+    <div class="ph-title">Пляж на испанском побережье</div>
+    <p>Широкий пляж с золотистым песком. Вдали — синее море и горизонт. Слева — скалы. Несколько человек загорают, двое плавают. Небо голубое, несколько облаков. Солнечный день. На переднем плане — зонтики и полотенца на песке.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🎙 Образец описания — Фото 3
+      <button class="dlg-toggle" onclick="toggleTranslation('sample3')">Показать образец</button>
+    </div>
+    <div id="sample3" style="display:none;padding:14px 16px;font-size:.9rem;line-height:1.8">
+      <strong>Образец на испанском:</strong><br>
+      «En la imagen aparece una playa mediterránea en un día soleado. En primer plano se pueden ver sombrillas de colores y toallas extendidas sobre la arena dorada. Hay varias personas: algunas están tomando el sol tumbadas, y al fondo, en el mar azul, se distinguen dos personas nadando. A la izquierda de la imagen se aprecian unas rocas que forman un pequeño acantilado. El cielo está despejado con alguna nube blanca. La luz y los colores de la imagen transmiten una sensación de verano, vacaciones y descanso. Es posible que estemos en la Costa Brava o en alguna playa del Mediterráneo español. Lo que más me llama la atención es el contraste entre el azul intenso del mar y el dorado de la arena.»
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Описание фото</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильный вариант</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как начать описание фотографии на DELE?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">En la imagen se puede ver...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Esta foto muestra algo que...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Miro la foto y veo...</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «В центре изображения находится женщина» — как сказать?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Hay una mujer en el medio</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">En el centro de la imagen está una mujer</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Una mujer es en el centro</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Как выразить предположение о том, что изображено на фото?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Seguro que es exactamente...</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Yo sé que en la foto...</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Parece que / Podría ser...</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Al fondo» означает...</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">в центре</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">слева</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">на заднем плане / вдали</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Hay tres personas» vs. «Tres personas están» — разница?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Никакой разницы, взаимозаменяемы</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">hay = существование; están = местонахождение</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">hay используется только для предметов</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Как закончить описание — высказать своё впечатление?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Y esto es todo lo que veo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Lo que más me llama la atención es...</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">He terminado la descripción.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 5: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Вставь правильное выражение</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. En la imagen ________ ver una calle de una ciudad española. (можно)</div>
+      <input type="text" class="text-input" placeholder="Напиши фразу..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','se puede','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ se puede — «se puede ver» = можно видеть. Безличная конструкция.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. En primer ________ hay un niño con una bicicleta. (план)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','plano','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ plano — en primer plano = на переднем плане. Классическое выражение для описания фото.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. ________ que las personas están celebrando algo especial. (Похоже)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','parece','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ parece — parece que + indicativo = похоже, что... Для предположений.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Lo que más me ________ la atención es la luz de la foto. (привлекает)</div>
+      <input type="text" class="text-input" placeholder="Напиши глагол..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','llama','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ llama — llamar la atención = привлекать внимание. Lo que más me llama la atención = что меня больше всего привлекает.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Al ________ de la imagen se ven unas montañas nevadas. (заднем плане)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','fondo','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ fondo — al fondo = вдали / на заднем плане.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — Описываем сцены</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 1 — 90 секунд</div>
+    <p>Опиши эту сцену по-испански, засекая 90 секунд. Используй структуру: общий вид → детали → предположение → впечатление.</p>
+    <div class="es">🎭 Сцена: Старый город в Барселоне — готический квартал. Узкие средневековые улочки. Туристы с картами. Кафе с открытыми террасами. Каменные фасады домов. Вечернее освещение.</div>
+    <div class="hint">Начни: «En la imagen se puede ver lo que parece ser el barrio gótico de Barcelona...»</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 2 — DELE B1 симуляция</div>
+    <p>Полная симуляция DELE: у тебя 30 секунд на подготовку, затем 90 секунд описание + 30 секунд ответить на вопрос: «¿Cómo te sentirías tú en esta situación?»</p>
+    <div class="es">🍽️ Сцена: Семья за большим столом на праздничном ужине. Дети, бабушки, много еды. Все смеются. Свечи на столе. Уютная атмосфера.</div>
+    <div class="hint">После описания ответь: «Si yo estuviera en esta situación, me sentiría... porque en mi cultura/familia...»</div>
+  </div>
+</div>
+
+<!-- SECTION 7: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>DELE B1: что нужно знать о задании на описание фото</h4>
+    <p>Задание на описание фотографии (prueba de expresión oral) — одна из трёх частей устного DELE B1. Тебе дают 2 фотографии и просят выбрать одну, описать её и потом ответить на вопросы экзаменатора. Типичные сцены: семейные ситуации, работа, общественные места, природа, праздники. Экзаменатор оценивает не только словарный запас, но и <strong>плавность речи, структуру и использование разнообразных конструкций</strong>. Совет: если не знаешь слово — опиши по-другому. «Не помню слово, но это предмет, который используют для...» — это тоже демонстрация компетентности.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: ANKI + HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>En la imagen se puede ver...</strong> — На изображении можно увидеть...</li>
+      <li><strong>en primer plano</strong> — на переднем плане</li>
+      <li><strong>al fondo</strong> — на заднем плане</li>
+      <li><strong>parece que / podría ser</strong> — похоже, что / могло бы быть</li>
+      <li><strong>lo que más me llama la atención</strong> — что больше всего привлекает моё внимание</li>
+      <li><strong>hay vs. está</strong> — существование vs. местонахождение</li>
+      <li><strong>se aprecia / se observa</strong> — заметно / наблюдается</li>
+      <li><strong>transmite una sensación de...</strong> — передаёт ощущение...</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Найди любые 3 фотографии и опиши каждую по-испански — вслух — по 90 секунд</li>
+      <li>Запиши одно описание на диктофон и прослушай — что можно улучшить?</li>
+      <li>Dreaming Spanish: 15 минут любого видео с описаниями</li>
+      <li>Повтори Anki-карточки</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L91.html" class="nav-link-btn">← L91</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L93.html" class="nav-link-btn">L93 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L92';
+const LS_KEY = 'esp_course_progress';
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const quizExpl = {
+  q1:'«En la imagen se puede ver...» — стандартная формула начала описания. Нейтральная, академическая, безличная.',
+  q2:'«En el centro de la imagen está una mujer» — estar для местонахождения. Hay лишь для упоминания существования.',
+  q3:'Parece que / Podría ser — конструкции предположения. На DELE нужно показать, что ты делаешь предположения, а не утверждения.',
+  q4:'Al fondo = на заднем плане. Запомни пары: primer plano ↔ al fondo; izquierda ↔ derecha; arriba ↔ abajo.',
+  q5:'Hay = существование (есть кто-то/что-то). Están = место нахождения. Разные значения, не взаимозаменяемы.',
+  q6:'Lo que más me llama la atención es... — финальная фраза впечатления. Показывает богатый язык и структуру.'
+};
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || correct.startsWith(val) && val.length >= correct.length-2) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+function toggleTranslation(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+const totalSections = 8;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

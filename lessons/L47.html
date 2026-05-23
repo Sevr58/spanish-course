@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L47: Глаголы с чередованием E→I — Pido, sirvo, sigo</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+
+/* Nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+
+/* Progress bar */
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+
+/* Section */
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+
+/* Callout */
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+
+/* Cognate table */
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+
+/* Speaking bubble */
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+
+/* Quiz */
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+
+/* Text exercise */
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+
+/* Dialogue */
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+
+/* Cultural note */
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+
+/* Anki box */
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+
+/* Done button */
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+
+/* Vocab table */
+.vocab-table{width:100%;border-collapse:collapse;margin-bottom:14px}
+.vocab-table th{background:var(--bg3);padding:8px 12px;font-size:.8rem;font-weight:700;text-align:left;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es-word{color:var(--gold);font-weight:600}
+.vocab-table .transcr{color:var(--muted);font-size:.8rem}
+
+/* Boot diagram */
+.boot-diagram{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px;margin:16px 0}
+.boot-diagram h4{font-size:.9rem;font-weight:700;margin-bottom:14px;color:var(--gold)}
+.boot-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.boot-cell{background:var(--bg3);border-radius:6px;padding:12px 14px;text-align:center;font-size:.9rem}
+.boot-cell.changed{border:2px solid var(--gold);color:var(--gold);font-weight:700}
+.boot-cell.same{border:1px solid var(--border);color:var(--muted)}
+.boot-cell .pronoun{font-size:.75rem;color:var(--muted);display:block;margin-bottom:4px}
+.boot-label{font-size:.78rem;color:var(--muted);text-align:center;margin-top:10px}
+
+/* Responsive */
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.cog-rule .rule-header{flex-wrap:wrap}.word-pairs{grid-template-columns:1fr}.boot-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · Блок B2C</span>
+  <a href="L48.html">L48 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🥾 Фаза 2 · A2 · Блок B2C — Третья группа чередований</div>
+  <h1>Глаголы с чередованием <span class="hl">E→I</span></h1>
+  <p class="sub">Pido, sirvo, sigo — третья группа «сапожков». Третья и самая маленькая группа стволовых чередований.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Грамматика</strong><p>E→I в ударных формах: я/ты/он/они — меняются, мы/вы — нет</p></div></div>
+    <div class="obj"><div class="ico">📚</div><div><strong>Глаголы</strong><p>pedir, servir, seguir, repetir, elegir, reír, vestirse</p></div></div>
+    <div class="obj"><div class="ico">⚠️</div><div><strong>Ловушка</strong><p>В прошедшем (pretérito) E→I тоже происходит — в 3 л. ед./мн.ч.</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Заказывать еду и услуги: ¿Me sirves más agua?</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: Теория -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Третья группа «сапожков» — E→I</h2>
+  </div>
+
+  <p style="margin-bottom:14px">В уроке L46 ты изучил две группы чередований: <strong>E→IE</strong> (querer → quiero) и <strong>O→UE</strong> (poder → puedo). Теперь — третья группа: <strong>E→I</strong>.</p>
+
+  <div class="callout info">
+    <h4>💡 Русская аналогия</h4>
+    <p>В русском тоже бывают «неправильные» чередования в корне: «собирать» → «соберу», «умереть» → «умираю». Испанский E→I — это похожее явление: корневая <strong>E</strong> в ударных формах сокращается до <strong>I</strong>.</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>🥾 Правило «сапожка»</h4>
+    <p>Такое же, как у E→IE и O→UE: меняются только формы внутри «сапожка» — yo, tú, él/ella, ellos/ellas. Nosotros и vosotros — <strong>без изменений</strong>, E остаётся E.</p>
+  </div>
+
+  <p style="margin-bottom:14px">Главное отличие E→I от E→IE: замена <em>короче</em>. Вместо E появляется просто I (а не дифтонг IE). Эти глаголы — исключительно <strong>-IR глаголы</strong>. В группе E→IE были и -AR, и -ER, и -IR; здесь только -IR.</p>
+
+  <!-- pedir -->
+  <div class="boot-diagram">
+    <h4>pedir — просить, заказывать</h4>
+    <div class="boot-grid">
+      <div class="boot-cell changed"><span class="pronoun">yo</span>p<strong>i</strong>do</div>
+      <div class="boot-cell same"><span class="pronoun">nosotros</span>pedimos</div>
+      <div class="boot-cell changed"><span class="pronoun">tú</span>p<strong>i</strong>des</div>
+      <div class="boot-cell same"><span class="pronoun">vosotros</span>pedís</div>
+      <div class="boot-cell changed"><span class="pronoun">él/ella</span>p<strong>i</strong>de</div>
+      <div class="boot-cell changed"><span class="pronoun">ellos</span>p<strong>i</strong>den</div>
+    </div>
+    <div class="boot-label">Золотые клетки = «сапожок». E→I в ударных формах. Nosotros/vosotros без изменений.</div>
+  </div>
+
+  <!-- servir -->
+  <div class="boot-diagram">
+    <h4>servir — обслуживать, подавать (еду)</h4>
+    <div class="boot-grid">
+      <div class="boot-cell changed"><span class="pronoun">yo</span>s<strong>i</strong>rvo</div>
+      <div class="boot-cell same"><span class="pronoun">nosotros</span>servimos</div>
+      <div class="boot-cell changed"><span class="pronoun">tú</span>s<strong>i</strong>rves</div>
+      <div class="boot-cell same"><span class="pronoun">vosotros</span>servís</div>
+      <div class="boot-cell changed"><span class="pronoun">él/ella</span>s<strong>i</strong>rve</div>
+      <div class="boot-cell changed"><span class="pronoun">ellos</span>s<strong>i</strong>rven</div>
+    </div>
+    <div class="boot-label">Тот же паттерн. Sirvo, sirves, sirve — но servimos, servís (nosotros/vosotros).</div>
+  </div>
+
+  <!-- seguir -->
+  <div class="boot-diagram">
+    <h4>seguir — следовать, продолжать</h4>
+    <div class="boot-grid">
+      <div class="boot-cell changed"><span class="pronoun">yo</span>s<strong>i</strong>go</div>
+      <div class="boot-cell same"><span class="pronoun">nosotros</span>seguimos</div>
+      <div class="boot-cell changed"><span class="pronoun">tú</span>s<strong>i</strong>gues</div>
+      <div class="boot-cell same"><span class="pronoun">vosotros</span>seguís</div>
+      <div class="boot-cell changed"><span class="pronoun">él/ella</span>s<strong>i</strong>gue</div>
+      <div class="boot-cell changed"><span class="pronoun">ellos</span>s<strong>i</strong>guen</div>
+    </div>
+    <div class="boot-label">Особенность: yo → sigo (не sigueo). Исчезает «u» перед «o» по правилам орфографии.</div>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ E→I в прошедшем времени (pretérito indefinido)</h4>
+    <p>Это уникальная особенность третьей группы! В pretérito чередование происходит <strong>только в 3-м лице</strong> (él/ella и ellos/ellas):</p>
+    <ul>
+      <li>pedir: pedí, pediste, <strong>pidió</strong>, pedimos, pedisteis, <strong>pidieron</strong></li>
+      <li>servir: serví, serviste, <strong>sirvió</strong>, servimos, servisteis, <strong>sirvieron</strong></li>
+      <li>seguir: seguí, seguiste, <strong>siguió</strong>, seguimos, seguisteis, <strong>siguieron</strong></li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>📋 Все основные глаголы E→I</h4>
+    <ul>
+      <li><strong>pedir</strong> — просить, заказывать (pido, pides, pide…)</li>
+      <li><strong>servir</strong> — подавать, обслуживать (sirvo, sirves, sirve…)</li>
+      <li><strong>seguir</strong> — следовать, продолжать (sigo, sigues, sigue…)</li>
+      <li><strong>repetir</strong> — повторять (repito, repites, repite…)</li>
+      <li><strong>elegir</strong> — выбирать (elijo, eliges, elige…)</li>
+      <li><strong>reír(se)</strong> — смеяться (río, ríes, ríe…)</li>
+      <li><strong>vestirse</strong> — одеваться (me visto, te vistes, se viste…)</li>
+      <li><strong>medir</strong> — измерять (mido, mides, mide…)</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ elegir → elijo (особый yo)</h4>
+    <p>Глагол elegir имеет дополнительную особенность в форме yo: elijo (а не *eligo). Это изменение G→J нужно для правильного произношения перед -o.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2: Словарь -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — глаголы E→I в контексте</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="es-word">pedir</span><br><span class="transcr">yo pido</span></td>
+        <td><span class="transcr">[пэ-ДИР] / [ПИ-до]</span></td>
+        <td>просить, заказывать</td>
+        <td>Pido una pizza margherita. — Я заказываю пиццу маргариту.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">servir</span><br><span class="transcr">sirvo</span></td>
+        <td><span class="transcr">[сэр-ВИР] / [СИР-во]</span></td>
+        <td>подавать (еду), обслуживать</td>
+        <td>¿Me sirves más agua? — Ты нальёшь мне ещё воды?</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">seguir</span><br><span class="transcr">sigo</span></td>
+        <td><span class="transcr">[сэ-ГИР] / [СИ-го]</span></td>
+        <td>следовать, продолжать</td>
+        <td>Sigo aprendiendo español. — Я продолжаю учить испанский.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">repetir</span><br><span class="transcr">repito</span></td>
+        <td><span class="transcr">[рэ-пэ-ТИР] / [рэ-ПИ-то]</span></td>
+        <td>повторять</td>
+        <td>¿Puedes repetir? — Можешь повторить?</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">elegir</span><br><span class="transcr">elijo</span></td>
+        <td><span class="transcr">[э-лэ-ХИР] / [э-ЛИ-хо]</span></td>
+        <td>выбирать</td>
+        <td>Elijo el plato del día. — Я выбираю блюдо дня.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">reírse</span><br><span class="transcr">me río</span></td>
+        <td><span class="transcr">[рэ-ИР-сэ] / [мэ-РИ-о]</span></td>
+        <td>смеяться</td>
+        <td>Me río mucho con él. — Я много смеюсь с ним.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">vestirse</span><br><span class="transcr">me visto</span></td>
+        <td><span class="transcr">[вэс-ТИР-сэ] / [мэ-ВИС-то]</span></td>
+        <td>одеваться</td>
+        <td>Me visto rápido. — Я одеваюсь быстро.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">medir</span><br><span class="transcr">mido</span></td>
+        <td><span class="transcr">[мэ-ДИР] / [МИ-до]</span></td>
+        <td>измерять, иметь рост</td>
+        <td>Mido 1,80 metros. — Я ростом 1,80 м.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">despedir(se)</span><br><span class="transcr">me despido</span></td>
+        <td><span class="transcr">[дэс-пэ-ДИР] / [дэс-ПИ-до]</span></td>
+        <td>прощаться</td>
+        <td>Me despido de todos. — Я прощаюсь со всеми.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">corregir</span><br><span class="transcr">corrijo</span></td>
+        <td><span class="transcr">[ко-рэ-ХИР] / [ко-РИ-хо]</span></td>
+        <td>исправлять</td>
+        <td>El profesor corrige los errores. — Учитель исправляет ошибки.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">impedir</span><br><span class="transcr">impido</span></td>
+        <td><span class="transcr">[им-пэ-ДИР] / [им-ПИ-до]</span></td>
+        <td>препятствовать, мешать</td>
+        <td>Nada me impide seguir adelante. — Ничто не мешает мне идти вперёд.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">competir</span><br><span class="transcr">compito</span></td>
+        <td><span class="transcr">[ком-пэ-ТИР] / [ком-ПИ-то]</span></td>
+        <td>соревноваться</td>
+        <td>Compito en el torneo. — Я соревнуюсь в турнире.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout success">
+    <h4>✅ Способ запомнить: три главных глагола</h4>
+    <p>Выучи наизусть три главных: <strong>pido / sirvo / sigo</strong>. Всё остальное — тот же паттерн. Если помнишь «I в ударных формах -IR глагола» — ты уже знаешь группу.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3: Квиз 1 — Выбор ответа -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Квиз 1 — Выбери правильную форму</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>🎯 Проверь знание форм E→I</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Yo ___ (pedir) una mesa para dos. Выбери правильную форму.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">pido</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">pedo</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">piedo</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. El camarero ___ (servir) la comida muy rápido.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">sirve</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">serve</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">serva</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Nosotros ___ (seguir) el mismo camino. Осторожно — это nosotros!</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">siguemos</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">seguimos</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">sigimos</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. ¿Tú ___ (elegir) el postre o prefieres el café?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">eliges</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">eleges</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">elegues</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Ella ___ (reírse) de los chistes de su amigo.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">se ríe</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">se ree</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">se reye</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Pretérito: Los clientes ___ (pedir) la cuenta.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">pedaron</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">pidieron</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">pediaron</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4: Квиз 2 — Вставь слово -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Квиз 2 — Вставь правильную форму</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Образуй форму глагола E→I</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Yo ___ (repetir) la pregunta. → yo + repetir = ?</div>
+      <input type="text" class="text-input" id="ti1" placeholder="Напиши форму...">
+      <button class="check-btn" onclick="checkText('ti1','repito','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ repito — E→I в yo: rep<strong>i</strong>to</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Tú ___ (vestirse) muy elegante hoy. → te + vestir = ?</div>
+      <input type="text" class="text-input" id="ti2" placeholder="te ___ ...">
+      <button class="check-btn" onclick="checkText('ti2','te vistes','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ te vistes — E→I в tú: te v<strong>i</strong>stes</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. El profesor ___ (corregir) todos los exámenes. → él + corregir = ?</div>
+      <input type="text" class="text-input" id="ti3" placeholder="Напиши форму...">
+      <button class="check-btn" onclick="checkText('ti3','corrige','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ corrige — E→I в él: corr<strong>i</strong>ge (не corrige — уже содержит I!)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. ¿Vosotros ___ (seguir) estudiando? → vosotros + seguir = ?</div>
+      <input type="text" class="text-input" id="ti4" placeholder="Напиши форму...">
+      <button class="check-btn" onclick="checkText('ti4','seguís','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ seguís — vosotros НЕ в «сапожке», E остаётся: seguís</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Pretérito: El camarero ___ (servir) el café tarde. → él + servir (прошед.) = ?</div>
+      <input type="text" class="text-input" id="ti5" placeholder="Напиши форму...">
+      <button class="check-btn" onclick="checkText('ti5','sirvió','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ sirvió — в pretérito 3-е лицо единственного числа тоже E→I</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">6. Ellos ___ (competir) en los Juegos Olímpicos. (настоящее) = ?</div>
+      <input type="text" class="text-input" id="ti6" placeholder="Напиши форму...">
+      <button class="check-btn" onclick="checkText('ti6','compiten','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ compiten — ellos в «сапожке»: comp<strong>i</strong>ten</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5: Диалоги -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — В ресторане и на уроке</h2>
+  </div>
+
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Оба диалога используют глаголы E→I в естественном контексте. Читай вслух, закрой перевод.</p>
+
+  <!-- Диалог 1: В ресторане -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      🍽️ Диалог 1: В ресторане
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div>
+        <div class="dlg-es">Buenas tardes. ¿Me puede decir qué platos sirven hoy?</div>
+        <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Добрый день. Можете сказать, какие блюда вы подаёте сегодня?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Camarero</div>
+      <div>
+        <div class="dlg-es">Hoy servimos paella valenciana y cocido madrileño. ¿Qué elige usted?</div>
+        <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Сегодня мы подаём валенсийскую паэлью и мадридское кокидо. Что вы выбираете?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div>
+        <div class="dlg-es">Elijo la paella. Y pido también una jarra de agua, por favor.</div>
+        <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Выбираю паэлью. И прошу также кувшин воды, пожалуйста.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Camarero</div>
+      <div>
+        <div class="dlg-es">Perfecto. ¿Repito el pedido: paella y agua? Enseguida se lo sirvo.</div>
+        <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Отлично. Повторяю заказ: паэлья и вода? Сейчас же принесу.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Диалог 2: На уроке испанского -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      📖 Диалог 2: На уроке испанского
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Profe</div>
+      <div>
+        <div class="dlg-es">Sigo con el tema de los verbos. ¿Alguien no entiende?</div>
+        <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Продолжаю тему глаголов. Кто-то не понимает?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Alumno</div>
+      <div>
+        <div class="dlg-es">¿Puede repetir la regla? No consigo entender cuándo cambia la E.</div>
+        <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Можете повторить правило? Не могу понять, когда меняется E.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Profe</div>
+      <div>
+        <div class="dlg-es">¡Claro! La E cambia a I solo cuando el acento cae en la raíz. Repita: yo pido, tú pides, él pide.</div>
+        <div class="dlg-ru" id="tr-dlg2-3" style="display:none">Конечно! E меняется на I только когда ударение падает на корень. Повторите: yo pido, tú pides, él pide.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Alumno</div>
+      <div>
+        <div class="dlg-es">Ahora sigo. Yo pido, tú pides, él pide, nosotros pedimos — aquí no cambia, ¿verdad?</div>
+        <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Теперь понимаю. Yo pido, tú pides, él pide, nosotros pedimos — здесь не меняется, правда?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Profe</div>
+      <div>
+        <div class="dlg-es">¡Exactamente! Me alegro de que sigas mejorando. ¡Sigue así!</div>
+        <div class="dlg-ru" id="tr-dlg2-5" style="display:none">Точно! Рад, что ты продолжаешь улучшаться. Продолжай в том же духе!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6: Говорим -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорим — Заказываем еду и услуги</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий: Ты в кафе в Барселоне</div>
+    <p>Произнеси вслух каждую фразу. Представь, что ты действительно сидишь в кафе.</p>
+    <div class="es">Pido un cortado y una tostada.</div>
+    <div class="hint">Заказываю: кортадо и тост.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Обратись к официанту</div>
+    <p>Официант медленно несёт воду. Скажи:</p>
+    <div class="es">Perdone, ¿me sirve más agua, por favor?</div>
+    <div class="hint">Простите, вы нальёте мне ещё воды, пожалуйста?</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Ты не понял, что сказал официант</div>
+    <p>Попроси повторить вежливо:</p>
+    <div class="es">Lo siento, ¿puede repetir más despacio, por favor?</div>
+    <div class="hint">Извините, вы можете повторить помедленнее, пожалуйста?</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Разговор о себе</div>
+    <p>Расскажи о своей учёбе:</p>
+    <div class="es">Sigo aprendiendo español. Cada día pido ayuda a mi profesor virtual.</div>
+    <div class="hint">Продолжаю учить испанский. Каждый день прошу помощи у своего виртуального преподавателя.</div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Полезные фразы в ресторане с E→I глаголами</h4>
+    <ul>
+      <li><strong>¿Qué me recomienda?</strong> — Что вы мне рекомендуете?</li>
+      <li><strong>Pido la cuenta.</strong> — Прошу счёт.</li>
+      <li><strong>¿Me sirve un poco más?</strong> — Вы нальёте мне ещё немного?</li>
+      <li><strong>Elijo el menú del día.</strong> — Выбираю меню дня.</li>
+      <li><strong>¿Puede repetir, por favor?</strong> — Можете повторить, пожалуйста?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7: Культурная заметка -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культура — Сервис в испанском ресторане</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Как общаться с официантом в Испании</h4>
+    <p>В Испании сервис неторопливый — это норма, не хамство. Официант не подходит каждые 5 минут. Чтобы подозвать, скажи громко: <strong>«¡Oiga!»</strong> (Эй!) или <strong>«¡Por favor!»</strong>. Чаевые не обязательны, но принято оставлять монеты или округлять сумму. Счёт не принесут сам — нужно попросить: <strong>«La cuenta, por favor»</strong>. Интересно: «pedir la cuenta» — дословно «попросить счёт», и глагол pedir (E→I) — один из самых нужных в ресторанном испанском.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8: Anki + Домашнее -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — карточки урока L47</div>
+    <ul>
+      <li><strong>pedir → yo pido</strong> — просить / заказывать</li>
+      <li><strong>servir → sirvo</strong> — обслуживать / подавать</li>
+      <li><strong>seguir → sigo</strong> — следовать / продолжать</li>
+      <li><strong>repetir → repito</strong> — повторять</li>
+      <li><strong>elegir → elijo</strong> — выбирать (особый yo!)</li>
+      <li><strong>reírse → me río</strong> — смеяться</li>
+      <li><strong>vestirse → me visto</strong> — одеваться</li>
+      <li><strong>Pretérito 3л.: pedir → pidió / pidieron</strong></li>
+      <li><strong>Фраза: ¿Me sirve más agua?</strong> — Вы нальёте мне ещё воды?</li>
+      <li><strong>Фраза: Sigo aprendiendo.</strong> — Я продолжаю учить(ся).</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Выучи наизусть формы: <strong>pido, sirvo, sigo, repito, elijo</strong></li>
+      <li>Составь 3 предложения о своём дне, используя seguir + infinitivo: <em>Sigo trabajando / estudiando / viviendo…</em></li>
+      <li>Представь сцену в ресторане: произнеси вслух 5 фраз с pedir, servir, elegir</li>
+      <li>Следующий урок L48: наречия образа действия — rápidamente, claramente, bien, mal</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Готово! Ты освоил все три группы «сапожков»!</h4>
+    <p>E→IE (quiero), O→UE (puedo), E→I (pido) — три паттерна, которые объясняют поведение нескольких десятков самых частотных глаголов испанского языка. Теперь ты знаешь их все.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L46.html" class="nav-link-btn">← L46</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L48.html" class="nav-link-btn">L48 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+// ─── Progress tracking ────────────────────────────────────
+const LESSON_ID = 'L47';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizAnswers = {
+  q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a'
+};
+const quizExpl = {
+  q1:'pido — yo + pedir: E→I в ударном слоге. *pedo — это не слово в этом контексте, *piedo — ошибочный дифтонг (не E→IE, это другая группа).',
+  q2:'sirve — él + servir: E→I. *serve — английское слово; *serva — неверное окончание.',
+  q3:'seguimos — nosotros НЕ в «сапожке». E остаётся. *siguemos, *sigimos — ошибочные формы.',
+  q4:'eliges — tú + elegir: E→I. Обрати внимание: G остаётся G перед E (перед O было бы J — elijo).',
+  q5:'se ríe — ella + reírse: E→I. Акцент на I: río, ríes, ríe. *se ree — без чередования; *se reye — неверно.',
+  q6:'pidieron — pretérito 3-го лица мн.ч.: ellos pidieron (E→I). *pedaron, *pediaron — неверные формы прошедшего.'
+};
+
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || correct.startsWith(val) && val.length >= correct.length-2) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+function toggleTranslation(id) {
+  const els = document.querySelectorAll(`[id^="${id}-"]`);
+  if (els.length === 0) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    return;
+  }
+  const isHidden = els[0].style.display === 'none';
+  els.forEach(el => { el.style.display = isHidden ? 'block' : 'none'; });
+}
+
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 8;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

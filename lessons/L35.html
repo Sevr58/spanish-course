@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L35: Pretérito Perfecto — «я уже сделал»</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+
+/* Nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--blue)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+
+/* Progress bar */
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--blue);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+
+/* Section */
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+
+/* Callout */
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+
+/* Cognate table */
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-badge{background:var(--blue);color:#fff;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--blue)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+
+/* Vocab table */
+.vocab-table{width:100%;border-collapse:collapse;margin:14px 0}
+.vocab-table th{background:var(--bg3);color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es-word{color:var(--blue);font-weight:600}
+.vocab-table .transcription{color:var(--muted);font-size:.8rem}
+
+/* Conj table */
+.conj-table{width:100%;border-collapse:collapse;margin:12px 0}
+.conj-table th{background:var(--bg3);color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.conj-table td{padding:9px 12px;border-bottom:1px solid var(--bg3);font-size:.9rem}
+.conj-table tr:last-child td{border-bottom:none}
+.conj-table .form{color:var(--gold);font-weight:700}
+.conj-table .aux{color:var(--blue);font-weight:600}
+
+/* Speaking bubble */
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+
+/* Quiz */
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--blue)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+
+/* Text exercise */
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+
+/* Dialogue */
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+
+/* Cultural note */
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+
+/* Anki box */
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+
+/* Done button */
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+
+/* Responsive */
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.cog-rule .rule-header{flex-wrap:wrap}.word-pairs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L34.html">← L34</a>
+  <span class="level">A2 · Фаза 2 · День 73</span>
+  <a href="L36.html">L36 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔵 Фаза 2 · Прошедшее время · Блок B2A</div>
+  <h1>Pretérito <span class="hl">Perfecto</span></h1>
+  <p class="sub">He comido, has ido, ha llegado — опыт и недавние события</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Строить Perfecto для любого глагола — правильного и неправильного</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>Polyglot #6</strong><p>Дмитрий Петров, урок 6 — составное прошедшее</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>¿Has estado en España? — рассказываем о жизненном опыте</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: Теория — структура Perfecto -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Что такое Pretérito Perfecto</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Pretérito Perfecto — это составное прошедшее время. Оно строится из двух частей: <strong>глагол haber</strong> (вспомогательный) + <strong>причастие прошедшего времени</strong> (-ado/-ido).</p>
+
+  <div class="callout info">
+    <h4>🔤 Формула: haber + participio</h4>
+    <p><strong>He comido</strong> = я поел (буквально: «я имею съеденное»)<br>
+    <strong>Has viajado</strong> = ты путешествовал<br>
+    <strong>Han llegado</strong> = они/вы приехали</p>
+  </div>
+
+  <p style="margin-bottom:14px">По-русски у нас нет точного аналога. Но смысл ближе всего к «я уже сделал» или «я когда-то делал (в своей жизни)».</p>
+
+  <div class="callout tip">
+    <h4>💡 Polyglot #6 (Дмитрий Петров)</h4>
+    <p>В шестом уроке курса «Полиглот» разбирается составное прошедшее — именно Pretérito Perfecto. Петров объясняет, что это «живое прошлое» — события, связанные с настоящим. Смотри урок параллельно с этим материалом. <a href="https://www.youtube.com/watch?v=Dj5AGfWkfEc&list=PLFt_AvWsXl0dliMtpZlGQIDZpxBG5tSAx&index=6" target="_blank" style="color:var(--gold)">Polyglot урок 6 →</a></p>
+  </div>
+
+  <!-- Спряжение haber -->
+  <h3 style="margin:18px 0 10px;font-size:1rem">Спряжение haber (вспомогательный глагол)</h3>
+  <table class="conj-table">
+    <thead>
+      <tr><th>Местоимение</th><th>Haber</th><th>По-русски</th><th>Пример</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>yo</td><td class="aux">he</td><td>я имею</td><td>He comido [э комидо]</td></tr>
+      <tr><td>tú</td><td class="aux">has</td><td>ты имеешь</td><td>Has dormido [ас дормидо]</td></tr>
+      <tr><td>él/ella/usted</td><td class="aux">ha</td><td>он/она имеет</td><td>Ha llegado [а лэгадо]</td></tr>
+      <tr><td>nosotros</td><td class="aux">hemos</td><td>мы имеем</td><td>Hemos viajado [эмос виахадо]</td></tr>
+      <tr><td>vosotros</td><td class="aux">habéis</td><td>вы имеете</td><td>Habéis visto [абэис висто]</td></tr>
+      <tr><td>ellos/ustedes</td><td class="aux">han</td><td>они имеют</td><td>Han salido [ан салидо]</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ Важно: haber ≠ tener</h4>
+    <ul>
+      <li><strong>haber</strong> — только вспомогательный глагол в сложных временах. «He» в смысле «я имею» — это НЕ «у меня есть», это только часть глагольной формы.</li>
+      <li><strong>tener</strong> — «иметь» в смысле владения: <em>Tengo un coche</em> (у меня есть машина).</li>
+      <li>Никогда не разделяй haber и причастие: нельзя вставить между ними слово!</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2: Образование причастия -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Причастие прошедшего времени (Participio)</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Причастие образуется по простым правилам:</p>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">-AR глаголы</span>
+      <span class="rule-title">убираем -ar, добавляем -ado</span>
+      <span class="rule-arrow">hablar → hablado</span>
+    </div>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">hablar</span><span class="sep">→</span><span class="ar">hablado</span></div>
+      <div class="wp"><span class="en">trabajar</span><span class="sep">→</span><span class="ar">trabajado</span></div>
+      <div class="wp"><span class="en">viajar</span><span class="sep">→</span><span class="ar">viajado</span></div>
+      <div class="wp"><span class="en">llegar</span><span class="sep">→</span><span class="ar">llegado</span></div>
+      <div class="wp"><span class="en">comprar</span><span class="sep">→</span><span class="ar">comprado</span></div>
+      <div class="wp"><span class="en">estudiar</span><span class="sep">→</span><span class="ar">estudiado</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">-ER / -IR глаголы</span>
+      <span class="rule-title">убираем -er/-ir, добавляем -ido</span>
+      <span class="rule-arrow">comer → comido</span>
+    </div>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">comer</span><span class="sep">→</span><span class="ar">comido</span></div>
+      <div class="wp"><span class="en">beber</span><span class="sep">→</span><span class="ar">bebido</span></div>
+      <div class="wp"><span class="en">vivir</span><span class="sep">→</span><span class="ar">vivido</span></div>
+      <div class="wp"><span class="en">salir</span><span class="sep">→</span><span class="ar">salido</span></div>
+      <div class="wp"><span class="en">dormir</span><span class="sep">→</span><span class="ar">dormido</span></div>
+      <div class="wp"><span class="en">recibir</span><span class="sep">→</span><span class="ar">recibido</span></div>
+    </div>
+  </div>
+
+  <!-- Неправильные причастия -->
+  <h3 style="margin:18px 0 10px;font-size:1rem">Неправильные причастия — выучить обязательно</h3>
+  <table class="conj-table">
+    <thead>
+      <tr><th>Инфинитив</th><th>Participio</th><th>Перевод</th><th>Пример</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ser / ir</td><td class="form">sido</td><td>быть / идти</td><td>Ha sido difícil</td></tr>
+      <tr><td>tener</td><td class="form">tenido</td><td>иметь</td><td>He tenido suerte</td></tr>
+      <tr><td>hacer</td><td class="form">hecho</td><td>делать</td><td>Has hecho bien</td></tr>
+      <tr><td>decir</td><td class="form">dicho</td><td>говорить</td><td>Ha dicho la verdad</td></tr>
+      <tr><td>ver</td><td class="form">visto</td><td>видеть</td><td>Hemos visto esa película</td></tr>
+      <tr><td>escribir</td><td class="form">escrito</td><td>писать</td><td>He escrito un email</td></tr>
+      <tr><td>abrir</td><td class="form">abierto</td><td>открывать</td><td>Han abierto la tienda</td></tr>
+      <tr><td>poner</td><td class="form">puesto</td><td>ставить</td><td>He puesto la mesa</td></tr>
+      <tr><td>volver</td><td class="form">vuelto</td><td>возвращаться</td><td>Ha vuelto a casa</td></tr>
+      <tr><td>romper</td><td class="form">roto</td><td>ломать</td><td>Has roto el vaso</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Мнемоника для неправильных причастий</h4>
+    <p>Запомни группы: <strong>-cho</strong> (hecho, dicho) и <strong>-to</strong> (visto, escrito, abierto, puesto, vuelto, roto). Это почти все неправильные. Остальные — правильные!</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3: Когда использовать Perfecto -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Когда использовать Perfecto</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Pretérito Perfecto — это «живое» прошлое. Используется в трёх основных ситуациях:</p>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Ситуация 1</span>
+      <span class="rule-title">Жизненный опыт — «когда-нибудь»</span>
+    </div>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">¿Has estado en Barcelona?</span><span class="sep">→</span><span class="ar">Ты бывал в Барселоне?</span></div>
+      <div class="wp"><span class="en">He viajado a 10 países.</span><span class="sep">→</span><span class="ar">Я побывал в 10 странах.</span></div>
+      <div class="wp"><span class="en">¿Has probado el sushi?</span><span class="sep">→</span><span class="ar">Ты когда-нибудь пробовал суши?</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Ситуация 2</span>
+      <span class="rule-title">Недавние события — «только что», «сегодня»</span>
+    </div>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Hoy he trabajado mucho.</span><span class="sep">→</span><span class="ar">Сегодня я много работал.</span></div>
+      <div class="wp"><span class="en">Esta semana no he dormido bien.</span><span class="sep">→</span><span class="ar">На этой неделе я плохо спал.</span></div>
+      <div class="wp"><span class="en">Acabo de llegar.</span><span class="sep">→</span><span class="ar">Я только что приехал.</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Ситуация 3</span>
+      <span class="rule-title">Результат, который важен сейчас</span>
+    </div>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">He perdido las llaves.</span><span class="sep">→</span><span class="ar">Я потерял ключи. (и до сих пор нет)</span></div>
+      <div class="wp"><span class="en">Ha llegado el momento.</span><span class="sep">→</span><span class="ar">Наступил момент. (он сейчас)</span></div>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Регион имеет значение: Испания vs. Латинская Америка</h4>
+    <p>В <strong>Испании</strong>: «Hoy he comido paella» (сегодня я ел паэлью) — используют Perfecto для событий сегодня.<br>
+    В <strong>Латинской Америке</strong>: «Hoy comí paella» — там предпочитают Indefinido даже для сегодняшнего дня.<br>
+    Раз ты едешь в Барселону — изучай испанский вариант (с Perfecto для «сегодня»).</p>
+  </div>
+
+  <!-- Маркеры времени -->
+  <h3 style="margin:18px 0 10px;font-size:1rem">Маркеры Pretérito Perfecto</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-bottom:14px">
+    <div style="background:var(--bg3);border-radius:6px;padding:10px 12px">
+      <div style="color:var(--blue);font-weight:700">hoy</div>
+      <div style="color:var(--muted);font-size:.83rem">сегодня</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:6px;padding:10px 12px">
+      <div style="color:var(--blue);font-weight:700">esta semana / este año</div>
+      <div style="color:var(--muted);font-size:.83rem">на этой неделе / в этом году</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:6px;padding:10px 12px">
+      <div style="color:var(--blue);font-weight:700">alguna vez</div>
+      <div style="color:var(--muted);font-size:.83rem">когда-нибудь</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:6px;padding:10px 12px">
+      <div style="color:var(--blue);font-weight:700">nunca / jamás</div>
+      <div style="color:var(--muted);font-size:.83rem">никогда</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:6px;padding:10px 12px">
+      <div style="color:var(--blue);font-weight:700">ya / todavía no</div>
+      <div style="color:var(--muted);font-size:.83rem">уже / ещё нет</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:6px;padding:10px 12px">
+      <div style="color:var(--blue);font-weight:700">recientemente</div>
+      <div style="color:var(--muted);font-size:.83rem">недавно</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4: Словарь -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Словарь урока — опыт и события</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="es-word">la experiencia</td><td class="transcription">[ла эспэрьЭнсья]</td><td>опыт, впечатление</td><td>¡Qué experiencia increíble!</td></tr>
+      <tr><td class="es-word">viajar</td><td class="transcription">[вьяхАр]</td><td>путешествовать</td><td>He viajado por toda Europa.</td></tr>
+      <tr><td class="es-word">probar</td><td class="transcription">[пробАр]</td><td>пробовать, попробовать</td><td>¿Has probado el jamón ibérico?</td></tr>
+      <tr><td class="es-word">conocer</td><td class="transcription">[коносЭр]</td><td>знать, познакомиться</td><td>He conocido a mucha gente.</td></tr>
+      <tr><td class="es-word">aprender</td><td class="transcription">[апрэндЭр]</td><td>учиться, выучить</td><td>Has aprendido mucho hoy.</td></tr>
+      <tr><td class="es-word">perder</td><td class="transcription">[пэрдЭр]</td><td>терять, потерять</td><td>He perdido el pasaporte.</td></tr>
+      <tr><td class="es-word">encontrar</td><td class="transcription">[энконтрАр]</td><td>найти, встретить</td><td>¿Has encontrado trabajo?</td></tr>
+      <tr><td class="es-word">cambiar</td><td class="transcription">[камбьАр]</td><td>менять(ся)</td><td>Todo ha cambiado mucho.</td></tr>
+      <tr><td class="es-word">alguna vez</td><td class="transcription">[алГуна вЭс]</td><td>когда-нибудь</td><td>¿Has estado alguna vez en Rusia?</td></tr>
+      <tr><td class="es-word">nunca</td><td class="transcription">[НУнка]</td><td>никогда</td><td>Nunca he comido insectos.</td></tr>
+      <tr><td class="es-word">ya</td><td class="transcription">[йа]</td><td>уже</td><td>Ya he terminado.</td></tr>
+      <tr><td class="es-word">todavía no</td><td class="transcription">[тодавИа но]</td><td>ещё нет</td><td>Todavía no he llegado.</td></tr>
+      <tr><td class="es-word">recientemente</td><td class="transcription">[ресьентемЭнте]</td><td>недавно</td><td>Recientemente he empezado el curso.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5: Тест 1 — Выбери правильный ответ -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 1 — Правильная форма Perfecto</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильный вариант</h3>
+
+    <!-- Q1 -->
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Yo ___ (comer) paella hoy. Правильная форма:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">comí paella</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">he comido paella</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">como paella</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. ¿___ (tú / estar) alguna vez en Barcelona?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Has estado</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Habéis estado</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Hemos estado</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Причастие от глагола <strong>hacer</strong>:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">hacido</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">hacado</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">hecho</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Ella ___ (ver) esa película tres veces.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">ha vido</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">ha visto</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">ha veer</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Nosotros ___ (abrir) el restaurante a las 10.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">hemos abrido</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">habemos abierto</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">hemos abierto</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. С каким маркером времени НЕ используется Perfecto?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">hoy</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">ayer</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">este año</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6: Тест 2 — Вставь слово -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Тест 2 — Составь форму Perfecto</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Напиши правильную форму: нужный haber + причастие.</p>
+
+  <div class="quiz">
+    <h3>✏️ Образуй Pretérito Perfecto</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. Yo / escribir → <em>Yo ___ un email a mi jefe hoy.</em></div>
+      <input type="text" class="text-input" placeholder="he + participio..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','he escrito','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ he escrito — написать → escrito (неправильное причастие)</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. Tú / volver → <em>¿Cuándo ___ a casa?</em></div>
+      <input type="text" class="text-input" placeholder="has + participio..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','has vuelto','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ has vuelto — volver → vuelto (неправильное причастие)</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. Ellos / trabajar → <em>Esta semana ___ mucho.</em></div>
+      <input type="text" class="text-input" placeholder="han + participio..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','han trabajado','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ han trabajado — работать, -ar → -ado, правильное причастие</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. Nosotros / decir → <em>Ya ___ la verdad.</em></div>
+      <input type="text" class="text-input" placeholder="hemos + participio..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','hemos dicho','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ hemos dicho — decir → dicho (неправильное, группа -cho)</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. Ella / poner → <em>___ la mesa para la cena.</em></div>
+      <input type="text" class="text-input" placeholder="ha + participio..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','ha puesto','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ ha puesto — poner → puesto (неправильное, группа -to)</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7: Диалоги -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Диалоги — Рассказываем об опыте</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Нажми «Перевод» чтобы проверить понимание.</p>
+
+  <!-- Диалог 1 -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: В кафе — ¿Has probado la paella?
+      <button class="dlg-toggle" onclick="toggleDlg('d1')">Перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div>
+        <div class="dlg-es">¿Has probado alguna vez la paella valenciana?</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Ты когда-нибудь пробовала паэлью по-валенсийски?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марк</div>
+      <div>
+        <div class="dlg-es">Sí, la he probado dos veces. La primera vez fue en Valencia.</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Да, я пробовал её дважды. Первый раз это было в Валенсии.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div>
+        <div class="dlg-es">¿Has viajado mucho por España?</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Ты много путешествовал по Испании?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марк</div>
+      <div>
+        <div class="dlg-es">He visitado Madrid, Barcelona y Sevilla. Todavía no he ido al norte.</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Я побывал в Мадриде, Барселоне и Севилье. На север я ещё не ездил.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div>
+        <div class="dlg-es">¿Y has aprendido algo de español?</div>
+        <div class="dlg-ru d1-tr" style="display:none">[А ты выучил что-нибудь по-испански?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марк</div>
+      <div>
+        <div class="dlg-es">Sí, he aprendido bastante. Pero todavía no hablo perfectamente.</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Да, я выучил немало. Но я ещё не говорю идеально.]</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Диалог 2 -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Встреча старых друзей — ¿Qué has hecho?
+      <button class="dlg-toggle" onclick="toggleDlg('d2')">Перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Иван</div>
+      <div>
+        <div class="dlg-es">¡Hola, Ana! ¿Qué has hecho este año?</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Привет, Ана! Что ты делала в этом году?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ана</div>
+      <div>
+        <div class="dlg-es">He cambiado de trabajo. He encontrado un puesto en una empresa internacional.</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Я сменила работу. Нашла место в международной компании.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Иван</div>
+      <div>
+        <div class="dlg-es">¡Qué bien! ¿Y has tenido tiempo para viajar?</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Как здорово! А у тебя было время путешествовать?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ана</div>
+      <div>
+        <div class="dlg-es">He viajado a Japón en primavera. Ha sido la mejor experiencia de mi vida.</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Я ездила в Японию весной. Это был лучший опыт в моей жизни.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Иван</div>
+      <div>
+        <div class="dlg-es">¿Has escrito sobre eso en tu blog?</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Ты написала об этом в своём блоге?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ана</div>
+      <div>
+        <div class="dlg-es">Todavía no, pero ya he hecho muchas fotos. ¡Han salido muy bien!</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Ещё нет, но я уже сделала много фото. Получились очень хорошо!]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Твоя очередь</div>
+    <p>Ответь на вопросы вслух, используя Pretérito Perfecto:</p>
+    <div class="es">¿Has estado alguna vez en España?</div>
+    <div class="hint">Ответь: «Sí, he estado en...» или «No, nunca he estado en España, pero he viajado a...»</div>
+    <div class="es" style="margin-top:10px">¿Qué has hecho esta semana?</div>
+    <div class="hint">Ответь: «Esta semana he trabajado / he estudiado / he comido...»</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8: Культурная заметка + Anki + ДЗ -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культура, Anki и план на завтра</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>«¿Has estado en España?» — магический вопрос</h4>
+    <p>Испанцы часто начинают знакомство с вопроса о жизненном опыте: <em>¿Has estado aquí antes? ¿Has probado...? ¿Has visto...?</em> Это не допрос — это способ найти общие темы. Если ты ответишь «Sí, he estado» или «No, pero he escuchado mucho sobre» — разговор пойдёт сам. Для эмигранта из России вопрос «¿Por qué has venido a España?» будет одним из первых в Барселоне. Готовь ответ заранее!</p>
+  </div>
+
+  <div style="margin-top:16px" class="anki">
+    <div class="atag">🃏 Anki — карточки для этого урока</div>
+    <ul>
+      <li><strong>he / has / ha / hemos / habéis / han</strong> — спряжение haber для Perfecto</li>
+      <li><strong>hecho</strong> — причастие от hacer (неправильное)</li>
+      <li><strong>visto</strong> — причастие от ver</li>
+      <li><strong>dicho</strong> — причастие от decir</li>
+      <li><strong>escrito</strong> — причастие от escribir</li>
+      <li><strong>abierto / puesto / vuelto / roto</strong> — группа на -to</li>
+      <li><strong>¿Has estado alguna vez en...?</strong> — «Ты когда-нибудь был в...?»</li>
+      <li><strong>Todavía no he...</strong> — «Я ещё не...»</li>
+      <li><strong>Ya he terminado.</strong> — «Я уже закончил.»</li>
+    </ul>
+    <p style="margin-top:8px;font-size:.78rem;color:var(--muted)">Карточки этого урока критически важны — неправильные причастия используются постоянно.</p>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Посмотри <a href="https://www.youtube.com/watch?v=Dj5AGfWkfEc&list=PLFt_AvWsXl0dliMtpZlGQIDZpxBG5tSAx&index=6" target="_blank" style="color:var(--gold)">Polyglot #6</a> (Дмитрий Петров) — разбор составного прошедшего</li>
+      <li>Dreaming Spanish Beginner: любое видео про путешествия — слушай как используют «he estado, he visto»</li>
+      <li>Напиши 5 предложений о своём жизненном опыте: «He... / Nunca he... / Todavía no he...»</li>
+      <li>Повтори Anki: неправильные причастия — hecho, dicho, visto, escrito, abierto, puesto, vuelto, roto</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Ты освоил Pretérito Perfecto!</h4>
+    <p>Теперь ты умеешь говорить о жизненном опыте и недавних событиях. Следующий урок — самая важная тема испанской грамматики: когда использовать Indefinido, а когда Imperfecto. Это решает 80% ошибок в испанском рассказе.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L34.html" class="nav-link-btn">← L34</a>
+    <a href="L36.html" class="nav-link-btn">L36: Indefinido vs Imperfecto →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+// ─── Progress tracking ────────────────────────────────────
+const LESSON_ID = 'L35';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+// Check if already done
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizAnswers = {
+  q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a'
+};
+const quizExpl = {
+  q1:'he comido — hoy (сегодня) = маркер Perfecto. В Испании для событий сегодняшнего дня используют Perfecto.',
+  q2:'Has estado — tú → has. Alguna vez + Perfecto = вопрос об опыте.',
+  q3:'hecho — hacer неправильное, группа -cho. Никогда не «hacido»!',
+  q4:'ha visto — ver → visto (неправильное, группа -to).',
+  q5:'hemos abierto — nosotros → hemos. Abrir → abierto (неправильное).',
+  q6:'ayer — «вчера» — это маркер Pretérito Indefinido, не Perfecto. С ayer говорят «ayer comí», не «ayer he comido».'
+};
+
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || correct.startsWith(val) && val.length >= correct.length-2) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+function toggleDlg(cls) {
+  const rows = document.querySelectorAll('.' + cls + '-tr');
+  const isHidden = rows[0] && rows[0].style.display === 'none';
+  rows.forEach(r => r.style.display = isHidden ? 'block' : 'none');
+}
+
+function toggleTranslation(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+
+// Hide translations by default
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 8;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

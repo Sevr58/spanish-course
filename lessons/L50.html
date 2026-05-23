@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L50: Отрицания: nada, nadie, nunca</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:hover td{background:var(--bg2)}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.vocab-table .ex{color:var(--muted);font-size:.8rem;font-style:italic}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.gram-table{width:100%;border-collapse:collapse;margin:14px 0}
+.gram-table th{background:var(--bg3);padding:9px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:700}
+.gram-table td{padding:9px 12px;border-top:1px solid var(--bg3);font-size:.88rem}
+.gram-table .es{color:var(--gold);font-weight:700}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 105</span>
+  <a href="L51.html">L51 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔵 Фаза 2 · Рост · Блок 2C</div>
+  <h1>Отрицания: <span class="hl">nada, nadie, nunca</span></h1>
+  <p class="sub">No tengo nada / No hay nadie / Nunca lo haré — двойное отрицание по-испански</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Освоить систему двойного отрицания в испанском</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>Dreaming Spanish</strong><p>Beginner — видео с диалогами и отрицаниями</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Выражать отрицание эмфатически</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Двойное отрицание — испанский говорит «нет» дважды</h2>
+  </div>
+
+  <p style="margin-bottom:14px">В русском языке двойное отрицание — норма: «Я <strong>ничего</strong> не знаю». В английском оно считается грамматической ошибкой: <em>I don't know nothing</em> — так говорить нельзя. Испанский, как и русский, требует двойного отрицания. И это одна из вещей, где русскоговорящим легче, чем англоязычным!</p>
+
+  <div class="callout tip">
+    <h4>💡 Главное правило</h4>
+    <p>Если в предложении стоит <strong>no</strong> перед глаголом, то отрицательные слова (nada, nadie, nunca) идут ПОСЛЕ глагола. Если отрицательное слово стоит ПЕРЕД глаголом — <strong>no</strong> убирается. Оба варианта равноправны.</p>
+  </div>
+
+  <table class="gram-table">
+    <tr><th>С no (стандарт)</th><th>Без no (эмфаза)</th><th>Русский</th></tr>
+    <tr><td class="es">No tengo nada.</td><td class="es">Nada tengo.</td><td>У меня ничего нет.</td></tr>
+    <tr><td class="es">No hay nadie.</td><td class="es">Nadie hay.</td><td>Здесь никого нет.</td></tr>
+    <tr><td class="es">No viene nunca.</td><td class="es">Nunca viene.</td><td>Он никогда не приходит.</td></tr>
+    <tr><td class="es">No quiero nada.</td><td class="es">Nada quiero.</td><td>Я ничего не хочу.</td></tr>
+    <tr><td class="es">No llamo a nadie.</td><td class="es">A nadie llamo.</td><td>Я никому не звоню.</td></tr>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка для русских — «ninguno»</h4>
+    <p>Слово <strong>ninguno/ninguna</strong> (никакой) согласуется с существительным по роду и числу. Но важно: оно почти всегда используется только в единственном числе! «No tengo ningún problema» — верно. «No tengo ningunos problemas» — так почти не говорят, лучше «No tengo ningún problema».</p>
+  </div>
+
+  <p style="margin-top:14px">Полный список отрицательных слов испанского:</p>
+  <table class="gram-table">
+    <tr><th>Испанский</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td class="es">nada</td><td>ничего / ничто</td><td class="es">No como nada.</td></tr>
+    <tr><td class="es">nadie</td><td>никто / никого</td><td class="es">No conozco a nadie.</td></tr>
+    <tr><td class="es">nunca / jamás</td><td>никогда</td><td class="es">Nunca he estado en París.</td></tr>
+    <tr><td class="es">ninguno/a</td><td>никакой/никакая</td><td class="es">No tengo ningún libro.</td></tr>
+    <tr><td class="es">tampoco</td><td>тоже нет / также не</td><td class="es">Yo tampoco sé.</td></tr>
+    <tr><td class="es">ni... ni...</td><td>ни... ни...</td><td class="es">No tengo ni tiempo ni dinero.</td></tr>
+  </table>
+
+  <div class="callout info">
+    <h4>🔎 Jamás vs. Nunca</h4>
+    <p><strong>Nunca</strong> — обычное «никогда» в разговорной речи. <strong>Jamás</strong> — более драматичное, окончательное «никогда в жизни». Оба взаимозаменяемы, но jamás звучит сильнее. Вместе: «nunca jamás» = «никогда и ни за что» (=never ever).</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Tampoco — «тоже нет»</h4>
+    <p>Это отрицательная пара к «también» (тоже). Если кто-то говорит «No me gusta», ответ «A mí tampoco» = «Мне тоже нет». Никакого дополнительного «no» не нужно!</p>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — отрицательные слова и выражения</h2>
+  </div>
+
+  <table class="vocab-table">
+    <tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td class="es">nada</td><td class="tr">[на-да]</td><td>ничего</td><td class="ex">No tengo nada que decir.</td></tr>
+    <tr><td class="es">nadie</td><td class="tr">[на-дье]</td><td>никто</td><td class="ex">Nadie sabe la verdad.</td></tr>
+    <tr><td class="es">nunca</td><td class="tr">[нун-ка]</td><td>никогда</td><td class="ex">Nunca como carne.</td></tr>
+    <tr><td class="es">jamás</td><td class="tr">[ха-мас]</td><td>никогда (усил.)</td><td class="ex">Jamás olvidaré este día.</td></tr>
+    <tr><td class="es">ningún / ninguno</td><td class="tr">[нин-гун]</td><td>никакой</td><td class="ex">No hay ningún problema.</td></tr>
+    <tr><td class="es">ninguna</td><td class="tr">[нин-гу-на]</td><td>никакая</td><td class="ex">No tengo ninguna idea.</td></tr>
+    <tr><td class="es">tampoco</td><td class="tr">[там-по-ко]</td><td>тоже нет</td><td class="ex">Yo tampoco lo sé.</td></tr>
+    <tr><td class="es">ni... ni...</td><td class="tr">[ни... ни...]</td><td>ни... ни...</td><td class="ex">No tengo ni pan ni leche.</td></tr>
+    <tr><td class="es">en absoluto</td><td class="tr">[эн абсо-лу-то]</td><td>совершенно нет</td><td class="ex">¿Te molesta? — En absoluto.</td></tr>
+    <tr><td class="es">para nada</td><td class="tr">[па-ра на-да]</td><td>совсем нет</td><td class="ex">No me gusta para nada.</td></tr>
+    <tr><td class="es">de ninguna manera</td><td class="tr">[де нин-гу-на]</td><td>никоим образом</td><td class="ex">De ninguna manera lo haré.</td></tr>
+    <tr><td class="es">ya no</td><td class="tr">[йа но]</td><td>уже не / больше не</td><td class="ex">Ya no vivo aquí.</td></tr>
+    <tr><td class="es">todavía no</td><td class="tr">[то-да-ви-а]</td><td>ещё не</td><td class="ex">Todavía no he comido.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Выбери правильный вариант</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Двойное отрицание: правила в действии</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Переведи: «Я никого не знаю в этом городе»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">No conozco a nadie en esta ciudad.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">No conozco nadie en esta ciudad.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Conozco a nadie en esta ciudad.</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Как правильно сказать «Он никогда не ест мясо»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Él no come siempre carne.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Él no come nunca carne.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Él nunca no come carne.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Кто-то говорит «No me gusta el café». Как ответить «Мне тоже нет»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">A mí tampoco.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">A mí también no.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Yo también no me gusta.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Как по-испански «У меня нет ни времени, ни денег»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">No tengo tiempo o dinero.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">No tengo ni tiempo ni dinero.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Nada tengo tiempo ni dinero.</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Что значит «Todavía no he llegado»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Я ещё не приехал.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Я уже не приехал.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Я никогда не приезжаю.</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Выбери предложение с правильным использованием «ningún»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">No tengo ningunos amigos aquí.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">No tengo ningún amigo aquí.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Ningún no tengo amigos.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Вставь нужное отрицательное слово</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. No quiero hablar con _____ . (ни с кем)</div>
+      <input type="text" class="text-input" placeholder="nadie / nada / nunca..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','nadie','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">nadie — «No quiero hablar con nadie» = «Я ни с кем не хочу разговаривать». После предлога con наречие nadie не требует «a».</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. _____ he estado en España. (Никогда)</div>
+      <input type="text" class="text-input" placeholder="Nunca / Nada / Nadie..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','nunca','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">Nunca — стоит в начале предложения, поэтому «no» не нужно: «Nunca he estado en España».</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. No me gusta esta película. — A mí _____. (мне тоже нет)</div>
+      <input type="text" class="text-input" placeholder="tampoco / también / nadie..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','tampoco','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">tampoco — «A mí tampoco» = «Мне тоже нет». Это стандартный ответ на отрицательное высказывание.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. No hay _____ en casa. (никого)</div>
+      <input type="text" class="text-input" placeholder="nadie / nada / ningún..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','nadie','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">nadie — о людях используем nadie, а не nada (nada — для вещей).</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. No tengo _____ idea de cómo hacerlo. (никакой)</div>
+      <input type="text" class="text-input" placeholder="ninguna / ningún / nadie..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','ninguna','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">ninguna — согласуется с существительным «idea» (женский род). Ningún используется только перед существительными мужского рода.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — отрицание в реальных ситуациях</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прочитай диалоги вслух, играя обе роли. Обрати внимание на двойное отрицание.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: В магазине — «Ничего не понравилось»
+      <button class="dlg-toggle" onclick="toggleTranslation('tr1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Вендор</div>
+      <div><div class="dlg-es">¿Le puedo ayudar en algo?</div>
+      <div class="dlg-ru" id="tr1" style="display:none">Могу я вам чем-нибудь помочь?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">No, gracias. No busco nada en particular.</div>
+      <div class="dlg-ru" id="tr1b" style="display:none">Нет, спасибо. Я ничего конкретного не ищу.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Вендор</div>
+      <div><div class="dlg-es">¿No ha encontrado nada de su agrado?</div>
+      <div class="dlg-ru" id="tr1c" style="display:none">Вы ничего по вкусу не нашли?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">La verdad, no. Ninguno de estos modelos me convence.</div>
+      <div class="dlg-ru" id="tr1d" style="display:none">Честно говоря, нет. Ни одна из этих моделей меня не убеждает.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Вендор</div>
+      <div><div class="dlg-es">¿Nunca había venido antes?</div>
+      <div class="dlg-ru" id="tr1e" style="display:none">Вы раньше никогда не приходили?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">No, nunca. Pero volveré cuando tenga más tiempo.</div>
+      <div class="dlg-ru" id="tr1f" style="display:none">Нет, никогда. Но я вернусь, когда будет больше времени.</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Между друзьями — «Никто ничего не знал»
+      <button class="dlg-toggle" onclick="toggleTranslation('tr2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div><div class="dlg-es">¿Sabías que Carlos se casó?</div>
+      <div class="dlg-ru" id="tr2" style="display:none">Ты знал, что Карлос женился?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Луис</div>
+      <div><div class="dlg-es">¡No! No sabía nada. Nadie me dijo nada.</div>
+      <div class="dlg-ru" id="tr2b" style="display:none">Нет! Я ничего не знал. Никто мне ничего не сказал.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div><div class="dlg-es">Yo tampoco lo sabía hasta ayer.</div>
+      <div class="dlg-ru" id="tr2c" style="display:none">Я тоже не знала до вчерашнего дня.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Луис</div>
+      <div><div class="dlg-es">¡Increíble! ¿Y no invitó a nadie a la boda?</div>
+      <div class="dlg-ru" id="tr2d" style="display:none">Невероятно! И он никого не пригласил на свадьбу?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div><div class="dlg-es">A nadie. Ni a sus padres ni a sus amigos.</div>
+      <div class="dlg-ru" id="tr2e" style="display:none">Никого. Ни родителей, ни друзей.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — выражай отрицание уверенно</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 1 — Базовый уровень</div>
+    <p>Ответь на каждый вопрос, используя отрицательные слова. Говори вслух!</p>
+    <div class="es">¿Has estado alguna vez en Barcelona?</div>
+    <div class="hint">Шаблон: «Nunca he estado en Barcelona» или «No he estado nunca en Barcelona»</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 2 — Продвинутый уровень</div>
+    <p>Твой собеседник преувеличивает. Опровергни всё, что он говорит. Говори 1–2 минуты:</p>
+    <div class="es">— Todos en tu ciudad hablan inglés. ¿No?<br>— Siempre comes en restaurantes, ¿verdad?<br>— Tienes muchos amigos en España, ¿no?</div>
+    <div class="hint">Используй: No, nadie / No, nunca / No tengo ningún... / En absoluto...</div>
+  </div>
+</div>
+
+<!-- SECTION 7: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка + Anki</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>«Para nada» — испанская вежливость через отрицание</h4>
+    <p>В испанской культуре прямое «нет» считается грубоватым в ряде ситуаций. Поэтому испанцы активно используют смягчённые формы отрицания: «para nada», «en absoluto», «qué va». Если вас спросят «¿Te molesta si...?» (Тебе мешает, если...?), ответ «Para nada» звучит мягче и дружелюбнее, чем просто «No». В Каталонии и других регионах эти смягчённые формы используются особенно часто в профессиональной среде.</p>
+  </div>
+
+  <div style="margin-top:16px" class="anki">
+    <div class="atag">🃏 Anki — карточки этого урока</div>
+    <ul>
+      <li><strong>nada</strong> — ничего | No tengo nada.</li>
+      <li><strong>nadie</strong> — никто | No conozco a nadie.</li>
+      <li><strong>nunca / jamás</strong> — никогда | Nunca he estado allí.</li>
+      <li><strong>ningún / ninguna</strong> — никакой | No hay ningún problema.</li>
+      <li><strong>tampoco</strong> — тоже нет | A mí tampoco.</li>
+      <li><strong>ni... ni...</strong> — ни... ни... | No tengo ni tiempo ni dinero.</li>
+      <li><strong>en absoluto</strong> — совершенно нет | En absoluto.</li>
+      <li><strong>ya no</strong> — больше не / уже не | Ya no vivo aquí.</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Dreaming Spanish Beginner — 15 мин, обращай внимание на отрицательные конструкции</li>
+      <li>Напиши 5 предложений о вещах, которые ты никогда не делал / не имеешь / не знаешь</li>
+      <li>Повтори Anki-карточки урока</li>
+      <li>Выучи наизусть: «No tengo ni idea» (Понятия не имею) — очень разговорная фраза</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L49.html" class="nav-link-btn">← L49</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L51.html" class="nav-link-btn">L51 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L50';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'No conozco a nadie — после глагола conozco стоит «a nadie» (личный артикль a перед людьми!). Вариант без «a» — грамматическая ошибка.',
+  q2:'No come nunca — двойное отрицание: no перед глаголом + nunca после. Третий вариант «nunca no» неверен.',
+  q3:'A mí tampoco — стандартный ответ на отрицание. «También no» — калька с английского, не используется.',
+  q4:'No tengo ni tiempo ni dinero — конструкция ni...ni... требует «no» перед глаголом.',
+  q5:'Todavía no — «ещё не». Ya no = «уже не (больше не)». Это два разных отрицания с разным смыслом.',
+  q6:'No tengo ningún amigo — ningún перед существительным мужского рода. «Ningunos amigos» грамматически неверно.'
+};
+
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+
+function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e',id+'f'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

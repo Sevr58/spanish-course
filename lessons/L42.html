@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L42: Планы, намерения, мечты</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid var(--bg3)}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:600;color:var(--gold)}
+.future-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px}
+.future-card .fc-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.future-card .fc-form{font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.future-card p{font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 88</span>
+  <a href="L43.html">L43 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">✨ Фаза 2 · Блок 2B · Планы и мечты</div>
+  <h1>Планы, намерения, <span class="hl">мечты</span></h1>
+  <p class="sub">Espero, pienso, me gustaría — говорить о будущем красиво и разнообразно</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Выражать цели и мечты 8 разными конструкциями</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>Аудирование</strong><p>Dreaming Spanish Beginner — истории о целях</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Рассказываем о мечтах, целях и планах на год</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>8 способов говорить о будущем</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Мы уже знаем ir + a и Futuro Simple. Но в живой речи испанцы используют намного больше конструкций для выражения намерений, желаний и мечт. Вот полная коллекция.</p>
+
+  <div class="future-card">
+    <div class="fc-tag">Намерение (твёрдое)</div>
+    <div class="fc-form">Pienso + infinitivo</div>
+    <p>Pienso estudiar medicina. — Я намерен учиться на врача. (Решение уже принято)<br>
+    Pienso mudarme a España. — Я намерен переехать в Испанию.</p>
+  </div>
+
+  <div class="future-card">
+    <div class="fc-tag">Надежда / ожидание</div>
+    <div class="fc-form">Espero + infinitivo</div>
+    <p>Espero conseguir el trabajo. — Надеюсь получить работу.<br>
+    Espero verte pronto. — Надеюсь увидеть тебя скоро.</p>
+  </div>
+
+  <div class="future-card">
+    <div class="fc-tag">Мягкое желание (мечта)</div>
+    <div class="fc-form">Me gustaría + infinitivo</div>
+    <p>Me gustaría aprender japonés. — Мне бы хотелось выучить японский.<br>
+    Me gustaría vivir cerca del mar. — Мне бы хотелось жить у моря.</p>
+  </div>
+
+  <div class="future-card">
+    <div class="fc-tag">Желание (более сильное)</div>
+    <div class="fc-form">Quiero / Quisiera + infinitivo</div>
+    <p>Quiero cambiar de trabajo. — Я хочу сменить работу.<br>
+    Quisiera visitar Japón. — Я бы хотел посетить Японию. (quisiera = более вежливо)</p>
+  </div>
+
+  <div class="future-card">
+    <div class="fc-tag">Цель / ради чего</div>
+    <div class="fc-form">Mi objetivo es + infinitivo / Mi sueño es + infinitivo</div>
+    <p>Mi objetivo es hablar español con fluidez. — Моя цель — говорить на испанском свободно.<br>
+    Mi sueño es vivir en Barcelona. — Моя мечта — жить в Барселоне.</p>
+  </div>
+
+  <div class="future-card">
+    <div class="fc-tag">Планирую конкретно</div>
+    <div class="fc-form">Tengo pensado / Tengo planeado + infinitivo</div>
+    <p>Tengo pensado hacer un viaje en junio. — Я планирую поехать в путешествие в июне.<br>
+    Tengo planeado aprender catalán. — Я планирую выучить каталонский.</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Градация намерений</h4>
+    <p>От сильного к слабому:<br>
+    <strong>Pienso</strong> (твёрдое решение) → <strong>Quiero</strong> (желание) → <strong>Espero</strong> (надежда) → <strong>Me gustaría</strong> (мечта, желание с неопределённостью).<br>
+    В испанском это имеет значение — собеседник понимает степень твоей решимости.</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: esperar</h4>
+    <p><strong>Esperar</strong> может означать и «ждать», и «надеяться»:<br>
+    Te espero aquí. — Я жду тебя здесь.<br>
+    Espero que llegues pronto. — Надеюсь, ты приедешь скоро.<br>
+    Контекст всегда даёт понять значение!</p>
+  </div>
+</div>
+
+<!-- SECTION 2: СЛОВАРЬ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — мечты, цели, амбиции</h2>
+  </div>
+
+  <table>
+    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td>el sueño</td><td>[эль СУЭньо]</td><td>мечта / сон</td><td>Mi sueño es vivir en España. — Моя мечта — жить в Испании.</td></tr>
+    <tr><td>el objetivo</td><td>[эль обхетИво]</td><td>цель, задача</td><td>Tengo un objetivo claro. — У меня есть чёткая цель.</td></tr>
+    <tr><td>la meta</td><td>[ла МЕта]</td><td>цель, финишная черта</td><td>Mi meta es correr una maratón. — Моя цель — пробежать марафон.</td></tr>
+    <tr><td>la ilusión</td><td>[ла илуСЬОН]</td><td>мечта, надежда (не иллюзия!)</td><td>Tengo mucha ilusión. — Я очень воодушевлён / мечтаю об этом.</td></tr>
+    <tr><td>conseguir</td><td>[консеГИР]</td><td>добиться, получить</td><td>Espero conseguirlo. — Надеюсь этого добиться.</td></tr>
+    <tr><td>lograr</td><td>[лоГРАР]</td><td>достичь, добиться</td><td>Voy a lograr mis objetivos. — Я добьюсь своих целей.</td></tr>
+    <tr><td>esforzarse</td><td>[эсфорСАРсе]</td><td>стараться, прилагать усилия</td><td>Me voy a esforzar mucho. — Я буду очень стараться.</td></tr>
+    <tr><td>el plazo</td><td>[эль ПЛАсо]</td><td>срок, дедлайн</td><td>El plazo es en junio. — Срок — в июне.</td></tr>
+    <tr><td>a corto/largo plazo</td><td>[а КОРто/ЛАРго ПЛАсо]</td><td>в краткосрочной/долгосрочной перспективе</td><td>A largo plazo quiero ser independiente. — В долгосрочной перспективе хочу быть независимым.</td></tr>
+    <tr><td>el reto</td><td>[эль РЕто]</td><td>вызов, испытание</td><td>Aprender español es un reto. — Учить испанский — это вызов.</td></tr>
+    <tr><td>merecer la pena</td><td>[мереСЕР ла ПЕна]</td><td>стоить того</td><td>Merece la pena el esfuerzo. — Усилие того стоит.</td></tr>
+  </table>
+
+  <div class="callout info">
+    <h4>🇬🇧 Ложный друг: ilusión</h4>
+    <p>Английское «illusion» = иллюзия, обман. Но испанское <strong>ilusión</strong> = воодушевление, мечта, надежда. «Tengo mucha ilusión» = «Я очень воодушевлён, мечтаю об этом» — это позитивное слово!</p>
+  </div>
+</div>
+
+<!-- SECTION 3: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Конструкции намерений</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Правильная конструкция</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как выразить твёрдое намерение «Я намерен переехать в Барселону»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Pienso mudarme a Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Espero mudarme a Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Me gustaría mudarme a Barcelona</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Что означает «Tengo mucha ilusión»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Я очень воодушевлён / мечтаю</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">У меня большая иллюзия</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Я заблуждаюсь</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Как сказать «Моя мечта — говорить по-испански свободно»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Tengo pensado hablar español</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Mi sueño es hablar español con fluidez</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Pienso hablar español</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Te espero aquí» vs «Espero conseguirlo» — что общего?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Глагол esperar — в первом «ждать», во втором «надеяться»</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Оба значат «ждать»</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Оба значат «надеяться»</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Merece la pena» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">стоит того</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">заслуживает наказания</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">хватает сил</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Самый вежливый способ выразить желание:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Quisiera + infinitivo</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Quiero + infinitivo</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Pienso + infinitivo</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Выбери правильную конструкцию</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. ___ conseguir la visa este año. (надеюсь получить — esperar)</div>
+      <input type="text" class="text-input" placeholder="Espero / Pienso / Me gustaría..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','Espero','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ Espero — «Espero conseguir la visa este año» = Надеюсь получить визу в этом году.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Mi ___ es hablar cinco idiomas. (цель / мечта)</div>
+      <input type="text" class="text-input" placeholder="sueño / objetivo / ilusión..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','sueño','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ sueño (или objetivo) — «Mi sueño es hablar cinco idiomas» = Моя мечта — говорить на пяти языках.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. ___ aprender a tocar la guitarra. (мне бы хотелось)</div>
+      <input type="text" class="text-input" placeholder="Me gustaría / Pienso / Espero..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','Me gustaría','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ Me gustaría — «Me gustaría aprender a tocar la guitarra» = Мне бы хотелось научиться играть на гитаре.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Tengo ___ hacer un curso de cocina. (у меня есть план)</div>
+      <input type="text" class="text-input" placeholder="pensado / sueño / objetivo..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','pensado','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ pensado — «Tengo pensado hacer un curso de cocina» = Я планирую пройти кулинарный курс.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. El esfuerzo ___ la pena. (стоит того)</div>
+      <input type="text" class="text-input" placeholder="merece / vale / cuesta..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','merece','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ merece — «El esfuerzo merece la pena» = Усилие стоит того.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — Мечты и цели</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Разговор о планах
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ита</div>
+      <div><div class="dlg-es">¿Tienes algún objetivo para este año?</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">У тебя есть какая-то цель на этот год?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Серг</div>
+      <div><div class="dlg-es">Sí, pienso aprender español bien. Tengo planeado llegar al nivel B2 antes de mudarme a España.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Да, я намерен хорошо выучить испанский. Я планирую достичь уровня B2 до переезда в Испанию.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ита</div>
+      <div><div class="dlg-es">¡Qué ilusión! ¿Y a corto plazo, qué esperas lograr?</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Как здорово! А в краткосрочной перспективе — чего ты надеешься достичь?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Серг</div>
+      <div><div class="dlg-es">Espero poder mantener conversaciones básicas antes de fin de año. Me gustaría también visitar España el verano que viene.</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Надеюсь уметь поддерживать базовые разговоры до конца года. Также мне бы хотелось посетить Испанию следующим летом.</div></div>
+    </div>
+    <div id="tr-dlg1" style="display:none"></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Рабочие амбиции
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Луис</div>
+      <div><div class="dlg-es">¿Cuál es tu sueño profesional?</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Какая у тебя профессиональная мечта?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ева</div>
+      <div><div class="dlg-es">Mi sueño es trabajar de forma independiente. Quisiera crear mi propia empresa y ser mi propio jefe.</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Моя мечта — работать самостоятельно. Я бы хотела создать свою компанию и быть собственным боссом.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Луис</div>
+      <div><div class="dlg-es">¿Y piensas que es posible lograrlo?</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">И ты думаешь, что это возможно достичь?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ева</div>
+      <div><div class="dlg-es">Sí, merece la pena intentarlo. Me voy a esforzar mucho. El reto es grande, pero el objetivo vale la pena.</div>
+      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Да, стоит попробовать. Я буду очень стараться. Вызов большой, но цель того стоит.</div></div>
+    </div>
+    <div id="tr-dlg2" style="display:none"></div>
+  </div>
+</div>
+
+<!-- SECTION 6: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — Мои мечты и цели</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Базовый — Три цели</div>
+    <p>Расскажи о трёх своих целях: краткосрочная, среднесрочная и мечта. Используй разные конструкции.</p>
+    <div class="es">A corto plazo, pienso... A largo plazo, espero... Mi sueño es... Me gustaría...</div>
+    <div class="hint">Используй все 4 конструкции: pienso, espero, me gustaría, mi sueño/objetivo es.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый — Интервью</div>
+    <p>Представь, что даёшь интервью испанскому журналу. Расскажи о профессиональных и личных целях — 2 минуты.</p>
+    <div class="es">Tengo planeado... Espero lograr... Mi objetivo principal es... Quisiera también... Merece la pena...</div>
+    <div class="hint">Тема: переезд в Испанию, изучение языка, профессиональные амбиции, семья, образ жизни.</div>
+  </div>
+</div>
+
+<!-- SECTION 7: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Испанский оптимизм и «ilusión»</h4>
+    <p>Слово «ilusión» в испанском несёт особую культурную нагрузку. Говорить «Tengo mucha ilusión» — значит выражать воодушевление, предвкушение, страстное желание. Испанцы используют это слово постоянно: перед путешествием, перед проектом, перед встречей. «¡Qué ilusión!» — восклицание радости и предвкушения. В испанской культуре открыто говорить о своих мечтах и целях — это норма, а не нескромность. Амбициозность приветствуется: «¡Sigue tus sueños!» (Следуй своим мечтам!) — распространённое ободрение.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: ANKI + ДОМАШНЕЕ ЗАДАНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — карточки для этого урока</div>
+    <ul>
+      <li><strong>Pienso + infinitivo</strong> — твёрдое намерение</li>
+      <li><strong>Espero + infinitivo</strong> — надеюсь...</li>
+      <li><strong>Me gustaría + infinitivo</strong> — мне бы хотелось...</li>
+      <li><strong>Mi sueño es</strong> — моя мечта — это</li>
+      <li><strong>la ilusión</strong> — воодушевление, мечта (НЕ иллюзия!)</li>
+      <li><strong>conseguir</strong> — добиться, получить</li>
+      <li><strong>merecer la pena</strong> — стоить того</li>
+      <li><strong>a largo plazo</strong> — в долгосрочной перспективе</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Напиши «жизненный план» на испанском: 3 краткосрочных цели + 3 долгосрочных мечты</li>
+      <li>Используй все 6 конструкций из урока хотя бы по одному разу</li>
+      <li>Запомни разницу: ilusión (испанская мечта) ≠ illusion (английская иллюзия)</li>
+      <li>Послушай Dreaming Spanish — найди espero, pienso, me gustaría в речи</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок L42 завершён!</h4>
+    <p>Теперь ты умеешь говорить о будущем красиво и разнообразно — не только «voy a» и «futuro». Следующий урок — сравнения: más que, menos que, tan como. Научимся сравнивать всё и вся!</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L41.html" class="nav-link-btn">← L41</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L43.html" class="nav-link-btn">L43 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L42';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'Pienso = твёрдое намерение (решение уже принято). Espero = надежда. Me gustaría = мечта.',
+  q2:'ilusión в испанском = воодушевление, мечта. Не путай с английским «illusion» (иллюзия, обман).',
+  q3:'Mi sueño es + infinitivo — идеальная конструкция для выражения главной мечты жизни.',
+  q4:'esperar = «ждать» с дополнением-объектом (te espero), «надеяться» с infinitivo (espero conseguir).',
+  q5:'merecer la pena = стоить того, быть достойным усилий. Буквально: «заслуживать боли/труда».',
+  q6:'Quisiera = Condicional от querer. Это самая вежливая форма желания. Quiero — прямо, quisiera — учтиво.',
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
+function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const rows=document.querySelectorAll(`[id^="${id}-"]`);rows.forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

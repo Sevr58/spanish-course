@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L36: Indefinido vs. Imperfecto — когда что использовать</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+
+/* Nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero h1 .hl2{color:var(--blue)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+
+/* Progress bar */
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--blue);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+
+/* Section */
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+
+/* Callout */
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+
+/* Compare cards */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+@media(max-width:600px){.compare-grid{grid-template-columns:1fr}}
+.compare-card{border-radius:8px;padding:16px 18px;border-top:3px solid}
+.compare-card.indef{background:rgba(255,214,10,.06);border-color:var(--gold)}
+.compare-card.imperf{background:rgba(69,123,157,.08);border-color:var(--blue)}
+.compare-card h4{font-size:.9rem;font-weight:700;margin-bottom:10px}
+.compare-card ul{margin-left:14px;font-size:.85rem;color:var(--muted)}
+.compare-card li{margin-bottom:5px}
+.compare-card .tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.compare-card.indef .tag{color:var(--gold)}
+.compare-card.imperf .tag{color:var(--blue)}
+
+/* Vocab table */
+.vocab-table{width:100%;border-collapse:collapse;margin:14px 0}
+.vocab-table th{background:var(--bg3);color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es-indef{color:var(--gold);font-weight:600}
+.vocab-table .es-imperf{color:var(--blue);font-weight:600}
+
+/* Story block */
+.story-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:14px 0;line-height:2}
+.story-block .indef-word{color:var(--gold);font-weight:700;border-bottom:1px dotted var(--gold)}
+.story-block .imperf-word{color:var(--blue);font-weight:700;border-bottom:1px dotted var(--blue)}
+
+/* Speaking bubble */
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+
+/* Quiz */
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+
+/* Text exercise */
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+
+/* Dialogue */
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+
+/* Cultural note */
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+
+/* Anki box */
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+
+/* Done button */
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+
+/* Responsive */
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L35.html">← L35</a>
+  <span class="level">A2 · Фаза 2 · День 75</span>
+  <a href="L37.html">L37 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔵 Фаза 2 · Прошедшее время · Блок B2A</div>
+  <h1><span class="hl">Indefinido</span> vs. <span class="hl2">Imperfecto</span></h1>
+  <p class="sub">Главный выбор испанского прошлого — когда что использовать</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Понять разницу между двумя прошедшими временами и никогда не путать их</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">🎬</div><div><strong>Метафора</strong><p>Фон (Imperfecto) vs. событие (Indefinido) — как в кино</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Пересказать историю, правильно чередуя оба времени</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: Метафора кино -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Главная метафора: Фон и Событие</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Представь, что ты снимаешь кино. У тебя есть <strong>фон</strong> (декорации, обстановка, погода, привычки) и <strong>события</strong> (действия, которые произошли и закончились).</p>
+
+  <div class="compare-grid">
+    <div class="compare-card imperf">
+      <div class="tag">Imperfecto = ФОН 🎨</div>
+      <h4>Описание, фон, привычки прошлого</h4>
+      <ul>
+        <li>Как всё <em>выглядело</em> и <em>было</em></li>
+        <li>Что происходило <em>в процессе</em></li>
+        <li>Что делалось <em>регулярно</em></li>
+        <li>Какая была <em>погода, обстановка</em></li>
+        <li>Как <em>чувствовал</em> себя человек</li>
+      </ul>
+    </div>
+    <div class="compare-card indef">
+      <div class="tag">Indefinido = СОБЫТИЕ ⚡</div>
+      <h4>Конкретные действия, точечные события</h4>
+      <ul>
+        <li>Что <em>произошло</em> (и закончилось)</li>
+        <li>Чёткая последовательность: сначала... потом...</li>
+        <li>Событие, которое <em>прервало</em> фон</li>
+        <li>Однократное или ограниченное по времени действие</li>
+        <li>Ответ на вопрос «что случилось?»</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Ключевая пара — разрыв сцены</h4>
+    <p><strong>Imperfecto + когда + Indefinido</strong><br>
+    <em>Dormía (спал — фон) cuando sonó (зазвонил — событие) el teléfono.</em><br>
+    Я спал, когда зазвонил телефон. — Один глагол задаёт фон, другой врывается в него как событие.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2: Правила с маркерами -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Маркеры — слова-подсказки</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Некоторые слова почти всегда указывают на определённое время. Это надёжные подсказки:</p>
+
+  <div class="compare-grid">
+    <div class="compare-card imperf">
+      <div class="tag">Маркеры Imperfecto</div>
+      <h4>Регулярность, описание</h4>
+      <ul>
+        <li><strong>siempre</strong> — всегда</li>
+        <li><strong>normalmente / generalmente</strong> — обычно</li>
+        <li><strong>a veces</strong> — иногда</li>
+        <li><strong>antes</strong> — раньше</li>
+        <li><strong>de niño/a</strong> — в детстве</li>
+        <li><strong>cada día / todos los días</strong> — каждый день</li>
+        <li><strong>mientras</strong> — пока, в то время как</li>
+        <li><strong>cuando era pequeño</strong> — когда был маленьким</li>
+      </ul>
+    </div>
+    <div class="compare-card indef">
+      <div class="tag">Маркеры Indefinido</div>
+      <h4>Конкретный момент</h4>
+      <ul>
+        <li><strong>ayer</strong> — вчера</li>
+        <li><strong>anteayer</strong> — позавчера</li>
+        <li><strong>el lunes / el martes...</strong> — в понедельник...</li>
+        <li><strong>la semana pasada</strong> — на прошлой неделе</li>
+        <li><strong>hace dos días/años</strong> — два дня/года назад</li>
+        <li><strong>en 2020 / en enero</strong> — в 2020 году / в январе</li>
+        <li><strong>de repente</strong> — внезапно</li>
+        <li><strong>entonces</strong> — тогда (конкретно)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Слово «cuando» может быть с обоими временами!</h4>
+    <ul>
+      <li><em>Cuando <strong style="color:var(--blue)">era</strong> joven, <strong style="color:var(--blue)">vivía</strong> en Moscú.</em> — Когда я был молодым, жил в Москве. (оба — фон, обычная ситуация)</li>
+      <li><em>Cuando <strong style="color:var(--blue)">salía</strong> de casa, <strong style="color:var(--gold)">empezó</strong> a llover.</em> — Когда выходил из дома, начался дождь. (фон + событие)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3: Разбор текста — Цветовое кодирование -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Разбор истории — Фон и события</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Прочитай историю. <span style="color:var(--gold);font-weight:700">Жёлтый = Indefinido</span> (события), <span style="color:var(--blue);font-weight:700">синий = Imperfecto</span> (фон).</p>
+
+  <div class="story-block">
+    <span class="imperf-word">Era</span> una tarde de verano. El sol <span class="imperf-word">brillaba</span> y los niños <span class="imperf-word">jugaban</span> en el parque. María <span class="imperf-word">leía</span> un libro en el banco cuando de repente <span class="indef-word">oyó</span> un ruido extraño. <span class="indef-word">Se levantó</span> y <span class="indef-word">miró</span> hacia los árboles. Entre las ramas <span class="imperf-word">había</span> un gato pequeño que <span class="indef-word">maullaba</span>* desesperadamente. María <span class="indef-word">llamó</span> a los bomberos. Ellos <span class="indef-word">llegaron</span> en diez minutos y <span class="indef-word">rescataron</span> al gato.
+  </div>
+
+  <p style="margin-top:10px;font-size:.82rem;color:var(--muted)">*maullaba (мяукал) — здесь как продолжающееся действие (что делал кот когда его нашли), поэтому Imperfecto.</p>
+
+  <div class="callout info">
+    <h4>📌 Разбор: почему так?</h4>
+    <ul>
+      <li><em>Era una tarde</em> — описание (был вечер), фон → Imperfecto</li>
+      <li><em>brillaba, jugaban, leía</em> — что происходило вокруг → Imperfecto</li>
+      <li><em>oyó</em> — конкретный момент: она услышала → Indefinido (событие, прервавшее чтение)</li>
+      <li><em>se levantó, miró, llamó, llegaron, rescataron</em> — цепочка событий → Indefinido</li>
+      <li><em>había</em> — там был (описание места) → Imperfecto</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4: Особые случаи — глаголы меняют смысл -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Сложный момент — одни глаголы меняют смысл</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Некоторые глаголы <strong>меняют смысл</strong> в зависимости от времени. Это важно знать:</p>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Глагол</th><th style="color:var(--blue)">Imperfecto (состояние)</th><th style="color:var(--gold)">Indefinido (действие)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>saber</strong></td>
+        <td class="es-imperf">sabía — знал (давно)</td>
+        <td class="es-indef">supe — узнал (в тот момент)</td>
+      </tr>
+      <tr>
+        <td><strong>conocer</strong></td>
+        <td class="es-imperf">conocía — был знаком</td>
+        <td class="es-indef">conocí — познакомился (впервые)</td>
+      </tr>
+      <tr>
+        <td><strong>querer</strong></td>
+        <td class="es-imperf">quería — хотел (желание)</td>
+        <td class="es-indef">quise — попытался / захотел (конкретно)</td>
+      </tr>
+      <tr>
+        <td><strong>tener</strong></td>
+        <td class="es-imperf">tenía — имел (состояние)</td>
+        <td class="es-indef">tuve — получил, у меня оказалось</td>
+      </tr>
+      <tr>
+        <td><strong>poder</strong></td>
+        <td class="es-imperf">podía — мог (в принципе)</td>
+        <td class="es-indef">pude — смог (удалось)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Примеры на контрасте</h4>
+    <p><em>Sabía que era difícil.</em> — Я знал, что это сложно. (давнее знание)<br>
+    <em>Supe que habías llamado.</em> — Я узнал, что ты звонил. (новое знание в тот момент)<br><br>
+    <em>Conocía a Juan desde niño.</em> — Я знал Хуана с детства. (давнее знакомство)<br>
+    <em>Conocí a mi esposa en Barcelona.</em> — Я познакомился с женой в Барселоне. (конкретный момент)</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5: Тест 1 -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 1 — Indefinido или Imperfecto?</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильное время</h3>
+
+    <!-- Q1 -->
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. De niño, yo siempre ___ (jugar) al fútbol. (В детстве я всегда играл в футбол.)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">jugaba (Imperfecto)</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">jugué (Indefinido)</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Ayer ella ___ (llamar) por teléfono a su madre. (Вчера она позвонила маме.)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">llamaba (Imperfecto)</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">llamó (Indefinido)</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Mientras ___ (yo / leer), de repente sonó el teléfono. (Пока я читал, вдруг зазвонил телефон.)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">leía (Imperfecto)</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">leí (Indefinido)</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Hace tres años, (yo) ___ (conocer) a mi mejor amigo en la universidad. (3 года назад я познакомился...)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">conocía</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">conocí</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Cuando era pequeño, mi familia ___ (vivir) en Moscú. (Когда я был маленьким, моя семья жила в Москве.)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">vivía (Imperfecto)</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">vivió (Indefinido)</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. De repente ___ (llover). Todos corrieron a cubierto. (Вдруг пошёл дождь.)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">llovía</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">empezó a llover</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6: Тест 2 — Вставь нужную форму -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Тест 2 — Вставь правильную форму</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Напиши нужную форму глагола — Indefinido или Imperfecto.</p>
+
+  <div class="quiz">
+    <h3>✏️ Выбери и запиши форму</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. Antes, yo siempre ___ (desayunar) a las ocho. (Раньше я всегда завтракал в 8.)</div>
+      <input type="text" class="text-input" placeholder="Imperfecto, yo..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','desayunaba','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ desayunaba — «antes» + «siempre» = регулярное прошлое = Imperfecto</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. La semana pasada, nosotros ___ (ir) al cine. (На прошлой неделе мы ходили в кино.)</div>
+      <input type="text" class="text-input" placeholder="Indefinido, nosotros..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','fuimos','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ fuimos — «la semana pasada» = конкретное прошлое = Indefinido. ir → fui/fuiste/fue/fuimos/fuisteis/fueron</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. Ella ___ (trabajar) cuando yo ___ (llegar). (Она работала, когда я пришёл.)</div>
+      <input type="text" class="text-input" placeholder="trabajaba, llegué..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','trabajaba, llegué','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ trabajaba (фон, Imperfecto) + llegué (событие, Indefinido). Классический паттерн!</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. En 2015, (yo) ___ (conocer) a mi esposa en Moscú. (В 2015 году я познакомился с женой.)</div>
+      <input type="text" class="text-input" placeholder="Indefinido, yo..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','conocí','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ conocí — «en 2015» = конкретный год = Indefinido. conocer в Indefinido = познакомился впервые.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7: Диалоги -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Диалоги — История с чередованием времён</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Нажми «Перевод» чтобы проверить.</p>
+
+  <!-- Диалог 1 -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Как ты нашёл работу в Испании?
+      <button class="dlg-toggle" onclick="toggleDlg('d1')">Перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">¿Cómo encontraste trabajo en Barcelona?</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Как ты нашёл работу в Барселоне?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Женя</div>
+      <div>
+        <div class="dlg-es">Cuando llegué a Barcelona, no sabía nada de español. Pero buscaba trabajo cada día en internet.</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Когда я приехал в Барселону, я совсем не знал испанского. Но каждый день искал работу в интернете.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">¿Y cuándo encontraste algo?</div>
+        <div class="dlg-ru d1-tr" style="display:none">[А когда ты что-то нашёл?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Женя</div>
+      <div>
+        <div class="dlg-es">Un día vi un anuncio en LinkedIn. Me gustó mucho y mandé el CV. Al día siguiente me llamaron.</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Однажды я увидел объявление в LinkedIn. Оно мне очень понравилось и я отправил CV. На следующий день мне позвонили.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">¡Increíble! ¿Cómo fue la entrevista?</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Невероятно! Как прошло собеседование?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Женя</div>
+      <div>
+        <div class="dlg-es">Estaba muy nervioso, pero el jefe era muy amable. Me hicieron preguntas fáciles y me contrataron.</div>
+        <div class="dlg-ru d1-tr" style="display:none">[Я очень нервничал, но начальник был очень добрым. Мне задали простые вопросы и меня взяли на работу.]</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Диалог 2 -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: История из детства
+      <button class="dlg-toggle" onclick="toggleDlg('d2')">Перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карла</div>
+      <div>
+        <div class="dlg-es">Cuéntame un recuerdo de tu infancia.</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Расскажи мне воспоминание из детства.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div>
+        <div class="dlg-es">Cuando era niño, vivíamos en un pueblo pequeño. Los veranos eran largos y siempre jugábamos afuera.</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Когда я был ребёнком, мы жили в маленьком городке. Лето было длинным и мы всегда играли на улице.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div>
+        <div class="dlg-es">Un verano, encontré un perro perdido cerca del río. Lo llevé a casa y mis padres lo adoptaron.</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Одним летом я нашёл потерявшуюся собаку у реки. Я принёс её домой и родители её усыновили.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карла</div>
+      <div>
+        <div class="dlg-es">¡Qué bonita historia! ¿Cómo se llamaba el perro?</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Какая красивая история! Как звали собаку?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div>
+        <div class="dlg-es">Se llamaba Barsik. Vivió con nosotros doce años.</div>
+        <div class="dlg-ru d2-tr" style="display:none">[Его звали Барсик. Он прожил с нами двенадцать лет.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Твоя очередь</div>
+    <p>Расскажи историю из детства, используя оба времени. Начни так:</p>
+    <div class="es">Cuando era niño/a, vivía en... Siempre... Un día...</div>
+    <div class="hint">Фон (vivía, jugaba, era...) → событие (un día + Indefinido). 5-6 предложений.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8: Культурная заметка + Anki + ДЗ -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культура, Anki и план на завтра</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Испанцы — мастера рассказывать истории</h4>
+    <p>Испанская культура очень нарративная: люди рассказывают истории везде — в баре, на работе, в семье. Конструкция «фон (Imperfecto) + событие (Indefinido)» — это основа всех испанских рассказов. Когда испанец слышит правильное чередование времён, он сразу понимает: этот человек умеет говорить по-испански. Это маркер уровня выше A2. Именно поэтому эта тема — одна из самых важных во всём курсе.</p>
+  </div>
+
+  <div style="margin-top:16px" class="anki">
+    <div class="atag">🃏 Anki — карточки для этого урока</div>
+    <ul>
+      <li><strong>Imperfecto = фон</strong>: описание, привычки, состояние в прошлом</li>
+      <li><strong>Indefinido = событие</strong>: конкретное действие, однократное, завершённое</li>
+      <li>Паттерн: <strong>Dormía cuando sonó el teléfono.</strong> — Я спал, когда зазвонил телефон.</li>
+      <li><strong>conocer в Indef</strong> = познакомился; <strong>в Imperf</strong> = был знаком</li>
+      <li><strong>saber en Indef</strong> = узнал; <strong>en Imperf</strong> = знал</li>
+      <li>Маркеры Imperfecto: siempre, normalmente, antes, de niño, cada día</li>
+      <li>Маркеры Indefinido: ayer, la semana pasada, hace X años, de repente, en 2020</li>
+    </ul>
+    <p style="margin-top:8px;font-size:.78rem;color:var(--muted)">Это урок, который стоит повторить несколько раз — разница между временами — база испанского.</p>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Dreaming Spanish Beginner: смотри видео-истории и замечай, как меняются времена</li>
+      <li>Напиши историю (8-10 предложений): «Когда я был ребёнком...» — чередуй Imperfecto и Indefinido</li>
+      <li>Возьми любой текст на испанском и подчеркни все глаголы прошедшего времени — разбери, почему Imperf или Indef</li>
+      <li>Повтори Anki этого урока и добавь паттерны маркеров</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Самый важный урок пройден!</h4>
+    <p>Ты понял разницу между прошедшими временами — это то, что большинство учит годами. Последний урок блока — научимся рассказывать цельные истории с началом, серединой и концом, используя все три прошедших времени вместе.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L35.html" class="nav-link-btn">← L35</a>
+    <a href="L37.html" class="nav-link-btn">L37: Рассказываем истории →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+// ─── Progress tracking ────────────────────────────────────
+const LESSON_ID = 'L36';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+// Check if already done
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizAnswers = {
+  q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a'
+};
+const quizExpl = {
+  q1:'jugaba (Imperfecto) — «siempre» + «de niño» = маркеры привычного действия в прошлом = Imperfecto.',
+  q2:'llamó (Indefinido) — «ayer» = конкретный день в прошлом = Indefinido.',
+  q3:'leía (Imperfecto) — «mientras» = продолжающееся действие (фон), в то время как произошло событие (sonó).',
+  q4:'conocí (Indefinido) — «hace tres años» = конкретный момент. Conocer в Indefinido = познакомился впервые.',
+  q5:'vivía (Imperfecto) — «cuando era pequeño» + контекст детства = фон, постоянное состояние = Imperfecto.',
+  q6:'empezó a llover (Indefinido) — «de repente» = внезапное событие. Это Indefinido. Просто «llovía» означало бы «шёл дождь» (фон), но «внезапно начался» — это событие.'
+};
+
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || correct.startsWith(val) && val.length >= correct.length-2) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+function toggleDlg(cls) {
+  const rows = document.querySelectorAll('.' + cls + '-tr');
+  const isHidden = rows[0] && rows[0].style.display === 'none';
+  rows.forEach(r => r.style.display = isHidden ? 'block' : 'none');
+}
+
+function toggleTranslation(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+
+// Hide translations by default
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 8;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

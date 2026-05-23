@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L111: DELE B1 — Говорение: личные темы</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--purple);color:#fff;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--purple)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout.dele{background:rgba(157,78,221,.1);border-color:var(--purple)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(157,78,221,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--purple)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--purple);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker.b{color:var(--purple)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.vocab-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.vocab-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es-word{color:var(--gold);font-weight:600}
+.exam-box{background:rgba(157,78,221,.06);border:2px solid rgba(157,78,221,.4);border-radius:10px;padding:20px 22px;margin:16px 0}
+.exam-box .exam-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:10px}
+.exam-box h4{font-weight:700;margin-bottom:8px}
+.exam-box p{font-size:.9rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · DELE Prep · День 237</span>
+  <a href="L112.html">L112 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
+  <h1>DELE B1: Говорение — <span class="hl">личные темы</span></h1>
+  <p class="sub">Себя, семья, привычки, воспоминания — готовимся к устной части экзамена</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎓</div><div><strong>DELE формат</strong><p>Tarea 1–2 устной части: монолог + интерактив</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут + Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Истории о жизни, автобиографии</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Mock task</strong><p>4 минуты монолог на личную тему</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: DELE FORMAT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Формат DELE B1 — устная часть</h2>
+  </div>
+
+  <div class="callout dele">
+    <h4>📋 Структура Prueba oral DELE B1</h4>
+    <ul>
+      <li><strong>Tarea 1 (3–4 мин)</strong> — Valoración de una encuesta: ты смотришь на опрос/статистику и рассказываешь своё мнение о теме</li>
+      <li><strong>Tarea 2 (3–4 мин)</strong> — Descripción de una imagen + диалог с экзаменатором о личном опыте</li>
+      <li><strong>Tarea 3 (3–4 мин)</strong> — Simulación: ролевая игра/переговоры с экзаменатором</li>
+      <li><strong>Подготовка</strong> — 10–15 минут до начала (записываешь заметки, но не читаешь по бумаге)</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Что оценивается</h4>
+    <ul>
+      <li><strong>Coherencia y cohesión</strong> — логичность и связность</li>
+      <li><strong>Alcance léxico y gramatical</strong> — разнообразие словаря и грамматики</li>
+      <li><strong>Corrección</strong> — грамматическая точность</li>
+      <li><strong>Pronunciación e entonación</strong> — произношение</li>
+      <li><strong>Fluidez</strong> — беглость (используй fillers из L110!)</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Частые ошибки на устной части</h4>
+    <ul>
+      <li>Слишком короткие ответы — нужно говорить 3–4 минуты, не 30 секунд</li>
+      <li>Читать заготовленный текст — экзаменатор это заметит</li>
+      <li>Не реагировать на вопросы экзаменатора — это интерактив, не монолог</li>
+      <li>Использовать только presente — разнообразь временами: pretérito, futuro, condicional</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — личные темы на B1</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример (в монологе)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="es-word">la infancia</td><td>[инфан-сья]</td><td>детство</td><td>Durante mi infancia vivía en una ciudad pequeña.</td></tr>
+      <tr><td class="es-word">crecer</td><td>[кресер]</td><td>расти (взрослеть)</td><td>Crecí en una familia numerosa.</td></tr>
+      <tr><td class="es-word">los recuerdos</td><td>[рекуэрдос]</td><td>воспоминания</td><td>Tengo muy buenos recuerdos de esa época.</td></tr>
+      <tr><td class="es-word">el entorno familiar</td><td>[энторно]</td><td>семейная обстановка</td><td>Mi entorno familiar era muy unido.</td></tr>
+      <tr><td class="es-word">las aficiones</td><td>[афисьонэс]</td><td>увлечения, хобби</td><td>Mis aficiones son la música y el deporte.</td></tr>
+      <tr><td class="es-word">los hábitos</td><td>[абитос]</td><td>привычки</td><td>Tengo el hábito de levantarme temprano.</td></tr>
+      <tr><td class="es-word">el carácter</td><td>[каракtер]</td><td>характер, личность</td><td>Soy una persona de carácter reservado.</td></tr>
+      <tr><td class="es-word">los valores</td><td>[балорэс]</td><td>ценности</td><td>Los valores que más me importan son la honestidad y la lealtad.</td></tr>
+      <tr><td class="es-word">la etapa</td><td>[этапа]</td><td>этап, период жизни</td><td>Esa fue la etapa más difícil de mi vida.</td></tr>
+      <tr><td class="es-word">superarse</td><td>[суперарсэ]</td><td>совершенствоваться, превосходить себя</td><td>Siempre intento superarme cada día.</td></tr>
+      <tr><td class="es-word">relacionarse con</td><td>[рэласьонарсэ]</td><td>общаться с, строить отношения</td><td>Me cuesta relacionarme con desconocidos.</td></tr>
+      <tr><td class="es-word">a partir de</td><td>[а партир дэ]</td><td>начиная с</td><td>A partir de los 18 años viví solo.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: STRUCTURES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Грамматика для монолога — структуры B1</h2>
+  </div>
+
+  <p style="margin-bottom:14px">На DELE B1 нужно показать <strong>разнообразие</strong> грамматики. Вот конструкции, которые работают на личных темах:</p>
+
+  <div class="callout info">
+    <h4>📝 Структуры для описания себя и прошлого</h4>
+    <ul>
+      <li><strong>Soy una persona que + indicativo:</strong> Soy una persona que valora mucho la familia.</li>
+      <li><strong>Desde pequeño/a + imperfecto:</strong> Desde pequeño me gustaba leer libros de aventuras.</li>
+      <li><strong>Lo que más me gusta es + infinitivo:</strong> Lo que más me gusta es pasar tiempo con mi familia.</li>
+      <li><strong>Aunque + subjuntivo/indicativo:</strong> Aunque soy introvertido, me relaciono bien con la gente.</li>
+      <li><strong>Si pudiera + condicional:</strong> Si pudiera volver atrás, estudiaría más idiomas.</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Conectores para el monólogo</h4>
+    <ul>
+      <li><strong>Introducir:</strong> En primer lugar, Para empezar, Lo primero que quiero decir es...</li>
+      <li><strong>Añadir:</strong> Además, También, Por otra parte, Asimismo...</li>
+      <li><strong>Concluir:</strong> En conclusión, Para terminar, En definitiva, En resumen...</li>
+      <li><strong>Contraste:</strong> Sin embargo, Aunque, A pesar de que, No obstante...</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — DELE формат и лексика</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Личные темы — проверка</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. В Tarea 1 устной части DELE B1 тебе нужно:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Прокомментировать опрос/статистику, выразить своё мнение</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Прочитать текст и перевести его</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Написать сочинение за 10 минут</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Как по-испански «воспоминания»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">los valores</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">los recuerdos</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">las aficiones</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Выбери правильный коннектор для вывода: «_____, mi experiencia fue muy positiva.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">En conclusión</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Sin embargo</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Aunque</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Desde pequeño me gustaba leer» — это пример использования:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Futuro simple</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Pretérito indefinido</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Pretérito imperfecto для привычек в прошлом</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Что значит «superarse»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Совершенствоваться, превосходить себя</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Сдаваться, отказываться</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Переезжать</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Aunque soy introvertido, me relaciono bien» — «aunque» здесь означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Потому что</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Несмотря на то, что / хотя</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">После того, как</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни монолог</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Вставь правильное слово</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «Soy una persona que _____ (ценит) mucho la amistad.» (present indicativo)</div>
+      <input type="text" class="text-input" placeholder="глагол valora / valoro..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','valora','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ valora — «soy una persona que + 3л. ед.ч.» Не «valoro» — потому что подлежащее «que» (=persona).</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «Durante mi _____ (детство) vivía en el campo.»</div>
+      <input type="text" class="text-input" placeholder="детство по-испански..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','infancia','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ infancia — детство. «Durante mi infancia» = в детстве.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «Lo que más me _____ (нравится) es pasar tiempo con mi familia.»</div>
+      <input type="text" class="text-input" placeholder="gusta / gustan..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','gusta','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ gusta — «lo que más me gusta es» + infinitivo. Подлежащее — «lo que» (единственное число).</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «Tengo muy buenos _____ (воспоминания) de mi adolescencia.»</div>
+      <input type="text" class="text-input" placeholder="recuerdos / memorias..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','recuerdos','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ recuerdos — воспоминания. «Memorias» тоже возможно, но менее разговорно.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «Si _____ (мог бы) elegir, viviría cerca del mar.» (condicional)</div>
+      <input type="text" class="text-input" placeholder="pudiera / podría..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','pudiera','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ pudiera — imperfecto de subjuntivo. «Si pudiera + condicional» = гипотетическое условие.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — устная часть DELE</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🎓 Tarea 2: Экзаменатор задаёт вопросы о личном опыте
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div>
+        <div class="dlg-es">¿Puedes hablarme un poco sobre tu infancia? ¿Dónde creciste?</div>
+        <div class="dlg-ru" id="tr-d1" style="display:none">Можешь рассказать мне немного о своём детстве? Где ты вырос?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div>
+        <div class="dlg-es">Pues, crecí en una ciudad bastante pequeña. Durante mi infancia, vivíamos en un barrio tranquilo y tengo muy buenos recuerdos de esa época. Lo que más me gustaba era jugar al fútbol con mis amigos en la calle.</div>
+        <div class="dlg-ru" id="tr-d1b" style="display:none">Ну, я вырос в небольшом городе. В детстве мы жили в тихом районе, и у меня очень хорошие воспоминания о том времени. Больше всего мне нравилось играть в футбол с друзьями на улице.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div>
+        <div class="dlg-es">¿Y cómo era tu familia? ¿Eras el mayor o el menor?</div>
+        <div class="dlg-ru" id="tr-d1c" style="display:none">А какой была твоя семья? Ты был старшим или младшим?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div>
+        <div class="dlg-es">Soy hijo único, así que crecí sin hermanos. Aunque a veces me sentía solo, de hecho eso me hizo más independiente. Mi entorno familiar era muy unido y mis padres siempre me apoyaron en todo.</div>
+        <div class="dlg-ru" id="tr-d1d" style="display:none">Я единственный ребёнок, поэтому рос без братьев и сестёр. Хотя иногда чувствовал себя одиноким, фактически это сделало меня более самостоятельным. Семейная обстановка была очень дружной, и родители всегда меня поддерживали.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🎓 Tarea 1: Монолог об опросе (самостоятельно)
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Tema</div>
+      <div>
+        <div class="dlg-es">Según una encuesta, el 65% de los jóvenes prefiere vivir lejos de su familia para tener más independencia. ¿Qué opinas sobre esto?</div>
+        <div class="dlg-ru" id="tr-d2" style="display:none">По данным опроса, 65% молодёжи предпочитает жить вдали от семьи ради большей независимости. Что ты думаешь об этом?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div>
+        <div class="dlg-es">En mi opinión, es comprensible que los jóvenes quieran independencia. Sin embargo, creo que los lazos familiares son muy importantes. Desde mi punto de vista, se puede ser independiente sin alejarse completamente de la familia. Además, en muchos países, como España, es tradición vivir cerca de los padres. Al fin y al cabo, la familia es una red de apoyo fundamental.</div>
+        <div class="dlg-ru" id="tr-d2b" style="display:none">На мой взгляд, понятно, что молодёжь хочет независимости. Однако я считаю, что семейные связи очень важны. С моей точки зрения, можно быть независимым, не отдаляясь полностью от семьи. Кроме того, во многих странах, например в Испании, традиционно жить рядом с родителями. В конце концов, семья — это фундаментальная сеть поддержки.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: SPEAKING MOCK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Mock Speaking — 4 минуты</h2>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-tag">🎓 DELE B1 Mock Task — Tarea 1</div>
+    <h4>Задание: прокомментируй эти данные</h4>
+    <p style="margin:10px 0;padding:12px;background:var(--bg);border-radius:6px;font-style:italic">
+      «Según un estudio reciente, el 72% de los españoles considera que las relaciones familiares son lo más importante en la vida, frente al 18% que prioriza el trabajo y el 10% que prefiere las amistades.»
+    </p>
+    <p>Говори 4 минуты: опиши данные → выскажи своё мнение → приведи 2 аргумента → расскажи о личном опыте → сделай вывод.</p>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Шаблон ответа</div>
+    <p>Используй эту структуру:</p>
+    <div class="es">«Según estos datos, la mayoría de los españoles... En mi opinión, esto se debe a que... Personalmente, en mi familia... Aunque también es verdad que... En conclusión, creo que...»</div>
+    <div class="hint">Минимум 3–4 разных времени: presente, imperfecto, futuro, condicional. Запишись на видео!</div>
+  </div>
+</div>
+
+<!-- SECTION 8: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Cultura española</div>
+    <h4>La familia en España — больше, чем просто «семья»</h4>
+    <p>В Испании концепция «familia» гораздо шире, чем принято в Северной Европе или России. Испанцы нередко живут с родителями до 30 лет — и это не считается неудачей, а нормой (тем более, что цены на жильё в Барселоне и Мадриде запредельные). Воскресный обед «comida del domingo» — почти священный ритуал, когда вся семья собирается за столом. На DELE эта тема всплывает регулярно: экзаменаторы ценят кандидатов, которые знают культурный контекст, а не только грамматику.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки Anki — личные темы B1</div>
+    <ul>
+      <li><strong>la infancia</strong> — детство | Durante mi infancia...</li>
+      <li><strong>los recuerdos</strong> — воспоминания | Tengo buenos recuerdos de...</li>
+      <li><strong>las aficiones</strong> — увлечения | Mis aficiones son...</li>
+      <li><strong>el carácter</strong> — характер | Soy de carácter...</li>
+      <li><strong>superarse</strong> — совершенствоваться | Intento superarme cada día.</li>
+      <li><strong>a partir de</strong> — начиная с | A partir de los 18 años...</li>
+      <li><strong>Aunque + indic/subj</strong> — хотя | Aunque es difícil, lo hago.</li>
+      <li><strong>En conclusión / Para terminar</strong> — выводы монолога</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Задание до следующего урока</h4>
+    <ul>
+      <li>Запиши монолог на 4 минуты на тему «Mi familia y mi infancia» — используй все структуры из урока</li>
+      <li>Послушай себя и посчитай: сколько разных времён ты использовал?</li>
+      <li>Dreaming Spanish Intermediate — видео на тему семьи или воспоминаний</li>
+      <li>Следующий урок: DELE B1 — работа и повседневная жизнь</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L110.html" class="nav-link-btn">← L110</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L112.html" class="nav-link-btn">L112 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L111';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'Tarea 1 = valoración de una encuesta. Ты смотришь на статистику и даёшь развёрнутый комментарий.',
+  q2:'los recuerdos = воспоминания. Los valores = ценности, las aficiones = увлечения.',
+  q3:'En conclusión — для выводов. Sin embargo — контраст. Aunque — уступка.',
+  q4:'Pretérito imperfecto — для habitual actions in the past: «desde pequeño me gustaba» = с детства мне нравилось.',
+  q5:'Superarse = совершенствоваться, превосходить себя. Важное слово для описания личностных качеств.',
+  q6:'Aunque = хотя, несмотря на то, что. Это уступительный союз.'
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})?'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;quizTotal++;
+}
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||val.includes(correct.split(' ')[0])&&val.length>=correct.length-3){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Правильный ответ: ${answer}`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

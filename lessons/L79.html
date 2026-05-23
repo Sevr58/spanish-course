@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L79: Цель и результат</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+th{background:var(--bg3);color:var(--gold);padding:8px 12px;text-align:left;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+td{padding:8px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.rule-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px}
+.rule-block h4{color:var(--gold);font-size:.9rem;margin-bottom:8px}
+.rule-block .ex{font-size:.88rem;background:var(--bg3);padding:8px 12px;border-radius:6px;margin-bottom:6px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 168</span>
+  <a href="L80.html">L80 →</a>
+</div>
+
+<div class="hero">
+  <div class="phase-tag">Фаза 3 · Блок B3C · Сложная коммуникация</div>
+  <h1>Цель и <span class="hl">результат</span></h1>
+  <p class="sub">Para que, con el fin de, de modo que, hasta que — объяснять намерения и описывать ожидаемые результаты.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Para + infinitivo</strong><p>Цель с одним субъектом — самое частое</p></div></div>
+    <div class="obj"><div class="ico">🔀</div><div><strong>Para que + subjuntivo</strong><p>Цель — разные субъекты в двух частях</p></div></div>
+    <div class="obj"><div class="ico">📊</div><div><strong>De modo que</strong><p>Результат и следствие — с indic. и subj.</p></div></div>
+    <div class="obj"><div class="ico">⏳</div><div><strong>Hasta que</strong><p>До тех пор пока — темпоральная цель</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Выражение цели — para, para que, con el fin de</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Цель в испанском — один из самых частых типов придаточных. Выбор конструкции зависит от одного ключевого фактора: <strong>один субъект или два?</strong></p>
+
+  <div class="rule-block">
+    <h4>Para + infinitivo — один субъект</h4>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:8px">Когда действующее лицо в обоих частях одно и то же:</p>
+    <div class="ex">«Estudio español <strong>para vivir</strong> en Barcelona.» — Учу испанский, чтобы жить в Барселоне. (я учу = я буду жить)</div>
+    <div class="ex">«Trabaja mucho <strong>para ahorrar</strong> dinero.» — Много работает, чтобы накопить денег.</div>
+  </div>
+
+  <div class="rule-block">
+    <h4>Para que + Subjuntivo — разные субъекты</h4>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:8px">Когда в двух частях — разные действующие лица:</p>
+    <div class="ex">«Te lo explico <strong>para que entiendas</strong>.» — Объясняю тебе, чтобы ты понял. (я объясняю ≠ ты понимаешь)</div>
+    <div class="ex">«Llama <strong>para que vengan</strong> más rápido.» — Звони, чтобы они пришли быстрее.</div>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Самая частая ошибка с para que</h4>
+    <p>Никогда не используй «para que» + indicativo! «Para que + subjuntivo» — это абсолютное правило. Всегда субъюнктив. *«Para que entiendes» — ОШИБКА. Правильно: «para que <strong>entiendas</strong>».</p>
+  </div>
+
+  <div class="rule-block">
+    <h4>Con el fin de / Con el objetivo de — формальный вариант</h4>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:8px">Для официальных текстов, деловой переписки, CV:</p>
+    <div class="ex">«Con el fin de mejorar los resultados, se han implementado nuevas medidas.» — С целью улучшения результатов...</div>
+    <div class="ex">«Con el objetivo de desarrollarme profesionalmente, solicito esta posición.» — С целью профессионального развития...</div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 De modo que / De manera que — двойная функция</h4>
+    <p><strong>+ indicativo</strong> = следствие (так что, результат): «Trabajé mucho, de modo que terminé a tiempo.»<br>
+    <strong>+ subjuntivo</strong> = цель (так чтобы): «Explícalo de modo que todos entiendan.»<br>
+    Наклонение полностью меняет смысл: факт vs намерение!</p>
+  </div>
+
+  <div class="rule-block">
+    <h4>Hasta que + tiempo — до тех пор пока</h4>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:8px">Описывает предел, до которого длится действие:</p>
+    <div class="ex">«Esperaré <strong>hasta que llegues</strong>.» — Подожду, пока не придёшь. (субъюнктив — будущее)</div>
+    <div class="ex">«Esperé <strong>hasta que llegó</strong>.» — Ждал, пока не пришёл. (индикатив — прошлое, факт)</div>
+  </div>
+</div>
+
+<!-- SECTION 2: Словарь -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — Цель, результат, намерение</h2>
+  </div>
+
+  <table>
+    <tr><th>Фраза</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td><strong>con el fin de</strong></td><td>[кон эл фин де]</td><td>с целью (офиц.)</td><td>Con el fin de mejorar, estudiamos.</td></tr>
+    <tr><td><strong>con vistas a</strong></td><td>[вис-тас а]</td><td>с прицелом на</td><td>Con vistas a emigrar, ahorra dinero.</td></tr>
+    <tr><td><strong>a fin de</strong></td><td>[а фин де]</td><td>с тем чтобы</td><td>A fin de reducir costes, se ha restructurado.</td></tr>
+    <tr><td><strong>lograr</strong></td><td>[лоГРАР]</td><td>достигать, добиваться</td><td>Logró hablar con fluidez en un año.</td></tr>
+    <tr><td><strong>alcanzar</strong></td><td>[алкан-САР]</td><td>достигать (цели)</td><td>Alcanzó su objetivo en tiempo récord.</td></tr>
+    <tr><td><strong>conseguir</strong></td><td>[консеГИР]</td><td>добиться, получить</td><td>Consiguió la visa en tres meses.</td></tr>
+    <tr><td><strong>aspirar a</strong></td><td>[аспи-РАР а]</td><td>стремиться к</td><td>Aspiro a trabajar en una empresa internacional.</td></tr>
+    <tr><td><strong>el propósito</strong></td><td>[проПОсито]</td><td>цель, намерение</td><td>Mi propósito es aprender idiomas.</td></tr>
+    <tr><td><strong>la meta</strong></td><td>[МЕта]</td><td>цель (финишная)</td><td>La meta es conseguir el B2 en un año.</td></tr>
+    <tr><td><strong>el objetivo</strong></td><td>[объеТИво]</td><td>цель, задача</td><td>El objetivo del proyecto es claro.</td></tr>
+    <tr><td><strong>de modo que</strong></td><td>[МОдо ке]</td><td>так что / так чтобы</td><td>Trabaja de modo que todos aprendan.</td></tr>
+    <tr><td><strong>a largo plazo</strong></td><td>[ПЛА-со]</td><td>в долгосрочной перспективе</td><td>A largo plazo, quiero vivir en España.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: Тест 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Para или Para que?</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Цель — один субъект или два?</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Estudio mucho _____ aprobar el examen.» (я учусь, чтобы я сдал)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">para</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">para que</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">hasta que</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Te llamo _____ no te preocupes.» (я звоню, чтобы ты не волновался)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">para</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">para que</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">con el fin de</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Habla despacio _____ todos entiendan.» (два субъекта)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">para</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">para que</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">de manera</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Trabajaré _____ llegues a casa sano.» (я работаю, пока ты не придёшь)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">para que</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">hasta que</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">de modo que</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Organizamos el evento ___ los empleados se motiven.» (цель, разные субъекты)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">para</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">para que</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">con el fin</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Con el fin ___ mejorar los resultados, se implementaron cambios.» (предлог)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">de</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">que</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">a</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: Тест 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Заполни пропуски</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Напиши правильную форму глагола</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. «Para que ella _____ (entender), habla más despacio.» (субъюнктив, ella)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','entienda','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ entienda — para que + subjuntivo presente</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. «Esperaré hasta que tú _____ (volver).» (субъюнктив будущее)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','vuelvas','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ vuelvas — hasta que + subj. presente (для будущего)</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. «Ahorra dinero con _____ a comprar una casa.» (с прицелом на)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','vistas','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ vistas — con vistas a = с прицелом на, с целью</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. «Trabaja de modo que todos _____ (poder, subj.) aprender.» (цель: чтобы)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','puedan','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ puedan — de modo que + subjuntivo = цель (намерение)</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. «Mi _____ es conseguir la visa Digital Nomad en 2026.» (цель/задача)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','objetivo','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ objetivo (или meta) — la meta = финишная цель, el objetivo = задача</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: Аутентичный текст -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Аутентичный текст — CV и мотивационное письмо</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      Отрывок из мотивационного письма (carta de motivación)
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-cv')">Показать разбор</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:2">
+          «Me dirijo a ustedes <strong style="color:var(--gold)">con el fin de</strong> solicitar la posición de desarrollador senior. He estudiado durante cinco años <strong style="color:var(--blue)">para adquirir</strong> las competencias necesarias. Mi objetivo a largo plazo es contribuir a proyectos innovadores, <strong style="color:var(--gold)">de modo que</strong> el equipo <strong>alcance</strong> un rendimiento superior. Continuaré desarrollándome <strong style="color:var(--blue)">hasta que</strong> logre una posición de liderazgo.»
+        </div>
+        <div id="tr-cv" style="display:none;margin-top:10px;font-size:.85rem;color:var(--muted)">
+          <strong>Разбор структур цели:</strong><br>
+          • «con el fin de + infinitivo» — формальная цель, один субъект<br>
+          • «para adquirir» — para + infinitivo, один субъект<br>
+          • «de modo que + alcance» — subjuntivo = цель (не следствие!)<br>
+          • «hasta que logre» — hasta que + subjuntivo = до тех пор пока (будущее)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: Диалоги -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Объясняем цели</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Планы на будущее
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Carmen</div>
+      <div><div class="dlg-es">¿Para qué estudias tanto español? ¿Tienes algún plan concreto?</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Зачем ты так много учишь испанский? Есть какой-то конкретный план?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Evgeni</div>
+      <div><div class="dlg-es">Sí. Estudio para conseguir la visa de nómada digital y vivir en Barcelona. También, para que mis hijos tengan más oportunidades en el futuro.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Да. Учу, чтобы получить визу цифрового кочевника и жить в Барселоне. Также, чтобы у моих детей было больше возможностей в будущем.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Carmen</div>
+      <div><div class="dlg-es">¿Y cuánto tiempo llevas estudiando?</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">И сколько времени ты уже учишь?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Evgeni</div>
+      <div><div class="dlg-es">Unos ocho meses. Mi meta es alcanzar el B1 antes de solicitar la visa. Seguiré estudiando hasta que me sienta seguro hablando.</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Около восьми месяцев. Моя цель — достичь B1 до подачи заявки на визу. Буду учиться, пока не почувствую уверенность в разговоре.</div></div>
+    </div>
+    <div id="tr-dlg1" style="display:none"></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Объяснение проекта
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Jefa</div>
+      <div><div class="dlg-es">¿Cuál es el objetivo de este nuevo sistema?</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Какова цель этой новой системы?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Dev</div>
+      <div><div class="dlg-es">Se implementa con el fin de automatizar los procesos repetitivos, de modo que el equipo pueda enfocarse en tareas de mayor valor.</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Внедряется с целью автоматизации повторяющихся процессов, чтобы команда могла сосредоточиться на задачах с большей ценностью.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Jefa</div>
+      <div><div class="dlg-es">¿Y hasta cuándo se prolongará la implementación?</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">И до каких пор продлится внедрение?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Dev</div>
+      <div><div class="dlg-es">Hasta que todos los departamentos validen las funcionalidades. Aspiramos a terminarlo antes del verano.</div>
+      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Пока все отделы не подтвердят функциональность. Стремимся закончить до лета.</div></div>
+    </div>
+    <div id="tr-dlg2" style="display:none"></div>
+  </div>
+</div>
+
+<!-- SECTION 7: Говорение -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Твои цели на испанском</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий A — Расскажи о своих целях</div>
+    <p>Объясни вслух, зачем ты изучаешь испанский и каковы твои планы. Используй para, para que, hasta que, con el fin de.</p>
+    <div class="es">Estudio español para _____ . También quiero que mis hijos _____ , para que ellos _____ . Seguiré hasta que _____ . A largo plazo, mi objetivo es _____.</div>
+    <div class="hint">Минимум 6 предложений. Разнообразь конструкции!</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий B — Интервью на работу</div>
+    <p>Тебя спрашивают: «¿Por qué quiere trabajar en nuestra empresa?» и «¿Cuáles son sus objetivos profesionales?»</p>
+    <div class="es">Quiero trabajar aquí con el fin de _____ . Mi objetivo a largo plazo es _____ , de modo que _____ . Aspiro a _____ hasta que _____ .</div>
+    <div class="hint">Это реальные вопросы на собеседовании в испанской компании. Готовь ответы!</div>
+  </div>
+</div>
+
+<!-- SECTION 8: Культурная заметка -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">Культура целеполагания</div>
+    <h4>«A largo plazo» и испанское отношение ко времени</h4>
+    <p>Испанцы известны более гибким отношением ко времени, чем северные европейцы. «Mañana» (завтра) может означать «позже, когда-нибудь». Это не лень — это другой темп жизни. Однако в деловой среде и при подаче документов (виза, контракт, ипотека) испанцы очень точны в дедлайнах. Фраза «hasta que esté listo» (пока не будет готово) — законная бизнес-позиция. Понимание разницы между социальным и деловым испанским временем — ключ к жизни в Испании.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: Anki + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">Карточки Anki</div>
+    <ul>
+      <li><strong>para + infinitivo</strong> — один субъект | Estudio para aprender.</li>
+      <li><strong>para que + subjuntivo</strong> — два субъекта | Te lo digo para que sepas.</li>
+      <li><strong>con el fin de</strong> — с целью (офиц.) | Con el fin de mejorar...</li>
+      <li><strong>hasta que + subjuntivo</strong> — до тех пор пока (буд.) | Espera hasta que llegue.</li>
+      <li><strong>de modo que + subjuntivo</strong> — так чтобы (цель)</li>
+      <li><strong>lograr</strong> [лоГРАР] — добиться | Logró su objetivo.</li>
+      <li><strong>aspirar a</strong> — стремиться к | Aspiro a vivir en BCN.</li>
+      <li><strong>a largo plazo</strong> — в долгосрочной перспективе</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>Домашнее задание</h4>
+    <ul>
+      <li>Напиши мотивационный абзац для визы DNV (3–5 предложений): используй con el fin de, para que, de modo que</li>
+      <li>Dreaming Spanish Intermediate: 20 мин — слушай испанца, который рассказывает о своих планах</li>
+      <li>Запиши аудио: объясни свои 3 главные цели на испанском (2–3 минуты)</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L78.html" class="nav-link-btn">← L78</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L80.html" class="nav-link-btn">L80 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L79';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const quizExpl={
+  q1:'para — один субъект (я учусь + я сдам). Para + infinitivo.',
+  q2:'para que — два субъекта (я звоню ≠ ты не волнуешься). Para que + subjuntivo.',
+  q3:'para que — habla (ты) ≠ entiendan (они). Два разных субъекта.',
+  q4:'hasta que — до тех пор пока. Llegas — субъюнктив (будущее).',
+  q5:'para que — organizar (мы) ≠ se motiven (сотрудники). Два субъекта.',
+  q6:'de — con el fin de + infinitivo. Всегда предлог «de».'
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))? 'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
+function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||val===correct.replace(/[aeiouáéíóú]/g,c=>c)){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Ответ: "${answer}"`;}}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
+const totalSections=9;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

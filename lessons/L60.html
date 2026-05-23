@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L60: Контрольная точка A2 — Mock Test</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:hover td{background:var(--bg2)}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.score-board{background:var(--bg2);border:2px solid var(--gold);border-radius:var(--r);padding:20px 24px;margin:20px 0;text-align:center}
+.score-board .sb-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.score-board .sb-score{font-size:2.5rem;font-weight:800;color:var(--gold)}
+.score-board .sb-label{font-size:.88rem;color:var(--muted);margin-top:4px}
+.score-board .sb-desc{font-size:.85rem;color:var(--text);margin-top:10px}
+.reading-text{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px 22px;margin-bottom:16px;font-size:.92rem;line-height:1.8}
+.reading-text .rt-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:10px}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:16px 0}
+.skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.skill-card .sk-icon{font-size:1.5rem;margin-bottom:6px}
+.skill-card .sk-name{font-weight:700;font-size:.9rem;margin-bottom:4px}
+.skill-card .sk-desc{font-size:.8rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L59.html">← L59</a>
+  <span class="level">A2 · Фаза 2 · День 127</span>
+  <a href="L61.html">L61 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🏆 Фаза 2 · Контрольная точка A2 · DS Intermediate</div>
+  <h1>Mock Test: <span class="hl">Контрольная A2</span></h1>
+  <p class="sub">Полноценный тест уровня A2 — чтение, лексика, грамматика, говорение. Оцени свой реальный уровень перед переходом в B1.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Убедиться, что ты на уровне A2 перед стартом B1</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~60 минут — полный формат теста</p></div></div>
+    <div class="obj"><div class="ico">📊</div><div><strong>Формат</strong><p>Чтение + лексика + грамматика + письмо + говорение</p></div></div>
+    <div class="obj"><div class="ico">🏁</div><div><strong>Итог</strong><p>Оценка по 5 навыкам: проходной балл ≥ 70%</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: Что тестируем -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Что проверяет тест — структура A2 Mock Test</h2>
+  </div>
+
+  <p style="margin-bottom:16px">A2 — это первый реально полезный уровень. Ты можешь общаться в базовых ситуациях, описывать себя и своё окружение, понимать медленную речь. Этот тест проверяет, готов ли ты двигаться дальше — к B1.</p>
+
+  <div class="skills-grid">
+    <div class="skill-card"><div class="sk-icon">📖</div><div class="sk-name">Чтение</div><div class="sk-desc">Короткие тексты: объявления, сообщения, инструкции</div></div>
+    <div class="skill-card"><div class="sk-icon">📝</div><div class="sk-name">Лексика</div><div class="sk-desc">Тематические слова: путешествия, семья, работа, город</div></div>
+    <div class="skill-card"><div class="sk-icon">🔧</div><div class="sk-name">Грамматика</div><div class="sk-desc">Времена, ser/estar, pronombres, отрицание, вопросы</div></div>
+    <div class="skill-card"><div class="sk-icon">✍️</div><div class="sk-name">Письмо</div><div class="sk-desc">Заполни пропуски / составь предложение</div></div>
+    <div class="skill-card"><div class="sk-icon">🗣</div><div class="sk-name">Говорение</div><div class="sk-desc">Монолог 2 мин по заданной теме</div></div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Проходной балл</h4>
+    <p>В реальном DELE A2 нужно набрать 60% в каждом разделе. В нашем тесте используй шкалу: <strong>90–100% = уверенный A2+</strong>, <strong>70–89% = A2 (готов к B1)</strong>, <strong>ниже 70% = повтори слабые темы перед Фазой 3</strong>.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2: Чтение -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Часть 1 — Чтение (Comprensión lectora)</h2>
+  </div>
+
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прочитай текст и ответь на вопросы по нему. Не подглядывай в словарь — попробуй понять из контекста.</p>
+
+  <div class="reading-text">
+    <div class="rt-label">📄 Текст для чтения — Mensaje de WhatsApp</div>
+    <p><strong>Pablo:</strong> Hola Ana, ¿puedes venir a la fiesta el sábado? Empieza a las ocho de la noche en casa de Marcos. Él vive en la calle Mayor, número 14, segundo piso.</p>
+    <br>
+    <p><strong>Ana:</strong> ¡Hola! Sí, claro. Pero llego tarde porque trabajo hasta las nueve. ¿Está bien si llego sobre las diez?</p>
+    <br>
+    <p><strong>Pablo:</strong> Perfecto, no hay problema. Ah, y si puedes, trae algo para comer. Nosotros ponemos las bebidas.</p>
+    <br>
+    <p><strong>Ana:</strong> Genial. ¿Cuánta gente viene? Quiero saber si traigo mucho o poco.</p>
+    <br>
+    <p><strong>Pablo:</strong> Somos unos quince o veinte personas. Trae algo para todos, por favor.</p>
+  </div>
+
+  <div class="quiz">
+    <h3>📖 Вопросы по тексту</h3>
+
+    <div class="quiz-q" id="r1">
+      <div class="q-text">1. Где проходит вечеринка?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r1','b')">В доме Пабло</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','a')">В доме Маркоса</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','c')">В баре на улице</div>
+      </div>
+      <div class="feedback" id="fb-r1"></div>
+    </div>
+
+    <div class="quiz-q" id="r2">
+      <div class="q-text">2. Почему Ана приедет поздно?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r2','c')">Она не хочет идти</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','b')">Она живёт далеко</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','a')">Она работает до девяти</div>
+      </div>
+      <div class="feedback" id="fb-r2"></div>
+    </div>
+
+    <div class="quiz-q" id="r3">
+      <div class="q-text">3. Что должна принести Ана?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r3','b')">Напитки</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','c')">Музыку</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','a')">Еду</div>
+      </div>
+      <div class="feedback" id="fb-r3"></div>
+    </div>
+
+    <div class="quiz-q" id="r4">
+      <div class="q-text">4. Сколько человек ожидается на вечеринке?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r4','c')">Около 5 человек</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','b')">Около 30 человек</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','a')">Около 15–20 человек</div>
+      </div>
+      <div class="feedback" id="fb-r4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3: Грамматика — времена -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Часть 2 — Грамматика: времена и формы</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>🔧 Грамматика — 6 вопросов</h3>
+
+    <div class="quiz-q" id="g1">
+      <div class="q-text">1. «Ayer yo _______ al trabajo en metro.» (ir, pretérito indefinido)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'g1','b')">iba</div>
+        <div class="opt" onclick="answerQuiz(this,'g1','a')">fui</div>
+        <div class="opt" onclick="answerQuiz(this,'g1','c')">he ido</div>
+      </div>
+      <div class="feedback" id="fb-g1"></div>
+    </div>
+
+    <div class="quiz-q" id="g2">
+      <div class="q-text">2. «Cuando era niño, _______ mucho.» (jugar, imperfecto)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'g2','c')">jugué</div>
+        <div class="opt" onclick="answerQuiz(this,'g2','b')">he jugado</div>
+        <div class="opt" onclick="answerQuiz(this,'g2','a')">jugaba</div>
+      </div>
+      <div class="feedback" id="fb-g2"></div>
+    </div>
+
+    <div class="quiz-q" id="g3">
+      <div class="q-text">3. «Esta mañana _______ un email importante.» (recibir, pretérito perfecto)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'g3','b')">recibí</div>
+        <div class="opt" onclick="answerQuiz(this,'g3','c')">recibía</div>
+        <div class="opt" onclick="answerQuiz(this,'g3','a')">he recibido</div>
+      </div>
+      <div class="feedback" id="fb-g3"></div>
+    </div>
+
+    <div class="quiz-q" id="g4">
+      <div class="q-text">4. «La paella _______ un plato típico de Valencia.» (ser/estar — permanente)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'g4','b')">está</div>
+        <div class="opt" onclick="answerQuiz(this,'g4','c')">hay</div>
+        <div class="opt" onclick="answerQuiz(this,'g4','a')">es</div>
+      </div>
+      <div class="feedback" id="fb-g4"></div>
+    </div>
+
+    <div class="quiz-q" id="g5">
+      <div class="q-text">5. «¿_______ café tomas? Uno o dos?» (cuánto/cuántos/cuánta)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'g5','c')">Cuántos</div>
+        <div class="opt" onclick="answerQuiz(this,'g5','b')">Cuánta</div>
+        <div class="opt" onclick="answerQuiz(this,'g5','a')">Cuántos cafés</div>
+      </div>
+      <div class="feedback" id="fb-g5"></div>
+    </div>
+
+    <div class="quiz-q" id="g6">
+      <div class="q-text">6. «No tengo _______ amigo en esta ciudad.» (ningun/ninguno/ningún)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'g6','b')">ninguno</div>
+        <div class="opt" onclick="answerQuiz(this,'g6','c')">nada</div>
+        <div class="opt" onclick="answerQuiz(this,'g6','a')">ningún</div>
+      </div>
+      <div class="feedback" id="fb-g6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4: Лексика -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Часть 3 — Лексика: тематические слова</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>📝 Лексика — 6 вопросов</h3>
+
+    <div class="quiz-q" id="l1">
+      <div class="q-text">1. Ты хочешь снять деньги в банке. Что ты ищешь?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'l1','b')">La farmacia</div>
+        <div class="opt" onclick="answerQuiz(this,'l1','a')">El cajero automático</div>
+        <div class="opt" onclick="answerQuiz(this,'l1','c')">La panadería</div>
+      </div>
+      <div class="feedback" id="fb-l1"></div>
+    </div>
+
+    <div class="quiz-q" id="l2">
+      <div class="q-text">2. В ресторане ты хочешь счёт. Что говоришь официанту?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'l2','c')">Quisiera más agua, por favor</div>
+        <div class="opt" onclick="answerQuiz(this,'l2','b')">Tengo hambre</div>
+        <div class="opt" onclick="answerQuiz(this,'l2','a')">La cuenta, por favor</div>
+      </div>
+      <div class="feedback" id="fb-l2"></div>
+    </div>
+
+    <div class="quiz-q" id="l3">
+      <div class="q-text">3. Что значит «estar en paro»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'l3','b')">Работать на парковке</div>
+        <div class="opt" onclick="answerQuiz(this,'l3','c')">Работать сверхурочно</div>
+        <div class="opt" onclick="answerQuiz(this,'l3','a')">Быть безработным</div>
+      </div>
+      <div class="feedback" id="fb-l3"></div>
+    </div>
+
+    <div class="quiz-q" id="l4">
+      <div class="q-text">4. «Se alquila piso» — что это означает?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'l4','b')">Квартира продаётся</div>
+        <div class="opt" onclick="answerQuiz(this,'l4','c')">Квартира занята</div>
+        <div class="opt" onclick="answerQuiz(this,'l4','a')">Квартира сдаётся</div>
+      </div>
+      <div class="feedback" id="fb-l4"></div>
+    </div>
+
+    <div class="quiz-q" id="l5">
+      <div class="q-text">5. Ты опоздал на поезд. Что спрашиваешь на станции?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'l5','c')">¿Dónde está el metro?</div>
+        <div class="opt" onclick="answerQuiz(this,'l5','b')">¿Cuánto cuesta el billete?</div>
+        <div class="opt" onclick="answerQuiz(this,'l5','a')">¿Cuándo sale el próximo tren?</div>
+      </div>
+      <div class="feedback" id="fb-l5"></div>
+    </div>
+
+    <div class="quiz-q" id="l6">
+      <div class="q-text">6. Разница между «embarazada» и «avergonzada»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'l6','b')">Первое = смущённая, второе = беременная</div>
+        <div class="opt" onclick="answerQuiz(this,'l6','c')">Оба слова означают «смущённая»</div>
+        <div class="opt" onclick="answerQuiz(this,'l6','a')">Первое = беременная, второе = смущённая</div>
+      </div>
+      <div class="feedback" id="fb-l6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5: Письмо — заполни пропуски -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Часть 4 — Письмо: заполни пропуски</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✍️ Заполни пропуски в тексте</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «No tengo _______ para hacer esto.» (времени — tiempo, мужской род)</div>
+      <input type="text" class="text-input" placeholder="слово..." id="w1">
+      <button class="check-btn" onclick="checkText('w1','tiempo','fb-w1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-w1')">Ответ</button>
+      <div class="feedback" id="fb-w1"></div>
+      <div class="answer-reveal" id="ans-w1">✅ tiempo — «No tengo tiempo» = у меня нет времени</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «¿Puedes _______ esta carta al correo?» (отнести — llevar)</div>
+      <input type="text" class="text-input" placeholder="инфинитив..." id="w2">
+      <button class="check-btn" onclick="checkText('w2','llevar','fb-w2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-w2')">Ответ</button>
+      <div class="feedback" id="fb-w2"></div>
+      <div class="answer-reveal" id="ans-w2">✅ llevar — llevar algo a algún lugar = отнести что-то куда-то</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «El año pasado _______ en Barcelona dos semanas.» (я провёл/estuve)</div>
+      <input type="text" class="text-input" placeholder="глагол..." id="w3">
+      <button class="check-btn" onclick="checkText('w3','estuve','fb-w3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-w3')">Ответ</button>
+      <div class="feedback" id="fb-w3"></div>
+      <div class="answer-reveal" id="ans-w3">✅ estuve — pretérito indefinido de estar (yo): estuv-e</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «La película fue muy _______ — no me gustó.» (скучная — aburrida)</div>
+      <input type="text" class="text-input" placeholder="прилагательное..." id="w4">
+      <button class="check-btn" onclick="checkText('w4','aburrida','fb-w4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-w4')">Ответ</button>
+      <div class="feedback" id="fb-w4"></div>
+      <div class="answer-reveal" id="ans-w4">✅ aburrida — ser+aburrida = скучная (качество). Estar+aburrida = ей скучно</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «_______ hace tres años que vivo en esta ciudad.» (уже — ya)</div>
+      <input type="text" class="text-input" placeholder="наречие..." id="w5">
+      <button class="check-btn" onclick="checkText('w5','ya','fb-w5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-w5')">Ответ</button>
+      <div class="feedback" id="fb-w5"></div>
+      <div class="answer-reveal" id="ans-w5">✅ ya — «Ya hace tres años» = уже три года. Подтверждает завершённость действия.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6: Диалог -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Часть 5 — Понимание диалога</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог: В турбюро
+      <button class="dlg-toggle" onclick="toggleTranslation('dlg1')">Перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div>
+        <div class="dlg-es">Buenos días. ¿En qué le puedo ayudar?</div>
+        <div class="dlg-ru" id="dlg1" style="display:none">[Добрый день. Чем могу помочь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Cliente</div>
+      <div>
+        <div class="dlg-es">Quiero ir a Valencia en tren el próximo fin de semana. ¿Hay billetes disponibles?</div>
+        <div class="dlg-ru" id="dlg1b" style="display:none">[Хочу поехать в Валенсию на поезде на следующих выходных. Есть билеты в наличии?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div>
+        <div class="dlg-es">Sí, el sábado hay un tren a las nueve de la mañana y otro a las dos de la tarde. El de la mañana cuesta cuarenta euros y el de la tarde, cincuenta y cinco.</div>
+        <div class="dlg-ru" id="dlg1c" style="display:none">[Да, в субботу есть поезд в 9 утра и ещё один в 2 дня. Утренний стоит 40 евро, дневной — 55.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Cliente</div>
+      <div>
+        <div class="dlg-es">Prefiero el de la mañana. ¿Cuánto tarda el viaje?</div>
+        <div class="dlg-ru" id="dlg1d" style="display:none">[Я предпочитаю утренний. Сколько длится поездка?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div>
+        <div class="dlg-es">Unas dos horas y media. ¿Le reservo el billete?</div>
+        <div class="dlg-ru" id="dlg1e" style="display:none">[Около двух с половиной часов. Забронировать вам билет?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Cliente</div>
+      <div>
+        <div class="dlg-es">Sí, por favor. Un billete de ida y vuelta.</div>
+        <div class="dlg-ru" id="dlg1f" style="display:none">[Да, пожалуйста. Билет туда и обратно.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz">
+    <h3>Вопросы по диалогу</h3>
+
+    <div class="quiz-q" id="d1">
+      <div class="q-text">1. Куда едет клиент?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'d1','b')">В Мадрид</div>
+        <div class="opt" onclick="answerQuiz(this,'d1','c')">В Барселону</div>
+        <div class="opt" onclick="answerQuiz(this,'d1','a')">В Валенсию</div>
+      </div>
+      <div class="feedback" id="fb-d1"></div>
+    </div>
+
+    <div class="quiz-q" id="d2">
+      <div class="q-text">2. Какой поезд выбрал клиент и сколько он стоит?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'d2','c')">Дневной за 40 евро</div>
+        <div class="opt" onclick="answerQuiz(this,'d2','b')">Дневной за 55 евро</div>
+        <div class="opt" onclick="answerQuiz(this,'d2','a')">Утренний за 40 евро</div>
+      </div>
+      <div class="feedback" id="fb-d2"></div>
+    </div>
+
+    <div class="quiz-q" id="d3">
+      <div class="q-text">3. «Un billete de ida y vuelta» — что это?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'d3','b')">Билет только в одну сторону</div>
+        <div class="opt" onclick="answerQuiz(this,'d3','c')">Два билета для двух людей</div>
+        <div class="opt" onclick="answerQuiz(this,'d3','a')">Билет туда и обратно</div>
+      </div>
+      <div class="feedback" id="fb-d3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7: Говорение — задание -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Часть 6 — Говорение (2–3 минуты)</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>🎙 Задание для самопроверки</h4>
+    <p>Запусти таймер на 2–3 минуты. Говори вслух на одну из тем ниже. Запиши себя. Критерии оценки: используешь ли разные времена? Есть ли правильные коннекторы? Понятно ли то, что ты говоришь?</p>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Тема 1: Последний отпуск</div>
+    <div class="es">Describe tus últimas vacaciones.</div>
+    <div class="hint">Где был? Что делал? Кто был с тобой? Что понравилось / не понравилось? — Используй претерит.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Тема 2: Твой типичный день</div>
+    <div class="es">¿Cómo es tu día normal?</div>
+    <div class="hint">Во сколько встаёшь? Завтракаешь? Едешь на работу как? Что делаешь вечером? — Используй presente.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Тема 3: Твои планы на следующий год</div>
+    <div class="es">¿Qué planes tienes para el año que viene?</div>
+    <div class="hint">Используй: quiero + inf., voy a + inf., tengo pensado + inf., me gustaría + inf.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8: Итоговый анализ -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Твой результат — анализ и следующий шаг</h2>
+  </div>
+
+  <div class="callout success">
+    <h4>✅ Если набрал 80%+ во всех секциях</h4>
+    <p>Поздравляем! Ты готов к Фазе 3 — уровень B1. Следующий урок L61 начнёт новый этап: сослагательное наклонение (subjuntivo), сложные времена, сложные тексты. Ты справился с основой.</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Если какой-то раздел ниже 70%</h4>
+    <p>Не спеши в B1. Вернись к урокам по слабым темам: грамматика (L42–L44), лексика (L50–L55), говорение (L57–L59). Один час повторения важнее одного нового урока.</p>
+  </div>
+
+  <div style="background:var(--bg2);border-radius:8px;padding:18px 20px;margin:16px 0">
+    <p style="font-weight:700;color:var(--gold);margin-bottom:12px">📊 Самооценка по разделам</p>
+    <table class="vocab-table">
+      <thead><tr><th>Раздел</th><th>Макс. вопросов</th><th>Твой результат</th><th>Оценка</th></tr></thead>
+      <tbody>
+        <tr><td>Чтение</td><td>4</td><td>___ / 4</td><td>____%</td></tr>
+        <tr><td>Грамматика</td><td>6</td><td>___ / 6</td><td>____%</td></tr>
+        <tr><td>Лексика</td><td>6</td><td>___ / 6</td><td>____%</td></tr>
+        <tr><td>Письмо</td><td>5</td><td>___ / 5</td><td>____%</td></tr>
+        <tr><td>Диалог</td><td>3</td><td>___ / 3</td><td>____%</td></tr>
+        <tr><td><strong>ИТОГО</strong></td><td><strong>24</strong></td><td><strong>___ / 24</strong></td><td><strong>____%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Что делать дальше</h4>
+    <ul>
+      <li>Набрал 90%+ → Переходи к L61, начинай Фазу 3 (B1)</li>
+      <li>Набрал 70–89% → Иди в L61 с осторожностью, периодически возвращайся к A2</li>
+      <li>Набрал менее 70% → Повтори уроки L50–L59 по слабым темам, потом сдай тест снова</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CULTURE -->
+<div class="culture">
+  <div class="ctag">🏛 Культурная заметка</div>
+  <h4>DELE — официальный экзамен по испанскому</h4>
+  <p>DELE (Diplomas de Español como Lengua Extranjera) — это официальный экзамен Института Сервантеса. Сдать DELE A2 — реальная цель для получения вида на жительство в Испании. На экзамене 4 части: чтение, аудирование, письмо, говорение. Проходной балл — 60% в каждой части. Сдают по всему миру, включая Россию (Москва, СПб).</p>
+</div>
+
+<!-- ANKI -->
+<div class="section" style="margin-top:24px">
+  <div class="anki">
+    <div class="atag">📇 Anki — ключевые фразы уровня A2</div>
+    <ul>
+      <li>la cuenta, por favor → счёт, пожалуйста</li>
+      <li>un billete de ida y vuelta → билет туда и обратно</li>
+      <li>¿Cuánto tarda el viaje? → Сколько длится поездка?</li>
+      <li>estar en paro → быть безработным</li>
+      <li>se alquila / se vende → сдаётся / продаётся</li>
+      <li>el cajero automático → банкомат</li>
+      <li>embarazada (беременная) ≠ avergonzada (смущённая)</li>
+      <li>ya hace tres años → уже три года</li>
+    </ul>
+  </div>
+
+  <div style="background:var(--bg2);border-radius:8px;padding:14px 18px;margin-top:14px">
+    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">📝 Домашнее задание</p>
+    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
+      <li>Посчитай свой итоговый балл по таблице выше</li>
+      <li>Запиши монолог на одну из тем из Раздела 7 (2–3 минуты)</li>
+      <li>Если есть слабые места — вернись к конкретным урокам</li>
+      <li>Посмотри Dreaming Spanish — найди видео на тему «A2 challenge» или «день из жизни»</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L59.html" class="nav-link-btn">← L59</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L61.html" class="nav-link-btn">L61 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L60';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  r1:'Casa de Marcos — в тексте: «en casa de Marcos».',
+  r2:'Она работает до девяти: «trabajo hasta las nueve».',
+  r3:'Принести еду: «trae algo para comer». Напитки несут организаторы.',
+  r4:'«Somos unos quince o veinte personas» — около 15–20 человек.',
+  g1:'«Ayer» требует pretérito indefinido (конкретное прошлое): fui. «Iba» это imperfecto (привычка/фон).',
+  g2:'«Cuando era niño» — контекст привычки в прошлом = imperfecto: jugaba.',
+  g3:'«Esta mañana» — сегодня утром (связь с настоящим днём) = pretérito perfecto: he recibido. В Испании.',
+  g4:'Paella es un plato — постоянное определение, характеристика = ser.',
+  g5:'«¿Cuántos cafés?» — счётный вопрос для café (м.р. мн.ч.) Вопрос про количество.',
+  g6:'«Ningún» = апокопа перед существительным мужского рода. «Ninguno» — без существительного.',
+  l1:'El cajero automático = банкомат. Для снятия денег.',
+  l2:'La cuenta, por favor — стандартная фраза для просьбы о счёте.',
+  l3:'Estar en paro = estar desempleado = быть безработным.',
+  l4:'Se alquila = сдаётся в аренду. Se vende = продаётся.',
+  l5:'¿Cuándo sale el próximo tren? — вопрос о следующем отправлении.',
+  l6:'Embarazada = беременная (false friend!). Avergonzada = смущённая / стыдливая.',
+  d1:'«Quiero ir a Valencia» — клиент едет в Валенсию.',
+  d2:'«Prefiero el de la mañana» — выбрал утренний за 40 евро.',
+  d3:'Ida y vuelta = туда и обратно. Solo ida = только в одну сторону.'
+};
+
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Ответ: "${answer}"`;}}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+
+function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e',id+'f',id+'g'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

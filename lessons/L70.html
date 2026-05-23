@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L70: Imperfecto de Subjuntivo — введение</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table.conj{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+table.conj th{background:var(--bg3);padding:7px 10px;text-align:left;font-weight:700;font-size:.78rem;color:var(--muted);border-bottom:1px solid var(--border)}
+table.conj td{padding:7px 10px;border-bottom:1px solid var(--bg3)}
+table.conj td:first-child{color:var(--muted);font-size:.82rem}
+table.conj td:not(:first-child){color:var(--gold);font-weight:600}
+table.vocab{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+table.vocab th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;color:var(--muted);border-bottom:1px solid var(--border)}
+table.vocab td{padding:8px 10px;border-bottom:1px solid var(--bg3);vertical-align:top}
+table.vocab td:first-child{font-weight:700;color:var(--gold)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 148</span>
+  <a href="L71.html">L71 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · Блок 3A — Сослагательное наклонение</div>
+  <h1>Imperfecto de Subjuntivo — <span class="hl">знакомство</span></h1>
+  <p class="sub">Si tuviera..., Quisiera..., Si fuera tú... — вежливость, гипотезы и нереальные условия</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Образовывать и использовать imperfecto de subjuntivo в основных контекстах</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Слушай гипотетические разговоры — «si tuviera», «ojalá tuviera»</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Вежливо просим и выражаем гипотетические желания</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Теория — как образовать imperfecto de subjuntivo</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Imperfecto de subjuntivo — второе время сослагательного наклонения. Используется для: <strong>гипотез</strong> («Si tuviera dinero...»), <strong>вежливых просьб</strong> («Quisiera un café...»), и в <strong>сложных предложениях с прошлым главным</strong>.</p>
+
+  <div class="callout tip">
+    <h4>💡 Секрет образования: возьми pretérito indefinido, 3-е лицо мн.ч.</h4>
+    <p>1. Берёшь форму <strong>ellos в pretérito indefinido</strong> (например: hablaron, comieron, vivieron)<br>
+    2. Убираешь окончание <strong>-ron</strong><br>
+    3. Добавляешь окончания: <strong>-ra, -ras, -ra, -ramos, -rais, -ran</strong><br>
+    hablaron → habla- → hablara, hablaras, hablara, habláramos, hablarais, hablaran</p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">hablar</span>
+      <span class="rule-title">hablara, hablaras, hablara, habláramos, hablarais, hablaran</span>
+    </div>
+    <table class="conj">
+      <tr><th>Лицо</th><th>Imperfecto subj.</th><th>Пример</th></tr>
+      <tr><td>yo</td><td>hablara</td><td>Si yo hablara mejor...</td></tr>
+      <tr><td>tú</td><td>hablaras</td><td>Ojalá hablaras español.</td></tr>
+      <tr><td>él/ella</td><td>hablara</td><td>Quisiera que hablara más.</td></tr>
+      <tr><td>nosotros</td><td>habláramos</td><td>Si habláramos catalán...</td></tr>
+      <tr><td>ellos</td><td>hablaran</td><td>Deseaba que hablaran claro.</td></tr>
+    </table>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">tener</span>
+      <span class="rule-title">tuviera, tuvieras, tuviera, tuviéramos, tuvierais, tuvieran</span>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:8px">Неправильные глаголы сохраняют свою неправильность из pretérito indefinido: tener → tuvieron → tuv- + -iera</p>
+    <table class="conj">
+      <tr><th>Лицо</th><th>Imperfecto subj.</th><th>Пример</th></tr>
+      <tr><td>yo</td><td>tuviera</td><td>Si tuviera más tiempo...</td></tr>
+      <tr><td>tú</td><td>tuvieras</td><td>Si tuvieras la visa...</td></tr>
+      <tr><td>nosotros</td><td>tuviéramos</td><td>Si tuviéramos más dinero...</td></tr>
+    </table>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:6px">Другие важные: ser/ir → fuera | estar → estuviera | hacer → hiciera | poder → pudiera | querer → quisiera | saber → supiera | venir → viniera</p>
+  </div>
+
+  <div class="callout info">
+    <h4>🔍 Три главных использования</h4>
+    <ul>
+      <li><strong>Гипотезы «Si + imperfecto subj. + condicional»:</strong> «Si tuviera dinero, compraría un piso.»</li>
+      <li><strong>Вежливые просьбы (вместо presente subj.):</strong> «Quisiera un café, por favor.» (вместо «quiero»)</li>
+      <li><strong>Сослагательное после прошедшего времени:</strong> «Quería que vinieras.» (хотел чтобы ты пришёл)</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Два варианта: -ra и -se</h4>
+    <p>У imperfecto de subjuntivo есть <strong>два варианта</strong>: <br>
+    <strong>-ra форма</strong>: hablara, comiera, viviera — самая распространённая в речи<br>
+    <strong>-se форма</strong>: hablase, comiese, viviese — более формальная/литературная<br>
+    В разговорной речи и в Испании используют -ra. Обе формы полностью взаимозаменяемы.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: SI + IMPERFECTO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Ключевая конструкция: Si + imperfecto subj. + condicional</h2>
+  </div>
+
+  <p style="margin-bottom:12px">Это конструкция для <strong>нереальных/гипотетических условий</strong>. В русском: «Если бы у меня было время, я бы пришёл». В английском: «If I had time, I would come».</p>
+
+  <table class="conj">
+    <tr><th>Si + [imperfecto subjuntivo]</th><th>[condicional simple]</th><th>Перевод</th></tr>
+    <tr><td>Si tuviera dinero</td><td>compraría un piso</td><td>Если бы у меня были деньги, я бы купил квартиру</td></tr>
+    <tr><td>Si fuera tú</td><td>aceptaría la oferta</td><td>Если бы я был тобой, принял бы предложение</td></tr>
+    <tr><td>Si pudiéramos</td><td>nos iríamos ahora</td><td>Если бы могли, уехали бы прямо сейчас</td></tr>
+    <tr><td>Si hablara mejor</td><td>conseguiría trabajo</td><td>Если бы говорил лучше, нашёл бы работу</td></tr>
+    <tr><td>Si viviera en Barcelona</td><td>estaría más feliz</td><td>Если бы жил в Барселоне, был бы счастливее</td></tr>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ НИКОГДА не ставь «si» с condicional!</h4>
+    <ul>
+      <li>ПРАВИЛЬНО: «Si <strong>tuviera</strong> tiempo, <strong>vendría</strong>.» (imperfecto subj. + condicional)</li>
+      <li>НЕПРАВИЛЬНО: «Si <strong>tendría</strong> tiempo, vendría.» — так говорить нельзя!</li>
+      <li>Запомни: после «si» (нереальное условие) — ТОЛЬКО imperfecto subjuntivo, никакого condicional</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 3: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — вежливые формы и гипотезы</h2>
+  </div>
+
+  <table class="vocab">
+    <tr><th>Форма</th><th>Эквивалент</th><th>Пример использования</th></tr>
+    <tr><td>quisiera</td><td>quiero (вежливо)</td><td>Quisiera reservar una mesa para dos.</td></tr>
+    <tr><td>pudiera</td><td>puedo (вежливо)</td><td>¿Pudiera usted ayudarme?</td></tr>
+    <tr><td>debiera</td><td>debo (мягко)</td><td>Debiera estudiar más.</td></tr>
+    <tr><td>si tuviera</td><td>если бы имел</td><td>Si tuviera tiempo, aprendería catalán.</td></tr>
+    <tr><td>si fuera</td><td>если бы был</td><td>Si fuera rico, viviría en Barcelona.</td></tr>
+    <tr><td>si pudiera</td><td>если бы мог</td><td>Si pudiera, me iría ahora mismo.</td></tr>
+    <tr><td>ojalá + imp.subj.</td><td>вот бы (нереальное)</td><td>Ojalá tuviera más tiempo.</td></tr>
+    <tr><td>como si</td><td>как будто</td><td>Habla como si supiera todo.</td></tr>
+    <tr><td>para que + imp.subj.</td><td>для того чтобы (прошлое)</td><td>Lo hice para que entendieran.</td></tr>
+    <tr><td>sin que + imp.subj.</td><td>без того чтобы</td><td>Salió sin que nadie lo viera.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Imperfecto de subjuntivo</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильную форму</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Si <strong>___ (tener, yo)</strong> más dinero, compraría un piso en Barcelona.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">tuviera</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">tendría</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">tenga</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. <strong>Quisiera</strong> ___ una habitación individual, por favor.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">que reserve</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">reservar yo</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">reservar</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Si <strong>___ (ser)</strong> tú, aceptaría el trabajo.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">sería</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">fuera</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">sea</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Ojalá <strong>___ (poder, nosotros)</strong> irnos ahora mismo. (нереальное)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">podamos</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">podemos</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">pudiéramos</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Quería que él <strong>___ (venir)</strong> a la reunión. (хотел в прошлом)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">venga</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">viene</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">viniera</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Habla como si <strong>___ (saber)</strong> todo. (как будто знает)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">sepa</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">sabe</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">supiera</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Образуй форму сам</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Imperfecto de subjuntivo</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Si ___ (estar, yo) en Barcelona, visitaría el Barrio Gótico cada semana. → imp.subj. yo</div>
+      <input type="text" class="text-input" placeholder="estar → yo..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','estuviera','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ estuviera — estar → estuvieron → estuv- + -iera</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Si nosotros ___ (poder) quedarnos más tiempo, lo haríamos. → imp.subj. nosotros</div>
+      <input type="text" class="text-input" placeholder="poder → nosotros..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','pudiéramos','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ pudiéramos — poder → pudieron → pud- + -iéramos (con tilde)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Ojalá ella ___ (hablar) más despacio. → imp.subj. ella (нереальное)</div>
+      <input type="text" class="text-input" placeholder="hablar → ella..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','hablara','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ hablara — hablar → hablaron → habla- + -ra</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Necesitaba que tú ___ (venir) a tiempo. → imp.subj. tú (прошлое)</div>
+      <input type="text" class="text-input" placeholder="venir → tú..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','vinieras','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ vinieras — venir → vinieron → vinier- + -as</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Si ellos ___ (hacer) el esfuerzo, aprenderían rápido. → imp.subj. ellos</div>
+      <input type="text" class="text-input" placeholder="hacer → ellos..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','hicieran','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ hicieran — hacer → hicieron → hicier- + -an</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — гипотезы и вежливые просьбы</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Читай оба диалога вслух. В первом — вежливость, во втором — гипотезы.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: В отеле — вежливая речь
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">EVGENI</div>
+      <div>
+        <div class="dlg-es"><strong>Quisiera</strong> reservar una habitación doble para tres noches, por favor.</div>
+        <div class="dlg-ru" id="tr-dlg1" style="display:none">Я бы хотел забронировать двухместный номер на три ночи, пожалуйста.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">RECEP</div>
+      <div>
+        <div class="dlg-es">Por supuesto. ¿<strong>Pudiera</strong> usted mostrarme su pasaporte?</div>
+        <div class="dlg-ru" style="display:none">Конечно. Не могли бы вы показать мне паспорт?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">EVGENI</div>
+      <div>
+        <div class="dlg-es">Claro. ¿Sería posible tener una habitación con vistas al mar?</div>
+        <div class="dlg-ru" style="display:none">Конечно. Было бы возможно получить номер с видом на море?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">RECEP</div>
+      <div>
+        <div class="dlg-es">Lo siento, no <strong>quedarían</strong> disponibles. Pero tenemos habitaciones interiores muy tranquilas.</div>
+        <div class="dlg-ru" style="display:none">Извините, таких бы уже не осталось. Но у нас есть очень тихие внутренние номера.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Мечты о жизни в Испании
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">KATYA</div>
+      <div>
+        <div class="dlg-es">Si <strong>pudiera</strong> elegir cualquier ciudad, ¿dónde vivirías?</div>
+        <div class="dlg-ru" id="tr-dlg2" style="display:none">Если бы ты мог выбрать любой город, где бы ты жил?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">EVGENI</div>
+      <div>
+        <div class="dlg-es">Sin duda en Barcelona. Si <strong>tuviera</strong> la visa, me iría mañana mismo.</div>
+        <div class="dlg-ru" style="display:none">Без сомнения в Барселоне. Если бы у меня была виза, уехал бы завтра же.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">KATYA</div>
+      <div>
+        <div class="dlg-es">¡Ojalá <strong>fuera</strong> tan fácil! Si <strong>hablara</strong> mejor el español, también lo consideraría.</div>
+        <div class="dlg-ru" style="display:none">Вот бы было так просто! Если бы я говорила лучше по-испански, тоже рассмотрела бы это.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — гипотезы и вежливость</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий: «Si tuviera...» — 7 гипотез о жизни</div>
+    <p>Скажи вслух 7 предложений — что ты бы сделал в идеальном мире. Используй Si + imperfecto subj. + condicional:</p>
+    <div class="es">Si tuviera más tiempo, estudiaría catalán. Si fuera más joven, empezaría antes. Si pudiera elegir, viviría en el Barrio de Gràcia. Si hablara mejor, buscaría clientes españoles. Si estuviera en Barcelona ahora, estaría feliz. Si supiera cocinar paella, la haría cada semana. Si viviera sin preocupaciones, viajaría más.</div>
+    <div class="hint">Говори без подглядывания — придумывай свои предложения!</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Вежливые просьбы: ресторан, гостиница, офис</div>
+    <p>Используй «quisiera» и «pudiera» вместо прямых форм — это звучит профессионально:</p>
+    <div class="es">Quisiera reservar una mesa para cuatro personas. ¿Pudiera traerme la carta, por favor? Quisiera saber el precio de la habitación. ¿Sería posible cambiar la fecha de la reserva?</div>
+    <div class="hint">В Испании «quisiera» вместо «quiero» = класс и вежливость в одном флаконе</div>
+  </div>
+</div>
+
+<!-- SECTION 8: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>«Quisiera» — глагол как машина времени</h4>
+    <p>«Quisiera» — это imperfecto de subjuntivo от «querer», но в испанском языке он превратился в <strong>вежливую формулу</strong>. Буквально он означает «я бы хотел» (гипотетически), но в реальной жизни используется как вежливое «я хочу». В ресторане, в банке, в консульстве — «quisiera» открывает двери. В Испании вежливость ценится, особенно с иностранцами. Когда ты говоришь «quisiera» вместо «quiero» — тебя немедленно воспринимают как образованного человека.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>Imperfecto subj. правило</strong> | Ellos indefinido → убрать -ron → + -ra/-ras/-ra/-ramos/-rais/-ran</li>
+      <li><strong>Si tuviera dinero, compraría...</strong> | Если бы у меня были деньги, я бы купил...</li>
+      <li><strong>Si fuera tú, aceptaría.</strong> | Если бы я был тобой, принял бы.</li>
+      <li><strong>Quisiera un café, por favor.</strong> | Я бы хотел кофе, пожалуйста. (вежливо)</li>
+      <li><strong>Ojalá tuviera más tiempo.</strong> | Вот бы у меня было больше времени. (нереальное)</li>
+      <li><strong>Habla como si supiera todo.</strong> | Говорит, как будто знает всё.</li>
+      <li><strong>Quería que vinieras.</strong> | Хотел, чтобы ты пришёл. (прошлое)</li>
+      <li><strong>НЕЛЬЗЯ: Si tendría... → ПРАВИЛЬНО: Si tuviera...</strong> | После si нет condicional!</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:16px">
+    <h4>🎉 Ты завершил блок 3A — Subjuntivo!</h4>
+    <p>Уроки L62–L70 — полная система сослагательного наклонения. Presente de subjuntivo (все формы), три категории WEIRDO, придаточные времени, и первое знакомство с imperfecto. Следующий блок (L71–L74) — сложные времена: pluscuamperfecto, condicional compuesto, futuro perfecto.</p>
+  </div>
+
+  <div class="callout info" style="margin-top:14px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Напиши 5 предложений «Si tuviera...» о своей мечте переезда в Испанию</li>
+      <li>Pratikуй «quisiera» в реальной жизни: в кафе, в магазине — вслух</li>
+      <li>Выучи неправильные формы: tuviera, fuera, estuviera, pudiera, quisiera, supiera</li>
+      <li>Следующий урок (L71): Pluscuamperfecto — «уже сделал до...»: había comido</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L69.html" class="nav-link-btn">← L69</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L71.html" class="nav-link-btn">L71 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L70';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'tuviera — si + нереальное условие → imperfecto subjuntivo. tener → tuvieron → tuv- + -iera. НЕЛЬЗЯ: si tendría!',
+  q2:'reservar — quisiera + инфинитив (один субъект). Quisiera reservar = вежливое «хочу забронировать».',
+  q3:'fuera — si fuera tú = если бы я был тобой. ser → fueron → fue- + -ra. Нельзя «si sería»!',
+  q4:'pudiéramos — ojalá + нереальное (imperfecto subj.). poder → pudieron → pud- + -iéramos. Ojalá podamos = реальная надежда, pudiéramos = нереальное.',
+  q5:'viniera — после прошедшего времени (quería) + que → imperfecto subj. venir → vinieron → vinier- + -a',
+  q6:'supiera — como si всегда + imperfecto subj. saber → supieron → supier- + -a'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
+  el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const correct=answer.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Ответ: ${answer}`;}
+}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=9;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

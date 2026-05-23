@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L65: Subjuntivo — сомнение и отрицание</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.contrast-table{width:100%;border-collapse:collapse;margin:16px 0}
+.contrast-table th{background:var(--bg3);padding:10px 14px;text-align:center;font-size:.8rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.contrast-table td{padding:10px 14px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.contrast-table .ind-col{background:rgba(45,198,83,.04)}
+.contrast-table .sub-col{background:rgba(230,57,70,.04)}
+.contrast-table .es-text{font-weight:600;margin-bottom:3px}
+.contrast-table .ru-text{color:var(--muted);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table.vocab{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+table.vocab th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;color:var(--muted);border-bottom:1px solid var(--border)}
+table.vocab td{padding:8px 10px;border-bottom:1px solid var(--bg3);vertical-align:top}
+table.vocab td:first-child{font-weight:700;color:var(--gold)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 138</span>
+  <a href="L66.html">L66 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · Блок 3A — Сослагательное наклонение</div>
+  <h1>Subjuntivo — <span class="hl">сомнение и отрицание</span></h1>
+  <p class="sub">No creo que..., Dudo que..., No es verdad que... — когда неуверенность включает сослагательное</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Выражать сомнение и несогласие с subjuntivo vs. indicativo</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Слушай испанские дискуссии — замечай «no creo que», «dudo que»</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Выражаем несогласие деликатно и убедительно</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Теория — сомнение, отрицание и реальность</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Ключевой принцип: <strong>indicativo = реальность/уверенность, subjuntivo = нереальность/неуверенность</strong>. Когда ты сомневаешься или отрицаешь факт — мозг переключает режим на subjuntivo.</p>
+
+  <div class="callout tip">
+    <h4>💡 Простая логика: «Я доверяю факту?»</h4>
+    <p>Если да → indicativo. Если нет / сомневаюсь / отрицаю → subjuntivo.<br>
+    «Creo que <strong>viene</strong>» — думаю, что он придёт (я уверен → ind.)<br>
+    «No creo que <strong>venga</strong>» — не думаю, что он придёт (сомнение → subj.)</p>
+  </div>
+
+  <table class="contrast-table">
+    <tr>
+      <th style="width:50%">✅ INDICATIVO (уверенность)</th>
+      <th style="width:50%">❓ SUBJUNTIVO (сомнение)</th>
+    </tr>
+    <tr>
+      <td class="ind-col"><div class="es-text">Creo que <strong>es</strong> verdad.</div><div class="ru-text">Думаю, что это правда.</div></td>
+      <td class="sub-col"><div class="es-text">No creo que <strong>sea</strong> verdad.</div><div class="ru-text">Не думаю, что это правда.</div></td>
+    </tr>
+    <tr>
+      <td class="ind-col"><div class="es-text">Estoy seguro de que <strong>viene</strong>.</div><div class="ru-text">Уверен, что он придёт.</div></td>
+      <td class="sub-col"><div class="es-text">No estoy seguro de que <strong>venga</strong>.</div><div class="ru-text">Не уверен, что он придёт.</div></td>
+    </tr>
+    <tr>
+      <td class="ind-col"><div class="es-text">Es verdad que <strong>habla</strong> bien.</div><div class="ru-text">Это правда, что он говорит хорошо.</div></td>
+      <td class="sub-col"><div class="es-text">No es verdad que <strong>hable</strong> bien.</div><div class="ru-text">Это неправда, что он говорит хорошо.</div></td>
+    </tr>
+    <tr>
+      <td class="ind-col"><div class="es-text">Es evidente que <strong>tiene</strong> razón.</div><div class="ru-text">Очевидно, что он прав.</div></td>
+      <td class="sub-col"><div class="es-text">Dudo que <strong>tenga</strong> razón.</div><div class="ru-text">Сомневаюсь, что он прав.</div></td>
+    </tr>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ Главная ловушка: «creo que» vs. «no creo que»</h4>
+    <ul>
+      <li>«Creo que <strong>viene</strong>» → уверенность → indicativo ✅</li>
+      <li>«No creo que <strong>venga</strong>» → сомнение → subjuntivo ✅</li>
+      <li>«¿Crees que <strong>venga</strong>?» → вопрос с сомнением говорящего → subjuntivo ✅</li>
+      <li>«¿Crees que <strong>viene</strong>?» → нейтральный вопрос о факте → indicativo тоже допустимо</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>🔍 Глаголы-триггеры сомнения (WEIRDO — D)</h4>
+    <ul>
+      <li><strong>Dudar que</strong> — сомневаться что</li>
+      <li><strong>No creer que</strong> — не верить что</li>
+      <li><strong>No pensar que</strong> — не думать что</li>
+      <li><strong>Negar que</strong> — отрицать что</li>
+      <li><strong>No estar seguro de que</strong> — не быть уверенным что</li>
+      <li><strong>No es verdad/cierto/evidente que</strong> — это неправда/неверно/неочевидно что</li>
+      <li><strong>Es posible/probable que</strong> — возможно/вероятно что (неопределённость)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — выражения сомнения и отрицания</h2>
+  </div>
+
+  <table class="vocab">
+    <tr><th>Выражение</th><th>Перевод</th><th>Пример</th></tr>
+    <tr><td>dudar que</td><td>сомневаться что</td><td>Dudo que llegue a tiempo.</td></tr>
+    <tr><td>no creer que</td><td>не верить что</td><td>No creo que sea posible.</td></tr>
+    <tr><td>no pensar que</td><td>не думать что</td><td>No pienso que tenga razón.</td></tr>
+    <tr><td>negar que</td><td>отрицать что</td><td>Niega que haya mentido.</td></tr>
+    <tr><td>es posible que</td><td>возможно что</td><td>Es posible que llueva mañana.</td></tr>
+    <tr><td>es probable que</td><td>вероятно что</td><td>Es probable que venga tarde.</td></tr>
+    <tr><td>es imposible que</td><td>невозможно что</td><td>Es imposible que ya haya terminado.</td></tr>
+    <tr><td>no es verdad que</td><td>это неправда что</td><td>No es verdad que sea culpable.</td></tr>
+    <tr><td>no es cierto que</td><td>это неверно что</td><td>No es cierto que lo sepa todo.</td></tr>
+    <tr><td>quizás / quizá</td><td>может быть</td><td>Quizás venga mañana. (или viene)</td></tr>
+    <tr><td>tal vez</td><td>возможно / может</td><td>Tal vez sea mejor esperar.</td></tr>
+    <tr><td>a lo mejor</td><td>наверное / может</td><td>A lo mejor <em>viene</em> (ТОЛЬКО indicativo!)</td></tr>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ «A lo mejor» — исключение!</h4>
+    <p>«A lo mejor» всегда используется с <strong>indicativo</strong>, хотя переводится как «может быть». Это исключение нужно запомнить: «A lo mejor <strong>viene</strong> mañana» (не «venga»). В отличие от «quizás» и «tal vez», которые могут идти с обоими наклонениями.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Indicativo или subjuntivo?</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Сомнение включает subjuntivo</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. No creo que él <strong>___ (tener)</strong> la experiencia necesaria.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">tenga</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">tiene</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">tener</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Creo que el proyecto <strong>___ (ser)</strong> un éxito. (уверен)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">sea</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">será / es</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">fuera</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Dudo que ellos <strong>___ (venir)</strong> a la fiesta.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">vienen</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">vengan</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">vendran</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Es posible que mañana <strong>___ (llover)</strong>.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">llueva</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">lloverá</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">llueve</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. A lo mejor <strong>___ (llegar)</strong> tarde el tren.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">llegue</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">llegar</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">llega</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. No es verdad que este restaurante <strong>___ (ser)</strong> caro.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">sea</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">es</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">era</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Правильный глагол — правильное наклонение</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. No estoy seguro de que ella ___ (saber) la respuesta. → subjuntivo ella</div>
+      <input type="text" class="text-input" placeholder="saber → ella..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','sepa','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ sepa — no estoy seguro de que → subjuntivo. saber → sepa</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Dudo que ellos ___ (estar) en casa ahora. → subjuntivo ellos</div>
+      <input type="text" class="text-input" placeholder="estar → ellos..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','estén','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ estén — dudar que → subjuntivo. estar → estén (ellos)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Es probable que mañana ___ (haber) huelga de metro. → subjuntivo безличное</div>
+      <input type="text" class="text-input" placeholder="haber → безличное..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','haya','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ haya — es probable que → subjuntivo. haber → haya</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. No pienso que eso ___ (ser, neutro) correcto. → subjuntivo neutro</div>
+      <input type="text" class="text-input" placeholder="ser → neutro..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','sea','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ sea — no pienso que → subjuntivo. ser → sea</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Niega que él ___ (haber mentido). → subjuntivo, перфект субхунтиво: haya mentido</div>
+      <input type="text" class="text-input" placeholder="первое слово перфекта..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','haya','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ haya (mentido) — negar que → subjuntivo. Перфект субхунтиво: haber в субхунтиво + participio</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — несогласие и сомнение</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Читай вслух. Заметь: каждый раз когда персонаж сомневается или отрицает — появляется subjuntivo.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Планирование переезда — сомнения
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">IRINA</div>
+      <div>
+        <div class="dlg-es">¿Crees que Barcelona <strong>sea</strong> buena para vivir con niños?</div>
+        <div class="dlg-ru" id="tr-dlg1" style="display:none">Ты думаешь, что Барселона хороша для жизни с детьми?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">EVGENI</div>
+      <div>
+        <div class="dlg-es">Creo que <strong>es</strong> perfecta. No dudo que <strong>tenga</strong> excelentes colegios.</div>
+        <div class="dlg-ru" style="display:none">Думаю, что она идеальна. Не сомневаюсь, что там отличные школы.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">IRINA</div>
+      <div>
+        <div class="dlg-es">Dudo que <strong>sea</strong> fácil encontrar piso al principio. Tal vez <strong>sea</strong> mejor alquilar primero.</div>
+        <div class="dlg-ru" style="display:none">Сомневаюсь, что поначалу легко найти квартиру. Возможно, лучше сначала арендовать.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">EVGENI</div>
+      <div>
+        <div class="dlg-es">Tienes razón. Es posible que <strong>necesitemos</strong> un año para adaptarnos. A lo mejor <strong>es</strong> más fácil de lo que pensamos.</div>
+        <div class="dlg-ru" style="display:none">Ты права. Возможно, нам понадобится год для адаптации. Может, это легче, чем мы думаем.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Обсуждение новостей
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">CARLOS</div>
+      <div>
+        <div class="dlg-es">Dicen que el precio de los pisos <strong>va</strong> a bajar el año que viene.</div>
+        <div class="dlg-ru" id="tr-dlg2" style="display:none">Говорят, что цены на квартиры упадут в следующем году.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">MARTA</div>
+      <div>
+        <div class="dlg-es">No creo que <strong>bajen</strong>. Es imposible que el mercado <strong>cambie</strong> tan rápido.</div>
+        <div class="dlg-ru" style="display:none">Не думаю, что они упадут. Невозможно, чтобы рынок изменился так быстро.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">CARLOS</div>
+      <div>
+        <div class="dlg-es">Quizás <strong>tengas</strong> razón. Pero es probable que <strong>haya</strong> nuevas regulaciones.</div>
+        <div class="dlg-ru" style="display:none">Возможно, ты права. Но, вероятно, появятся новые регуляции.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — выражаем сомнения деликатно</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий: Ты сомневаешься в решении</div>
+    <p>Представь: тебе предлагают работу в Мадриде, но ты планируешь ехать в Барселону. Выскажи сомнения вслух — 5–6 предложений с «dudo que», «no creo que», «es posible que».</p>
+    <div class="es">No creo que Madrid sea la mejor opción para nosotros. Dudo que la ciudad tenga el mismo ambiente que Barcelona. Es posible que el clima sea demasiado extremo para los niños. No estoy seguro de que pueda rechazar esta oferta...</div>
+    <div class="hint">Это реальная ситуация переезда — практикуй именно её!</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Мини-дебаты: «¿Es mejor comprar o alquilar?»</div>
+    <p>Возьми позицию «лучше арендовать» и аргументируй с субхунтиво сомнения:</p>
+    <div class="es">No creo que sea inteligente comprar inmediatamente. Dudo que los precios sean estables. Es posible que en dos años la situación cambie completamente. No pienso que sea el momento adecuado para tomar esa decisión...</div>
+    <div class="hint">B1-уровень: соединяй предложения, используй «además», «sin embargo», «por otro lado»</div>
+  </div>
+</div>
+
+<!-- SECTION 7: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Испанская непрямолинейность: как несогласие смягчают субхунтиво</h4>
+    <p>В испанской культуре прямое несогласие («Нет, ты неправ!») считается грубым в формальных ситуациях. Субхунтиво — это <em>инструмент вежливости</em>. «No creo que sea así» (не думаю, что это так) звучит мягче, чем «No es así» (это не так). В Барселоне и Испании деловые переговоры часто строятся именно на такой осторожной риторике с субхунтиво. Умение выражать сомнение культурно — это знак высокого языкового уровня.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: ANKI -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>Creo que es verdad.</strong> | Думаю, это правда. (indicativo — уверенность)</li>
+      <li><strong>No creo que sea verdad.</strong> | Не думаю, что это правда. (subjuntivo — сомнение)</li>
+      <li><strong>Dudo que tenga razón.</strong> | Сомневаюсь, что он прав.</li>
+      <li><strong>Es posible que llueva.</strong> | Возможно, пойдёт дождь.</li>
+      <li><strong>Es probable que venga tarde.</strong> | Вероятно, придёт поздно.</li>
+      <li><strong>A lo mejor viene.</strong> | Может, придёт. (ТОЛЬКО indicativo!)</li>
+      <li><strong>Quizás sea mejor esperar.</strong> | Может, лучше подождать.</li>
+      <li><strong>No es verdad que sea culpable.</strong> | Неправда, что он виновен.</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Возьми новостную статью на испанском — найди 3 примера с «es posible que» / «dudo que»</li>
+      <li>Напиши 6 предложений: три с уверенностью (indicativo) и три с сомнением (subjuntivo)</li>
+      <li>Запомни исключение: «a lo mejor + indicativo» — произнеси это 10 раз вслух</li>
+      <li>Следующий урок (L66): эмоции + subjuntivo — «me alegra que», «es una lástima que»</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L64.html" class="nav-link-btn">← L64</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L66.html" class="nav-link-btn">L66 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L65';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'tenga — no creer que → subjuntivo. tener: yo → tengo → teng- + -a',
+  q2:'será/es — creer que (без отрицания) → indicativo. Ты уверен — indicativo.',
+  q3:'vengan — dudar que → всегда subjuntivo. venir → vengan (ellos)',
+  q4:'llueva — es posible que → subjuntivo. llover → llueva (неправильный: o→ue)',
+  q5:'llega — a lo mejor + ТОЛЬКО indicativo! Это исключение.',
+  q6:'sea — no es verdad que → subjuntivo. ser → sea'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
+  el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const correct=answer.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Ответ: ${answer}`;}
+}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L86: Медиа и технологии — Internet, redes sociales, noticias</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:10px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.vocab-table .ex{color:var(--muted);font-size:.82rem;font-style:italic}
+.cognate{background:rgba(255,214,10,.15);color:var(--gold);padding:1px 5px;border-radius:4px;font-size:.82rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.authentic-text{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin:14px 0}
+.authentic-text .src{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.authentic-text p{font-size:.92rem;line-height:1.8}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 182</span>
+  <a href="L87.html">L87 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · B1 · Блок 3C — Сложная коммуникация</div>
+  <h1>Медиа и <span class="hl">технологии</span></h1>
+  <p class="sub">Internet, redes sociales, noticias, aplicaciones — цифровая жизнь на испанском</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Обсуждать технологии, соцсети и новости на B1</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Dreaming Spanish: технологии и общество</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Обсуждаем цифровую жизнь и соцсети</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Как говорить о технологиях — ключевые конструкции</h2>
+  </div>
+
+  <p style="margin-bottom:14px">На уровне B1 важно не просто называть технологии, но <strong>аргументировать, критиковать и сравнивать</strong>. В этом уроке — лексика и конструкции для реальных разговоров о цифровой жизни.</p>
+
+  <div class="callout tip">
+    <h4>💡 Конструкции для мнений о технологиях</h4>
+    <ul>
+      <li><strong>Creo que las redes sociales...</strong> — Я считаю, что соцсети...</li>
+      <li><strong>Hay que reconocer que...</strong> — Надо признать, что...</li>
+      <li><strong>Por un lado..., por otro lado...</strong> — С одной стороны..., с другой...</li>
+      <li><strong>Lo que me preocupa es que...</strong> — Меня беспокоит то, что...</li>
+      <li><strong>Sin duda, el internet ha cambiado...</strong> — Без сомнения, интернет изменил...</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>📱 Испанский в соцсетях — реальный язык</h4>
+    <p>В испанских соцсетях активно используются: <strong>tuitear</strong> (твитить), <strong>postear</strong> (постить), <strong>likear</strong> (лайкнуть), <strong>stalkear</strong> (слегка неформально — следить). Это нативные заимствования из английского. В формальном испанском предпочитают: <strong>publicar</strong> (публиковать), <strong>compartir</strong> (делиться), <strong>seguir a alguien</strong> (подписаться на кого-то).</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: «red» — это не «красный»!</h4>
+    <p><strong>La red</strong> = сеть/интернет (la red social = социальная сеть). Красный цвет — это <strong>rojo</strong>. Типичная ошибка русскоговорящих, у которых «ред» ассоциируется с red (цвет).</p>
+  </div>
+
+  <div class="callout success">
+    <h4>✅ Глаголы для цифровой жизни</h4>
+    <ul>
+      <li><strong>navegar por internet</strong> — сёрфить интернет</li>
+      <li><strong>descargar / subir</strong> — скачать / загрузить</li>
+      <li><strong>compartir contenido</strong> — делиться контентом</li>
+      <li><strong>hacer una videollamada</strong> — сделать видеозвонок</li>
+      <li><strong>gestionar la privacidad</strong> — управлять конфиденциальностью</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — Медиа и технологии</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="es">la red social <span class="cognate">social</span></td><td class="tr">[ла рэд со-СЬЯЛЬ]</td><td>социальная сеть</td><td class="ex">Uso las redes sociales para informarme.</td></tr>
+      <tr><td class="es">el algoritmo <span class="cognate">algorithm</span></td><td class="tr">[эль аль-го-РИТ-мо]</td><td>алгоритм</td><td class="ex">El algoritmo decide qué vemos primero.</td></tr>
+      <tr><td class="es">la privacidad <span class="cognate">privacy</span></td><td class="tr">[ла при-ба-си-ДАД]</td><td>конфиденциальность</td><td class="ex">Proteger la privacidad es importante.</td></tr>
+      <tr><td class="es">las noticias falsas</td><td class="tr">[лас но-ТИ-сьяс ФАЛЬ-сас]</td><td>фейковые новости</td><td class="ex">Las noticias falsas se difunden rápidamente.</td></tr>
+      <tr><td class="es">la desinformación <span class="cognate">disinformation</span></td><td class="tr">[ла дес-ин-фор-ма-СЬОН]</td><td>дезинформация</td><td class="ex">La desinformación es un problema global.</td></tr>
+      <tr><td class="es">el influencer</td><td class="tr">[эль ин-флу-ЭН-сер]</td><td>инфлюэнсер</td><td class="ex">Es un influencer con millones de seguidores.</td></tr>
+      <tr><td class="es">el contenido digital <span class="cognate">digital</span></td><td class="tr">[эль кон-те-НИ-до]</td><td>цифровой контент</td><td class="ex">Creo contenido digital para mi trabajo.</td></tr>
+      <tr><td class="es">la inteligencia artificial <span class="cognate">artificial</span></td><td class="tr">[ла ин-те-ли-ХЕН-сья]</td><td>искусственный интеллект</td><td class="ex">La IA está transformando la sociedad.</td></tr>
+      <tr><td class="es">el ciberacoso</td><td class="tr">[эль си-бер-а-КО-со]</td><td>кибербуллинг</td><td class="ex">El ciberacoso afecta a muchos jóvenes.</td></tr>
+      <tr><td class="es">la brecha digital</td><td class="tr">[ла БРЕ-ча]</td><td>цифровой разрыв</td><td class="ex">La brecha digital divide a ricos y pobres.</td></tr>
+      <tr><td class="es">suscribirse a</td><td class="tr">[сус-кри-БИР-се]</td><td>подписаться на</td><td class="ex">Me suscribí a su canal hace un mes.</td></tr>
+      <tr><td class="es">el streaming <span class="cognate">streaming</span></td><td class="tr">[эль СТРИ-мин]</td><td>стриминг</td><td class="ex">Veo series en plataformas de streaming.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: AUTHENTIC TEXT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Аутентичный текст — новостной отрывок</h2>
+  </div>
+
+  <div class="authentic-text">
+    <div class="src">📰 Отрывок из новостного сайта El País (адаптировано)</div>
+    <p>
+      «El uso de las redes sociales entre los jóvenes españoles ha aumentado un 23% en el último año. Según el estudio, el 78% de los adolescentes pasa más de tres horas diarias conectados. Los expertos advierten sobre los efectos del algoritmo en la salud mental: <em>"El problema no es la tecnología en sí, sino el diseño adictivo de las plataformas"</em>, explica la psicóloga Elena Martín. Varios países europeos ya debaten leyes para regular el acceso de menores a las redes sociales.»
+    </p>
+  </div>
+  <button class="dlg-toggle" style="margin-top:8px;background:none;border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--muted);cursor:pointer;font-size:.82rem" onclick="toggleTranslation('tr-news')">Показать перевод</button>
+  <div id="tr-news" style="display:none;margin-top:10px;font-size:.86rem;color:var(--muted);background:var(--bg2);padding:14px;border-radius:8px">
+    «Использование социальных сетей среди молодых испанцев выросло на 23% за последний год. По данным исследования, 78% подростков проводят онлайн более трёх часов в день. Эксперты предупреждают о влиянии алгоритма на психическое здоровье: "Проблема не в технологии как таковой, а в аддиктивном дизайне платформ", — объясняет психолог Елена Мартин. Несколько европейских стран уже обсуждают законы об ограничении доступа несовершеннолетних к соцсетям.»
+  </div>
+
+  <div class="callout tip" style="margin-top:14px">
+    <h4>🔍 Разберём ключевые слова из текста</h4>
+    <ul>
+      <li><strong>ha aumentado</strong> — выросло (present perfect)</li>
+      <li><strong>advierten sobre</strong> — предупреждают о (advertir = предупреждать)</li>
+      <li><strong>en sí</strong> — как таковой, само по себе</li>
+      <li><strong>debaten leyes para regular</strong> — обсуждают законы для регулирования</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Технологии и медиа</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильный вариант</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как по-испански «fake news» (фейковые новости)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">noticias falsas</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">noticias malas</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">noticias rotas</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Я подписался на его канал» — как сказать?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Segué su canal</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Me suscribí a su canal</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Le seguí el canal</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «La brecha digital» означает...</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">цифровой экран</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">быстрый интернет</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">цифровой разрыв (неравенство)</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Меня беспокоит то, что...» — как начать фразу?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Lo que me preocupa es que...</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Me gusta que...</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Pienso que no...</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Compartir contenido» — что это значит?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">создавать контент</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">удалять контент</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">делиться контентом</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Как называется кибербуллинг по-испански?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">el cyberataque</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">el ciberacoso</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">la cibermanía</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 5: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Вставь правильное слово</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. El ________ decide qué publicaciones aparecen primero en tu feed. (алгоритм)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','algoritmo','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ algoritmo — когнат с английским «algorithm»</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Hay que proteger nuestra ________ en internet. (конфиденциальность)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','privacidad','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ privacidad — от «privado» (частный)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Veo películas en plataformas de ________. (стриминг)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','streaming','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ streaming — заимствование из английского</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. La ________ artificial está cambiando el mundo. (интеллект)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','inteligencia','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ inteligencia — inteligencia artificial = ИИ</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Las ________ falsas se difunden muy rápido en redes. (новости)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','noticias','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ noticias — noticias falsas = фейк-ньюс</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Обсуждаем цифровую жизнь</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух, играя обе роли. Обрати внимание на конструкции для выражения мнения.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Соцсети — за и против
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">ANA</div>
+      <div><div class="dlg-es">¿Tú usas mucho las redes sociales?</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">[Ты много пользуешься соцсетями?]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">PABLO</div>
+      <div><div class="dlg-es">Sí, pero últimamente lo estoy reduciendo. Lo que me preocupa es que pierdo demasiado tiempo scrolleando.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">[Да, но в последнее время я это сокращаю. Меня беспокоит то, что я трачу слишком много времени на скроллинг.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">ANA</div>
+      <div><div class="dlg-es">Entiendo. Hay que reconocer que el algoritmo está diseñado para engancharte.</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">[Понимаю. Надо признать, что алгоритм разработан, чтобы тебя зацепить.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">PABLO</div>
+      <div><div class="dlg-es">Exacto. Por un lado, me ayuda a mantenerme informado; por otro, me roba tiempo valioso.</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">[Именно. С одной стороны, помогает быть в курсе; с другой — крадёт ценное время.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">ANA</div>
+      <div><div class="dlg-es">Yo he puesto límites de pantalla en el móvil. ¿Lo has probado?</div>
+      <div class="dlg-ru" id="tr-dlg1-5" style="display:none">[Я установила лимиты экранного времени на телефоне. Ты пробовал?]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">PABLO</div>
+      <div><div class="dlg-es">No, pero es buena idea. Sin duda, algo tiene que cambiar.</div>
+      <div class="dlg-ru" id="tr-dlg1-6" style="display:none">[Нет, но это хорошая идея. Без сомнения, что-то должно измениться.]</div></div>
+    </div>
+  </div>
+  <div id="tr-dlg1" style="display:none"></div>
+  <script>
+  document.querySelector('[onclick="toggleTranslation(\'tr-dlg1\')"]').onclick = function(){
+    ['tr-dlg1-1','tr-dlg1-2','tr-dlg1-3','tr-dlg1-4','tr-dlg1-5','tr-dlg1-6'].forEach(function(id){
+      var el=document.getElementById(id);
+      el.style.display=el.style.display==='none'?'block':'none';
+    });
+  };
+  </script>
+
+  <div class="dialogue" style="margin-top:20px">
+    <div class="dlg-header">
+      💬 Диалог 2: Искусственный интеллект на работе
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">LAURA</div>
+      <div><div class="dlg-es">¿Crees que la inteligencia artificial va a quitarnos el trabajo?</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">[Ты думаешь, искусственный интеллект отнимет у нас работу?]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">MARCOS</div>
+      <div><div class="dlg-es">Creo que va a transformar los trabajos, no necesariamente eliminarlos. Los empleos creativos son más difíciles de automatizar.</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">[Думаю, он преобразует работу, а не обязательно уничтожит её. Творческие профессии сложнее автоматизировать.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">LAURA</div>
+      <div><div class="dlg-es">Eso es cierto. Pero lo que me preocupa es la desinformación generada por IA.</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">[Это верно. Но меня беспокоит дезинформация, создаваемая ИИ.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">MARCOS</div>
+      <div><div class="dlg-es">Totalmente de acuerdo. Hay que aprender a verificar las fuentes antes de compartir.</div>
+      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">[Полностью согласен. Нужно учиться проверять источники перед тем, как делиться.]</div></div>
+    </div>
+  </div>
+  <div id="tr-dlg2" style="display:none"></div>
+  <script>
+  document.querySelector('[onclick="toggleTranslation(\'tr-dlg2\')"]').onclick = function(){
+    ['tr-dlg2-1','tr-dlg2-2','tr-dlg2-3','tr-dlg2-4'].forEach(function(id){
+      var el=document.getElementById(id);
+      el.style.display=el.style.display==='none'?'block':'none';
+    });
+  };
+  </script>
+</div>
+
+<!-- SECTION 7: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Обсуждаем технологии</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 1 — Базовый уровень</div>
+    <p>Расскажи о своих привычках в соцсетях. Ответь на вопросы:</p>
+    <div class="es">¿Qué redes sociales usas más? ¿Cuánto tiempo pasas conectado al día? ¿Crees que es demasiado?</div>
+    <div class="hint">Шаблон: «Uso principalmente [Instagram/Telegram/YouTube]. Paso aproximadamente [X] horas al día. Creo que [es mucho / es normal / debería reducirlo]...»</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 2 — Продвинутый уровень</div>
+    <p>Сценарий: На интервью тебя спрашивают о влиянии технологий на общество. Дай развёрнутый ответ на 1 минуту, используя конструкции «por un lado... por otro lado» и «lo que me preocupa es».</p>
+    <div class="es">«Creo que las nuevas tecnologías tienen un impacto enorme en la sociedad. Por un lado... Por otro lado... Sin embargo, lo que más me preocupa es...»</div>
+    <div class="hint">Используй: ha cambiado, está transformando, hay que reconocer, sin duda, en cuanto a la privacidad...</div>
+  </div>
+</div>
+
+<!-- SECTION 8: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Испания и цифровой разрыв: поколение «silver surfers»</h4>
+    <p>Испания — одна из стран ЕС с наиболее активным цифровым пожилым населением. Движение «silver surfers» (серебряные сёрферы) объединяет людей старше 60 лет, активно осваивающих интернет. Государственные программы «España Digital» и инициативы Красного Креста помогают пожилым испанцам не оказаться по другую сторону «цифровой бреши». При этом Испания занимает 8-е место в мире по скорости интернета. В Барселоне и Мадриде смартфонами пользуются 94% населения — один из самых высоких показателей в Европе.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>la red social</strong> — социальная сеть</li>
+      <li><strong>el algoritmo</strong> — алгоритм</li>
+      <li><strong>la privacidad</strong> — конфиденциальность</li>
+      <li><strong>las noticias falsas</strong> — фейковые новости</li>
+      <li><strong>la inteligencia artificial</strong> — искусственный интеллект</li>
+      <li><strong>lo que me preocupa es que...</strong> — меня беспокоит то, что...</li>
+      <li><strong>hay que reconocer que...</strong> — надо признать, что...</li>
+      <li><strong>por un lado... por otro lado...</strong> — с одной стороны... с другой...</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Напиши 5 предложений о своих цифровых привычках, используя новую лексику</li>
+      <li>Dreaming Spanish Intermediate: найди видео о технологиях — посмотри 15 минут</li>
+      <li>Найди в испаноязычном Twitter/X один пост о технологиях и разбери его</li>
+      <li>Повтори Anki-карточки</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L85.html" class="nav-link-btn">← L85</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L87.html" class="nav-link-btn">L87 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L86';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  q1:'noticias falsas — буквальный перевод fake news. Используется в испанских СМИ повсеместно.',
+  q2:'Me suscribí — возвратный глагол suscribirse в pretérito indefinido. Seguir тоже можно, но suscribirse точнее.',
+  q3:'La brecha digital = цифровой разрыв (неравенство доступа к технологиям между богатыми и бедными слоями).',
+  q4:'Lo que me preocupa es que... — это конструкция с относительным местоимением для выражения беспокойства.',
+  q5:'Compartir = делиться. Это ключевой глагол для соцсетей: compartir contenido, una publicación, una foto.',
+  q6:'El ciberacoso — от «acoso» (домогательство, преследование) с приставкой «ciber-». Это стандартный термин.'
+};
+
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || correct.startsWith(val) && val.length >= correct.length-2) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+function toggleTranslation(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+const totalSections = 9;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

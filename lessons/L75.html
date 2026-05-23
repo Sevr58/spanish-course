@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L75: Выражение мнения</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+th{background:var(--bg3);color:var(--gold);padding:8px 12px;text-align:left;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+td{padding:8px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.phrase-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.phrase-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.phrase-card .label{font-size:.72rem;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.phrase-card.formal .label{color:var(--blue)}
+.phrase-card.informal .label{color:var(--gold)}
+.phrase-card ul{list-style:none;font-size:.87rem}
+.phrase-card li{padding:3px 0;border-bottom:1px solid var(--bg3)}
+.phrase-card li:last-child{border-bottom:none}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.phrase-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 160</span>
+  <a href="L76.html">L76 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">Фаза 3 · Блок B3C · Сложная коммуникация</div>
+  <h1>Выражение <span class="hl">мнения</span></h1>
+  <p class="sub">Creo que, en mi opinión, desde mi punto de vista, me parece que — как говорить убедительно и дипломатично.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🗣</div><div><strong>5 спорных тем</strong><p>Высказать и аргументировать позицию по каждой</p></div></div>
+    <div class="obj"><div class="ico">🎭</div><div><strong>Регистр</strong><p>Формальный vs неформальный способы выражения мнения</p></div></div>
+    <div class="obj"><div class="ico">🛡</div><div><strong>Hedging</strong><p>Смягчать и усиливать высказывания как носитель языка</p></div></div>
+    <div class="obj"><div class="ico">📝</div><div><strong>Структура</strong><p>Мнение + аргумент + пример = убедительная речь</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: Теория -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Как испанцы выражают мнение</h2>
+  </div>
+
+  <p style="margin-bottom:14px">В испанском мнение выражается через целый арсенал фраз — от нейтральных до сильно личных. Ключевое правило: после <strong>creo que, me parece que, pienso que</strong> — изъявительное наклонение (indic.); после <strong>no creo que, no me parece que</strong> — сослагательное (subjuntivo).</p>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: отрицание меняет наклонение!</h4>
+    <p>«Creo que <strong>es</strong> difícil» (indicativo) — Думаю, что это сложно.<br>
+    «No creo que <strong>sea</strong> difícil» (subjuntivo) — Не думаю, что это сложно.<br>
+    Это одна из главных ошибок на B1. После отрицания глагол субъюнктивный!</p>
+  </div>
+
+  <div class="phrase-grid">
+    <div class="phrase-card formal">
+      <div class="label">Формальный регистр</div>
+      <ul>
+        <li>Desde mi punto de vista...</li>
+        <li>En mi opinión...</li>
+        <li>A mi juicio...</li>
+        <li>Considero que...</li>
+        <li>Estoy convencido/a de que...</li>
+        <li>Cabe señalar que...</li>
+      </ul>
+    </div>
+    <div class="phrase-card informal">
+      <div class="label">Неформальный / разговорный</div>
+      <ul>
+        <li>Creo que / Pienso que...</li>
+        <li>Me parece que...</li>
+        <li>Para mí...</li>
+        <li>A mí me parece...</li>
+        <li>La verdad es que...</li>
+        <li>Yo diría que...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Hedging — искусство смягчения</h4>
+    <p>Носители языка редко говорят категорично. Они смягчают: «<em>Quizás</em> sea una buena idea», «<em>En cierto modo</em>, tienes razón», «<em>Hasta cierto punto</em> estoy de acuerdo». Это делает речь более зрелой и убедительной. На B1 начни добавлять эти маркеры.</p>
+  </div>
+
+  <p style="margin-bottom:10px"><strong>Усилители мнения:</strong></p>
+  <div style="background:var(--bg3);border-radius:8px;padding:12px 16px;font-size:.88rem;margin-bottom:14px">
+    <p>• <strong>Estoy totalmente convencido/a de que...</strong> — Я абсолютно убеждён/а, что...</p>
+    <p>• <strong>Estoy firmemente en contra de...</strong> — Я решительно против...</p>
+    <p>• <strong>Es evidente que / Es obvio que...</strong> — Очевидно, что...</p>
+    <p>• <strong>Sinceramente creo que...</strong> — Честно говоря, думаю, что...</p>
+  </div>
+</div>
+
+<!-- SECTION 2: Словарь -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — Выражения мнения</h2>
+  </div>
+
+  <table>
+    <tr><th>Фраза</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td><strong>creer que</strong></td><td>[кре-ЭР ке]</td><td>думать, считать</td><td>Creo que es una buena idea.</td></tr>
+    <tr><td><strong>opinar</strong></td><td>[опи-НАР]</td><td>иметь мнение, высказываться</td><td>¿Qué opinas sobre este tema?</td></tr>
+    <tr><td><strong>parecer</strong></td><td>[паре-СЕР]</td><td>казаться</td><td>Me parece injusto.</td></tr>
+    <tr><td><strong>considerar</strong></td><td>[консиде-РАР]</td><td>считать, полагать</td><td>Considero que es un error.</td></tr>
+    <tr><td><strong>estar convencido/a</strong></td><td>[конвен-СИ-до]</td><td>быть убеждённым</td><td>Estoy convencida de que funciona.</td></tr>
+    <tr><td><strong>en mi opinión</strong></td><td>[опи-НЬОН]</td><td>по моему мнению</td><td>En mi opinión, hay que cambiar.</td></tr>
+    <tr><td><strong>desde mi punto de vista</strong></td><td>[ПУН-то де ВИС-та]</td><td>с моей точки зрения</td><td>Desde mi punto de vista, es correcto.</td></tr>
+    <tr><td><strong>hasta cierto punto</strong></td><td>[СЬЕРто]</td><td>до определённой степени</td><td>Hasta cierto punto tienes razón.</td></tr>
+    <tr><td><strong>en cierto modo</strong></td><td>[СЬЕРто МОдо]</td><td>в некотором роде</td><td>En cierto modo, entiendo tu postura.</td></tr>
+    <tr><td><strong>cabe destacar</strong></td><td>[КА-бе деста-КАР]</td><td>стоит отметить</td><td>Cabe destacar que los datos son fiables.</td></tr>
+    <tr><td><strong>a mi juicio</strong></td><td>[ХУ-исьо]</td><td>на мой взгляд (формально)</td><td>A mi juicio, la propuesta es viable.</td></tr>
+    <tr><td><strong>quizás / tal vez</strong></td><td>[кисАС / тал ВЕС]</td><td>может быть</td><td>Quizás tenga razón, no lo sé.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: Тест 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Правильное наклонение</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Indicativo или Subjuntivo?</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Creo que el proyecto _____ (ser) una buena idea.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">es</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">sea</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">sería</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «No creo que eso _____ (ser) posible.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">es</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">sea</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">será</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Какая фраза ФОРМАЛЬНАЯ для выражения мнения?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">A mi juicio, la propuesta es viable.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Para mí, no está bien.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">La verdad es que no me gusta.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Me parece que _____ (haber) un error en el sistema.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">hay</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">haya</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">habría</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Как смягчить мнение? Выбери вариант с hedging:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Estás totalmente equivocado.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Hasta cierto punto, entiendo tu postura.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">No tienes razón en absoluto.</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Considero que el precio _____ (estar) demasiado alto.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">está</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">esté</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">estaba</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: Тест 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Дополни фразу</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Заполни пропуски</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. «_____ mi opinión, hay que cambiar la situación.» (предлог)</div>
+      <input type="text" class="text-input" placeholder="один предлог..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','en','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ En — «en mi opinión» — стандартная фраза</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. «Desde mi _____ de vista, el proyecto es viable.» (одно слово)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','punto','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ punto — desde mi punto de vista</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. «No creo que eso _____ verdad.» (ser, subjuntivo)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','sea','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ sea — субъюнктив после отрицания «no creo que»</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. «Estoy _____ de que funcionará.» (убеждён/а)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','convencido','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ convencido (или convencida) — estoy convencido/a de que</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. «_____ cierto punto, tienes razón, pero...» (до определённой степени)</div>
+      <input type="text" class="text-input" placeholder="два слова..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','hasta cierto','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ Hasta cierto (punto) — типичный маркер hedging</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: Аутентичный контент -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Аутентичный текст — Твит и комментарий</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>🐦 Реальный стиль испанцев в соцсетях</h4>
+    <p>Прочитай и определи: какие фразы выражения мнения используются?</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      Твит + ответы — без перевода (B1: понимай из контекста!)
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-tweet')">Показать разбор</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:2">
+          <p><strong style="color:var(--gold)">@usuario1:</strong> «Desde mi punto de vista, el teletrabajo es el futuro. Las empresas que se niegan a adaptarse perderán a los mejores talentos.»</p>
+          <p style="margin-top:8px"><strong style="color:var(--blue)">@usuario2:</strong> «Hasta cierto punto de acuerdo, pero considero que el trabajo presencial también tiene valor. En mi opinión, lo ideal es un modelo híbrido.»</p>
+          <p style="margin-top:8px"><strong style="color:var(--gold)">@usuario3:</strong> «Me parece que la discusión es más compleja. No creo que haya una solución única para todas las empresas.»</p>
+        </div>
+        <div id="tr-tweet" style="display:none;margin-top:10px;font-size:.85rem;color:var(--muted)">
+          <strong>Разбор фраз мнения:</strong><br>
+          • «Desde mi punto de vista» — формальное, подходит для дискуссии<br>
+          • «Hasta cierto punto de acuerdo» — hedging, частичное согласие<br>
+          • «Considero que» — более формальное, чем «creo que»<br>
+          • «En mi opinión» — нейтральное<br>
+          • «Me parece que» — личное, разговорное<br>
+          • «No creo que haya» — отрицание + subjuntivo!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: Диалоги -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Обсуждаем спорные темы</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Обязательно ли знать английский?
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Eva</div>
+      <div><div class="dlg-es">En mi opinión, el inglés debería ser obligatorio en todas las escuelas. ¿Tú qué piensas?</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">По-моему, английский должен быть обязательным во всех школах. А ты что думаешь?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Marcos</div>
+      <div><div class="dlg-es">Pues, hasta cierto punto estoy de acuerdo, pero considero que primero hay que dominar bien la lengua materna.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Ну, до определённой степени согласен, но считаю, что сначала нужно хорошо освоить родной язык.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Eva</div>
+      <div><div class="dlg-es">Tienes razón en ese punto. Desde mi punto de vista, los dos pueden desarrollarse simultáneamente.</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Ты прав в этом. С моей точки зрения, оба могут развиваться одновременно.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Marcos</div>
+      <div><div class="dlg-es">Quizás tengas razón. No creo que sea imposible, pero no estoy del todo convencido.</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Может, ты и права. Не думаю, что это невозможно, но я не до конца убеждён.</div></div>
+    </div>
+    <div id="tr-dlg1" style="display:none"></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Социальные сети — польза или вред?
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Lola</div>
+      <div><div class="dlg-es">¿Qué opinas sobre las redes sociales? Yo creo que hacen más daño que bien.</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Что ты думаешь о социальных сетях? Я думаю, они приносят больше вреда, чем пользы.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Javi</div>
+      <div><div class="dlg-es">Me parece que es una visión un poco extrema. A mi juicio, depende de cómo las uses.</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Мне кажется, это немного крайняя точка зрения. На мой взгляд, зависит от того, как ты их используешь.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Lola</div>
+      <div><div class="dlg-es">Estoy convencida de que el problema es la adicción. Cabe señalar que el tiempo medio de uso supera las tres horas diarias.</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">Я убеждена, что проблема — это зависимость. Стоит отметить, что среднее время использования превышает три часа в день.</div></div>
+    </div>
+    <div id="tr-dlg2" style="display:none"></div>
+  </div>
+
+  <div class="callout tip">
+    <h4>🗣 Прочитай оба диалога вслух — играй обе роли!</h4>
+    <p>Обрати внимание на паузы перед выражениями мнения: «Pues, hasta cierto punto...», «Me parece que...» — эти паузы звучат очень по-испански.</p>
+  </div>
+</div>
+
+<!-- SECTION 7: Говорение -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — 5 спорных тем</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий A — Высказать позицию</div>
+    <p>Выбери одну тему и выскажи мнение: минимум 4 предложения, минимум 3 разных выражения.</p>
+    <div class="es">Тема: «¿Es mejor vivir en la ciudad o en el campo?»</div>
+    <div class="hint">Шаблон: «En mi opinión, [позиция]. Considero que [аргумент 1]. Además, desde mi punto de vista, [аргумент 2]. Sin embargo, reconozco que [контраргумент].»</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий B — Продвинутый: форум</div>
+    <p>Представь, что выступаешь на дискуссионном форуме. Выступление 1.5–2 минуты по теме: «¿Debería subirse el salario mínimo?»</p>
+    <div class="es">Структура: Desde mi punto de vista... / Estoy convencido/a de que... / Cabe destacar que... / A mi juicio, la solución sería...</div>
+    <div class="hint">Запиши или произнеси вслух. Используй hedging хотя бы один раз.</div>
+  </div>
+
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px;margin-top:14px">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px"><strong style="color:var(--text)">Темы для практики (выскажись по каждой — 1 мин):</strong></p>
+    <ol style="margin-left:16px;font-size:.87rem;color:var(--muted)">
+      <li style="margin-bottom:6px">¿Debería ser gratuita la educación universitaria?</li>
+      <li style="margin-bottom:6px">¿Es correcto limitar el uso del coche en las ciudades?</li>
+      <li style="margin-bottom:6px">¿Tienen los animales los mismos derechos que los humanos?</li>
+      <li style="margin-bottom:6px">¿Es positiva la inteligencia artificial para la sociedad?</li>
+      <li>¿Debería haber un límite de edad para las redes sociales?</li>
+    </ol>
+  </div>
+</div>
+
+<!-- SECTION 8: Культурная заметка -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">Культура дискуссии</div>
+    <h4>Испанцы и культура споров — «tertulia»</h4>
+    <p><em>La tertulia</em> — исконно испанский формат: группа людей собирается, чтобы обсудить идеи. Исторически — в кафе, сегодня — в эфире. Испанское телевидение полно tertulias, где все говорят одновременно, перебивают и не соглашаются. Умение громко и убедительно выражать мнение — культурно ценимый навык в Испании. Тихий человек, который «не имеет мнения», воспринимается с удивлением. Используй эти фразы не стесняясь!</p>
+  </div>
+</div>
+
+<!-- SECTION 9: Anki + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">Карточки Anki</div>
+    <ul>
+      <li><strong>Creo que + indicativo</strong> — Думаю, что... | Creo que es correcto.</li>
+      <li><strong>No creo que + subjuntivo</strong> — Не думаю, что... | No creo que sea posible.</li>
+      <li><strong>En mi opinión</strong> — По моему мнению | En mi opinión, hay que actuar.</li>
+      <li><strong>Desde mi punto de vista</strong> — С моей точки зрения</li>
+      <li><strong>A mi juicio</strong> [ХУ-исьо] — На мой взгляд (формально)</li>
+      <li><strong>Hasta cierto punto</strong> — До определённой степени</li>
+      <li><strong>Estoy convencido/a de que</strong> — Я убеждён/а, что</li>
+      <li><strong>Cabe destacar que</strong> — Стоит отметить, что (формально)</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>Домашнее задание</h4>
+    <ul>
+      <li>Напиши комментарий на испанском под любым постом (соцсети, форум): используй минимум 2 фразы мнения</li>
+      <li>Dreaming Spanish Intermediate: 20 мин — найди видео с дискуссией или интервью</li>
+      <li>Выскажи мнение вслух по всем 5 темам из раздела «Говорение»</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L74.html" class="nav-link-btn">← L74</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L76.html" class="nav-link-btn">L76 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L75';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'es — indicativo после affirmative creo que.',
+  q2:'sea — subjuntivo после NO creo que. Это ключевое правило B1.',
+  q3:'«A mi juicio» — формальное выражение, подходит для официальных контекстов.',
+  q4:'hay — indicativo после me parece que (утверждение).',
+  q5:'«Hasta cierto punto» — классический hedging. Смягчает и звучит зрело.',
+  q6:'está — indicativo после considero que (affirmative).'
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))? 'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
+function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||val===correct.split(' ')[0]&&correct.split(' ').length===1){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Ответ: "${answer}"`;}}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
+const totalSections=9;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L45: Imperativo — повелительное наклонение</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid var(--bg3)}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:600;color:var(--gold)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 95</span>
+  <a href="L46.html">L46 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">📢 Фаза 2 · Блок 2C · Повелительное наклонение</div>
+  <h1>Imperativo — <span class="hl">повелительное</span></h1>
+  <p class="sub">¡Habla! ¡Come! ¡Escucha! — приказы, советы, инструкции. Это расширение урока #12 из курса Polyglot.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Давать команды, советы и инструкции по-испански</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📚</div><div><strong>Polyglot</strong><p>Связь с уроком #12 курса Polyglot</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Даём инструкцию, совет или рецепт блюда</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Imperativo — как образовать</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Повелительное наклонение используется для команд, советов, просьб и инструкций. В испанском есть формы для «tú» (ты), «usted» (вы), «nosotros» (давайте мы) и «vosotros» (вы, множественное).</p>
+
+  <div class="callout tip">
+    <h4>💡 Утвердительный Imperativo для tú — самая простая форма</h4>
+    <p>Берёшь форму настоящего времени для «él/ella» (3-е лицо ед.ч.) — это и есть Imperativo для «tú»!<br>
+    habla (hablar) — говори! (= él habla → habla!)<br>
+    come (comer) — ешь! (= él come → come!)<br>
+    vive (vivir) — живи! (= él vive → vive!)</p>
+  </div>
+
+  <table>
+    <tr><th>Глагол</th><th>tú (ты)</th><th>usted (Вы)</th><th>nosotros (давайте)</th><th>vosotros (вы)</th></tr>
+    <tr><td>hablar</td><td>¡habla!</td><td>¡hable!</td><td>¡hablemos!</td><td>¡hablad!</td></tr>
+    <tr><td>comer</td><td>¡come!</td><td>¡coma!</td><td>¡comamos!</td><td>¡comed!</td></tr>
+    <tr><td>vivir</td><td>¡vive!</td><td>¡viva!</td><td>¡vivamos!</td><td>¡vivid!</td></tr>
+    <tr><td>escuchar</td><td>¡escucha!</td><td>¡escuche!</td><td>¡escuchemos!</td><td>¡escuchad!</td></tr>
+    <tr><td>escribir</td><td>¡escribe!</td><td>¡escriba!</td><td>¡escribamos!</td><td>¡escribid!</td></tr>
+  </table>
+
+  <h3 style="margin:16px 0 10px;font-size:1rem">Неправильные Imperativo для tú (8 штук — выучить наизусть!)</h3>
+  <table>
+    <tr><th>Глагол</th><th>Imperativo tú</th><th>Перевод</th></tr>
+    <tr><td>decir</td><td>di</td><td>скажи!</td></tr>
+    <tr><td>hacer</td><td>haz</td><td>сделай!</td></tr>
+    <tr><td>ir</td><td>ve</td><td>иди!</td></tr>
+    <tr><td>poner</td><td>pon</td><td>положи! поставь!</td></tr>
+    <tr><td>salir</td><td>sal</td><td>выходи!</td></tr>
+    <tr><td>ser</td><td>sé</td><td>будь!</td></tr>
+    <tr><td>tener</td><td>ten</td><td>держи! имей!</td></tr>
+    <tr><td>venir</td><td>ven</td><td>приходи!</td></tr>
+  </table>
+
+  <div class="callout info">
+    <h4>❌ Отрицательный Imperativo — другие формы!</h4>
+    <p>Отрицательный Imperativo образуется из Present Subjuntivo (не из настоящего времени!):<br>
+    <strong>No hables</strong> — не говори (НЕ «no habla»!)<br>
+    <strong>No comas</strong> — не ешь<br>
+    <strong>No vengas</strong> — не приходи<br>
+    Формула: No + subjuntivo presente (для tú: окончание -es для -AR, -as для -ER/-IR)</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Местоимения + Imperativo</h4>
+    <p>С утвердительным Imperativo местоимения присоединяются сзади:<br>
+    <strong>Dámelo</strong> — дай мне это! (da + me + lo)<br>
+    <strong>Escúchame</strong> — слушай меня! (escucha + me)<br>
+    <strong>Díselo</strong> — скажи ему это! (di + se + lo)<br>
+    С отрицательным — местоимения перед глаголом: <strong>No me lo digas</strong> — не говори мне этого!</p>
+  </div>
+</div>
+
+<!-- SECTION 2: СЛОВАРЬ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — команды и инструкции</h2>
+  </div>
+
+  <table>
+    <tr><th>Imperativo</th><th>Произношение</th><th>Русский</th><th>Контекст использования</th></tr>
+    <tr><td>¡Escucha!</td><td>[эсКУча]</td><td>Слушай!</td><td>В классе, при важном сообщении</td></tr>
+    <tr><td>¡Habla más despacio!</td><td>[АБла мас деспАсьо]</td><td>Говори медленнее!</td><td>При изучении языка</td></tr>
+    <tr><td>¡Ven aquí!</td><td>[БЕН аКИ]</td><td>Иди сюда!</td><td>Зов, приглашение</td></tr>
+    <tr><td>¡Siéntate!</td><td>[сьЕНтате]</td><td>Садись!</td><td>В школе, в гостях</td></tr>
+    <tr><td>¡Espera un momento!</td><td>[эсПЕра ун моМЕНто]</td><td>Подожди минутку!</td><td>Повседневно</td></tr>
+    <tr><td>¡Ten cuidado!</td><td>[ТЕН куиДАдо]</td><td>Будь осторожен!</td><td>Предупреждение</td></tr>
+    <tr><td>¡Mira!</td><td>[МИра]</td><td>Смотри! Посмотри!</td><td>Привлечение внимания</td></tr>
+    <tr><td>¡Haz silencio!</td><td>[АС силЕНсьо]</td><td>Замолчи! Тишина!</td><td>В школе, кино</td></tr>
+    <tr><td>¡Pon atención!</td><td>[ПОН атенсьОН]</td><td>Обрати внимание!</td><td>В учёбе</td></tr>
+    <tr><td>¡Sé puntual!</td><td>[СЕ пунтуАЛ]</td><td>Будь пунктуальным!</td><td>Деловой совет</td></tr>
+    <tr><td>¡Llama cuando llegues!</td><td>[ЙАма КУАНдо ЛЬЕГес]</td><td>Позвони, когда приедешь!</td><td>Семейные отношения</td></tr>
+    <tr><td>¡No te preocupes!</td><td>[но те преоКУпес]</td><td>Не беспокойся!</td><td>Успокоение</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Imperativo</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Правильная форма повелительного</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Imperativo tú от «hablar» (говори!):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">habla</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">hablas</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">hable</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Как сказать «сделай» (hacer, tú)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">haz</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">hace</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">hacer</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Отрицательный Imperativo «не говори» (tú):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">No hables</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">No habla</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">No hablar</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Дай мне это» с местоимениями:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Dámelo</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Me lo da</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Da me lo</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Imperativo tú от «venir» (приходи!):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">ven</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">viene</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">venid</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Форма Imperativo для «usted» от «escuchar»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">escuche</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">escucha</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">escuchad</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Напиши Imperativo</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Образуй форму повелительного</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «poner» для tú = положи / поставь!</div>
+      <input type="text" class="text-input" placeholder="pon / pone / pongas..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','pon','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ pon — одна из 8 неправильных форм. Запомни: di, haz, ve, pon, sal, sé, ten, ven.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «leer» для usted = читайте (вежливо)!</div>
+      <input type="text" class="text-input" placeholder="lee / lea / leed..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','lea','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ lea — для usted берём основу Present Subjuntivo. «Lea el documento» = Прочитайте документ.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Отрицательный Imperativo «не ешь» (tú, comer)</div>
+      <input type="text" class="text-input" placeholder="No come / No comas / No comer..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','No comas','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ No comas — отрицательный Imperativo от -ER для tú = -as. «No comas eso» = Не ешь это.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «escuchar» + me = слушай меня! (Imperativo tú с местоимением)</div>
+      <input type="text" class="text-input" placeholder="Escúchame / Escucha me / Me escucha..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','Escúchame','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ Escúchame — местоимение присоединяется СЗАДИ в утвердительном Imperativo. Ударение сохраняется.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «ser» для tú = будь! (неправильная форма)</div>
+      <input type="text" class="text-input" placeholder="sé / sea / ser..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','sé','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ sé — с акцентом! «Sé amable» = Будь вежливым. Без акцента «se» — это возвратное местоимение.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — Советы и инструкции</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Советы другу
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Амиго</div>
+      <div><div class="dlg-es">Estoy muy estresado. No sé qué hacer.</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Я очень в стрессе. Не знаю, что делать.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Тú</div>
+      <div><div class="dlg-es">Escúchame. Primero, descansa un poco. Haz ejercicio cada día. Come bien y duerme ocho horas.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Слушай меня. Сначала отдохни немного. Делай упражнения каждый день. Хорошо питайся и спи восемь часов.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Амиго</div>
+      <div><div class="dlg-es">Sí, tienes razón. ¿Y en el trabajo?</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Да, ты прав. А на работе?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Тú</div>
+      <div><div class="dlg-es">Habla con tu jefe. Di claramente lo que necesitas. No te preocupes por cosas pequeñas. ¡Ten más confianza en ti mismo!</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Поговори с начальником. Скажи чётко, что тебе нужно. Не беспокойся о мелочах. Больше верь в себя!</div></div>
+    </div>
+    <div id="tr-dlg1" style="display:none"></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Рецепт — тортилья испанская
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Абуела</div>
+      <div><div class="dlg-es">¿Quieres aprender a hacer tortilla española? Es fácil. Primero, pela las patatas y córtalas en rodajas.</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Хочешь научиться делать испанскую тортилью? Это легко. Сначала почисти картошку и нарежь её кружочками.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Nieto</div>
+      <div><div class="dlg-es">¿Y después?</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">А потом?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Абуела</div>
+      <div><div class="dlg-es">Fríelas en aceite. Bate los huevos con sal. Mezcla las patatas con los huevos y vierte todo en la sartén.</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">Обжарь их в масле. Взбей яйца с солью. Смешай картошку с яйцами и вылей всё на сковороду.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Nieto</div>
+      <div><div class="dlg-es">¿Cuánto tiempo?</div>
+      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Как долго?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Абуела</div>
+      <div><div class="dlg-es">Cocina cinco minutos, dale la vuelta con un plato y cocina tres minutos más. ¡Y listo!</div>
+      <div class="dlg-ru" id="tr-dlg2-5" style="display:none">Готовь пять минут, переверни с помощью тарелки и готовь ещё три минуты. И всё!</div></div>
+    </div>
+    <div id="tr-dlg2" style="display:none"></div>
+  </div>
+</div>
+
+<!-- SECTION 6: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — Рецепт или инструкция</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Базовый — Советы начинающему</div>
+    <p>Дай 7 советов человеку, который только начинает учить испанский язык. Используй только Imperativo.</p>
+    <div class="es">Escucha español cada día. Habla con nativos. No tengas miedo de equivocarte. Lee textos sencillos...</div>
+    <div class="hint">Глаголы: escuchar, hablar, leer, escribir, repetir, practicar, ver, estudiar, no tener miedo.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый — Рецепт</div>
+    <p>Объясни рецепт своего любимого блюда — шаг за шагом, используя Imperativo. Минимум 8 шагов.</p>
+    <div class="es">Primero, coge... Luego, corta... Después, pon... Cocina... Añade... Mezcla... Al final, sirve...</div>
+    <div class="hint">Подойдёт любое блюдо: суп, салат, бутерброд, яичница. Главное — активно использовать повелительное!</div>
+  </div>
+</div>
+
+<!-- SECTION 7: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Tortilla española — символ испанской кухни</h4>
+    <p>Испанская тортилья (tortilla española) — это не мексиканская лепёшка! Это омлет с картошкой, и он считается одним из главных национальных блюд. В каждой испанской семье свой рецепт: с луком или без, толстая или тонкая, влажная внутри (jugosa) или полностью прожаренная (bien hecha). В барах тортилья продаётся весь день как часть pintxos или tapas. Есть даже ежегодные конкурсы «la mejor tortilla de España». Если хочешь интегрироваться в испанское общество — научись делать tortilla española. И тогда тебя точно примут за своего!</p>
+  </div>
+</div>
+
+<!-- SECTION 8: ANKI + ДОМАШНЕЕ ЗАДАНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — карточки для этого урока</div>
+    <ul>
+      <li><strong>di / haz / ve / pon / sal / sé / ten / ven</strong> — 8 неправильных форм tú</li>
+      <li><strong>No hables / No comas / No vivas</strong> — отрицательный Imperativo tú</li>
+      <li><strong>Dámelo</strong> — дай мне это (da + me + lo)</li>
+      <li><strong>Escúchame</strong> — слушай меня</li>
+      <li><strong>¡Ten cuidado!</strong> — Будь осторожен!</li>
+      <li><strong>¡No te preocupes!</strong> — Не беспокойся!</li>
+      <li><strong>¡Sé puntual!</strong> — Будь пунктуальным!</li>
+      <li><strong>hable (usted)</strong> — говорите (вежливо)</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Выучи наизусть 8 неправильных форм: di, haz, ve, pon, sal, sé, ten, ven</li>
+      <li>Напиши рецепт любимого блюда или инструкцию по чему-нибудь в Imperativo</li>
+      <li>Практикуй: давай советы воображаемому другу по 3 разным темам (здоровье, учёба, работа)</li>
+      <li>Прочитай Polyglot #12 для дополнительной практики повелительного</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок L45 завершён!</h4>
+    <p>Повелительное наклонение в кармане! Следующий урок — глаголы с чередованием E→IE, O→UE: quiero, puedo, entiendo, vuelvo — знаменитые «сапожки».</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L44.html" class="nav-link-btn">← L44</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="../../lessons/lesson_12.html" class="nav-link-btn">📚 Polyglot #12</a>
+    <a href="L46.html" class="nav-link-btn">L46 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L45';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'habla — Imperativo tú от hablar = форма él/ella настоящего времени. «Habla más despacio» = говори медленнее.',
+  q2:'haz — одна из 8 неправильных форм. hacer → haz (не hace!). Запомни все 8: di, haz, ve, pon, sal, sé, ten, ven.',
+  q3:'No hables — отрицательный Imperativo для tú от -AR глагола = No + -es. «No hablas» — это настоящее время, не Imperativo!',
+  q4:'Dámelo = da + me + lo. В утвердительном Imperativo местоимения присоединяются сзади. Ударение на «Da».',
+  q5:'ven — неправильная форма от venir. «Ven aquí» = иди сюда / приходи сюда.',
+  q6:'escuche — для usted Imperativo = Present Subjuntivo. -AR→-e, -ER/-IR→-a. «Escuche, por favor» = слушайте, пожалуйста.',
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
+function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const rows=document.querySelectorAll(`[id^="${id}-"]`);rows.forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

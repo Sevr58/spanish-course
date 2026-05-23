@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L71: Pluscuamperfecto — «уже сделал до...»</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:20px}
+.quiz-q p{font-size:.95rem;margin-bottom:10px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 14px;font-size:.9rem;cursor:pointer;text-align:left;transition:border-color .2s,background .2s}
+.opt:hover{border-color:var(--gold);background:rgba(255,214,10,.06)}
+.opt.correct{border-color:var(--green);background:rgba(45,198,83,.12);color:var(--green)}
+.opt.wrong{border-color:var(--red);background:rgba(230,57,70,.1);color:var(--red)}
+.feedback{font-size:.84rem;margin-top:8px;padding:8px 12px;border-radius:6px;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:rgba(45,198,83,.1);color:var(--green)}
+.feedback.no{background:rgba(230,57,70,.1);color:var(--red)}
+.text-input{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-size:.95rem;color:var(--text);width:100%;max-width:280px;margin:6px 0}
+.text-input.correct{border-color:var(--green)}
+.text-input.wrong{border-color:var(--red)}
+.check-btn{background:var(--gold);color:#000;border:none;border-radius:7px;padding:8px 18px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:4px}
+.check-btn:hover{opacity:.85}
+.show-btn{background:transparent;border:1px solid var(--border);border-radius:7px;padding:6px 14px;font-size:.82rem;color:var(--muted);cursor:pointer;margin-top:6px}
+.show-btn:hover{border-color:var(--gold);color:var(--text)}
+.ans{display:none;background:rgba(255,214,10,.08);border:1px solid rgba(255,214,10,.3);border-radius:7px;padding:8px 12px;font-size:.88rem;margin-top:6px}
+.ans.show{display:block}
+table.conj{width:100%;border-collapse:collapse;font-size:.88rem;margin:14px 0}
+table.conj th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border)}
+table.conj td{padding:8px 10px;border-bottom:1px solid rgba(42,47,66,.5)}
+table.conj tr:last-child td{border-bottom:none}
+table.conj .form{font-weight:600;color:var(--gold)}
+table.conj .pron{color:var(--muted)}
+table.conj .ru{color:var(--muted);font-size:.82rem}
+table.vocab{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0}
+table.vocab th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+table.vocab td{padding:8px 10px;border-bottom:1px solid rgba(42,47,66,.5)}
+table.vocab tr:last-child td{border-bottom:none}
+table.vocab .es{font-weight:600;color:var(--gold)}
+table.vocab .ru{color:var(--muted)}
+table.comp{width:100%;border-collapse:collapse;font-size:.88rem;margin:14px 0}
+table.comp th{background:var(--bg3);padding:8px 10px;text-align:left;color:var(--muted);font-size:.78rem;text-transform:uppercase;border-bottom:1px solid var(--border)}
+table.comp td{padding:8px 10px;border-bottom:1px solid rgba(42,47,66,.5);vertical-align:top}
+table.comp tr:last-child td{border-bottom:none}
+table.comp .es{font-weight:600}
+.timeline{display:flex;flex-direction:column;gap:12px;margin:16px 0}
+.tl-item{display:flex;gap:14px;align-items:flex-start}
+.tl-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.tl-dot.past{background:var(--blue)}
+.tl-dot.ppf{background:var(--gold)}
+.tl-dot.ref{background:var(--purple)}
+.tl-content{flex:1}
+.tl-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.tl-label.past{color:var(--blue)}
+.tl-label.ppf{color:var(--gold)}
+.tl-label.ref{color:var(--purple)}
+.tl-content p{font-size:.88rem;color:var(--muted)}
+.use-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px}
+.use-card .use-title{font-weight:700;font-size:.9rem;margin-bottom:8px;color:var(--gold)}
+.use-card ul{margin-left:16px;font-size:.88rem;color:var(--muted)}
+.use-card li{margin-bottom:5px}
+.use-card .es{font-style:italic;color:var(--text)}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;margin-bottom:14px}
+.dialogue h4{font-size:.88rem;font-weight:700;margin-bottom:14px;color:var(--muted)}
+.line{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.line .speaker{font-weight:700;min-width:40px;font-size:.82rem;flex-shrink:0;padding-top:2px}
+.line .speaker.a{color:var(--blue)}
+.line .speaker.b{color:var(--purple)}
+.line .bubble{font-size:.9rem}
+.line .bubble .tr{font-size:.8rem;color:var(--muted);cursor:pointer;margin-top:2px;display:none}
+.line .bubble .tr.vis{display:block}
+.tr-toggle{font-size:.75rem;color:var(--muted);cursor:pointer;text-decoration:underline;margin-bottom:8px}
+.tr-toggle:hover{color:var(--text)}
+.anki-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.anki-card .q{font-size:.88rem}
+.anki-card .a{font-size:.85rem;color:var(--gold);text-align:right}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:100}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text);text-decoration:none;padding:8px 16px;border-radius:7px;font-size:.85rem;transition:border-color .2s}
+.nav-link-btn:hover{border-color:var(--gold)}
+.done-btn{background:var(--gold);color:#000;border:none;border-radius:7px;padding:10px 24px;font-weight:700;font-size:.9rem;cursor:pointer;transition:opacity .2s}
+.done-btn:hover{opacity:.85}
+.done-btn.marked{background:var(--green);color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="L70.html">← L70: Imperfecto Subj.</a>
+  <span class="level">B1 · День 151</span>
+  <a href="L72.html">L72: Cond. Compuesto →</a>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">Фаза 3 · Блок B3B · Составные времена</div>
+  <h1>Pluscuamperfecto<br><span class="hl">«уже сделал до...»</span></h1>
+  <div class="sub">Había comido, habían llegado — давнопрошедшее время</div>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🕰️</div><div><strong>Цель урока</strong><p>Строить конструкцию había + participio</p></div></div>
+    <div class="obj"><div class="ico">🔗</div><div><strong>Связь прошлых</strong><p>Действие раньше другого прошедшего</p></div></div>
+    <div class="obj"><div class="ico">📣</div><div><strong>Dreaming Spanish</strong><p>Intermediate: встречается в рассказах</p></div></div>
+  </div>
+</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Что такое Pluscuamperfecto и зачем он нужен</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>Главная идея</h4>
+    <p>Pluscuamperfecto — «давнопрошедшее» время. Действие A произошло <strong>раньше</strong> действия B, а оба в прошлом.<br>
+    «Когда я пришёл, они <strong>уже</strong> поели» = Cuando llegué, <strong>ya habían comido</strong>.</p>
+  </div>
+
+  <p style="margin-bottom:14px;font-size:.9rem">Представь себе линию времени:</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot ppf"></div>
+      <div class="tl-content">
+        <div class="tl-label ppf">Pluscuamperfecto (раньше)</div>
+        <p>habían comido — «они уже поели»</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot past"></div>
+      <div class="tl-content">
+        <div class="tl-label past">Pretérito indefinido (позже)</div>
+        <p>llegué — «я пришёл»</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot ref"></div>
+      <div class="tl-content">
+        <div class="tl-label ref">Сейчас (момент речи)</div>
+        <p>Оба события — в прошлом</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>Маркер «ya»</h4>
+    <p>Pluscuamperfecto часто стоит рядом со словом <strong>ya</strong> («уже»). Если видишь ya + había — это классика давнопрошедшего.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: FORMATION -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Образование: había + participio</h2>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <div class="rule-badge">ФОРМУЛА</div>
+      <div class="rule-title">había/habías/había... + participio (неизменяемый)</div>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted)">Вспомогательный глагол — <strong>haber в имперфекте</strong>. Причастие всегда на <strong>-ado / -ido</strong>.</p>
+  </div>
+
+  <table class="conj">
+    <tr><th>Лицо</th><th>haber (имперфект)</th><th>Пример с hablar</th><th>Пример с comer</th></tr>
+    <tr><td class="pron">yo</td><td class="form">había</td><td>había hablado</td><td>había comido</td></tr>
+    <tr><td class="pron">tú</td><td class="form">habías</td><td>habías hablado</td><td>habías comido</td></tr>
+    <tr><td class="pron">él/ella</td><td class="form">había</td><td>había hablado</td><td>había comido</td></tr>
+    <tr><td class="pron">nosotros</td><td class="form">habíamos</td><td>habíamos hablado</td><td>habíamos comido</td></tr>
+    <tr><td class="pron">vosotros</td><td class="form">habíais</td><td>habíais hablado</td><td>habíais comido</td></tr>
+    <tr><td class="pron">ellos</td><td class="form">habían</td><td>habían hablado</td><td>habían comido</td></tr>
+  </table>
+
+  <div class="callout success">
+    <h4>Неправильные причастия — те же, что в Pretérito Perfecto</h4>
+    <ul>
+      <li>hacer → <strong>hecho</strong> (había hecho — «уже сделал»)</li>
+      <li>decir → <strong>dicho</strong> (habían dicho — «они уже сказали»)</li>
+      <li>poner → <strong>puesto</strong> (había puesto — «уже положил»)</li>
+      <li>ver → <strong>visto</strong> (habías visto — «ты уже видел»)</li>
+      <li>escribir → <strong>escrito</strong> (habíamos escrito — «мы уже написали»)</li>
+      <li>abrir → <strong>abierto</strong> (había abierto — «уже открыл»)</li>
+      <li>volver → <strong>vuelto</strong> (había vuelto — «уже вернулся»)</li>
+      <li>romper → <strong>roto</strong> (había roto — «уже сломал»)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 3: USES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Когда использовать Pluscuamperfecto</h2>
+  </div>
+
+  <div class="use-card">
+    <div class="use-title">1. Действие раньше другого прошедшего</div>
+    <ul>
+      <li><span class="es">Cuando llegué al aeropuerto, el avión ya había despegado.</span><br>Когда я приехал в аэропорт, самолёт уже улетел.</li>
+      <li><span class="es">Me di cuenta de que había olvidado el pasaporte.</span><br>Я понял, что забыл паспорт.</li>
+    </ul>
+  </div>
+
+  <div class="use-card">
+    <div class="use-title">2. Первопричина в прошлом (объяснение)</div>
+    <ul>
+      <li><span class="es">Estaba cansado porque había trabajado toda la noche.</span><br>Я устал, потому что работал всю ночь.</li>
+      <li><span class="es">Sabía Barcelona porque había vivido allí.</span><br>Он знал Барселону, потому что жил там.</li>
+    </ul>
+  </div>
+
+  <div class="use-card">
+    <div class="use-title">3. В косвенной речи (сдвиг времён)</div>
+    <ul>
+      <li><span class="es">Dijo que había terminado. → Он сказал, что уже закончил.</span><br>(прямая речь: «He terminado» → при пересказе становится había terminado)</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>Испанский vs. русский</h4>
+    <p>В русском языке нет отдельного «давнопрошедшего» времени — мы просто говорим «уже сделал». В испанском оно грамматически обязательно, когда важна последовательность. Dreaming Spanish Intermediate: слушай рассказы от прошлого лица — там pluscuamperfecto встречается постоянно.</p>
+  </div>
+</div>
+
+<!-- SECTION 4: VOCAB -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Словарь урока</h2>
+  </div>
+
+  <table class="vocab">
+    <tr><th>Испанский</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td class="es">ya</td><td class="ru">уже</td><td>Ya había comido.</td></tr>
+    <tr><td class="es">todavía no</td><td class="ru">ещё не</td><td>Todavía no había llegado.</td></tr>
+    <tr><td class="es">antes de que</td><td class="ru">до того как</td><td>Antes de que llegara, ya había salido.</td></tr>
+    <tr><td class="es">cuando</td><td class="ru">когда</td><td>Cuando llamé, ya había salido.</td></tr>
+    <tr><td class="es">darse cuenta</td><td class="ru">осознать, понять</td><td>Me di cuenta de que había olvidado el móvil.</td></tr>
+    <tr><td class="es">olvidar</td><td class="ru">забыть</td><td>Había olvidado las llaves.</td></tr>
+    <tr><td class="es">despegar</td><td class="ru">взлетать (самолёт)</td><td>El avión ya había despegado.</td></tr>
+    <tr><td class="es">solicitar</td><td class="ru">подать заявку</td><td>Ya había solicitado el visado.</td></tr>
+    <tr><td class="es">preparar</td><td class="ru">подготовить</td><td>Habíamos preparado todos los documentos.</td></tr>
+    <tr><td class="es">mudarse</td><td class="ru">переехать</td><td>Ya se habían mudado a Barcelona.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 5: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест: выбор формы</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>Выбери правильный ответ</h3>
+
+    <div class="quiz-q" id="q1">
+      <p><strong>1.</strong> Cuando llegué a casa, mi familia ya ______ (cenar).</p>
+      <div class="opts">
+        <button class="opt" onclick="answerQuiz(this,'q1','a')">había cenado</button>
+        <button class="opt" onclick="answerQuiz(this,'q1','b')">cenó</button>
+        <button class="opt" onclick="answerQuiz(this,'q1','c')">ha cenado</button>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <p><strong>2.</strong> Me di cuenta de que ______ el pasaporte en casa.</p>
+      <div class="opts">
+        <button class="opt" onclick="answerQuiz(this,'q2','a')">había dejado</button>
+        <button class="opt" onclick="answerQuiz(this,'q2','b')">dejé</button>
+        <button class="opt" onclick="answerQuiz(this,'q2','c')">dejaré</button>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <p><strong>3.</strong> Estábamos tranquilos porque ya ______ todos los documentos para el DNV.</p>
+      <div class="opts">
+        <button class="opt" onclick="answerQuiz(this,'q3','a')">habíamos preparado</button>
+        <button class="opt" onclick="answerQuiz(this,'q3','b')">preparamos</button>
+        <button class="opt" onclick="answerQuiz(this,'q3','c')">preparábamos</button>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <p><strong>4.</strong> Dijo que ______ mucho tiempo en Barcelona.</p>
+      <div class="opts">
+        <button class="opt" onclick="answerQuiz(this,'q4','a')">había vivido</button>
+        <button class="opt" onclick="answerQuiz(this,'q4','b')">ha vivido</button>
+        <button class="opt" onclick="answerQuiz(this,'q4','c')">vivirá</button>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <p><strong>5.</strong> Cuando abrí el correo, el vuelo ya ______ (salir).</p>
+      <div class="opts">
+        <button class="opt" onclick="answerQuiz(this,'q5','a')">había salido</button>
+        <button class="opt" onclick="answerQuiz(this,'q5','b')">salía</button>
+        <button class="opt" onclick="answerQuiz(this,'q5','c')">saldrá</button>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Тест: переводи на испанский</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>Введи форму pluscuamperfecto</h3>
+
+    <div class="quiz-q">
+      <p><strong>1.</strong> «Они уже переехали» — yo haber: <em>habían mudado</em>. Введи всю форму reflexiva:</p>
+      <input class="text-input" id="t1" type="text" placeholder="ya se ... mudado">
+      <br><button class="check-btn" onclick="checkText('t1','ya se habían mudado','fb-t1')">Проверить</button>
+      <div class="feedback" id="fb-t1"></div>
+    </div>
+
+    <div class="quiz-q">
+      <p><strong>2.</strong> «Я уже подал заявку» (solicitar):</p>
+      <input class="text-input" id="t2" type="text" placeholder="ya había ...">
+      <br><button class="check-btn" onclick="checkText('t2','ya había solicitado','fb-t2')">Проверить</button>
+      <div class="feedback" id="fb-t2"></div>
+    </div>
+
+    <div class="quiz-q">
+      <p><strong>3.</strong> «Он забыл» (olvidar) — форма 3-го лица ед.ч.:</p>
+      <input class="text-input" id="t3" type="text" placeholder="había ...">
+      <br><button class="check-btn" onclick="checkText('t3','había olvidado','fb-t3')">Проверить</button>
+      <div class="feedback" id="fb-t3"></div>
+    </div>
+
+    <div class="quiz-q">
+      <p><strong>4.</strong> «Мы уже написали» (escribir, причастие неправильное):</p>
+      <input class="text-input" id="t4" type="text" placeholder="habíamos ...">
+      <br><button class="check-btn" onclick="checkText('t4','habíamos escrito','fb-t4')">Проверить</button>
+      <div class="feedback" id="fb-t4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Диалоги: pluscuamperfecto в контексте</h2>
+  </div>
+
+  <div class="dialogue">
+    <h4>📍 Барселона. Квартирный просмотр</h4>
+    <span class="tr-toggle" onclick="document.querySelectorAll('#d1 .tr').forEach(t=>t.classList.toggle('vis'))">Показать / скрыть перевод</span>
+    <div id="d1">
+      <div class="line"><span class="speaker a">Агент</span><div class="bubble">¿Había visto un piso en este barrio antes?<div class="tr">Вы раньше смотрели квартиры в этом районе?</div></div></div>
+      <div class="line"><span class="speaker b">Евгений</span><div class="bubble">Sí, ya había visitado dos pisos la semana pasada, pero no me habían convencido.<div class="tr">Да, я уже смотрел два варианта на прошлой неделе, но они меня не убедили.</div></div></div>
+      <div class="line"><span class="speaker a">Агент</span><div class="bubble">Este se alquiló antes, pero los inquilinos ya se habían ido cuando apareció usted.<div class="tr">Эта квартира сдавалась раньше, но жильцы уже уехали, когда вы появились.</div></div></div>
+      <div class="line"><span class="speaker b">Евгений</span><div class="bubble">Perfecto. ¿Han publicado el precio o todavía no habían actualizado el anuncio?<div class="tr">Отлично. Вы опубликовали цену или объявление ещё не обновили?</div></div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <h4>📍 Подготовка документов DNV</h4>
+    <span class="tr-toggle" onclick="document.querySelectorAll('#d2 .tr').forEach(t=>t.classList.toggle('vis'))">Показать / скрыть перевод</span>
+    <div id="d2">
+      <div class="line"><span class="speaker b">Евгений</span><div class="bubble">Cuando fui al consulado, ya había preparado todos los documentos.<div class="tr">Когда я поехал в консульство, все документы были уже готовы.</div></div></div>
+      <div class="line"><span class="speaker a">Амига</span><div class="bubble">¿Habías contratado un abogado antes de solicitar el visado?<div class="tr">Ты нанял адвоката до подачи заявки на визу?</div></div></div>
+      <div class="line"><span class="speaker b">Евгений</span><div class="bubble">No, pero había leído muchos foros y ya sabía el proceso.<div class="tr">Нет, но я прочитал много форумов и уже знал весь процесс.</div></div></div>
+      <div class="line"><span class="speaker a">Амига</span><div class="bubble">¡Impresionante! Yo no había investigado nada cuando empecé el mío.<div class="tr">Впечатляет! Я ничего не исследовала, когда начала своё.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Говорение: твои истории</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">Упражнение 1 — расскажи</div>
+    <p>Когда ты открыл этот урок, что ты уже сделал сегодня?</p>
+    <div class="es">Cuando abrí esta lección, ya había... [comido / trabajado / revisado los documentos]</div>
+    <div class="hint">Используй pluscuamperfecto для всего, что было до открытия урока.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">Упражнение 2 — объясни причину</div>
+    <p>Почему ты устал / был в хорошем настроении / знаешь испанский лучше?</p>
+    <div class="es">Estaba [cansado / feliz] porque había [trabajado mucho / escuchado el podcast].</div>
+    <div class="hint">Причина → pluscuamperfecto; состояние → imperfecto.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">Упражнение 3 — DNV-история</div>
+    <p>Расскажи, что ты уже подготовил до первого визита в консульство (или фантазируй):</p>
+    <div class="es">Antes de ir al consulado, ya había preparado el contrato, había abierto una cuenta bancaria...</div>
+    <div class="hint">3-4 предложения. Используй ya, todavía no, antes de.</div>
+  </div>
+</div>
+
+<!-- SECTION 9: CULTURE + ANKI -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культура, Anki и домашнее задание</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>Dreaming Spanish — Intermediate</h4>
+    <p>Pluscuamperfecto активно используется в DS Intermediate в нарративах и воспоминаниях. Когда рассказчик говорит о том, что предшествовало событию — это почти всегда pluscuamperfecto. Слушай и замечай «había + participio» в контексте историй.</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>Любопытный факт: pluscuamperfecto в косвенной речи</h4>
+    <p>В испанском, когда ты пересказываешь чужие слова или мысли, настоящее становится pretérito perfecto, а pretérito perfecto → pluscuamperfecto. «Pensé que ya había llegado» = «Я думал, что он уже пришёл».</p>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:.95rem">Anki-карточки урока</h3>
+  <div class="anki-card"><span class="q">Cuando llegué, ya ______ (ellos, irse)</span><span class="a">ya se habían ido</span></div>
+  <div class="anki-card"><span class="q">Me di cuenta de que ______ (yo, olvidar) el contrato</span><span class="a">había olvidado</span></div>
+  <div class="anki-card"><span class="q">Habíamos ______ (preparar) todos los documentos</span><span class="a">preparado</span></div>
+  <div class="anki-card"><span class="q">Dijo que ______ (él, ver) Barcelona antes</span><span class="a">había visto</span></div>
+  <div class="anki-card"><span class="q">El vuelo ya ______ (despegar) cuando llamé</span><span class="a">había despegado</span></div>
+  <div class="anki-card"><span class="q">¿ ______ (tú, solicitar) el visado?</span><span class="a">¿Habías solicitado?</span></div>
+  <div class="anki-card"><span class="q">Estaba cansado porque ______ (trabajar) toda la noche</span><span class="a">había trabajado</span></div>
+  <div class="anki-card"><span class="q">Не изменяется ли причастие по роду/числу?</span><span class="a">Нет! había hecho (не «hechos»)</span></div>
+
+  <div class="callout success" style="margin-top:20px">
+    <h4>Домашнее задание</h4>
+    <ul>
+      <li>Напиши 4 предложения о своей подготовке к переезду в Барселону, используя pluscuamperfecto.</li>
+      <li>Переслушай 1 эпизод DS Intermediate и выпиши 3 примера había + participio.</li>
+      <li>Попробуй пересказать любую историю из прошлого: «Когда я..., уже...».</li>
+      <li>Следующий урок (L72): Condicional Compuesto — «сделал бы, если бы...»</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L70.html" class="nav-link-btn">← L70</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L72.html" class="nav-link-btn">L72 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L71';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'había cenado — pluscuamperfecto. Действие «поужинали» произошло РАНЬШЕ «я пришёл». Indefinido (llegué) + ya había = классика.',
+  q2:'había dejado — осознание (darse cuenta) указывает на момент прошлого; забывание произошло ещё раньше → pluscuamperfecto.',
+  q3:'habíamos preparado — nosotros estábamos + porque + pluscuamperfecto. Причина в прошлом, более ранняя.',
+  q4:'había vivido — косвенная речь: dijo que + pluscuamperfecto (сдвиг из pretérito perfecto).',
+  q5:'había salido — abrí correo (indefinido) → раньше: el vuelo había salido. Маркер ya подтверждает.'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
+  el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const correct=answer.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}
+  else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Ответ: ${answer}`;}
+}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=9;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

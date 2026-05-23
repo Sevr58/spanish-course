@@ -284,7 +284,7 @@ const ANKI_DECK_L17=[
 ];
 function renderAnkiPreview(){const c=document.getElementById('anki-preview-L17');if(!c)return;c.innerHTML=ANKI_DECK_L17.slice(0,5).map(function(card){return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')"><div class="anki-card-inner"><div class="anki-card-front">'+card.front+'</div><div class="anki-card-back">'+card.back.replace(/\n/g,'<br>')+'</div></div></div>';}).join('');}
 renderAnkiPreview();
-function exportAnkiL17(){const tsv=ANKI_DECK_L17.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='L17_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
+function exportAnkiL17(){const tsv=ANKI_DECK_L17.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');const header='#separator:Tab\n#html:true\n#deck:L17 Spanish\n';const blob=new Blob([header+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='L17_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
 </script>
 </body>
 </html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L102: Формальный и неформальный регистры</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--purple);color:#fff;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--purple)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.compare-table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:.87rem}
+.compare-table th{padding:10px 12px;text-align:left;font-weight:700;font-size:.8rem;text-transform:uppercase}
+.compare-table th:nth-child(1){background:rgba(69,123,157,.15);color:var(--blue)}
+.compare-table th:nth-child(2){background:rgba(255,214,10,.1);color:var(--gold)}
+.compare-table th:nth-child(3){color:var(--muted);background:var(--bg3)}
+.compare-table td{padding:8px 12px;border-bottom:1px solid var(--border)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table .formal{color:var(--blue)}
+.compare-table .informal{color:var(--gold)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L101.html">← L101</a>
+  <span class="level">B1 · Фаза 4 · День 218</span>
+  <a href="L103.html">L103 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">👔 Фаза 4 · Блок B4A · Беглость</div>
+  <h1>Регистры <span class="hl">общения</span></h1>
+  <p class="sub">Tío vs. señor — когда что уместно. Формальный и неформальный испанский: разные слова, разные глаголы, разная интонация.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">👔</div><div><strong>Цель</strong><p>Уверенно переключаться между tú и usted, неформальным и деловым испанским</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + ролевая игра 10 мин</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Обрати внимание: как диктор обращается к зрителям?</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Один сценарий в двух регистрах: с другом и с начальником</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Три уровня регистра в испанском</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Испанский язык, как и русский, имеет чёткую систему регистров. Ошибка в выборе регистра — хуже грамматической ошибки. Можно сказать «viene» вместо «vienen» — и тебя поймут. Но если ты обратишься к боссу как к другу — это создаст неловкость.</p>
+
+  <div class="callout info">
+    <h4>🏗️ Три уровня регистра</h4>
+    <ul>
+      <li><strong>Formal / Culto:</strong> деловая переписка, официальные встречи, незнакомые взрослые → usted, vocabulario culto</li>
+      <li><strong>Estándar / Neutro:</strong> новости, образование, общие разговоры с коллегами → mezcla, tú или usted в зависимости от контекста</li>
+      <li><strong>Coloquial / Informal:</strong> друзья, семья, молодёжь → tú, slang, contracciones</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Tuteo vs. Ustedeo</h4>
+    <p><strong>Tuteo</strong> = использование «tú» — неформальное, дружеское, для ровесников и близких. <strong>Ustedeo</strong> = использование «usted» — формальное, уважительное. В современной Испании tuteo распространяется: молодёжные компании, стартапы, некоторые магазины — все говорят «tú». Но в банке, у врача, в официальном контексте — usted. Правило: <em>лучше начать с usted и перейти на tú, если предложат, чем наоборот.</em></p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ошибка иностранцев</h4>
+    <p>Многие студенты выучивают только «tú» и используют его везде — потому что так учат в учебниках. Но если ты придёшь в испанское учреждение и скажешь <em>«Oye, ¿puedes ayudarme?»</em> вместо <em>«¿Podría ayudarme, por favor?»</em> — это прозвучит грубо.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: СЛОВАРЬ РЕГИСТРОВ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Слова двух регистров — параллельный словарь</h2>
+  </div>
+
+  <table class="compare-table">
+    <tr><th>Формальный (usted)</th><th>Неформальный (tú)</th><th>Русский</th></tr>
+    <tr><td class="formal">¿Podría usted...?</td><td class="informal">¿Puedes...?</td><td>Не могли бы вы... / Можешь...?</td></tr>
+    <tr><td class="formal">Le agradezco su tiempo</td><td class="informal">Gracias, tío</td><td>Благодарю за время / Спасибо, чувак</td></tr>
+    <tr><td class="formal">Disculpe la molestia</td><td class="informal">Perdona, oye</td><td>Прошу прощения / Слушай, прости</td></tr>
+    <tr><td class="formal">Quisiera solicitar...</td><td class="informal">Quiero pedir...</td><td>Я хотел бы попросить... / Хочу попросить...</td></tr>
+    <tr><td class="formal">¿Sería tan amable de...?</td><td class="informal">¿Me haces el favor de...?</td><td>Будьте так любезны... / Сделай одолжение...</td></tr>
+    <tr><td class="formal">Le comunico que...</td><td class="informal">Te cuento que...</td><td>Сообщаю вам, что... / Рассказываю тебе...</td></tr>
+    <tr><td class="formal">En espera de su respuesta</td><td class="informal">Espero tu respuesta</td><td>В ожидании вашего ответа / Жду ответа</td></tr>
+    <tr><td class="formal">Muy señor mío / Estimado señor</td><td class="informal">Hola / Ey / Buenas</td><td>Уважаемый... / Привет / Эй / Добрый день</td></tr>
+    <tr><td class="formal">Me complace informarle...</td><td class="informal">Te digo que...</td><td>С удовольствием сообщаю вам... / Говорю тебе...</td></tr>
+    <tr><td class="formal">Atentamente / Un cordial saludo</td><td class="informal">Un abrazo / Saludos</td><td>С уважением / Обнимашки / Привет</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 «Tío» — слово-индикатор регистра</h4>
+    <p><em>Tío / tía</em> — буквально «дядя/тётя», но в разговорном испанском это просто «чувак/девчонка» или просто обращение типа «слушай». <em>«¡Tío, qué guay!»</em> = «Чувак, как круто!» — абсолютно неформально. В деловом контексте — никогда.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: АУТЕНТИЧНЫЙ ТЕКСТ — ПИСЬМА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Один сценарий — два письма</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Тема: нужно попросить об отсрочке. Сравни два письма: формальное (боссу) и неформальное (коллеге).</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📧 Formal — Email начальнику
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-formal')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:1.9">
+          Estimado señor García:<br><br>
+          Me dirijo a usted para informarle de que, debido a circunstancias imprevistas, me sería imposible entregar el informe en la fecha acordada. Le agradecería la posibilidad de ampliar el plazo hasta el próximo viernes.<br><br>
+          Lamento los inconvenientes que esto pueda causarle y me comprometo a entregar un trabajo de la máxima calidad.<br><br>
+          Quedando a su disposición para cualquier consulta, le saluda atentamente,<br>
+          [Nombre]
+        </div>
+        <div class="dlg-ru" id="tr-formal" style="display:none;margin-top:10px;font-size:.84rem">
+          Уважаемый господин Гарсиа:<br><br>
+          Обращаюсь к вам, чтобы сообщить, что в связи с непредвиденными обстоятельствами мне было бы невозможно сдать отчёт в согласованный срок. Буду признателен возможности продлить срок до следующей пятницы.<br><br>
+          Сожалею о неудобствах, которые это может вам причинить, и обязуюсь сдать работу максимального качества.<br><br>
+          Оставаясь в вашем распоряжении для любых вопросов, с уважением,
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Informal — WhatsApp коллеге
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-informal')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:1.9">
+          Ey, Carlos! Oye, me ha surgido un imprevisto y no voy a poder tener el informe listo para mañana. ¿Puedes cubrirme con el jefe y decirle que lo tengo el viernes? Te lo juro que estará perfecto. ¡Eres un crack! 🙌
+        </div>
+        <div class="dlg-ru" id="tr-informal" style="display:none;margin-top:10px;font-size:.84rem">
+          Эй, Карлос! Слушай, у меня внезапно что-то возникло, и я не успею подготовить отчёт к завтрашнему дню. Можешь прикрыть меня перед боссом и сказать, что будет в пятницу? Клянусь, будет отлично. Ты крутой! 🙌
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <h4>🔍 Что изменилось?</h4>
+    <ul>
+      <li>Usted → tú (всё спряжение меняется)</li>
+      <li>Estimado señor → Ey / Oye</li>
+      <li>me sería imposible → no voy a poder</li>
+      <li>Le agradecería → ¿Puedes...?</li>
+      <li>Atentamente → ¡Eres un crack!</li>
+      <li>Эмодзи в формальном письме — никогда!</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Формальный или неформальный?</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Определи регистр и выбери правильный вариант</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Ты пишешь email в испанский банк. Как начать?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Estimados señores:</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Hola, buenas:</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Ey, qué tal:</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Коллега просит объяснить задачу. В дружеской атмосфере стартапа ты скажешь:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">¿Podría usted explicarme la tarea, por favor?</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Oye, ¿me explicas qué hay que hacer?</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Solicito información sobre la tarea asignada.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Как вежливо завершить деловое письмо по-испански?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Atentamente / Un cordial saludo</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Un abrazo fuerte</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Hasta luego, chao</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «¡Tío, qué guay!» — это пример регистра:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Coloquial / Informal</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Estándar</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Formal</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Ты встречаешь незнакомого пожилого человека. Правильное обращение в Испании:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Disculpe usted / Buenos días</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Oye, tío / hola</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Ey</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Формальный вариант «¿Puedes ayudarme?»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">¿Puedes usted ayudarme?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">¿Podría usted ayudarme?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">¿Vas a ayudarme?</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Переведи в нужный регистр</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Трансформируй фразу</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Неформальное «¿Tienes tiempo?» → Формальное: <strong>¿_____ usted tiempo?</strong></div>
+      <input type="text" class="text-input" placeholder="глагол tener, usted..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','Tiene','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ Tiene — usted + 3 лицо ед.ч. Или ещё вежливее: ¿Tendría usted un momento?</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Формальное «Le agradezco su colaboración» → Неформальное: <strong>_____ tu ayuda.</strong></div>
+      <input type="text" class="text-input" placeholder="два слова: gracias + por..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','Gracias por','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ Gracias por — «Gracias por tu ayuda» — простая и тёплая формула</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Неформальное «Quiero pedir un día libre» → формально (конъюнктив вежливости): <strong>_____ solicitar un día libre.</strong></div>
+      <input type="text" class="text-input" placeholder="вежливая форма querer..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','Quisiera','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ Quisiera — imperfecto de subjuntivo de querer = самый вежливый способ попросить что-то</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Как неформально сказать «выглядит отлично»: <strong>Está _____, tío.</strong></div>
+      <input type="text" class="text-input" placeholder="разговорное слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','guay','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ guay — испанский сленг «круто, отлично». Только неформально!</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Формальное завершение email: <strong>Quedo a su _____ para cualquier consulta.</strong></div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','disposición','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ disposición — «Quedo a su disposición» = остаюсь в вашем распоряжении (стандартная формула)</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — тот же сценарий, два регистра</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Неформально — с другом (просьба одолжить деньги)
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">Oye, Marcos, ¿me puedes prestar 50 euros hasta el viernes? Me he quedado sin pasta.</div>
+      <div class="dlg-ru" id="tr-d1" style="display:none">Слушай, Маркос, можешь одолжить 50 евро до пятницы? Я остался без денег.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Claro, tío, sin problema. Te los transfiero ahora mismo. ¿Y qué te ha pasado?</div>
+      <div class="dlg-ru" id="tr-d1b" style="display:none">Конечно, чувак, без проблем. Переведу тебе прямо сейчас. И что с тобой случилось?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">Nada, que el cajero no me dejó sacar hoy. Ya te lo devuelvo el viernes, te lo juro. ¡Eres un crack!</div>
+      <div class="dlg-ru" id="tr-d1c" style="display:none">Да ничего, банкомат не дал снять сегодня. Верну в пятницу, клянусь. Ты отличный!</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Формально — у кассы банка
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">Buenos días. Disculpe, quisiera hacer una transferencia de 50 euros a esta cuenta. ¿Podría indicarme el procedimiento?</div>
+      <div class="dlg-ru" id="tr-d2" style="display:none">Доброе утро. Прошу прощения, я хотел бы сделать перевод 50 евро на этот счёт. Не могли бы вы указать мне процедуру?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Por supuesto. Si tiene usted la tarjeta, puede realizarlo directamente desde el cajero automático. En caso contrario, le atenderemos en ventanilla.</div>
+      <div class="dlg-ru" id="tr-d2b" style="display:none">Разумеется. Если у вас есть карта, вы можете сделать это прямо через банкомат. В противном случае, мы обслужим вас у окошка.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">Muchas gracias por su atención. Procederé desde el cajero entonces.</div>
+      <div class="dlg-ru" id="tr-d2c" style="display:none">Большое спасибо за ваше внимание. Тогда воспользуюсь банкоматом.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — переключение регистров</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание — Один сценарий, два варианта</div>
+    <p>Ситуация: ты хочешь взять выходной день. Произнеси вслух дважды: один раз как будто просишь друга прикрыть тебя, второй — как будто пишешь официальную просьбу боссу.</p>
+    <div class="es">
+      Неформально: «Oye, María, necesito un día libre la semana que viene...»<br>
+      Формально: «Quisiera solicitar un día de permiso para la semana próxima...»
+    </div>
+    <div class="hint">Заметь разницу: «necesito» vs. «quisiera solicitar». Тон, скорость речи, интонация — всё разное.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый уровень — Ролевая игра</div>
+    <p>Сыграй две роли подряд: сначала ты — сотрудник в банке (формально), потом ты — тот же человек звонит другу после банка (неформально, рассказывает что произошло). Одна история — два регистра.</p>
+    <div class="es">Банк: «Buenos días, quisiera... / Me gustaría informarme sobre...»<br>Другу: «Oye, estaba en el banco y resulta que...»</div>
+    <div class="hint">Умение переключать регистры моментально — признак настоящего владения языком.</div>
+  </div>
+</div>
+
+<!-- SECTION 8: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Tuteo в современной Испании</div>
+    <h4>Почему Испания стала страной «tú»?</h4>
+    <p>После диктатуры Франко (закончилась в 1975 году) испанское общество активно демократизировалось. Одним из символов этой демократизации стало распространение tuteo — использования «tú» там, где раньше был только «usted». Сегодня в Испании учитель и ученик могут говорить на «ты», тогда как в Латинской Америке это ещё редкость. Крупные испанские бренды (IKEA, Zara, El Corte Inglés) давно перешли на «tú» в рекламе. Это создаёт ощущение близости с покупателем. Но не обманывайся — в официальных документах, с пожилыми людьми и в формальных ситуациях «usted» по-прежнему норма.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>Quisiera + infinitivo</strong> — я хотел бы... (самый вежливый запрос)</li>
+      <li><strong>¿Podría usted...?</strong> — Не могли бы вы...?</li>
+      <li><strong>Le agradezco su...</strong> — Благодарю вас за... (formal)</li>
+      <li><strong>Atentamente / Un cordial saludo</strong> — С уважением (подпись email)</li>
+      <li><strong>¡Tío/a, qué guay!</strong> — Чувак, как круто! (coloquial)</li>
+      <li><strong>Quedo a su disposición</strong> — Остаюсь в вашем распоряжении</li>
+      <li><strong>Oye, ¿me puedes...?</strong> — Слушай, можешь...? (informal)</li>
+      <li><strong>Tuteo vs. Ustedeo</strong> — tú (неформально) vs. usted (формально)</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Напиши два коротких email на одну тему: один формальный (в испанский банк с вопросом), один неформальный (другу, что-то спросить). Используй разные приветствия, лексику и подписи.</li>
+      <li>Посмотри испанскую рекламу или интервью — замечай, на «tú» или «usted» обращаются.</li>
+      <li>В следующем разговоре с кем-нибудь на испанском — осознанно выбирай регистр.</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок 102 завершён!</h4>
+    <p>Теперь ты умеешь выбирать правильный регистр. Следующий — L103: идиомы и устойчивые выражения. 30 самых частотных — от «no hay mal que por bien no venga» до «me importa un pepino».</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L101.html" class="nav-link-btn">← L101</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L103.html" class="nav-link-btn">L103 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L102';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'Estimados señores — стандартное начало делового письма незнакомому адресату.',
+  q2:'Oye, ¿me explicas...? — естественно и дружески в неформальной рабочей атмосфере.',
+  q3:'Atentamente / Un cordial saludo — стандартные подписи в испанских деловых письмах.',
+  q4:'Coloquial / Informal — tío = чувак, guay = круто. Только в разговорном регистре.',
+  q5:'Disculpe usted / Buenos días — начинать с вежливого обращения к незнакомому пожилому человеку.',
+  q6:'¿Podría usted ayudarme? — condicional + usted = максимально вежливая просьба.'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+  });
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})? 'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

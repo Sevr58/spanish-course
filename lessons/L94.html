@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L94: Практика — Формальное письмо и email на испанском</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3)}
+.dlg-line:first-of-type{border-top:none}
+.dlg-es{font-size:.92rem;line-height:1.8}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:4px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.letter-template{background:var(--bg2);border:1px solid rgba(255,214,10,.3);border-radius:10px;padding:20px 24px;margin:14px 0;font-size:.9rem;line-height:2}
+.letter-template .lt-label{font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--gold);letter-spacing:.08em;margin-bottom:6px}
+.letter-template .lt-comment{font-size:.78rem;color:var(--blue);font-style:italic}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 199</span>
+  <a href="L95.html">L95 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · B1 · Блок 3D — Навыки и практика</div>
+  <h1>Практика: <span class="hl">формальное письмо</span></h1>
+  <p class="sub">Estimado señor..., En respuesta a..., Le saluda atentamente — деловая переписка на испанском</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Написать деловое письмо: запрос, жалоба, отклик</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📝</div><div><strong>Задание DELE</strong><p>Письмо 130–150 слов — типовое задание B1</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Пишем</strong><p>Запрос о жилье/визе, жалоба, сопроводительное письмо</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Структура формального письма — шаблон DELE B1</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Формальное письмо — обязательная часть DELE B1. Нужно написать 130–150 слов строго по структуре. В жизни в Испании — банки, аренда жилья, консульства, работодатели.</p>
+
+  <div class="callout tip">
+    <h4>💡 Структура формального письма (5 частей)</h4>
+    <ul>
+      <li><strong>1. Обращение:</strong> «Estimado/a Sr./Sra. [apellido]:» или «A quien corresponda:»</li>
+      <li><strong>2. Повод для письма:</strong> «Me dirijo a usted con el fin de...» / «En respuesta a su anuncio...»</li>
+      <li><strong>3. Суть (2–3 абзаца):</strong> информация, аргументы, факты</li>
+      <li><strong>4. Просьба/действие:</strong> «Le agradecería que me enviara...» / «Quedo a su disposición para...»</li>
+      <li><strong>5. Прощание:</strong> «En espera de su respuesta, le saluda atentamente, [имя]»</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>📧 Формальное vs. неформальное — разница в первом слове</h4>
+    <ul>
+      <li><strong>Формальное:</strong> Estimado Sr. García: / A quien corresponda:</li>
+      <li><strong>Неформальное:</strong> Hola Carlos, / Querido amigo,</li>
+      <li><strong>Формальное завершение:</strong> Le saluda atentamente / Atentamente</li>
+      <li><strong>Неформальное завершение:</strong> Un abrazo / Hasta pronto / Besos</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Le agradecería que + subjuntivo</h4>
+    <p><strong>«Le agradecería que me enviara/mandara la información»</strong> — здесь subjuntivo после «agradecería que». Это условное (condicional) + subjuntivo imperfecto — классика вежливых запросов в деловых письмах. Запомни это сочетание: «Le agradecería que + imperfecto de subjuntivo».</p>
+  </div>
+</div>
+
+<!-- SECTION 2: LETTER TEMPLATE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Шаблоны — Три типа писем</h2>
+  </div>
+
+  <div class="letter-template">
+    <div class="lt-label">Тип 1 — Запрос информации (о визе, жилье, работе)</div>
+    <div class="lt-comment">← Обращение</div>
+    <div>Estimado/a Sr./Sra. [apellido]:</div>
+    <div class="lt-comment">← Повод</div>
+    <div>Me dirijo a usted con el fin de solicitar información sobre [tema].</div>
+    <div class="lt-comment">← Контекст</div>
+    <div>Soy ciudadano/a ruso/a y tengo previsto [trasladarme / solicitar / arrendar] en [fecha/lugar]. En este sentido, me gustaría saber [pregunta específica].</div>
+    <div class="lt-comment">← Просьба</div>
+    <div>Le agradecería que me enviara la documentación necesaria o me indicara los pasos a seguir.</div>
+    <div class="lt-comment">← Прощание</div>
+    <div>En espera de su respuesta, le saluda atentamente,<br>[Nombre y apellido]</div>
+  </div>
+
+  <div class="letter-template" style="margin-top:16px">
+    <div class="lt-label">Тип 2 — Жалоба (отель, компания, сервис)</div>
+    <div>Estimado/a Sr./Sra. [apellido]:</div>
+    <div>Me dirijo a usted para expresar mi insatisfacción con [servicio/producto].</div>
+    <div>El pasado [fecha], [describir el problema]. A pesar de haber contactado con [persona/departamento], el problema no se ha resuelto satisfactoriamente.</div>
+    <div>Por este motivo, le solicito que [acción: devolución/compensación/solución].</div>
+    <div>Quedo a su disposición para facilitar cualquier información adicional.<br>Atentamente,<br>[Nombre]</div>
+  </div>
+
+  <div class="letter-template" style="margin-top:16px">
+    <div class="lt-label">Тип 3 — Сопроводительное письмо к заявлению</div>
+    <div>A quien corresponda:</div>
+    <div>En respuesta al anuncio publicado en [fuente], adjunto mi candidatura para el puesto de [cargo].</div>
+    <div>Soy [profesión/experiencia]. Entre mis competencias destacan [habilidades relevantes].</div>
+    <div>Estoy convencido/a de que mi perfil se adapta a los requisitos del puesto. Quedo a su disposición para ampliar información en una entrevista.</div>
+    <div>Atentamente,<br>[Nombre]</div>
+  </div>
+</div>
+
+<!-- SECTION 3: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Формальное письмо</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильный вариант</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как начать формальное письмо в испанскую компанию?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Estimado Sr. Gómez:</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Hola Sr. Gómez,</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Buenos días Sr. Gómez!</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Le agradecería que me enviara...» — почему subjuntivo?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">это просто устойчивая формула без правил</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">после condicional + que используется subjuntivo imperfecto</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">это будущее время в деловом стиле</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Как завершить официальное письмо?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Chao, [nombre]</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Muchas gracias y adiós</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Atentamente / Le saluda atentamente, [nombre]</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Me dirijo a usted con el fin de...» — для чего эта фраза?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">объяснить цель письма</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">закончить письмо</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">поприветствовать адресата</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «A quien corresponda» используется, когда...</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">ты обращаешься к другу</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">не знаешь имя конкретного адресата</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">это всегда обязательно</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Сколько слов должно быть в письме на DELE B1?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">50–80 слов</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">130–150 слов</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">300–400 слов</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 4: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Вставь правильную фразу</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. ________ a usted con el fin de solicitar información sobre el alquiler. (обращаюсь)</div>
+      <input type="text" class="text-input" placeholder="Напиши фразу..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','me dirijo','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ Me dirijo — dirigirse a alguien = обращаться к кому-то. Ключевая формула начала письма.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Le ________ que me enviara la documentación por correo. (был бы благодарен)</div>
+      <input type="text" class="text-input" placeholder="Напиши глагол..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','agradecería','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ agradecería — condicional de agradecer. «Le agradecería que + subjuntivo» — вежливая просьба в письме.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. En ________ de su respuesta, le saluda atentamente. (ожидании)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','espera','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ espera — «en espera de su respuesta» = в ожидании вашего ответа. Классическая концовка письма.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Quedo a su ________ para cualquier consulta adicional. (распоряжению)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','disposición','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ disposición — «quedo a su disposición» = нахожусь в вашем распоряжении. Стандартное предложение помощи.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. ________ respuesta al anuncio de trabajo en su empresa, adjunto mi CV. (В ответ на)</div>
+      <input type="text" class="text-input" placeholder="Напиши фразу..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','en respuesta a','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ En respuesta a — стандартное начало ответного письма или отклика на объявление.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: FULL LETTER SAMPLE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Образец — Полное деловое письмо</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📧 Письмо: запрос информации о DNV в консульство
+      <button class="dlg-toggle" onclick="toggleTranslation('letter-sample')">Показать письмо + перевод</button>
+    </div>
+    <div id="letter-sample" style="display:none;padding:16px">
+      <div style="background:var(--bg3);padding:16px;border-radius:8px;margin-bottom:14px;font-size:.9rem;line-height:2">
+        <strong>Estimado Sr. Director del Consulado de España en Moscú:</strong><br><br>
+        Me dirijo a usted con el fin de solicitar información sobre los requisitos actuales para obtener el Visado Digital Nómada (VDN).<br><br>
+        Soy ciudadano ruso, trabajo como profesional independiente con ingresos comprobables superiores a los 4.600 euros mensuales. Tengo previsto trasladarme a Barcelona con mi familia a finales de 2026. En este sentido, me gustaría recibir información actualizada sobre la documentación necesaria, los plazos de tramitación y si es posible presentar la solicitud en España o únicamente desde el exterior.<br><br>
+        Le agradecería que me enviara los formularios correspondientes o me indicara el procedimiento oficial más reciente.<br><br>
+        Quedo a su disposición para cualquier información adicional que pudiera resultar necesaria.<br><br>
+        En espera de su respuesta, le saluda atentamente,<br>
+        <strong>Evgeny Sevryugin</strong>
+      </div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.8">
+        <strong>Перевод:</strong><br>
+        Уважаемый господин директор Консульства Испании в Москве:<br><br>
+        Обращаюсь к вам с целью запросить информацию о текущих требованиях для получения Визы Цифрового Кочевника (ВЦК).<br><br>
+        Я гражданин России, работаю как независимый профессионал с подтверждённым доходом свыше 4 600 евро в месяц. Планирую переехать в Барселону с семьёй в конце 2026 года. В этой связи я хотел бы получить актуальную информацию о необходимых документах, сроках рассмотрения и о том, возможно ли подать заявление в Испании или только из-за рубежа.<br><br>
+        Был бы благодарен, если бы вы прислали соответствующие формы или указали последнюю официальную процедуру.<br><br>
+        Остаюсь в вашем распоряжении для предоставления любой дополнительной информации.<br><br>
+        В ожидании вашего ответа, с уважением,<br>
+        Евгений Севрюгин
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAKING/WRITING TASKS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Практические задания на написание</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">✍️ Задание 1 — Запрос об аренде жилья</div>
+    <p>Ты видел объявление о сдаче квартиры в Барселоне за 1 200 €/мес. Напиши письмо-запрос: уточни условия, спроси о залоге, о возможности заезда в сентябре, попроси показать документы.</p>
+    <div class="es">«Estimado/a Sr./Sra. [apellido]: Me dirijo a usted en relación con el anuncio de alquiler de un apartamento en [barrio]...»</div>
+    <div class="hint">Слова: el contrato de arrendamiento, la fianza, los gastos incluidos, la fecha de disponibilidad</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">✍️ Задание 2 — DELE B1 симуляция</div>
+    <p>Задание DELE: «Уважаемый редактор, вы опубликовали статью о том, что иностранцам сложно адаптироваться в Испании. Напишите письмо с вашим мнением — согласны ли вы, приведите аргументы (130–150 слов).»</p>
+    <div class="es">«Estimado director: Me dirijo a usted en respuesta al artículo publicado el pasado [fecha] sobre la adaptación de los extranjeros en España...»</div>
+    <div class="hint">Структура: позиция → 2 аргумента → контраргумент → вывод. Используй: en primer lugar, sin embargo, por otro lado, en definitiva</div>
+  </div>
+</div>
+
+<!-- SECTION 7: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Диалог — Обсуждаем письмо</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Разговор о деловой переписке
+      <button class="dlg-toggle" onclick="toggleDlg('dlg94-1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div style="display:flex;gap:12px">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px;margin-top:2px">SARA</div>
+        <div><div class="dlg-es">¿Has enviado ya el correo al consulado?</div>
+        <div class="dlg-ru dlg94-1-tr" style="display:none">[Ты уже отправил письмо в консульство?]</div></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div style="display:flex;gap:12px">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);flex-shrink:0;width:60px;margin-top:2px">IVÁN</div>
+        <div><div class="dlg-es">Sí, pero me costó bastante redactarlo correctamente. Los correos formales en español tienen una estructura muy específica.</div>
+        <div class="dlg-ru dlg94-1-tr" style="display:none">[Да, но мне было довольно трудно написать его правильно. Официальные письма на испанском имеют очень специфическую структуру.]</div></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div style="display:flex;gap:12px">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px;margin-top:2px">SARA</div>
+        <div><div class="dlg-es">Lo sé. Lo más importante es el tono: siempre usted, fórmulas fijas de apertura y cierre, y ser conciso.</div>
+        <div class="dlg-ru dlg94-1-tr" style="display:none">[Знаю. Самое важное — тон: всегда «usted», фиксированные формулы открытия и закрытия, и быть кратким.]</div></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div style="display:flex;gap:12px">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);flex-shrink:0;width:60px;margin-top:2px">IVÁN</div>
+        <div><div class="dlg-es">Exacto. Y nunca mezclar el registro informal con el formal en el mismo texto.</div>
+        <div class="dlg-ru dlg94-1-tr" style="display:none">[Именно. И никогда не смешивать неформальный и формальный стиль в одном тексте.]</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Испанский деловой этикет в переписке</h4>
+    <p>В Испании деловая переписка — более формальная, чем в России. Обращение «Estimado» всегда без «,» в конце (только «:»). Испанцы очень чувствительны к тону письма: слишком прямой запрос («Quiero información sobre...») воспринимается как грубый. Правильно — «Me gustaría recibir información sobre...» или «¿Sería posible que me enviaran...?». Ещё одна особенность: в официальных письмах принято подтверждать получение предыдущей корреспонденции: «En referencia a su correo del pasado...» или «Con relación a nuestra conversación telefónica de ayer...». Это показывает профессионализм.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>Estimado/a Sr./Sra.:</strong> — Уважаемый/ая господин/госпожа</li>
+      <li><strong>Me dirijo a usted con el fin de...</strong> — Обращаюсь к вам с целью...</li>
+      <li><strong>Le agradecería que + subjuntivo</strong> — Был бы благодарен, если бы вы...</li>
+      <li><strong>Quedo a su disposición</strong> — Остаюсь в вашем распоряжении</li>
+      <li><strong>En espera de su respuesta</strong> — В ожидании вашего ответа</li>
+      <li><strong>Atentamente / Le saluda atentamente</strong> — С уважением</li>
+      <li><strong>A quien corresponda</strong> — Кому это касается (когда адресат неизвестен)</li>
+      <li><strong>En respuesta a / Con relación a</strong> — В ответ на / В связи с</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Напиши реальное или учебное письмо-запрос на испанском (130–150 слов): в испанский банк о счёте, в агентство недвижимости или в консульство</li>
+      <li>Проверь своё письмо: есть ли все 5 частей? правильный тон? правильная концовка?</li>
+      <li>Dreaming Spanish: 15 минут</li>
+      <li>Повтори Anki-карточки</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L93.html" class="nav-link-btn">← L93</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L95.html" class="nav-link-btn">L95 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L94';
+const LS_KEY = 'esp_course_progress';
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const quizExpl = {
+  q1:'Estimado Sr. Gómez: — с двоеточием, не с запятой. Это ключевое отличие формального от неформального в испанском.',
+  q2:'Condicional (agradecería) + que + subjuntivo imperfecto (enviara) — классическая конструкция вежливой просьбы в деловой переписке.',
+  q3:'Atentamente / Le saluda atentamente — стандартные формулы закрытия официальных писем.',
+  q4:'«Me dirijo a usted con el fin de...» = «Обращаюсь к вам с целью...» — это формула повода для письма.',
+  q5:'«A quien corresponda» = «Кому это касается» — используется когда не знаешь имени конкретного адресата.',
+  q6:'130–150 слов — стандарт для письменного задания DELE B1. Слишком мало = ниже оценка, слишком много = потеря времени.'
+};
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || correct.startsWith(val) && val.length >= correct.length-2) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+function toggleTranslation(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+function toggleDlg(cls) {
+  document.querySelectorAll('.' + cls + '-tr').forEach(function(el){
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+}
+const totalSections = 9;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

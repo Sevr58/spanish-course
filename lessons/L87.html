@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L87: Экология и природа — Medio ambiente, cambio climático</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:10px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.vocab-table .ex{color:var(--muted);font-size:.82rem;font-style:italic}
+.cognate{background:rgba(255,214,10,.15);color:var(--gold);padding:1px 5px;border-radius:4px;font-size:.82rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.authentic-text{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin:14px 0}
+.authentic-text .src{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.authentic-text p{font-size:.92rem;line-height:1.8}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 184</span>
+  <a href="L88.html">L88 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔥 Фаза 3 · Прорыв · B1 · Блок 3C — Сложная коммуникация</div>
+  <h1>Экология и <span class="hl">природа</span></h1>
+  <p class="sub">Medio ambiente, cambio climático, reciclaje — говорим об экологии</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Обсудить экологические проблемы и решения</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Dreaming Spanish: природа и экология</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Предлагаем решения экологических проблем</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Как говорить об экологии — конструкции и позиции</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Экология — одна из самых частых тем на DELE B1. Нужно уметь <strong>называть проблемы, описывать их причины и предлагать решения</strong>. Это также прекрасная тема для отработки сослагательного наклонения.</p>
+
+  <div class="callout tip">
+    <h4>💡 Конструкции для экологических дискуссий</h4>
+    <ul>
+      <li><strong>El cambio climático se debe a...</strong> — Изменение климата вызвано...</li>
+      <li><strong>Es necesario que (+ subjuntivo)...</strong> — Необходимо, чтобы...</li>
+      <li><strong>Si no actuamos ahora, ...</strong> — Если мы не будем действовать сейчас...</li>
+      <li><strong>Una de las causas principales es...</strong> — Одна из главных причин — это...</li>
+      <li><strong>Para reducir la contaminación, podemos...</strong> — Чтобы снизить загрязнение, мы можем...</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>🌿 Subjuntivo для призывов и необходимости</h4>
+    <p>После конструкции <strong>«es necesario/importante/urgente que»</strong> используется subjuntivo: <em>«Es necesario que <strong>reduzcamos</strong> las emisiones»</em> (Необходимо, чтобы мы сократили выбросы). Это частотная конструкция в экологических дискуссиях — готовься её использовать активно.</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: «ecológico» vs «ecológicamente responsable»</h4>
+    <p><strong>Ecológico</strong> значит «экологический» (связанный с экологией), но НЕ всегда «экологически чистый». Для «eco-friendly» в испанском говорят: <strong>respetuoso con el medio ambiente</strong> или <strong>sostenible</strong> (устойчивый/экологичный).</p>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — Экология и природа</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="es">el medio ambiente</td><td class="tr">[эль МЕ-дьо ам-БЬЕН-те]</td><td>окружающая среда</td><td class="ex">Debemos proteger el medio ambiente.</td></tr>
+      <tr><td class="es">el cambio climático <span class="cognate">climate</span></td><td class="tr">[эль КАМ-бьо кли-МА-ти-ко]</td><td>изменение климата</td><td class="ex">El cambio climático es una amenaza global.</td></tr>
+      <tr><td class="es">la contaminación <span class="cognate">contamination</span></td><td class="tr">[ла кон-та-ми-на-СЬОН]</td><td>загрязнение</td><td class="ex">La contaminación del aire aumenta cada año.</td></tr>
+      <tr><td class="es">las emisiones de CO₂ <span class="cognate">emissions</span></td><td class="tr">[лас э-ми-СЬОНЕ-с]</td><td>выбросы CO₂</td><td class="ex">Hay que reducir las emisiones de dióxido de carbono.</td></tr>
+      <tr><td class="es">el reciclaje</td><td class="tr">[эль ре-си-КЛА-хе]</td><td>переработка</td><td class="ex">El reciclaje reduce los residuos.</td></tr>
+      <tr><td class="es">la energía renovable <span class="cognate">renewable</span></td><td class="tr">[ла э-нер-ХИ-а]</td><td>возобновляемая энергия</td><td class="ex">España invierte mucho en energía solar.</td></tr>
+      <tr><td class="es">la deforestación <span class="cognate">deforestation</span></td><td class="tr">[ла де-фо-рес-та-СЬОН]</td><td>вырубка лесов</td><td class="ex">La deforestación destruye el hábitat animal.</td></tr>
+      <tr><td class="es">la biodiversidad <span class="cognate">biodiversity</span></td><td class="tr">[ла бьо-ди-бер-си-ДАД]</td><td>биоразнообразие</td><td class="ex">La biodiversidad está en peligro.</td></tr>
+      <tr><td class="es">la sequía</td><td class="tr">[ла се-КИ-а]</td><td>засуха</td><td class="ex">La sequía afecta gravemente a España.</td></tr>
+      <tr><td class="es">el plástico de un solo uso</td><td class="tr">[эль ПЛАС-ти-ко]</td><td>одноразовый пластик</td><td class="ex">La UE ha prohibido el plástico de un solo uso.</td></tr>
+      <tr><td class="es">sostenible <span class="cognate">sustainable</span></td><td class="tr">[сос-те-НИ-бле]</td><td>устойчивый/экологичный</td><td class="ex">Necesitamos un modelo económico sostenible.</td></tr>
+      <tr><td class="es">la huella de carbono <span class="cognate">carbon</span></td><td class="tr">[ла УЭ-ла де КАР-бо-но]</td><td>углеродный след</td><td class="ex">Quiero reducir mi huella de carbono.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: AUTHENTIC TEXT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Аутентичный текст — об экологии в Испании</h2>
+  </div>
+
+  <div class="authentic-text">
+    <div class="src">📰 Адаптировано из El Mundo / данные Министерства экологии Испании</div>
+    <p>
+      «España es uno de los países europeos más vulnerables al cambio climático. Las temperaturas han subido 1,7 grados en el último siglo, el doble que la media mundial. Las sequías son cada vez más frecuentes, especialmente en el sur y el levante. Sin embargo, el país también es líder europeo en energía eólica y solar: en 2024, el 56% de la electricidad española provino de fuentes renovables. Los expertos señalan que es urgente que <em>se reduzca</em> el consumo de agua en la agricultura, que representa el 80% del uso total del país.»
+    </p>
+  </div>
+  <button style="margin-top:8px;background:none;border:1px solid var(--border);border-radius:6px;padding:6px 14px;color:var(--muted);cursor:pointer;font-size:.82rem" onclick="toggleTranslation('tr-news87')">Показать перевод</button>
+  <div id="tr-news87" style="display:none;margin-top:10px;font-size:.86rem;color:var(--muted);background:var(--bg2);padding:14px;border-radius:8px">
+    «Испания — одна из наиболее уязвимых к изменению климата европейских стран. Температуры выросли на 1,7 градуса за последнее столетие — вдвое больше среднемирового показателя. Засухи становятся всё более частыми, особенно на юге и Леванте. Тем не менее страна также является европейским лидером в области ветровой и солнечной энергии: в 2024 году 56% испанского электричества поступило из возобновляемых источников. Эксперты указывают, что срочно необходимо сократить потребление воды в сельском хозяйстве, которое составляет 80% всего использования воды в стране.»
+  </div>
+
+  <div class="callout tip" style="margin-top:14px">
+    <h4>🔍 Subjuntivo в тексте</h4>
+    <p>«Es urgente que <strong>se reduzca</strong>» — здесь subjuntivo после «es urgente que». Подлежащее es urgente запускает subjuntivo в придаточном. Это классическая структура для DELE B1.</p>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Экология и природа</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильный вариант</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как по-испански «изменение климата»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">el cambio climático</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">el tiempo cambiante</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">la crisis del tiempo</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Es necesario que reduzcamos...» — почему subjuntivo?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">потому что это прошедшее время</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">после «es necesario que» всегда subjuntivo</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">это исключение из правила</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Sostenible» на русском означает...</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">загрязнённый</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">экономный</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">устойчивый/экологичный</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Как сказать «возобновляемая энергия»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">energía renovable</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">energía ecológica</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">energía limpia básica</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «La sequía» означает...</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">наводнение</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">шторм</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">засуха</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Para reducir la contaminación, podemos...» — как продолжить фразу о транспорте?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">...comprar más coches grandes.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">...volar más en avión.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">...usar el transporte público.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- SECTION 5: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Вставь правильное слово</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. La ________ del aire es un grave problema en las ciudades. (загрязнение)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','contaminación','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ contaminación — от «contaminar» (загрязнять)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Es urgente que ________ (nosotros) las emisiones de CO₂. (reducir — subjuntivo)</div>
+      <input type="text" class="text-input" placeholder="Напиши форму глагола..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','reduzcamos','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ reduzcamos — subjuntivo presente de «reducir»: yo reduzca, tú reduzcas, nosotros reduzcamos</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. La ________ destruye el hábitat de muchos animales. (вырубка лесов)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','deforestación','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ deforestación — когнат с английским deforestation</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Quiero reducir mi ________ de carbono viajando menos en avión. (след)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','huella','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ huella — huella de carbono = углеродный след (huella также = след/отпечаток)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. España es líder en energía ________ y solar. (ветровая)</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','eólica','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ eólica — energía eólica = ветровая энергия (от Эол — бог ветра)</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Обсуждаем экологию</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Что ты делаешь для экологии?
+      <button class="dlg-toggle" onclick="toggleDlg('dlg87-1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">SOFÍA</div>
+      <div><div class="dlg-es">¿Tú haces algo para reducir tu huella de carbono?</div>
+      <div class="dlg-ru dlg87-1-tr" style="display:none">[Ты что-нибудь делаешь для снижения углеродного следа?]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">JORGE</div>
+      <div><div class="dlg-es">Sí, intento reciclar y uso el transporte público siempre que puedo. También he dejado de comer carne todos los días.</div>
+      <div class="dlg-ru dlg87-1-tr" style="display:none">[Да, стараюсь перерабатывать отходы и пользуюсь общественным транспортом, когда могу. Ещё перестал есть мясо каждый день.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">SOFÍA</div>
+      <div><div class="dlg-es">¡Qué bien! Yo también he empezado a llevar bolsas reutilizables. El plástico de un solo uso es un problema enorme.</div>
+      <div class="dlg-ru dlg87-1-tr" style="display:none">[Отлично! Я тоже начала носить многоразовые сумки. Одноразовый пластик — огромная проблема.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">JORGE</div>
+      <div><div class="dlg-es">Es necesario que los gobiernos también actúen, no solo los ciudadanos individuales.</div>
+      <div class="dlg-ru dlg87-1-tr" style="display:none">[Необходимо, чтобы и правительства действовали — не только отдельные граждане.]</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue" style="margin-top:20px">
+    <div class="dlg-header">
+      💬 Диалог 2: Дебаты о ядерной энергии
+      <button class="dlg-toggle" onclick="toggleDlg('dlg87-2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">ELENA</div>
+      <div><div class="dlg-es">¿Crees que España debería reabrir sus centrales nucleares?</div>
+      <div class="dlg-ru dlg87-2-tr" style="display:none">[Как думаешь, Испания должна вновь открыть свои атомные электростанции?]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">RAÚL</div>
+      <div><div class="dlg-es">Es un tema complicado. Por un lado, la nuclear no emite CO₂. Por otro, el problema de los residuos radiactivos no está resuelto.</div>
+      <div class="dlg-ru dlg87-2-tr" style="display:none">[Это сложная тема. С одной стороны, атомная энергетика не выбрасывает CO₂. С другой — проблема радиоактивных отходов не решена.]</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">ELENA</div>
+      <div><div class="dlg-es">Tienes razón. Lo que está claro es que necesitamos más energías renovables, sea como sea.</div>
+      <div class="dlg-ru dlg87-2-tr" style="display:none">[Ты прав. Что ясно — нам нужно больше возобновляемой энергии, так или иначе.]</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Экологические проблемы</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 1 — Базовый уровень</div>
+    <p>Расскажи о 3 экологических привычках, которые ты уже соблюдаешь (или хотел бы соблюдать). Используй: «Ya + presente» или «Quiero empezar a...»</p>
+    <div class="es">«Ya reciclo el papel y el vidrio. También intento... Quiero empezar a...»</div>
+    <div class="hint">Слова: reciclar, usar el transporte público, comprar productos locales, reducir el consumo de carne, usar energía solar</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 2 — Продвинутый уровень</div>
+    <p>Сценарий для DELE B1: тебя просят высказаться об одной из экологических проблем Испании за 2 минуты. Выбери: засуха / пластик / изменение климата. Структура: проблема → причины → что уже делается → твои предложения.</p>
+    <div class="es">«Uno de los principales problemas medioambientales en España es [la sequía]. Se debe principalmente a... Actualmente, el gobierno ha tomado medidas como... Sin embargo, es necesario que también...»</div>
+    <div class="hint">Используй: se debe a, una de las causas es, hay que reconocer, es urgente que (+ subjuntivo), en mi opinión</div>
+  </div>
+</div>
+
+<!-- SECTION 8: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Испания: солнечная держава с проблемой засухи</h4>
+    <p>Испания получила 56% электроэнергии из возобновляемых источников в 2024 году — это один из лучших показателей в мире. Страна входит в топ-5 ЕС по объёму ветровых электростанций. Однако одновременно Испания страдает от острейшей нехватки воды: Мурсия и Андалусия периодически объявляют режим засухи. Особенно остро стоит проблема «turistificación» — массового туризма, который потребляет огромное количество воды в прибрежных районах. Эта двойственность — лидер «зелёной энергии» и одна из самых засушливых стран Европы — делает Испанию уникальным примером экологических противоречий.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>el cambio climático</strong> — изменение климата</li>
+      <li><strong>la contaminación</strong> — загрязнение</li>
+      <li><strong>las energías renovables</strong> — возобновляемые источники энергии</li>
+      <li><strong>la deforestación</strong> — вырубка лесов</li>
+      <li><strong>sostenible</strong> — устойчивый, экологичный</li>
+      <li><strong>la huella de carbono</strong> — углеродный след</li>
+      <li><strong>Es necesario que + subjuntivo</strong> — необходимо, чтобы...</li>
+      <li><strong>el reciclaje</strong> — переработка отходов</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание — до следующего урока</h4>
+    <ul>
+      <li>Напиши короткий текст (80–100 слов) о главной экологической проблеме твоего города</li>
+      <li>Найди одну новость об экологии на испанском сайте (elpais.com, elmundo.es) и выпиши 5 новых слов</li>
+      <li>Dreaming Spanish: найди видео о природе Испании — посмотри 15 минут</li>
+      <li>Повтори Anki-карточки</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L86.html" class="nav-link-btn">← L86</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L88.html" class="nav-link-btn">L88 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L87';
+const LS_KEY = 'esp_course_progress';
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const quizExpl = {
+  q1:'el cambio climático — это устойчивое сочетание. Климатический = climático (от clima, cognate с climate).',
+  q2:'После «es necesario/importante/urgente/bueno que» всегда идёт subjuntivo в придаточном предложении.',
+  q3:'Sostenible = устойчивый/экологичный. Cognate с английским sustainable.',
+  q4:'Energía renovable — renovable от renovar (обновлять). Cognate с английским renewable.',
+  q5:'La sequía = засуха. Это важное слово для понимания новостей об Испании и Латинской Америке.',
+  q6:'Usar el transporte público — это классическое экологическое решение для снижения выбросов автомобилей.'
+};
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || correct.startsWith(val) && val.length >= correct.length-2) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+function toggleTranslation(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+function toggleDlg(cls) {
+  document.querySelectorAll('.' + cls + '-tr').forEach(function(el){
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+}
+const totalSections = 9;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

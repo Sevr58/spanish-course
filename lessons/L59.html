@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L59: Практика — рассказ о себе</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:hover td{background:var(--bg2)}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.vocab-table .ex{color:var(--muted);font-size:.8rem;font-style:italic}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.monologue-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.monologue-block .mb-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:10px}
+.monologue-block .mb-title{font-size:1rem;font-weight:700;margin-bottom:10px;color:var(--gold)}
+.monologue-block ul{margin-left:16px;font-size:.88rem;color:var(--muted)}
+.monologue-block li{margin-bottom:5px}
+.monologue-block .es-phrase{color:var(--text);font-weight:600}
+.timer-box{background:var(--bg3);border:1px solid rgba(255,214,10,.3);border-radius:8px;padding:14px 18px;margin:14px 0;display:flex;align-items:center;gap:16px}
+.timer-box .timer-ico{font-size:1.8rem}
+.timer-box p{font-size:.88rem;color:var(--muted)}
+.timer-box strong{color:var(--gold)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L58.html">← L58</a>
+  <span class="level">A2 · Фаза 2 · День 124</span>
+  <a href="L60.html">L60 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔵 Фаза 2 · Практика · Блок 2D · DS Intermediate</div>
+  <h1>Практика: <span class="hl">рассказ о себе</span></h1>
+  <p class="sub">Свободное говорение — 5 минут о себе без остановок. Кто я, откуда, чем занимаюсь, мечты и планы.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Говорить о себе 5 минут без остановок на испанском</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут — монолог и подготовка</p></div></div>
+    <div class="obj"><div class="ico">📚</div><div><strong>Polyglot</strong><p>Расширение урока #16 (Дмитрий Петров)</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Монолог: я → семья → работа → планы → Испания</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: Зачем монолог -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Зачем нужен монолог о себе — и как его строить</h2>
+  </div>
+
+  <p style="margin-bottom:14px">«Расскажи о себе» — это первое, что тебя спросят на курсах испанского, при знакомстве с испанцами, в языковом обмене. Если ты можешь говорить 5 минут без остановок — ты уже A2+.</p>
+
+  <div class="callout tip">
+    <h4>💡 Принцип монолога</h4>
+    <p>Не пытайся говорить идеально. Используй коннекторы (bueno, pues, es que, o sea), заполняй паузы (a ver, mmm, es decir), допускай ошибки. Нативные говорят не идеально — ты тоже не должен. Главное — не останавливаться.</p>
+  </div>
+
+  <div class="callout info">
+    <h4>📐 Структура 5-минутного монолога</h4>
+    <ul>
+      <li><strong>Блок 1 (1 мин):</strong> Кто я — имя, возраст, откуда, где живу</li>
+      <li><strong>Блок 2 (1 мин):</strong> Семья — жена/муж, дети, родители, их занятия</li>
+      <li><strong>Блок 3 (1 мин):</strong> Работа — чем занимаюсь, что люблю, что не люблю</li>
+      <li><strong>Блок 4 (1 мин):</strong> Хобби и интересы — что делаю в свободное время</li>
+      <li><strong>Блок 5 (1 мин):</strong> Планы и мечты — куда хочу поехать, что хочу сделать</li>
+    </ul>
+  </div>
+
+  <div class="timer-box">
+    <div class="timer-ico">⏱</div>
+    <div>
+      <p><strong>Метод таймера</strong><br>
+      Поставь таймер на 5 минут. Говори без остановок. Если не знаешь слово — обходи его описанием: «es una cosa que...», «es como...», «se usa para...». Запиши себя на телефон и послушай.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2: Блок 1 — Кто я -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Блок 1 — Кто я: имя, возраст, место</h2>
+  </div>
+
+  <div class="monologue-block">
+    <div class="mb-label">Шаблон — Представление</div>
+    <div class="mb-title">Говори по этой схеме</div>
+    <ul>
+      <li><span class="es-phrase">Me llamo [имя].</span> — Меня зовут...</li>
+      <li><span class="es-phrase">Tengo [возраст] años.</span> — Мне [X] лет.</li>
+      <li><span class="es-phrase">Soy de [город], [страна].</span> — Я из [город], [страна].</li>
+      <li><span class="es-phrase">Ahora vivo en [город].</span> — Сейчас я живу в...</li>
+      <li><span class="es-phrase">Llevo [X] años viviendo aquí.</span> — Я живу здесь [X] лет.</li>
+      <li><span class="es-phrase">Soy [profesión].</span> — Я [профессия].</li>
+      <li><span class="es-phrase">Trabajo en el sector de [область].</span> — Я работаю в сфере...</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: «soy de» vs «estoy en»</h4>
+    <p><strong>Soy de Madrid</strong> = я из Мадрида (происхождение, ser). <strong>Estoy en Barcelona</strong> = я сейчас в Барселоне (временное местонахождение, estar). Не путай!</p>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Практика 1 мин</div>
+    <p>Запиши/скажи вслух своё представление. Используй все 7 фраз выше, адаптировав под себя. Не менее 60 секунд.</p>
+    <div class="es">Me llamo... Tengo... años. Soy de...</div>
+    <div class="hint">Начни с этих трёх фраз и разверни каждую.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3: Блоки 2–3 — Семья и работа -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Блоки 2–3 — Семья и работа</h2>
+  </div>
+
+  <div class="monologue-block">
+    <div class="mb-label">Шаблон — Семья</div>
+    <div class="mb-title">Говори о семье</div>
+    <ul>
+      <li><span class="es-phrase">Estoy casado/a con [имя].</span> — Я женат/замужем за...</li>
+      <li><span class="es-phrase">Tengo [X] hijos/hijas.</span> — У меня [X] детей.</li>
+      <li><span class="es-phrase">Mi hijo/hija tiene [X] años.</span> — Моему сыну/дочери [X] лет.</li>
+      <li><span class="es-phrase">Mi mujer/marido trabaja como [profesión].</span> — Моя жена/муж работает как...</li>
+      <li><span class="es-phrase">Vivimos juntos en un piso de [X] habitaciones.</span> — Мы живём вместе в квартире с [X] комнатами.</li>
+    </ul>
+  </div>
+
+  <div class="monologue-block">
+    <div class="mb-label">Шаблон — Работа</div>
+    <div class="mb-title">Говори о работе</div>
+    <ul>
+      <li><span class="es-phrase">Me dedico a [nombre del trabajo].</span> — Я занимаюсь [работа].</li>
+      <li><span class="es-phrase">Llevo [X] años trabajando en este campo.</span> — Я работаю в этой сфере [X] лет.</li>
+      <li><span class="es-phrase">Lo que más me gusta de mi trabajo es [...].</span> — Что мне больше всего нравится в работе — это...</li>
+      <li><span class="es-phrase">Lo que no me gusta tanto es [...].</span> — Что мне не так нравится — это...</li>
+      <li><span class="es-phrase">Trabajo desde casa / en una oficina / de forma autónoma.</span> — Работаю из дома / в офисе / как фрилансер.</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Коннекторы — не останавливайся</h4>
+    <p>Используй: <strong>Además...</strong> (кроме того), <strong>Por otro lado...</strong> (с другой стороны), <strong>La verdad es que...</strong> (правда в том, что), <strong>O sea...</strong> (то есть), <strong>Es que...</strong> (дело в том, что).</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4: Блоки 4–5 — Хобби и планы -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Блоки 4–5 — Хобби и планы на будущее</h2>
+  </div>
+
+  <div class="monologue-block">
+    <div class="mb-label">Шаблон — Хобби и интересы</div>
+    <div class="mb-title">Говори о досуге</div>
+    <ul>
+      <li><span class="es-phrase">En mi tiempo libre, me gusta [+infinitivo].</span> — В свободное время мне нравится...</li>
+      <li><span class="es-phrase">Soy aficionado/a a [cosa].</span> — Я увлечён/а [чем-то].</li>
+      <li><span class="es-phrase">Últimamente estoy muy interesado/a en [tema].</span> — В последнее время меня очень интересует...</li>
+      <li><span class="es-phrase">No soy muy fan de [cosa], pero me gusta [otra cosa].</span> — Я не большой фан [чего-то], но мне нравится [другое].</li>
+      <li><span class="es-phrase">Los fines de semana suelo [+infinitivo].</span> — По выходным я обычно...</li>
+    </ul>
+  </div>
+
+  <div class="monologue-block">
+    <div class="mb-label">Шаблон — Планы и мечты</div>
+    <div class="mb-title">Говори о будущем</div>
+    <ul>
+      <li><span class="es-phrase">En el futuro, me gustaría [+infinitivo].</span> — В будущем я бы хотел/а...</li>
+      <li><span class="es-phrase">Mi sueño es [+infinitivo / sustantivo].</span> — Моя мечта — это...</li>
+      <li><span class="es-phrase">Espero poder [+infinitivo] en los próximos años.</span> — Я надеюсь смочь... в ближайшие годы.</li>
+      <li><span class="es-phrase">Tengo pensado [+infinitivo] el año que viene.</span> — Я планирую... в следующем году.</li>
+      <li><span class="es-phrase">Quiero mudarme a España porque me encanta la cultura.</span> — Хочу переехать в Испанию, потому что меня восхищает культура.</li>
+    </ul>
+  </div>
+
+  <div class="callout success">
+    <h4>✅ Пример финального абзаца</h4>
+    <p>«En el futuro, me gustaría vivir en Barcelona. Es una ciudad increíble y el clima es perfecto. Además, me encantaría que mis hijos aprendan español. Mi sueño es trabajar de forma autónoma desde España y explorar toda la cultura catalana. Creo que es posible si sigo estudiando.»</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5: Словарь монолога -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Словарь для монолога о себе</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr></thead>
+    <tbody>
+      <tr><td class="es">me dedico a</td><td class="tr">[ме деди-ко а]</td><td>я занимаюсь</td><td class="ex">Me dedico a la música.</td></tr>
+      <tr><td class="es">llevo... años</td><td class="tr">[йе-во... а-ньос]</td><td>я [X] лет (занимаюсь/живу)</td><td class="ex">Llevo diez años en esta ciudad.</td></tr>
+      <tr><td class="es">me gustaría</td><td class="tr">[ме густа-ри-а]</td><td>мне бы хотелось</td><td class="ex">Me gustaría aprender chino.</td></tr>
+      <tr><td class="es">suelo + inf.</td><td class="tr">[суэ-ло]</td><td>я обычно (делаю)</td><td class="ex">Suelo levantarme a las siete.</td></tr>
+      <tr><td class="es">soy aficionado/a a</td><td class="tr">[со-и афисьона-до]</td><td>я увлечён (чем-то)</td><td class="ex">Soy aficionado al cine.</td></tr>
+      <tr><td class="es">en mi tiempo libre</td><td class="tr">[эн ми тьем-по ли-бре]</td><td>в свободное время</td><td class="ex">En mi tiempo libre leo libros.</td></tr>
+      <tr><td class="es">tengo pensado</td><td class="tr">[тэнго пен-са-до]</td><td>я планирую</td><td class="ex">Tengo pensado visitar Italia.</td></tr>
+      <tr><td class="es">estoy casado/a</td><td class="tr">[эсто-и каса-до]</td><td>я женат/замужем</td><td class="ex">Estoy casado con Ana.</td></tr>
+      <tr><td class="es">mudarse</td><td class="tr">[муdar-се]</td><td>переезжать</td><td class="ex">Quiero mudarme a España.</td></tr>
+      <tr><td class="es">de forma autónoma</td><td class="tr">[де фор-ма ауто-нома]</td><td>самостоятельно / как фрилансер</td><td class="ex">Trabajo de forma autónoma.</td></tr>
+      <tr><td class="es">últimamente</td><td class="tr">[ул-тима-мен-те]</td><td>в последнее время</td><td class="ex">Últimamente estudio más.</td></tr>
+      <tr><td class="es">criarse</td><td class="tr">[кри-ар-се]</td><td>вырасти (о человеке)</td><td class="ex">Me crié en una ciudad pequeña.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6: Тест — понимание конструкций -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Тест 1 — Выбор правильной конструкции</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>🎯 Как сказать правильно?</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как сказать «я занимаюсь музыкой» по-испански?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Me dedico a la música</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Soy músico mucho</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Hago la música</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Как сказать «в свободное время я читаю»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Cuando no trabajo, hago leer</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">En mi tiempo libre leo</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Mi libre tiempo es leer</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Что значит «Llevo cinco años viviendo aquí»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Пять лет назад я переехал сюда</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Я прожил здесь пять лет (в прошлом)</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Я живу здесь уже пять лет (сейчас)</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Как выразить «мне бы хотелось переехать в Испанию»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Me gustaría mudarme a España</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Quiero mudar a España</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Me gusta mudar España</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Suelo levantarme temprano» — что это значит?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Я вставал рано (в прошлом)</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Мне нравится вставать рано</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Я обычно встаю рано</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Как сказать «я работаю как фрилансер»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Trabajo en freelance empresa</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Trabajo de forma autónoma</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Soy freelance de trabajo</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7: Тест 2 — заполни пропуск -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Тест 2 — Заполни пропуски в монологе</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Впиши нужное слово</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Me llamo Alexei y _______ 34 años. (у меня есть)</div>
+      <input type="text" class="text-input" placeholder="глагол..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','tengo','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ tengo — «tener» = иметь, «tengo» = у меня есть</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. _______ de Moscú, pero ahora vivo en Penza. (я из)</div>
+      <input type="text" class="text-input" placeholder="начало фразы..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','soy de','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ soy de — происхождение выражается через ser</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Me _______ a la producción de audio. (я занимаюсь)</div>
+      <input type="text" class="text-input" placeholder="глагол..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','dedico','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ dedico — «me dedico a» = я занимаюсь чем-то</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. En mi tiempo libre, me _______ escuchar música. (нравится)</div>
+      <input type="text" class="text-input" placeholder="глагол..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','gusta','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ gusta — «me gusta + infinitivo» = мне нравится делать что-то</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Mi sueño es _______ a Barcelona. (переехать)</div>
+      <input type="text" class="text-input" placeholder="глагол инф..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','mudarme','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ mudarme — рефлексивный инфинитив mudarse → mudarme (с yo)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8: Диалог — знакомство -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Диалог — Знакомство на языковом обмене</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Сцена 1: Первое знакомство (intercambio de idiomas)
+      <button class="dlg-toggle" onclick="toggleTranslation('d1')">Перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div>
+        <div class="dlg-es">¡Hola! Soy Carlos. ¿Y tú?</div>
+        <div class="dlg-ru" id="d1" style="display:none">[Привет! Я Карлос. А ты?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Tú</div>
+      <div>
+        <div class="dlg-es">Hola Carlos. Me llamo Alexei. Soy de Rusia, de una ciudad que se llama Penza.</div>
+        <div class="dlg-ru" id="d1b" style="display:none">[Привет, Карлос. Меня зовут Алексей. Я из России, из города под названием Пенза.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div>
+        <div class="dlg-es">¡Qué interesante! ¿Y a qué te dedicas?</div>
+        <div class="dlg-ru" id="d1c" style="display:none">[Как интересно! И чем ты занимаешься?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Tú</div>
+      <div>
+        <div class="dlg-es">Soy productor de audio. Me dedico a crear anuncios y contenido de voz. Llevo más de quince años en este campo.</div>
+        <div class="dlg-ru" id="d1d" style="display:none">[Я аудиопродюсер. Я занимаюсь созданием рекламы и голосового контента. Я в этой сфере уже более пятнадцати лет.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div>
+        <div class="dlg-es">¡Impresionante! ¿Y tienes familia?</div>
+        <div class="dlg-ru" id="d1e" style="display:none">[Впечатляет! А у тебя есть семья?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Tú</div>
+      <div>
+        <div class="dlg-es">Sí, estoy casado y tengo dos hijas. La mayor tiene diez años y la pequeña tiene seis. Son mi motivación para aprender español.</div>
+        <div class="dlg-ru" id="d1f" style="display:none">[Да, я женат и у меня две дочери. Старшей десять лет, младшей шесть. Они моя мотивация учить испанский.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Сцена 2: О планах переезда
+      <button class="dlg-toggle" onclick="toggleTranslation('d2')">Перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div>
+        <div class="dlg-es">¿Por qué aprendes español? ¿Tienes algún plan especial?</div>
+        <div class="dlg-ru" id="d2" style="display:none">[Почему ты учишь испанский? У тебя есть какой-то особый план?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Tú</div>
+      <div>
+        <div class="dlg-es">Sí, tengo pensado mudarme a Barcelona el año que viene. Quiero obtener una visa de nómada digital.</div>
+        <div class="dlg-ru" id="d2b" style="display:none">[Да, я планирую переехать в Барселону в следующем году. Хочу получить визу цифрового кочевника.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div>
+        <div class="dlg-es">¡Genial! ¿Y qué es lo que más te gusta de España?</div>
+        <div class="dlg-ru" id="d2c" style="display:none">[Отлично! А что тебе больше всего нравится в Испании?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Tú</div>
+      <div>
+        <div class="dlg-es">Me encanta el clima, la arquitectura y, sobre todo, la forma de vivir. En España la gente disfruta más de la vida. Al menos eso me parece.</div>
+        <div class="dlg-ru" id="d2d" style="display:none">[Мне очень нравится климат, архитектура и, прежде всего, образ жизни. В Испании люди больше наслаждаются жизнью. По крайней мере, мне так кажется.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Финальное задание — 5 минут</div>
+    <p>Теперь твой черёд. Запусти таймер на 5 минут. Говори о себе вслух, не останавливаясь. Используй все 5 блоков: я → семья → работа → хобби → планы. Запиши себя на телефон.</p>
+    <div class="es">¡Empieza ya! Me llamo... Tengo... años... Soy de...</div>
+    <div class="hint">Если застрял — скажи «A ver...» или «Bueno...» и продолжай. Не молчи.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CULTURE -->
+<div class="culture">
+  <div class="ctag">🏛 Культурная заметка</div>
+  <h4>Испанцы и «¿Qué tal?» — не всё так просто</h4>
+  <p>В Испании «¿Cómo te llamas?» и «¿A qué te dedicas?» — нормальные первые вопросы при знакомстве. Испанцы любопытны и открыты. Но вопрос «¿Cuánto ganas?» (сколько зарабатываешь?) считается слишком личным даже среди знакомых. Зато рассказывать о планах переезда, мечтах о жизни у моря — это здесь полностью нормально и вызывает искреннее любопытство.</p>
+</div>
+
+<!-- ANKI -->
+<div class="section" style="margin-top:24px">
+  <div class="anki">
+    <div class="atag">📇 Anki — карточки для повторения</div>
+    <ul>
+      <li>Me dedico a... → я занимаюсь...</li>
+      <li>Llevo X años + gerundio → я X лет делаю что-то</li>
+      <li>Me gustaría + infinitivo → мне бы хотелось...</li>
+      <li>suelo + infinitivo → я обычно делаю...</li>
+      <li>Tengo pensado + infinitivo → я планирую...</li>
+      <li>de forma autónoma → самостоятельно / как фрилансер</li>
+      <li>mudarse → переехать</li>
+      <li>últimamente → в последнее время</li>
+      <li>estoy casado/a con → я женат/замужем за</li>
+      <li>me crié en → я вырос в</li>
+    </ul>
+  </div>
+
+  <div style="background:var(--bg2);border-radius:8px;padding:14px 18px;margin-top:14px">
+    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">📝 Домашнее задание</p>
+    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
+      <li>Запиши свой 5-минутный монолог на телефон</li>
+      <li>Прослушай и отметь 3 места, где делал долгие паузы — заполни их коннекторами</li>
+      <li>Запиши второй раз — он должен звучать более плавно</li>
+      <li>Посмотри Dreaming Spanish Intermediate видео о «себе и своей жизни» (~15 мин)</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L58.html" class="nav-link-btn">← L58</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="../../lessons/lesson_16.html" class="nav-link-btn">📚 Polyglot #16</a>
+    <a href="L60.html" class="nav-link-btn">L60 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L59';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'Me dedico a la música — правильная конструкция для «я занимаюсь». «Hacer» с музыкой не используется как профессия.',
+  q2:'En mi tiempo libre leo — устойчивая фраза. «Hago leer» не существует в испанском.',
+  q3:'«Llevo cinco años viviendo aquí» = I have been living here for five years. Это настоящее действие, продолжающееся до сих пор.',
+  q4:'Me gustaría mudarme a España — «gustaría» это кондиционал от gustar. «Mudarme» = рефлексивный инфинитив.',
+  q5:'«Suelo» + инфинитив = обычно делаю что-то. Это habitual present, не прошлое и не предпочтение.',
+  q6:'Trabajo de forma autónoma — стандартное выражение. «Autónomo» в Испании — это официальный статус самозанятого.'
+};
+
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Ответ: "${answer}"`;}}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+
+function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e',id+'f',id+'g'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

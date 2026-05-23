@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L77: Причина и следствие</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+th{background:var(--bg3);color:var(--gold);padding:8px 12px;text-align:left;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+td{padding:8px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.connector-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.conn-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px}
+.conn-box h4{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.conn-box h4.cause{color:var(--blue)}
+.conn-box h4.effect{color:var(--green)}
+.conn-box ul{list-style:none;font-size:.87rem}
+.conn-box li{padding:4px 0;border-bottom:1px solid var(--bg3)}
+.conn-box li:last-child{border-bottom:none}
+.conn-box li .sp{color:var(--text);font-weight:600}
+.conn-box li .ru{color:var(--muted);font-size:.82rem}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.connector-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 164</span>
+  <a href="L78.html">L78 →</a>
+</div>
+
+<div class="hero">
+  <div class="phase-tag">Фаза 3 · Блок B3C · Сложная коммуникация</div>
+  <h1>Причина и <span class="hl">следствие</span></h1>
+  <p class="sub">Porque, como, ya que, por eso, por tanto, así que — строй сложные аргументы и объясняй решения.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">⬅️</div><div><strong>Причина</strong><p>porque, como, ya que, dado que — чем отличаются</p></div></div>
+    <div class="obj"><div class="ico">➡️</div><div><strong>Следствие</strong><p>por eso, por tanto, así que, de ahí que</p></div></div>
+    <div class="obj"><div class="ico">⚡</div><div><strong>Porque vs por</strong><p>Главная ловушка: «porque» vs «por» — разница критична</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Аргументация</strong><p>Объяснять решения и их причины как носитель</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Коннекторы причины и следствия</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Причинно-следственные связи — основа аргументации. Без них речь звучит как набор фактов без логики. Испанский предлагает богатый набор коннекторов, каждый со своим нюансом позиции в предложении.</p>
+
+  <div class="connector-grid">
+    <div class="conn-box">
+      <h4 class="cause">Причина (Causa)</h4>
+      <ul>
+        <li><span class="sp">porque</span><span class="ru"> — потому что (самый частый)</span></li>
+        <li><span class="sp">como</span><span class="ru"> — поскольку (в начале)</span></li>
+        <li><span class="sp">ya que</span><span class="ru"> — поскольку (нейтр.)</span></li>
+        <li><span class="sp">dado que</span><span class="ru"> — принимая во внимание</span></li>
+        <li><span class="sp">puesto que</span><span class="ru"> — поскольку (формально)</span></li>
+        <li><span class="sp">a causa de</span><span class="ru"> — из-за + существительное</span></li>
+        <li><span class="sp">debido a</span><span class="ru"> — вследствие</span></li>
+      </ul>
+    </div>
+    <div class="conn-box">
+      <h4 class="effect">Следствие (Consecuencia)</h4>
+      <ul>
+        <li><span class="sp">por eso / por eso mismo</span><span class="ru"> — поэтому</span></li>
+        <li><span class="sp">por tanto</span><span class="ru"> — следовательно</span></li>
+        <li><span class="sp">así que</span><span class="ru"> — так что (разг.)</span></li>
+        <li><span class="sp">de ahí que</span><span class="ru"> — отсюда и (+ subj.)</span></li>
+        <li><span class="sp">en consecuencia</span><span class="ru"> — в следствии (офиц.)</span></li>
+        <li><span class="sp">como resultado</span><span class="ru"> — в результате</span></li>
+        <li><span class="sp">por lo tanto</span><span class="ru"> — поэтому (книжн.)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ PORQUE vs POR — критическая разница!</h4>
+    <p><strong>porque</strong> = потому что + глагол: «No vine <em>porque</em> estaba enfermo.»<br>
+    <strong>por</strong> = из-за + существительное/инфинитив: «No vine <em>por</em> la enfermedad.» / «Lo hice <em>por</em> ti.»<br>
+    Русскоговорящие часто путают: *«Lo hice porque ti» — ОШИБКА. «Lo hice <strong>por</strong> ti.»</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Позиция COMO в предложении</h4>
+    <p><strong>Como</strong> как причина ВСЕГДА стоит в начале предложения: «<em>Como</em> no tenía dinero, no pude ir.» Если поставить его в середину — меняется смысл на «как»: «Lo hice <em>como</em> te dije» = «Я сделал это, как сказал тебе». Разная позиция — разный смысл!</p>
+  </div>
+
+  <div class="callout info">
+    <h4>🔍 De ahí que + Subjuntivo</h4>
+    <p>«De ahí que» — единственный коннектор следствия, требующий субъюнктива: «Hay mucho tráfico, de ahí que <strong>lleguemos</strong> tarde.» Все остальные коннекторы следствия (por eso, así que, por tanto) используют изъявительное наклонение.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: Словарь -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — Причины и следствия</h2>
+  </div>
+
+  <table>
+    <tr><th>Слово/фраза</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td><strong>el motivo</strong></td><td>[моТИво]</td><td>причина, мотив</td><td>El motivo de mi decisión fue económico.</td></tr>
+    <tr><td><strong>la razón</strong></td><td>[раСОН]</td><td>причина, основание</td><td>La razón es sencilla: no hay presupuesto.</td></tr>
+    <tr><td><strong>la consecuencia</strong></td><td>[консеКУЭНсья]</td><td>последствие</td><td>Las consecuencias son graves.</td></tr>
+    <tr><td><strong>el resultado</strong></td><td>[резулТАдо]</td><td>результат</td><td>Como resultado, perdimos el contrato.</td></tr>
+    <tr><td><strong>provocar</strong></td><td>[провоКАР]</td><td>вызывать, провоцировать</td><td>El estrés provoca problemas de salud.</td></tr>
+    <tr><td><strong>ocasionar</strong></td><td>[окасьоНАР]</td><td>вызывать, приводить к</td><td>El accidente ocasionó grandes pérdidas.</td></tr>
+    <tr><td><strong>conducir a</strong></td><td>[кондуСИР]</td><td>приводить к</td><td>Eso conduce a un callejón sin salida.</td></tr>
+    <tr><td><strong>derivarse de</strong></td><td>[дериВАРсе]</td><td>вытекать из</td><td>El problema se deriva de la falta de comunicación.</td></tr>
+    <tr><td><strong>en vista de</strong></td><td>[виСТА де]</td><td>ввиду, принимая во внимание</td><td>En vista de los resultados, hay que cambiar.</td></tr>
+    <tr><td><strong>a raíz de</strong></td><td>[раИС де]</td><td>вследствие, в результате</td><td>A raíz del terremoto, muchos perdieron el hogar.</td></tr>
+    <tr><td><strong>de modo que</strong></td><td>[МОдо ке]</td><td>так что, таким образом</td><td>Llegamos tarde, de modo que perdimos el vuelo.</td></tr>
+    <tr><td><strong>por consiguiente</strong></td><td>[консиГЬЕНте]</td><td>следовательно (офиц.)</td><td>Por consiguiente, el proyecto debe reiniciarse.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: Тест 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Причина или следствие?</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Выбери правильный коннектор</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «No pude ir ___ estaba enfermo.» (потому что)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">porque</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">por eso</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">así que</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «___ no había autobuses, llegamos tarde.» (поскольку — начало предложения)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Porque</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Como</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Por tanto</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «El proyecto falló, ___ hay que revisarlo todo.» (так что, разговорный)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">ya que</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">así que</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">dado que</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Lo hice _____ ti.» (из-за тебя — por или porque?)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">por</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">porque</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">ya que</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «No hay presupuesto; ___ ___, el proyecto se cancela.» (следовательно — официально)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">así que</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">por tanto</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">porque</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «De ahí que el sistema _____ (fallar) constantemente.» (subjuntivo!)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">falla</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">falle</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">falló</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: Тест 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Заполни пропуски</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Выбери и запиши подходящий коннектор</h3>
+
+    <div class="text-ex" id="te1">
+      <div class="tex-q">1. «_____ llovía mucho, cancelamos el picnic.» (поскольку, начало)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','como','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ Como — поскольку (всегда в начале предложения)</div>
+    </div>
+
+    <div class="text-ex" id="te2">
+      <div class="tex-q">2. «El tráfico era horrible, _____ que llegamos con dos horas de retraso.» (так что)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','así','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ así (que) — разговорное следствие</div>
+    </div>
+
+    <div class="text-ex" id="te3">
+      <div class="tex-q">3. «La falta de comunicación _____ muchos problemas en la empresa.» (вызывает)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','provoca','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ provoca — provocar = вызывать (переходный глагол)</div>
+    </div>
+
+    <div class="text-ex" id="te4">
+      <div class="tex-q">4. «No pudo venir a _____ de la enfermedad.» (вследствие)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','raíz','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ raíz — a raíz de = вследствие, в результате</div>
+    </div>
+
+    <div class="text-ex" id="te5">
+      <div class="tex-q">5. «El calentamiento global _____ a un aumento del nivel del mar.» (приводит к)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','conduce','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ conduce — conducir a = приводить к</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: Аутентичный текст -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Аутентичный текст — Новостная аналитика</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      Отрывок из аналитической статьи — без перевода
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-art')">Показать разбор коннекторов</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:2">
+          «La inflación en España ha subido un 5% este año. <strong style="color:var(--gold)">Dado que</strong> los salarios no han aumentado en la misma proporción, muchas familias han reducido su consumo. <strong style="color:var(--blue)">Como resultado</strong>, el comercio minorista ha sufrido una caída del 8%. <strong style="color:var(--gold)">Por tanto</strong>, el gobierno estudia medidas de apoyo. <strong style="color:var(--blue)">De ahí que</strong> los economistas <strong>pidan</strong> una intervención urgente.»
+        </div>
+        <div id="tr-art" style="display:none;margin-top:10px;font-size:.85rem;color:var(--muted)">
+          <strong>Коннекторы в тексте:</strong><br>
+          • «Dado que» — формальная причина (принимая во внимание, что)<br>
+          • «Como resultado» — следствие + существительное<br>
+          • «Por tanto» — следовательно (официальный регистр)<br>
+          • «De ahí que... pidan» — следствие + subjuntivo (единственный такой случай!)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: Диалоги -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Объяснение решений</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Почему уволился?
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Alba</div>
+      <div><div class="dlg-es">¿Por qué dejaste el trabajo? Era una empresa muy buena.</div>
+      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Почему ты ушёл с работы? Это была очень хорошая компания.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">David</div>
+      <div><div class="dlg-es">Porque el ambiente era tóxico. Ya que pasaba más tiempo en reuniones que trabajando, decidí buscar otra cosa.</div>
+      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Потому что атмосфера была токсичной. Поскольку я проводил больше времени на совещаниях, чем в работе, решил поискать другое.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Alba</div>
+      <div><div class="dlg-es">¿Y qué pasó después? ¿Encontraste algo?</div>
+      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">И что случилось потом? Нашёл что-нибудь?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">David</div>
+      <div><div class="dlg-es">Sí. Como tenía experiencia en marketing digital, me llamaron de tres empresas. Así que ahora estoy muy contento con el nuevo trabajo.</div>
+      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Да. Поскольку у меня был опыт в цифровом маркетинге, позвонили из трёх компаний. Так что теперь я очень доволен новой работой.</div></div>
+    </div>
+    <div id="tr-dlg1" style="display:none"></div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Объясняем переезд
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Verónica</div>
+      <div><div class="dlg-es">Entonces, ¿por qué quieres mudarte a Barcelona?</div>
+      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Значит, почему ты хочешь переехать в Барселону?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Iván</div>
+      <div><div class="dlg-es">Principalmente porque el clima es mejor y debido a que mi empresa ya tiene oficina allí. Por eso no necesito cambiar de trabajo.</div>
+      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">В основном потому что климат лучше и вследствие того, что у моей компании уже есть офис там. Поэтому мне не нужно менять работу.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Verónica</div>
+      <div><div class="dlg-es">¿Y tu familia? ¿Están de acuerdo?</div>
+      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">А твоя семья? Они согласны?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Iván</div>
+      <div><div class="dlg-es">Ya que los niños son pequeños, se adaptarán fácilmente. Por tanto, creo que es el mejor momento para hacerlo.</div>
+      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Поскольку дети маленькие, они легко адаптируются. Следовательно, думаю, что сейчас лучший момент для этого.</div></div>
+    </div>
+    <div id="tr-dlg2" style="display:none"></div>
+  </div>
+</div>
+
+<!-- SECTION 7: Говорение -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Объяснение решений</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий A — Объясни своё решение</div>
+    <p>Объясни вслух, почему ты изучаешь испанский. Используй минимум 3 разных коннектора причины.</p>
+    <div class="es">Estudio español porque _____ . También, ya que _____ . Dado que _____ , quiero _____ . Por eso _____ .</div>
+    <div class="hint">Минимум 5 предложений. Смешивай причины и следствия!</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Сценарий B — Продвинутый: обоснование проекта</div>
+    <p>Ты презентуешь проект. Объясни причины его необходимости и ожидаемые результаты. 2 минуты речи.</p>
+    <div class="es">Presentamos este proyecto porque _____ . Como resultado, esperamos que _____ . Dado que el mercado _____ , por tanto _____ . De ahí que sea urgente actuar ya.</div>
+    <div class="hint">Используй «de ahí que + subjuntivo» хотя бы один раз.</div>
+  </div>
+</div>
+
+<!-- SECTION 8: Культурная заметка -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">Язык и логика</div>
+    <h4>Испанская причинность в культуре: «¿Por qué no?»</h4>
+    <p>В Испании вопрос «¿Por qué?» (почему?) — не агрессия и не вызов, а нормальная часть диалога. Испанцы объясняют и аргументируют всё: почему опоздали, почему выбрали именно этот ресторан, почему не согласны. «Porque sí» (просто потому) — допустимый ответ в неформальном общении, но в деловой или учебной среде объяснение причин ценится высоко. Развитая причинная аргументация — признак образованной речи на испанском.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: Anki + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki + Домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">Карточки Anki</div>
+    <ul>
+      <li><strong>porque</strong> — потому что + глагол | No vine porque estaba enfermo.</li>
+      <li><strong>como (causa)</strong> — поскольку (в начале) | Como no había bus, fui a pie.</li>
+      <li><strong>ya que</strong> — поскольку (нейтр.) | Ya que estás aquí, ayúdame.</li>
+      <li><strong>por eso</strong> — поэтому | Llueve, por eso llevo paraguas.</li>
+      <li><strong>así que</strong> — так что (разг.) | Era tarde, así que me fui.</li>
+      <li><strong>por tanto</strong> — следовательно (офиц.) | Por tanto, el contrato es nulo.</li>
+      <li><strong>de ahí que + subjuntivo</strong> — отсюда и | De ahí que sea urgente.</li>
+      <li><strong>por vs porque</strong> — Lo hice por ti / Lo hice porque te quiero.</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>Домашнее задание</h4>
+    <ul>
+      <li>Запиши 5 причинно-следственных пар из своей жизни: учёба испанского, переезд, работа, семья — объясни каждую на испанском (2–3 предложения)</li>
+      <li>Dreaming Spanish Intermediate: найди документальное видео с объяснениями — слушай 20 мин</li>
+      <li>Составь один абзац: почему ты принял самое важное решение в жизни — на испанском, 5–7 предложений</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L76.html" class="nav-link-btn">← L76</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L78.html" class="nav-link-btn">L78 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L77';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const quizExpl={
+  q1:'porque — потому что, за ним следует глагол.',
+  q2:'Como — поскольку, всегда в начале предложения. В середине «como» = «как».',
+  q3:'así que — разговорное следствие. Por tanto/por consiguiente — официальнее.',
+  q4:'por — из-за + местоимение/существительное. Никогда «porque ti»!',
+  q5:'por tanto — официальное следствие. Встречается в текстах, деловой речи.',
+  q6:'falle — de ahí que + subjuntivo! Единственный коннектор следствия с субъюнктивом.'
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))? 'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
+function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Ответ: "${answer}"`;}}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
+const totalSections=9;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

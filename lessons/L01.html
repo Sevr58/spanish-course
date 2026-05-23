@@ -1359,7 +1359,7 @@ function exportAnkiL01() {
   const tsv = ANKI_DECK_L01.map(function(c) {
     return c.front + '\t' + c.back.replace(/\n/g, '<br>');
   }).join('\n');
-  const blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
+  const header = '#separator:Tab\n#html:true\n#deck:L01 Spanish\n'; const blob = new Blob([header + tsv], {type: 'text/plain;charset=utf-8'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;

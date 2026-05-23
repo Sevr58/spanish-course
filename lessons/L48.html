@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L48: Наречия образа действия — Rápidamente, bien, mal</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+
+/* Nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+
+/* Progress bar */
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+
+/* Section */
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+
+/* Callout */
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+
+/* Cognate table */
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+
+/* Speaking bubble */
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+
+/* Quiz */
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+
+/* Text exercise */
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+
+/* Dialogue */
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+
+/* Cultural note */
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+
+/* Anki box */
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+
+/* Done button */
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+
+/* Vocab table */
+.vocab-table{width:100%;border-collapse:collapse;margin-bottom:14px}
+.vocab-table th{background:var(--bg3);padding:8px 12px;font-size:.8rem;font-weight:700;text-align:left;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es-word{color:var(--gold);font-weight:600}
+.vocab-table .transcr{color:var(--muted);font-size:.8rem}
+
+/* Formation table */
+.form-table{width:100%;border-collapse:collapse;margin:14px 0}
+.form-table th{background:var(--bg3);padding:10px 14px;font-size:.85rem;font-weight:700;text-align:left;color:var(--muted);border-bottom:2px solid var(--border)}
+.form-table td{padding:10px 14px;border-bottom:1px solid var(--bg3);font-size:.9rem;vertical-align:middle}
+.form-table tr:last-child td{border-bottom:none}
+.form-table .adj{color:var(--muted)}
+.form-table .adv{color:var(--gold);font-weight:600}
+.form-table .arrow{color:var(--border);text-align:center}
+
+/* Responsive */
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.cog-rule .rule-header{flex-wrap:wrap}.word-pairs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · Блок B2C</span>
+  <a href="L49.html">L49 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">⚡ Фаза 2 · A2 · Блок B2C — Наречия образа действия</div>
+  <h1>Наречия образа действия: <span class="hl">-mente</span></h1>
+  <p class="sub">Rápidamente, claramente, bien, mal — «как?» Связано с Polyglot урок #9.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Образование</strong><p>прилагательное (ж.р.) + -mente → наречие</p></div></div>
+    <div class="obj"><div class="ico">📚</div><div><strong>Исключения</strong><p>bien, mal, rápido — нет суффикса -mente</p></div></div>
+    <div class="obj"><div class="ico">⚠️</div><div><strong>Ловушка</strong><p>Два наречия подряд: первое без -mente</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Описывать как ты что-то делаешь: Hablo lentamente.</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: Теория -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Как образуются наречия на -mente</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Наречие образа действия отвечает на вопрос <strong>«как?»</strong>. По-русски это слова на <em>-о/-е/-и</em>: быстро, ясно, спокойно. В испанском большинство таких наречий образуются с суффиксом <strong>-mente</strong>.</p>
+
+  <div class="callout info">
+    <h4>💡 Правило образования</h4>
+    <p>Берём форму прилагательного в <strong>женском роде</strong> (единственное число) и добавляем <strong>-mente</strong>:</p>
+    <ul>
+      <li>rápido → rápida → <strong>rápidamente</strong> (быстро)</li>
+      <li>claro → clara → <strong>claramente</strong> (ясно, чётко)</li>
+      <li>tranquilo → tranquila → <strong>tranquilamente</strong> (спокойно)</li>
+    </ul>
+    <p>Если прилагательное оканчивается не на -o/-a, просто добавляем -mente:</p>
+    <ul>
+      <li>fácil → <strong>fácilmente</strong> (легко)</li>
+      <li>feliz → <strong>felizmente</strong> (счастливо)</li>
+      <li>amable → <strong>amablemente</strong> (любезно)</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Ударение сохраняется!</h4>
+    <p>Важно: наречие на -mente сохраняет <strong>оба ударения</strong> — исходное ударение прилагательного и ударение на слоге -MEN-. Поэтому rápidamente произносится [РА-пи-да-МЕН-тэ]. Это делает испанские наречия длинными, но ритмичными.</p>
+  </div>
+
+  <!-- Таблица образования -->
+  <table class="form-table">
+    <thead>
+      <tr><th>Прилагательное (м.р.)</th><th>→</th><th>Прилагательное (ж.р.)</th><th>→</th><th>Наречие</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="adj">rápido (быстрый)</td>
+        <td class="arrow">→</td>
+        <td>rápida</td>
+        <td class="arrow">+mente</td>
+        <td class="adv">rápidamente</td>
+      </tr>
+      <tr>
+        <td class="adj">lento (медленный)</td>
+        <td class="arrow">→</td>
+        <td>lenta</td>
+        <td class="arrow">+mente</td>
+        <td class="adv">lentamente</td>
+      </tr>
+      <tr>
+        <td class="adj">claro (ясный)</td>
+        <td class="arrow">→</td>
+        <td>clara</td>
+        <td class="arrow">+mente</td>
+        <td class="adv">claramente</td>
+      </tr>
+      <tr>
+        <td class="adj">tranquilo (спокойный)</td>
+        <td class="arrow">→</td>
+        <td>tranquila</td>
+        <td class="arrow">+mente</td>
+        <td class="adv">tranquilamente</td>
+      </tr>
+      <tr>
+        <td class="adj">directo (прямой)</td>
+        <td class="arrow">→</td>
+        <td>directa</td>
+        <td class="arrow">+mente</td>
+        <td class="adv">directamente</td>
+      </tr>
+      <tr>
+        <td class="adj">perfecto (совершенный)</td>
+        <td class="arrow">→</td>
+        <td>perfecta</td>
+        <td class="arrow">+mente</td>
+        <td class="adv">perfectamente</td>
+      </tr>
+      <tr>
+        <td class="adj">fácil (лёгкий)</td>
+        <td class="arrow">→</td>
+        <td>fácil (без -о/-а)</td>
+        <td class="arrow">+mente</td>
+        <td class="adv">fácilmente</td>
+      </tr>
+      <tr>
+        <td class="adj">feliz (счастливый)</td>
+        <td class="arrow">→</td>
+        <td>feliz (без -о/-а)</td>
+        <td class="arrow">+mente</td>
+        <td class="adv">felizmente</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ Исключения: bien, mal, rápido</h4>
+    <p>Три самых частотных наречия — особые и НЕ используют -mente:</p>
+    <ul>
+      <li><strong>bien</strong> — хорошо (не *buenamente)</li>
+      <li><strong>mal</strong> — плохо (не *malamente)</li>
+      <li><strong>rápido</strong> — быстро (используется как наречие в разговорной речи, rápidamente — более формально)</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Два наречия подряд — правило экономии</h4>
+    <p>Если два наречия на -mente стоят рядом (через союз y или запятую), <strong>первое теряет -mente</strong>:</p>
+    <ul>
+      <li>Habla <strong>clara</strong> y <strong>lentamente</strong>. — Говорит ясно и медленно.</li>
+      <li>Trabaja <strong>eficaz</strong> y <strong>silenciosamente</strong>. — Работает эффективно и тихо.</li>
+    </ul>
+    <p>Это правило нарушается крайне редко — запомни его.</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>🔗 Polyglot урок #9</h4>
+    <p>Этот урок связан с Polyglot курсом, урок #9. Там разбираются прилагательные и их формы — база для построения наречий на -mente. Если не проходил, рекомендую посмотреть для закрепления.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2: Словарь -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — 15 важных наречий</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Наречие</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="es-word">rápidamente</span><br><span class="transcr">← rápida+mente</span></td>
+        <td><span class="transcr">[РА-пи-да-МЕН-тэ]</span></td>
+        <td>быстро</td>
+        <td>Habla muy rápidamente. — Говорит очень быстро.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">lentamente</span><br><span class="transcr">← lenta+mente</span></td>
+        <td><span class="transcr">[лэн-та-МЕН-тэ]</span></td>
+        <td>медленно</td>
+        <td>Por favor, habla lentamente. — Пожалуйста, говори медленно.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">claramente</span><br><span class="transcr">← clara+mente</span></td>
+        <td><span class="transcr">[кла-ра-МЕН-тэ]</span></td>
+        <td>ясно, чётко</td>
+        <td>Explica claramente el problema. — Объясни ясно проблему.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">perfectamente</span><br><span class="transcr">← perfecta+mente</span></td>
+        <td><span class="transcr">[пэр-фэк-та-МЕН-тэ]</span></td>
+        <td>отлично, превосходно</td>
+        <td>Entiendo perfectamente. — Я отлично понимаю.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">tranquilamente</span><br><span class="transcr">← tranquila+mente</span></td>
+        <td><span class="transcr">[тран-КИ-ла-МЕН-тэ]</span></td>
+        <td>спокойно</td>
+        <td>Respira tranquilamente. — Дыши спокойно.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">fácilmente</span><br><span class="transcr">← fácil+mente</span></td>
+        <td><span class="transcr">[ФА-сил-мэн-тэ]</span></td>
+        <td>легко</td>
+        <td>Aprendes fácilmente los idiomas. — Ты легко учишь языки.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">directamente</span><br><span class="transcr">← directa+mente</span></td>
+        <td><span class="transcr">[ди-рэк-та-МЕН-тэ]</span></td>
+        <td>прямо, напрямую</td>
+        <td>Ve directamente a la salida. — Иди прямо к выходу.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">finalmente</span><br><span class="transcr">← final+mente</span></td>
+        <td><span class="transcr">[фи-нал-МЕН-тэ]</span></td>
+        <td>наконец, в итоге</td>
+        <td>Finalmente llegamos. — Наконец мы приехали.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">generalmente</span><br><span class="transcr">← general+mente</span></td>
+        <td><span class="transcr">[хэ-нэ-рал-МЕН-тэ]</span></td>
+        <td>обычно, как правило</td>
+        <td>Generalmente como a las dos. — Обычно обедаю в два.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">normalmente</span><br><span class="transcr">← normal+mente</span></td>
+        <td><span class="transcr">[нор-мал-МЕН-тэ]</span></td>
+        <td>обычно, нормально</td>
+        <td>Normalmente trabajo desde casa. — Обычно работаю из дома.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">bien</span></td>
+        <td><span class="transcr">[бьэн]</span></td>
+        <td>хорошо</td>
+        <td>Hablas español muy bien. — Ты хорошо говоришь по-испански.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">mal</span></td>
+        <td><span class="transcr">[маль]</span></td>
+        <td>плохо</td>
+        <td>Duermo mal cuando hace calor. — Плохо сплю, когда жарко.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">despacio</span></td>
+        <td><span class="transcr">[дэс-ПА-сьо]</span></td>
+        <td>медленно (разг.)</td>
+        <td>Habla despacio, por favor. — Говори медленно, пожалуйста.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">apenas</span></td>
+        <td><span class="transcr">[а-ПЕ-нас]</span></td>
+        <td>едва, почти не</td>
+        <td>Apenas entiendo el andaluz. — Я едва понимаю андалузский.</td>
+      </tr>
+      <tr>
+        <td><span class="es-word">exactamente</span><br><span class="transcr">← exacta+mente</span></td>
+        <td><span class="transcr">[эк-сак-та-МЕН-тэ]</span></td>
+        <td>точно, именно</td>
+        <td>¡Exactamente! Eso es lo que digo. — Точно! Это то, что я говорю.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout success">
+    <h4>✅ Perfectamente! — слово-реакция</h4>
+    <p><strong>Perfectamente</strong> — одно из самых полезных наречий для живого общения. Используй его как подтверждение: «Отлично понял», «Всё ясно». Носители используют его постоянно вместо «sí, entiendo».</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3: Квиз 1 — Выбор ответа -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Квиз 1 — Образование и использование наречий</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>🎯 Проверь понимание наречий образа действия</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как образуется наречие от прилагательного <strong>tranquilo</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">tranquilamente</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">tranquilomente</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">tranquilmente</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Как по-испански «плохо» (наречие) — особый случай без -mente?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">malamente</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">mal</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">malo</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Выбери правильный вариант с двумя наречиями подряд: «ясно и медленно»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">clara y lentamente</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">claramente y lentamente</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">claramente y lento</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Переведи: «Наконец я понимаю испанский»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Finalmente entiendo el español.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Final entiendo el español.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Finalmente entiendo español bien.</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Как образовать наречие от <strong>fácil</strong>? (нет формы ж.р. на -а)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">fácilamente</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">fácilmente</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">fácialmente</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Что значит «Normalmente trabajo ocho horas»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Сейчас я работаю восемь часов</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Обычно я работаю восемь часов</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Нормально, что я работаю восемь часов</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4: Квиз 2 — Образуй наречие -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Квиз 2 — Образуй наречие от прилагательного</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Напиши наречие по правилу +mente</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. <strong>directo</strong> → как? = наречие на -mente</div>
+      <input type="text" class="text-input" id="ti1" placeholder="Напиши наречие...">
+      <button class="check-btn" onclick="checkText('ti1','directamente','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ directamente — directo → directa → directamente</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. <strong>perfecto</strong> → наречие «отлично»</div>
+      <input type="text" class="text-input" id="ti2" placeholder="Напиши наречие...">
+      <button class="check-btn" onclick="checkText('ti2','perfectamente','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ perfectamente — perfecto → perfecta → perfectamente</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. <strong>especial</strong> → наречие «особенно» (нет формы на -а)</div>
+      <input type="text" class="text-input" id="ti3" placeholder="Напиши наречие...">
+      <button class="check-btn" onclick="checkText('ti3','especialmente','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ especialmente — especial + mente (без смены формы, нет -о/-а)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. <strong>exacto</strong> → наречие «точно, именно»</div>
+      <input type="text" class="text-input" id="ti4" placeholder="Напиши наречие...">
+      <button class="check-btn" onclick="checkText('ti4','exactamente','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ exactamente — exacto → exacta → exactamente</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. <strong>general</strong> → наречие «обычно, в целом»</div>
+      <input type="text" class="text-input" id="ti5" placeholder="Напиши наречие...">
+      <button class="check-btn" onclick="checkText('ti5','generalmente','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ generalmente — general + mente</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">6. Вставь наречие: Habla _____ (медленно), por favor.</div>
+      <input type="text" class="text-input" id="ti6" placeholder="lentamente или despacio...">
+      <button class="check-btn" onclick="checkText('ti6','lentamente','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ lentamente (или despacio — оба варианта правильны в разговоре)</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5: Диалоги -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — На уроке и в повседневной жизни</h2>
+  </div>
+
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Обрати внимание, как наречия делают речь точнее и живее.</p>
+
+  <!-- Диалог 1: На уроке -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      📚 Диалог 1: На уроке — темп и ясность
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ana</div>
+      <div>
+        <div class="dlg-es">¿Puedes hablar más lentamente? Generalmente no entiendo cuando hablas rápidamente.</div>
+        <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Ты можешь говорить помедленнее? Обычно я не понимаю, когда ты говоришь быстро.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Carlos</div>
+      <div>
+        <div class="dlg-es">Claro, lo intentaré. ¿Así está bien? Hablo clara y lentamente ahora.</div>
+        <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Конечно, постараюсь. Так лучше? Говорю ясно и медленно теперь.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ana</div>
+      <div>
+        <div class="dlg-es">¡Perfectamente! Ahora entiendo todo fácilmente. ¡Gracias!</div>
+        <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Отлично! Теперь всё понимаю легко. Спасибо!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Carlos</div>
+      <div>
+        <div class="dlg-es">De nada. Aprendes español muy bien. Avanzas rápidamente.</div>
+        <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Пожалуйста. Ты хорошо учишь испанский. Быстро продвигаешься.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Диалог 2: Как дела? -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      ☀️ Диалог 2: Как твои дела? — повседневная речь
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Marta</div>
+      <div>
+        <div class="dlg-es">Oye, ¿cómo te va con el trabajo nuevo?</div>
+        <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Слушай, как у тебя дела с новой работой?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Luis</div>
+      <div>
+        <div class="dlg-es">Bien, pero trabajo demasiado. Normalmente salgo muy tarde de la oficina.</div>
+        <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Хорошо, но работаю слишком много. Обычно ухожу из офиса очень поздно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Marta</div>
+      <div>
+        <div class="dlg-es">¿Y duermes mal? Eso no es bueno para la salud.</div>
+        <div class="dlg-ru" id="tr-dlg2-3" style="display:none">И спишь плохо? Это нехорошо для здоровья.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Luis</div>
+      <div>
+        <div class="dlg-es">Exactamente. Pero finalmente el jefe me ha dicho que puedo trabajar desde casa dos días a la semana.</div>
+        <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Именно. Но наконец шеф сказал мне, что я могу работать из дома два дня в неделю.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Marta</div>
+      <div>
+        <div class="dlg-es">¡Genial! Así puedes descansar tranquilamente.</div>
+        <div class="dlg-ru" id="tr-dlg2-5" style="display:none">Здорово! Так ты сможешь отдыхать спокойно.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6: Говорим -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорим — Описываем как ты что-то делаешь</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Расскажи о своей учёбе</div>
+    <p>Произнеси вслух — используй наречия:</p>
+    <div class="es">Estudio español lentamente pero constantemente.</div>
+    <div class="hint">Учу испанский медленно, но постоянно.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 На уроке с преподавателем</div>
+    <p>Попроси говорить медленнее:</p>
+    <div class="es">¿Puede hablar más despacio, por favor? No entiendo cuando habla rápidamente.</div>
+    <div class="hint">Вы можете говорить помедленнее? Не понимаю, когда говорите быстро.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Ответь на вопрос «¿Cómo hablas español?»</div>
+    <p>Честный ответ о своём уровне:</p>
+    <div class="es">Hablo español bastante bien, pero no siempre entiendo a los nativos cuando hablan rápidamente.</div>
+    <div class="hint">Говорю по-испански довольно хорошо, но не всегда понимаю носителей, когда они говорят быстро.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Реакция на что-то понятное</div>
+    <p>Используй как живую реакцию:</p>
+    <div class="es">¡Perfectamente! Ahora lo entiendo todo claramente.</div>
+    <div class="hint">Отлично! Теперь понимаю всё ясно.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7: Культурная заметка -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культура — Tempos речи в разных регионах Испании</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Почему испанцы говорят «слишком быстро»</h4>
+    <p>Испанский — один из самых быстрых языков мира по количеству слогов в секунду. Исследования показывают, что носители испанского произносят около 7–8 слогов в секунду (английский — 6–7). Андалузцы и латиноамериканцы (особенно кубинцы) говорят ещё быстрее, а также «глотают» звуки — «¿Cómo estás?» превращается в что-то вроде «Komtá». Жители центральной Испании (Мадрид, Барселона) говорят немного медленнее и чётче. Если не понимаешь — всегда можно сказать: <strong>«Habla más despacio, por favor»</strong> — никто не обидится.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8: Anki + Домашнее -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Anki — карточки урока L48</div>
+    <ul>
+      <li><strong>rápidamente</strong> — быстро (rápida + mente)</li>
+      <li><strong>lentamente / despacio</strong> — медленно</li>
+      <li><strong>claramente</strong> — ясно, чётко</li>
+      <li><strong>perfectamente</strong> — отлично</li>
+      <li><strong>tranquilamente</strong> — спокойно</li>
+      <li><strong>fácilmente</strong> — легко</li>
+      <li><strong>bien / mal</strong> — хорошо / плохо (без -mente!)</li>
+      <li><strong>generalmente / normalmente</strong> — обычно</li>
+      <li><strong>finalmente</strong> — наконец</li>
+      <li><strong>exactamente</strong> — точно, именно</li>
+      <li><strong>Правило двух наречий: clara y lentamente</strong></li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Образуй наречия от 10 прилагательных на твой выбор (используй словарь)</li>
+      <li>Напиши 5 предложений о своём дне, используя наречия: normalmente, bien, rápidamente, finalmente, perfectamente</li>
+      <li>Выучи наизусть: <em>Habla más despacio, por favor</em> — незаменимая фраза!</li>
+      <li>Следующий урок L49: относительные придаточные — que, quien, donde, lo que</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 ¡Perfectamente! Ты освоил наречия!</h4>
+    <p>Теперь ты умеешь превращать любое прилагательное в наречие. Это мощный инструмент — с его помощью ты мгновенно расширяешь словарный запас: знаешь 50 прилагательных → знаешь 50 новых наречий.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L47.html" class="nav-link-btn">← L47</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="../../lessons/lesson_09.html" class="nav-link-btn" target="_blank">Polyglot #9 ↗</a>
+    <a href="L49.html" class="nav-link-btn">L49 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+// ─── Progress tracking ────────────────────────────────────
+const LESSON_ID = 'L48';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizAnswers = {
+  q1:'a', q2:'a', q3:'a', q4:'a', q5:'a', q6:'a'
+};
+const quizExpl = {
+  q1:'tranquilamente — tranquilo → tranquila + mente. Ударение двойное: тран-КИ-ла-МЕН-тэ.',
+  q2:'mal — наречие «плохо» — исключение, без -mente. malo — прилагательное (плохой). *malamente — неправильно.',
+  q3:'clara y lentamente — первое наречие теряет -mente перед союзом y. «claramente y lentamente» — ошибка.',
+  q4:'Finalmente entiendo el español — «наконец» = finalmente (adv.). «Final» — это существительное «финал».',
+  q5:'fácilmente — fácil не имеет формы ж.р. на -а, поэтому просто + mente. *fácilamente — неверно.',
+  q6:'Normalmente = «обычно», «как правило» — наречие частоты. Это не значит «сейчас» и не оценка ситуации.'
+};
+
+let quizScore = 0; let quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  el.classList.add(el === [...opts].find(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1]===correctKey;
+  }) ? 'correct' : 'wrong');
+  const fb = document.getElementById(`fb-${qId}`);
+  fb.className = 'feedback show ' + (el.classList.contains('correct') ? 'ok' : 'no');
+  fb.textContent = (el.classList.contains('correct') ? '✅ ' : '❌ ') + quizExpl[qId];
+  if (el.classList.contains('correct')) quizScore++;
+  quizTotal++;
+  updateScore();
+}
+
+function updateScore() {
+  const el = document.getElementById('quiz-score');
+  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct || correct.startsWith(val) && val.length >= correct.length-2) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+function toggleTranslation(id) {
+  const els = document.querySelectorAll(`[id^="${id}-"]`);
+  if (els.length === 0) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    return;
+  }
+  const isHidden = els[0].style.display === 'none';
+  els.forEach(el => { el.style.display = isHidden ? 'block' : 'none'; });
+}
+
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 8;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled/total*100));
+  const sectionsRead = Math.round(pct/100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

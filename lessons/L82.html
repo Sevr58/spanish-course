@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L82: Косвенная речь — передай правильно</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+/* Shift table */
+.shift-table{width:100%;border-collapse:collapse;font-size:.88rem;margin:14px 0}
+.shift-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-weight:700;color:var(--gold);border-bottom:1px solid var(--border)}
+.shift-table td{padding:10px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
+.shift-table tr:last-child td{border-bottom:none}
+.shift-table td:first-child{color:var(--muted);font-size:.85rem}
+.shift-table td:last-child{color:var(--text)}
+.shift-table .arrow{color:var(--gold);font-weight:700;padding:0 6px}
+/* Reporting verbs grid */
+.rv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:14px 0}
+.rv-card{background:var(--bg3);border-radius:6px;padding:10px 14px}
+.rv-card .rv-es{font-weight:700;color:var(--gold);font-size:.95rem}
+.rv-card .rv-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.rv-card .rv-ex{font-size:.8rem;color:var(--text);margin-top:4px;font-style:italic}
+/* Rule block */
+.rule-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:14px 0}
+.rule-block .rb-title{font-weight:700;font-size:.95rem;margin-bottom:10px;color:var(--gold)}
+.rule-block table{width:100%;font-size:.87rem;border-collapse:collapse}
+.rule-block td{padding:6px 10px;border-bottom:1px solid var(--bg3)}
+.rule-block td:first-child{color:var(--muted);width:48%}
+.rule-block td:last-child{color:var(--text)}
+/* Authentic text */
+.authentic{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin:16px 0}
+.authentic .a-source{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--purple);margin-bottom:10px}
+.authentic p{font-size:.9rem;line-height:1.8;margin-bottom:8px}
+.authentic p:last-child{margin-bottom:0}
+.authentic .a-note{font-size:.8rem;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;margin-top:10px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L81.html">← L81</a>
+  <span class="level">B1 · Фаза 3 · День 174</span>
+  <a href="L83.html">L83 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">Фаза 3 · Блок B3C · Сложная коммуникация</div>
+  <h1>Косвенная речь — <span class="hl">передай правильно</span></h1>
+  <p class="sub">Пересказать разговор, новость или чью-то просьбу — без ошибок в временах</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Свободно пересказывать от третьего лица</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + Anki</p></div></div>
+    <div class="obj"><div class="ico">🔄</div><div><strong>Сдвиг времён</strong><p>6 правил трансформации</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Пересказываем разговор или новость</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: Механика косвенной речи -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Как работает косвенная речь</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Косвенная речь — это передача чужих слов без кавычек. Главный глагол (<em>dijo que, preguntó si, pidió que</em>) — в прошедшем времени. Придаточная часть <strong>сдвигается на одно время назад</strong>.</p>
+
+  <div class="callout tip">
+    <h4>Три типа косвенной речи</h4>
+    <ul>
+      <li><strong>Повествование</strong>: «Он сказал, что...» → <em>Dijo que + индикатив (сдвинутый)</em></li>
+      <li><strong>Вопрос</strong>: «Он спросил, ...ли / что / когда» → <em>Preguntó si / qué / cuándo...</em></li>
+      <li><strong>Команда/просьба</strong>: «Он попросил (меня) сделать» → <em>Me pidió que + subjuntivo imperfecto</em></li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <h4>Глагол-вводитель в настоящем времени → NO сдвига!</h4>
+    <p>Если глагол-вводитель в настоящем: <em>Dice que tiene frío</em> (Говорит, что ему холодно) — время не меняется. Сдвиг происходит только когда вводитель в прошедшем: <em>Dijo que tenía frío</em>.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 2: Таблица сдвига времён -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Таблица сдвига времён (backshift)</h2>
+  </div>
+
+  <table class="shift-table">
+    <thead>
+      <tr>
+        <th>Прямая речь (оригинал)</th>
+        <th></th>
+        <th>Косвенная речь (dijo que...)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Presente: <em>tengo hambre</em></td>
+        <td class="arrow">→</td>
+        <td>Imperfecto: <em>dijo que tenía hambre</em></td>
+      </tr>
+      <tr>
+        <td>Pretérito indefinido: <em>llegué tarde</em></td>
+        <td class="arrow">→</td>
+        <td>Pluscuamperfecto: <em>dijo que había llegado tarde</em></td>
+      </tr>
+      <tr>
+        <td>Imperfecto: <em>vivía en Madrid</em></td>
+        <td class="arrow">→</td>
+        <td>Imperfecto (sin cambio): <em>dijo que vivía en Madrid</em></td>
+      </tr>
+      <tr>
+        <td>Futuro: <em>llamaré mañana</em></td>
+        <td class="arrow">→</td>
+        <td>Condicional: <em>dijo que llamaría mañana</em></td>
+      </tr>
+      <tr>
+        <td>Imperativo: <em>¡Ven aquí!</em></td>
+        <td class="arrow">→</td>
+        <td>Subj. imperfecto: <em>me pidió que fuera allí</em></td>
+      </tr>
+      <tr>
+        <td>Condicional: <em>iría si pudiera</em></td>
+        <td class="arrow">→</td>
+        <td>Condicional (sin cambio): <em>dijo que iría si pudiera</em></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <h4>Смена местоимений и наречий</h4>
+    <ul>
+      <li><em>yo</em> → <em>él/ella</em> · <em>tú</em> → <em>yo/él</em> (зависит от контекста)</li>
+      <li><em>aquí</em> → <em>allí</em> · <em>hoy</em> → <em>ese día</em> · <em>mañana</em> → <em>al día siguiente</em></li>
+      <li><em>este</em> → <em>ese/aquel</em> · <em>ahora</em> → <em>entonces/en ese momento</em></li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 3: Глаголы-вводители -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Глаголы-вводители — не только «сказал»</h2>
+  </div>
+
+  <div class="rv-grid">
+    <div class="rv-card">
+      <div class="rv-es">decir que</div>
+      <div class="rv-ru">сказать что</div>
+      <div class="rv-ex">Dijo que volvería pronto.</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-es">contar que</div>
+      <div class="rv-ru">рассказать что</div>
+      <div class="rv-ex">Me contó que había conocido a alguien.</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-es">explicar que</div>
+      <div class="rv-ru">объяснить что</div>
+      <div class="rv-ex">Explicó que el retraso era por obras.</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-es">afirmar que</div>
+      <div class="rv-ru">утверждать что</div>
+      <div class="rv-ex">Afirmó que el precio no subiría.</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-es">preguntar si / qué</div>
+      <div class="rv-ru">спросить ли / что</div>
+      <div class="rv-ex">Preguntó si podía ayudarle.</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-es">pedir que</div>
+      <div class="rv-ru">попросить сделать</div>
+      <div class="rv-ex">Me pidió que esperara un momento.</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-es">ordenar que</div>
+      <div class="rv-ru">приказать сделать</div>
+      <div class="rv-ex">Ordenó que cerraran las ventanas.</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-es">aconsejar que</div>
+      <div class="rv-ru">советовать сделать</div>
+      <div class="rv-ex">Me aconsejó que llegara antes.</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-es">reconocer que</div>
+      <div class="rv-ru">признать что</div>
+      <div class="rv-ex">Reconoció que se había equivocado.</div>
+    </div>
+    <div class="rv-card">
+      <div class="rv-es">añadir que</div>
+      <div class="rv-ru">добавить что</div>
+      <div class="rv-ex">Añadió que no había más plazas.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 4: Аутентичный текст -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Аутентичный текст — новостной репортаж</h2>
+  </div>
+
+  <div class="authentic">
+    <div class="a-source">El País · Economía · Mayo 2026</div>
+    <p>La ministra de Trabajo compareció ayer ante el Congreso y <strong>aseguró que</strong> el índice de desempleo juvenil <strong>había bajado</strong> tres puntos en el último trimestre. <strong>Afirmó</strong>, además, que el Gobierno <strong>pondría</strong> en marcha un nuevo programa de formación profesional antes de julio.</p>
+    <p>En la rueda de prensa posterior, un periodista le <strong>preguntó si</strong> las medidas <strong>eran</strong> suficientes para afrontar el reto estructural. La ministra <strong>respondió que</strong> los datos <strong>hablaban</strong> por sí solos y que <strong>había que</strong> mantener la senda de las reformas.</p>
+    <p>El portavoz de la oposición, por su parte, <strong>criticó</strong> que el Ejecutivo no <strong>hubiera presentado</strong> todavía un plan de financiación detallado. <strong>Pidió</strong> al Gobierno que <strong>aclarara</strong> las fuentes de financiación antes del debate presupuestario.</p>
+    <div class="a-note">Замечаем косвенную речь в действии: aseguró que (había bajado), afirmó que (pondría), preguntó si (eran), respondió que (hablaban), pidió que (aclarara).</div>
+  </div>
+
+  <div class="callout success">
+    <h4>Разбор: «dijo que» vs «dijo si»</h4>
+    <p><em>Dijo que...</em> = утверждение (повествовательная косвенная). <em>Preguntó si...</em> = вопрос «ли» (косвенный вопрос). Никогда не путай: «dijo si» — ошибка! Для вопросов нужно preguntó / quiso saber / se preguntó.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 5: Косвенный вопрос -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Косвенный вопрос — структуры</h2>
+  </div>
+
+  <div class="rule-block">
+    <div class="rb-title">Вопрос «да/нет» → si + (backshifted)</div>
+    <table>
+      <tr><td>«¿Tienes tiempo?»</td><td>Me preguntó <strong>si tenía</strong> tiempo.</td></tr>
+      <tr><td>«¿Puedes venir?»</td><td>Le pregunté <strong>si podía</strong> venir.</td></tr>
+      <tr><td>«¿Has estado aquí?»</td><td>Quiso saber <strong>si había estado</strong> allí.</td></tr>
+    </table>
+  </div>
+
+  <div class="rule-block">
+    <div class="rb-title">Вопрос с вопросительным словом → qué / cómo / cuándo / dónde / por qué + порядок слов обычного предложения</div>
+    <table>
+      <tr><td>«¿Qué quieres?»</td><td>Me preguntó <strong>qué quería</strong>.</td></tr>
+      <tr><td>«¿Cuándo llegas?»</td><td>Quiso saber <strong>cuándo llegaba</strong>.</td></tr>
+      <tr><td>«¿Por qué no viniste?»</td><td>Me preguntó <strong>por qué no había venido</strong>.</td></tr>
+      <tr><td>«¿Cómo se llama?»</td><td>Le pregunté <strong>cómo se llamaba</strong>.</td></tr>
+    </table>
+  </div>
+
+  <div class="callout warning">
+    <h4>Акценты в косвенном вопросе</h4>
+    <p>Вопросительные слова в косвенном вопросе <strong>сохраняют акцент</strong>: <em>qué, cómo, cuándo, dónde, por qué, cuánto</em>. Без акцента они теряют вопросительный смысл. Это распространённая ошибка!</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 6: Тренировка — трансформация -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Трансформация — прямая → косвенная</h2>
+  </div>
+
+  <div class="text-ex">
+    <div class="tex-q">«Estoy muy cansado hoy.» → Lucas dijo que _______ muy cansado ese día.</div>
+    <input class="text-input" id="t1" placeholder="форма глагола...">
+    <button class="check-btn" onclick="checkText('t1','estaba','fb1')">Проверить</button>
+    <button class="show-ans" onclick="document.getElementById('ar1').classList.add('show')">Показать ответ</button>
+    <div class="feedback" id="fb1"></div>
+    <div class="answer-reveal" id="ar1">estaba — imperfecto (сдвиг с presente)</div>
+  </div>
+
+  <div class="text-ex">
+    <div class="tex-q">«Llegué tarde a la reunión.» → Admitió que _______ tarde a la reunión.</div>
+    <input class="text-input" id="t2" placeholder="форма глагола...">
+    <button class="check-btn" onclick="checkText('t2','había llegado','fb2')">Проверить</button>
+    <button class="show-ans" onclick="document.getElementById('ar2').classList.add('show')">Показать ответ</button>
+    <div class="feedback" id="fb2"></div>
+    <div class="answer-reveal" id="ar2">había llegado — pluscuamperfecto (сдвиг с indefinido)</div>
+  </div>
+
+  <div class="text-ex">
+    <div class="tex-q">«¡Abre la ventana!» → Me pidió que _______ la ventana.</div>
+    <input class="text-input" id="t3" placeholder="форма глагола...">
+    <button class="check-btn" onclick="checkText('t3','abriera','fb3')">Проверить</button>
+    <button class="show-ans" onclick="document.getElementById('ar3').classList.add('show')">Показать ответ</button>
+    <div class="feedback" id="fb3"></div>
+    <div class="answer-reveal" id="ar3">abriera — subjuntivo imperfecto (команда → subj.)</div>
+  </div>
+
+  <div class="text-ex">
+    <div class="tex-q">«Mañana llamaré al médico.» → Dijo que _______ al médico al día siguiente.</div>
+    <input class="text-input" id="t4" placeholder="форма глагола...">
+    <button class="check-btn" onclick="checkText('t4','llamaría','fb4')">Проверить</button>
+    <button class="show-ans" onclick="document.getElementById('ar4').classList.add('show')">Показать ответ</button>
+    <div class="feedback" id="fb4"></div>
+    <div class="answer-reveal" id="ar4">llamaría — condicional (сдвиг с futuro)</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 7: Диалог — пересказ разговора -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Диалог — рассказываем третьему лицу</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Ана пересказывает Карлосу разговор с арендодателем. Нажми «перевод» для проверки.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>Ана рассказывает Карлосу</span>
+      <button class="dlg-toggle" onclick="toggleTranslation('dlg7')">перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div>
+        <div class="dlg-es">¿Qué te dijo el casero sobre las obras?</div>
+        <div class="dlg-ru" id="dlg7-1" style="display:none">Что тебе сказал арендодатель про ремонт?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div>
+        <div class="dlg-es">Me dijo que las obras <strong>empezarían</strong> la semana que viene. Que <strong>durarían</strong> unos diez días.</div>
+        <div class="dlg-ru" id="dlg7-2" style="display:none">Сказал, что работы начнутся на следующей неделе. Что продлятся дней десять.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div>
+        <div class="dlg-es">¿Y te explicó qué tipo de obras <strong>eran</strong>?</div>
+        <div class="dlg-ru" id="dlg7-3" style="display:none">А объяснил, что за работы?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div>
+        <div class="dlg-es">Sí, explicó que <strong>iban</strong> a cambiar las tuberías del edificio. También me pidió que <strong>guardara</strong> las plantas del balcón unos días.</div>
+        <div class="dlg-ru" id="dlg7-4" style="display:none">Да, объяснил, что будут менять трубы в доме. Ещё попросил убрать цветы с балкона на несколько дней.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div>
+        <div class="dlg-es">¿Te dijo si <strong>había</strong> que pagar algo extra?</div>
+        <div class="dlg-ru" id="dlg7-5" style="display:none">Сказал, нужно ли доплачивать?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div>
+        <div class="dlg-es">Me aclaró que todos los gastos <strong>corrían</strong> a cargo de la comunidad. Por suerte.</div>
+        <div class="dlg-ru" id="dlg7-6" style="display:none">Уточнил, что все расходы берёт на себя ТСЖ. К счастью.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>Заметил закономерность?</h4>
+    <p>Каждый глагол в косвенной речи — в imperfecto или condicional. «Начнутся» (futuro в оригинале) → <em>empezarían</em> (condicional). «Идут менять» (ir a + inf. presente) → <em>iban a cambiar</em> (imperfecto). Логика всегда одна: сдвиг назад.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 8: Квиз + Анки -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Квиз и Anki</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>Проверь себя</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">«Tengo que salir ahora.» → Dijo que <strong>_____</strong> salir en ese momento.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">tenía que</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">tiene que</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">tuvo que</div>
+      </div>
+      <div class="feedback" id="q1-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">«¿Dónde vives?» → Me preguntó dónde <strong>_____</strong>.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">vivía</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">vivo</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">viviré</div>
+      </div>
+      <div class="feedback" id="q2-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">«¡No toques eso!» → Me pidió que no <strong>_____</strong> eso.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">tocara</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">toca</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">tocaría</div>
+      </div>
+      <div class="feedback" id="q3-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">Выбери ПРАВИЛЬНОЕ сочетание: «Спросил, пришёл ли он»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Preguntó si había venido.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Dijo si vino.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Preguntó que había venido.</div>
+      </div>
+      <div class="feedback" id="q4-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">«Llamaré mañana.» → Prometió que <strong>_____</strong> al día siguiente.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">llamaría</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">llamará</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">llamó</div>
+      </div>
+      <div class="feedback" id="q5-fb"></div>
+    </div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">Говорим — пересказ новости</div>
+    <p>Выбери любую новость (которую слышал/читал). Перескажи 3–4 факта в косвенной речи:</p>
+    <div class="es">«El periódico informó de que... · El portavoz dijo que... · Explicaron que... · Añadieron que...»</div>
+    <div class="hint">Засеки 2 минуты. Задача — не остановиться ни разу. Каждый раз, когда хочешь сказать «сказал что» — попробуй использовать другой глагол-вводитель.</div>
+  </div>
+
+  <div class="anki">
+    <div class="atag">Anki — добавь сегодня</div>
+    <ul>
+      <li>presente → tenía (dijo que)</li>
+      <li>futuro → llamaría (dijo que)</li>
+      <li>imperativo → me pidió que viniera</li>
+      <li>indefinido → había llegado (dijo que)</li>
+      <li>preguntó si + backshift</li>
+      <li>dijo que ≠ dijo si (вопрос = preguntó si)</li>
+      <li>hoy → ese día · mañana → al día siguiente · aquí → allí</li>
+    </ul>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">Лингвистическая заметка</div>
+    <h4>Журналисты нарушают правила</h4>
+    <p>В испанской журналистике часто встречается «исторический prezente» в косвенной речи: <em>«El ministro dijo que la situación ES grave»</em> вместо «era». Это допустимо в живой речи, если говорящий считает информацию актуальной прямо сейчас. Но на экзамене — только backshift!</p>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a class="nav-link-btn" href="L81.html">← L81</a>
+    <a class="nav-link-btn" href="L83.html">L83 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">Урок выполнен ✓</button>
+</div>
+
+<script>
+const LESSON_ID = 'L82';
+const LS_KEY = 'esp_course_progress';
+
+const quizExpl = {
+  q1: {ok:'✓ tenía que — сдвиг с presente (tengo que → tenía que)', no:'Нет. Вводитель «dijo» в прошедшем → сдвиг на imperfecto: tenía que.'},
+  q2: {ok:'✓ vivía — сдвиг с presente в косвенном вопросе (dónde vivía)', no:'Нет. Kosvenный вопрос тоже требует backshift: vivías → vivía.'},
+  q3: {ok:'✓ tocara — команда в косвенной речи → subjuntivo imperfecto', no:'Нет. Отрицательный императivo → pedir que + subj. imperfecto: tocara.'},
+  q4: {ok:'✓ Preguntó si había venido — правильный косвенный вопрос «ли»', no:'Нет. Для вопросов «ли» нужен preguntar si (не «dijo si»). «Que» используется для утверждений.'},
+  q5: {ok:'✓ llamaría — сдвиг futuro → condicional в косвенной речи', no:'Нет. futuro llamará → condicional llamaría после глагола прошедшего prometió.'},
+};
+
+function answerQuiz(el, qId, correctKey) {
+  const block = document.getElementById(qId);
+  if (block.dataset.done) return;
+  block.dataset.done = '1';
+  const opts = block.querySelectorAll('.opt');
+  opts.forEach(o => {
+    o.setAttribute('disabled', true);
+    const fn = o.getAttribute('onclick') || '';
+    const m = fn.match(/'([a-z])'\s*\)$/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const chosen = el;
+  const fn2 = chosen.getAttribute('onclick') || '';
+  const m2 = fn2.match(/'([a-z])'\s*\)$/);
+  const isCorrect = m2 && m2[1] === correctKey;
+  if (!isCorrect) chosen.classList.add('wrong');
+  const fb = document.getElementById(qId + '-fb');
+  if (fb) {
+    fb.textContent = isCorrect ? quizExpl[qId].ok : quizExpl[qId].no;
+    fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  }
+}
+
+function checkText(inputId, answer, fbId) {
+  const inp = document.getElementById(inputId);
+  const fb = document.getElementById(fbId);
+  const val = inp.value.trim().toLowerCase();
+  const correct = answer.toLowerCase();
+  const isOk = val === correct;
+  inp.className = 'text-input ' + (isOk ? 'correct' : 'wrong');
+  if (fb) {
+    fb.textContent = isOk ? '✓ Верно!' : '✗ Не совсем. Попробуй ещё или покажи ответ.';
+    fb.className = 'feedback show ' + (isOk ? 'ok' : 'no');
+  }
+}
+
+function toggleTranslation(id) {
+  const dlg = document.getElementById(id + '-1');
+  if (!dlg) {
+    let i = 1;
+    while (true) {
+      const el = document.getElementById(id + '-' + i);
+      if (!el) break;
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+      i++;
+    }
+    return;
+  }
+  let i = 1;
+  while (true) {
+    const el = document.getElementById(id + '-' + i);
+    if (!el) break;
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    i++;
+  }
+}
+
+function markDone() {
+  const btn = document.getElementById('done-btn');
+  let progress = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+  if (progress[LESSON_ID]) {
+    delete progress[LESSON_ID];
+    btn.textContent = 'Урок выполнен ✓';
+    btn.classList.remove('marked');
+  } else {
+    progress[LESSON_ID] = true;
+    btn.textContent = 'Отмечено ✓';
+    btn.classList.add('marked');
+  }
+  localStorage.setItem(LS_KEY, JSON.stringify(progress));
+}
+
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+  const fill = document.getElementById('progress-fill');
+  const label = document.getElementById('progress-label');
+  if (fill) fill.style.width = pct + '%';
+  if (label) label.textContent = pct + '% урока';
+}
+
+window.addEventListener('scroll', updateProgress);
+
+(function initDone() {
+  const btn = document.getElementById('done-btn');
+  const progress = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+  if (progress[LESSON_ID]) {
+    btn.textContent = 'Отмечено ✓';
+    btn.classList.add('marked');
+  }
+})();
+</script>
+</body>
+</html>

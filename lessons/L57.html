@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L57: Практика — в ресторане</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:hover td{background:var(--bg2)}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.vocab-table .ex{color:var(--muted);font-size:.8rem;font-style:italic}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.scenario-box{background:linear-gradient(135deg,rgba(255,214,10,.06),rgba(45,198,83,.04));border:1px solid rgba(255,214,10,.3);border-radius:8px;padding:16px 20px;margin:14px 0}
+.scenario-box h4{color:var(--gold);font-size:.95rem;font-weight:700;margin-bottom:8px}
+.scenario-box p,.scenario-box ul{font-size:.88rem;color:var(--muted)}
+.scenario-box ul{margin-left:16px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 120</span>
+  <a href="L58.html">L58 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔵 Фаза 2 · Практика · Блок 2D · DS Intermediate</div>
+  <h1>Практика: <span class="hl">в ресторане</span></h1>
+  <p class="sub">Полная симуляция — от резервации до чаевых. Говорим как настоящие гости!</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Провести полный ресторанный разговор от входа до оплаты</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут — урок-симуляция</p></div></div>
+    <div class="obj"><div class="ico">📚</div><div><strong>Polyglot</strong><p>Расширение урока #13 курса Polyglot (Дмитрий Петров)</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Резервация → заказ → жалоба → оплата</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1: THEORY + PHRASES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Ресторанный язык — от А до Я</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Это расширение урока #13 из курса Polyglot (Дмитрий Петров). Здесь мы берём базовую лексику из того урока и наращиваем на неё полную коммуникацию: резервация, меню, заказ, жалоба, оплата, чаевые.</p>
+
+  <div class="callout tip">
+    <h4>💡 Уровни вежливости в ресторане</h4>
+    <p>В испанских ресторанах используют usted с незнакомыми официантами (формальный стиль). Команды дают через: «<strong>Quisiera</strong>...» (я бы хотел), «<strong>Me pone</strong>...» (принесите мне), «<strong>Póngame</strong>...» (повелительное). Избегай «<strong>Quiero</strong>» — звучит немного грубовато, хотя и понятно.</p>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:700;margin:18px 0 10px">Фазы ресторанного визита</h3>
+
+  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
+    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">📞 Резервация по телефону</p>
+    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
+      <li>Quisiera <strong>reservar una mesa</strong> para dos personas.</li>
+      <li>¿Para qué día y a qué hora? — Para el viernes a las <strong>nueve de la noche</strong>.</li>
+      <li>¿A nombre de quién? — A nombre de <strong>[tu apellido]</strong>.</li>
+      <li>¿Hay <strong>lista de espera</strong>? — Есть ли очередь ожидания?</li>
+    </ul>
+  </div>
+
+  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
+    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">🚪 Вход и размещение</p>
+    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
+      <li>Buenas noches. <strong>Tengo una reserva</strong> a nombre de García.</li>
+      <li>¿Nos puede poner <strong>cerca de la ventana</strong>? — Поставьте нас у окна?</li>
+      <li>¿Está libre <strong>esa mesa</strong>? — Этот столик свободен?</li>
+      <li>Somos <strong>cuatro</strong>. — Нас четверо.</li>
+    </ul>
+  </div>
+
+  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
+    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">📋 Изучение меню и заказ</p>
+    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
+      <li>¿Nos puede traer <strong>la carta</strong>, por favor? — Принесите, пожалуйста, меню.</li>
+      <li>¿Cuál es el <strong>plato del día</strong>? — Что сегодня блюдо дня?</li>
+      <li>¿Qué <strong>recomienda</strong> usted? — Что вы рекомендуете?</li>
+      <li>De <strong>primero</strong> quisiera... / De <strong>segundo</strong>... / De <strong>postre</strong>...</li>
+      <li>¿Está incluida la <strong>bebida</strong>? — Напиток включён?</li>
+      <li>¿Tiene algo <strong>sin gluten/vegetariano</strong>? — Есть что-нибудь без глютена/вегетарианское?</li>
+    </ul>
+  </div>
+
+  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
+    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">⚠️ Жалоба или проблема</p>
+    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
+      <li>Perdone, creo que hay un <strong>error en el pedido</strong>. — Извините, кажется ошибка в заказе.</li>
+      <li>Este plato está <strong>demasiado salado/frío</strong>. — Это блюдо слишком солёное/холодное.</li>
+      <li>Pedí el bistec <strong>poco hecho</strong>, no bien hecho. — Я заказывал стейк с кровью, не прожаренный.</li>
+      <li>¿Puede cambiarlo, por favor? — Не могли бы вы заменить это?</li>
+    </ul>
+  </div>
+
+  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
+    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">💳 Счёт и оплата</p>
+    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
+      <li>¿Nos puede traer <strong>la cuenta</strong>, por favor? — Принесите, пожалуйста, счёт.</li>
+      <li>¿<strong>Están incluidas</strong> las consumiciones? — Напитки включены?</li>
+      <li>¿Puedo pagar <strong>con tarjeta</strong>? — Можно оплатить картой?</li>
+      <li>¿Lo cobramos <strong>junto o por separado</strong>? — Платим вместе или раздельно?</li>
+      <li>El servicio está <strong>incluido</strong>. / Vamos a dejar <strong>propina</strong>. — Чаевые включены / оставим чаевые.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — ресторан от А до Я</h2>
+  </div>
+
+  <table class="vocab-table">
+    <tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td class="es">la carta / el menú</td><td class="tr">[ла кар-та]</td><td>меню</td><td class="ex">¿Me trae la carta?</td></tr>
+    <tr><td class="es">el plato del día</td><td class="tr">[пла-то дель диа]</td><td>блюдо дня</td><td class="ex">¿Cuál es el plato del día?</td></tr>
+    <tr><td class="es">el primer plato</td><td class="tr">[при-мер]</td><td>первое блюдо / закуска</td><td class="ex">De primer plato quiero ensalada.</td></tr>
+    <tr><td class="es">el segundo plato</td><td class="tr">[се-гун-до]</td><td>второе блюдо</td><td class="ex">De segundo, el pollo.</td></tr>
+    <tr><td class="es">el postre</td><td class="tr">[пос-тре]</td><td>десерт</td><td class="ex">¿Qué postres tienen?</td></tr>
+    <tr><td class="es">el camarero / la camarera</td><td class="tr">[ка-ма-ре-ро]</td><td>официант/ка</td><td class="ex">¡Oiga, camarero!</td></tr>
+    <tr><td class="es">la cuenta</td><td class="tr">[квен-та]</td><td>счёт</td><td class="ex">La cuenta, por favor.</td></tr>
+    <tr><td class="es">la propina</td><td class="tr">[про-пи-на]</td><td>чаевые</td><td class="ex">Dejamos propina.</td></tr>
+    <tr><td class="es">la reserva</td><td class="tr">[ре-сер-ба]</td><td>резервация / бронь</td><td class="ex">Tengo una reserva a las 9.</td></tr>
+    <tr><td class="es">el pedido</td><td class="tr">[пе-ди-до]</td><td>заказ</td><td class="ex">¿Tomamos el pedido?</td></tr>
+    <tr><td class="es">poco hecho</td><td class="tr">[по-ко эчо]</td><td>с кровью (стейк)</td><td class="ex">El bistec, poco hecho.</td></tr>
+    <tr><td class="es">bien hecho</td><td class="tr">[бьен эчо]</td><td>хорошо прожаренный</td><td class="ex">Bien hecho, por favor.</td></tr>
+    <tr><td class="es">al punto</td><td class="tr">[аль пун-то]</td><td>средней прожарки</td><td class="ex">El filete al punto.</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 3: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Что сказать в ресторане?</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Ресторанный сценарий — выбери правильную фразу</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Ты хочешь попросить меню. Что говоришь?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">¿Nos puede traer la carta, por favor?</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Dame el libro de comida.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">¿Qué tienen para comer?</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Официант принёс не то блюдо. Как вежливо указать на ошибку?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">¡Esto no es lo que pedí! ¡Es un error!</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Perdone, creo que hay un error en el pedido.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">No quiero esto.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Как вежливо попросить счёт?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">¿Nos puede traer la cuenta, por favor?</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Quiero pagar ahora.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">¿Cuánto dinero debo?</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Я заказываю стейк средней прожарки» — как сказать?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">El bistec bien hecho.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">El bistec al punto.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">El bistec poco hecho.</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Ты хочешь забронировать столик по телефону. С чего начинаешь?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Quisiera reservar una mesa para dos personas.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Quiero una mesa.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">¿Tienen mesas libres hoy?</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Как спросить, есть ли вегетарианские блюда?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">¿Tienen platos sin carne?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">¿Tienen opciones vegetarianas?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">No como carne. ¿Qué tienen?</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Заполни диалог</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Ресторанный диалог — вставь нужную фразу</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Официант: «¿Están listos para pedir?» — Ты: «Sí. De primero quisiera la _____ del día.» (блюдо)</div>
+      <input type="text" class="text-input" placeholder="carta / plato / menú..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','sopa','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">sopa (суп) — например. Или: ensalada, crema... Фраза «De primero quisiera la sopa del día» = «На первое я бы хотел суп дня».</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Ты: «Perdone, este plato está demasiado _____. ¿Puede cambiarlo?» (холодное)</div>
+      <input type="text" class="text-input" placeholder="frío / caliente / salado..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','frío','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">frío — «demasiado frío» = слишком холодное. Это стандартная жалоба в ресторане.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Ты: «¿Puedo pagar con _____?» (картой)</div>
+      <input type="text" class="text-input" placeholder="tarjeta / efectivo / propina..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','tarjeta','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">tarjeta — «¿Puedo pagar con tarjeta?» = Можно оплатить картой? Efectivo = наличные.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Официант: «¿Lo cobro junto?» — Ты: «Por separado, por _____.» (пожалуйста)</div>
+      <input type="text" class="text-input" placeholder="favor / gracias / supuesto..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','favor','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">favor — «Por separado, por favor» = Раздельно, пожалуйста. Стандартная фраза при раздельной оплате.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Официант: «¿Les traigo algo más?» — Ты: «No, gracias. Solo la _____, por favor.» (счёт)</div>
+      <input type="text" class="text-input" placeholder="cuenta / carta / propina..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','cuenta','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">cuenta — «Solo la cuenta, por favor» = Только счёт, пожалуйста. La cuenta = счёт в ресторане.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: FULL SIMULATION DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Полная симуляция — от звонка до чаевых</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прочитай весь диалог вслух. Ты — Клиент, читай обе роли. Обрати внимание на все три временных плана и вежливость.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📞 Сцена 1: Резервация по телефону
+      <button class="dlg-toggle" onclick="toggleTranslation('tr1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ресторан</div>
+      <div><div class="dlg-es">Restaurante La Barceloneta, buenos días, ¿dígame?</div>
+      <div class="dlg-ru" id="tr1" style="display:none">Ресторан Ла Барселонета, добрый день, слушаю вас?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">Hola, buenos días. Quisiera reservar una mesa para cuatro personas para el sábado por la noche.</div>
+      <div class="dlg-ru" id="tr1b" style="display:none">Здравствуйте, добрый день. Я бы хотел забронировать столик на четырёх человек на субботний вечер.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ресторан</div>
+      <div><div class="dlg-es">¿A qué hora y a nombre de quién, por favor?</div>
+      <div class="dlg-ru" id="tr1c" style="display:none">На какое время и на чьё имя, пожалуйста?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">A las nueve. A nombre de Sevrugin.</div>
+      <div class="dlg-ru" id="tr1d" style="display:none">На девять. На имя Севрюгин.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ресторан</div>
+      <div><div class="dlg-es">Perfecto. Mesa para cuatro, el sábado a las nueve a nombre de Sevrugin. Le esperamos.</div>
+      <div class="dlg-ru" id="tr1e" style="display:none">Отлично. Столик на четырёх, суббота в девять на имя Севрюгин. Ждём вас.</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🍽️ Сцена 2: Заказ и небольшая проблема
+      <button class="dlg-toggle" onclick="toggleTranslation('tr2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">Buenas noches. Bienvenidos. ¿Tienen reserva?</div>
+      <div class="dlg-ru" id="tr2" style="display:none">Добрый вечер. Добро пожаловать. У вас есть бронь?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">Sí, a nombre de Sevrugin. Mesa para cuatro.</div>
+      <div class="dlg-ru" id="tr2b" style="display:none">Да, на имя Севрюгин. Столик на четырёх.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">Por aquí, por favor. ¿Quieren empezar con algo de beber?</div>
+      <div class="dlg-ru" id="tr2c" style="display:none">Прошу, сюда. Хотите начать с чего-нибудь выпить?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">Sí, agua mineral sin gas y una botella de vino blanco. Y la carta, por favor.</div>
+      <div class="dlg-ru" id="tr2d" style="display:none">Да, минеральную воду без газа и бутылку белого вина. И меню, пожалуйста.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">¿Han decidido ya?</div>
+      <div class="dlg-ru" id="tr2e" style="display:none">Вы уже решили?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">Sí. De primero, la sopa del día. De segundo, el filete de ternera al punto. Y de postre veremos.</div>
+      <div class="dlg-ru" id="tr2f" style="display:none">Да. На первое, суп дня. На второе, телячий стейк средней прожарки. А с десертом посмотрим.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">[Trae el filete bien hecho] Aquí tiene, el filete.</div>
+      <div class="dlg-ru" id="tr2g" style="display:none">[Приносит прожаренный стейк] Вот ваш стейк.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">Perdone, pedí el filete al punto, no bien hecho. ¿Podría cambiarlo, por favor?</div>
+      <div class="dlg-ru" id="tr2h" style="display:none">Простите, я заказывал стейк средней прожарки, не прожаренный. Не могли бы вы заменить, пожалуйста?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">Por supuesto, disculpe el error. Enseguida le traigo otro.</div>
+      <div class="dlg-ru" id="tr2i" style="display:none">Конечно, извините за ошибку. Сейчас принесу другой.</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💳 Сцена 3: Оплата и чаевые
+      <button class="dlg-toggle" onclick="toggleTranslation('tr3')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">¿Nos puede traer la cuenta, por favor?</div>
+      <div class="dlg-ru" id="tr3" style="display:none">Не могли бы вы принести счёт, пожалуйста?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">¿Lo cobro junto o por separado?</div>
+      <div class="dlg-ru" id="tr3b" style="display:none">Вместе или раздельно?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">Junto, por favor. ¿Está incluido el servicio?</div>
+      <div class="dlg-ru" id="tr3c" style="display:none">Вместе, пожалуйста. Обслуживание включено?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">No está incluido. Son 87 euros en total.</div>
+      <div class="dlg-ru" id="tr3d" style="display:none">Нет, не включено. Итого 87 евро.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">Aquí tiene 100. Quédese con el cambio.</div>
+      <div class="dlg-ru" id="tr3e" style="display:none">Вот 100. Сдачи не надо.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">Muchas gracias. Que les vaya bien. ¡Hasta pronto!</div>
+      <div class="dlg-ru" id="tr3f" style="display:none">Большое спасибо. Удачи вам. До скорого!</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — полный ресторанный сценарий</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание — Полная симуляция</div>
+    <p>Разыграй полный сценарий ресторанного визита самостоятельно — говори за обе стороны. Включи все 4 этапа:</p>
+    <div class="es">1. Звонок — резервация на 2 человека на завтра в 8 вечера<br>2. Приход — уточни место у окна, попроси меню<br>3. Заказ — закуска, основное блюдо, спроси о вегетарианских вариантах<br>4. Оплата — картой, вместе, оставь комплимент заведению</div>
+    <div class="hint">Используй: quisiera (вежливее чем quiero), perdone (для привлечения внимания), por favor везде</div>
+  </div>
+</div>
+
+<!-- SECTION 7: CULTURE + ANKI -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культура, Anki и домашнее задание</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Ужин в Испании — время, этикет, чаевые</h4>
+    <p>Испанцы ужинают поздно — не раньше 9 вечера, а в выходные часто в 10–11. Рестораны до 8–8:30 вечера почти пусты. Чаевые (propina) в Испании — не обязательны, но приветствуются: 5–10% от счёта. Можно сказать «Quédese con el cambio» (оставьте сдачу) или просто оставить монеты на столе. Приносить счёт без просьбы — дурной тон: официант ждёт, пока клиент не попросит.</p>
+  </div>
+
+  <div style="margin-top:16px" class="anki">
+    <div class="atag">🃏 Anki — карточки урока</div>
+    <ul>
+      <li><strong>Quisiera reservar una mesa</strong> — Я бы хотел забронировать столик</li>
+      <li><strong>¿Nos puede traer la carta?</strong> — Принесите, пожалуйста, меню</li>
+      <li><strong>De primero / segundo / postre</strong> — На первое / второе / десерт</li>
+      <li><strong>Perdone, hay un error en el pedido</strong> — Извините, ошибка в заказе</li>
+      <li><strong>¿Nos trae la cuenta?</strong> — Принесите, пожалуйста, счёт</li>
+      <li><strong>¿Puedo pagar con tarjeta?</strong> — Можно оплатить картой?</li>
+      <li><strong>Quédese con el cambio</strong> — Сдачи не надо (оставьте сдачу)</li>
+      <li><strong>al punto / poco hecho / bien hecho</strong> — средней / с кровью / хорошо прожаренный</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Dreaming Spanish Intermediate — 15 мин</li>
+      <li>Найди меню испанского ресторана онлайн и зачитай его вслух</li>
+      <li>Запиши себя: разыгрывай звонок для резервации (30 секунд)</li>
+      <li>Завтра L58 — практика путешествие и отель. Похожая структура!</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L56.html" class="nav-link-btn">← L56</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="../../lessons/lesson_13.html" class="nav-link-btn">📚 Polyglot #13</a>
+    <a href="L58.html" class="nav-link-btn">L58 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L57';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'¿Nos puede traer la carta? — стандартная вежливая просьба принести меню. «La carta» = меню (бумажное). «El menú» в Испании часто означает «бизнес-ланч» (комплекс).',
+  q2:'Perdone, creo que hay un error — вежливая формулировка. «Creo que» = «кажется» смягчает претензию и звучит культурно.',
+  q3:'¿Nos puede traer la cuenta? — стандарт. «La cuenta» = счёт в ресторане. Официанты ждут этой просьбы — сами счёт не принесут.',
+  q4:'al punto — средняя прожарка. Poco hecho = с кровью (rare). Bien hecho = хорошо прожаренный (well done).',
+  q5:'Quisiera reservar una mesa — «quisiera» = условная форма querer, более вежливая, чем «quiero». Стандарт для резервации.',
+  q6:'¿Tienen opciones vegetarianas? — наиболее прямой вопрос. «¿Tienen platos sin carne?» тоже корректно, но «opciones vegetarianas» — стандартный термин.'
+};
+
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||val.startsWith(correct.slice(0,3))){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! Например: '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Например: "${answer}"`; }}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+
+function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e',id+'f',id+'g',id+'h',id+'i'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

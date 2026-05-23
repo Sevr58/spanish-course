@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L98: Практика — история путешествия</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:.88rem}
+th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:700;font-size:.8rem;color:var(--muted);text-transform:uppercase}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+.phrase-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:12px}
+.phrase-block h4{font-size:.9rem;font-weight:700;color:var(--gold);margin-bottom:10px}
+.phrase-list{list-style:none;padding:0;margin:0}
+.phrase-list li{padding:6px 0;border-bottom:1px solid var(--bg3);font-size:.88rem}
+.phrase-list li:last-child{border-bottom:none}
+.phrase-list .es-ph{font-weight:600;color:var(--text)}
+.phrase-list .ru-ph{color:var(--muted);font-size:.82rem}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 207</span>
+  <a href="L99.html">L99 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🗺 Фаза 3 · Блок B3D · Навыки и практика</div>
+  <h1>История <span class="hl">путешествия</span></h1>
+  <p class="sub">Рассказать о поездке — прошлое, впечатления, рекомендации. 5-минутный нарратив на испанском.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Связно рассказать о путешествии, смешивая pretérito indefinido и imperfecto</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + говорение 10 мин</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Найди историю о путешествии на Dreaming Spanish</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>5-минутный рассказ о реальной или воображаемой поездке</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Как строить нарратив о путешествии</h2>
+  </div>
+
+  <p style="margin-bottom:14px">На уровне B1 ты уже знаешь оба прошедших времени. Задача сейчас — использовать их <strong>вместе</strong> в живом нарративе. Это не тест на грамматику — это искусство рассказа.</p>
+
+  <div class="callout tip">
+    <h4>💡 Два прошедших — две функции</h4>
+    <ul>
+      <li><strong>Indefinido (pretérito perfecto simple)</strong> — действия, события, факты: <em>Fui a Barcelona, llegué tarde, comí paella</em></li>
+      <li><strong>Imperfecto</strong> — фон, описание, состояния: <em>Hacía calor, la ciudad era hermosa, la gente hablaba muy rápido</em></li>
+    </ul>
+    <p style="margin-top:6px">Думай так: imperfecto — это декорации и атмосфера. Indefinido — это то, что реально произошло в сцене.</p>
+  </div>
+
+  <div class="callout info">
+    <h4>🎬 Структура хорошего рассказа о поездке</h4>
+    <ul>
+      <li><strong>Начало:</strong> Cuándo, adónde, con quién, cómo</li>
+      <li><strong>Descripción:</strong> Cómo era el lugar — фон через imperfecto</li>
+      <li><strong>Eventos:</strong> Qué pasó, qué hice, qué vimos — indefinido</li>
+      <li><strong>Momento cumbre:</strong> La experiencia más memorable</li>
+      <li><strong>Cierre:</strong> Impresión general, recomendación</li>
+    </ul>
+  </div>
+
+  <div class="phrase-block">
+    <h4>Связующие фразы для нарратива</h4>
+    <ul class="phrase-list">
+      <li><span class="es-ph">Al principio...</span> <span class="ru-ph">— В начале...</span></li>
+      <li><span class="es-ph">Al día siguiente...</span> <span class="ru-ph">— На следующий день...</span></li>
+      <li><span class="es-ph">De repente...</span> <span class="ru-ph">— Вдруг...</span></li>
+      <li><span class="es-ph">Lo que más me sorprendió fue...</span> <span class="ru-ph">— Больше всего меня удивило...</span></li>
+      <li><span class="es-ph">A pesar de que...</span> <span class="ru-ph">— Несмотря на то что...</span></li>
+      <li><span class="es-ph">Sin duda, lo mejor fue...</span> <span class="ru-ph">— Без сомнения, лучшим было...</span></li>
+      <li><span class="es-ph">Si tuviera que destacar algo...</span> <span class="ru-ph">— Если бы мне пришлось выделить что-то...</span></li>
+      <li><span class="es-ph">En definitiva, fue un viaje...</span> <span class="ru-ph">— В итоге, это была поездка...</span></li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Типичная ошибка русскоговорящих</h4>
+    <p>В русском языке нет этого различия — у нас один «прошедший» вид. Русскоязычные студенты часто ставят indefinido везде. Запомни: если ты описываешь атмосферу, погоду, внешность — это <strong>imperfecto</strong>. «Было жарко» = <em>Hacía calor</em>, не <em>Hizo calor</em> (это означало бы разовое событие).</p>
+  </div>
+</div>
+
+<!-- SECTION 2: СЛОВАРЬ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь путешественника</h2>
+  </div>
+
+  <table>
+    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td><strong>el vuelo</strong></td><td>[буэ́ло]</td><td>рейс, полёт</td><td><em>El vuelo duró tres horas.</em></td></tr>
+    <tr><td><strong>la escala</strong></td><td>[эска́ла]</td><td>пересадка</td><td><em>Hicimos escala en Madrid.</em></td></tr>
+    <tr><td><strong>alojarse</strong></td><td>[алохарсэ]</td><td>остановиться, жить (в отеле)</td><td><em>Nos alojamos en un hostal céntrico.</em></td></tr>
+    <tr><td><strong>recorrer</strong></td><td>[рэкорэ́р]</td><td>объехать, обойти</td><td><em>Recorrimos toda la ciudad en bici.</em></td></tr>
+    <tr><td><strong>la maravilla</strong></td><td>[маравиlja]</td><td>чудо, восхитительная вещь</td><td><em>La Sagrada Familia es una maravilla.</em></td></tr>
+    <tr><td><strong>decepcionante</strong></td><td>[дэсэпсьонанте]</td><td>разочаровывающий</td><td><em>El tiempo fue un poco decepcionante.</em></td></tr>
+    <tr><td><strong>imprescindible</strong></td><td>[импрэсинди́блэ]</td><td>обязательный (к посещению)</td><td><em>El Prado es imprescindible en Madrid.</em></td></tr>
+    <tr><td><strong>la temporada alta</strong></td><td>[тэмпора́да а́лта]</td><td>высокий сезон</td><td><em>En temporada alta hay muchos turistas.</em></td></tr>
+    <tr><td><strong>agotador/a</strong></td><td>[агота-до́р]</td><td>изматывающий</td><td><em>Fue agotador pero increíble.</em></td></tr>
+    <tr><td><strong>aprovechar</strong></td><td>[апровэча́р]</td><td>использовать по максимуму</td><td><em>Aprovechamos cada día al máximo.</em></td></tr>
+    <tr><td><strong>perderse</strong></td><td>[пэрдэ́рсэ]</td><td>потеряться / пропустить (что-то)</td><td><em>Nos perdimos por el barrio gótico.</em></td></tr>
+    <tr><td><strong>la gastronomía</strong></td><td>[гастрономиа]</td><td>гастрономия, кухня</td><td><em>La gastronomía vasca es excepcional.</em></td></tr>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Perderse — двойной смысл</h4>
+    <p><em>Perderse</em> значит «потеряться» (física), но также «пропустить что-то интересное»: <em>¡No te pierdas el flamenco!</em> (Не пропусти фламенко!). Это частотное выражение в туристических контекстах.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: АУТЕНТИЧНЫЙ ТЕКСТ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Аутентичный текст — читай без перевода</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай этот отрывок из испанского туристического блога. Попробуй понять смысл без перевода — только если совсем непонятно, жми кнопку.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📖 Блог: "Mi primera vez en el País Vasco"
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-text1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:1.9">
+          Llegué a San Sebastián un martes por la mañana, después de un viaje en tren desde Madrid que duró casi cinco horas. La ciudad me sorprendió desde el primer momento: <em>hacía</em> un sol espléndido, la bahía de La Concha <em>brillaba</em> como un espejo, y la gente <em>caminaba</em> tranquila por el paseo marítimo.<br><br>
+          El primer día lo <em>dediqué</em> a explorar el casco viejo. Me <em>perdí</em> varias veces entre las calles estrechas, pero eso <em>fue</em> parte de la magia. En un bar pequeño, <em>probé</em> mis primeros pintxos — eran increíbles. Aquella noche <em>entendí</em> por qué la gastronomía vasca tiene fama mundial.
+        </div>
+        <div class="dlg-ru" id="tr-text1" style="display:none;margin-top:10px;font-size:.84rem">
+          Я приехал в Сан-Себастьян в Tuesday утром, после поездки на поезде из Мадрида, которая заняла почти пять часов. Город удивил меня с первого момента: светило прекрасное солнце, залив Ла Конча блестел как зеркало, и люди спокойно гуляли по набережной.<br><br>
+          Первый день я посвятил изучению Старого города. Я несколько раз терялся в узких улицах, но это было частью магии. В маленьком баре я попробовал свои первые pintxos — они были невероятными. В тот вечер я понял, почему баскская кухня имеет мировую репутацию.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <h4>🔍 Анализ текста — глаголы в действии</h4>
+    <p>Найди в тексте: <strong>6 глаголов в imperfecto</strong> (hacía, brillaba, caminaba... — это фон) и <strong>6 глаголов в indefinido</strong> (llegué, sorprendió, dediqué, perdí, probé, entendí — это события). Классическое чередование для нарратива.</p>
+  </div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Выбор правильного времени</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Indefinido или Imperfecto?</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Погода была прекрасной» (фон путешествия) — выбери правильную форму:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">El tiempo era maravilloso.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">El tiempo fue maravilloso.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">El tiempo estuvo maravilloso.</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Я попробовал паэлью в первый раз» — конкретное событие:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Probaba la paella por primera vez.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Probé la paella por primera vez.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">He probado la paella primera vez.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Фраза «Lo que más me sorprendió fue...» используется чтобы:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Выделить самый яркий момент поездки</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Описать погоду</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Попрощаться в конце рассказа</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Мы каждый день ходили на пляж» (повторяющееся действие в прошлом):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Fuimos a la playa cada día.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Íbamos a la playa cada día.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Vamos a la playa cada día.</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Как по-испански сказать «Не пропусти это место!» (совет туристу)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">¡No te pierdas este lugar!</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">¡No se pierda este lugar!</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">¡No pierdes este lugar!</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Вдруг пошёл дождь» — это событие нарушает фон. Правильная форма:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">De repente llovía.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">De repente empezó a llover.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">De repente llueve.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Строй предложения</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Заполни пропуски</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «Больше всего меня удивило...» (начни предложение): <strong>Lo que más me _____ fue la arquitectura.</strong></div>
+      <input type="text" class="text-input" placeholder="глагол в indefinido..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','sorprendió','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ sorprendió — pretérito indefinido от sorprender (3 лицо ед.ч.)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «Мы остановились в маленьком хостеле»: <strong>Nos _____ en un hostal pequeño.</strong></div>
+      <input type="text" class="text-input" placeholder="форма глагола alojarse..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','alojamos','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ alojamos — nosotros, indefinido от alojarse</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «Было много туристов, потому что был высокий сезон»: <strong>Había muchos turistas porque era _____.</strong></div>
+      <input type="text" class="text-input" placeholder="два слова..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','temporada alta','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ temporada alta — высокий сезон</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «В итоге, это было незабываемое путешествие»: <strong>En _____, fue un viaje inolvidable.</strong></div>
+      <input type="text" class="text-input" placeholder="связующее слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','definitiva','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ definitiva — En definitiva = в итоге, в конечном счёте</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «Мы объехали всю страну за две недели»: <strong>_____ todo el país en dos semanas.</strong></div>
+      <input type="text" class="text-input" placeholder="глагол recorrer, nosotros, indefinido..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','Recorrimos','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ Recorrimos — nosotros indefinido от recorrer (регулярный глагол)</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — рассказываем о поездке</h2>
+  </div>
+
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай оба диалога вслух, играя обе роли. Обрати внимание на чередование indefinido / imperfecto.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: После отпуска
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¡Hola! ¿Qué tal el viaje a Japón?</div>
+      <div class="dlg-ru" id="tr-d1" style="display:none">Привет! Как поездка в Японию?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">¡Fue increíble! Tokio era una locura — había gente por todas partes, los neones brillaban día y noche...</div>
+      <div class="dlg-ru" id="tr-d1b" style="display:none">Было невероятно! Токио был безумием — люди были повсюду, неоновые огни светились день и ночь...</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¿Y qué fue lo mejor?</div>
+      <div class="dlg-ru" id="tr-d1c" style="display:none">А что было лучшим?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Sin duda, la comida. Comí en un restaurante de ramen que no tenía ni cinco mesas, pero la cola llegaba hasta la calle. ¡Esperé una hora y valió la pena!</div>
+      <div class="dlg-ru" id="tr-d1d" style="display:none">Без сомнения, еда. Я поел в ресторане рамена, в котором не было и пяти столиков, но очередь тянулась до улицы. Прождал час — и оно того стоило!</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¿Lo recomendarías a alguien que nunca ha viajado por Asia?</div>
+      <div class="dlg-ru" id="tr-d1e" style="display:none">Ты бы рекомендовал это тому, кто никогда не путешествовал по Азии?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Absolutamente. Es un país muy organizado y seguro. Lo que más me sorprendió fue la amabilidad de la gente — siempre dispuesta a ayudar.</div>
+      <div class="dlg-ru" id="tr-d1f" style="display:none">Абсолютно. Это очень организованная и безопасная страна. Больше всего меня удивила доброжелательность людей — всегда готовы помочь.</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Планирование vs. реальность
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">Oye, ¿qué tal tu semana en Andalucía? Esperabas mucho, ¿no?</div>
+      <div class="dlg-ru" id="tr-d2" style="display:none">Слушай, как прошла твоя неделя в Андалусии? Ты многого ожидал, правда?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Sí, y resultó ser aún mejor de lo que imaginaba. Claro, el primer día fue un poco decepcionante porque llovía sin parar...</div>
+      <div class="dlg-ru" id="tr-d2b" style="display:none">Да, и оказалось ещё лучше, чем я представлял. Правда, первый день был немного разочаровывающим, потому что лило не переставая...</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¡Qué mala suerte! ¿Y cómo lo aprovechaste?</div>
+      <div class="dlg-ru" id="tr-d2c" style="display:none">Какая неудача! И как ты использовал это время?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Me refugié en el Museo de Bellas Artes de Sevilla. Estuve allí tres horas y fue una de las mejores decisiones del viaje. A partir del segundo día, el tiempo mejoró y pude recorrer la ciudad entera.</div>
+      <div class="dlg-ru" id="tr-d2d" style="display:none">Я укрылся в Музее изящных искусств в Севилье. Провёл там три часа, и это было одним из лучших решений поездки. Со второго дня погода улучшилась, и я смог объехать весь город.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — 5-минутный рассказ</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание — Базовый уровень</div>
+    <p>Расскажи о реальной или воображаемой поездке. Используй структуру из раздела 1. Минимум 8 предложений.</p>
+    <div class="es">Fue hace... (год/месяц). Fui a... con... Cuando llegué, el lugar era... El primer día... Lo que más me sorprendió fue... En definitiva, fue un viaje...</div>
+    <div class="hint">Запиши себя на телефон. Прослушай. Сколько раз ты использовал imperfecto для описания? Сколько indefinido для событий?</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание — Продвинутый уровень</div>
+    <p>Расскажи ту же историю, но добавь: (1) момент, когда что-то пошло не так, (2) как ты решил проблему, (3) чему научила тебя поездка.</p>
+    <div class="es">A pesar de que... / De repente... / Aunque al principio fue difícil... / Gracias a este viaje, aprendí que...</div>
+    <div class="hint">Уровень B1 — это умение рассказать историю с поворотом сюжета. «Всё было хорошо» — это A2. «Возникла проблема, но...» — это B1.</div>
+  </div>
+</div>
+
+<!-- SECTION 8: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 El Camino de Santiago</div>
+    <h4>Паломнический путь — история с нарративом</h4>
+    <p>El Camino de Santiago — один из старейших паломнических маршрутов мира, ведущий к собору в Сантьяго-де-Компостела. Ежегодно его проходят более 300 000 человек из 100+ стран. Интересно, что большинство паломников сегодня — нерелигиозные люди, идущие за личным опытом. После завершения пути каждый получает «Composter» — сертификат об окончании. Испанцы говорят: <em>«El Camino te cambia»</em> — Путь тебя меняет. Это буквально лингвистическое воплощение нарратива: до, во время и после.</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>Lo que más me sorprendió fue...</strong> — Больше всего меня удивило...</li>
+      <li><strong>¡No te pierdas...!</strong> — Не пропусти...!</li>
+      <li><strong>En definitiva, fue...</strong> — В итоге, это было...</li>
+      <li><strong>recorrer</strong> — объехать, обойти (recorrimos)</li>
+      <li><strong>alojarse</strong> — остановиться (nos alojamos)</li>
+      <li><strong>imprescindible</strong> — обязательный к посещению</li>
+      <li><strong>la temporada alta</strong> — высокий сезон</li>
+      <li><strong>De repente...</strong> — Вдруг... (для поворота в рассказе)</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Напиши рассказ о путешествии (реальном или воображаемом) — 100-120 слов. Используй минимум 4 глагола в imperfecto и 6 в indefinido.</li>
+      <li>Посмотри любое видео на Dreaming Spanish о путешествии — отметь, как рассказчик чередует времена.</li>
+      <li>Выучи 8 карточек Anki из этого урока.</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок 98 завершён!</h4>
+    <p>Ты освоил структуру нарратива о путешествии на B1. Следующий урок — L99: собеседование на работу. Самый практичный навык для жизни в Испании.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L97.html" class="nav-link-btn">← L97</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L99.html" class="nav-link-btn">L99 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L98';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizAnswers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a'};
+const quizExpl={
+  q1:'Imperfecto (era) — это описание фона, состояния, атмосферы. Погода в путешествии — это декорация, а не событие.',
+  q2:'Indefinido (probé) — конкретное завершённое действие, которое случилось один раз.',
+  q3:'«Lo que más me sorprendió fue...» — классическая конструкция для выделения главного момента рассказа.',
+  q4:'Imperfecto (íbamos) — повторяющееся действие в прошлом. Слово "cada día" — подсказка: это привычка.',
+  q5:'¡No te pierdas! — повелительное от perderse с отрицанием. Неформальное обращение «te» = tú.',
+  q6:'Indefinido после "de repente" — внезапное событие прерывает фон (imperfecto). "Empezó a llover" — начало нового действия.'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+  });
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})? 'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L52: Ser vs. Estar — глубокое погружение</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:hover td{background:var(--bg2)}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.vocab-table .ex{color:var(--muted);font-size:.8rem;font-style:italic}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.compare-box{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.compare-side{background:var(--bg2);border-radius:8px;padding:14px 16px;border:1px solid var(--border)}
+.compare-side h4{font-size:.85rem;font-weight:700;margin-bottom:8px}
+.compare-side.ser h4{color:var(--gold)}
+.compare-side.estar h4{color:var(--blue)}
+.compare-side ul{margin-left:14px;font-size:.86rem;color:var(--muted)}
+.compare-side li{margin-bottom:4px}
+.trap-row{background:var(--bg2);border-radius:8px;padding:14px 16px;margin-bottom:10px;border:1px solid var(--border)}
+.trap-row .ser{color:var(--gold);font-weight:700}
+.trap-row .estar{color:var(--blue);font-weight:700}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.compare-box{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 109</span>
+  <a href="L53.html">L53 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔵 Фаза 2 · Рост · Блок 2C · Dreaming Spanish Intermediate</div>
+  <h1>Ser vs. Estar — <span class="hl">глубокое погружение</span></h1>
+  <p class="sub">Estar muerto vs ser malo — тонкие случаи, меняющие смысл, и устойчивые выражения</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Разобрать сложные случаи ser/estar, где выбор меняет смысл</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Видео на Dreaming Spanish уровня Intermediate</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>20 ловушечных ситуаций — правильный выбор</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Ser и estar — освежаем основы перед погружением</h2>
+  </div>
+
+  <p style="margin-bottom:14px">В L07 ты уже изучал ser и estar. Теперь идём глубже. На уровне A2 недостаточно знать правило «ser = постоянное, estar = временное» — это упрощение, которое регулярно подводит. Настоящий критерий другой.</p>
+
+  <div class="callout tip">
+    <h4>💡 Настоящий критерий выбора</h4>
+    <p><strong>SER</strong> — описывает то, что является частью идентичности, категории, сущности предмета или человека. Отвечает на вопрос «Что это такое? Кто это?»<br>
+    <strong>ESTAR</strong> — описывает состояние, положение, результат. Отвечает на вопрос «Как обстоит дело? В каком состоянии?»<br>
+    Это не про постоянное/временное — человек может быть мёртвым постоянно, но «estar muerto»!</p>
+  </div>
+
+  <div class="compare-box">
+    <div class="compare-side ser">
+      <h4>SER — идентичность и категория</h4>
+      <ul>
+        <li>Национальность: <em>Soy ruso.</em></li>
+        <li>Профессия: <em>Es médico.</em></li>
+        <li>Происхождение: <em>Es de Madrid.</em></li>
+        <li>Материал: <em>Es de madera.</em></li>
+        <li>Событие (где/когда): <em>La fiesta es aquí.</em></li>
+        <li>Характеристика личности: <em>Es inteligente.</em></li>
+        <li>Отношения: <em>Es mi amigo.</em></li>
+        <li>Время: <em>Son las tres.</em></li>
+      </ul>
+    </div>
+    <div class="compare-side estar">
+      <h4>ESTAR — состояние и положение</h4>
+      <ul>
+        <li>Местонахождение: <em>Está en casa.</em></li>
+        <li>Состояние здоровья: <em>Está enfermo.</em></li>
+        <li>Временное состояние: <em>Está ocupado.</em></li>
+        <li>Эмоции: <em>Está contento.</em></li>
+        <li>Результат действия: <em>La puerta está abierta.</em></li>
+        <li>Прогрессивное время: <em>Está comiendo.</em></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: ADVANCED CASES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Прилагательные, которые меняют смысл с ser/estar</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Это самая коварная часть. С некоторыми прилагательными выбор глагола полностью меняет смысл предложения. Это не ошибки — это разные слова!</p>
+
+  <div class="trap-row">
+    <p><span class="ser">Es aburrido.</span> — Он скучный (по характеру, всегда таков)<br>
+    <span class="estar">Está aburrido.</span> — Ему скучно (сейчас, в данный момент)</p>
+  </div>
+  <div class="trap-row">
+    <p><span class="ser">Es malo.</span> — Он плохой / злой (по природе)<br>
+    <span class="estar">Está malo.</span> — Он болен / плохо себя чувствует</p>
+  </div>
+  <div class="trap-row">
+    <p><span class="ser">Es bueno.</span> — Он хороший / добрый (характер)<br>
+    <span class="estar">Está bueno.</span> — Он вкусный (еда) / красивый (разг., о человеке)</p>
+  </div>
+  <div class="trap-row">
+    <p><span class="ser">Es muerto.</span> — ❌ Не существует как устойчивая форма<br>
+    <span class="estar">Está muerto.</span> — Он мёртв (состояние — результат смерти)</p>
+  </div>
+  <div class="trap-row">
+    <p><span class="ser">Es listo.</span> — Он умный / смышлёный<br>
+    <span class="estar">Está listo.</span> — Он готов (к чему-то)</p>
+  </div>
+  <div class="trap-row">
+    <p><span class="ser">Es seguro.</span> — Это безопасно (характеристика места/вещи)<br>
+    <span class="estar">Está seguro.</span> — Он уверен (в себе, в чём-то)</p>
+  </div>
+  <div class="trap-row">
+    <p><span class="ser">Es rico.</span> — Он богатый<br>
+    <span class="estar">Está rico.</span> — Это вкусно (о еде)</p>
+  </div>
+  <div class="trap-row">
+    <p><span class="ser">Es vivo.</span> — Он живой/хитрый (по натуре)<br>
+    <span class="estar">Está vivo.</span> — Он жив (состояние — противоположность смерти)</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ser для событий — особый случай!</h4>
+    <p>Место и время события описывается через <strong>SER</strong>, хотя кажется, что должно быть estar:<br>
+    «La conferencia <strong>es</strong> en el hotel.» (не está!) — Конференция проходит в отеле.<br>
+    «La reunión <strong>es</strong> mañana a las 10.» — Встреча завтра в 10.<br>
+    Это устойчивое правило для событий. Исключение: сам предмет физически находится где-то — тогда estar: «El hotel <strong>está</strong> en el centro.»</p>
+  </div>
+</div>
+
+<!-- SECTION 3: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — прилагательные с двойным значением</h2>
+  </div>
+
+  <table class="vocab-table">
+    <tr><th>Прилагательное</th><th>С SER</th><th>С ESTAR</th></tr>
+    <tr><td class="es">aburrido</td><td>скучный (характер)</td><td>скучает (состояние)</td></tr>
+    <tr><td class="es">malo</td><td>злой / плохой</td><td>болен / невкусный</td></tr>
+    <tr><td class="es">bueno</td><td>добрый / хороший</td><td>вкусный / красивый (разг.)</td></tr>
+    <tr><td class="es">listo</td><td>умный / смышлёный</td><td>готов</td></tr>
+    <tr><td class="es">rico</td><td>богатый</td><td>вкусный</td></tr>
+    <tr><td class="es">seguro</td><td>безопасный</td><td>уверен</td></tr>
+    <tr><td class="es">vivo</td><td>живой (по натуре) / хитрый</td><td>жив</td></tr>
+    <tr><td class="es">muerto</td><td>—</td><td>мёртв</td></tr>
+    <tr><td class="es">claro</td><td>светлый (цвет) / очевидный</td><td>ясно (погода)</td></tr>
+    <tr><td class="es">negro</td><td>чёрный (цвет)</td><td>чумазый (разг.)</td></tr>
+    <tr><td class="es">interesado</td><td>корыстный (по характеру)</td><td>заинтересован (в чём-то)</td></tr>
+    <tr><td class="es">orgulloso</td><td>надменный / гордец</td><td>гордится (кем-то)</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Ser или Estar?</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 20 ловушечных ситуаций — выбери глагол</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Суп вкусный» — о еде в данный момент:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">La sopa es rica.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">La sopa está rica.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">La sopa ser rica.</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Встреча завтра в офисе» (о событии):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">La reunión es mañana en la oficina.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">La reunión está mañana en la oficina.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">La reunión está siendo mañana.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Он готов к экзамену»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Él es listo para el examen.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Él está listo para el examen.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Él siendo listo para el examen.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Она умная» (характеристика личности):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Ella está lista.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Ella es lista.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Ella es listada.</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Дедушка умер» — он мёртв (состояние):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">El abuelo está muerto.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">El abuelo es muerto.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">El abuelo fue muerto.</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Этот район безопасен» (характеристика места):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Este barrio está seguro.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Este barrio es seguro.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Este barrio siendo seguro.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Поставь правильную форму</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Ser или Estar — вставь нужный глагол</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. El concierto _____ en el estadio. (о событии, место проведения)</div>
+      <input type="text" class="text-input" placeholder="es / está / son / están..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','es','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">es — событие (concierto) требует ser для обозначения места/времени проведения. «El estadio está en el norte» — вот где estar (место нахождения объекта).</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. ¡Esta paella _____ riquísima! (о блюде, вкусовое впечатление)</div>
+      <input type="text" class="text-input" placeholder="es / está..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','está','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">está — вкус это состояние (impressión). «Esta paella es riquísima» тоже возможно в значении «всегда вкусная», но estar — более разговорный и частый вариант для сиюминутного впечатления.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Mi jefe _____ muy aburrido en las reuniones. (скучает — состояние)</div>
+      <input type="text" class="text-input" placeholder="es / está..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','está','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">está — «está aburrido» = ему скучно (состояние). «Es aburrido» = он скучный человек (характер). Контекст «en las reuniones» указывает на состояние.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. ¿_____ seguro de que vienes mañana? (уверен — состояние)</div>
+      <input type="text" class="text-input" placeholder="Eres / Estás / Son / Están..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','estás','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">¿Estás seguro? — «уверен» = состояние → estar. «Eres seguro» значило бы «ты безопасный человек» — другой смысл.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Ese hombre _____ muy rico. (богатый — о деньгах)</div>
+      <input type="text" class="text-input" placeholder="es / está..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','es','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">es — богатство это характеристика/категория → ser. «Está rico» = он вкусный (о еде).</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — ser/estar в контексте</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: В ресторане — вкусно или нет?
+      <button class="dlg-toggle" onclick="toggleTranslation('tr1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">¿Cómo está todo?</div>
+      <div class="dlg-ru" id="tr1" style="display:none">Как всё?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">¡Todo está riquísimo! La paella es el plato especial de hoy, ¿verdad?</div>
+      <div class="dlg-ru" id="tr1b" style="display:none">Всё безумно вкусно! Паэлья — это блюдо дня, верно?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">Sí, es la especialidad de la casa. Y está hecha con mariscos frescos.</div>
+      <div class="dlg-ru" id="tr1c" style="display:none">Да, это фирменное блюдо. И она приготовлена из свежих морепродуктов.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div><div class="dlg-es">¿El chef es bueno? Porque esto está muy bueno.</div>
+      <div class="dlg-ru" id="tr1d" style="display:none">Повар хороший? Потому что это очень вкусно.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Офиц.</div>
+      <div><div class="dlg-es">¡Es excelente! Lleva 20 años aquí.</div>
+      <div class="dlg-ru" id="tr1e" style="display:none">Он отличный! Работает здесь 20 лет.</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: О знакомом — характер vs. состояние
+      <button class="dlg-toggle" onclick="toggleTranslation('tr2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клара</div>
+      <div><div class="dlg-es">¿Conoces a Miguel? ¿Cómo es?</div>
+      <div class="dlg-ru" id="tr2" style="display:none">Ты знаешь Мигеля? Какой он?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Томас</div>
+      <div><div class="dlg-es">Normalmente es muy animado y divertido. Pero hoy está muy raro.</div>
+      <div class="dlg-ru" id="tr2b" style="display:none">Обычно он очень живой и весёлый. Но сегодня он какой-то странный.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клара</div>
+      <div><div class="dlg-es">¿Está enfermo?</div>
+      <div class="dlg-ru" id="tr2c" style="display:none">Он болен?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Томас</div>
+      <div><div class="dlg-es">No sé. Está muy callado. Y eso no es normal en él.</div>
+      <div class="dlg-ru" id="tr2d" style="display:none">Не знаю. Он очень молчаливый. И это ненормально для него.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — описывай людей и ситуации</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание — Два описания одного человека</div>
+    <p>Опиши какого-нибудь знакомого (реального или вымышленного). Сначала — каков он по характеру (ser), потом — каков он прямо сейчас (estar):</p>
+    <div class="es">Normalmente él es... (интеллигентный, серьёзный, занятой)<br>Pero hoy está... (устал, расстроен, занят)</div>
+    <div class="hint">Используй пары: es inteligente / está cansado; es activo / está triste; es simpático / está de mal humor</div>
+  </div>
+</div>
+
+<!-- SECTION 8: CULTURE + ANKI -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культура, Anki и домашнее задание</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Почему в испанском два глагола «быть»?</h4>
+    <p>Это одна из главных загадок для изучающих испанский. Исторически ser происходит от латинского «esse» (быть), а estar — от «stare» (стоять, находиться). Со временем значения расширились и переплелись, но смысловая основа сохранилась. Интересно, что в Латинской Америке (особенно в Мексике и Колумбии) usar estar несколько шире, чем в Испании. Например, «Está bonito» (о погоде или виде) — более распространено в ЛА. В Испании чаще скажут «Es bonito».</p>
+  </div>
+
+  <div style="margin-top:16px" class="anki">
+    <div class="atag">🃏 Anki — карточки этого урока</div>
+    <ul>
+      <li><strong>es aburrido</strong> — он скучный | <strong>está aburrido</strong> — ему скучно</li>
+      <li><strong>es listo</strong> — он умный | <strong>está listo</strong> — он готов</li>
+      <li><strong>es malo</strong> — он злой | <strong>está malo</strong> — он болен</li>
+      <li><strong>está rico</strong> — вкусно | <strong>es rico</strong> — он богатый</li>
+      <li><strong>está vivo</strong> — жив | <strong>está muerto</strong> — мёртв</li>
+      <li><strong>La reunión es...</strong> — события используют SER!</li>
+      <li><strong>¿Estás seguro?</strong> — Ты уверен?</li>
+      <li><strong>está hecho/a de</strong> — сделан из (материал через estar)</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Dreaming Spanish Intermediate — 15 мин, замечай ser/estar в речи</li>
+      <li>Придумай 6 предложений с прилагательными-«хамелеонами» (listo, rico, malo, bueno, seguro, aburrido) — по одному с ser и estar</li>
+      <li>Запомни правило событий: место проведения события — всегда ser!</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L51.html" class="nav-link-btn">← L51</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L53.html" class="nav-link-btn">L53 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L52';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'La sopa está rica — вкус это сиюминутное впечатление (состояние) → estar. «Es rica» тоже возможно, но менее разговорно для текущего момента.',
+  q2:'La reunión es mañana — события описываются через ser! Время и место проведения события = ser, не estar.',
+  q3:'Está listo — «готов» (к экзамену) = состояние → estar. «Es listo» = он умный — другой смысл!',
+  q4:'Ella es lista — «умная» по характеру = идентичность → ser. «Está lista» = она готова — другой смысл!',
+  q5:'El abuelo está muerto — смерть это состояние (результат) → estar. Несмотря на «постоянство», estar muerto — правило.',
+  q6:'Este barrio es seguro — безопасность как характеристика места → ser. «Está seguro» = уверен (о человеке).'
+};
+
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+
+function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

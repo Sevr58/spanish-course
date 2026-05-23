@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L101: Связность речи — дискурсивные маркеры</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--purple);color:#fff;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--purple)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.marker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:16px}
+.marker-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.marker-card .mc-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--purple);margin-bottom:8px}
+.marker-card ul{list-style:none;padding:0;margin:0}
+.marker-card li{padding:4px 0;font-size:.87rem;border-bottom:1px solid var(--bg3)}
+.marker-card li:last-child{border-bottom:none}
+.marker-card .es-m{font-weight:600;color:var(--text)}
+.marker-card .ru-m{color:var(--muted);font-size:.8rem}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.marker-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L100.html">← L100</a>
+  <span class="level">B1 · Фаза 4 · День 215</span>
+  <a href="L102.html">L102 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔗 Фаза 4 · Блок B4A · Беглость</div>
+  <h1>Связность <span class="hl">речи</span></h1>
+  <p class="sub">Por un lado..., sin embargo..., en definitiva... — дискурсивные маркеры, которые делают твою речь структурированной и убедительной.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🔗</div><div><strong>Цель</strong><p>Использовать 20+ дискурсивных маркеров в живой речи</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + монолог 10 мин</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Слушай подкасты, замечай маркеры — это метазадача</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Длинный монолог с полной связностью и без слов-паразитов</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Зачем нужны дискурсивные маркеры</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Дискурсивные маркеры (marcadores del discurso) — это «цемент» речи. Без них ты говоришь набором предложений. С ними — ты строишь аргументы. Именно они отличают уровень B1 от A2.</p>
+
+  <div class="callout tip">
+    <h4>💡 Почему это важно для тебя</h4>
+    <p>Представь: тебя спрашивают «Как ты думаешь о туризме в Барселоне?» Уровень A2: <em>«Turismo es bueno. Pero también es malo.»</em> Уровень B1: <em>«Por un lado, el turismo genera riqueza. Sin embargo, también destruye la identidad de los barrios. En mi opinión, hay que encontrar un equilibrio.»</em> — Это звучит как умный человек, а не ребёнок.</p>
+  </div>
+
+  <div class="callout info">
+    <h4>🔍 6 функций маркеров</h4>
+    <ul>
+      <li><strong>Добавление:</strong> además, también, incluso, asimismo</li>
+      <li><strong>Противопоставление:</strong> sin embargo, no obstante, pero, aunque</li>
+      <li><strong>Причина/следствие:</strong> por eso, por tanto, debido a, así que</li>
+      <li><strong>Пример:</strong> por ejemplo, como, tal como, es decir</li>
+      <li><strong>Структура:</strong> por un lado, por otro lado, en primer lugar, finalmente</li>
+      <li><strong>Итог:</strong> en definitiva, en resumen, en conclusión, al fin y al cabo</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: СЛОВАРЬ МАРКЕРОВ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>30 ключевых маркеров — разобраны по группам</h2>
+  </div>
+
+  <div class="marker-grid">
+    <div class="marker-card">
+      <div class="mc-label">➕ Добавление</div>
+      <ul>
+        <li><span class="es-m">Además</span> <span class="ru-m">— кроме того, к тому же</span></li>
+        <li><span class="es-m">También</span> <span class="ru-m">— также, тоже</span></li>
+        <li><span class="es-m">Incluso</span> <span class="ru-m">— даже, в том числе</span></li>
+        <li><span class="es-m">Asimismo</span> <span class="ru-m">— также, равным образом (формально)</span></li>
+        <li><span class="es-m">Por añadidura</span> <span class="ru-m">— вдобавок (высокий регистр)</span></li>
+      </ul>
+    </div>
+    <div class="marker-card">
+      <div class="mc-label">↔️ Противопоставление</div>
+      <ul>
+        <li><span class="es-m">Sin embargo</span> <span class="ru-m">— тем не менее, однако</span></li>
+        <li><span class="es-m">No obstante</span> <span class="ru-m">— несмотря на это (формально)</span></li>
+        <li><span class="es-m">Aunque</span> <span class="ru-m">— хотя, несмотря на то что</span></li>
+        <li><span class="es-m">A pesar de eso</span> <span class="ru-m">— несмотря на это</span></li>
+        <li><span class="es-m">En cambio</span> <span class="ru-m">— зато, напротив</span></li>
+      </ul>
+    </div>
+    <div class="marker-card">
+      <div class="mc-label">⚡ Причина / Следствие</div>
+      <ul>
+        <li><span class="es-m">Por eso / Por ello</span> <span class="ru-m">— поэтому</span></li>
+        <li><span class="es-m">Por tanto</span> <span class="ru-m">— следовательно</span></li>
+        <li><span class="es-m">Así que</span> <span class="ru-m">— так что (разговорно)</span></li>
+        <li><span class="es-m">Debido a</span> <span class="ru-m">— из-за, вследствие</span></li>
+        <li><span class="es-m">Como consecuencia</span> <span class="ru-m">— как следствие</span></li>
+      </ul>
+    </div>
+    <div class="marker-card">
+      <div class="mc-label">🏗️ Структура</div>
+      <ul>
+        <li><span class="es-m">Por un lado... por otro</span> <span class="ru-m">— с одной... с другой</span></li>
+        <li><span class="es-m">En primer lugar / Primero</span> <span class="ru-m">— во-первых</span></li>
+        <li><span class="es-m">En segundo lugar</span> <span class="ru-m">— во-вторых</span></li>
+        <li><span class="es-m">Por último / Finalmente</span> <span class="ru-m">— наконец, в конце концов</span></li>
+        <li><span class="es-m">A continuación</span> <span class="ru-m">— далее, затем</span></li>
+      </ul>
+    </div>
+    <div class="marker-card">
+      <div class="mc-label">💡 Пример / Объяснение</div>
+      <ul>
+        <li><span class="es-m">Por ejemplo</span> <span class="ru-m">— например</span></li>
+        <li><span class="es-m">Es decir</span> <span class="ru-m">— то есть</span></li>
+        <li><span class="es-m">O sea</span> <span class="ru-m">— то есть (разговорно)</span></li>
+        <li><span class="es-m">En otras palabras</span> <span class="ru-m">— другими словами</span></li>
+        <li><span class="es-m">Como, tal como</span> <span class="ru-m">— как, так же как</span></li>
+      </ul>
+    </div>
+    <div class="marker-card">
+      <div class="mc-label">✅ Итог / Резюме</div>
+      <ul>
+        <li><span class="es-m">En definitiva</span> <span class="ru-m">— в итоге, в конечном счёте</span></li>
+        <li><span class="es-m">En resumen</span> <span class="ru-m">— в общем, кратко говоря</span></li>
+        <li><span class="es-m">En conclusión</span> <span class="ru-m">— в заключение</span></li>
+        <li><span class="es-m">Al fin y al cabo</span> <span class="ru-m">— в конце концов (разговорно)</span></li>
+        <li><span class="es-m">Total, que...</span> <span class="ru-m">— в общем... (разговорно)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Sin embargo ≠ pero</h4>
+    <p><em>Pero</em> соединяет части одного предложения: <em>Es caro pero bueno.</em> <em>Sin embargo</em> — это связь между предложениями, сильнее, более формально: <em>Es caro. Sin embargo, vale la pena.</em> В письменной речи и выступлениях — используй <em>sin embargo</em>. В разговоре — <em>pero</em> и <em>aunque</em> естественнее.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: АУТЕНТИЧНЫЙ ТЕКСТ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Маркеры в действии — аутентичный текст</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📖 Columna de opinión — El trabajo remoto (адаптировано)
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-text1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div>
+        <div class="dlg-es" style="line-height:1.9">
+          El trabajo remoto ha cambiado radicalmente la forma en que concebimos el empleo. <span style="color:var(--purple);font-weight:600">Por un lado</span>, ofrece una flexibilidad sin precedentes: los trabajadores pueden gestionar su tiempo, evitar desplazamientos y conciliar mejor la vida personal y profesional. <span style="color:var(--purple);font-weight:600">Incluso</span> hay estudios que demuestran un aumento de la productividad en determinados sectores.<br><br>
+          <span style="color:var(--purple);font-weight:600">Sin embargo</span>, el teletrabajo también plantea desafíos importantes. El aislamiento social, la dificultad para desconectar y la pérdida de cultura de empresa son problemas reales. <span style="color:var(--purple);font-weight:600">Por ejemplo</span>, muchos trabajadores remotos afirman sentirse «invisibles» para sus jefes.<br><br>
+          <span style="color:var(--purple);font-weight:600">En definitiva</span>, el modelo híbrido parece la solución más razonable: lo mejor de ambos mundos, siempre que las empresas lo gestionen bien.
+        </div>
+        <div class="dlg-ru" id="tr-text1" style="display:none;margin-top:10px;font-size:.84rem">
+          Удалённая работа радикально изменила наше представление о занятости. С одной стороны, она предлагает беспрецедентную гибкость: работники могут управлять своим временем, избегать поездок и лучше совмещать личную и профессиональную жизнь. Даже есть исследования, показывающие рост производительности в определённых секторах.<br><br>
+          Тем не менее, удалённая работа ставит и серьёзные вызовы. Социальная изоляция, трудность отключиться и потеря корпоративной культуры — это реальные проблемы. Например, многие удалённые сотрудники говорят, что чувствуют себя «невидимыми» для своих начальников.<br><br>
+          В итоге, гибридная модель кажется самым разумным решением: лучшее из обоих миров, при условии что компании управляют этим грамотно.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Задание на анализ</h4>
+    <p>Найди в тексте выше все маркеры (выделены фиолетовым). Какую функцию выполняет каждый? Замени <em>Sin embargo</em> на <em>No obstante</em> — изменился ли смысл? (Нет — они синонимы, но <em>no obstante</em> чуть формальнее.)</p>
+  </div>
+</div>
+
+<!-- SECTION 4: ТЕСТ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Выбор правильного маркера</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Какой маркер подходит?</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Во-первых, это дорого. ___, это занимает много времени.» (добавление)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Además</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Sin embargo</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Por ejemplo</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Estudié mucho. ___, no aprobé el examen.» (неожиданный результат)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Por eso</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Sin embargo</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Además</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Había mucho tráfico. ___, llegué tarde.» (следствие)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Por eso</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Sin embargo</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Por un lado</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «___, hay ventajas e inconvenientes.» (подведение итога)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Por ejemplo</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">En definitiva</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">En cambio</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Hay muchas opciones. ___, podemos ir en tren o en avión.» (пример)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Por ejemplo</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">No obstante</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Asimismo</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Разница entre «o sea» и «es decir»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Оба значат «то есть», но «o sea» — разговорный вариант</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">«O sea» — форма сослагательного наклонения</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Они имеют разный смысл</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: ТЕСТ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Вставь маркер</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Заполни пропуски нужным маркером</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «Это отличная работа. ___, зарплата низкая.» Вставь «однако»: <strong>_____, el sueldo es bajo.</strong></div>
+      <input type="text" class="text-input" placeholder="маркер противопоставления..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','Sin embargo','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ Sin embargo — противопоставление между предложениями</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «Кроме того, это выгодно»: <strong>_____, es rentable.</strong></div>
+      <input type="text" class="text-input" placeholder="маркер добавления..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','Además','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ Además — «кроме того», самый частотный маркер добавления</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «То есть, нам нужно работать больше»: <strong>_____, necesitamos trabajar más.</strong></div>
+      <input type="text" class="text-input" placeholder="маркер объяснения..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','Es decir','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ Es decir — «то есть». Разговорный вариант: O sea</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «Вследствие этого, решение изменилось»: <strong>_____ eso, la decisión cambió.</strong></div>
+      <input type="text" class="text-input" placeholder="предлог..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','Debido a','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ Debido a — «вследствие, из-за». Debido a eso = из-за этого</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «В конце концов, важна практика»: <strong>Al _____ y al _____, lo importante es la práctica.</strong></div>
+      <input type="text" class="text-input" placeholder="два слова через пробел..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','fin cabo','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ fin cabo — Al fin y al cabo = в конце концов (разговорный, тёплый тон)</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: ДИАЛОГИ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — маркеры в живой речи</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Спор о технологиях в образовании
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¿Crees que los móviles deberían estar prohibidos en las aulas?</div>
+      <div class="dlg-ru" id="tr-d1" style="display:none">Ты думаешь, что телефоны должны быть запрещены в классах?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Es una pregunta difícil. Por un lado, los móviles distraen mucho y reducen la concentración. Sin embargo, también son herramientas educativas potentísimas. Por ejemplo, permiten acceder a información en tiempo real o colaborar en proyectos.</div>
+      <div class="dlg-ru" id="tr-d1b" style="display:none">Это трудный вопрос. С одной стороны, телефоны сильно отвлекают и снижают концентрацию. Тем не менее, они также очень мощные образовательные инструменты. Например, позволяют получать информацию в реальном времени или сотрудничать в проектах.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">O sea, que no tienes una posición clara.</div>
+      <div class="dlg-ru" id="tr-d1c" style="display:none">То есть, у тебя нет чёткой позиции.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">Exacto. En definitiva, creo que depende del uso. Si el profesor sabe gestionarlo, puede ser un recurso valioso. En cambio, sin regulación, sí que es un problema.</div>
+      <div class="dlg-ru" id="tr-d1d" style="display:none">Именно. В итоге, думаю, что зависит от использования. Если учитель умеет управлять этим, это может быть ценным ресурсом. Зато, без регулирования, это действительно проблема.</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Разговор о переезде
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div><div class="dlg-es">¿Por qué quieres mudarte a otro país?</div>
+      <div class="dlg-ru" id="tr-d2" style="display:none">Почему ты хочешь переехать в другую страну?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div><div class="dlg-es">En primer lugar, busco nuevas experiencias profesionales. Además, el clima de España me gusta mucho más que el de Rusia. Asimismo, creo que es una oportunidad increíble para mis hijos. En resumen, es un proyecto de vida completo.</div>
+      <div class="dlg-ru" id="tr-d2b" style="display:none">Во-первых, ищу новый профессиональный опыт. Кроме того, климат Испании мне нравится гораздо больше, чем российский. Также, думаю, что это невероятная возможность для моих детей. В общем, это полноценный жизненный проект.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — монолог с маркерами</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание — 3 минуты без слов-паразитов</div>
+    <p>Выбери тему и говори 3 минуты. Правило: каждое новое предложение должно начинаться с маркера (кроме самого первого). Запрещены слова-паразиты: «pues», «bueno», «o sea» слишком часто.</p>
+    <div class="es">
+      Тема 1: «Преимущества и недостатки жизни в большом городе»<br>
+      Тема 2: «Стоит ли учить иностранный язык с нуля во взрослом возрасте?»<br>
+      Тема 3: «Как изменился мир за последние 10 лет»
+    </div>
+    <div class="hint">Структура: En primer lugar... Además... Sin embargo... Por ejemplo... En definitiva... — 5 маркеров = 3 минуты свободной речи.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Продвинутый уровень</div>
+    <p>Напиши и потом произнеси вслух: переведи на испанский этот абзац, используя минимум 5 разных маркеров из урока:</p>
+    <div class="es">«С одной стороны, изучать язык онлайн удобно. Кроме того, это дешевле. Тем не менее, живое общение незаменимо. Например, носители используют выражения, которых нет в учебниках. В итоге, лучшая стратегия — сочетание онлайн-курсов и живой практики.»</div>
+    <div class="hint">Por un lado... Además... Sin embargo... Por ejemplo... En definitiva...</div>
+  </div>
+</div>
+
+<!-- SECTION 8: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Испанская дискуссия</div>
+    <h4>Почему испанцы так много говорят и перебивают?</h4>
+    <p>В испанской культуре дискуссия — это норма общения, а не конфликт. Перебивание собеседника в середине фразы — признак заинтересованности, а не грубости. Испанцы говорят одновременно, накладываясь друг на друга — это называется <em>solapamiento</em>. Для русского или английского уха это звучит хаотично, но на самом деле это знак живого диалога. Дискурсивные маркеры помогают «захватить слово» обратно: <em>«Sí, pero...»</em>, <em>«Mira...»</em>, <em>«Es que...»</em> — это сигналы «я ещё не закончил».</p>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки для Anki</div>
+    <ul>
+      <li><strong>Por un lado... por otro</strong> — с одной стороны... с другой</li>
+      <li><strong>Sin embargo</strong> — тем не менее, однако</li>
+      <li><strong>Además</strong> — кроме того, к тому же</li>
+      <li><strong>En definitiva</strong> — в итоге, в конечном счёте</li>
+      <li><strong>Por eso / Por tanto</strong> — поэтому / следовательно</li>
+      <li><strong>Es decir / O sea</strong> — то есть (формальный / разговорный)</li>
+      <li><strong>No obstante</strong> — несмотря на это (формально = sin embargo)</li>
+      <li><strong>Al fin y al cabo</strong> — в конце концов (разговорно)</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Слушай Dreaming Spanish 20 минут. Считай, сколько раз слышишь «sin embargo», «además», «por eso».</li>
+      <li>Напиши 10 предложений о своей жизни, начиная каждое новым маркером из урока.</li>
+      <li>Произнеси вслух 2-минутный монолог на тему «Почему я учу испанский» — только с маркерами, без «pues bueno».</li>
+    </ul>
+  </div>
+
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок 101 завершён!</h4>
+    <p>Теперь у тебя есть инструменты связной речи. Следующий — L102: формальный и неформальный регистры. Когда говорить «tío», а когда «señor».</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L100.html" class="nav-link-btn">← L100</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L102.html" class="nav-link-btn">L102 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L101';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'Además — добавление второго аргумента к первому. «Кроме того».',
+  q2:'Sin embargo — неожиданный контраст: много учился, но НЕ сдал.',
+  q3:'Por eso — следствие из причины: тráfico → tarde.',
+  q4:'En definitiva — подводит итог сказанному.',
+  q5:'Por ejemplo — вводит конкретный пример.',
+  q6:'O sea — разговорный вариант es decir. Оба = «то есть».'
+};
+
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{
+    const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if(m&&m[1]===correctKey)o.classList.add('correct');
+  });
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})? 'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;
+  quizTotal++;
+}
+
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Начинается на "${answer[0]}"`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;
+  const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

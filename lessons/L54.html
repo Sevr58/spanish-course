@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L54: Эмоции и чувства</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
+.vocab-table tr:hover td{background:var(--bg2)}
+.vocab-table .es{font-weight:700;color:var(--text)}
+.vocab-table .tr{color:var(--muted);font-size:.8rem}
+.vocab-table .ex{color:var(--muted);font-size:.8rem;font-style:italic}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.gram-table{width:100%;border-collapse:collapse;margin:14px 0}
+.gram-table th{background:var(--bg3);padding:9px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:700}
+.gram-table td{padding:9px 12px;border-top:1px solid var(--bg3);font-size:.88rem}
+.gram-table .es{color:var(--gold);font-weight:700}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 113</span>
+  <a href="L55.html">L55 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🔵 Фаза 2 · Рост · Блок 2C · DS Intermediate</div>
+  <h1>Эмоции и <span class="hl">чувства</span></h1>
+  <p class="sub">Estar enamorado, sentirse triste, ponerse nervioso — выражать чувства как настоящий испанец</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Освоить глаголы эмоций и конструкции ponerse/quedarse/volverse</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Видео на Dreaming Spanish — истории с эмоциями</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Описывать свои и чужие эмоции в разных ситуациях</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Три способа говорить об эмоциях</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Испанский богат инструментами для выражения эмоций. Самые важные из них — три глагольных конструкции, каждая из которых несёт свой оттенок: <strong>estar</strong> (находиться в состоянии), <strong>sentirse</strong> (чувствовать себя) и три глагола изменения состояния: <strong>ponerse, quedarse, volverse</strong>.</p>
+
+  <div class="callout tip">
+    <h4>💡 Три глагола изменения — ключевые отличия</h4>
+    <ul>
+      <li><strong>ponerse</strong> — внезапное, эмоциональное изменение (как «стать» под влиянием ситуации): se puso nervioso (занервничал), se puso rojo (покраснел)</li>
+      <li><strong>quedarse</strong> — остаться в состоянии после шока или реакции: se quedó mudo (онемел), se quedó sorprendido (остался поражён)</li>
+      <li><strong>volverse</strong> — постепенное, глубокое изменение характера: se volvió loco (сошёл с ума), se volvió agresivo (стал агрессивным)</li>
+    </ul>
+  </div>
+
+  <table class="gram-table">
+    <tr><th>Конструкция</th><th>Оттенок</th><th>Примеры</th></tr>
+    <tr><td class="es">estar + adj.</td><td>Находиться в эмоциональном состоянии</td><td class="es">Estoy triste. / Está enamorado.</td></tr>
+    <tr><td class="es">sentirse + adj.</td><td>Чувствовать себя так-то (субъективно)</td><td class="es">Me siento solo. / Se siente bien.</td></tr>
+    <tr><td class="es">ponerse + adj.</td><td>Внезапно стать (эмоциональная реакция)</td><td class="es">Se puso nervioso. / Me puse rojo.</td></tr>
+    <tr><td class="es">quedarse + adj.</td><td>Остаться в состоянии (после события)</td><td class="es">Se quedó sorprendida. / Me quedé sin palabras.</td></tr>
+    <tr><td class="es">volverse + adj.</td><td>Постепенно стать другим (глубокое изменение)</td><td class="es">Se volvió agresivo. / Se volvió introvertido.</td></tr>
+  </table>
+
+  <div class="callout info">
+    <h4>🔎 Sentirse vs. Estar — в чём разница?</h4>
+    <p><strong>Estoy cansado</strong> — объективно констатирую: я устал (факт).<br>
+    <strong>Me siento cansado</strong> — субъективно: мне кажется, что я устал, так я себя ощущаю. Это более личное, интроспективное выражение. В разговоре оба варианта встречаются, но sentirse часто подчёркивает личное переживание.</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Ловушка: tener vs. estar с эмоциями</h4>
+    <p>Некоторые эмоции в испанском выражаются через <strong>tener</strong>, а не estar или sentir:<br>
+    «Tengo miedo» = я боюсь (не «estoy miedoso»!)<br>
+    «Tengo vergüenza» = мне стыдно<br>
+    «Tengo celos» = я ревную<br>
+    «Tengo ilusión» = я в предвкушении / с энтузиазмом жду (ilusión ≠ иллюзия!)</p>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — эмоции и чувства</h2>
+  </div>
+
+  <table class="vocab-table">
+    <tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
+    <tr><td class="es">estar enamorado/a</td><td class="tr">[эна-мо-ра-до]</td><td>быть влюблённым</td><td class="ex">Está enamorada de él.</td></tr>
+    <tr><td class="es">estar triste</td><td class="tr">[трис-те]</td><td>грустить</td><td class="ex">Estás muy triste hoy.</td></tr>
+    <tr><td class="es">estar contento/a</td><td class="tr">[кон-тен-то]</td><td>быть довольным/радостным</td><td class="ex">Estoy muy contento.</td></tr>
+    <tr><td class="es">estar enfadado/a</td><td class="tr">[эн-фа-да-до]</td><td>злиться / быть злым</td><td class="ex">Está enfadada conmigo.</td></tr>
+    <tr><td class="es">sentirse solo/a</td><td class="tr">[со-ло]</td><td>чувствовать себя одиноким</td><td class="ex">Me siento solo aquí.</td></tr>
+    <tr><td class="es">ponerse nervioso/a</td><td class="tr">[нер-вьо-со]</td><td>занервничать</td><td class="ex">Se puso nervioso en el examen.</td></tr>
+    <tr><td class="es">ponerse rojo/a</td><td class="tr">[ро-хо]</td><td>покраснеть</td><td class="ex">Me puse rojo de vergüenza.</td></tr>
+    <tr><td class="es">quedarse sorprendido/a</td><td class="tr">[сорп-рен-ди-до]</td><td>удивиться / остаться поражённым</td><td class="ex">Me quedé sorprendida.</td></tr>
+    <tr><td class="es">quedarse sin palabras</td><td class="tr">[синь па-ла-брас]</td><td>онеметь / потерять дар речи</td><td class="ex">Me quedé sin palabras.</td></tr>
+    <tr><td class="es">volverse loco/a</td><td class="tr">[во-лвер-се]</td><td>сойти с ума</td><td class="ex">¡Me vuelvo loco con este ruido!</td></tr>
+    <tr><td class="es">tener miedo</td><td class="tr">[мье-до]</td><td>бояться</td><td class="ex">Tengo miedo de las alturas.</td></tr>
+    <tr><td class="es">tener vergüenza</td><td class="tr">[вер-гвэн-са]</td><td>стыдиться</td><td class="ex">Tengo vergüenza de hablar.</td></tr>
+    <tr><td class="es">tener celos</td><td class="tr">[се-лос]</td><td>ревновать</td><td class="ex">No tengas celos.</td></tr>
+    <tr><td class="es">alegrarse de</td><td class="tr">[але-грар-се]</td><td>радоваться чему-то</td><td class="ex">Me alegro de verte.</td></tr>
+    <tr><td class="es">ilusionarse</td><td class="tr">[илу-сьо-нар-се]</td><td>воодушевляться / радостно ждать</td><td class="ex">Me ilusiona el viaje.</td></tr>
+  </table>
+
+  <div class="callout warning">
+    <h4>⚠️ Falso amigo: «ilusión»</h4>
+    <p><strong>Tener ilusión</strong> = с воодушевлением ожидать, мечтать о чём-то. НЕ «иллюзия» в смысле «заблуждение»! «Tengo mucha ilusión con el viaje» = Я с таким нетерпением жду поездки. Слово «ilusión» в смысле «оптическая иллюзия» тоже существует, но это другой контекст.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Тест 1 — Выбери правильный глагол эмоции</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Эмоции и правильные конструкции</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как сказать «Я боюсь собак»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Estoy miedo de los perros.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Tengo miedo de los perros.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Me siento miedo de los perros.</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Он покраснел от смущения» — какой глагол?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Se quedó rojo de vergüenza.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Se puso rojo de vergüenza.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Se volvió rojo de vergüenza.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «После развода он стал агрессивным» (постепенное изменение):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Después del divorcio se volvió agresivo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Después del divorcio se puso agresivo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Después del divorcio se quedó agresivo.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Новость была такая шокирующая, что «она онемела»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Se puso sin palabras.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Se quedó sin palabras.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Se volvió sin palabras.</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Мне стыдно говорить публично» — как правильно?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Tengo vergüenza de hablar en público.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Estoy vergüenza de hablar en público.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Me siento vergüenza de hablar en público.</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Я так рада тебя видеть!» — с глаголом alegrar:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">¡Estoy alegre de verte!</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">¡Me alegro de verte!</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">¡Tengo alegría de verte!</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 2 — Опиши эмоцию</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Заполни пропуск — выбери нужную конструкцию</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Cuando habla en público, siempre se _____ nervioso. (он нервничает — внезапно)</div>
+      <input type="text" class="text-input" placeholder="pone / queda / vuelve..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','pone','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">pone — «ponerse nervioso» = занервничать (внезапная реакция на ситуацию). Используем ponerse для эмоциональных реакций.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. Después de perder su trabajo, _____ muy triste. (он стал, остался — quedarse)</div>
+      <input type="text" class="text-input" placeholder="se quedó / se puso / se volvió..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','se quedó','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">se quedó — quedarse triste = остаться грустным после события. Это длящееся состояние после потрясения.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. ¡_____ mucha ilusión con el viaje a Barcelona! (у меня — tengo/tenemos)</div>
+      <input type="text" class="text-input" placeholder="Tengo / Estoy / Me siento..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','Tengo','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">Tengo — «tener ilusión» = с нетерпением ждать, воодушевляться. Это устойчивое выражение с tener.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Me _____ mucho de que hayas venido. (алегро — alegrar, рефлексивный)</div>
+      <input type="text" class="text-input" placeholder="alegro / alegra / alegré..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','alegro','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">alegro — «alegrarse de» = радоваться чему-то. «Me alegro de» + infinitivo/que = «я рад, что...»</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. ¿No _____ celos cuando tu pareja habla con otros? (ты ревнуешь — tener)</div>
+      <input type="text" class="text-input" placeholder="tienes / estás / sientes..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','tienes','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">tienes — «tener celos» = ревновать. Устойчивое выражение с tener.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Диалоги — эмоции в реальных разговорах</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Разговор подруг о новом парне
+      <button class="dlg-toggle" onclick="toggleTranslation('tr1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лаура</div>
+      <div><div class="dlg-es">¿Cómo te sientes con tu nuevo novio?</div>
+      <div class="dlg-ru" id="tr1" style="display:none">Как ты себя чувствуешь с новым парнем?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ирене</div>
+      <div><div class="dlg-es">¡Estoy enamoradísima! Me pongo nerviosa cada vez que lo veo.</div>
+      <div class="dlg-ru" id="tr1b" style="display:none">Я влюблена безумно! Нервничаю каждый раз, как его вижу.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лаура</div>
+      <div><div class="dlg-es">¡Qué bonito! ¿Y él? ¿Se alegra de estar contigo?</div>
+      <div class="dlg-ru" id="tr1c" style="display:none">Как мило! А он? Он рад быть с тобой?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ирене</div>
+      <div><div class="dlg-es">Creo que sí. Aunque a veces se queda callado y no sé por qué.</div>
+      <div class="dlg-ru" id="tr1d" style="display:none">Думаю, да. Хотя иногда он замолкает и я не знаю почему.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лаура</div>
+      <div><div class="dlg-es">¿No te pones celosa?</div>
+      <div class="dlg-ru" id="tr1e" style="display:none">Ты не ревнуешь?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ирене</div>
+      <div><div class="dlg-es">Intento no tener celos. La confianza es lo más importante.</div>
+      <div class="dlg-ru" id="tr1f" style="display:none">Стараюсь не ревновать. Доверие — самое главное.</div></div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 2: Стресс на работе
+      <button class="dlg-toggle" onclick="toggleTranslation('tr2')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рикардо</div>
+      <div><div class="dlg-es">Últimamente me siento muy agotado con el trabajo.</div>
+      <div class="dlg-ru" id="tr2" style="display:none">В последнее время я чувствую себя очень измотанным на работе.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мигуэль</div>
+      <div><div class="dlg-es">¿Qué pasó? ¿Te quedaste sin vacaciones?</div>
+      <div class="dlg-ru" id="tr2b" style="display:none">Что случилось? У тебя не осталось отпуска?</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рикардо</div>
+      <div><div class="dlg-es">Sí, y me estoy volviendo loco con los plazos. Me pongo de mal humor fácilmente.</div>
+      <div class="dlg-ru" id="tr2c" style="display:none">Да, и я схожу с ума от дедлайнов. Легко выхожу из себя.</div></div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мигуэль</div>
+      <div><div class="dlg-es">Necesitas relajarte. Si no descansas, te vas a quedar sin energía.</div>
+      <div class="dlg-ru" id="tr2d" style="display:none">Тебе нужно расслабиться. Если не отдохнёшь, останешься без сил.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Говорение — расскажи о своих эмоциях</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 1 — Базовый уровень</div>
+    <p>Опиши три ситуации, когда ты испытываешь разные эмоции. Говори 1 минуту:</p>
+    <div class="es">Cuando... me pongo / me siento / me quedo...<br>Tengo miedo cuando... / Me alegro cuando...</div>
+    <div class="hint">Используй: cuando + описание ситуации → эмоциональная реакция</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Задание 2 — Продвинутый уровень</div>
+    <p>Расскажи о каком-нибудь эмоциональном событии из своей жизни. Используй глаголы изменения состояния:</p>
+    <div class="es">Cuando supe que... me quedé sorprendido.<br>Al principio me sentí..., pero luego me puse... y finalmente...</div>
+    <div class="hint">Глаголы: ponerse, quedarse, volverse + прилагательное; tener miedo/vergüenza/celos; alegrarse de; sentirse</div>
+  </div>
+</div>
+
+<!-- SECTION 7: CULTURE + ANKI -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культура, Anki и домашнее задание</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Культурная заметка</div>
+    <h4>Испанцы и открытое выражение эмоций</h4>
+    <p>Испанская культура значительно более открыта в плане выражения эмоций, чем русская или северноевропейская. Слова «te quiero» (люблю тебя) говорят не только романтическим партнёрам, но и близким друзьям. Объятия (abrazos) и поцелуи в щёку (dos besos) — стандартное приветствие. Испанцы не стесняются говорить «me alegra mucho verte» (как я рад тебя видеть) при встрече. Это не преувеличение — это культура открытости. Используй эти выражения — они оценятся!</p>
+  </div>
+
+  <div style="margin-top:16px" class="anki">
+    <div class="atag">🃏 Anki — карточки урока</div>
+    <ul>
+      <li><strong>ponerse nervioso/a</strong> — занервничать (внезапно)</li>
+      <li><strong>quedarse sin palabras</strong> — онеметь / потерять дар речи</li>
+      <li><strong>volverse loco/a</strong> — сойти с ума</li>
+      <li><strong>tener miedo de</strong> — бояться чего-то</li>
+      <li><strong>tener vergüenza</strong> — стыдиться</li>
+      <li><strong>tener ilusión con</strong> — с нетерпением ждать, воодушевляться</li>
+      <li><strong>alegrarse de</strong> — радоваться чему-то</li>
+      <li><strong>estar enamorado/a de</strong> — быть влюблённым в кого-то</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Домашнее задание</h4>
+    <ul>
+      <li>Dreaming Spanish Intermediate — 15 мин, замечай глаголы эмоций</li>
+      <li>Напиши 5 предложений о своих эмоциях этой недели, используя разные конструкции</li>
+      <li>Запомни разницу: ponerse (внезапно) / quedarse (остаться) / volverse (постепенно)</li>
+      <li>Выучи: «tener ilusión» ≠ «иллюзия» — это один из самых частых falsos amigos!</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L53.html" class="nav-link-btn">← L53</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L55.html" class="nav-link-btn">L55 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L54';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'Tengo miedo de — страх выражается через tener (не estar или sentir). «Tener miedo de» = бояться чего-то. Устойчивое выражение.',
+  q2:'Se puso rojo — покраснеть = внезапная физическая реакция → ponerse. «Se quedó rojo» возможно в значении «остался красным», но ponerse — стандарт.',
+  q3:'Se volvió agresivo — volverse для постепенного, глубокого изменения характера. После развода — это процесс, не момент.',
+  q4:'Se quedó sin palabras — quedarse + состояние = результат, в котором человек «застыл» после шока. Классический пример quedarse.',
+  q5:'Tengo vergüenza de — стыд выражается через tener. «Tener vergüenza» = стыдиться. Устойчивое выражение.',
+  q6:'Me alegro de verte — «alegrarse de» = радоваться. Рефлексивный глагол, всегда с «me/te/se/nos/os/se».'
+};
+
+function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Ответ: "${answer}"`; }}
+
+function showAns(id){document.getElementById(id).classList.add('show');}
+
+function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e',id+'f'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+
+const totalSections=8;
+function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>

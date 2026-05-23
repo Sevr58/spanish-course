@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L83: Герундий — -ando/-iendo в действии</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.divider{height:1px;background:var(--border);margin:32px 0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+/* Formation table */
+.form-table{width:100%;border-collapse:collapse;font-size:.88rem;margin:14px 0}
+.form-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-weight:700;color:var(--gold);border-bottom:1px solid var(--border)}
+.form-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
+.form-table tr:last-child td{border-bottom:none}
+.form-table td:first-child{color:var(--muted);width:35%}
+.form-table .ger{color:var(--green);font-weight:600}
+/* Uses grid */
+.uses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+.use-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.use-card .uc-title{font-weight:700;font-size:.9rem;color:var(--gold);margin-bottom:8px}
+.use-card .uc-formula{font-size:.82rem;color:var(--blue);margin-bottom:6px;font-family:monospace}
+.use-card .uc-ex{font-size:.85rem;margin-bottom:3px}
+.use-card .uc-ru{font-size:.8rem;color:var(--muted)}
+/* Llevar / hacer table */
+.time-table{width:100%;border-collapse:collapse;font-size:.87rem;margin:14px 0}
+.time-table th{background:var(--bg3);padding:9px 12px;text-align:left;font-weight:700;border-bottom:1px solid var(--border);color:var(--muted)}
+.time-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
+.time-table tr:last-child td{border-bottom:none}
+/* Authentic text */
+.authentic{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin:16px 0}
+.authentic .a-source{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--purple);margin-bottom:10px}
+.authentic p{font-size:.9rem;line-height:1.8;margin-bottom:8px}
+.authentic p:last-child{margin-bottom:0}
+.authentic .a-note{font-size:.8rem;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;margin-top:10px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="L82.html">← L82</a>
+  <span class="level">B1 · Фаза 3 · День 176</span>
+  <a href="L84.html">L84 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">Фаза 3 · Блок B3C · Сложная коммуникация</div>
+  <h1>Герундий — <span class="hl">-ando/-iendo в действии</span></h1>
+  <p class="sub">Говорить о процессах, одновременных действиях и времени в испанском стиле</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Уверенно использовать герундий в 5 конструкциях</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + Anki</p></div></div>
+    <div class="obj"><div class="ico">📐</div><div><strong>Формы</strong><p>Образование + 12 неправильных</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Описываем текущие действия и процессы</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Образование герундия</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Герундий (gerundio) — неизменяемая форма глагола. Окончания зависят от типа спряжения.</p>
+
+  <table class="form-table">
+    <thead>
+      <tr><th>Тип глагола</th><th>Правило</th><th>Примеры</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>-AR глаголы</td><td>основа + <span class="ger">-ando</span></td><td>hablar → <span class="ger">hablando</span> · trabajar → <span class="ger">trabajando</span></td></tr>
+      <tr><td>-ER глаголы</td><td>основа + <span class="ger">-iendo</span></td><td>comer → <span class="ger">comiendo</span> · leer → <span class="ger">leyendo</span>*</td></tr>
+      <tr><td>-IR глаголы</td><td>основа + <span class="ger">-iendo</span></td><td>vivir → <span class="ger">viviendo</span> · escribir → <span class="ger">escribiendo</span></td></tr>
+      <tr><td>-IR с чередованием e→i</td><td>e→i + <span class="ger">-iendo</span></td><td>pedir → <span class="ger">pidiendo</span> · decir → <span class="ger">diciendo</span></td></tr>
+      <tr><td>-IR с чередованием o→u</td><td>o→u + <span class="ger">-iendo</span></td><td>dormir → <span class="ger">durmiendo</span> · poder → <span class="ger">pudiendo</span></td></tr>
+      <tr><td>*-ER/-IR на гласную</td><td>-<span class="ger">yendo</span></td><td>leer → <span class="ger">leyendo</span> · oír → <span class="ger">oyendo</span> · ir → <span class="ger">yendo</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <h4>Неправильные — выучи наизусть</h4>
+    <ul>
+      <li>ser → <strong>siendo</strong> · ir → <strong>yendo</strong> · venir → <strong>viniendo</strong></li>
+      <li>decir → <strong>diciendo</strong> · traer → <strong>trayendo</strong> · poder → <strong>pudiendo</strong></li>
+      <li>dormir → <strong>durmiendo</strong> · morir → <strong>muriendo</strong> · sentir → <strong>sintiendo</strong></li>
+      <li>seguir → <strong>siguiendo</strong> · conseguir → <strong>consiguiendo</strong> · reír → <strong>riendo</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>5 главных употреблений герундия</h2>
+  </div>
+
+  <div class="uses-grid">
+    <div class="use-card">
+      <div class="uc-title">1. Estar + gerundio</div>
+      <div class="uc-formula">estar + -ando/-iendo</div>
+      <div class="uc-ex">Estoy <strong>trabajando</strong> desde casa.</div>
+      <div class="uc-ru">Я работаю (сейчас, в процессе)</div>
+    </div>
+    <div class="use-card">
+      <div class="uc-title">2. Llevar + gerundio</div>
+      <div class="uc-formula">llevar + tiempo + -ando</div>
+      <div class="uc-ex">Llevo tres horas <strong>esperando</strong>.</div>
+      <div class="uc-ru">Я жду уже три часа (и всё ещё жду)</div>
+    </div>
+    <div class="use-card">
+      <div class="uc-title">3. Seguir / continuar</div>
+      <div class="uc-formula">seguir/continuar + -ando</div>
+      <div class="uc-ex">Sigue <strong>lloviendo</strong> en el norte.</div>
+      <div class="uc-ru">На севере всё ещё дождь</div>
+    </div>
+    <div class="use-card">
+      <div class="uc-title">4. Герундий-наречие</div>
+      <div class="uc-formula">[обстоятельство] + -ando</div>
+      <div class="uc-ex"><strong>Estudiando</strong> más, aprobarás.</div>
+      <div class="uc-ru">Занимаясь больше, сдашь экзамен</div>
+    </div>
+    <div class="use-card">
+      <div class="uc-title">5. Перцептивные глаголы</div>
+      <div class="uc-formula">ver/oír/notar + obj + -ando</div>
+      <div class="uc-ex">Te vi <strong>saliendo</strong> del metro.</div>
+      <div class="uc-ru">Я видел, как ты выходил из метро</div>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <h4>НЕ используй герундий как прилагательное!</h4>
+    <p>В испанском нельзя: «una mujer <del>hablando</del> español» как замену прилагательного. Правильно: «una mujer <strong>que habla</strong> español». Исключения: agua corriente, agua hirviendo, posición sentada — устоявшиеся выражения.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 3 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Llevar / hace que — давность действия</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Два способа выразить «сколько времени уже продолжается действие»:</p>
+
+  <table class="time-table">
+    <thead>
+      <tr><th>Конструкция</th><th>Формула</th><th>Пример</th><th>Перевод</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Llevar + gerundio</strong></td>
+        <td>llevar + время + gerundio</td>
+        <td>Llevo dos años <em>viviendo</em> en España.</td>
+        <td>Я живу в Испании уже два года.</td>
+      </tr>
+      <tr>
+        <td><strong>Hacer que + presente</strong></td>
+        <td>hace + tiempo + que + presente</td>
+        <td>Hace dos años que <em>vivo</em> en España.</td>
+        <td>(тот же смысл, другая форма)</td>
+      </tr>
+      <tr>
+        <td><strong>Llevar + sin + infinitivo</strong></td>
+        <td>llevar + tiempo + sin + inf.</td>
+        <td>Llevo una semana sin <em>dormir</em> bien.</td>
+        <td>Я не сплю нормально уже неделю.</td>
+      </tr>
+      <tr>
+        <td><strong>Llevar + gerundio (pasado)</strong></td>
+        <td>llevaba + tiempo + gerundio</td>
+        <td>Llevaba tres horas <em>esperando</em>.</td>
+        <td>Я ждал уже три часа (в прошлом).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout tip">
+    <h4>Llevar vs hace que — в чём разница?</h4>
+    <p>«Hace X que + presente» чуть более книжная форма. В разговорной речи чаще <em>Llevo X + gerundio</em>. Обе формы правильны и взаимозаменяемы в большинстве контекстов.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 4 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Аутентичный текст — письмо читателя</h2>
+  </div>
+
+  <div class="authentic">
+    <div class="a-source">El Confidencial · Foro de Lectores · Opinión</div>
+    <p>Llevo tres años <strong>trabajando</strong> de forma remota desde una ciudad costera del norte. Llegué aquí sin conocer a nadie, <strong>buscando</strong> simplemente un cambio de aire. Ahora no me imagino volviendo a una oficina.</p>
+    <p>Por las mañanas paso dos horas <strong>contestando</strong> correos y <strong>coordinando</strong> con mi equipo por videollamada. El resto del día lo dedico a proyectos más creativos, <strong>escuchando</strong> música mientras trabajo. Los fines de semana salgo <strong>haciendo</strong> senderismo o me quedo en casa <strong>leyendo</strong>.</p>
+    <p>Lo que más valoro es seguir <strong>aprendiendo</strong>: el año pasado terminé un máster online, <strong>compaginando</strong> estudios y trabajo. Ahora estoy <strong>pensando</strong> en mudarme más al sur. Sigo <strong>buscando</strong> ese equilibrio perfecto entre trabajo y vida.</p>
+    <div class="a-note">Текст насыщен герундиями: estar + gerundio (estoy pensando), llevar + gerundio (llevo trabajando), seguir + gerundio (sigo buscando), герундий-наречие (escuchando música).</div>
+  </div>
+
+  <div class="callout success">
+    <h4>Компартисипант или герундий?</h4>
+    <p>Cuando dos acciones ocurren al mismo tiempo: «Salí <strong>corriendo</strong>» (Вышел бегом). «Llegó <strong>cantando</strong>» (Пришёл с пением). Герундий описывает способ или сопутствующее действие — идеально для живой, динамичной речи.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 5 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Упражнения — образование и употребление</h2>
+  </div>
+
+  <div class="text-ex">
+    <div class="tex-q">Образуй герундий: <strong>pedir</strong> (e→i чередование)</div>
+    <input class="text-input" id="t1" placeholder="gerundio...">
+    <button class="check-btn" onclick="checkText('t1','pidiendo','fb1')">Проверить</button>
+    <button class="show-ans" onclick="document.getElementById('ar1').classList.add('show')">Показать ответ</button>
+    <div class="feedback" id="fb1"></div>
+    <div class="answer-reveal" id="ar1">pidiendo — e→i: pid- + iendo</div>
+  </div>
+
+  <div class="text-ex">
+    <div class="tex-q">Образуй герундий: <strong>leer</strong> (гласная перед окончанием)</div>
+    <input class="text-input" id="t2" placeholder="gerundio...">
+    <button class="check-btn" onclick="checkText('t2','leyendo','fb2')">Проверить</button>
+    <button class="show-ans" onclick="document.getElementById('ar2').classList.add('show')">Показать ответ</button>
+    <div class="feedback" id="fb2"></div>
+    <div class="answer-reveal" id="ar2">leyendo — lee + iendo → leyendo (i→y между гласными)</div>
+  </div>
+
+  <div class="text-ex">
+    <div class="tex-q">«Я занимаюсь испанским уже шесть месяцев» → Llevo seis meses _______ español.</div>
+    <input class="text-input" id="t3" placeholder="gerundio de estudiar...">
+    <button class="check-btn" onclick="checkText('t3','estudiando','fb3')">Проверить</button>
+    <button class="show-ans" onclick="document.getElementById('ar3').classList.add('show')">Показать ответ</button>
+    <div class="feedback" id="fb3"></div>
+    <div class="answer-reveal" id="ar3">estudiando — llevar + tiempo + gerundio</div>
+  </div>
+
+  <div class="text-ex">
+    <div class="tex-q">«Дождь всё ещё идёт» → _______ lloviendo. (глагол + gerundio)</div>
+    <input class="text-input" id="t4" placeholder="глагол...">
+    <button class="check-btn" onclick="checkText('t4','sigue','fb4')">Проверить</button>
+    <button class="show-ans" onclick="document.getElementById('ar4').classList.add('show')">Показать ответ</button>
+    <div class="feedback" id="fb4"></div>
+    <div class="answer-reveal" id="ar4">Sigue lloviendo — seguir + gerundio = продолжается</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 6 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Герундий как наречие — одновременность</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Герундий-наречие описывает способ, условие или одновременное действие. Субъект в обоих частях — ОДИН и тот же!</p>
+
+  <div class="callout info">
+    <h4>Примеры в контексте</h4>
+    <ul>
+      <li><em>Salí de casa <strong>corriendo</strong>.</em> — Вышел из дома бегом (= выбежал).</li>
+      <li><em><strong>Escuchando</strong> más, aprenderás más rápido.</em> — Слушая больше, учишься быстрее.</li>
+      <li><em>Llegó <strong>llorando</strong>.</em> — Он/она пришёл/пришла в слезах.</li>
+      <li><em><strong>Trabajando</strong> en equipo, lo conseguiremos.</em> — Работая в команде, мы добьёмся.</li>
+      <li><em>Vi a Juan <strong>hablando</strong> con el jefe.</em> — Я видел Хуана разговаривающим с боссом.</li>
+    </ul>
+  </div>
+
+  <div class="callout warning">
+    <h4>Ловушка: разные субъекты</h4>
+    <p>«<del>Siendo tarde, nos fuimos a casa</del>» — формально возможно, но субъект герундия (tarde) ≠ субъект основного глагола (nosotros). Лучше: <em>Como era tarde, nos fuimos a casa.</em> Герундий с разными субъектами — стилистически слабо.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 7 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Диалог — что делаешь прямо сейчас?</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>Видеозвонок — Ольга и Серхио</span>
+      <button class="dlg-toggle" onclick="toggleTranslation('dlg7')">перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Серхио</div>
+      <div>
+        <div class="dlg-es">¡Hola! ¿Qué estás haciendo? Llevas un rato sin contestar los mensajes.</div>
+        <div class="dlg-ru" id="dlg7-1" style="display:none">Привет! Что делаешь? Уже какое-то время не отвечаешь на сообщения.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ольга</div>
+      <div>
+        <div class="dlg-es">Estoy <strong>preparando</strong> la presentación para mañana. Llevo tres horas <strong>trabajando</strong> en ella y sigo sin terminar.</div>
+        <div class="dlg-ru" id="dlg7-2" style="display:none">Готовлю презентацию на завтра. Уже три часа работаю над ней и всё ещё не заканчиваю.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Серхио</div>
+      <div>
+        <div class="dlg-es">¿Y cómo te va? ¿Sigue <strong>siendo</strong> tan complicado el tema de los datos?</div>
+        <div class="dlg-ru" id="dlg7-3" style="display:none">Как продвигается? Тема данных всё ещё такая сложная?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ольга</div>
+      <div>
+        <div class="dlg-es">Sí, pero voy <strong>avanzando</strong>. Ahora mismo estoy <strong>revisando</strong> los gráficos <strong>escuchando</strong> música para concentrarme.</div>
+        <div class="dlg-ru" id="dlg7-4" style="display:none">Да, но продвигаюсь. Сейчас просматриваю графики, слушая музыку — чтобы сосредоточиться.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Серхио</div>
+      <div>
+        <div class="dlg-es"><strong>Siguiendo</strong> así, acabarás pronto. ¡Ánimo!</div>
+        <div class="dlg-ru" id="dlg7-5" style="display:none">Продолжая в том же духе, скоро закончишь. Удачи!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ольга</div>
+      <div>
+        <div class="dlg-es">Ojalá. Llevo semanas <strong>durmiendo</strong> mal por el estrés. Necesito acabar este proyecto.</div>
+        <div class="dlg-ru" id="dlg7-6" style="display:none">Хотелось бы. Уже несколько недель плохо сплю из-за стресса. Надо закончить этот проект.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 8 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Квиз и Anki</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>Проверь себя</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">Какой герундий у глагола <strong>dormir</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">durmiendo</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">dormiendo</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">durmiendo / dormiendo — оба верны</div>
+      </div>
+      <div class="feedback" id="q1-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">«Я не курю уже год» → Llevo un año sin <strong>_____</strong>.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">fumar</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">fumando</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">fume</div>
+      </div>
+      <div class="feedback" id="q2-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">«Una película <strong>_____</strong> la vida real» — как вставить герундий правильно?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">que refleja</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">reflejando</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">reflejada</div>
+      </div>
+      <div class="feedback" id="q3-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">«Vi a María salir del edificio» — что значит «salir» здесь?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Я видел, как Мария выходила из здания</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Я увидел Марию, чтобы выйти</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Я видел Марию, которая вышла раньше</div>
+      </div>
+      <div class="feedback" id="q4-fb"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text"><strong>Siguiendo</strong> tus consejos, he mejorado mucho. Что выражает этот герундий?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Условие/способ (следуя твоим советам)</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Процесс в данный момент (сейчас следую)</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Приказ (следуй советам!)</div>
+      </div>
+      <div class="feedback" id="q5-fb"></div>
+    </div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">Говорим — описываем день</div>
+    <p>Расскажи о своём типичном дне, используя герундий. Примерные старты:</p>
+    <div class="es">«Por la mañana suelo estar... · Llevo X meses/años... · Mientras trabajo estoy... · Sigo sin... · Ayer vi a alguien...»</div>
+    <div class="hint">Цель: использовать минимум 5 разных конструкций с герундием за 2 минуты. Запиши себя на аудио и прослушай.</div>
+  </div>
+
+  <div class="anki">
+    <div class="atag">Anki — добавь сегодня</div>
+    <ul>
+      <li>dormir → durmiendo · pedir → pidiendo · leer → leyendo</li>
+      <li>decir → diciendo · venir → viniendo · ir → yendo</li>
+      <li>estar + gerundio = прямо сейчас в процессе</li>
+      <li>llevar + tiempo + gerundio = уже X времени делаю</li>
+      <li>llevar + tiempo + sin + infinitivo = уже X не делаю</li>
+      <li>seguir + gerundio = продолжаю делать / всё ещё</li>
+      <li>gerundio как наречие = субъект должен быть один!</li>
+    </ul>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">Культурная заметка</div>
+    <h4>Gerundio absoluto — литературный приём</h4>
+    <p>В испанской прозе и журналистике встречается «gerundio absoluto» с собственным субъектом: <em>«Siendo las tres de la tarde, llegaron los invitados»</em> (Было три часа дня, когда гости пришли). Это книжная конструкция — в разговорной речи используется редко, но встречается в письменных текстах.</p>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a class="nav-link-btn" href="L82.html">← L82</a>
+    <a class="nav-link-btn" href="L84.html">L84 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">Урок выполнен ✓</button>
+</div>
+
+<script>
+const LESSON_ID = 'L83';
+const LS_KEY = 'esp_course_progress';
+
+const quizExpl = {
+  q1: {ok:'✓ durmiendo — o→u чередование (dormir, morir, poder)', no:'Нет. Dormir — глагол с чередованием o→u в герундии: durmiendo, не dormiendo.'},
+  q2: {ok:'✓ fumar — llevar + tiempo + sin + infinitivo (не герундий!)', no:'Нет. После «sin» нужен инфинитив: llevar un año sin fumar. Герундий был бы: llevo un año fumando (курю год).'},
+  q3: {ok:'✓ que refleja — в испанском герундий не заменяет прилагательное. Правильно: una película que refleja...', no:'Нет. Герундий не используется как определение (прилагательное). Правильно: una película que refleja la vida real.'},
+  q4: {ok:'✓ Я видел, как Мария выходила — ver + objeto + infinitivo/gerundio = перцептивная конструкция', no:'Нет. Ver + objeto + infinitivo = видеть, как кто-то делает что-то. Смысл: я был свидетелем того, как Мария выходила.'},
+  q5: {ok:'✓ Условие/способ — герундий-наречие выражает как/при каком условии произошло действие', no:'Нет. «Siguiendo» здесь не описывает текущий процесс, а говорит о способе/условии: «следуя твоим советам» (при условии что следовал).'},
+};
+
+function answerQuiz(el, qId, correctKey) {
+  const block = document.getElementById(qId);
+  if (block.dataset.done) return;
+  block.dataset.done = '1';
+  const opts = block.querySelectorAll('.opt');
+  opts.forEach(o => {
+    o.setAttribute('disabled', true);
+    const fn = o.getAttribute('onclick') || '';
+    const m = fn.match(/'([a-z])'\s*\)$/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const fn2 = el.getAttribute('onclick') || '';
+  const m2 = fn2.match(/'([a-z])'\s*\)$/);
+  const isCorrect = m2 && m2[1] === correctKey;
+  if (!isCorrect) el.classList.add('wrong');
+  const fb = document.getElementById(qId + '-fb');
+  if (fb) {
+    fb.textContent = isCorrect ? quizExpl[qId].ok : quizExpl[qId].no;
+    fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  }
+}
+
+function checkText(inputId, answer, fbId) {
+  const inp = document.getElementById(inputId);
+  const fb = document.getElementById(fbId);
+  const val = inp.value.trim().toLowerCase();
+  const correct = answer.toLowerCase();
+  const isOk = val === correct;
+  inp.className = 'text-input ' + (isOk ? 'correct' : 'wrong');
+  if (fb) {
+    fb.textContent = isOk ? '✓ Верно!' : '✗ Не совсем. Попробуй ещё или покажи ответ.';
+    fb.className = 'feedback show ' + (isOk ? 'ok' : 'no');
+  }
+}
+
+function toggleTranslation(id) {
+  let i = 1;
+  while (true) {
+    const el = document.getElementById(id + '-' + i);
+    if (!el) break;
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    i++;
+  }
+}
+
+function markDone() {
+  const btn = document.getElementById('done-btn');
+  let progress = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+  if (progress[LESSON_ID]) {
+    delete progress[LESSON_ID];
+    btn.textContent = 'Урок выполнен ✓';
+    btn.classList.remove('marked');
+  } else {
+    progress[LESSON_ID] = true;
+    btn.textContent = 'Отмечено ✓';
+    btn.classList.add('marked');
+  }
+  localStorage.setItem(LS_KEY, JSON.stringify(progress));
+}
+
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+  const fill = document.getElementById('progress-fill');
+  const label = document.getElementById('progress-label');
+  if (fill) fill.style.width = pct + '%';
+  if (label) label.textContent = pct + '% урока';
+}
+
+window.addEventListener('scroll', updateProgress);
+
+(function initDone() {
+  const btn = document.getElementById('done-btn');
+  const progress = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+  if (progress[LESSON_ID]) {
+    btn.textContent = 'Отмечено ✓';
+    btn.classList.add('marked');
+  }
+})();
+</script>
+</body>
+</html>

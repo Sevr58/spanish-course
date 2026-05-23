@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L118: DELE B1 — Письмо: формальный текст</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--purple);color:#fff;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--blue)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
+.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--blue);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout.dele{background:rgba(157,78,221,.1);border-color:var(--purple)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}
+.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
+.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.anki li{margin-bottom:4px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.vocab-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.vocab-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
+.vocab-table tr:last-child td{border-bottom:none}
+.vocab-table .es-word{color:var(--gold);font-weight:600}
+.contrast-box{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.contrast-side{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px}
+.contrast-side .cs-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.contrast-side ul{margin-left:14px;font-size:.85rem;color:var(--muted)}
+.contrast-side li{margin-bottom:4px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.contrast-box{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · DELE Prep · День 258</span>
+  <a href="L119.html">L119 →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
+  <h1>DELE B1: Письмо — <span class="hl">carta formal</span></h1>
+  <p class="sub">Жалоба, запрос, статья — формальный регистр, клише, структура оценки</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">📝</div><div><strong>DELE Tarea 2</strong><p>Carta formal / artículo — 150–180 слов</p></div></div>
+    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут + написать текст (30 мин)</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Слушай тексты на формальные темы</p></div></div>
+    <div class="obj"><div class="ico">✍️</div><div><strong>Практика</strong><p>Формальная жалоба или статья для редакции</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+
+<!-- SECTION 1: THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Формальный vs неформальный: принципиальная разница</h2>
+  </div>
+
+  <div class="callout dele">
+    <h4>📋 Tarea 2 expresión escrita DELE B1</h4>
+    <p>Два варианта: <strong>(a) carta formal</strong> — пишешь жалобу в организацию, запрос в компанию; <strong>(b) artículo</strong> — пишешь текст для газеты/блога на заданную тему. Объём: 150–180 слов. Время: 30 минут.</p>
+  </div>
+
+  <div class="contrast-box">
+    <div class="contrast-side">
+      <div class="cs-tag" style="color:var(--red)">✗ Неформально (нельзя!)</div>
+      <ul>
+        <li>¡Hola! / Oye</li>
+        <li>te echo de menos</li>
+        <li>mola mucho / qué rollo</li>
+        <li>un abrazo / besos</li>
+        <li>escríbeme pronto</li>
+        <li>¿sabes qué? / te cuento</li>
+      </ul>
+    </div>
+    <div class="contrast-side">
+      <div class="cs-tag" style="color:var(--green)">✓ Формально (нужно!)</div>
+      <ul>
+        <li>Estimado/a Sr./Sra. / A quien corresponda</li>
+        <li>Me dirijo a usted para...</li>
+        <li>Le agradecería que...</li>
+        <li>Atentamente / Un cordial saludo</li>
+        <li>En espera de su respuesta</li>
+        <li>En primer lugar / Asimismo / No obstante</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Структура carta de reclamación (жалоба)</h4>
+    <ul>
+      <li><strong>Encabezamiento:</strong> Ciudad, fecha. Estimado/a Sr./Sra. + nombre empresa,</li>
+      <li><strong>Introducción:</strong> Me dirijo a usted para comunicarle un problema relacionado con...</li>
+      <li><strong>Descripción del problema:</strong> El pasado [fecha], ocurrió que... En primer lugar... Asimismo...</li>
+      <li><strong>Solicitud:</strong> Por este motivo, le solicito que... / Le agradecería que...</li>
+      <li><strong>Cierre:</strong> Quedo a su disposición para cualquier aclaración.</li>
+      <li><strong>Despedida:</strong> Atentamente, / Un cordial saludo,</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — формальный регистр B1</h2>
+  </div>
+
+  <table class="vocab-table">
+    <thead>
+      <tr><th>Испанский (формально)</th><th>Произношение</th><th>Русский</th><th>Использование</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="es-word">me dirijo a usted</td><td>[дирихо]</td><td>обращаюсь к вам</td><td>Apertura formal: Me dirijo a usted para...</td></tr>
+      <tr><td class="es-word">le agradecería que</td><td>[агрaдесэриа]</td><td>я был бы благодарен, если бы вы</td><td>Le agradecería que me enviara información.</td></tr>
+      <tr><td class="es-word">en espera de su respuesta</td><td></td><td>в ожидании вашего ответа</td><td>Cierre: En espera de su respuesta...</td></tr>
+      <tr><td class="es-word">a quien corresponda</td><td></td><td>кому следует (без имени адресата)</td><td>Encabezamiento cuando no se conoce el nombre.</td></tr>
+      <tr><td class="es-word">asimismo</td><td>[асимисмо]</td><td>также, кроме того (формально)</td><td>Asimismo, quisiera señalar que...</td></tr>
+      <tr><td class="es-word">no obstante</td><td>[но обстантэ]</td><td>тем не менее, несмотря на это</td><td>No obstante, considero que la situación es inaceptable.</td></tr>
+      <tr><td class="es-word">quedo a su disposición</td><td></td><td>остаюсь в вашем распоряжении</td><td>Quedo a su disposición para cualquier consulta.</td></tr>
+      <tr><td class="es-word">le solicito que</td><td>[солисито]</td><td>прошу вас, чтобы</td><td>Le solicito que resuelva este problema urgentemente.</td></tr>
+      <tr><td class="es-word">con respecto a</td><td></td><td>что касается, в связи с</td><td>Con respecto a su solicitud...</td></tr>
+      <tr><td class="es-word">adjunto</td><td>[адхунто]</td><td>прилагаю (документ)</td><td>Adjunto la factura correspondiente.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: MODEL FORMAL LETTER -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Образец формальной жалобы</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>📌 Задание (DELE B1 style)</h4>
+    <p>Has comprado un ordenador en una tienda online. Cuando llegó, el aparato estaba roto y el servicio de atención al cliente no te ha respondido en 15 días. Escribe una carta de reclamación de 150–180 palabras al director de la tienda.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      ✉️ Carta de reclamación — образец (163 слова)
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-letter')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Carta</div>
+      <div>
+        <div class="dlg-es" style="white-space:pre-line">Barcelona, 20 de mayo de 2026
+
+Estimado Sr. Director:
+
+Me dirijo a usted para comunicarle un problema relacionado con un pedido realizado en su tienda online el pasado 5 de mayo.
+
+En primer lugar, al recibir el ordenador comprobé que el aparato presentaba daños evidentes: la pantalla estaba rota y el teclado no funcionaba correctamente. Asimismo, contacté con su servicio de atención al cliente por correo electrónico el día 6 de mayo, pero han transcurrido quince días sin que haya recibido ninguna respuesta.
+
+Por este motivo, le solicito que, en un plazo de cinco días hábiles, me envíe un aparato en perfectas condiciones o me reembolse el importe total de la compra. No obstante, si este problema no se resuelve satisfactoriamente, me veré obligado a presentar una reclamación ante las autoridades de consumo.
+
+Quedo a su disposición para cualquier aclaración. Adjunto copia del albarán de entrega.
+
+Atentamente,
+Evgeny Sevrugin</div>
+        <div class="dlg-ru" id="tr-letter" style="display:none">Барселона, 20 мая 2026
+
+Уважаемый господин директор:
+
+Обращаюсь к вам, чтобы сообщить о проблеме, связанной с заказом, сделанным в вашем интернет-магазине 5 мая.
+
+Во-первых, получив компьютер, я обнаружил очевидные повреждения: экран был разбит, клавиатура работала некорректно. Также я обратился в вашу службу поддержки по электронной почте 6 мая, однако прошло пятнадцать дней без какого-либо ответа.
+
+По этой причине прошу вас в течение пяти рабочих дней прислать мне исправный прибор или вернуть полную стоимость покупки. Тем не менее, если проблема не будет решена должным образом, я буду вынужден подать жалобу в органы защиты прав потребителей.
+
+Остаюсь в вашем распоряжении для любых уточнений. Прилагаю копию накладной.
+
+С уважением,
+Евгений Севрюгин</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Формальный регистр</h2>
+  </div>
+
+  <div class="quiz" id="quiz1">
+    <h3>🎯 Carta formal DELE B1</h3>
+
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как правильно начать формальное письмо?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Estimado Sr. Director: / Me dirijo a usted para...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">¡Hola! Te escribo porque...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Querido amigo, ¿cómo estás?</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Le agradecería que me enviara información» — «enviara» — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Futuro simple</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Pretérito indefinido</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Imperfecto de subjuntivo — вежливая просьба</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Asimismo» используется для:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Добавления информации (формально)</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Выражения контраста</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Завершения письма</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Как завершить формальное письмо?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Un abrazo, / Besos,</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">¡Hasta pronto!,</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Atentamente, / Un cordial saludo,</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «No obstante» переводится как:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Тем не менее, несмотря на это</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Поэтому, по этой причине</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Кроме того, вдобавок</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Quedo a su disposición» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Я ухожу и больше не пишу</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Жду вашего прихода</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Остаюсь в вашем распоряжении для связи</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни формальное письмо</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Дополни фразы</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «_____ a usted para comunicarle un problema.» (Me dirijo...)</div>
+      <input type="text" class="text-input" placeholder="Me dirijo..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','me dirijo','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ Me dirijo — обращаюсь. Классическое начало carta formal.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «_____ que me reembolse el dinero lo antes posible.» (Прошу вас, чтобы...)</div>
+      <input type="text" class="text-input" placeholder="Le solicito que..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','le solicito que','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ Le solicito que + subjuntivo — официальная просьба.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «_____, adjunto los documentos necesarios.» (Кроме того, формально)</div>
+      <input type="text" class="text-input" placeholder="Asimismo / Además..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','asimismo','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ Asimismo — формальный синоним «además». Типичный коннектор для деловых текстов.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «Quedo a su _____ para cualquier consulta.» (распоряжении)</div>
+      <input type="text" class="text-input" placeholder="disposición..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','disposición','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ disposición — «quedo a su disposición» = остаюсь в вашем распоряжении.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Финальное прощание в carta formal: «_____,» (с уважением)</div>
+      <input type="text" class="text-input" placeholder="Atentamente / Un cordial saludo..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','atentamente','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ Atentamente — с уважением. Или «Un cordial saludo» — с сердечным приветом (чуть теплее).</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: ARTICLE WRITING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Artículo — второй тип Tarea 2</h2>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Структура artículo (статьи для газеты/блога)</h4>
+    <ul>
+      <li><strong>Título llamativo</strong> — цепляющий заголовок (не обязателен, но даёт +1 за cohesión)</li>
+      <li><strong>Introducción</strong> — зацепи читателя: вопрос, факт, цитата</li>
+      <li><strong>Desarrollo</strong> — 2–3 абзаца с аргументами/информацией</li>
+      <li><strong>Conclusión</strong> — твой вывод или призыв к действию</li>
+    </ul>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">✍️ Задание: написать artículo (30 мин)</div>
+    <p>Una revista digital en español te pide un artículo de opinión sobre: «¿Es el trabajo desde casa el futuro o una moda pasajera?» Escribe 150–180 palabras.</p>
+    <div class="es" style="font-size:.88rem">Начни: «El teletrabajo: ¿revolución o experimento? / En los últimos años, el teletrabajo ha pasado de ser una excepción a...»</div>
+    <div class="hint">Структура: título → pregunta/cifra → argumento 1 → argumento 2 → conclusión + tu мнение.</div>
+  </div>
+</div>
+
+<!-- SECTION 7: CULTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Культурная заметка</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">🌍 Cultura de la queja en España</div>
+    <h4>Reclamaciones en España — это не скандал, а право</h4>
+    <p>В Испании «hoja de reclamaciones» (книга жалоб) — это официальный документ, который обязано иметь любое торговое предприятие. По закону, если ты просишь «libro de reclamaciones», тебе обязаны его дать. Жалобы подаются в OMIC (Oficina Municipal de Información al Consumidor). Для нового резидента Барселоны знание этого механизма очень практично. Формальная carta de reclamación на DELE — не просто экзаменационный жанр, а реальный документ, который тебе может понадобиться в повседневной жизни в Испании.</p>
+  </div>
+</div>
+
+<!-- SECTION 8: SPEAKING PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Говорение — формальный диалог</h2>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Тrenamiento: звонок в службу поддержки
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div>
+        <div class="dlg-es">Buenos días, me llamo Evgeny Sevrugin. Me dirijo a ustedes porque recibí un pedido defectuoso hace quince días y todavía no he recibido respuesta de su servicio de atención al cliente.</div>
+        <div class="dlg-ru" id="tr-d1" style="display:none">Доброе утро, меня зовут Евгений Севрюгин. Обращаюсь к вам, потому что 15 дней назад получил бракованный заказ и до сих пор не получил ответа от вашей службы поддержки.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Agente</div>
+      <div>
+        <div class="dlg-es">Le pido disculpas, Sr. Sevrugin. ¿Me podría indicar el número de pedido?</div>
+        <div class="dlg-ru" id="tr-d1b" style="display:none">Прошу прощения, г-н Севрюгин. Не могли бы вы сообщить номер заказа?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div>
+        <div class="dlg-es">Por supuesto. El número de pedido es P-20240505. Asimismo, le informo de que adjunté fotografías del daño al correo que envié el día 6 de mayo. Le agradecería que resolviera este problema urgentemente.</div>
+        <div class="dlg-ru" id="tr-d1c" style="display:none">Конечно. Номер заказа P-20240505. Также сообщаю, что приложил фотографии повреждений к письму от 6 мая. Был бы благодарен, если бы вы решили эту проблему срочно.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Практика: прочитай диалог вслух</div>
+    <p>Сыграй обе роли. Потом — сымпровизируй собственный вариант жалобы: другой продукт, другая проблема. Используй не менее 4 формальных фраз из словаря.</p>
+    <div class="hint">Цель: 3–4 минуты непрерывной формальной речи. Это тренировка Tarea 3 устного DELE.</div>
+  </div>
+</div>
+
+<!-- SECTION 9: ANKI + HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Anki и домашнее задание</h2>
+  </div>
+
+  <div class="anki">
+    <div class="atag">🃏 Карточки Anki — carta formal B1</div>
+    <ul>
+      <li><strong>Me dirijo a usted para...</strong> — официальное обращение</li>
+      <li><strong>Le agradecería que + subj.</strong> — вежливая просьба</li>
+      <li><strong>Le solicito que + subj.</strong> — официальная просьба</li>
+      <li><strong>Asimismo</strong> — также (формально) | Asimismo, adjunto...</li>
+      <li><strong>No obstante</strong> — тем не менее | No obstante, considero que...</li>
+      <li><strong>Quedo a su disposición</strong> — остаюсь в вашем распоряжении</li>
+      <li><strong>Atentamente</strong> — с уважением (прощание)</li>
+      <li><strong>En espera de su respuesta</strong> — в ожидании ответа</li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:16px">
+    <h4>📅 Задание до следующего урока</h4>
+    <ul>
+      <li>Напиши carta formal или artículo (150–180 слов, 30 минут). Засеки время!</li>
+      <li>Проверь: использовал ли ты 5+ формальных клише из урока?</li>
+      <li>Следующий урок: Полный пробный экзамен DELE B1, часть 1 (чтение + аудирование)</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L117.html" class="nav-link-btn">← L117</a>
+    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+    <a href="L119.html" class="nav-link-btn">L119 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+const LESSON_ID = 'L118';
+const LS_KEY = 'esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+
+const quizExpl={
+  q1:'«Estimado Sr. Director: / Me dirijo a usted» — стандартное начало carta formal. НИКОГДА не используй «¡Hola!» в формальном письме.',
+  q2:'«Le agradecería que me enviara» — «enviara» = imperfecto de subjuntivo. После «agradecería que» обязателен subjuntivo для вежливых просьб.',
+  q3:'Asimismo = также, кроме того — добавляет информацию в формальном стиле. Аналог «además» в официальных текстах.',
+  q4:'«Atentamente» = с уважением. Только это и «Un cordial saludo» для carta formal. «Un abrazo» — только для неформального!',
+  q5:'No obstante = тем не менее. Формальный аналог «sin embargo». Используется для противопоставления.',
+  q6:'«Quedo a su disposición» = остаюсь в вашем распоряжении — стандартная фраза перед прощанием в деловых письмах.'
+};
+let quizScore=0,quizTotal=0;
+function answerQuiz(el,qId,correctKey){
+  const container=el.closest('.quiz-q');
+  const opts=container.querySelectorAll('.opt');
+  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
+  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
+  el.classList.add(el===[...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;})?'correct':'wrong');
+  const fb=document.getElementById(`fb-${qId}`);
+  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
+  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
+  if(el.classList.contains('correct'))quizScore++;quizTotal++;
+}
+function checkText(inputId,answer,fbId){
+  const input=document.getElementById(inputId);
+  const val=input.value.toLowerCase().trim();
+  const correct=answer.toLowerCase().trim();
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show';
+  if(val===correct||val.includes(correct.split(' ')[0])&&val.length>=correct.length-3){
+    input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;
+  }else{
+    input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Правильный ответ: ${answer}`;
+  }
+}
+function showAns(id){document.getElementById(id).classList.add('show');}
+function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+const totalSections=9;
+function updateProgress(){
+  const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
+  const pct=Math.min(100,Math.round(scrolled/total*100));
+  const sectionsRead=Math.round(pct/100*totalSections);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll',updateProgress);
+</script>
+</body>
+</html>
