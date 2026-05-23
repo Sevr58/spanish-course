@@ -326,7 +326,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:3,
       speaking_focus:"Рассказать о планах на неделю / на weekend",
-      file:"lessons/L21.html", status:"pending"
+      file:"lessons/L21.html", status:"improved"
     },
     {
       id:"L22", num:22, phase:1, block:"B1C", level:"A1", day:45, week:8,
@@ -338,7 +338,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:8,
       speaking_focus:"Выразить желание, возможность, обязанность в разных ситуациях",
-      file:"lessons/L22.html", status:"pending"
+      file:"lessons/L22.html", status:"improved"
     },
     {
       id:"L23", num:23, phase:1, block:"B1C", level:"A1", day:47, week:8,
@@ -350,7 +350,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:7,
       speaking_focus:"Рассказать о своих увлечениях и предпочтениях",
-      file:"lessons/L23.html", status:"pending"
+      file:"lessons/L23.html", status:"improved"
     },
     {
       id:"L24", num:24, phase:1, block:"B1C", level:"A1", day:49, week:8,
@@ -362,7 +362,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:"7+12",
       speaking_focus:"Описать утренний ритуал от пробуждения до выхода из дома",
-      file:"lessons/L24.html", status:"pending"
+      file:"lessons/L24.html", status:"improved"
     },
     {
       id:"L25", num:25, phase:1, block:"B1C", level:"A1", day:51, week:9,

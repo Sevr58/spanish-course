@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L24: Возвратные глаголы и распорядок дня</title>
+<style>:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e,#0f1118);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px}.obj .ico{font-size:1.2rem}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;overflow:hidden}.progress-fill{height:100%;background:var(--gold)}.progress-label{font-size:.72rem;color:var(--muted);text-align:right}
+.section{margin-bottom:36px}.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}.callout p,.callout ul{font-size:.88rem;color:var(--muted)}.callout ul{margin-left:16px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;padding:0 4px;color:var(--gold)}.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600}
+.conjugation-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.9rem}
+.conjugation-table th{background:var(--bg3);padding:10px 12px;text-align:left;color:var(--blue);font-weight:700;font-size:.78rem;text-transform:uppercase}
+.conjugation-table td{padding:10px 12px;border-top:1px solid var(--border)}.conjugation-table .form{font-weight:700;font-family:Consolas,monospace;color:var(--green)}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;color:var(--muted);font-size:.78rem;text-transform:uppercase}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border)}.vocab-table .es{font-weight:600}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;color:var(--red)}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border)}.mistakes-table .wrong{color:var(--red);text-decoration:line-through;opacity:.7}.mistakes-table .right{color:var(--green);font-weight:600}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.speak-box .es{font-size:1.05rem;font-weight:600;margin-top:4px}.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}.quiz-q:last-child{border-bottom:none}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem}.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none}
+.text-input.correct{border-color:var(--green)!important}.text-input.wrong{border-color:var(--red)!important}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px}.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);width:50px;flex-shrink:0}.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;color:var(--gold);margin-bottom:8px}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem}.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-weight:700;cursor:pointer}.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;color:var(--text);text-decoration:none;font-weight:600}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
+</style></head>
+<body><div class="wrap">
+<div class="nav"><a href="../index.html">← Дашборд</a><span class="level">A1 · Фаза 1 · День 49</span><a href="L25.html">L25 →</a></div>
+
+<div class="hero"><div class="phase-tag">🌱 Фаза 1 · Ключевая грамматика</div>
+<h1>Возвратные глаголы — <span class="hl">распорядок дня</span></h1>
+<p class="sub">Me llamo, me levanto, me ducho. Глаголы на -se. Polyglot #7+12.</p>
+<div class="objectives">
+<div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Описать утренний ритуал по-испански</p></div></div>
+<div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 мин</p></div></div>
+<div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>LT эп. 30 · Polyglot #7+12</p></div></div>
+<div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>«Me levanto a las 7»</p></div></div>
+</div></div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 10</div>
+
+<div class="section"><div class="section-header"><div class="section-num">1</div><h2>Повторение L23</h2></div>
+<div class="quiz">
+<div class="quiz-q" id="r1"><div class="q-text">1. «Мне нравится кофе»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r1','a')">Me gusta el café</div><div class="opt" onclick="answerQuiz(this,'r1','b')">Yo gusto café</div><div class="opt" onclick="answerQuiz(this,'r1','c')">Me gustan café</div></div><div class="feedback" id="fb-r1"></div></div>
+<div class="quiz-q" id="r2"><div class="q-text">2. «Мне нравятся книги»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r2','b')">Me gusta los libros</div><div class="opt" onclick="answerQuiz(this,'r2','a')">Me gustan los libros</div><div class="opt" onclick="answerQuiz(this,'r2','c')">Yo gusto libros</div></div><div class="feedback" id="fb-r2"></div></div>
+<div class="quiz-q" id="r3"><div class="q-text">3. «Я обожаю» — encantar:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r3','c')">Encanto</div><div class="opt" onclick="answerQuiz(this,'r3','a')">Me encanta</div><div class="opt" onclick="answerQuiz(this,'r3','b')">Me encantan</div></div><div class="feedback" id="fb-r3"></div></div>
+<div class="quiz-q" id="r4"><div class="q-text">4. «Им нравится»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r4','b')">Ellos gustan</div><div class="opt" onclick="answerQuiz(this,'r4','a')">Les gusta</div><div class="opt" onclick="answerQuiz(this,'r4','c')">Le gustan</div></div><div class="feedback" id="fb-r4"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">2</div><h2>Возвратные глаголы — что это</h2></div>
+<p>Возвратный глагол = действие, направленное на самого себя. В инфинитиве оканчивается на <strong>-se</strong>:</p>
+<div class="callout tip"><h4>💡 Сравни</h4>
+<ul><li><strong>llamar</strong> = звать (кого-то): Llamo a Pedro. — Я зову Педро.</li>
+<li><strong>llamarse</strong> = звать себя: Me llamo Evgeni. — Я зовусь Евгений (= меня зовут Евгений).</li>
+<li><strong>levantar</strong> = поднимать: Levanto la mano. — Я поднимаю руку.</li>
+<li><strong>levantarse</strong> = вставать: Me levanto a las 7. — Встаю в 7.</li></ul></div>
+<p>«-se» в инфинитиве показывает что нужно местоимение. При спряжении «se» становится конкретным местоимением (me/te/se/nos/os/se).</p>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">3</div><h2>Спряжение levantarse (вставать)</h2></div>
+<p>Берём обычный глагол levantar и добавляем возвратное местоимение перед спряжённой формой:</p>
+<table class="conjugation-table"><thead><tr><th>Местоим.</th><th>Возвр.</th><th>Глагол</th><th>🔊</th><th>Перевод</th></tr></thead><tbody>
+<tr><td>yo</td><td class="form">me</td><td>levanto</td><td><button class="speak-btn" onclick="speak('me levanto')">🔊</button></td><td>я встаю</td></tr>
+<tr><td>tú</td><td class="form">te</td><td>levantas</td><td><button class="speak-btn" onclick="speak('te levantas')">🔊</button></td><td>ты встаёшь</td></tr>
+<tr><td>él/ud</td><td class="form">se</td><td>levanta</td><td><button class="speak-btn" onclick="speak('se levanta')">🔊</button></td><td>он встаёт</td></tr>
+<tr><td>nos</td><td class="form">nos</td><td>levantamos</td><td><button class="speak-btn" onclick="speak('nos levantamos')">🔊</button></td><td>мы встаём</td></tr>
+<tr><td>vos</td><td class="form">os</td><td>levantáis</td><td><button class="speak-btn" onclick="speak('os levantáis')">🔊</button></td><td>вы встаёте</td></tr>
+<tr><td>ellos</td><td class="form">se</td><td>levantan</td><td><button class="speak-btn" onclick="speak('se levantan')">🔊</button></td><td>они встают</td></tr>
+</tbody></table>
+<button class="speak-btn-big" onclick="speak('me levanto, te levantas, se levanta, nos levantamos, os levantáis, se levantan')">▶ Всё подряд</button>
+<div class="callout info"><h4>💡 Порядок: местоимение + глагол</h4><p>В утверждении и вопросе: <strong>me levanto</strong>, <strong>¿te levantas?</strong>.<br>В инфинитиве (после модального): <strong>quiero levantarme</strong> (хочу встать) — «me» прицепляется к концу.<br>Также: <strong>tengo que ducharme</strong>, <strong>voy a peinarme</strong>.</p></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">4</div><h2>Распорядок дня — 15 глаголов</h2></div>
+<table class="vocab-table"><thead><tr><th>Глагол</th><th>«Я»-форма</th><th>🔊</th><th>Перевод</th></tr></thead><tbody>
+<tr><td class="es">despertarse (e→ie)</td><td class="es">me despierto</td><td><button class="speak-btn" onclick="speak('me despierto')">🔊</button></td><td>просыпаться</td></tr>
+<tr><td class="es">levantarse</td><td class="es">me levanto</td><td><button class="speak-btn" onclick="speak('me levanto')">🔊</button></td><td>вставать</td></tr>
+<tr><td class="es">ducharse</td><td class="es">me ducho</td><td><button class="speak-btn" onclick="speak('me ducho')">🔊</button></td><td>принимать душ</td></tr>
+<tr><td class="es">bañarse</td><td class="es">me baño</td><td><button class="speak-btn" onclick="speak('me baño')">🔊</button></td><td>купаться</td></tr>
+<tr><td class="es">lavarse (los dientes)</td><td class="es">me lavo</td><td><button class="speak-btn" onclick="speak('me lavo los dientes')">🔊</button></td><td>мыться / чистить зубы</td></tr>
+<tr><td class="es">peinarse</td><td class="es">me peino</td><td><button class="speak-btn" onclick="speak('me peino')">🔊</button></td><td>причёсываться</td></tr>
+<tr><td class="es">afeitarse</td><td class="es">me afeito</td><td><button class="speak-btn" onclick="speak('me afeito')">🔊</button></td><td>бриться</td></tr>
+<tr><td class="es">vestirse (e→i)</td><td class="es">me visto</td><td><button class="speak-btn" onclick="speak('me visto')">🔊</button></td><td>одеваться</td></tr>
+<tr><td class="es">maquillarse</td><td class="es">me maquillo</td><td><button class="speak-btn" onclick="speak('me maquillo')">🔊</button></td><td>краситься</td></tr>
+<tr><td class="es">ponerse (la ropa)</td><td class="es">me pongo</td><td><button class="speak-btn" onclick="speak('me pongo')">🔊</button></td><td>надевать</td></tr>
+<tr><td class="es">quitarse</td><td class="es">me quito</td><td><button class="speak-btn" onclick="speak('me quito')">🔊</button></td><td>снимать (одежду)</td></tr>
+<tr><td class="es">irse</td><td class="es">me voy</td><td><button class="speak-btn" onclick="speak('me voy')">🔊</button></td><td>уходить</td></tr>
+<tr><td class="es">acostarse (o→ue)</td><td class="es">me acuesto</td><td><button class="speak-btn" onclick="speak('me acuesto')">🔊</button></td><td>ложиться спать</td></tr>
+<tr><td class="es">dormirse (o→ue)</td><td class="es">me duermo</td><td><button class="speak-btn" onclick="speak('me duermo')">🔊</button></td><td>засыпать</td></tr>
+<tr><td class="es">despedirse (e→i)</td><td class="es">me despido</td><td><button class="speak-btn" onclick="speak('me despido')">🔊</button></td><td>прощаться</td></tr>
+</tbody></table>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">5</div><h2>Типичные ошибки</h2></div>
+<table class="mistakes-table"><thead><tr><th>Хочешь</th><th>❌</th><th>✅</th><th>Почему</th></tr></thead><tbody>
+<tr><td>«Я встаю»</td><td><span class="wrong">Levanto a las 7</span></td><td><span class="right">Me levanto a las 7</span></td><td>«Me» обязательно</td></tr>
+<tr><td>«Меня зовут Х»</td><td><span class="wrong">Mi nombre es / Llamo Х</span></td><td><span class="right">Me llamo Х</span></td><td>llamarse — возвратный</td></tr>
+<tr><td>«Хочу принять душ»</td><td><span class="wrong">Quiero me duchar</span></td><td><span class="right">Quiero ducharme</span></td><td>После inf. — местоимение в конце</td></tr>
+<tr><td>«Они одеваются»</td><td><span class="wrong">Ellos visten</span></td><td><span class="right">Ellos se visten</span></td><td>«Se» обязательно</td></tr>
+<tr><td>«Прощаюсь с тобой»</td><td><span class="wrong">Me despido tú</span></td><td><span class="right">Me despido de ti</span></td><td>despedirse + «de»</td></tr>
+</tbody></table></div>
+
+<div class="section"><div class="section-header"><div class="section-num">6</div><h2>Тест 1</h2></div>
+<div class="quiz">
+<div class="quiz-q" id="q1"><div class="q-text">1. «Я встаю в 7» = ___ a las siete.</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q1','a')">Me levanto</div><div class="opt" onclick="answerQuiz(this,'q1','b')">Levanto</div><div class="opt" onclick="answerQuiz(this,'q1','c')">Yo me levanta</div></div><div class="feedback" id="fb-q1"></div></div>
+<div class="quiz-q" id="q2"><div class="q-text">2. «Меня зовут Мария» = ___ María.</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q2','b')">Me nombre</div><div class="opt" onclick="answerQuiz(this,'q2','a')">Me llamo</div><div class="opt" onclick="answerQuiz(this,'q2','c')">Llamarme</div></div><div class="feedback" id="fb-q2"></div></div>
+<div class="quiz-q" id="q3"><div class="q-text">3. «Хочу принять душ»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q3','c')">Quiero me ducho</div><div class="opt" onclick="answerQuiz(this,'q3','a')">Quiero ducharme</div><div class="opt" onclick="answerQuiz(this,'q3','b')">Quiero me duchar</div></div><div class="feedback" id="fb-q3"></div></div>
+<div class="quiz-q" id="q4"><div class="q-text">4. «Они одеваются» — vestirse, ellos:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q4','b')">vestan</div><div class="opt" onclick="answerQuiz(this,'q4','a')">se visten</div><div class="opt" onclick="answerQuiz(this,'q4','c')">se vestan</div></div><div class="feedback" id="fb-q4"></div></div>
+<div class="quiz-q" id="q5"><div class="q-text">5. «Мы ложимся спать в 11» = ___ a las once.</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q5','c')">Acostamos</div><div class="opt" onclick="answerQuiz(this,'q5','a')">Nos acostamos</div><div class="opt" onclick="answerQuiz(this,'q5','b')">Me acuesto</div></div><div class="feedback" id="fb-q5"></div></div>
+<div class="quiz-q" id="q6"><div class="q-text">6. «Утром я просыпаюсь» — despertarse, yo:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q6','b')">despertarme</div><div class="opt" onclick="answerQuiz(this,'q6','a')">me despierto</div><div class="opt" onclick="answerQuiz(this,'q6','c')">me desperto</div></div><div class="feedback" id="fb-q6"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">7</div><h2>Тест 2</h2></div>
+<div class="quiz">
+<div class="text-ex" id="te1"><div class="tex-q">1. «Я принимаю душ» = ___ ducho.</div><input type="text" class="text-input" id="ti1"><button class="check-btn" onclick="checkText('ti1','me','fb-te1')">Проверить</button><button class="show-ans" onclick="showAns('ans-te1')">Показать</button><div class="feedback" id="fb-te1"></div><div class="answer-reveal" id="ans-te1">✅ me</div></div>
+<div class="text-ex" id="te2"><div class="tex-q">2. «Ты бреешься» — afeitarse, tú:</div><input type="text" class="text-input" id="ti2"><button class="check-btn" onclick="checkText('ti2','te afeitas','fb-te2')">Проверить</button><button class="show-ans" onclick="showAns('ans-te2')">Показать</button><div class="feedback" id="fb-te2"></div><div class="answer-reveal" id="ans-te2">✅ te afeitas</div></div>
+<div class="text-ex" id="te3"><div class="tex-q">3. «Должен лечь спать» = Tengo que ___.</div><input type="text" class="text-input" id="ti3"><button class="check-btn" onclick="checkText('ti3','acostarme','fb-te3')">Проверить</button><button class="show-ans" onclick="showAns('ans-te3')">Показать</button><div class="feedback" id="fb-te3"></div><div class="answer-reveal" id="ans-te3">✅ acostarme</div></div>
+<div class="text-ex" id="te4"><div class="tex-q">4. «Мы прощаемся» — despedirse, nos:</div><input type="text" class="text-input" id="ti4"><button class="check-btn" onclick="checkText('ti4','nos despedimos','fb-te4')">Проверить</button><button class="show-ans" onclick="showAns('ans-te4')">Показать</button><div class="feedback" id="fb-te4"></div><div class="answer-reveal" id="ans-te4">✅ nos despedimos</div></div>
+<div class="text-ex" id="te5"><div class="tex-q">5. «Я ухожу» — irse, yo:</div><input type="text" class="text-input" id="ti5"><button class="check-btn" onclick="checkText('ti5','me voy','fb-te5')">Проверить</button><button class="show-ans" onclick="showAns('ans-te5')">Показать</button><div class="feedback" id="fb-te5"></div><div class="answer-reveal" id="ans-te5">✅ me voy</div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">8</div><h2>Диалоги</h2></div>
+<div class="dialogue"><div class="dlg-header">💬 Утренний ритуал<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD1()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿A qué hora te despiertas? <button class="speak-btn" onclick="speak('¿A qué hora te despiertas?')">🔊</button></div><div class="dlg-ru translation">— Во сколько ты просыпаешься?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Me despierto a las 6:30 con la alarma. <button class="speak-btn" onclick="speak('Me despierto a las seis y media con la alarma.')">🔊</button></div><div class="dlg-ru translation">— В 6:30 с будильником.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Y luego qué haces? <button class="speak-btn" onclick="speak('¿Y luego qué haces?')">🔊</button></div><div class="dlg-ru translation">— А потом что?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Me ducho, me visto, me peino y me afeito. <button class="speak-btn" onclick="speak('Me ducho, me visto, me peino y me afeito.')">🔊</button></div><div class="dlg-ru translation">— Душ, одеваюсь, причёсываюсь, бреюсь.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Cuánto tiempo necesitas? <button class="speak-btn" onclick="speak('¿Cuánto tiempo necesitas?')">🔊</button></div><div class="dlg-ru translation">— Сколько времени нужно?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Unos 40 minutos. A las 7:30 me voy al trabajo. <button class="speak-btn" onclick="speak('Unos cuarenta minutos. A las siete y media me voy al trabajo.')">🔊</button></div><div class="dlg-ru translation">— Минут 40. В 7:30 ухожу на работу.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Y por la noche, a qué hora te acuestas? <button class="speak-btn" onclick="speak('¿Y por la noche, a qué hora te acuestas?')">🔊</button></div><div class="dlg-ru translation">— А вечером во сколько ложишься?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Me acuesto a las 11 y me duermo enseguida. <button class="speak-btn" onclick="speak('Me acuesto a las once y me duermo enseguida.')">🔊</button></div><div class="dlg-ru translation">— Ложусь в 11 и сразу засыпаю.</div></div></div>
+</div>
+
+<div class="dialogue"><div class="dlg-header">💬 Дети в школу<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD2()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Ж</div><div><div class="dlg-es">¡Niñas, hay que despertarse! <button class="speak-btn" onclick="speak('¡Niñas, hay que despertarse!')">🔊</button></div><div class="dlg-ru translation">— Девочки, надо просыпаться!</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Д</div><div><div class="dlg-es">Mamá, 5 minutos más, por favor. <button class="speak-btn" onclick="speak('Mamá, cinco minutos más, por favor.')">🔊</button></div><div class="dlg-ru translation">— Мам, ещё 5 минут.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Ж</div><div><div class="dlg-es">No, vamos. Tenéis que ducharos y vestiros rápido. <button class="speak-btn" onclick="speak('No, vamos. Tenéis que ducharos y vestiros rápido.')">🔊</button></div><div class="dlg-ru translation">— Нет, давайте. Душ и одеваться быстро.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Д</div><div><div class="dlg-es">Vale, vale. ¿Qué nos ponemos hoy? <button class="speak-btn" onclick="speak('Vale, vale. ¿Qué nos ponemos hoy?')">🔊</button></div><div class="dlg-ru translation">— Ладно. Что надеть сегодня?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Ж</div><div><div class="dlg-es">El uniforme del colegio. ¿Os habéis lavado los dientes? <button class="speak-btn" onclick="speak('El uniforme del colegio. ¿Os habéis lavado los dientes?')">🔊</button></div><div class="dlg-ru translation">— Школьную форму. Зубы почистили?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Д</div><div><div class="dlg-es">Sí, ya nos los hemos lavado. <button class="speak-btn" onclick="speak('Sí, ya nos los hemos lavado.')">🔊</button></div><div class="dlg-ru translation">— Да, почистили.</div></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">9</div><h2>🇪🇸 Испания на практике — Распорядок дня</h2></div>
+<div class="spain-card"><div class="stag">⏰ Сценарий</div><h3>Расскажи свой день испанцу</h3>
+<div class="phrase-list">
+<div class="phrase"><span class="es">Me levanto a las 7.</span><button class="speak-btn" onclick="speak('Me levanto a las siete.')">🔊</button><span class="tr">Встаю в 7.</span></div>
+<div class="phrase"><span class="es">Me ducho y me visto.</span><button class="speak-btn" onclick="speak('Me ducho y me visto.')">🔊</button><span class="tr">Душ и одеваюсь.</span></div>
+<div class="phrase"><span class="es">Desayuno a las 8 (no reflex.).</span><button class="speak-btn" onclick="speak('Desayuno a las ocho.')">🔊</button><span class="tr">Завтракаю в 8.</span></div>
+<div class="phrase"><span class="es">Voy al trabajo a las 9.</span><button class="speak-btn" onclick="speak('Voy al trabajo a las nueve.')">🔊</button><span class="tr">На работу в 9.</span></div>
+<div class="phrase"><span class="es">Como a las 2 (comida = главный приём).</span><button class="speak-btn" onclick="speak('Como a las dos.')">🔊</button><span class="tr">Обедаю в 14 (главный приём).</span></div>
+<div class="phrase"><span class="es">Vuelvo a casa a las 7.</span><button class="speak-btn" onclick="speak('Vuelvo a casa a las siete.')">🔊</button><span class="tr">Возвращаюсь домой в 19.</span></div>
+<div class="phrase"><span class="es">Ceno con la familia a las 9.</span><button class="speak-btn" onclick="speak('Ceno con la familia a las nueve.')">🔊</button><span class="tr">Ужинаю с семьёй в 21.</span></div>
+<div class="phrase"><span class="es">Me acuesto a las 11.</span><button class="speak-btn" onclick="speak('Me acuesto a las once.')">🔊</button><span class="tr">Ложусь в 23.</span></div>
+</div></div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">10</div><h2>Anki + ДЗ</h2></div>
+<div class="anki"><div class="atag">🃏 15 карточек L24</div>
+<div class="anki-preview" id="anki-preview-L24"></div>
+<button class="anki-export-btn" onclick="exportAnkiL24()">📥 Скачать L24</button></div>
+<div class="callout info" style="margin-top:16px"><h4>📅 До L25</h4><ul><li>LT эп. 30 · Polyglot #7+12</li><li>Запиши голос: твой день с возвратными глаголами (8 предложений)</li><li>Спроси у испанца «¿A qué hora te levantas?» и запиши ответ</li></ul></div>
+<div class="callout success" style="margin-top:14px"><h4>🎉 L24 готов!</h4><p>В L25 — прямые объектные местоимения (lo, la, los, las).</p></div></div>
+</div>
+
+<div class="done-bar"><div class="nav-links"><a href="../index.html" class="nav-link-btn">← Дашборд</a><a href="L23.html" class="nav-link-btn">← L23</a><a href="L25.html" class="nav-link-btn">L25 →</a></div><button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button></div>
+
+<script>
+const LESSON_ID='L24';const LS_KEY='esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+function speak(text,lang){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}
+function speakSequence(phrases,delay){delay=delay||2400;window.speechSynthesis.cancel();phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});}
+function playD1(){speakSequence(['¿A qué hora te despiertas?','Me despierto a las seis y media con la alarma.','¿Y luego qué haces?','Me ducho, me visto, me peino y me afeito.','¿Cuánto tiempo necesitas?','Unos cuarenta minutos. A las siete y media me voy al trabajo.','¿Y por la noche, a qué hora te acuestas?','Me acuesto a las once y me duermo enseguida.'],2700);}
+function playD2(){speakSequence(['¡Niñas, hay que despertarse!','Mamá, cinco minutos más, por favor.','No, vamos. Tenéis que ducharos y vestiros rápido.','Vale, vale. ¿Qué nos ponemos hoy?','El uniforme del colegio. ¿Os habéis lavado los dientes?','Sí, ya nos los hemos lavado.'],2700);}
+const quizExpl={r1:'Me gusta el café.',r2:'Me gustan los libros.',r3:'Me encanta.',r4:'Les gusta.',q1:'Me levanto.',q2:'Me llamo.',q3:'Quiero ducharme.',q4:'se visten.',q5:'Nos acostamos.',q6:'Me despierto.'};
+function answerQuiz(el,qId,correctKey){const c=el.closest('.quiz-q');if(c.dataset.answered==='true')return;c.dataset.answered='true';c.querySelectorAll('.opt').forEach(function(o){const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');o.onclick=null;});const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);const userKey=um&&um[1];if(userKey!==correctKey)el.classList.add('wrong');const fb=document.getElementById('fb-'+qId);fb.className='feedback show '+(userKey===correctKey?'ok':'no');fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ '+answer[0]+'...';}}
+function showAns(id){document.getElementById(id).classList.add('show');}
+let showingTrans=false;function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
+const totalSections=10;function updateProgress(){const s=window.scrollY;const t=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(s/t*100));document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=Math.round(pct/100*totalSections)+' / '+totalSections;}
+window.addEventListener('scroll',updateProgress);
+const ANKI_DECK_L24=[
+{front:"me / te / se / nos / os / se",back:"Возвратные местоимения\n\nПорядок: местоимение + глагол\nMe levanto, te levantas..."},
+{front:"llamarse — me llamo",back:"Зваться\n\nMe llamo Evgeni. — Меня зовут Евгений."},
+{front:"levantarse — me levanto",back:"Вставать (с кровати)\n\nMe levanto a las siete."},
+{front:"despertarse — me despierto",back:"Просыпаться (e→ie)\n\nMe despierto con la alarma."},
+{front:"ducharse — me ducho",back:"Принимать душ\n\nMe ducho por la mañana."},
+{front:"vestirse — me visto",back:"Одеваться (e→i)\n\nMe visto rápido."},
+{front:"peinarse — me peino",back:"Причёсываться\n\nMe peino antes de salir."},
+{front:"afeitarse — me afeito",back:"Бриться\n\nMe afeito cada día."},
+{front:"lavarse los dientes — me lavo los dientes",back:"Чистить зубы\n\nMe lavo los dientes dos veces al día."},
+{front:"ponerse — me pongo",back:"Надевать (одежду)\n\nMe pongo la chaqueta."},
+{front:"quitarse — me quito",back:"Снимать (одежду)\n\nMe quito los zapatos en casa."},
+{front:"acostarse — me acuesto",back:"Ложиться спать (o→ue)\n\nMe acuesto a las once."},
+{front:"dormirse — me duermo",back:"Засыпать (o→ue)\n\nMe duermo enseguida."},
+{front:"irse — me voy",back:"Уходить\n\nMe voy al trabajo. ¡Vámonos! — Пошли!"},
+{front:"despedirse de — me despido",back:"Прощаться с... (e→i)\n\nMe despido de mis amigos."},
+{front:"После inf. — местоимение в конце",back:"Quiero ducharme. Voy a peinarme.\n\nКонкатенация: infinitivo + me/te/se"}
+];
+function renderAnkiPreview(){const c=document.getElementById('anki-preview-L24');if(!c)return;c.innerHTML=ANKI_DECK_L24.slice(0,5).map(function(card){return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')"><div class="anki-card-inner"><div class="anki-card-front">'+card.front+'</div><div class="anki-card-back">'+card.back.replace(/\n/g,'<br>')+'</div></div></div>';}).join('');}
+renderAnkiPreview();
+function exportAnkiL24(){const tsv=ANKI_DECK_L24.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='L24_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
+</script>
+</body>
+</html>
