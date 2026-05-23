@@ -374,7 +374,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Отвечать на вопросы, избегая повторений: ¿Tienes el libro? — Sí, lo tengo.",
-      file:"lessons/L25.html", status:"pending"
+      file:"lessons/L25.html", status:"improved"
     },
     {
       id:"L26", num:26, phase:1, block:"B1C", level:"A1", day:53, week:9,
@@ -386,7 +386,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:6,
       speaking_focus:"Написать сообщение и рассказать кому что сказал / отправил",
-      file:"lessons/L26.html", status:"pending"
+      file:"lessons/L26.html", status:"improved"
     },
     {
       id:"L27", num:27, phase:1, block:"B1C", level:"A1", day:55, week:9,
