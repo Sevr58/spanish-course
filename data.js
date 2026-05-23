@@ -276,7 +276,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Обсудить цену квартиры, зарплату, бюджет",
-      file:"lessons/L17.html", status:"pending"
+      file:"lessons/L17.html", status:"improved"
     },
     {
       id:"L18", num:18, phase:1, block:"B1B", level:"A1", day:36, week:6,
@@ -288,7 +288,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot:5,
       speaking_focus:"Договориться о встрече, описать распорядок дня",
-      file:"lessons/L18.html", status:"pending"
+      file:"lessons/L18.html", status:"improved"
     },
 
     // ─── Block 1C: Key Grammar ────────────────────────────────────
@@ -302,7 +302,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Описать что есть в твоём городе / квартире",
-      file:"lessons/L19.html", status:"pending"
+      file:"lessons/L19.html", status:"improved"
     },
     {
       id:"L20", num:20, phase:1, block:"B1C", level:"A1", day:41, week:7,

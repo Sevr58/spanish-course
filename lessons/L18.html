@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L18: Время и расписание — ¿Qué hora es?</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e,#0f1118);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px}.obj .ico{font-size:1.2rem}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;overflow:hidden}.progress-fill{height:100%;background:var(--gold)}.progress-label{font-size:.72rem;color:var(--muted);text-align:right}
+.section{margin-bottom:36px}.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}.callout p,.callout ul{font-size:.88rem;color:var(--muted)}.callout ul{margin-left:16px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;padding:0 4px;color:var(--gold)}.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600}
+.time-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.time-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.time-card .digit{font-size:1.6rem;font-weight:800;color:var(--gold);font-family:Consolas,monospace;text-align:center;margin-bottom:6px}
+.time-card .word{font-weight:600;font-size:.85rem;text-align:center}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;color:var(--muted)}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border)}.vocab-table .es{font-weight:600}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;color:var(--red)}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border)}.mistakes-table .wrong{color:var(--red);text-decoration:line-through;opacity:.7}.mistakes-table .right{color:var(--green);font-weight:600}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.speak-box .es{font-size:1.05rem;font-weight:600;margin-top:4px}.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}.quiz-q:last-child{border-bottom:none}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem}.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none}
+.text-input.correct{border-color:var(--green)!important}.text-input.wrong{border-color:var(--red)!important}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px}.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);width:50px;flex-shrink:0}.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}.culture p{font-size:.86rem;color:var(--muted)}
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;color:var(--gold);margin-bottom:8px}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem}.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-weight:700;cursor:pointer}.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;color:var(--text);text-decoration:none;font-weight:600}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
+</style></head>
+<body><div class="wrap">
+<div class="nav"><a href="../index.html">← Дашборд</a><span class="level">A1 · Фаза 1 · День 36</span><a href="L19.html">L19 →</a></div>
+
+<div class="hero"><div class="phase-tag">🌱 Фаза 1 · Основы · Базовая лексика</div>
+<h1>Время и <span class="hl">расписание</span></h1>
+<p class="sub">¿Qué hora es? Назначать встречи, понимать расписания. Polyglot #5.</p>
+<div class="objectives">
+<div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Сказать время и расписание точно</p></div></div>
+<div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 мин</p></div></div>
+<div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>LT эп. 24 · Polyglot #5</p></div></div>
+<div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>«Son las dos y media»</p></div></div>
+</div></div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 12</div>
+
+<div class="section"><div class="section-header"><div class="section-num">1</div><h2>Повторение L17 — числа</h2></div>
+<div class="quiz" id="qrev">
+<div class="quiz-q" id="r1"><div class="q-text">1. «500»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r1','a')">quinientos</div><div class="opt" onclick="answerQuiz(this,'r1','b')">cincocientos</div><div class="opt" onclick="answerQuiz(this,'r1','c')">cincientos</div></div><div class="feedback" id="fb-r1"></div></div>
+<div class="quiz-q" id="r2"><div class="q-text">2. «1 миллион людей»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r2','b')">un millón personas</div><div class="opt" onclick="answerQuiz(this,'r2','a')">un millón de personas</div><div class="opt" onclick="answerQuiz(this,'r2','c')">uno millón personas</div></div><div class="feedback" id="fb-r2"></div></div>
+<div class="quiz-q" id="r3"><div class="q-text">3. Ипотека:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r3','c')">el préstamo</div><div class="opt" onclick="answerQuiz(this,'r3','a')">la hipoteca</div><div class="opt" onclick="answerQuiz(this,'r3','b')">la cuenta</div></div><div class="feedback" id="fb-r3"></div></div>
+<div class="quiz-q" id="r4"><div class="q-text">4. «5000»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r4','b')">cinco miles</div><div class="opt" onclick="answerQuiz(this,'r4','a')">cinco mil</div><div class="opt" onclick="answerQuiz(this,'r4','c')">cincomil</div></div><div class="feedback" id="fb-r4"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">2</div><h2>Структура: ¿Qué hora es?</h2></div>
+<p>Время в испанском говорится через <strong>ser</strong> (быть). Главные конструкции:</p>
+<div class="callout tip"><h4>💡 3 правила</h4>
+<ul><li><strong>1 час</strong> = «<strong>es la una</strong>» (ед.ч., потому что 1)</li>
+<li><strong>2-12 часов</strong> = «<strong>son las dos, son las tres</strong>...» (мн.ч.)</li>
+<li>Минуты: <strong>y + минута</strong> (до :30), <strong>menos + минута</strong> (после :30)</li></ul>
+</div>
+<h3 style="font-size:1rem;margin:18px 0 10px">Базовые формулы:</h3>
+<div class="time-grid">
+<div class="time-card"><div class="digit">1:00</div><div class="word">Es la una</div><button class="speak-btn" onclick="speak('Es la una.')">🔊</button></div>
+<div class="time-card"><div class="digit">2:00</div><div class="word">Son las dos</div><button class="speak-btn" onclick="speak('Son las dos.')">🔊</button></div>
+<div class="time-card"><div class="digit">3:15</div><div class="word">Son las tres y cuarto</div><button class="speak-btn" onclick="speak('Son las tres y cuarto.')">🔊</button></div>
+<div class="time-card"><div class="digit">4:30</div><div class="word">Son las cuatro y media</div><button class="speak-btn" onclick="speak('Son las cuatro y media.')">🔊</button></div>
+<div class="time-card"><div class="digit">5:45</div><div class="word">Son las seis menos cuarto</div><button class="speak-btn" onclick="speak('Son las seis menos cuarto.')">🔊</button></div>
+<div class="time-card"><div class="digit">6:10</div><div class="word">Son las seis y diez</div><button class="speak-btn" onclick="speak('Son las seis y diez.')">🔊</button></div>
+<div class="time-card"><div class="digit">7:50</div><div class="word">Son las ocho menos diez</div><button class="speak-btn" onclick="speak('Son las ocho menos diez.')">🔊</button></div>
+<div class="time-card"><div class="digit">12:00 (ночь)</div><div class="word">Es medianoche</div><button class="speak-btn" onclick="speak('Es medianoche.')">🔊</button></div>
+<div class="time-card"><div class="digit">12:00 (день)</div><div class="word">Es mediodía</div><button class="speak-btn" onclick="speak('Es mediodía.')">🔊</button></div>
+</div>
+<div class="callout warning"><h4>⚠️ Часть дня — y cuarto, y media</h4><p><strong>y cuarto</strong> = +15 минут (буквально «и четверть»).<br><strong>y media</strong> = +30 минут (буквально «и половина»).<br><strong>menos cuarto</strong> = -15 (без четверти).<br>В Лат. Америке также: «cuarto para las tres» (без четверти три).</p></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">3</div><h2>«В X часов» — предлог A</h2></div>
+<p>Когда происходит действие — используй предлог <strong>a + la(s) + время</strong>:</p>
+<div class="speak-box"><div class="es">Trabajo a las nueve. <button class="speak-btn" onclick="speak('Trabajo a las nueve.')">🔊</button></div><div class="hint">[Работаю в 9.] a + las (мн.ч.).</div></div>
+<div class="speak-box"><div class="es">La cita es a la una y media. <button class="speak-btn" onclick="speak('La cita es a la una y media.')">🔊</button></div><div class="hint">[Встреча в 13:30.] a la (ед.ч. перед una).</div></div>
+<div class="speak-box"><div class="es">Como a las dos de la tarde. <button class="speak-btn" onclick="speak('Como a las dos de la tarde.')">🔊</button></div><div class="hint">[Обедаю в 2 дня.] «de la tarde» = pm.</div></div>
+<table class="vocab-table"><thead><tr><th>Время суток</th><th>Перевод</th></tr></thead><tbody>
+<tr><td class="es">de la mañana</td><td>утра (00:00-12:00)</td></tr>
+<tr><td class="es">del mediodía</td><td>полудня (12-14)</td></tr>
+<tr><td class="es">de la tarde</td><td>дня (14-20)</td></tr>
+<tr><td class="es">de la noche</td><td>вечера/ночи (20-24)</td></tr>
+<tr><td class="es">de la madrugada</td><td>раннего утра (0-6)</td></tr>
+</tbody></table>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">4</div><h2>Слова про время</h2></div>
+<table class="vocab-table"><thead><tr><th>Испанский</th><th>🔊</th><th>Перевод</th></tr></thead><tbody>
+<tr><td class="es">el reloj</td><td><button class="speak-btn" onclick="speak('el reloj')">🔊</button></td><td>часы</td></tr>
+<tr><td class="es">la hora</td><td><button class="speak-btn" onclick="speak('la hora')">🔊</button></td><td>час, время</td></tr>
+<tr><td class="es">el minuto</td><td><button class="speak-btn" onclick="speak('el minuto')">🔊</button></td><td>минута</td></tr>
+<tr><td class="es">el segundo</td><td><button class="speak-btn" onclick="speak('el segundo')">🔊</button></td><td>секунда</td></tr>
+<tr><td class="es">temprano / tarde</td><td><button class="speak-btn" onclick="speak('temprano, tarde')">🔊</button></td><td>рано / поздно</td></tr>
+<tr><td class="es">ahora</td><td><button class="speak-btn" onclick="speak('ahora')">🔊</button></td><td>сейчас</td></tr>
+<tr><td class="es">a tiempo</td><td><button class="speak-btn" onclick="speak('a tiempo')">🔊</button></td><td>вовремя</td></tr>
+<tr><td class="es">el horario</td><td><button class="speak-btn" onclick="speak('el horario')">🔊</button></td><td>расписание</td></tr>
+<tr><td class="es">abierto / cerrado</td><td><button class="speak-btn" onclick="speak('abierto, cerrado')">🔊</button></td><td>открыт / закрыт</td></tr>
+<tr><td class="es">empezar / terminar</td><td><button class="speak-btn" onclick="speak('empezar, terminar')">🔊</button></td><td>начинать / заканчивать</td></tr>
+<tr><td class="es">durar</td><td><button class="speak-btn" onclick="speak('durar')">🔊</button></td><td>длиться</td></tr>
+</tbody></table></div>
+
+<div class="section"><div class="section-header"><div class="section-num">5</div><h2>Типичные ошибки</h2></div>
+<table class="mistakes-table"><thead><tr><th>Хочешь</th><th>❌</th><th>✅</th><th>Почему</th></tr></thead><tbody>
+<tr><td>«Сейчас 1 час»</td><td><span class="wrong">Son la una</span></td><td><span class="right">Es la una</span></td><td>1 — ед.ч., «es»</td></tr>
+<tr><td>«В 5 часов»</td><td><span class="wrong">En las cinco</span></td><td><span class="right">A las cinco</span></td><td>Время — «a + las»</td></tr>
+<tr><td>«В 1 час»</td><td><span class="wrong">A las una</span></td><td><span class="right">A la una</span></td><td>una — ед.ч., «la»</td></tr>
+<tr><td>«15:00 (3 дня)»</td><td><span class="wrong">las tres de la mañana</span></td><td><span class="right">las tres de la tarde</span></td><td>После 12:00 — tarde</td></tr>
+<tr><td>«2 часа 30 минут»</td><td><span class="wrong">las dos y treinta</span> (можно но редко)</td><td><span class="right">las dos y media</span></td><td>30 = media</td></tr>
+</tbody></table></div>
+
+<div class="section"><div class="section-header"><div class="section-num">6</div><h2>Тест 1</h2></div>
+<div class="quiz">
+<div class="quiz-q" id="q1"><div class="q-text">1. «1:00»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q1','a')">Es la una</div><div class="opt" onclick="answerQuiz(this,'q1','b')">Son la una</div><div class="opt" onclick="answerQuiz(this,'q1','c')">Es las una</div></div><div class="feedback" id="fb-q1"></div></div>
+<div class="quiz-q" id="q2"><div class="q-text">2. «3:30»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q2','b')">Son las tres y treinta</div><div class="opt" onclick="answerQuiz(this,'q2','a')">Son las tres y media</div><div class="opt" onclick="answerQuiz(this,'q2','c')">Es las tres media</div></div><div class="feedback" id="fb-q2"></div></div>
+<div class="quiz-q" id="q3"><div class="q-text">3. «В 9 утра»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q3','c')">en las nueve</div><div class="opt" onclick="answerQuiz(this,'q3','a')">a las nueve de la mañana</div><div class="opt" onclick="answerQuiz(this,'q3','b')">las nueve mañana</div></div><div class="feedback" id="fb-q3"></div></div>
+<div class="quiz-q" id="q4"><div class="q-text">4. «6:45»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q4','b')">Son las seis y cuarenta y cinco</div><div class="opt" onclick="answerQuiz(this,'q4','a')">Son las siete menos cuarto</div><div class="opt" onclick="answerQuiz(this,'q4','c')">Son las seis menos cuarto</div></div><div class="feedback" id="fb-q4"></div></div>
+<div class="quiz-q" id="q5"><div class="q-text">5. «15:00» — какая часть дня?</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q5','c')">de la mañana</div><div class="opt" onclick="answerQuiz(this,'q5','a')">de la tarde</div><div class="opt" onclick="answerQuiz(this,'q5','b')">de la noche</div></div><div class="feedback" id="fb-q5"></div></div>
+<div class="quiz-q" id="q6"><div class="q-text">6. «Расписание»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q6','b')">la hora</div><div class="opt" onclick="answerQuiz(this,'q6','a')">el horario</div><div class="opt" onclick="answerQuiz(this,'q6','c')">el reloj</div></div><div class="feedback" id="fb-q6"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">7</div><h2>Тест 2</h2></div>
+<div class="quiz">
+<div class="text-ex" id="te1"><div class="tex-q">1. «2:15» = Son las dos y ___.</div><input type="text" class="text-input" id="ti1"><button class="check-btn" onclick="checkText('ti1','cuarto','fb-te1')">Проверить</button><button class="show-ans" onclick="showAns('ans-te1')">Показать</button><div class="feedback" id="fb-te1"></div><div class="answer-reveal" id="ans-te1">✅ cuarto</div></div>
+<div class="text-ex" id="te2"><div class="tex-q">2. «В 8 вечера» = ___ las ocho de la noche.</div><input type="text" class="text-input" id="ti2"><button class="check-btn" onclick="checkText('ti2','a','fb-te2')">Проверить</button><button class="show-ans" onclick="showAns('ans-te2')">Показать</button><div class="feedback" id="fb-te2"></div><div class="answer-reveal" id="ans-te2">✅ a</div></div>
+<div class="text-ex" id="te3"><div class="tex-q">3. «1:00»: Es ___ una.</div><input type="text" class="text-input" id="ti3"><button class="check-btn" onclick="checkText('ti3','la','fb-te3')">Проверить</button><button class="show-ans" onclick="showAns('ans-te3')">Показать</button><div class="feedback" id="fb-te3"></div><div class="answer-reveal" id="ans-te3">✅ la</div></div>
+<div class="text-ex" id="te4"><div class="tex-q">4. «5 утра» = las cinco de la ___.</div><input type="text" class="text-input" id="ti4"><button class="check-btn" onclick="checkText('ti4','mañana','fb-te4')">Проверить</button><button class="show-ans" onclick="showAns('ans-te4')">Показать</button><div class="feedback" id="fb-te4"></div><div class="answer-reveal" id="ans-te4">✅ mañana</div></div>
+<div class="text-ex" id="te5"><div class="tex-q">5. «Полдень»:</div><input type="text" class="text-input" id="ti5"><button class="check-btn" onclick="checkText('ti5','mediodía','fb-te5')">Проверить</button><button class="show-ans" onclick="showAns('ans-te5')">Показать</button><div class="feedback" id="fb-te5"></div><div class="answer-reveal" id="ans-te5">✅ mediodía</div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">8</div><h2>Диалоги</h2></div>
+<div class="dialogue"><div class="dlg-header">💬 Назначить встречу<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD1()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Tomamos un café mañana? <button class="speak-btn" onclick="speak('¿Tomamos un café mañana?')">🔊</button></div><div class="dlg-ru translation">— Кофе завтра попьём?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Sí, ¿a qué hora? <button class="speak-btn" onclick="speak('Sí, ¿a qué hora?')">🔊</button></div><div class="dlg-ru translation">— Да, во сколько?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿A las cinco de la tarde te viene bien? <button class="speak-btn" onclick="speak('¿A las cinco de la tarde te viene bien?')">🔊</button></div><div class="dlg-ru translation">— В 17:00 подходит?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">A las cinco no puedo. ¿Y a las seis y media? <button class="speak-btn" onclick="speak('A las cinco no puedo. ¿Y a las seis y media?')">🔊</button></div><div class="dlg-ru translation">— В 17 не могу. А в 18:30?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">Perfecto. ¿Dónde nos vemos? <button class="speak-btn" onclick="speak('Perfecto. ¿Dónde nos vemos?')">🔊</button></div><div class="dlg-ru translation">— Отлично. Где встретимся?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">En el café de la plaza Reial, a las 18:30. <button class="speak-btn" onclick="speak('En el café de la plaza Reial, a las seis y media.')">🔊</button></div><div class="dlg-ru translation">— В кафе на Plaza Reial, в 18:30.</div></div></div>
+</div>
+
+<div class="dialogue"><div class="dlg-header">💬 Расписание магазина<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD2()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Я</div><div><div class="dlg-es">Disculpe, ¿a qué hora abren? <button class="speak-btn" onclick="speak('Disculpe, ¿a qué hora abren?')">🔊</button></div><div class="dlg-ru translation">— Извините, во сколько открываетесь?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">П</div><div><div class="dlg-es">De lunes a viernes, de nueve a dos y de cinco a ocho. <button class="speak-btn" onclick="speak('De lunes a viernes, de nueve a dos y de cinco a ocho.')">🔊</button></div><div class="dlg-ru translation">— Пн-пт, 9-14 и 17-20.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Я</div><div><div class="dlg-es">¿Y los sábados? <button class="speak-btn" onclick="speak('¿Y los sábados?')">🔊</button></div><div class="dlg-ru translation">— А по субботам?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">П</div><div><div class="dlg-es">Solo por la mañana, hasta las dos. Los domingos cerrado. <button class="speak-btn" onclick="speak('Solo por la mañana, hasta las dos. Los domingos cerrado.')">🔊</button></div><div class="dlg-ru translation">— Только утром, до 14. Воскресенье — закрыто.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Я</div><div><div class="dlg-es">¿Tienen horario especial en agosto? <button class="speak-btn" onclick="speak('¿Tienen horario especial en agosto?')">🔊</button></div><div class="dlg-ru translation">— Особое расписание в августе?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">П</div><div><div class="dlg-es">Sí, cerramos las dos primeras semanas de agosto. <button class="speak-btn" onclick="speak('Sí, cerramos las dos primeras semanas de agosto.')">🔊</button></div><div class="dlg-ru translation">— Да, закрыты первые 2 недели августа.</div></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">9</div><h2>Говорение</h2></div>
+<div class="speak-box"><div class="speak-tag">🎙 Распорядок дня</div><div class="es">Me levanto a las 7. Trabajo de 9 a 6. Como a las 2. Vuelvo a casa a las 7 y media. Ceno a las 9. Me acuesto a las 11. <button class="speak-btn" onclick="speak('Me levanto a las siete. Trabajo de nueve a seis. Como a las dos. Vuelvo a casa a las siete y media. Ceno a las nueve. Me acuesto a las once.')">🔊</button></div></div>
+<div class="speak-box"><div class="speak-tag">🎙 Договориться</div><div class="es">¿A qué hora quedamos? ¿Te viene bien a las siete? <button class="speak-btn" onclick="speak('¿A qué hora quedamos? ¿Te viene bien a las siete?')">🔊</button></div></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">10</div><h2>🇪🇸 Испания на практике — Расписание</h2></div>
+<div class="spain-card"><div class="stag">⏰ Реальный сценарий</div><h3>Что когда работает в Барселоне</h3>
+<div class="callout info"><h4>💡 Стандартное расписание</h4><ul>
+<li><strong>Магазины маленькие:</strong> 9:00-14:00 и 17:00-20:00 (с сиестой). Воскресенье закрыто.</li>
+<li><strong>Супермаркеты (Mercadona, Carrefour):</strong> 9:00-21:30 без перерыва. Часто открыты в воскресенье до 14.</li>
+<li><strong>Банки:</strong> только утром, 8:30-14:00 пн-пт. Иногда чт до 18.</li>
+<li><strong>Почта (Correos):</strong> 8:30-20:30 пн-пт, сб 9:30-13:00.</li>
+<li><strong>Аптеки (farmacias):</strong> 9:00-21:00 многие. Есть круглосуточные (de guardia).</li>
+<li><strong>Рестораны:</strong> обед 13:00-16:00, ужин 20:00-23:00. Между — закрыто.</li>
+<li><strong>Метро:</strong> 5:00-24:00 пн-чт. Пт до 02:00. Сб 24 часа.</li>
+<li><strong>Музеи:</strong> 10:00-19:00. Понедельник — выходной у многих (Пикассо).</li>
+<li><strong>Август:</strong> ~50% маленьких магазинов закрыты на отпуск (vacaciones).</li>
+</ul></div></div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">11</div><h2>Культура</h2></div>
+<div class="culture"><div class="ctag">🌍 Культура</div><h4>Испанский режим — поздно всё</h4>
+<p>В Испании всё на 2-3 часа позже Северной Европы. <strong>Завтрак</strong>: 8-10. <strong>Обед</strong>: 14-16 (главный приём пищи!). <strong>Меренда</strong>: 17-19. <strong>Ужин</strong>: 21-23. Из-за этого вечером жизнь активна до полуночи, особенно летом.</p>
+<p style="margin-top:8px">«Часы пик» в общественном транспорте: 8-9, 14-15, 18-20. Метро в выходные работает 24 часа в субботу — Барселона тусуется до утра.</p>
+<p style="margin-top:8px">Часовой пояс — формально CET (UTC+1, летом +2). Но географически Испания на западе — должна быть UTC+0. Из-за этого солнце садится позже («испанский день длиннее»).</p></div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">12</div><h2>Anki + ДЗ</h2></div>
+<div class="anki"><div class="atag">🃏 16 карточек L18</div>
+<div class="anki-preview" id="anki-preview-L18"></div>
+<button class="anki-export-btn" onclick="exportAnkiL18()">📥 Скачать L18</button></div>
+<div class="callout info" style="margin-top:16px"><h4>📅 До L19</h4><ul>
+<li>LT эп. 24 + 15 мин Dreaming Spanish</li>
+<li>Polyglot #5. <a href="../../lessons/lesson_05.html" target="_blank" style="color:var(--gold)">📚 Polyglot #5</a></li>
+<li>Запиши голос: расскажи свой день почасово (5+ предложений)</li>
+<li>Назначай 3 встречи разным людям вслух</li>
+</ul></div>
+<div class="callout success" style="margin-top:14px"><h4>🎉 L18 готов!</h4><p>В L19 — конструкция Hay более глубоко.</p></div></div>
+</div>
+
+<div class="done-bar"><div class="nav-links"><a href="../index.html" class="nav-link-btn">← Дашборд</a><a href="L17.html" class="nav-link-btn">← L17</a><a href="L19.html" class="nav-link-btn">L19 →</a></div><button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button></div>
+
+<script>
+const LESSON_ID='L18';const LS_KEY='esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+function speak(text,lang){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}
+function speakSequence(phrases,delay){delay=delay||2400;window.speechSynthesis.cancel();phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});}
+function playD1(){speakSequence(['¿Tomamos un café mañana?','Sí, ¿a qué hora?','¿A las cinco de la tarde te viene bien?','A las cinco no puedo. ¿Y a las seis y media?','Perfecto. ¿Dónde nos vemos?','En el café de la plaza Reial, a las seis y media.'],2700);}
+function playD2(){speakSequence(['Disculpe, ¿a qué hora abren?','De lunes a viernes, de nueve a dos y de cinco a ocho.','¿Y los sábados?','Solo por la mañana, hasta las dos. Los domingos cerrado.','¿Tienen horario especial en agosto?','Sí, cerramos las dos primeras semanas de agosto.'],2700);}
+const quizExpl={r1:'quinientos.',r2:'un millón de personas.',r3:'la hipoteca.',r4:'cinco mil — mil не меняется.',q1:'Es la una (ед.ч.).',q2:'Son las tres y media.',q3:'a las nueve de la mañana.',q4:'Son las siete menos cuarto.',q5:'de la tarde (12-20).',q6:'el horario.'};
+function answerQuiz(el,qId,correctKey){const c=el.closest('.quiz-q');if(c.dataset.answered==='true')return;c.dataset.answered='true';c.querySelectorAll('.opt').forEach(function(o){const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');o.onclick=null;});const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);const userKey=um&&um[1];if(userKey!==correctKey)el.classList.add('wrong');const fb=document.getElementById('fb-'+qId);fb.className='feedback show '+(userKey===correctKey?'ok':'no');fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ '+answer[0]+'...';}}
+function showAns(id){document.getElementById(id).classList.add('show');}
+let showingTrans=false;function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
+const totalSections=12;function updateProgress(){const s=window.scrollY;const t=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(s/t*100));document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=Math.round(pct/100*totalSections)+' / '+totalSections;}
+window.addEventListener('scroll',updateProgress);
+const ANKI_DECK_L18=[
+{front:"¿Qué hora es?",back:"Который час?\n\nUniversal вопрос."},
+{front:"Es la una",back:"Сейчас 1:00\n\n«Es» т.к. 1 = ед.ч."},
+{front:"Son las dos / tres / etc.",back:"Сейчас 2 / 3 / ... часа\n\n«Son las» для всех >1."},
+{front:"y cuarto",back:"+15 минут (четверть)\n\nSon las dos y cuarto = 2:15."},
+{front:"y media",back:"+30 минут (половина)\n\nSon las tres y media = 3:30."},
+{front:"menos cuarto",back:"-15 минут (без четверти)\n\nSon las seis menos cuarto = 5:45."},
+{front:"de la mañana / tarde / noche",back:"Утра / дня / вечера\n\nLas 9 de la mañana = 9:00 AM."},
+{front:"mediodía / medianoche",back:"Полдень / полночь\n\nA mediodía como."},
+{front:"A las X",back:"В X часов (действие)\n\nA las nueve trabajo."},
+{front:"el horario",back:"Расписание\n\nEl horario del banco."},
+{front:"abierto / cerrado",back:"Открыто / закрыто\n\nLa tienda está abierta."},
+{front:"abrir / cerrar",back:"Открывать / закрывать\n\n¿A qué hora abren?"},
+{front:"empezar / terminar",back:"Начинать / заканчивать\n\nEmpiezo a trabajar a las 9."},
+{front:"durar",back:"Длиться\n\n¿Cuánto dura? — La película dura 2 horas."},
+{front:"a tiempo",back:"Вовремя\n\nLlegar a tiempo — приходить вовремя."},
+{front:"temprano / tarde",back:"Рано / поздно\n\nEs temprano. Es tarde."}
+];
+function renderAnkiPreview(){const c=document.getElementById('anki-preview-L18');if(!c)return;c.innerHTML=ANKI_DECK_L18.slice(0,5).map(function(card){return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')"><div class="anki-card-inner"><div class="anki-card-front">'+card.front+'</div><div class="anki-card-back">'+card.back.replace(/\n/g,'<br>')+'</div></div></div>';}).join('');}
+renderAnkiPreview();
+function exportAnkiL18(){const tsv=ANKI_DECK_L18.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='L18_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
+</script>
+</body>
+</html>

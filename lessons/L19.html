@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L19: Hay — есть и находится</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e,#0f1118);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px}.obj .ico{font-size:1.2rem}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;overflow:hidden}.progress-fill{height:100%;background:var(--gold)}.progress-label{font-size:.72rem;color:var(--muted);text-align:right}
+.section{margin-bottom:36px}.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}.callout p,.callout ul{font-size:.88rem;color:var(--muted)}.callout ul{margin-left:16px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;padding:0 4px;color:var(--gold)}.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600}
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.vs-card{background:var(--bg2);border-radius:8px;padding:16px 18px}
+.vs-card.hay{border:1px solid var(--gold)}.vs-card.estar{border:1px solid var(--blue)}
+.vs-card h3{font-size:1.3rem;font-weight:800;font-family:Consolas,monospace;margin-bottom:8px}
+.vs-card.hay h3{color:var(--gold)}.vs-card.estar h3{color:var(--blue)}
+.vs-card ul{margin-left:16px;font-size:.85rem;color:var(--muted)}.vs-card li{margin-bottom:3px}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;color:var(--muted)}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border)}.vocab-table .es{font-weight:600}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;color:var(--red)}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border)}.mistakes-table .wrong{color:var(--red);text-decoration:line-through;opacity:.7}.mistakes-table .right{color:var(--green);font-weight:600}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.speak-box .es{font-size:1.05rem;font-weight:600;margin-top:4px}.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}.quiz-q:last-child{border-bottom:none}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem}.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none}
+.text-input.correct{border-color:var(--green)!important}.text-input.wrong{border-color:var(--red)!important}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px}.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);width:50px;flex-shrink:0}.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}.culture p{font-size:.86rem;color:var(--muted)}
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;color:var(--gold);margin-bottom:8px}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem}.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-weight:700;cursor:pointer}.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;color:var(--text);text-decoration:none;font-weight:600}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}.vs-grid{grid-template-columns:1fr}}
+</style></head>
+<body><div class="wrap">
+<div class="nav"><a href="../index.html">← Дашборд</a><span class="level">A1 · Фаза 1 · День 39</span><a href="L20.html">L20 →</a></div>
+
+<div class="hero"><div class="phase-tag">🌱 Фаза 1 · Ключевая грамматика</div>
+<h1><span class="hl">Hay</span> — есть, имеется, находится</h1>
+<p class="sub">Универсальная конструкция «hay» — наличие чего-либо. Главное отличие от estar.</p>
+<div class="objectives">
+<div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Уверенно использовать hay vs está</p></div></div>
+<div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 мин</p></div></div>
+<div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>LT эп. 25</p></div></div>
+<div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Опиши что есть в твоём районе</p></div></div>
+</div></div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 11</div>
+
+<div class="section"><div class="section-header"><div class="section-num">1</div><h2>Повторение L18</h2></div>
+<div class="quiz">
+<div class="quiz-q" id="r1"><div class="q-text">1. «1:00»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r1','a')">Es la una</div><div class="opt" onclick="answerQuiz(this,'r1','b')">Son la una</div><div class="opt" onclick="answerQuiz(this,'r1','c')">Es las una</div></div><div class="feedback" id="fb-r1"></div></div>
+<div class="quiz-q" id="r2"><div class="q-text">2. «2:30»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r2','b')">dos y treinta</div><div class="opt" onclick="answerQuiz(this,'r2','a')">dos y media</div><div class="opt" onclick="answerQuiz(this,'r2','c')">media dos</div></div><div class="feedback" id="fb-r2"></div></div>
+<div class="quiz-q" id="r3"><div class="q-text">3. «В 8 утра»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r3','c')">en las ocho</div><div class="opt" onclick="answerQuiz(this,'r3','a')">a las ocho de la mañana</div><div class="opt" onclick="answerQuiz(this,'r3','b')">a las ocho mañana</div></div><div class="feedback" id="fb-r3"></div></div>
+<div class="quiz-q" id="r4"><div class="q-text">4. Полдень:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r4','b')">medianoche</div><div class="opt" onclick="answerQuiz(this,'r4','a')">mediodía</div><div class="opt" onclick="answerQuiz(this,'r4','c')">mediahora</div></div><div class="feedback" id="fb-r4"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">2</div><h2>Hay — одна форма на всё</h2></div>
+<p><strong>Hay</strong> — это особая форма глагола haber. Используется ОДНА форма для:</p>
+<ul style="margin-left:20px;font-size:.95rem">
+<li>«Есть»: Hay un banco aquí. — Здесь есть банк.</li>
+<li>«Имеется»: Hay tres habitaciones. — 3 комнаты.</li>
+<li>«Есть ли?»: ¿Hay café? — Есть кофе?</li>
+<li>«Нет (отрицание)»: No hay leche. — Нет молока.</li>
+</ul>
+<div class="callout tip"><h4>💡 Hay не меняется по числу!</h4><p><strong>Hay un libro</strong> = есть книга.<br><strong>Hay diez libros</strong> = есть 10 книг.<br>В обоих случаях — «hay». Не «han», не «hayan».</p></div>
+<div class="callout info"><h4>💡 Аналогия с английским</h4><p>Hay = there is / there are. Одна форма для обоих.<br>«There is a book» = Hay un libro.<br>«There are 5 books» = Hay cinco libros.</p></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">3</div><h2>Hay vs Está — главная таблица</h2></div>
+<div class="vs-grid">
+<div class="vs-card hay"><h3>HAY</h3><ul>
+<li>Новый объект (un, una, unos, unas, числа)</li>
+<li>Что есть в общем</li>
+<li>«Существует» в пространстве</li>
+<li>Hay un médico aquí.</li>
+<li>Hay tres farmacias en la calle.</li>
+<li>¿Hay alguien? — Есть кто?</li>
+</ul></div>
+<div class="vs-card estar"><h3>ESTÁ / ESTÁN</h3><ul>
+<li>Известный объект (el, la, los, las)</li>
+<li>Конкретное местоположение</li>
+<li>Меняется по числу: está / están</li>
+<li>El médico está en la consulta.</li>
+<li>Las farmacias están abiertas.</li>
+<li>¿Dónde está María? — Где Мария?</li>
+</ul></div></div>
+
+<h3 style="font-size:1rem;margin:18px 0 10px">Сравни:</h3>
+<div class="speak-box"><div class="es">— ¿Hay un baño cerca? <button class="speak-btn" onclick="speak('¿Hay un baño cerca?')">🔊</button></div><div class="hint">[Туалет есть рядом?] — Спрашиваем про НАЛИЧИЕ.</div></div>
+<div class="speak-box"><div class="es">— Sí, hay uno. ¿Dónde está? <button class="speak-btn" onclick="speak('Sí, hay uno. ¿Dónde está?')">🔊</button></div><div class="hint">[Да, есть один. Где он?] — Сначала hay (есть), потом está (где конкретно).</div></div>
+<div class="speak-box"><div class="es">— El baño está al fondo. <button class="speak-btn" onclick="speak('El baño está al fondo.')">🔊</button></div><div class="hint">[Тот туалет в глубине.] — Конкретный, известный.</div></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">4</div><h2>«Сколько есть?» — hay с числами</h2></div>
+<table class="vocab-table"><thead><tr><th>Вопрос</th><th>Ответ</th></tr></thead><tbody>
+<tr><td>¿Cuántas habitaciones hay?</td><td>Hay tres habitaciones.</td></tr>
+<tr><td>¿Cuánta gente hay?</td><td>Hay mucha gente.</td></tr>
+<tr><td>¿Hay alguna tienda abierta?</td><td>Sí, hay una en la esquina.</td></tr>
+<tr><td>¿Cuántos años hay entre vosotros?</td><td>Hay 5 años de diferencia.</td></tr>
+</tbody></table>
+<div class="callout warning"><h4>⚠️ Hay + неопределённое / Hay + число</h4><p>«Есть стол» = Hay <strong>una</strong> mesa. (НЕ «Hay la mesa».)<br>«Есть 5 столов» = Hay <strong>cinco</strong> mesas.<br>С определённым артиклем (el/la) — используй ESTÁ: «El estol está aquí».</p></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">5</div><h2>Типичные ошибки</h2></div>
+<table class="mistakes-table"><thead><tr><th>Хочешь</th><th>❌</th><th>✅</th><th>Почему</th></tr></thead><tbody>
+<tr><td>«Где банк?»</td><td><span class="wrong">¿Dónde hay el banco?</span></td><td><span class="right">¿Dónde está el banco?</span></td><td>Конкретный (el) = está</td></tr>
+<tr><td>«Есть 3 окна»</td><td><span class="wrong">Estan tres ventanas</span></td><td><span class="right">Hay tres ventanas</span></td><td>Наличие = hay</td></tr>
+<tr><td>«Здесь нет проблем»</td><td><span class="wrong">No están problemas</span></td><td><span class="right">No hay problemas</span></td><td>Отрицание наличия = no hay</td></tr>
+<tr><td>«Есть 5 человек»</td><td><span class="wrong">Hayn cinco personas</span></td><td><span class="right">Hay cinco personas</span></td><td>Hay не меняется!</td></tr>
+<tr><td>«Кафе в центре»</td><td><span class="wrong">Hay el café en el centro</span></td><td><span class="right">El café está en el centro</span></td><td>el café = известный = está</td></tr>
+</tbody></table></div>
+
+<div class="section"><div class="section-header"><div class="section-num">6</div><h2>Тест 1</h2></div>
+<div class="quiz">
+<div class="quiz-q" id="q1"><div class="q-text">1. «На столе книга» = ___ un libro en la mesa.</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q1','a')">Hay</div><div class="opt" onclick="answerQuiz(this,'q1','b')">Está</div><div class="opt" onclick="answerQuiz(this,'q1','c')">Es</div></div><div class="feedback" id="fb-q1"></div></div>
+<div class="quiz-q" id="q2"><div class="q-text">2. «Та книга на столе» = El libro ___ en la mesa.</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q2','b')">hay</div><div class="opt" onclick="answerQuiz(this,'q2','a')">está</div><div class="opt" onclick="answerQuiz(this,'q2','c')">es</div></div><div class="feedback" id="fb-q2"></div></div>
+<div class="quiz-q" id="q3"><div class="q-text">3. «10 студентов в классе» = ___ diez estudiantes.</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q3','c')">Están</div><div class="opt" onclick="answerQuiz(this,'q3','a')">Hay</div><div class="opt" onclick="answerQuiz(this,'q3','b')">Es</div></div><div class="feedback" id="fb-q3"></div></div>
+<div class="quiz-q" id="q4"><div class="q-text">4. «Где Хуан?»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q4','b')">¿Dónde hay Juan?</div><div class="opt" onclick="answerQuiz(this,'q4','a')">¿Dónde está Juan?</div><div class="opt" onclick="answerQuiz(this,'q4','c')">¿Hay dónde Juan?</div></div><div class="feedback" id="fb-q4"></div></div>
+<div class="quiz-q" id="q5"><div class="q-text">5. «Нет проблем»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q5','c')">No están problemas</div><div class="opt" onclick="answerQuiz(this,'q5','a')">No hay problemas</div><div class="opt" onclick="answerQuiz(this,'q5','b')">No haben problemas</div></div><div class="feedback" id="fb-q5"></div></div>
+<div class="quiz-q" id="q6"><div class="q-text">6. Hay меняется по числу?</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q6','b')">да: hay / hayn</div><div class="opt" onclick="answerQuiz(this,'q6','a')">нет, одна форма</div><div class="opt" onclick="answerQuiz(this,'q6','c')">да: ha / han</div></div><div class="feedback" id="fb-q6"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">7</div><h2>Тест 2</h2></div>
+<div class="quiz">
+<div class="text-ex" id="te1"><div class="tex-q">1. «На улице есть аптека» = En la calle ___ una farmacia.</div><input type="text" class="text-input" id="ti1"><button class="check-btn" onclick="checkText('ti1','hay','fb-te1')">Проверить</button><button class="show-ans" onclick="showAns('ans-te1')">Показать</button><div class="feedback" id="fb-te1"></div><div class="answer-reveal" id="ans-te1">✅ hay</div></div>
+<div class="text-ex" id="te2"><div class="tex-q">2. «Аптека на углу» = La farmacia ___ en la esquina.</div><input type="text" class="text-input" id="ti2"><button class="check-btn" onclick="checkText('ti2','está','fb-te2')">Проверить</button><button class="show-ans" onclick="showAns('ans-te2')">Показать</button><div class="feedback" id="fb-te2"></div><div class="answer-reveal" id="ans-te2">✅ está</div></div>
+<div class="text-ex" id="te3"><div class="tex-q">3. «Нет воды» = No ___ agua.</div><input type="text" class="text-input" id="ti3"><button class="check-btn" onclick="checkText('ti3','hay','fb-te3')">Проверить</button><button class="show-ans" onclick="showAns('ans-te3')">Показать</button><div class="feedback" id="fb-te3"></div><div class="answer-reveal" id="ans-te3">✅ hay</div></div>
+<div class="text-ex" id="te4"><div class="tex-q">4. «Дети дома» = Los niños ___ en casa.</div><input type="text" class="text-input" id="ti4"><button class="check-btn" onclick="checkText('ti4','están','fb-te4')">Проверить</button><button class="show-ans" onclick="showAns('ans-te4')">Показать</button><div class="feedback" id="fb-te4"></div><div class="answer-reveal" id="ans-te4">✅ están</div></div>
+<div class="text-ex" id="te5"><div class="tex-q">5. «Сколько кафе на улице?» = ¿Cuántos cafés ___ en la calle?</div><input type="text" class="text-input" id="ti5"><button class="check-btn" onclick="checkText('ti5','hay','fb-te5')">Проверить</button><button class="show-ans" onclick="showAns('ans-te5')">Показать</button><div class="feedback" id="fb-te5"></div><div class="answer-reveal" id="ans-te5">✅ hay</div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">8</div><h2>Диалоги</h2></div>
+<div class="dialogue"><div class="dlg-header">💬 Что есть в районе<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD1()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Hay un supermercado cerca? <button class="speak-btn" onclick="speak('¿Hay un supermercado cerca?')">🔊</button></div><div class="dlg-ru translation">— Супермаркет есть рядом?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Sí, hay dos. Mercadona y Carrefour. <button class="speak-btn" onclick="speak('Sí, hay dos. Mercadona y Carrefour.')">🔊</button></div><div class="dlg-ru translation">— Да, два. Mercadona и Carrefour.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Dónde está el Mercadona? <button class="speak-btn" onclick="speak('¿Dónde está el Mercadona?')">🔊</button></div><div class="dlg-ru translation">— Где Mercadona?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Está al final de la calle, a la derecha. <button class="speak-btn" onclick="speak('Está al final de la calle, a la derecha.')">🔊</button></div><div class="dlg-ru translation">— В конце улицы, справа.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Y hay panadería también? <button class="speak-btn" onclick="speak('¿Y hay panadería también?')">🔊</button></div><div class="dlg-ru translation">— А булочная есть?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Sí, hay tres. Una está justo enfrente del supermercado. <button class="speak-btn" onclick="speak('Sí, hay tres. Una está justo enfrente del supermercado.')">🔊</button></div><div class="dlg-ru translation">— Да, 3. Одна прямо напротив супермаркета.</div></div></div>
+</div>
+
+<div class="dialogue"><div class="dlg-header">💬 В отеле — что есть в номере<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD2()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Я</div><div><div class="dlg-es">¿Hay wifi en la habitación? <button class="speak-btn" onclick="speak('¿Hay wifi en la habitación?')">🔊</button></div><div class="dlg-ru translation">— Wi-Fi в номере есть?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Р</div><div><div class="dlg-es">Sí, hay wifi gratis. La contraseña está en la tarjeta. <button class="speak-btn" onclick="speak('Sí, hay wifi gratis. La contraseña está en la tarjeta.')">🔊</button></div><div class="dlg-ru translation">— Да, бесплатный. Пароль на карте.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Я</div><div><div class="dlg-es">¿Hay aire acondicionado? <button class="speak-btn" onclick="speak('¿Hay aire acondicionado?')">🔊</button></div><div class="dlg-ru translation">— Кондиционер есть?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Р</div><div><div class="dlg-es">Sí, en todas las habitaciones. <button class="speak-btn" onclick="speak('Sí, en todas las habitaciones.')">🔊</button></div><div class="dlg-ru translation">— Да, во всех номерах.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Я</div><div><div class="dlg-es">¿Y dónde está el desayuno? <button class="speak-btn" onclick="speak('¿Y dónde está el desayuno?')">🔊</button></div><div class="dlg-ru translation">— А где завтрак?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Р</div><div><div class="dlg-es">En el restaurante de la primera planta, de 7 a 10. <button class="speak-btn" onclick="speak('En el restaurante de la primera planta, de siete a diez.')">🔊</button></div><div class="dlg-ru translation">— В ресторане на 1 этаже, с 7 до 10.</div></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">9</div><h2>Говорение</h2></div>
+<div class="speak-box"><div class="speak-tag">🎙 Опиши свой район</div><div class="es">En mi calle hay dos cafés, una farmacia y un supermercado. El supermercado está al final de la calle. Hay también un parque grande. <button class="speak-btn" onclick="speak('En mi calle hay dos cafés, una farmacia y un supermercado. El supermercado está al final de la calle. Hay también un parque grande.')">🔊</button></div></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">10</div><h2>🇪🇸 Испания на практике — Поиск услуг</h2></div>
+<div class="spain-card"><div class="stag">🔍 Сценарий</div><h3>Спросить местных «что есть»</h3>
+<div class="phrase-list">
+<div class="phrase"><span class="es">¿Hay una farmacia abierta?</span><button class="speak-btn" onclick="speak('¿Hay una farmacia abierta?')">🔊</button><span class="tr">Аптека открыта есть?</span></div>
+<div class="phrase"><span class="es">¿Hay wifi gratis aquí?</span><button class="speak-btn" onclick="speak('¿Hay wifi gratis aquí?')">🔊</button><span class="tr">Бесплатный Wi-Fi?</span></div>
+<div class="phrase"><span class="es">¿Hay descuento para residentes?</span><button class="speak-btn" onclick="speak('¿Hay descuento para residentes?')">🔊</button><span class="tr">Скидка для резидентов?</span></div>
+<div class="phrase"><span class="es">No hay sitio.</span><button class="speak-btn" onclick="speak('No hay sitio.')">🔊</button><span class="tr">Нет места.</span></div>
+<div class="phrase"><span class="es">¿Hay algún problema?</span><button class="speak-btn" onclick="speak('¿Hay algún problema?')">🔊</button><span class="tr">Есть проблема?</span></div>
+<div class="phrase"><span class="es">No hay de qué.</span><button class="speak-btn" onclick="speak('No hay de qué.')">🔊</button><span class="tr">Не за что. (на «спасибо»)</span></div>
+</div></div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">11</div><h2>Anki + ДЗ</h2></div>
+<div class="anki"><div class="atag">🃏 15 карточек L19</div>
+<div class="anki-preview" id="anki-preview-L19"></div>
+<button class="anki-export-btn" onclick="exportAnkiL19()">📥 Скачать L19</button></div>
+<div class="callout info" style="margin-top:16px"><h4>📅 До L20</h4><ul><li>LT эп. 25 + 15 мин DS</li><li>Опиши вслух 5 мест с «hay»</li></ul></div>
+<div class="callout success" style="margin-top:14px"><h4>🎉 L19 готов!</h4><p>В L20 — tener: «иметь» и «нуждаться/чувствовать».</p></div></div>
+</div>
+
+<div class="done-bar"><div class="nav-links"><a href="../index.html" class="nav-link-btn">← Дашборд</a><a href="L18.html" class="nav-link-btn">← L18</a><a href="L20.html" class="nav-link-btn">L20 →</a></div><button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button></div>
+
+<script>
+const LESSON_ID='L19';const LS_KEY='esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+function speak(text,lang){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}
+function speakSequence(phrases,delay){delay=delay||2400;window.speechSynthesis.cancel();phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});}
+function playD1(){speakSequence(['¿Hay un supermercado cerca?','Sí, hay dos. Mercadona y Carrefour.','¿Dónde está el Mercadona?','Está al final de la calle, a la derecha.','¿Y hay panadería también?','Sí, hay tres. Una está justo enfrente del supermercado.'],2700);}
+function playD2(){speakSequence(['¿Hay wifi en la habitación?','Sí, hay wifi gratis. La contraseña está en la tarjeta.','¿Hay aire acondicionado?','Sí, en todas las habitaciones.','¿Y dónde está el desayuno?','En el restaurante de la primera planta, de siete a diez.'],2700);}
+const quizExpl={r1:'Es la una.',r2:'dos y media.',r3:'a las ocho de la mañana.',r4:'mediodía.',q1:'Hay (наличие неконкретного).',q2:'está (конкретный, el).',q3:'Hay (наличие+число).',q4:'¿Dónde está Juan?',q5:'No hay problemas.',q6:'Hay — одна форма.'};
+function answerQuiz(el,qId,correctKey){const c=el.closest('.quiz-q');if(c.dataset.answered==='true')return;c.dataset.answered='true';c.querySelectorAll('.opt').forEach(function(o){const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');o.onclick=null;});const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);const userKey=um&&um[1];if(userKey!==correctKey)el.classList.add('wrong');const fb=document.getElementById('fb-'+qId);fb.className='feedback show '+(userKey===correctKey?'ok':'no');fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ '+answer[0]+'...';}}
+function showAns(id){document.getElementById(id).classList.add('show');}
+let showingTrans=false;function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
+const totalSections=11;function updateProgress(){const s=window.scrollY;const t=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(s/t*100));document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=Math.round(pct/100*totalSections)+' / '+totalSections;}
+window.addEventListener('scroll',updateProgress);
+const ANKI_DECK_L19=[
+{front:"hay",back:"Есть, имеется (наличие)\n\nОДНА форма для ед. и мн.ч.\nHay un libro. Hay diez libros."},
+{front:"está / están",back:"Находится / находятся\n\nЕд.ч. / мн.ч. — согласуется.\nLa mesa está. Las sillas están."},
+{front:"Hay + un/una/числа",back:"Наличие неконкретного\n\nHay una farmacia. Hay tres cafés."},
+{front:"El/La X está...",back:"Конкретный объект — está\n\nEl café está abierto. La farmacia está al lado."},
+{front:"¿Hay...?",back:"Есть ли...?\n\n¿Hay wifi? ¿Hay problema?"},
+{front:"¿Dónde está...?",back:"Где находится...?\n\n¿Dónde está el baño?"},
+{front:"No hay",back:"Нет (отрицание наличия)\n\nNo hay tiempo. No hay problemas."},
+{front:"Hay que + inf.",back:"Нужно + что-то делать\n\nHay que estudiar. — Нужно учиться. (безличная обязанность)"},
+{front:"¿Cuánto hay?",back:"Сколько есть?\n\n¿Cuánta gente hay? ¿Cuántos cafés hay?"},
+{front:"No hay de qué",back:"Не за что (вежливо)\n\nОтвет на «спасибо»."},
+{front:"Hay sitio",back:"Есть место\n\n¿Hay sitio? — No, no hay sitio."},
+{front:"Hay descuento",back:"Есть скидка\n\n¿Hay descuento para estudiantes?"},
+{front:"el supermercado",back:"Супермаркет\n\nMercadona, Carrefour, Día в Барселоне."},
+{front:"la panadería",back:"Булочная\n\nHay panaderías en todas las calles."},
+{front:"abierto / cerrado",back:"Открыто / закрыто\n\nLa farmacia está abierta hasta las 9."}
+];
+function renderAnkiPreview(){const c=document.getElementById('anki-preview-L19');if(!c)return;c.innerHTML=ANKI_DECK_L19.slice(0,5).map(function(card){return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')"><div class="anki-card-inner"><div class="anki-card-front">'+card.front+'</div><div class="anki-card-back">'+card.back.replace(/\n/g,'<br>')+'</div></div></div>';}).join('');}
+renderAnkiPreview();
+function exportAnkiL19(){const tsv=ANKI_DECK_L19.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='L19_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
+</script>
+</body>
+</html>
