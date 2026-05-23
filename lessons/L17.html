@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L17: Числа 100+ и деньги</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e,#0f1118);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px}.obj .ico{font-size:1.2rem}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;overflow:hidden}.progress-fill{height:100%;background:var(--gold);transition:.5s}.progress-label{font-size:.72rem;color:var(--muted);text-align:right}
+.section{margin-bottom:36px}.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}.callout p,.callout ul{font-size:.88rem;color:var(--muted)}.callout ul{margin-left:16px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;padding:0 4px;color:var(--gold)}.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600}
+.numbers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:14px 0}
+.num-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.num-card .digit{font-weight:700;color:var(--gold);font-family:Consolas,monospace;font-size:1rem}.num-card .word{font-weight:600;font-size:.88rem;flex:1}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;color:var(--muted)}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border)}.vocab-table .es{font-weight:600}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;color:var(--red)}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border)}.mistakes-table .wrong{color:var(--red);text-decoration:line-through;opacity:.7}.mistakes-table .right{color:var(--green);font-weight:600}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.speak-box .es{font-size:1.05rem;font-weight:600;margin-top:4px}.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}.quiz-q:last-child{border-bottom:none}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem}.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none}
+.text-input.correct{border-color:var(--green)!important}.text-input.wrong{border-color:var(--red)!important}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px}.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);width:50px;flex-shrink:0}.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}.culture p{font-size:.86rem;color:var(--muted)}
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;color:var(--gold);margin-bottom:8px}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem}.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-weight:700;cursor:pointer}.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;color:var(--text);text-decoration:none;font-weight:600}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
+</style></head>
+<body><div class="wrap">
+<div class="nav"><a href="../index.html">← Дашборд</a><span class="level">A1 · Фаза 1 · День 34</span><a href="L18.html">L18 →</a></div>
+
+<div class="hero"><div class="phase-tag">🌱 Фаза 1 · Основы · Базовая лексика</div>
+<h1>Числа <span class="hl">100+</span> и деньги</h1>
+<p class="sub">Cien, mil, un millón. Цены недвижимости, зарплата, обмен валют.</p>
+<div class="objectives">
+<div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Назвать любую сумму до миллиона</p></div></div>
+<div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 мин + Anki</p></div></div>
+<div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>LT эп. 23</p></div></div>
+<div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Цена квартиры, зарплата</p></div></div>
+</div></div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 12</div>
+
+<div class="section"><div class="section-header"><div class="section-num">1</div><h2>Повторение L16</h2></div>
+<div class="quiz" id="qrev"><h3>🔄 Транспорт</h3>
+<div class="quiz-q" id="r1"><div class="q-text">1. «На метро»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r1','a')">en metro</div><div class="opt" onclick="answerQuiz(this,'r1','b')">con metro</div><div class="opt" onclick="answerQuiz(this,'r1','c')">por metro</div></div><div class="feedback" id="fb-r1"></div></div>
+<div class="quiz-q" id="r2"><div class="q-text">2. «Пешком»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r2','b')">en pie</div><div class="opt" onclick="answerQuiz(this,'r2','a')">a pie</div><div class="opt" onclick="answerQuiz(this,'r2','c')">por pie</div></div><div class="feedback" id="fb-r2"></div></div>
+<div class="quiz-q" id="r3"><div class="q-text">3. «В аэропорт»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r3','c')">A el aeropuerto</div><div class="opt" onclick="answerQuiz(this,'r3','a')">Al aeropuerto</div><div class="opt" onclick="answerQuiz(this,'r3','b')">En aeropuerto</div></div><div class="feedback" id="fb-r3"></div></div>
+<div class="quiz-q" id="r4"><div class="q-text">4. Карта транспорта Барселоны:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r4','b')">T-móvil</div><div class="opt" onclick="answerQuiz(this,'r4','a')">T-mobilitat</div><div class="opt" onclick="answerQuiz(this,'r4','c')">Metro-pass</div></div><div class="feedback" id="fb-r4"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">2</div><h2>Сотни — 100-900</h2></div>
+<p>«100» = <strong>cien</strong> (чистая сотня). С чем-то после — <strong>ciento</strong>. Дальше — все сотни меняют окончание по роду!</p>
+<div class="numbers-grid">
+<div class="num-card"><span class="digit">100</span><span class="word">cien / ciento</span><button class="speak-btn" onclick="speak('cien, ciento')">🔊</button></div>
+<div class="num-card"><span class="digit">200</span><span class="word">doscientos/as</span><button class="speak-btn" onclick="speak('doscientos')">🔊</button></div>
+<div class="num-card"><span class="digit">300</span><span class="word">trescientos/as</span><button class="speak-btn" onclick="speak('trescientos')">🔊</button></div>
+<div class="num-card"><span class="digit">400</span><span class="word">cuatrocientos/as</span><button class="speak-btn" onclick="speak('cuatrocientos')">🔊</button></div>
+<div class="num-card"><span class="digit">500</span><span class="word">quinientos/as ⚠</span><button class="speak-btn" onclick="speak('quinientos')">🔊</button></div>
+<div class="num-card"><span class="digit">600</span><span class="word">seiscientos/as</span><button class="speak-btn" onclick="speak('seiscientos')">🔊</button></div>
+<div class="num-card"><span class="digit">700</span><span class="word">setecientos/as ⚠</span><button class="speak-btn" onclick="speak('setecientos')">🔊</button></div>
+<div class="num-card"><span class="digit">800</span><span class="word">ochocientos/as</span><button class="speak-btn" onclick="speak('ochocientos')">🔊</button></div>
+<div class="num-card"><span class="digit">900</span><span class="word">novecientos/as ⚠</span><button class="speak-btn" onclick="speak('novecientos')">🔊</button></div>
+</div>
+<div class="callout warning"><h4>⚠️ 3 неправильные сотни</h4><p><strong>500 = quinientos</strong> (не «cincocientos»!)<br><strong>700 = setecientos</strong> (не «sietecientos»!)<br><strong>900 = novecientos</strong> (не «nuevecientos»!)<br>Остальные — стандартное «число + cientos».</p></div>
+<div class="callout tip"><h4>💡 Сотни меняются по роду!</h4><p>«200 евро» = doscientos euros (м.р.). «200 машин» = doscientas casas (ж.р.).<br>Это единственное в испанском, где числа меняют форму. Помни про tres<strong>cientas</strong> casas, cinco<strong>cientas</strong> personas.</p></div>
+<h3 style="margin-top:18px;font-size:1rem">Примеры составных:</h3>
+<div class="speak-box"><div class="es">385 euros = trescientos ochenta y cinco euros <button class="speak-btn" onclick="speak('trescientos ochenta y cinco euros')">🔊</button></div></div>
+<div class="speak-box"><div class="es">575 personas = quinientas setenta y cinco personas <button class="speak-btn" onclick="speak('quinientas setenta y cinco personas')">🔊</button></div></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">3</div><h2>Тысячи — 1000+</h2></div>
+<table class="vocab-table"><tr><th>Цифра</th><th>Слово</th><th>🔊</th></tr>
+<tr><td>1.000</td><td class="es">mil</td><td><button class="speak-btn" onclick="speak('mil')">🔊</button></td></tr>
+<tr><td>2.000</td><td class="es">dos mil</td><td><button class="speak-btn" onclick="speak('dos mil')">🔊</button></td></tr>
+<tr><td>10.000</td><td class="es">diez mil</td><td><button class="speak-btn" onclick="speak('diez mil')">🔊</button></td></tr>
+<tr><td>100.000</td><td class="es">cien mil</td><td><button class="speak-btn" onclick="speak('cien mil')">🔊</button></td></tr>
+<tr><td>1.000.000</td><td class="es">un millón</td><td><button class="speak-btn" onclick="speak('un millón')">🔊</button></td></tr>
+<tr><td>2.000.000</td><td class="es">dos millones</td><td><button class="speak-btn" onclick="speak('dos millones')">🔊</button></td></tr>
+</table>
+<div class="callout warning"><h4>⚠️ Mil НЕ меняется. Millón — меняется!</h4><p><strong>mil</strong> = ВСЕГДА mil (даже когда 2000): «dos mil», «diez mil». Никогда «miles» в смысле числа.<br><strong>millón</strong> = un millón → dos millones (с -es). И требует «de» если перед существительным: «un millón <strong>de</strong> personas».</p></div>
+<h3 style="margin-top:18px;font-size:1rem">Цена дома:</h3>
+<div class="speak-box"><div class="es">El piso cuesta 325.000 € = trescientos veinticinco mil euros. <button class="speak-btn" onclick="speak('trescientos veinticinco mil euros')">🔊</button></div></div>
+<div class="speak-box"><div class="es">Mi salario anual es 60.000 € = sesenta mil euros. <button class="speak-btn" onclick="speak('sesenta mil euros')">🔊</button></div></div>
+<div class="speak-box"><div class="es">España tiene 47 millones de habitantes. <button class="speak-btn" onclick="speak('España tiene cuarenta y siete millones de habitantes.')">🔊</button></div></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">4</div><h2>Деньги и банк</h2></div>
+<table class="vocab-table"><thead><tr><th>Испанский</th><th>🔊</th><th>Перевод</th></tr></thead><tbody>
+<tr><td class="es">el euro / el céntimo</td><td><button class="speak-btn" onclick="speak('el euro, el céntimo')">🔊</button></td><td>евро / цент</td></tr>
+<tr><td class="es">el dinero</td><td><button class="speak-btn" onclick="speak('el dinero')">🔊</button></td><td>деньги</td></tr>
+<tr><td class="es">la tarjeta (de crédito / débito)</td><td><button class="speak-btn" onclick="speak('la tarjeta de crédito, la tarjeta de débito')">🔊</button></td><td>(кредитная/дебетовая) карта</td></tr>
+<tr><td class="es">el efectivo</td><td><button class="speak-btn" onclick="speak('el efectivo')">🔊</button></td><td>наличные</td></tr>
+<tr><td class="es">la cuenta bancaria</td><td><button class="speak-btn" onclick="speak('la cuenta bancaria')">🔊</button></td><td>банковский счёт</td></tr>
+<tr><td class="es">el IBAN</td><td><button class="speak-btn" onclick="speak('el IBAN')">🔊</button></td><td>IBAN (номер счёта)</td></tr>
+<tr><td class="es">el sueldo / el salario</td><td><button class="speak-btn" onclick="speak('el sueldo, el salario')">🔊</button></td><td>зарплата</td></tr>
+<tr><td class="es">la hipoteca</td><td><button class="speak-btn" onclick="speak('la hipoteca')">🔊</button></td><td>ипотека</td></tr>
+<tr><td class="es">la transferencia</td><td><button class="speak-btn" onclick="speak('la transferencia')">🔊</button></td><td>перевод</td></tr>
+<tr><td class="es">ahorrar / gastar</td><td><button class="speak-btn" onclick="speak('ahorrar, gastar')">🔊</button></td><td>экономить / тратить</td></tr>
+<tr><td class="es">el préstamo</td><td><button class="speak-btn" onclick="speak('el préstamo')">🔊</button></td><td>кредит</td></tr>
+<tr><td class="es">los impuestos</td><td><button class="speak-btn" onclick="speak('los impuestos')">🔊</button></td><td>налоги</td></tr>
+</tbody></table></div>
+
+<div class="section"><div class="section-header"><div class="section-num">5</div><h2>Ошибки</h2></div>
+<table class="mistakes-table"><thead><tr><th>Хочешь</th><th>❌</th><th>✅</th><th>Почему</th></tr></thead><tbody>
+<tr><td>«500»</td><td><span class="wrong">cincocientos</span></td><td><span class="right">quinientos</span></td><td>Неправильная сотня</td></tr>
+<tr><td>«200 машин» (casas — ж.р.)</td><td><span class="wrong">doscientos casas</span></td><td><span class="right">doscientas casas</span></td><td>Сотни меняются по роду</td></tr>
+<tr><td>«2 тысячи»</td><td><span class="wrong">dos miles</span></td><td><span class="right">dos mil</span></td><td>mil не меняется</td></tr>
+<tr><td>«Миллион людей»</td><td><span class="wrong">un millón personas</span></td><td><span class="right">un millón de personas</span></td><td>«de» обязательно</td></tr>
+<tr><td>«1300»</td><td><span class="wrong">mil trescientos</span> (это OK)<br>но НЕ <span class="wrong">uno mil trescientos</span></td><td><span class="right">mil trescientos</span></td><td>Перед mil нет «un» в значении 1000</td></tr>
+</tbody></table></div>
+
+<div class="section"><div class="section-header"><div class="section-num">6</div><h2>Тест 1</h2></div>
+<div class="quiz" id="quiz1">
+<div class="quiz-q" id="q1"><div class="q-text">1. 500:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q1','a')">quinientos</div><div class="opt" onclick="answerQuiz(this,'q1','b')">cincocientos</div><div class="opt" onclick="answerQuiz(this,'q1','c')">cincientos</div></div><div class="feedback" id="fb-q1"></div></div>
+<div class="quiz-q" id="q2"><div class="q-text">2. «200 квартир»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q2','b')">doscientos casas</div><div class="opt" onclick="answerQuiz(this,'q2','a')">doscientas casas</div><div class="opt" onclick="answerQuiz(this,'q2','c')">dos cientos casas</div></div><div class="feedback" id="fb-q2"></div></div>
+<div class="quiz-q" id="q3"><div class="q-text">3. 1500:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q3','c')">uno mil quinientos</div><div class="opt" onclick="answerQuiz(this,'q3','a')">mil quinientos</div><div class="opt" onclick="answerQuiz(this,'q3','b')">mil cincocientos</div></div><div class="feedback" id="fb-q3"></div></div>
+<div class="quiz-q" id="q4"><div class="q-text">4. «1 миллион евро»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q4','b')">un millón euros</div><div class="opt" onclick="answerQuiz(this,'q4','a')">un millón de euros</div><div class="opt" onclick="answerQuiz(this,'q4','c')">una millón euros</div></div><div class="feedback" id="fb-q4"></div></div>
+<div class="quiz-q" id="q5"><div class="q-text">5. Зарплата:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q5','c')">el precio</div><div class="opt" onclick="answerQuiz(this,'q5','a')">el sueldo</div><div class="opt" onclick="answerQuiz(this,'q5','b')">la cuenta</div></div><div class="feedback" id="fb-q5"></div></div>
+<div class="quiz-q" id="q6"><div class="q-text">6. Ипотека:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q6','b')">el préstamo</div><div class="opt" onclick="answerQuiz(this,'q6','a')">la hipoteca</div><div class="opt" onclick="answerQuiz(this,'q6','c')">la transferencia</div></div><div class="feedback" id="fb-q6"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">7</div><h2>Тест 2</h2></div>
+<div class="quiz">
+<div class="text-ex" id="te1"><div class="tex-q">1. 700 = ?</div><input type="text" class="text-input" id="ti1"><button class="check-btn" onclick="checkText('ti1','setecientos','fb-te1')">Проверить</button><button class="show-ans" onclick="showAns('ans-te1')">Показать</button><div class="feedback" id="fb-te1"></div><div class="answer-reveal" id="ans-te1">✅ setecientos (не «sietecientos»!)</div></div>
+<div class="text-ex" id="te2"><div class="tex-q">2. 3000 = ?</div><input type="text" class="text-input" id="ti2"><button class="check-btn" onclick="checkText('ti2','tres mil','fb-te2')">Проверить</button><button class="show-ans" onclick="showAns('ans-te2')">Показать</button><div class="feedback" id="fb-te2"></div><div class="answer-reveal" id="ans-te2">✅ tres mil</div></div>
+<div class="text-ex" id="te3"><div class="tex-q">3. «350 000 евро» = trescientos cincuenta ___ euros.</div><input type="text" class="text-input" id="ti3"><button class="check-btn" onclick="checkText('ti3','mil','fb-te3')">Проверить</button><button class="show-ans" onclick="showAns('ans-te3')">Показать</button><div class="feedback" id="fb-te3"></div><div class="answer-reveal" id="ans-te3">✅ mil</div></div>
+<div class="text-ex" id="te4"><div class="tex-q">4. «5 млн человек» = cinco millones ___ personas.</div><input type="text" class="text-input" id="ti4"><button class="check-btn" onclick="checkText('ti4','de','fb-te4')">Проверить</button><button class="show-ans" onclick="showAns('ans-te4')">Показать</button><div class="feedback" id="fb-te4"></div><div class="answer-reveal" id="ans-te4">✅ de</div></div>
+<div class="text-ex" id="te5"><div class="tex-q">5. «Хочу открыть счёт» = Quiero abrir una ___ bancaria.</div><input type="text" class="text-input" id="ti5"><button class="check-btn" onclick="checkText('ti5','cuenta','fb-te5')">Проверить</button><button class="show-ans" onclick="showAns('ans-te5')">Показать</button><div class="feedback" id="fb-te5"></div><div class="answer-reveal" id="ans-te5">✅ cuenta</div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">8</div><h2>Диалоги</h2></div>
+<div class="dialogue"><div class="dlg-header">💬 Открыть счёт в банке<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD1()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">М</div><div><div class="dlg-es">Buenos días. ¿En qué puedo ayudarle? <button class="speak-btn" onclick="speak('Buenos días. ¿En qué puedo ayudarle?')">🔊</button></div><div class="dlg-ru translation">— Добрый день. Чем могу помочь?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Я</div><div><div class="dlg-es">Quiero abrir una cuenta bancaria. <button class="speak-btn" onclick="speak('Quiero abrir una cuenta bancaria.')">🔊</button></div><div class="dlg-ru translation">— Хочу открыть счёт.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">М</div><div><div class="dlg-es">¿Es residente? ¿Tiene NIE? <button class="speak-btn" onclick="speak('¿Es residente? ¿Tiene NIE?')">🔊</button></div><div class="dlg-ru translation">— Резидент? NIE есть?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Я</div><div><div class="dlg-es">Sí, aquí tiene. Soy de Rusia, vivo en Barcelona. <button class="speak-btn" onclick="speak('Sí, aquí tiene. Soy de Rusia, vivo en Barcelona.')">🔊</button></div><div class="dlg-ru translation">— Да, вот. Я из России, живу в Барселоне.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">М</div><div><div class="dlg-es">¿Qué tipo de cuenta? Tenemos una sin comisiones por 6 euros al mes. <button class="speak-btn" onclick="speak('¿Qué tipo de cuenta? Tenemos una sin comisiones por seis euros al mes.')">🔊</button></div><div class="dlg-ru translation">— Какой тип? Есть без комиссий за 6 евро/мес.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Я</div><div><div class="dlg-es">Vale. ¿Tarjeta de débito incluida? <button class="speak-btn" onclick="speak('Vale. ¿Tarjeta de débito incluida?')">🔊</button></div><div class="dlg-ru translation">— Хорошо. Карта включена?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">М</div><div><div class="dlg-es">Sí. Para empezar necesita un depósito mínimo de 500 euros. <button class="speak-btn" onclick="speak('Sí. Para empezar necesita un depósito mínimo de quinientos euros.')">🔊</button></div><div class="dlg-ru translation">— Да. Минимальный депозит — 500 евро.</div></div></div>
+</div>
+
+<div class="dialogue"><div class="dlg-header">💬 Цена квартиры на просмотре<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD2()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Я</div><div><div class="dlg-es">¿Cuál es el precio del piso? <button class="speak-btn" onclick="speak('¿Cuál es el precio del piso?')">🔊</button></div><div class="dlg-ru translation">— Какая цена квартиры?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">А</div><div><div class="dlg-es">425.000 euros. Con la hipoteca, son unos 1.800 al mes. <button class="speak-btn" onclick="speak('Cuatrocientos veinticinco mil euros. Con la hipoteca, son unos mil ochocientos al mes.')">🔊</button></div><div class="dlg-ru translation">— 425 000. С ипотекой ~1800/мес.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Я</div><div><div class="dlg-es">¿Qué entrada hay que pagar? <button class="speak-btn" onclick="speak('¿Qué entrada hay que pagar?')">🔊</button></div><div class="dlg-ru translation">— Какой первый взнос?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">А</div><div><div class="dlg-es">Mínimo el 20 por ciento, unos 85.000 euros. <button class="speak-btn" onclick="speak('Mínimo el veinte por ciento, unos ochenta y cinco mil euros.')">🔊</button></div><div class="dlg-ru translation">— Минимум 20%, ~85 000.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Я</div><div><div class="dlg-es">Plus los impuestos y gastos, ¿no? <button class="speak-btn" onclick="speak('Más los impuestos y gastos, ¿no?')">🔊</button></div><div class="dlg-ru translation">— Плюс налоги и расходы, да?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">А</div><div><div class="dlg-es">Sí, otros 40.000 más o menos. Total: 125.000 al contado. <button class="speak-btn" onclick="speak('Sí, otros cuarenta mil más o menos. Total: ciento veinticinco mil al contado.')">🔊</button></div><div class="dlg-ru translation">— Да, ещё 40к. Итого 125к наличными.</div></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">9</div><h2>Говорение</h2></div>
+<div class="speak-box"><div class="speak-tag">🎙 Финансы семьи</div><div class="es">Mi sueldo es de 3.500 euros al mes. El alquiler son 1.400. Para vivir cómodos necesito unos 4.000. <button class="speak-btn" onclick="speak('Mi sueldo es de tres mil quinientos euros al mes. El alquiler son mil cuatrocientos. Para vivir cómodos necesito unos cuatro mil.')">🔊</button></div></div>
+<div class="speak-box"><div class="speak-tag">🎙 В обменнике</div><div class="es">Quiero cambiar 1000 rublos a euros. ¿Cuál es el cambio hoy? <button class="speak-btn" onclick="speak('Quiero cambiar mil rublos a euros. ¿Cuál es el cambio hoy?')">🔊</button></div></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">10</div><h2>🇪🇸 Испания на практике — Открытие счёта</h2></div>
+<div class="spain-card"><div class="stag">🏦 Реальный сценарий</div><h3>BBVA / Santander / CaixaBank — выбор банка в Барселоне</h3>
+<p style="font-size:.9rem;color:var(--muted)">3 главных банка Испании. Также есть онлайн (N26, Revolut, Wise) — для нерезидентов проще всего.</p>
+<div class="phrase-list">
+<div class="phrase"><span class="es">Quiero abrir una cuenta para no residentes.</span><button class="speak-btn" onclick="speak('Quiero abrir una cuenta para no residentes.')">🔊</button><span class="tr">Хочу счёт для нерезидентов.</span></div>
+<div class="phrase"><span class="es">¿Cuáles son las comisiones?</span><button class="speak-btn" onclick="speak('¿Cuáles son las comisiones?')">🔊</button><span class="tr">Какие комиссии?</span></div>
+<div class="phrase"><span class="es">¿Cuál es el saldo mínimo?</span><button class="speak-btn" onclick="speak('¿Cuál es el saldo mínimo?')">🔊</button><span class="tr">Минимальный остаток?</span></div>
+<div class="phrase"><span class="es">Necesito un IBAN español para mi sueldo.</span><button class="speak-btn" onclick="speak('Necesito un IBAN español para mi sueldo.')">🔊</button><span class="tr">Нужен испанский IBAN для зарплаты.</span></div>
+<div class="phrase"><span class="es">¿Puedo hacer una transferencia internacional?</span><button class="speak-btn" onclick="speak('¿Puedo hacer una transferencia internacional?')">🔊</button><span class="tr">Можно международный перевод?</span></div>
+<div class="phrase"><span class="es">¿Qué documentos necesito?</span><button class="speak-btn" onclick="speak('¿Qué documentos necesito?')">🔊</button><span class="tr">Какие документы нужны?</span></div>
+</div>
+<div class="callout info" style="margin-top:14px"><h4>💡 Банки в Барселоне</h4><ul>
+<li><strong>CaixaBank</strong> — местный каталонский, отделений много.</li>
+<li><strong>BBVA, Santander</strong> — общеиспанские, везде есть.</li>
+<li><strong>N26, Revolut, Wise</strong> — онлайн, без офиса. Удобно для нерезидентов.</li>
+<li><strong>Для DNV-визы</strong>: нужен испанский IBAN для подачи. Можно открыть в N26 онлайн за 1 день.</li>
+<li><strong>Комиссии:</strong> традиционный банк 3-12€/мес. Онлайн — 0€.</li>
+<li><strong>Минимальный депозит:</strong> ~500€ для большинства.</li>
+<li><strong>Налоги:</strong> IRPF (подоходный), IVA (НДС 21%), IBI (на недвижимость).</li>
+</ul></div></div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">11</div><h2>Культура</h2></div>
+<div class="culture"><div class="ctag">🌍 Культура</div><h4>«La hora del mercado» — час обменника</h4>
+<p>В Испании цены недвижимости пишутся <strong>с точкой как разделителем тысяч</strong>: 350.000 € = 350 тысяч евро. Десятичные — запятая: 5,50 € = 5 евро 50 центов. В Англии и США наоборот (запятая=тысячи, точка=десятые). Когда пишешь сумму — следи!</p>
+<p style="margin-top:8px">Зарплаты в Испании ВСЕГДА указываются <strong>годовые</strong> (al año) или ежемесячные (al mes), уточняй! Средняя в Барселоне ~2200€/мес чистыми (для специалиста — 3000-5000€). С 14 «pagas» в год (двойные в июле/декабре).</p></div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">12</div><h2>Anki + ДЗ</h2></div>
+<div class="anki"><div class="atag">🃏 18 карточек L17</div>
+<div class="anki-preview" id="anki-preview-L17"></div>
+<button class="anki-export-btn" onclick="exportAnkiL17()">📥 Скачать L17</button></div>
+<div class="callout info" style="margin-top:16px"><h4>📅 До L18</h4><ul>
+<li>LT эп. 23 + 15 мин Dreaming Spanish</li>
+<li>Открой Idealista — прочти 5 цен квартир вслух по-испански</li>
+<li>Запиши свой бюджет на месяц по-испански (10 строк)</li>
+</ul></div>
+<div class="callout success" style="margin-top:14px"><h4>🎉 L17 готов!</h4><p>В L18 — время: «который час?», расписание.</p></div></div>
+
+</div>
+
+<div class="done-bar"><div class="nav-links"><a href="../index.html" class="nav-link-btn">← Дашборд</a><a href="L16.html" class="nav-link-btn">← L16</a><a href="L18.html" class="nav-link-btn">L18 →</a></div><button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button></div>
+
+<script>
+const LESSON_ID='L17';const LS_KEY='esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+function speak(text,lang){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}
+function speakSequence(phrases,delay){delay=delay||2400;window.speechSynthesis.cancel();phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});}
+function playD1(){speakSequence(['Buenos días. ¿En qué puedo ayudarle?','Quiero abrir una cuenta bancaria.','¿Es residente? ¿Tiene NIE?','Sí, aquí tiene. Soy de Rusia, vivo en Barcelona.','¿Qué tipo de cuenta? Tenemos una sin comisiones por seis euros al mes.','Vale. ¿Tarjeta de débito incluida?','Sí. Para empezar necesita un depósito mínimo de quinientos euros.'],2700);}
+function playD2(){speakSequence(['¿Cuál es el precio del piso?','Cuatrocientos veinticinco mil euros. Con la hipoteca, son unos mil ochocientos al mes.','¿Qué entrada hay que pagar?','Mínimo el veinte por ciento, unos ochenta y cinco mil euros.','Más los impuestos y gastos, ¿no?','Sí, otros cuarenta mil más o menos. Total: ciento veinticinco mil al contado.'],2700);}
+const quizExpl={r1:'en metro.',r2:'a pie.',r3:'Al = a+el.',r4:'T-mobilitat.',q1:'quinientos — неправильная.',q2:'doscientas casas — ж.р.',q3:'mil quinientos.',q4:'un millón de euros.',q5:'el sueldo / salario.',q6:'la hipoteca.'};
+function answerQuiz(el,qId,correctKey){const c=el.closest('.quiz-q');if(c.dataset.answered==='true')return;c.dataset.answered='true';c.querySelectorAll('.opt').forEach(function(o){const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');o.onclick=null;});const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);const userKey=um&&um[1];if(userKey!==correctKey)el.classList.add('wrong');const fb=document.getElementById('fb-'+qId);fb.className='feedback show '+(userKey===correctKey?'ok':'no');fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ '+answer.substring(0,3)+'...';}}
+function showAns(id){document.getElementById(id).classList.add('show');}
+let showingTrans=false;function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
+const totalSections=12;function updateProgress(){const s=window.scrollY;const t=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(s/t*100));document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=Math.round(pct/100*totalSections)+' / '+totalSections;}
+window.addEventListener('scroll',updateProgress);
+const ANKI_DECK_L17=[
+{front:"cien / ciento",back:"100 / 100+\n\ncien (чистое 100), ciento (составное: 101)"},
+{front:"doscientos / doscientas",back:"200 (м.р. / ж.р.)\n\ndoscientos euros, doscientas casas"},
+{front:"quinientos ⚠",back:"500 — НЕправильное!\n\nне «cincocientos»"},
+{front:"setecientos ⚠",back:"700 — НЕправильное\n\nне «sietecientos»"},
+{front:"novecientos ⚠",back:"900 — НЕправильное\n\nне «nuevecientos»"},
+{front:"mil",back:"1000 — НЕ меняется\n\ndos mil (2000), diez mil (10000)"},
+{front:"un millón / dos millones",back:"Миллион (меняется!)\n\nun millón de personas — с «de»"},
+{front:"el euro / el céntimo",back:"Евро / цент\n\n5 euros con 50 céntimos"},
+{front:"el dinero",back:"Деньги\n\nNo tengo dinero. — Нет денег."},
+{front:"el sueldo / el salario",back:"Зарплата\n\nMi sueldo es 3000 al mes."},
+{front:"la tarjeta de crédito/débito",back:"Кредитная/дебетовая карта\n\n¿Aceptan tarjeta?"},
+{front:"la cuenta bancaria",back:"Банковский счёт\n\nQuiero abrir una cuenta."},
+{front:"el IBAN",back:"IBAN (номер счёта)\n\nES + 22 цифры в испанском IBAN."},
+{front:"la hipoteca",back:"Ипотека\n\nLa hipoteca es 1800 al mes."},
+{front:"la transferencia",back:"Перевод\n\nHacer una transferencia bancaria."},
+{front:"el efectivo",back:"Наличные\n\nPago en efectivo. — Плачу наличными."},
+{front:"los impuestos",back:"Налоги\n\nIVA, IRPF, IBI — главные испанские."},
+{front:"el préstamo",back:"Кредит\n\nPedir un préstamo al banco."}
+];
+function renderAnkiPreview(){const c=document.getElementById('anki-preview-L17');if(!c)return;c.innerHTML=ANKI_DECK_L17.slice(0,5).map(function(card){return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')"><div class="anki-card-inner"><div class="anki-card-front">'+card.front+'</div><div class="anki-card-back">'+card.back.replace(/\n/g,'<br>')+'</div></div></div>';}).join('');}
+renderAnkiPreview();
+function exportAnkiL17(){const tsv=ANKI_DECK_L17.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='L17_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
+</script>
+</body>
+</html>
