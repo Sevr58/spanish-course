@@ -450,7 +450,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:3,
       speaking_focus:"Рассказать что ты делал вчера / на прошлой неделе",
-      file:"lessons/L31.html", status:"pending"
+      file:"lessons/L31.html", status:"improved"
     },
     {
       id:"L32", num:32, phase:2, block:"B2A", level:"A1", day:67, week:11,
@@ -462,7 +462,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Рассказать биографию известного человека или свою",
-      file:"lessons/L32.html", status:"pending"
+      file:"lessons/L32.html", status:"improved"
     },
     {
       id:"L33", num:33, phase:2, block:"B2A", level:"A2", day:69, week:11,
@@ -474,7 +474,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Рассказать о детстве и привычках прошлого",
-      file:"lessons/L33.html", status:"pending"
+      file:"lessons/L33.html", status:"improved"
     },
     {
       id:"L34", num:34, phase:2, block:"B2A", level:"A2", day:71, week:12,
@@ -486,7 +486,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Описать сцену из прошлого: где был, что происходило вокруг",
-      file:"lessons/L34.html", status:"pending"
+      file:"lessons/L34.html", status:"improved"
     },
     {
       id:"L35", num:35, phase:2, block:"B2A", level:"A2", day:73, week:12,
