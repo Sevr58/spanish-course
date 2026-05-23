@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L20: Tener — иметь и состояния</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e,#0f1118);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px}.obj .ico{font-size:1.2rem}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;overflow:hidden}.progress-fill{height:100%;background:var(--gold)}.progress-label{font-size:.72rem;color:var(--muted);text-align:right}
+.section{margin-bottom:36px}.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}.callout p,.callout ul{font-size:.88rem;color:var(--muted)}.callout ul{margin-left:16px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;padding:0 4px;color:var(--gold)}.speak-btn:hover{opacity:1;transform:scale(1.25)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600}
+.conjugation-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.9rem}
+.conjugation-table th{background:var(--bg3);padding:10px 12px;text-align:left;color:var(--blue);font-weight:700;font-size:.78rem;text-transform:uppercase}
+.conjugation-table td{padding:10px 12px;border-top:1px solid var(--border)}.conjugation-table .form{font-weight:700;font-family:Consolas,monospace;color:var(--green)}
+.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
+.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;color:var(--muted);font-size:.78rem;text-transform:uppercase}
+.vocab-table td{padding:10px 12px;border-top:1px solid var(--border)}.vocab-table .es{font-weight:600}
+.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
+.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;color:var(--red)}
+.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border)}.mistakes-table .wrong{color:var(--red);text-decoration:line-through;opacity:.7}.mistakes-table .right{color:var(--green);font-weight:600}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.speak-box .es{font-size:1.05rem;font-weight:600;margin-top:4px}.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}.quiz-q:last-child{border-bottom:none}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem}.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none}
+.text-input.correct{border-color:var(--green)!important}.text-input.wrong{border-color:var(--red)!important}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px}.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);width:50px;flex-shrink:0}.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}.culture p{font-size:.86rem;color:var(--muted)}
+.spain-card{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(230,57,70,.04));border:1px solid rgba(255,214,10,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.spain-card h3{font-size:1.05rem;font-weight:700;color:var(--gold);margin-bottom:8px}
+.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;gap:10px;flex-wrap:wrap}
+.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
+.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
+.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
+.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
+.anki-card-front{font-weight:600;font-size:.95rem}.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);background:var(--bg2);overflow-y:auto}
+.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-weight:700;cursor:pointer}.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;color:var(--text);text-decoration:none;font-weight:600}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
+</style></head>
+<body><div class="wrap">
+<div class="nav"><a href="../index.html">← Дашборд</a><span class="level">A1 · Фаза 1 · День 41</span><a href="L21.html">L21 →</a></div>
+
+<div class="hero"><div class="phase-tag">🌱 Фаза 1 · Ключевая грамматика</div>
+<h1>Tener — <span class="hl">иметь</span> и выражать состояния</h1>
+<p class="sub">Tengo hambre, frío, miedo. И главное: tener que = должен.</p>
+<div class="objectives">
+<div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>20 выражений с tener + обязательства</p></div></div>
+<div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 мин</p></div></div>
+<div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>LT эп. 26</p></div></div>
+<div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>«Tengo que estudiar»</p></div></div>
+</div></div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 11</div>
+
+<div class="section"><div class="section-header"><div class="section-num">1</div><h2>Повторение L19</h2></div>
+<div class="quiz">
+<div class="quiz-q" id="r1"><div class="q-text">1. «Аптека рядом есть?»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r1','a')">¿Hay una farmacia cerca?</div><div class="opt" onclick="answerQuiz(this,'r1','b')">¿Está farmacia cerca?</div><div class="opt" onclick="answerQuiz(this,'r1','c')">¿Es farmacia cerca?</div></div><div class="feedback" id="fb-r1"></div></div>
+<div class="quiz-q" id="r2"><div class="q-text">2. «Где банк?»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r2','b')">¿Dónde hay el banco?</div><div class="opt" onclick="answerQuiz(this,'r2','a')">¿Dónde está el banco?</div><div class="opt" onclick="answerQuiz(this,'r2','c')">¿Hay dónde el banco?</div></div><div class="feedback" id="fb-r2"></div></div>
+<div class="quiz-q" id="r3"><div class="q-text">3. Hay меняется по числу?</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r3','c')">да, hay/hayn</div><div class="opt" onclick="answerQuiz(this,'r3','a')">нет, одна форма</div><div class="opt" onclick="answerQuiz(this,'r3','b')">да, ha/han</div></div><div class="feedback" id="fb-r3"></div></div>
+<div class="quiz-q" id="r4"><div class="q-text">4. «Нужно учиться» (безлично):</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r4','b')">Hay que estudiar</div><div class="opt" onclick="answerQuiz(this,'r4','a')">Hay estudiar</div><div class="opt" onclick="answerQuiz(this,'r4','c')">Está estudiar</div></div><div class="feedback" id="fb-r4"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">2</div><h2>Спряжение tener (неправильный)</h2></div>
+<table class="conjugation-table"><thead><tr><th>Местоимение</th><th>Форма</th><th>🔊</th></tr></thead><tbody>
+<tr><td>yo</td><td class="form">tengo</td><td><button class="speak-btn" onclick="speak('tengo')">🔊</button></td></tr>
+<tr><td>tú</td><td class="form">tienes</td><td><button class="speak-btn" onclick="speak('tienes')">🔊</button></td></tr>
+<tr><td>él/ella/usted</td><td class="form">tiene</td><td><button class="speak-btn" onclick="speak('tiene')">🔊</button></td></tr>
+<tr><td>nosotros</td><td class="form">tenemos</td><td><button class="speak-btn" onclick="speak('tenemos')">🔊</button></td></tr>
+<tr><td>vosotros</td><td class="form">tenéis</td><td><button class="speak-btn" onclick="speak('tenéis')">🔊</button></td></tr>
+<tr><td>ellos</td><td class="form">tienen</td><td><button class="speak-btn" onclick="speak('tienen')">🔊</button></td></tr>
+</tbody></table>
+<button class="speak-btn-big" onclick="speak('tengo, tienes, tiene, tenemos, tenéis, tienen')">▶ Послушай</button>
+<div class="callout tip"><h4>💡 Паттерн</h4><p>yo: tengo (вставка -g-).<br>tú/él/ellos: e→ie (tienes, tiene, tienen).<br>nosotros/vosotros: без изменений в корне.</p></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">3</div><h2>«Tener» — 20 выражений состояния</h2></div>
+<p>В испанском многие чувства/состояния = «иметь что-то». Это идиомы — запоминать целиком.</p>
+<table class="vocab-table"><thead><tr><th>Испанский</th><th>🔊</th><th>Перевод</th></tr></thead><tbody>
+<tr><td class="es">Tengo hambre</td><td><button class="speak-btn" onclick="speak('Tengo hambre.')">🔊</button></td><td>Я голоден</td></tr>
+<tr><td class="es">Tengo sed</td><td><button class="speak-btn" onclick="speak('Tengo sed.')">🔊</button></td><td>Хочу пить</td></tr>
+<tr><td class="es">Tengo sueño</td><td><button class="speak-btn" onclick="speak('Tengo sueño.')">🔊</button></td><td>Хочу спать</td></tr>
+<tr><td class="es">Tengo frío / calor</td><td><button class="speak-btn" onclick="speak('Tengo frío, tengo calor')">🔊</button></td><td>Мне холодно / жарко</td></tr>
+<tr><td class="es">Tengo miedo (de)</td><td><button class="speak-btn" onclick="speak('Tengo miedo.')">🔊</button></td><td>Мне страшно</td></tr>
+<tr><td class="es">Tengo prisa</td><td><button class="speak-btn" onclick="speak('Tengo prisa.')">🔊</button></td><td>Я тороплюсь</td></tr>
+<tr><td class="es">Tengo razón</td><td><button class="speak-btn" onclick="speak('Tengo razón.')">🔊</button></td><td>Я прав</td></tr>
+<tr><td class="es">Tengo suerte</td><td><button class="speak-btn" onclick="speak('Tengo suerte.')">🔊</button></td><td>Мне везёт</td></tr>
+<tr><td class="es">Tengo ganas (de)</td><td><button class="speak-btn" onclick="speak('Tengo ganas de salir.')">🔊</button></td><td>Хочу (что-то делать)</td></tr>
+<tr><td class="es">Tengo X años</td><td><button class="speak-btn" onclick="speak('Tengo cuarenta años.')">🔊</button></td><td>Мне X лет</td></tr>
+<tr><td class="es">Tengo dolor de cabeza</td><td><button class="speak-btn" onclick="speak('Tengo dolor de cabeza.')">🔊</button></td><td>Голова болит</td></tr>
+<tr><td class="es">Tengo fiebre</td><td><button class="speak-btn" onclick="speak('Tengo fiebre.')">🔊</button></td><td>Температура</td></tr>
+<tr><td class="es">Tengo tos / gripe</td><td><button class="speak-btn" onclick="speak('Tengo tos.')">🔊</button></td><td>Кашель / грипп</td></tr>
+<tr><td class="es">Tengo cuidado</td><td><button class="speak-btn" onclick="speak('Tengo cuidado.')">🔊</button></td><td>Я осторожен</td></tr>
+<tr><td class="es">Tengo paciencia</td><td><button class="speak-btn" onclick="speak('Tengo paciencia.')">🔊</button></td><td>Я терпелив</td></tr>
+<tr><td class="es">Tengo vergüenza</td><td><button class="speak-btn" onclick="speak('Tengo vergüenza.')">🔊</button></td><td>Мне стыдно</td></tr>
+</tbody></table>
+<div class="callout warning"><h4>⚠️ Главная ошибка</h4><p>НИКОГДА «soy/estoy hambre». Только «tengo hambre». В русском «Я ГОЛОДЕН» = в испанском «У меня есть голод» (Tengo hambre). Эта логика для 90% чувств.</p></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">4</div><h2>Tener que + инфинитив = должен</h2></div>
+<p>Главная конструкция обязательства в испанском. Формула: <strong>Tener (форма) + que + infinitivo</strong>.</p>
+<div class="speak-box"><div class="es">Tengo que estudiar. <button class="speak-btn" onclick="speak('Tengo que estudiar.')">🔊</button></div><div class="hint">[Должен учиться.]</div></div>
+<div class="speak-box"><div class="es">Tienes que pagar. <button class="speak-btn" onclick="speak('Tienes que pagar.')">🔊</button></div><div class="hint">[Ты должен заплатить.]</div></div>
+<div class="speak-box"><div class="es">Tenemos que irnos. <button class="speak-btn" onclick="speak('Tenemos que irnos.')">🔊</button></div><div class="hint">[Нам надо уходить.]</div></div>
+<div class="speak-box"><div class="es">¿Qué tengo que hacer? <button class="speak-btn" onclick="speak('¿Qué tengo que hacer?')">🔊</button></div><div class="hint">[Что мне делать?]</div></div>
+<div class="callout info"><h4>💡 3 способа сказать «должен»</h4>
+<ul><li><strong>Tener que + inf.</strong> — конкретная обязанность для лица: «Tengo que ir».</li>
+<li><strong>Hay que + inf.</strong> — безличная обязанность: «Hay que estudiar» (нужно учиться вообще).</li>
+<li><strong>Deber + inf.</strong> — моральный долг (формальнее): «Debo ayudar» (должен помочь). См. L22.</li></ul></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">5</div><h2>Типичные ошибки</h2></div>
+<table class="mistakes-table"><thead><tr><th>Хочешь</th><th>❌</th><th>✅</th><th>Почему</th></tr></thead><tbody>
+<tr><td>«Я голоден»</td><td><span class="wrong">Soy hambre</span></td><td><span class="right">Tengo hambre</span></td><td>Состояние = «иметь»</td></tr>
+<tr><td>«Мне 30»</td><td><span class="wrong">Soy 30 años</span></td><td><span class="right">Tengo 30 años</span></td><td>Возраст = «иметь годы»</td></tr>
+<tr><td>«Должен идти»</td><td><span class="wrong">Tengo ir</span></td><td><span class="right">Tengo que ir</span></td><td>«que» обязательно перед инф.</td></tr>
+<tr><td>«Мне жарко»</td><td><span class="wrong">Estoy caliente</span></td><td><span class="right">Tengo calor</span></td><td>caliente = возбуждён сексуально</td></tr>
+<tr><td>«Хочу есть»</td><td><span class="wrong">Quiero hambre</span></td><td><span class="right">Tengo hambre</span></td><td>«Иметь голод», не «хотеть»</td></tr>
+</tbody></table></div>
+
+<div class="section"><div class="section-header"><div class="section-num">6</div><h2>Тест 1</h2></div>
+<div class="quiz">
+<div class="quiz-q" id="q1"><div class="q-text">1. «Я хочу пить»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q1','a')">Tengo sed</div><div class="opt" onclick="answerQuiz(this,'q1','b')">Soy sed</div><div class="opt" onclick="answerQuiz(this,'q1','c')">Quiero sed</div></div><div class="feedback" id="fb-q1"></div></div>
+<div class="quiz-q" id="q2"><div class="q-text">2. «Мы должны идти»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q2','b')">Tenemos ir</div><div class="opt" onclick="answerQuiz(this,'q2','a')">Tenemos que ir</div><div class="opt" onclick="answerQuiz(this,'q2','c')">Hay ir</div></div><div class="feedback" id="fb-q2"></div></div>
+<div class="quiz-q" id="q3"><div class="q-text">3. «Ты прав»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q3','c')">Eres razón</div><div class="opt" onclick="answerQuiz(this,'q3','a')">Tienes razón</div><div class="opt" onclick="answerQuiz(this,'q3','b')">Estás razón</div></div><div class="feedback" id="fb-q3"></div></div>
+<div class="quiz-q" id="q4"><div class="q-text">4. «Они торопятся»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q4','b')">Ellos están prisa</div><div class="opt" onclick="answerQuiz(this,'q4','a')">Ellos tienen prisa</div><div class="opt" onclick="answerQuiz(this,'q4','c')">Ellos son prisa</div></div><div class="feedback" id="fb-q4"></div></div>
+<div class="quiz-q" id="q5"><div class="q-text">5. «Хочется (мне) гулять»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q5','c')">Soy ganas de pasear</div><div class="opt" onclick="answerQuiz(this,'q5','a')">Tengo ganas de pasear</div><div class="opt" onclick="answerQuiz(this,'q5','b')">Quiero pasear ganas</div></div><div class="feedback" id="fb-q5"></div></div>
+<div class="quiz-q" id="q6"><div class="q-text">6. «Tener que» vs «Hay que» — разница:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q6','b')">одно и то же</div><div class="opt" onclick="answerQuiz(this,'q6','a')">tener que — для лица, hay que — безлично</div><div class="opt" onclick="answerQuiz(this,'q6','c')">первое для прошлого</div></div><div class="feedback" id="fb-q6"></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">7</div><h2>Тест 2</h2></div>
+<div class="quiz">
+<div class="text-ex" id="te1"><div class="tex-q">1. «Мне холодно» = ___ frío.</div><input type="text" class="text-input" id="ti1"><button class="check-btn" onclick="checkText('ti1','tengo','fb-te1')">Проверить</button><button class="show-ans" onclick="showAns('ans-te1')">Показать</button><div class="feedback" id="fb-te1"></div><div class="answer-reveal" id="ans-te1">✅ tengo</div></div>
+<div class="text-ex" id="te2"><div class="tex-q">2. «Я должен работать» = Tengo ___ trabajar.</div><input type="text" class="text-input" id="ti2"><button class="check-btn" onclick="checkText('ti2','que','fb-te2')">Проверить</button><button class="show-ans" onclick="showAns('ans-te2')">Показать</button><div class="feedback" id="fb-te2"></div><div class="answer-reveal" id="ans-te2">✅ que</div></div>
+<div class="text-ex" id="te3"><div class="tex-q">3. «Ей 25 лет» = ___ veinticinco años.</div><input type="text" class="text-input" id="ti3"><button class="check-btn" onclick="checkText('ti3','tiene','fb-te3')">Проверить</button><button class="show-ans" onclick="showAns('ans-te3')">Показать</button><div class="feedback" id="fb-te3"></div><div class="answer-reveal" id="ans-te3">✅ tiene</div></div>
+<div class="text-ex" id="te4"><div class="tex-q">4. «Хочется кофе» = Tengo ___ de café.</div><input type="text" class="text-input" id="ti4"><button class="check-btn" onclick="checkText('ti4','ganas','fb-te4')">Проверить</button><button class="show-ans" onclick="showAns('ans-te4')">Показать</button><div class="feedback" id="fb-te4"></div><div class="answer-reveal" id="ans-te4">✅ ganas</div></div>
+<div class="text-ex" id="te5"><div class="tex-q">5. «Я тороплюсь» = ___ prisa.</div><input type="text" class="text-input" id="ti5"><button class="check-btn" onclick="checkText('ti5','tengo','fb-te5')">Проверить</button><button class="show-ans" onclick="showAns('ans-te5')">Показать</button><div class="feedback" id="fb-te5"></div><div class="answer-reveal" id="ans-te5">✅ tengo</div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">8</div><h2>Диалоги</h2></div>
+<div class="dialogue"><div class="dlg-header">💬 Семейная сцена<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD1()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Ж</div><div><div class="dlg-es">¿Cómo estás? Pareces cansado. <button class="speak-btn" onclick="speak('¿Cómo estás? Pareces cansado.')">🔊</button></div><div class="dlg-ru translation">— Как ты? Уставшим выглядишь.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">М</div><div><div class="dlg-es">Sí, tengo mucho sueño. Y también tengo hambre. <button class="speak-btn" onclick="speak('Sí, tengo mucho sueño. Y también tengo hambre.')">🔊</button></div><div class="dlg-ru translation">— Да, очень хочу спать. И есть.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Ж</div><div><div class="dlg-es">Tienes que descansar. Voy a hacer la cena. <button class="speak-btn" onclick="speak('Tienes que descansar. Voy a hacer la cena.')">🔊</button></div><div class="dlg-ru translation">— Тебе надо отдохнуть. Сделаю ужин.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">М</div><div><div class="dlg-es">Gracias. ¿Y tú? ¿Tienes ganas de cenar? <button class="speak-btn" onclick="speak('Gracias. ¿Y tú? ¿Tienes ganas de cenar?')">🔊</button></div><div class="dlg-ru translation">— Спасибо. А ты? Хочешь ужинать?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Ж</div><div><div class="dlg-es">Sí, pero las niñas tienen prisa, tienen un partido a las ocho. <button class="speak-btn" onclick="speak('Sí, pero las niñas tienen prisa, tienen un partido a las ocho.')">🔊</button></div><div class="dlg-ru translation">— Да, но дочки торопятся, у них матч в 8.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">М</div><div><div class="dlg-es">Vale, tenemos que cenar rápido. <button class="speak-btn" onclick="speak('Vale, tenemos que cenar rápido.')">🔊</button></div><div class="dlg-ru translation">— Хорошо, надо ужинать быстро.</div></div></div>
+</div>
+
+<div class="dialogue"><div class="dlg-header">💬 У начальника<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD2()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Н</div><div><div class="dlg-es">Tenemos que terminar el proyecto esta semana. <button class="speak-btn" onclick="speak('Tenemos que terminar el proyecto esta semana.')">🔊</button></div><div class="dlg-ru translation">— Должны закончить проект на этой неделе.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Я</div><div><div class="dlg-es">Tengo que pedir más tiempo. Hay muchos detalles. <button class="speak-btn" onclick="speak('Tengo que pedir más tiempo. Hay muchos detalles.')">🔊</button></div><div class="dlg-ru translation">— Мне нужно ещё времени. Много деталей.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Н</div><div><div class="dlg-es">No hay tiempo. ¿Cuántas horas tienes que trabajar más? <button class="speak-btn" onclick="speak('No hay tiempo. ¿Cuántas horas tienes que trabajar más?')">🔊</button></div><div class="dlg-ru translation">— Времени нет. Сколько часов ещё нужно?</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker b">Я</div><div><div class="dlg-es">Unas 10 horas más. Tengo cuidado con la calidad. <button class="speak-btn" onclick="speak('Unas diez horas más. Tengo cuidado con la calidad.')">🔊</button></div><div class="dlg-ru translation">— Ещё 10. Слежу за качеством.</div></div></div>
+<div class="dlg-line"><div class="dlg-speaker">Н</div><div><div class="dlg-es">Tienes razón. Vale, hasta el viernes. <button class="speak-btn" onclick="speak('Tienes razón. Vale, hasta el viernes.')">🔊</button></div><div class="dlg-ru translation">— Прав. Хорошо, до пятницы.</div></div></div>
+</div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">9</div><h2>Говорение</h2></div>
+<div class="speak-box"><div class="speak-tag">🎙 Что мне нужно</div><div class="es">Hoy tengo que ir al banco, tengo que comprar comida y tengo que llamar al médico. Tengo prisa. <button class="speak-btn" onclick="speak('Hoy tengo que ir al banco, tengo que comprar comida y tengo que llamar al médico. Tengo prisa.')">🔊</button></div></div>
+</div>
+
+<div class="section"><div class="section-header"><div class="section-num">10</div><h2>🇪🇸 Испания на практике — Бытовые ситуации</h2></div>
+<div class="spain-card"><div class="stag">🏠 Сценарий</div><h3>«Tener que» во всех бытовых разговорах</h3>
+<div class="phrase-list">
+<div class="phrase"><span class="es">Tengo que pagar la luz / el agua.</span><button class="speak-btn" onclick="speak('Tengo que pagar la luz, el agua.')">🔊</button><span class="tr">Должен оплатить свет / воду.</span></div>
+<div class="phrase"><span class="es">Tengo que renovar el NIE.</span><button class="speak-btn" onclick="speak('Tengo que renovar el NIE.')">🔊</button><span class="tr">Нужно продлить NIE.</span></div>
+<div class="phrase"><span class="es">Tenemos que firmar el contrato.</span><button class="speak-btn" onclick="speak('Tenemos que firmar el contrato.')">🔊</button><span class="tr">Нужно подписать контракт.</span></div>
+<div class="phrase"><span class="es">¿Tengo que traer algo?</span><button class="speak-btn" onclick="speak('¿Tengo que traer algo?')">🔊</button><span class="tr">Что-то взять с собой?</span></div>
+<div class="phrase"><span class="es">Tienes que ir al ayuntamiento.</span><button class="speak-btn" onclick="speak('Tienes que ir al ayuntamiento.')">🔊</button><span class="tr">Тебе нужно в мэрию.</span></div>
+<div class="phrase"><span class="es">¿Cuánto tiempo tengo que esperar?</span><button class="speak-btn" onclick="speak('¿Cuánto tiempo tengo que esperar?')">🔊</button><span class="tr">Сколько ждать?</span></div>
+</div></div></div>
+
+<div class="section"><div class="section-header"><div class="section-num">11</div><h2>Anki + ДЗ</h2></div>
+<div class="anki"><div class="atag">🃏 16 карточек L20</div>
+<div class="anki-preview" id="anki-preview-L20"></div>
+<button class="anki-export-btn" onclick="exportAnkiL20()">📥 Скачать L20</button></div>
+<div class="callout info" style="margin-top:16px"><h4>📅 До L21</h4><ul><li>LT эп. 26 + 15 мин DS</li><li>Запиши 10 фраз «tengo que + что-то делать»</li></ul></div>
+<div class="callout success" style="margin-top:14px"><h4>🎉 L20 готов!</h4><p>В L21 — IR и будущее с «voy a + infinitivo».</p></div></div>
+</div>
+
+<div class="done-bar"><div class="nav-links"><a href="../index.html" class="nav-link-btn">← Дашборд</a><a href="L19.html" class="nav-link-btn">← L19</a><a href="L21.html" class="nav-link-btn">L21 →</a></div><button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button></div>
+
+<script>
+const LESSON_ID='L20';const LS_KEY='esp_course_progress';
+function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
+function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+const st=getState();if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+function speak(text,lang){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}
+function speakSequence(phrases,delay){delay=delay||2400;window.speechSynthesis.cancel();phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});}
+function playD1(){speakSequence(['¿Cómo estás? Pareces cansado.','Sí, tengo mucho sueño. Y también tengo hambre.','Tienes que descansar. Voy a hacer la cena.','Gracias. ¿Y tú? ¿Tienes ganas de cenar?','Sí, pero las niñas tienen prisa, tienen un partido a las ocho.','Vale, tenemos que cenar rápido.'],2700);}
+function playD2(){speakSequence(['Tenemos que terminar el proyecto esta semana.','Tengo que pedir más tiempo. Hay muchos detalles.','No hay tiempo. ¿Cuántas horas tienes que trabajar más?','Unas diez horas más. Tengo cuidado con la calidad.','Tienes razón. Vale, hasta el viernes.'],2700);}
+const quizExpl={r1:'¿Hay una farmacia?',r2:'¿Dónde está el banco? (конкретный).',r3:'Hay — одна форма.',r4:'Hay que estudiar = безлично.',q1:'Tengo sed.',q2:'Tenemos que ir.',q3:'Tienes razón.',q4:'tienen prisa.',q5:'Tengo ganas de pasear.',q6:'tener que для лица, hay que безлично.'};
+function answerQuiz(el,qId,correctKey){const c=el.closest('.quiz-q');if(c.dataset.answered==='true')return;c.dataset.answered='true';c.querySelectorAll('.opt').forEach(function(o){const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');o.onclick=null;});const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);const userKey=um&&um[1];if(userKey!==correctKey)el.classList.add('wrong');const fb=document.getElementById('fb-'+qId);fb.className='feedback show '+(userKey===correctKey?'ok':'no');fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');}
+function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ '+answer[0]+'...';}}
+function showAns(id){document.getElementById(id).classList.add('show');}
+let showingTrans=false;function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
+document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
+const totalSections=11;function updateProgress(){const s=window.scrollY;const t=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(s/t*100));document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=Math.round(pct/100*totalSections)+' / '+totalSections;}
+window.addEventListener('scroll',updateProgress);
+const ANKI_DECK_L20=[
+{front:"tener — tengo, tienes, tiene",back:"Иметь (yo, tú, él)\n\nIrregular: yo+g, e→ie"},
+{front:"tener — tenemos, tenéis, tienen",back:"Иметь (мы, вы, они)\n\ntenemos/tenéis без изменений"},
+{front:"Tengo hambre / sed",back:"Я голоден / хочу пить\n\n«Иметь голод/жажду»"},
+{front:"Tengo sueño",back:"Хочу спать\n\nsueño = сон. «Иметь сон»."},
+{front:"Tengo frío / calor",back:"Мне холодно / жарко\n\nНЕ «estoy caliente»!"},
+{front:"Tengo miedo (de)",back:"Мне страшно\n\nTengo miedo de los perros."},
+{front:"Tengo prisa",back:"Я тороплюсь\n\n¡Vamos! Tengo prisa."},
+{front:"Tengo razón",back:"Я прав\n\nTienes razón = ты прав."},
+{front:"Tengo suerte",back:"Мне везёт\n\nTengo mucha suerte."},
+{front:"Tengo ganas de + inf.",back:"Хочется + что-то делать\n\nTengo ganas de salir."},
+{front:"Tengo X años",back:"Мне X лет\n\nTengo cuarenta años."},
+{front:"Tener que + inf.",back:"Должен + что-то делать (для лица)\n\nTengo que estudiar."},
+{front:"Tenemos que ir.",back:"Нам надо идти\n\nОбязательство для группы."},
+{front:"Hay que + inf.",back:"Нужно + (безлично)\n\nHay que estudiar. — Учиться надо (всем)."},
+{front:"Tengo dolor de cabeza",back:"Голова болит\n\nальтернатива «Me duele la cabeza»."},
+{front:"Tengo fiebre / tos / gripe",back:"Температура / кашель / грипп\n\nСимптомы = tener"}
+];
+function renderAnkiPreview(){const c=document.getElementById('anki-preview-L20');if(!c)return;c.innerHTML=ANKI_DECK_L20.slice(0,5).map(function(card){return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')"><div class="anki-card-inner"><div class="anki-card-front">'+card.front+'</div><div class="anki-card-back">'+card.back.replace(/\n/g,'<br>')+'</div></div></div>';}).join('');}
+renderAnkiPreview();
+function exportAnkiL20(){const tsv=ANKI_DECK_L20.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');const blob=new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='L20_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
+</script>
+</body>
+</html>

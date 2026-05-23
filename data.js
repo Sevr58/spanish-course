@@ -314,7 +314,7 @@ const COURSE = {
       ds_level:"super_beginner",
       polyglot: null,
       speaking_focus:"Выразить свои потребности и состояния",
-      file:"lessons/L20.html", status:"pending"
+      file:"lessons/L20.html", status:"improved"
     },
     {
       id:"L21", num:21, phase:1, block:"B1C", level:"A1", day:43, week:7,
