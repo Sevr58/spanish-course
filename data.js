@@ -398,7 +398,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Выбирать товар в магазине, указывать на предметы",
-      file:"lessons/L27.html", status:"pending"
+      file:"lessons/L27.html", status:"improved"
     },
     {
       id:"L28", num:28, phase:1, block:"B1C", level:"A1", day:57, week:10,
@@ -410,7 +410,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Обсудить чьи вещи, где что лежит, кому что принадлежит",
-      file:"lessons/L28.html", status:"pending"
+      file:"lessons/L28.html", status:"improved"
     },
     {
       id:"L29", num:29, phase:1, block:"B1C", level:"A1", day:59, week:10,
@@ -422,7 +422,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Описать местонахождение, объяснить цель действия",
-      file:"lessons/L29.html", status:"pending"
+      file:"lessons/L29.html", status:"improved"
     },
     {
       id:"L30", num:30, phase:1, block:"B1C", level:"A1", day:62, week:10,
@@ -434,7 +434,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"15-минутный монолог и диалог: представление, семья, день, планы",
-      file:"lessons/L30.html", status:"pending"
+      file:"lessons/L30.html", status:"improved"
     },
 
     // ═══════════════════════════════════════════════════════════
