@@ -522,7 +522,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Рассказать историю из жизни (2–3 минуты) с началом, серединой, концом",
-      file:"lessons/L37.html", status:"pending"
+      file:"lessons/L37.html", status:"improved"
     },
     {
       id:"L38", num:38, phase:2, block:"B2A", level:"A2", day:79, week:13,
@@ -534,7 +534,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Точно указывать временные рамки в рассказе",
-      file:"lessons/L38.html", status:"pending"
+      file:"lessons/L38.html", status:"improved"
     },
 
     // ─── Block 2B: Future & Conditional ────────────────────────

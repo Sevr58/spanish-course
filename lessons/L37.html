@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L37: Рассказываем истории — Primero, luego, después, al final</title>
+<style>
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(255,214,10,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.example-list{margin:10px 0;padding-left:0;list-style:none}
+.example-list li{padding:7px 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.example-list li:last-child{border-bottom:none}
+.example-list .es{color:var(--gold);font-weight:600}
+.example-list .ru{color:var(--muted);font-size:.82rem;margin-top:2px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(69,123,157,.05));border:1px solid rgba(255,214,10,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.connector-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+.connector-table th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+.connector-table td{padding:9px 12px;border-bottom:1px solid var(--border)}
+.connector-table tr:last-child td{border-bottom:none}
+.connector-table .es-cell{color:var(--gold);font-weight:600}
+.connector-table .ru-cell{color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1. NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2 · Фаза 2 · День 77</span>
+  <a href="L38.html">L38 →</a>
+</div>
+
+<!-- 2. HERO -->
+<div class="hero">
+  <div class="phase-tag">📖 Фаза 2 · Блок 2A · Прошедшее время · Dreaming Spanish: Beginner</div>
+  <h1>Рассказываем <span class="hl">истории</span></h1>
+  <p class="sub">Primero, luego, después, al final — связки для нарратива. Рассказывай события по-испански плавно и логично.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🔗</div><div><strong>Цель 1</strong><p>Освоить 15 нарративных связок и маркеров последовательности</p></div></div>
+    <div class="obj"><div class="ico">📖</div><div><strong>Цель 2</strong><p>Правильно чередовать Indefinido и Imperfecto в рассказе</p></div></div>
+    <div class="obj"><div class="ico">🎙</div><div><strong>Цель 3</strong><p>Рассказать историю из жизни с началом, серединой, концом</p></div></div>
+    <div class="obj"><div class="ico">🃏</div><div><strong>Цель 4</strong><p>Добавить 18 карточек нарративных слов в Anki</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- 3. WARM-UP (повторение L36) -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Повторение — L36: Indefinido vs. Imperfecto</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прошлый урок: когда Indefinido, когда Imperfecto. Быстрая проверка перед нарративом.</p>
+  <div class="quiz">
+    <h3>🔁 Что ты помнишь из L36?</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. «Mientras <strong>estudiaba</strong>, el teléfono <strong>sonó</strong>.» Почему «estudiaba» — Imperfecto?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Фоновое действие — описывает, что происходило в момент события</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Это единственное действие в предложении</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Imperfecto всегда идёт перед Indefinido</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «Ayer <strong>___</strong> (ir) al mercado y <strong>___</strong> (comprar) fruta.» Выбери правильные формы:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">iba, compraba</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">fui, compré</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">voy, compro</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «De niño <strong>___</strong> (vivir) en Madrid.» Выбери правильную форму Imperfecto:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">viví</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">vivo</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">vivía</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Какое слово-подсказка указывает на Indefinido (завершённое действие)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">siempre</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">normalmente</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">ayer</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — Нарративные связки и маркеры последовательности</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Когда ты рассказываешь историю на русском, ты автоматически используешь слова: <em>сначала, потом, затем, после этого, в конце концов</em>. В испанском — то же самое, только слова другие. Эти слова называются <strong>marcadores narrativos</strong> (нарративные маркеры) или <strong>conectores de secuencia</strong> (связки последовательности).</p>
+
+  <div class="callout info">
+    <h4>🔑 Главный принцип нарратива</h4>
+    <p>В хорошей истории на испанском нужно три вещи: <strong>1)</strong> слова-связки для порядка событий; <strong>2)</strong> Indefinido для действий сюжета; <strong>3)</strong> Imperfecto для фона, описаний и состояний. Сегодня фокус на первом — связках.</p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Группа 1</span>
+      <span class="rule-title">Начало истории</span>
+      <span class="rule-arrow">Как начать рассказ</span>
+    </div>
+    <table class="connector-table">
+      <tr><th>Связка</th><th>Перевод</th><th>Примечание</th></tr>
+      <tr><td class="es-cell">Primero / En primer lugar</td><td class="ru-cell">Сначала / Прежде всего</td><td>Самое нейтральное начало</td></tr>
+      <tr><td class="es-cell">Una vez / Un día</td><td class="ru-cell">Однажды / В один день</td><td>Типично для историй и анекдотов</td></tr>
+      <tr><td class="es-cell">Hace [tiempo], / Aquel día,</td><td class="ru-cell">[Время] назад, / В тот день,</td><td>Устанавливает временной контекст</td></tr>
+      <tr><td class="es-cell">Cuando era pequeño/a,</td><td class="ru-cell">Когда я был/а маленьким/ой,</td><td">С Imperfecto — для воспоминаний</td></tr>
+      <tr><td class="es-cell">Todo empezó cuando...</td><td class="ru-cell">Всё началось когда...</td><td>Кинематографичный вход в историю</td></tr>
+    </table>
+    <ul class="example-list">
+      <li><span class="es">Un día, estaba caminando por el parque cuando de repente empezó a llover.</span> <button class="speak-btn" onclick="speak('Un día, estaba caminando por el parque cuando de repente empezó a llover.')">🔊</button><div class="ru">Однажды я шёл по парку, когда вдруг пошёл дождь.</div></li>
+      <li><span class="es">Hace tres años, conocí a mi mejor amigo en Barcelona.</span> <button class="speak-btn" onclick="speak('Hace tres años, conocí a mi mejor amigo en Barcelona.')">🔊</button><div class="ru">Три года назад я познакомился с лучшим другом в Барселоне.</div></li>
+      <li><span class="es">Primero, todo parecía normal. Pero luego todo cambió.</span> <button class="speak-btn" onclick="speak('Primero, todo parecía normal. Pero luego todo cambió.')">🔊</button><div class="ru">Сначала всё казалось нормальным. Но потом всё изменилось.</div></li>
+      <li><span class="es">Todo empezó cuando decidí mudarme a España.</span> <button class="speak-btn" onclick="speak('Todo empezó cuando decidí mudarme a España.')">🔊</button><div class="ru">Всё началось, когда я решил переехать в Испанию.</div></li>
+      <li><span class="es">Aquel día hacía mucho calor y estaba muy cansado.</span> <button class="speak-btn" onclick="speak('Aquel día hacía mucho calor y estaba muy cansado.')">🔊</button><div class="ru">В тот день было очень жарко и я был очень устал.</div></li>
+      <li><span class="es">Cuando era pequeño, vivíamos en un pueblo pequeño.</span> <button class="speak-btn" onclick="speak('Cuando era pequeño, vivíamos en un pueblo pequeño.')">🔊</button><div class="ru">Когда я был маленьким, мы жили в маленьком посёлке.</div></li>
+    </ul>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Группа 2</span>
+      <span class="rule-title">Продолжение и последовательность</span>
+      <span class="rule-arrow">Двигаем историю вперёд</span>
+    </div>
+    <table class="connector-table">
+      <tr><th>Связка</th><th>Перевод</th><th>Примечание</th></tr>
+      <tr><td class="es-cell">Luego / Después</td><td class="ru-cell">Потом / После</td><td>Самые частотные — взаимозаменяемые</td></tr>
+      <tr><td class="es-cell">A continuación</td><td class="ru-cell">Затем / Далее</td><td>Чуть более формально</td></tr>
+      <tr><td class="es-cell">Después de eso / Tras eso</td><td class="ru-cell">После этого</td><td>«Tras» — более литературное</td></tr>
+      <tr><td class="es-cell">Entonces</td><td class="ru-cell">Тогда / Затем / Итак</td><td>Очень частое в разговорной речи</td></tr>
+      <tr><td class="es-cell">En ese momento</td><td class="ru-cell">В этот момент</td><td>Для поворотного момента истории</td></tr>
+      <tr><td class="es-cell">De repente / De pronto</td><td class="ru-cell">Вдруг / Внезапно</td><td>Неожиданный поворот — разрывает монотонность</td></tr>
+    </table>
+    <ul class="example-list">
+      <li><span class="es">Luego fui al supermercado y compré pan y leche.</span> <button class="speak-btn" onclick="speak('Luego fui al supermercado y compré pan y leche.')">🔊</button><div class="ru">Потом я пошёл в супермаркет и купил хлеб и молоко.</div></li>
+      <li><span class="es">Después de eso, llamé a mi madre para contarle todo.</span> <button class="speak-btn" onclick="speak('Después de eso, llamé a mi madre para contarle todo.')">🔊</button><div class="ru">После этого я позвонил маме, чтобы рассказать ей всё.</div></li>
+      <li><span class="es">Entonces me di cuenta de que había olvidado las llaves.</span> <button class="speak-btn" onclick="speak('Entonces me di cuenta de que había olvidado las llaves.')">🔊</button><div class="ru">Тогда я понял, что забыл ключи.</div></li>
+      <li><span class="es">De repente, apareció un perro enorme en el camino.</span> <button class="speak-btn" onclick="speak('De repente, apareció un perro enorme en el camino.')">🔊</button><div class="ru">Вдруг на дороге появилась огромная собака.</div></li>
+      <li><span class="es">En ese momento supe que todo había cambiado.</span> <button class="speak-btn" onclick="speak('En ese momento supe que todo había cambiado.')">🔊</button><div class="ru">В этот момент я понял, что всё изменилось.</div></li>
+      <li><span class="es">A continuación, explicó el problema con mucha calma.</span> <button class="speak-btn" onclick="speak('A continuación, explicó el problema con mucha calma.')">🔊</button><div class="ru">Затем он объяснил проблему очень спокойно.</div></li>
+    </ul>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Группа 3</span>
+      <span class="rule-title">Конец и итог истории</span>
+      <span class="rule-arrow">Завершить рассказ красиво</span>
+    </div>
+    <table class="connector-table">
+      <tr><th>Связка</th><th>Перевод</th><th>Примечание</th></tr>
+      <tr><td class="es-cell">Al final / Por fin</td><td class="ru-cell">В конце концов / Наконец</td><td>Al final — итог; por fin — долгожданное событие</td></tr>
+      <tr><td class="es-cell">Finalmente</td><td class="ru-cell">В итоге / В конечном счёте</td><td>Более официальный вариант «al final»</td></tr>
+      <tr><td class="es-cell">Para terminar / Para concluir</td><td class="ru-cell">Чтобы завершить</td><td>Для формальных рассказов и презентаций</td></tr>
+      <tr><td class="es-cell">Total, que... / Al final, resultó que...</td><td class="ru-cell">В общем... / В итоге оказалось, что...</td><td>Разговорный вывод</td></tr>
+    </table>
+    <ul class="example-list">
+      <li><span class="es">Al final, encontramos el apartamento perfecto en el Eixample.</span> <button class="speak-btn" onclick="speak('Al final, encontramos el apartamento perfecto en el Eixample.')">🔊</button><div class="ru">В конце концов мы нашли идеальную квартиру в Эшампле.</div></li>
+      <li><span class="es">Por fin llegó el autobús después de cuarenta minutos.</span> <button class="speak-btn" onclick="speak('Por fin llegó el autobús después de cuarenta minutos.')">🔊</button><div class="ru">Наконец-то автобус приехал после сорока минут ожидания.</div></li>
+      <li><span class="es">Total, que perdí el tren pero conocí a gente interesante.</span> <button class="speak-btn" onclick="speak('Total, que perdí el tren pero conocí a gente interesante.')">🔊</button><div class="ru">В общем, я опоздал на поезд, но познакомился с интересными людьми.</div></li>
+      <li><span class="es">Finalmente, todo salió bien y pudimos celebrar.</span> <button class="speak-btn" onclick="speak('Finalmente, todo salió bien y pudimos celebrar.')">🔊</button><div class="ru">В итоге всё прошло хорошо и мы смогли отпраздновать.</div></li>
+      <li><span class="es">Al final resultó que el piso estaba libre desde el mes anterior.</span> <button class="speak-btn" onclick="speak('Al final resultó que el piso estaba libre desde el mes anterior.')">🔊</button><div class="ru">В итоге оказалось, что квартира была свободна с прошлого месяца.</div></li>
+    </ul>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Группа 4</span>
+      <span class="rule-title">Противопоставление и неожиданность</span>
+      <span class="rule-arrow">Добавить драму в рассказ</span>
+    </div>
+    <ul class="example-list">
+      <li><span class="es">Sin embargo, el casero no quería alquilar a extranjeros.</span> <button class="speak-btn" onclick="speak('Sin embargo, el casero no quería alquilar a extranjeros.')">🔊</button><div class="ru">Однако хозяин квартиры не хотел сдавать иностранцам.</div></li>
+      <li><span class="es">Pero de repente él cambió de opinión cuando le mostramos los documentos.</span> <button class="speak-btn" onclick="speak('Pero de repente él cambió de opinión cuando le mostramos los documentos.')">🔊</button><div class="ru">Но вдруг он передумал, когда мы показали документы.</div></li>
+      <li><span class="es">Aunque estábamos cansados, seguimos buscando.</span> <button class="speak-btn" onclick="speak('Aunque estábamos cansados, seguimos buscando.')">🔊</button><div class="ru">Хотя мы были уставшими, мы продолжали искать.</div></li>
+      <li><span class="es">A pesar de todo, fue una experiencia increíble.</span> <button class="speak-btn" onclick="speak('A pesar de todo, fue una experiencia increíble.')">🔊</button><div class="ru">Несмотря на всё, это был невероятный опыт.</div></li>
+      <li><span class="es">Lo curioso es que al final todo resultó más fácil de lo esperado.</span> <button class="speak-btn" onclick="speak('Lo curioso es que al final todo resultó más fácil de lo esperado.')">🔊</button><div class="ru">Что забавно — в итоге всё оказалось проще, чем ожидалось.</div></li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Как сочетать Indefinido + Imperfecto в нарративе</h4>
+    <ul>
+      <li><strong>INDEFINIDO</strong> = действия сюжета (что произошло): llegué, entré, vi, pregunté, respondió...</li>
+      <li><strong>IMPERFECTO</strong> = фон, описания, привычки, состояния: era tarde, había mucha gente, el sol brillaba...</li>
+      <li>Классическая структура: «[Фон-Imperfecto], cuando [событие-Indefinido]»</li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки при рассказе на испанском</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Путать luego и entonces</td><td class="wrong-ex">Entonces fui a casa, entonces comí</td><td class="right-ex">Primero fui a casa, luego comí</td><td>Нельзя повторять «entonces» как заполнитель пауз</td></tr>
+    <tr><td>Опустить запятую после связки</td><td class="wrong-ex">Primero fui al mercado</td><td class="right-ex">Primero, fui al mercado</td><td>После нарративных маркеров нужна запятая</td></tr>
+    <tr><td>Imperfecto вместо Indefinido для событий</td><td class="wrong-ex">De repente, llovía mucho</td><td class="right-ex">De repente, llovió mucho</td><td>Внезапное событие = Indefinido, не Imperfecto</td></tr>
+    <tr><td>Путать «al final» и «por fin»</td><td class="wrong-ex">Por fin, la historia terminó mal</td><td class="right-ex">Al final, la historia terminó mal</td><td>Por fin = долгожданное (хорошее). Al final = нейтральный итог</td></tr>
+    <tr><td>Без связок — список событий</td><td class="wrong-ex">Llegué. Comí. Dormí. Salí.</td><td class="right-ex">Primero llegué, luego comí, después dormí y finalmente salí.</td><td>Без связок это не история, а список фактов</td></tr>
+    <tr><td>«De repente» без Indefinido</td><td class="wrong-ex">De repente, estaba cansado</td><td class="right-ex">De repente, me cansé</td><td>«De repente» требует действия (Indefinido), не состояния</td></tr>
+  </table>
+</div>
+
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — 18 нарративных слов и фраз</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 для прослушивания. Учи в контексте — каждое слово привязано к рассказу.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">primero</div><div class="vocab-ru">сначала / во-первых</div></div><button class="speak-btn" onclick="speak('primero')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">luego</div><div class="vocab-ru">потом / затем</div></div><button class="speak-btn" onclick="speak('luego')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">después</div><div class="vocab-ru">после / потом</div></div><button class="speak-btn" onclick="speak('después')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">entonces</div><div class="vocab-ru">тогда / итак / затем</div></div><button class="speak-btn" onclick="speak('entonces')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">al final</div><div class="vocab-ru">в конце концов / в итоге</div></div><button class="speak-btn" onclick="speak('al final')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">por fin</div><div class="vocab-ru">наконец-то (долгожданное)</div></div><button class="speak-btn" onclick="speak('por fin')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">de repente</div><div class="vocab-ru">вдруг / внезапно</div></div><button class="speak-btn" onclick="speak('de repente')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">de pronto</div><div class="vocab-ru">внезапно / неожиданно</div></div><button class="speak-btn" onclick="speak('de pronto')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">un día</div><div class="vocab-ru">однажды / как-то раз</div></div><button class="speak-btn" onclick="speak('un día')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">en ese momento</div><div class="vocab-ru">в тот момент / в этот момент</div></div><button class="speak-btn" onclick="speak('en ese momento')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">a continuación</div><div class="vocab-ru">далее / затем (формально)</div></div><button class="speak-btn" onclick="speak('a continuación')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">mientras tanto</div><div class="vocab-ru">тем временем / тем не менее</div></div><button class="speak-btn" onclick="speak('mientras tanto')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">sin embargo</div><div class="vocab-ru">тем не менее / однако</div></div><button class="speak-btn" onclick="speak('sin embargo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">aunque</div><div class="vocab-ru">хотя / несмотря на то что</div></div><button class="speak-btn" onclick="speak('aunque')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">total, que...</div><div class="vocab-ru">в общем... / короче говоря...</div></div><button class="speak-btn" onclick="speak('total, que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">lo curioso es que</div><div class="vocab-ru">что забавно / что интересно</div></div><button class="speak-btn" onclick="speak('lo curioso es que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">a pesar de todo</div><div class="vocab-ru">несмотря на всё</div></div><button class="speak-btn" onclick="speak('a pesar de todo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">contar una historia</div><div class="vocab-ru">рассказывать историю</div></div><button class="speak-btn" onclick="speak('contar una historia')">🔊</button></div>
+  </div>
+</div>
+
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Выбери правильную связку</h2>
+  </div>
+  <div class="quiz">
+    <h3>🎯 Нарративные маркеры — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «___ fui al banco, ___ al ayuntamiento.» Правильная пара связок:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Primero... luego</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Al final... primero</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Por fin... de repente</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Esperé dos horas. ___ llegó el casero.» Какая связка выражает долгожданное событие?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Al final</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">De repente</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">¡Por fin</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Todo iba bien. ___, sonó la alarma.» Неожиданное событие — какой маркер?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Primero</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">De repente</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Por fin</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «___ había mucho ruido en el piso de arriba.» Тем временем — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Al final</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">De repente</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Mientras tanto</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «___, no fue tan difícil como pensaba.» Итоговый вывод — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Al final</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Un día</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">De pronto</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «No tenía dinero. ___, encontré trabajo rápido.» Какая связка подходит лучше всего?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Primero</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Luego</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Sin embargo</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «___, perdí el tren pero hice amigos nuevos.» Разговорный итог — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">A continuación</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Mientras tanto</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Total, que</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуски в рассказе</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Напиши нужную связку. Ответ строчными буквами без лишних пробелов.</p>
+  <div class="quiz">
+    <h3>✏️ История о переезде в Барселону</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «___ llamé al casero, y quedamos a las seis.» (Сначала = ?)</div>
+      <input type="text" class="text-input" id="ti1" placeholder="введите связку...">
+      <button class="check-btn" onclick="checkText('ti1','primero','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ primero</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. «___, fuimos a ver el apartamento.» (Потом = ?)</div>
+      <input type="text" class="text-input" id="ti2" placeholder="введите связку...">
+      <button class="check-btn" onclick="checkText('ti2','luego','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ luego</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Todo iba bien. ___, el casero dijo que el precio subía.» (Вдруг = ?)</div>
+      <input type="text" class="text-input" id="ti3" placeholder="введите связку...">
+      <button class="check-btn" onclick="checkText('ti3','de repente','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ de repente</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. «___ nos pusimos de acuerdo y firmamos el contrato.» (В конце концов = ?)</div>
+      <input type="text" class="text-input" id="ti4" placeholder="введите связку...">
+      <button class="check-btn" onclick="checkText('ti4','al final','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ al final</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. «___, fue una experiencia muy interesante.» (Несмотря на всё = ?)</div>
+      <input type="text" class="text-input" id="ti5" placeholder="введите связку...">
+      <button class="check-btn" onclick="checkText('ti5','a pesar de todo','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ a pesar de todo</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. «___, ¡me gustó tanto Barcelona que decidí quedarme!» (В общем = ?)</div>
+      <input type="text" class="text-input" id="ti6" placeholder="введите связку...">
+      <button class="check-btn" onclick="checkText('ti6','total, que','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ total, que</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Истории в живом разговоре</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Замечай нарративные маркеры — они выделены. Нажимай 🔊 у каждой реплики.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📖 Диалог 1: Андрей рассказывает как нашёл квартиру (11 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cómo encontraste tu apartamento en Barcelona? <button class="speak-btn" onclick="speak('¿Cómo encontraste tu apartamento en Barcelona?')">🔊</button></div>
+        <div class="dlg-ru translation">Как ты нашёл свою квартиру в Барселоне?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es"><span style="color:var(--gold)">Primero</span>, busqué en Idealista durante dos semanas. <button class="speak-btn" onclick="speak('Primero, busqué en Idealista durante dos semanas.')">🔊</button></div>
+        <div class="dlg-ru translation">Сначала я искал на Idealista в течение двух недель.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y? ¿Encontraste algo bueno? <button class="speak-btn" onclick="speak('¿Y? ¿Encontraste algo bueno?')">🔊</button></div>
+        <div class="dlg-ru translation">И? Ты нашёл что-нибудь хорошее?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Había muchos pisos, pero eran muy caros. <span style="color:var(--gold)">Entonces</span>, decidí buscar en grupos de Facebook. <button class="speak-btn" onclick="speak('Había muchos pisos, pero eran muy caros. Entonces, decidí buscar en grupos de Facebook.')">🔊</button></div>
+        <div class="dlg-ru translation">Было много квартир, но они были очень дорогими. Тогда я решил искать в группах Facebook.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y funcionó eso? <button class="speak-btn" onclick="speak('¿Y funcionó eso?')">🔊</button></div>
+        <div class="dlg-ru translation">И это сработало?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí. <span style="color:var(--gold)">Un día</span>, vi un anuncio perfecto en el Eixample. <span style="color:var(--gold)">Luego</span> llamé al propietario y quedamos para verlo. <button class="speak-btn" onclick="speak('Sí. Un día, vi un anuncio perfecto en el Eixample. Luego llamé al propietario y quedamos para verlo.')">🔊</button></div>
+        <div class="dlg-ru translation">Да. Однажды я увидел идеальное объявление в Эшампле. Потом позвонил хозяину и договорились посмотреть.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y cómo era el piso? <button class="speak-btn" onclick="speak('¿Y cómo era el piso?')">🔊</button></div>
+        <div class="dlg-ru translation">А каким была квартира?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Era bonito y luminoso. <span style="color:var(--gold)">Sin embargo</span>, el propietario pedía tres meses de fianza. <button class="speak-btn" onclick="speak('Era bonito y luminoso. Sin embargo, el propietario pedía tres meses de fianza.')">🔊</button></div>
+        <div class="dlg-ru translation">Была красивой и светлой. Однако хозяин требовал три месяца залога.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Qué fuerte! ¿Y qué pasó? <button class="speak-btn" onclick="speak('¡Qué fuerte! ¿Y qué pasó?')">🔊</button></div>
+        <div class="dlg-ru translation">Как жёстко! И что случилось?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Negocié un poco y <span style="color:var(--gold)">al final</span> aceptó dos meses. <span style="color:var(--gold)">Total, que</span> firmé el contrato ese mismo día. <button class="speak-btn" onclick="speak('Negocié un poco y al final aceptó dos meses. Total, que firmé el contrato ese mismo día.')">🔊</button></div>
+        <div class="dlg-ru translation">Я немного поторговался и в конце концов он согласился на два месяца. Короче, я подписал договор в тот же день.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Me alegra que todo saliera bien! <button class="speak-btn" onclick="speak('¡Me alegra que todo saliera bien!')">🔊</button></div>
+        <div class="dlg-ru translation">Рада, что всё получилось хорошо!</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🚌 Диалог 2: История об опоздании на автобус (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Por qué llegas tan tarde? Te esperaba desde las tres. <button class="speak-btn" onclick="speak('¿Por qué llegas tan tarde? Te esperaba desde las tres.')">🔊</button></div>
+        <div class="dlg-ru translation2">Почему ты так опоздал? Я ждал тебя с трёх.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Perdona! Te cuento: <span style="color:var(--gold)">primero</span>, perdí el metro. <button class="speak-btn" onclick="speak('¡Perdona! Te cuento: primero, perdí el metro.')">🔊</button></div>
+        <div class="dlg-ru translation2">Прости! Рассказываю: сначала я опоздала на метро.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y qué hiciste? <button class="speak-btn" onclick="speak('¿Y qué hiciste?')">🔊</button></div>
+        <div class="dlg-ru translation2">И что ты сделала?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es"><span style="color:var(--gold)">Luego</span> cogí el autobús, pero había un atasco tremendo. <button class="speak-btn" onclick="speak('Luego cogí el autobús, pero había un atasco tremendo.')">🔊</button></div>
+        <div class="dlg-ru translation2">Потом я взяла автобус, но была огромная пробка.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Qué mala suerte! <button class="speak-btn" onclick="speak('¡Qué mala suerte!')">🔊</button></div>
+        <div class="dlg-ru translation2">Какое невезение!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es"><span style="color:var(--gold)">De repente</span>, el autobús paró y el conductor dijo que había un accidente. <button class="speak-btn" onclick="speak('De repente, el autobús paró y el conductor dijo que había un accidente.')">🔊</button></div>
+        <div class="dlg-ru translation2">Вдруг автобус остановился, и водитель сказал, что произошла авария.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Dios mío! ¿Y cómo llegaste? <button class="speak-btn" onclick="speak('¡Dios mío! ¿Y cómo llegaste?')">🔊</button></div>
+        <div class="dlg-ru translation2">Боже мой! И как ты добралась?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Bajé del autobús y caminé treinta minutos. <span style="color:var(--gold)">Por fin</span> encontré un taxi libre. <button class="speak-btn" onclick="speak('Bajé del autobús y caminé treinta minutos. Por fin encontré un taxi libre.')">🔊</button></div>
+        <div class="dlg-ru translation2">Вышла из автобуса и шла тридцать минут. Наконец нашла свободное такси.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Qué odisea! Menos mal que llegaste. <button class="speak-btn" onclick="speak('¡Qué odisea! Menos mal que llegaste.')">🔊</button></div>
+        <div class="dlg-ru translation2">Ну и приключение! Хорошо, что добралась.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es"><span style="color:var(--gold)">Total, que</span> llegué con una hora de retraso. ¡Lo siento mucho! <button class="speak-btn" onclick="speak('Total, que llegué con una hora de retraso. ¡Lo siento mucho!')">🔊</button></div>
+        <div class="dlg-ru translation2">Короче, опоздала на час. Очень извини!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏖️ Диалог 3: Рассказ о поездке (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cómo fue tu fin de semana en la Costa Brava? <button class="speak-btn" onclick="speak('¿Cómo fue tu fin de semana en la Costa Brava?')">🔊</button></div>
+        <div class="dlg-ru translation3">Как прошли выходные на Коста-Браве?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es"><span style="color:var(--gold)">Al principio</span>, el tiempo era horrible. Llovía y hacía frío. <button class="speak-btn" onclick="speak('Al principio, el tiempo era horrible. Llovía y hacía frío.')">🔊</button></div>
+        <div class="dlg-ru translation3">Поначалу погода была ужасная. Шёл дождь и было холодно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Qué pena! ¿Y no pudiste bañarte? <button class="speak-btn" onclick="speak('¡Qué pena! ¿Y no pudiste bañarte?')">🔊</button></div>
+        <div class="dlg-ru translation3">Как жаль! И ты не смог искупаться?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es"><span style="color:var(--gold)">Luego</span>, el sábado por la tarde salió el sol de repente. <button class="speak-btn" onclick="speak('Luego, el sábado por la tarde salió el sol de repente.')">🔊</button></div>
+        <div class="dlg-ru translation3">Потом, в субботу вечером, внезапно вышло солнце.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Bien! ¿Y qué hicisteis? <button class="speak-btn" onclick="speak('¡Bien! ¿Y qué hicisteis?')">🔊</button></div>
+        <div class="dlg-ru translation3">Отлично! И что вы сделали?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es">Fuimos a la playa y nadamos hasta las nueve de la noche. <span style="color:var(--gold)">Después</span>, cenamos en un restaurante de pescado. <button class="speak-btn" onclick="speak('Fuimos a la playa y nadamos hasta las nueve de la noche. Después, cenamos en un restaurante de pescado.')">🔊</button></div>
+        <div class="dlg-ru translation3">Пошли на пляж и купались до девяти вечера. После поужинали в рыбном ресторане.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Suena genial! ¿Volvisteis el domingo? <button class="speak-btn" onclick="speak('¡Suena genial! ¿Volvisteis el domingo?')">🔊</button></div>
+        <div class="dlg-ru translation3">Звучит здорово! Вернулись в воскресенье?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, <span style="color:var(--gold)">y a pesar de todo</span>, fue un fin de semana increíble. <button class="speak-btn" onclick="speak('Sí, y a pesar de todo, fue un fin de semana increíble.')">🔊</button></div>
+        <div class="dlg-ru translation3">Да, и несмотря на всё, это были невероятные выходные.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y lo repetirías? <button class="speak-btn" onclick="speak('¿Y lo repetirías?')">🔊</button></div>
+        <div class="dlg-ru translation3">Ты бы повторил?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es"><span style="color:var(--gold)">¡Sin duda!</span> El próximo fin de semana ya tengo planes para ir de nuevo. <button class="speak-btn" onclick="speak('¡Sin duda! El próximo fin de semana ya tengo planes para ir de nuevo.')">🔊</button></div>
+        <div class="dlg-ru translation3">Конечно! На следующих выходных у меня уже есть планы поехать снова.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Твоя очередь рассказать историю</h2>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Структура истории</div>
+    <p>Расскажи о <strong>любом событии прошлой недели</strong> используя минимум 5 нарративных маркеров из сегодняшнего урока. Структура:</p>
+    <div class="es">Primero... → Luego... → De repente... → Sin embargo... → Al final...</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Primero, luego, de repente, sin embargo, al final.')">🔊 Прослушать структуру</button>
+    <div class="hint">Цель: говорить без остановок 1,5–2 минуты. Не ищи идеальные слова — используй то, что знаешь!</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Барселоне: рассказ о поиске жилья</div>
+    <p>Представь, что ты рассказываешь другу как искал квартиру в Барселоне. Используй эту структуру:</p>
+    <div class="es">Primero, busqué pisos en internet. Luego visité tres apartamentos. De repente, encontré uno perfecto en el barrio de Gràcia. Sin embargo, el casero pedía muchos documentos. Al final, conseguí el piso y me mudé en junio.</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Primero, busqué pisos en internet. Luego visité tres apartamentos. De repente, encontré uno perfecto en el barrio de Gràcia. Sin embargo, el casero pedía muchos documentos. Al final, conseguí el piso y me mudé en junio.')">🔊 Прослушать пример</button>
+    <div class="hint">Теперь адаптируй под свою ситуацию. Расскажь историю от начала до конца без шпаргалки!</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Переговоры с арендодателем в Барселоне</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏠 Реальная ситуация — Аренда квартиры в Барселоне</div>
+    <p style="margin-bottom:12px">Поиск жилья в Барселоне — целая история. Casero (арендодатель) может попросить nómina (расчётный лист), fianza (залог) на 1–2 месяца и garantías (гарантии). Умение рассказывать и объяснять по-испански здесь критически важно.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Primero quería preguntarle sobre las condiciones del alquiler. <button class="speak-btn" onclick="speak('Primero quería preguntarle sobre las condiciones del alquiler.')">🔊</button></div>
+          <div class="phrase-ru">Сначала я хотел спросить об условиях аренды.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Después de ver el piso, me decidí a firmarlo. <button class="speak-btn" onclick="speak('Después de ver el piso, me decidí a firmarlo.')">🔊</button></div>
+          <div class="phrase-ru">После просмотра квартиры я решил её снять.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Al final, acordamos dos meses de fianza en lugar de tres. <button class="speak-btn" onclick="speak('Al final, acordamos dos meses de fianza en lugar de tres.')">🔊</button></div>
+          <div class="phrase-ru">В конце концов мы договорились на два месяца залога вместо трёх.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Podría contarme cómo funciona la comunidad de vecinos? <button class="speak-btn" onclick="speak('¿Podría contarme cómo funciona la comunidad de vecinos?')">🔊</button></div>
+          <div class="phrase-ru">Не могли бы вы рассказать, как работает объединение жильцов?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">De repente tuve un problema con el agua caliente — llamé al casero y lo solucionó al día siguiente. <button class="speak-btn" onclick="speak('De repente tuve un problema con el agua caliente. Llamé al casero y lo solucionó al día siguiente.')">🔊</button></div>
+          <div class="phrase-ru">Вдруг возникла проблема с горячей водой — позвонил арендодателю, и он решил её на следующий день.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Total, que el proceso fue largo pero valió la pena. <button class="speak-btn" onclick="speak('Total, que el proceso fue largo pero valió la pena.')">🔊</button></div>
+          <div class="phrase-ru">В общем, процесс был долгим, но оно того стоило.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> В Барселоне casero часто просит historia (рассказ о себе) — кто ты, где работаешь, почему переезжаешь. Умение связно рассказать свою историю с маркерами «primero, luego, al final» производит хорошее впечатление. Испанцы ценят людей, которые умеют рассказывать — это часть культуры.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">📚 Устная культура испанской речи</div>
+    <h4>Почему испанцы такие хорошие рассказчики?</h4>
+    <p>Испанская культура — глубоко устная. Традиция tertulias (дружеских разговоров за столом) восходит к XVII веку, когда испанские кафе были центрами интеллектуальной жизни. Дети в Испании учатся рассказывать истории с детства — это буквально социальный навык выживания. Именно поэтому испанский язык так богат нарративными связками: «mira que», «resulta que», «total que», «y va y dice» — всё это способы удержать внимание слушателя. Когда ты как иностранец начинаешь использовать эти маркеры в разговоре, испанцы мгновенно воспринимают тебя как «своего» — они видят, что ты не просто знаешь слова, но понимаешь, как строится живая речь.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек нарративных маркеров</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все 18 для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">primero</div>
+        <div class="anki-card-back">сначала / во-первых<br>Пример: Primero, llamé al casero.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">de repente</div>
+        <div class="anki-card-back">вдруг / внезапно<br>Пример: De repente, llovió.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">al final</div>
+        <div class="anki-card-back">в конце концов / в итоге<br>Al final vs. Por fin!</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">sin embargo</div>
+        <div class="anki-card-back">тем не менее / однако<br>Пример: Sin embargo, aceptó.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">total, que...</div>
+        <div class="anki-card-back">в общем / короче говоря<br>Разговорный итог истории</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL37()">📥 Скачать колоду L37 (.txt для Anki)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L38: Выражения времени в прошлом)</h4>
+    <ul>
+      <li><strong>Письменно:</strong> Напиши историю на 8–10 предложений (что ты делал вчера или на прошлой неделе). Используй минимум 6 нарративных маркеров из этого урока.</li>
+      <li><strong>Устно:</strong> Расскажи историю другу или запиши голосовое сообщение на 2 минуты. Пересмотри диалог 1 и попробуй воспроизвести его структуру.</li>
+      <li><strong>Dreaming Spanish Beginner:</strong> 15 мин. Обращай внимание на нарративные маркеры в речи — замечай «entonces», «luego», «al final».</li>
+      <li><strong>Anki:</strong> Повторяй 18 карточек этого урока + карточки из L36 (Indefinido vs. Imperfecto).</li>
+      <li><strong>Наблюдение:</strong> Следующий раз когда будешь смотреть испанское видео — запиши все нарративные маркеры которые услышишь.</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Урок 37 завершён!</h4>
+    <p>Теперь ты знаешь как строится испанская история — от «primero» до «al final». В следующем уроке L38 мы добавим точные временные выражения: hace tres días, el año pasado, desde que... — и твои истории станут ещё точнее.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L36.html" class="nav-link-btn">← L36</a>
+    <a href="L38.html" class="nav-link-btn">L38 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L37 = [
+  {front:"primero",back:"Русский: сначала / во-первых<br><br>Пример: Primero, busqué piso en internet.<br>Заметка: Всегда с запятой после: Primero,"},
+  {front:"luego",back:"Русский: потом / затем<br><br>Пример: Luego fui al supermercado.<br>Заметка: Взаимозаменяемо с «después»"},
+  {front:"después",back:"Русский: после / потом<br><br>Пример: Después de comer, salimos.<br>Заметка: después de + sustantivo / infinitivo"},
+  {front:"entonces",back:"Русский: тогда / итак / затем<br><br>Пример: Entonces decidí mudarme.<br>Заметка: Не злоупотреблять как заполнителем пауз"},
+  {front:"al final",back:"Русский: в конце концов / в итоге<br><br>Пример: Al final, encontramos el piso.<br>Заметка: Нейтральный итог. Por fin = долгожданное"},
+  {front:"por fin",back:"Русский: наконец-то<br><br>Пример: ¡Por fin llegó el taxi!<br>Заметка: Используй только для долгожданных событий"},
+  {front:"de repente",back:"Русский: вдруг / внезапно<br><br>Пример: De repente, empezó a llover.<br>Заметка: Требует Indefinido — неожиданное действие"},
+  {front:"de pronto",back:"Русский: внезапно / неожиданно<br><br>Пример: De pronto, apareció un problema.<br>Заметка: Синоним «de repente», чуть более книжное"},
+  {front:"un día",back:"Русский: однажды / как-то раз<br><br>Пример: Un día, conocí a mi mejor amigo.<br>Заметка: Классическое начало истории или анекдота"},
+  {front:"en ese momento",back:"Русский: в тот момент / в этот момент<br><br>Пример: En ese momento, supe la verdad.<br>Заметка: Для поворотного момента истории"},
+  {front:"mientras tanto",back:"Русский: тем временем<br><br>Пример: Mientras tanto, mi amigo esperaba afuera.<br>Заметка: Параллельные события"},
+  {front:"sin embargo",back:"Русский: тем не менее / однако<br><br>Пример: Era caro; sin embargo, lo alquilé.<br>Заметка: Всегда с запятой с обеих сторон"},
+  {front:"aunque",back:"Русский: хотя / несмотря на то что<br><br>Пример: Aunque llovía, salimos a caminar.<br>Заметка: Может идти с Indicativo или Subjuntivo"},
+  {front:"a pesar de todo",back:"Русский: несмотря на всё<br><br>Пример: A pesar de todo, fue una buena experiencia.<br>Заметка: Итоговая оценка ситуации"},
+  {front:"total, que...",back:"Русский: в общем / короче говоря<br><br>Пример: Total, que perdí el tren.<br>Заметка: Разговорный итог. Только в неформальной речи"},
+  {front:"lo curioso es que",back:"Русский: что забавно / что интересно<br><br>Пример: Lo curioso es que todo salió bien.<br>Заметка: Вводит неожиданный или забавный поворот"},
+  {front:"a continuación",back:"Русский: далее / затем (формально)<br><br>Пример: A continuación, les presento el proyecto.<br>Заметка: Более формальное, чем «luego»"},
+  {front:"contar una historia",back:"Русский: рассказывать историю<br><br>Пример: ¿Me puedes contar lo que pasó?<br>Заметка: contar (to tell) ≠ hablar (to speak)"},
+];
+
+function exportAnkiL37() {
+  const header = '#separator:Tab\n#html:true\n#deck:L37 Spanish Narrativa\n';
+  const tsv = ANKI_DECK_L37.map(c => c.front + '\t' + c.back).join('\n');
+  const blob = new Blob([header + tsv], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L37_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    '¿Cómo encontraste tu apartamento en Barcelona?',
+    'Primero, busqué en Idealista durante dos semanas.',
+    '¿Y? ¿Encontraste algo bueno?',
+    'Había muchos pisos, pero eran muy caros. Entonces, decidí buscar en grupos de Facebook.',
+    '¿Y funcionó eso?',
+    'Sí. Un día, vi un anuncio perfecto en el Eixample. Luego llamé al propietario y quedamos para verlo.',
+    '¿Y cómo era el piso?',
+    'Era bonito y luminoso. Sin embargo, el propietario pedía tres meses de fianza.',
+    '¡Qué fuerte! ¿Y qué pasó?',
+    'Negocié un poco y al final aceptó dos meses. Total, que firmé el contrato ese mismo día.',
+    '¡Me alegra que todo saliera bien!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+const LESSON_ID = 'L37';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'Imperfecto = фоновое действие, то что «шло» в момент события. Estudiaba = я учился (фон). Sonó = зазвонил (событие-Indefinido).',
+  w2:'«Ayer» + конкретные последовательные действия = Indefinido: fui (я пошёл), compré (я купил).',
+  w3:'«De niño» + привычка/состояние = Imperfecto. Vivía = я жил (продолжительное состояние в прошлом).',
+  w4:'«Ayer» = вчера — конкретное время = сигнал Indefinido. «Siempre» и «normalmente» = сигналы Imperfecto.',
+  q1:'Primero... luego = последовательность действий. Это самая классическая пара нарративных маркеров.',
+  q2:'«¡Por fin!» = наконец-то! — для долгожданного события после долгого ожидания.',
+  q3:'«De repente» = вдруг — для неожиданных событий, разрывающих ход истории.',
+  q4:'«Mientras tanto» = тем временем — для параллельных событий.',
+  q5:'«Al final» = в конце концов — нейтральный итог без эмоциональной окраски.',
+  q6:'«Sin embargo» = тем не менее, однако — противопоставление.',
+  q7:'«Total, que» = в общем, короче говоря — разговорный итог истории.',
+};
+
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const clickedKey = el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];
+  if (clickedKey !== correctKey) el.classList.add('wrong');
+  const isCorrect = clickedKey === correctKey;
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => {
+    el.style.display = showingTrans3 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>
