@@ -73,11 +73,22 @@ def extract_anki_deck(html: str):
         return []
     deck_text = match.group(1)
     cards = []
-    # Match {front: "...", back: "..."} pairs (handles both double and single quotes)
+    # Match {front: "...", back: "..."} pairs
     card_pattern = r'\{\s*front\s*:\s*"((?:[^"\\]|\\.)*)"\s*,\s*back\s*:\s*"((?:[^"\\]|\\.)*)"\s*\}'
+
+    def unescape_js(s: str) -> str:
+        # Only decode common JS string escapes; leave UTF-8 chars (cyrillic) intact
+        return (
+            s.replace("\\n", "\n")
+            .replace("\\t", "\t")
+            .replace('\\"', '"')
+            .replace("\\'", "'")
+            .replace("\\\\", "\\")
+        )
+
     for m in re.finditer(card_pattern, deck_text):
-        front = m.group(1).encode().decode("unicode_escape")
-        back = m.group(2).encode().decode("unicode_escape")
+        front = unescape_js(m.group(1))
+        back = unescape_js(m.group(2))
         cards.append({"front": front.strip(), "back": back.strip()})
     return cards
 
