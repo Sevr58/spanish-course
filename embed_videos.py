@@ -118,16 +118,36 @@ def build_video_block(meta):
 VIDEO_BLOCK_MARKER = '<div class="video-block"'
 
 
+def remove_existing_video_block(html: str) -> str:
+    """Safely remove a previously-inserted video-block by parsing balanced divs."""
+    marker = '<div class="video-block"'
+    start = html.find(marker)
+    if start == -1:
+        return html
+    # Walk forward to find matching </div> by tracking <div / </div> depth
+    depth = 0
+    i = start
+    n = len(html)
+    while i < n:
+        if html.startswith("<div", i):
+            depth += 1
+            i += 4
+        elif html.startswith("</div>", i):
+            depth -= 1
+            i += 6
+            if depth == 0:
+                # Also eat one trailing newline
+                while i < n and html[i] in " \n\t":
+                    i += 1
+                return html[:start] + html[i:]
+        else:
+            i += 1
+    return html  # malformed; bail
+
+
 def inject_videos(html: str, video_block: str) -> str:
-    """Insert video block before homework callout, removing any existing block."""
-    # Remove existing video block if any (idempotent)
-    html = re.sub(
-        r'<div class="video-block".*?</div>\s*</div>',
-        "",
-        html,
-        count=1,
-        flags=re.DOTALL,
-    )
+    """Insert video block before homework callout."""
+    html = remove_existing_video_block(html)
     # Find homework callout (anchor: '<h4>📅' inside callout.info)
     # Match the callout wrapping the homework h4
     pattern = re.compile(
