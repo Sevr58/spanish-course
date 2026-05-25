@@ -548,7 +548,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:3,
       speaking_focus:"Рассказать о планах на ближайшие дни/месяцы",
-      file:"lessons/L39.html", status:"pending"
+      file:"lessons/L39.html", status:"improved"
     },
     {
       id:"L40", num:40, phase:2, block:"B2B", level:"A2", day:84, week:14,
@@ -560,7 +560,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Делать предсказания и говорить о далёких планах",
-      file:"lessons/L40.html", status:"pending"
+      file:"lessons/L40.html", status:"improved"
     },
     {
       id:"L41", num:41, phase:2, block:"B2B", level:"A2", day:86, week:14,

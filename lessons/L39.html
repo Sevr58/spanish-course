@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -35,8 +34,16 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -71,7 +78,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -80,10 +87,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -91,405 +94,1028 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-table{width:100%;border-collapse:collapse;margin:14px 0}
-th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
-td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid var(--bg3)}
-tr:last-child td{border-bottom:none}
-td:first-child{font-weight:600;color:var(--gold)}
-.conj-table{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;margin:14px 0}
-.conj-table h4{font-size:.9rem;font-weight:700;margin-bottom:10px;color:var(--gold)}
-.conj-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.conj-row{display:flex;justify-content:space-between;padding:6px 10px;background:var(--bg3);border-radius:6px;font-size:.88rem}
-.conj-pro{color:var(--muted)}.conj-form{font-weight:600;color:var(--text)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.conj-grid{grid-template-columns:1fr}}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(69,123,157,.05));border:1px solid rgba(255,214,10,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.conj-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.conj-table th{background:var(--bg3);color:var(--gold);padding:8px 12px;text-align:left;font-weight:700}
+.conj-table td{padding:8px 12px;border-bottom:1px solid var(--border)}
+.conj-table tr:last-child td{border-bottom:none}
+.conj-table .es-form{color:var(--gold);font-weight:600}
+.example-block{background:var(--bg2);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 16px;margin:8px 0}
+.example-block .es{font-weight:600;font-size:1rem}
+.example-block .ru{font-size:.85rem;color:var(--muted);margin-top:2px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">A2 · Фаза 2 · День 82</span>
   <a href="L40.html">L40 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🚀 Фаза 2 · Блок 2B · Будущее и условное</div>
+  <div class="phase-tag">📅 Фаза 2 · Блок 2B: Будущее и Условное · Урок 39 · 📚 Polyglot #3</div>
   <h1>Ближайшее будущее: <span class="hl">ir + a + infinitivo</span></h1>
-  <p class="sub">Voy a estudiar, vamos a comer — «собираюсь, планирую». Это расширение урока #3 из курса Polyglot (Дмитрий Петров).</p>
+  <p class="sub">Voy a estudiar, vamos a comer — «собираюсь, планирую». Самый разговорный способ говорить о будущем.</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Строить конструкцию ir + a + infinitivo для ближайших планов</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
-    <div class="obj"><div class="ico">📚</div><div><strong>Polyglot</strong><p>Связь с уроком #3 курса Polyglot</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Рассказываем о планах на неделю и месяц</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Освоить конструкцию ir + a + infinitivo во всех лицах</p></div></div>
+    <div class="obj"><div class="ico">🗓️</div><div><strong>Цель 2</strong><p>Говорить о планах на ближайшие дни и недели</p></div></div>
+    <div class="obj"><div class="ico">🏠</div><div><strong>Цель 3</strong><p>Обсудить планы аренды квартиры в Барселоне</p></div></div>
+    <div class="obj"><div class="ico">🃏</div><div><strong>Цель 4</strong><p>Выучить 15 новых слов и пополнить Anki-колоду</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: ТЕОРИЯ -->
+<!-- 3. WARM-UP: Повторение L38 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Ir + a + infinitivo — самое простое будущее</h2>
+    <h2>Повторение L38 — Выражения времени в прошлом</h2>
   </div>
-
-  <p style="margin-bottom:14px">В испанском есть несколько способов говорить о будущем. Самый простой и самый частотный в разговорной речи — конструкция <strong>ir + a + infinitivo</strong>. Это полный аналог английского «going to».</p>
-
-  <div class="callout tip">
-    <h4>💡 Формула</h4>
-    <p><strong>[форма ir] + a + [глагол в инфинитиве]</strong><br>
-    Voy a comer. — Я собираюсь поесть.<br>
-    Vamos a estudiar. — Мы собираемся учиться.<br>
-    Это та же конструкция, что в английском: «I'm going to eat», «We're going to study».</p>
-  </div>
-
-  <div class="conj-table">
-    <h4>Спряжение ir (идти) в настоящем времени</h4>
-    <div class="conj-grid">
-      <div class="conj-row"><span class="conj-pro">yo</span><span class="conj-form">voy</span></div>
-      <div class="conj-row"><span class="conj-pro">nosotros/as</span><span class="conj-form">vamos</span></div>
-      <div class="conj-row"><span class="conj-pro">tú</span><span class="conj-form">vas</span></div>
-      <div class="conj-row"><span class="conj-pro">vosotros/as</span><span class="conj-form">vais</span></div>
-      <div class="conj-row"><span class="conj-pro">él/ella/usted</span><span class="conj-form">va</span></div>
-      <div class="conj-row"><span class="conj-pro">ellos/ellas/ustedes</span><span class="conj-form">van</span></div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прошлый урок: «hace tres días», «desde que», «el año pasado». Быстро проверим перед новой темой.</p>
+  <div class="quiz">
+    <h3>🔁 Вспоминаем прошлое время</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Фраза <strong>«hace dos semanas»</strong> означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">два недели назад</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">через две недели</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">каждые две недели</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Как сказать «три месяца назад» по-испански?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">desde tres meses</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">en tres meses</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">hace tres meses</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «Estudio español <strong>desde</strong> septiembre» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Я учил испанский до сентября</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Я учу испанский с сентября</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Я буду учить испанский с сентября</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Выбери правильное выражение для «в прошлом году»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">el año próximo</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">el año pasado</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">hace el año</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
     </div>
   </div>
-
-  <h3 style="margin:16px 0 10px;font-size:1rem">Примеры конструкции</h3>
-  <table>
-    <tr><th>Испанский</th><th>Русский</th></tr>
-    <tr><td>Voy a llamar a mi madre.</td><td>Я собираюсь позвонить маме.</td></tr>
-    <tr><td>¿Vas a venir esta noche?</td><td>Ты придёшь сегодня вечером?</td></tr>
-    <tr><td>Ella va a trabajar mañana.</td><td>Она будет работать завтра.</td></tr>
-    <tr><td>Vamos a hacer una fiesta.</td><td>Мы устраиваем вечеринку.</td></tr>
-    <tr><td>¿Qué van a hacer este fin de semana?</td><td>Что вы собираетесь делать на выходных?</td></tr>
-    <tr><td>No voy a salir esta noche.</td><td>Я не собираюсь выходить сегодня вечером.</td></tr>
-  </table>
-
-  <div class="callout info">
-    <h4>🔄 Когда использовать ir + a vs. Futuro simple</h4>
-    <p><strong>Ir + a + infinitivo</strong> — планы, намерения, ближайшее будущее (через час, завтра, на этой неделе). Более разговорный, более конкретный.<br>
-    <strong>Futuro simple</strong> (изучим в следующем уроке) — предсказания, обещания, далёкое будущее.<br>
-    В разговорной речи ir + a используется гораздо чаще. Начинай с него!</p>
-  </div>
-
-  <div class="callout warning">
-    <h4>⚠️ Ловушки для русскоговорящих</h4>
-    <ul>
-      <li>НЕ пропускай <strong>a</strong>: «Voy estudiar» — ОШИБКА. Нужно: «Voy <strong>a</strong> estudiar».</li>
-      <li>После «a» — всегда <strong>инфинитив</strong> (не спрягать): «Voy a como» — ОШИБКА. Нужно: «Voy a <strong>comer</strong>».</li>
-      <li><strong>Vamos a</strong> может означать «давай(те)» (приглашение): ¡Vamos a empezar! — Давайте начнём!</li>
-    </ul>
+  <div class="callout success">
+    <h4>✅ Отлично! Переходим к будущему</h4>
+    <p>Мы умеем говорить о прошлом с точными временными маркерами. Теперь научимся строить планы — конструкция ir + a + infinitivo самая используемая в разговорном испанском!</p>
   </div>
 </div>
 
-<!-- SECTION 2: СЛОВАРЬ -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — выражения будущего и планов</h2>
+    <h2>Теория — Конструкция ir + a + infinitivo</h2>
   </div>
 
-  <table>
-    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
-    <tr><td>mañana</td><td>[маНЬАна]</td><td>завтра</td><td>Voy a llamar mañana. — Позвоню завтра.</td></tr>
-    <tr><td>esta noche</td><td>[ЭСта НОче]</td><td>сегодня вечером</td><td>Vamos a cenar esta noche. — Поужинаем сегодня вечером.</td></tr>
-    <tr><td>el fin de semana</td><td>[эль фин де сеМАна]</td><td>выходные</td><td>¿Qué vas a hacer el fin de semana? — Что будешь делать на выходных?</td></tr>
-    <tr><td>la semana que viene</td><td>[ла сеМАна ке ВЬЕне]</td><td>на следующей неделе</td><td>La semana que viene voy a viajar. — На следующей неделе я собираюсь путешествовать.</td></tr>
-    <tr><td>el mes que viene</td><td>[эль мес ке ВЬЕне]</td><td>в следующем месяце</td><td>El mes que viene vamos a mudarnos. — В следующем месяце мы переезжаем.</td></tr>
-    <tr><td>pronto</td><td>[ПРОНто]</td><td>скоро</td><td>Voy a terminar pronto. — Я скоро закончу.</td></tr>
-    <tr><td>enseguida</td><td>[энсеГИда]</td><td>сейчас же, немедленно</td><td>Voy a volver enseguida. — Я вернусь сейчас же.</td></tr>
-    <tr><td>quedar</td><td>[кеДАР]</td><td>договориться о встрече</td><td>¿Quedamos mañana? — Договоримся на завтра?</td></tr>
-    <tr><td>mudarse</td><td>[муДАРсе]</td><td>переезжать</td><td>Nos vamos a mudar a España. — Мы собираемся переехать в Испанию.</td></tr>
-    <tr><td>empezar</td><td>[эмпеСАР]</td><td>начинать</td><td>Voy a empezar un curso nuevo. — Я собираюсь начать новый курс.</td></tr>
-    <tr><td>terminar</td><td>[терминАР]</td><td>заканчивать</td><td>¿Cuándo vas a terminar? — Когда ты закончишь?</td></tr>
-    <tr><td>visitar</td><td>[висиТАР]</td><td>посещать</td><td>Vamos a visitar Barcelona. — Мы собираемся посетить Барселону.</td></tr>
+  <div class="callout info">
+    <h4>📚 Связь с Polyglot #3 (Дмитрий Петров)</h4>
+    <p>Этот урок расширяет урок #3 из курса Polyglot — там впервые встречается глагол IR и базовые планы. Здесь мы систематически разбираем всю конструкцию ir + a + inf. Если не прошёл Polyglot #3 — пройди его сегодня же.</p>
+  </div>
+
+  <p style="margin-bottom:16px">Конструкция <strong>ir + a + infinitivo</strong> — это аналог английского «going to». В испанском разговорной речи она используется <em>гораздо чаще</em>, чем простое будущее время. Всякий раз, когда ты говоришь о конкретном плане или намерении — используй эту конструкцию.</p>
+
+  <div class="callout tip">
+    <h4>💡 Сравнение с русским и английским</h4>
+    <ul>
+      <li><strong>Русский:</strong> «Я собираюсь учиться», «Я буду учиться», «Я планирую учиться»</li>
+      <li><strong>Английский:</strong> «I am going to study» (конкретный план) vs «I will study» (решение на месте)</li>
+      <li><strong>Испанский:</strong> «Voy a estudiar» (конкретный план) vs «Estudiaré» (более формальное будущее)</li>
+    </ul>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 1</span>
+      <span class="rule-title">Формула</span>
+      <span class="rule-arrow">сujeto + IR (спрягается) + a + infinitivo</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">Глагол IR спрягается по лицу и числу, затем ВСЕГДА следует предлог «a», затем инфинитив основного глагола (неизменяемый).</p>
+    <table class="conj-table">
+      <tr><th>Местоимение</th><th>IR (быть) → форма</th><th>Пример</th></tr>
+      <tr><td>yo</td><td class="es-form">voy a</td><td>Voy a estudiar — Я собираюсь учиться</td></tr>
+      <tr><td>tú</td><td class="es-form">vas a</td><td>Vas a comer — Ты собираешься есть</td></tr>
+      <tr><td>él/ella/Ud.</td><td class="es-form">va a</td><td>Va a llegar — Он/она собирается прийти</td></tr>
+      <tr><td>nosotros</td><td class="es-form">vamos a</td><td>Vamos a hablar — Мы собираемся поговорить</td></tr>
+      <tr><td>vosotros</td><td class="es-form">vais a</td><td>Vais a salir — Вы собираетесь выйти</td></tr>
+      <tr><td>ellos/Uds.</td><td class="es-form">van a</td><td>Van a vivir — Они собираются жить</td></tr>
+    </table>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 2</span>
+      <span class="rule-title">Когда использовать</span>
+      <span class="rule-arrow">конкретные планы, намерения, близкое будущее</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Используй ir + a + inf когда: (1) есть конкретный план, (2) есть признаки/доказательства того, что что-то случится, (3) намерение уже сформировано.</p>
+    <div class="example-block">
+      <div class="es">Este fin de semana voy a visitar a mis amigos.</div>
+      <div class="ru">В эти выходные я собираюсь навестить друзей.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">¡Mira esas nubes! Va a llover.</div>
+      <div class="ru">Посмотри на эти тучи! Сейчас пойдёт дождь.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">Vamos a alquilar un piso en Barcelona el próximo mes.</div>
+      <div class="ru">На следующий месяц мы собираемся снять квартиру в Барселоне.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">¿Qué vas a hacer esta tarde?</div>
+      <div class="ru">Что ты собираешься делать сегодня днём?</div>
+    </div>
+    <div class="example-block">
+      <div class="es">Van a abrir un restaurante nuevo en el barrio.</div>
+      <div class="ru">В квартале собираются открыть новый ресторан.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">Voy a empezar un nuevo trabajo la próxima semana.</div>
+      <div class="ru">На следующей неделе я начинаю новую работу.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">Ella va a estudiar medicina en la universidad.</div>
+      <div class="ru">Она собирается изучать медицину в университете.</div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 3</span>
+      <span class="rule-title">Временны́е выражения</span>
+      <span class="rule-arrow">mañana, esta semana, el próximo mes...</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Конструкция часто сопровождается временными выражениями, указывающими на близкое будущее:</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">mañana</span><span class="sep">→</span><span class="ar">завтра</span></div>
+      <div class="wp"><span class="en">esta tarde</span><span class="sep">→</span><span class="ar">сегодня днём/вечером</span></div>
+      <div class="wp"><span class="en">esta noche</span><span class="sep">→</span><span class="ar">сегодня ночью</span></div>
+      <div class="wp"><span class="en">este fin de semana</span><span class="sep">→</span><span class="ar">в эти выходные</span></div>
+      <div class="wp"><span class="en">la próxima semana</span><span class="sep">→</span><span class="ar">на следующей неделе</span></div>
+      <div class="wp"><span class="en">el próximo mes</span><span class="sep">→</span><span class="ar">в следующем месяце</span></div>
+      <div class="wp"><span class="en">el próximo año</span><span class="sep">→</span><span class="ar">в следующем году</span></div>
+      <div class="wp"><span class="en">dentro de dos días</span><span class="sep">→</span><span class="ar">через два дня</span></div>
+      <div class="wp"><span class="en">en verano</span><span class="sep">→</span><span class="ar">летом</span></div>
+      <div class="wp"><span class="en">pronto</span><span class="sep">→</span><span class="ar">скоро</span></div>
+    </div>
+    <div class="example-block" style="margin-top:10px">
+      <div class="es">Mañana vamos a reunirnos en la oficina.</div>
+      <div class="ru">Завтра мы собираемся встретиться в офисе.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">Esta noche voy a ver una película española.</div>
+      <div class="ru">Сегодня ночью я собираюсь посмотреть испанский фильм.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">Dentro de tres días vas a recibir el contrato.</div>
+      <div class="ru">Через три дня ты получишь контракт.</div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 4</span>
+      <span class="rule-title">Отрицание и вопросы</span>
+      <span class="rule-arrow">No voy a... / ¿Vas a...?</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">В отрицании «no» ставится перед формой ir. В вопросах порядок слов может меняться.</p>
+    <div class="example-block">
+      <div class="es">No voy a salir esta noche — estoy muy cansado.</div>
+      <div class="ru">Я не собираюсь выходить сегодня — я очень устал.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">No va a llover hoy, el cielo está despejado.</div>
+      <div class="ru">Сегодня не будет дождя, небо ясное.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">¿Vas a venir a la fiesta el sábado?</div>
+      <div class="ru">Ты придёшь на вечеринку в субботу?</div>
+    </div>
+    <div class="example-block">
+      <div class="es">¿A qué hora van a llegar los invitados?</div>
+      <div class="ru">Во сколько придут гости?</div>
+    </div>
+    <div class="example-block">
+      <div class="es">¿No vais a cenar juntos esta noche?</div>
+      <div class="ru">Разве вы не собираетесь ужинать вместе сегодня?</div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 5</span>
+      <span class="rule-title">ir + a + ir</span>
+      <span class="rule-arrow">Voy a ir al supermercado — особый случай</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Когда инфинитив — сам глагол ir, конструкция выглядит немного необычно, но полностью грамматически верна:</p>
+    <div class="example-block">
+      <div class="es">Voy a ir al supermercado esta tarde.</div>
+      <div class="ru">Я собираюсь пойти в супермаркет сегодня вечером.</div>
+    </div>
+    <div class="example-block">
+      <div class="es">¿Vais a ir a la playa el domingo?</div>
+      <div class="ru">Вы собираетесь пойти на пляж в воскресенье?</div>
+    </div>
+    <div class="example-block">
+      <div class="es">Van a ir al aeropuerto mañana por la mañana.</div>
+      <div class="ru">Они собираются поехать в аэропорт завтра утром.</div>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-top:8px">💡 В разговорной речи часто укорачивают: «Voy a ir» → «Voy al mercado» (просто «иду» настоящим временем вместо ir + a + ir).</p>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Пропуск предлога «a»</td><td class="wrong-ex">Voy estudiar mañana</td><td class="right-ex">Voy a estudiar mañana</td><td>Предлог «a» обязателен: ir + a + inf</td></tr>
+    <tr><td>Инфинитив вместо спряжения IR</td><td class="wrong-ex">Ir a comer ahora</td><td class="right-ex">Voy a comer ahora</td><td>IR нужно спрягать: voy, vas, va...</td></tr>
+    <tr><td>Спряжение инфинитива</td><td class="wrong-ex">Voy a como</td><td class="right-ex">Voy a comer</td><td>Второй глагол всегда в инфинитиве</td></tr>
+    <tr><td>Неверная форма IR</td><td class="wrong-ex">Ella vo a llegar</td><td class="right-ex">Ella va a llegar</td><td>3-е лицо ед.ч.: va (не vo, не voy)</td></tr>
+    <tr><td>Nosotros путают с «вamos»</td><td class="wrong-ex">Nosotros vamos ir</td><td class="right-ex">Nosotros vamos a ir</td><td>Предлог «a» нужен и для nosotros</td></tr>
+    <tr><td>Использование «будущего» вместо этой конструкции в разговоре</td><td class="wrong-ex">Estudiaré mañana (слишком формально)</td><td class="right-ex">Voy a estudiar mañana (разговорно)</td><td>В устной речи предпочитается ir + a + inf</td></tr>
   </table>
 </div>
 
-<!-- SECTION 3: ТЕСТ 1 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Конструкция ir + a</h2>
+    <h2>Словарь — Планы и намерения</h2>
   </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">15 ключевых слов для разговора о будущих планах. Нажимай 🔊 для прослушивания.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">el plan <button class="speak-btn" onclick="speak('el plan')">🔊</button></div><div class="vocab-ru">план, замысел</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">la intención <button class="speak-btn" onclick="speak('la intención')">🔊</button></div><div class="vocab-ru">намерение</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">el proyecto <button class="speak-btn" onclick="speak('el proyecto')">🔊</button></div><div class="vocab-ru">проект, замысел</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">alquilar <button class="speak-btn" onclick="speak('alquilar')">🔊</button></div><div class="vocab-ru">снимать/сдавать в аренду</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">mudarse <button class="speak-btn" onclick="speak('mudarse')">🔊</button></div><div class="vocab-ru">переехать</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">visitar <button class="speak-btn" onclick="speak('visitar')">🔊</button></div><div class="vocab-ru">посещать, навещать</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">empezar <button class="speak-btn" onclick="speak('empezar')">🔊</button></div><div class="vocab-ru">начинать</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">terminar <button class="speak-btn" onclick="speak('terminar')">🔊</button></div><div class="vocab-ru">заканчивать</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">reunirse <button class="speak-btn" onclick="speak('reunirse')">🔊</button></div><div class="vocab-ru">встречаться, собираться</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">decidir <button class="speak-btn" onclick="speak('decidir')">🔊</button></div><div class="vocab-ru">решать</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">preparar <button class="speak-btn" onclick="speak('preparar')">🔊</button></div><div class="vocab-ru">готовить, готовиться</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">buscar <button class="speak-btn" onclick="speak('buscar')">🔊</button></div><div class="vocab-ru">искать</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">encontrar <button class="speak-btn" onclick="speak('encontrar')">🔊</button></div><div class="vocab-ru">находить, встречать</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">el contrato <button class="speak-btn" onclick="speak('el contrato')">🔊</button></div><div class="vocab-ru">договор, контракт</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">firmar <button class="speak-btn" onclick="speak('firmar')">🔊</button></div><div class="vocab-ru">подписывать</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">el piso <button class="speak-btn" onclick="speak('el piso')">🔊</button></div><div class="vocab-ru">квартира (Испания)</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">instalarse <button class="speak-btn" onclick="speak('instalarse')">🔊</button></div><div class="vocab-ru">обустроиться, обосноваться</div></div></div>
+    <div class="vocab-item"><div><div class="vocab-es">negociar <button class="speak-btn" onclick="speak('negociar')">🔊</button></div><div class="vocab-ru">договариваться, переговоры</div></div></div>
+  </div>
+</div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Проверь понимание конструкции</h3>
-
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — ir + a + infinitivo: множественный выбор</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Выбери правильный вариант. Правильный ответ — всегда вариант, который получает зелёный цвет.</p>
+  <div class="quiz">
+    <h3>🎯 7 вопросов по конструкции ir + a + inf</h3>
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. Как правильно сказать «Мы собираемся есть»?</div>
+      <div class="q-text">1. Как сказать «Я собираюсь учиться»?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Vamos a comer</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Vamos comer</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Vamos a comemos</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Voy a estudiar</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Voy estudiar</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Ir a estudiar</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
-
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. «¿Qué vas a hacer mañana?» — что это значит?</div>
+      <div class="q-text">2. Форма для «ella»: «Она собирается переехать»:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Что ты собираешься делать завтра?</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Что ты делал вчера?</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Что ты делаешь сейчас?</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Voy a mudarse</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Va a mudarse</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Van a mudarse</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
-
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. Переведи: «Она не собирается приходить»</div>
+      <div class="q-text">3. «Мы собираемся подписать контракт» = ?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Ella no va a venir</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Ella va no a venir</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Ella no va venir</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Vamos a firmar el contrato</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Vais a firmar el contrato</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Van a firmar el contrato</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
-
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. «La semana que viene» означает:</div>
+      <div class="q-text">4. Вопрос: «Что ты собираешься делать завтра?»</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">на следующей неделе</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">на прошлой неделе</td></div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">на этой неделе</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">¿Qué voy a hacer mañana?</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">¿Qué vas a hacer mañana?</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">¿Qué va a hacer mañana?</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
-
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. «¡Vamos a empezar!» — что это значит?</div>
+      <div class="q-text">5. Отрицание: «Я не собираюсь выходить сегодня»</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Давайте начнём!</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Начните уже!</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Они начинают.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Voy no a salir hoy</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">No voy salir hoy</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">No voy a salir hoy</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
-
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. Правильный перевод «Я собираюсь переехать в Барселону»:</div>
+      <div class="q-text">6. «Они собираются искать квартиру на следующей неделе»</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Voy a mudarme a Barcelona</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Voy mudar a Barcelona</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Voy a mudé a Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Vamos a buscar piso la próxima semana</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Van a buscar piso la próxima semana</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Vas a buscar piso la próxima semana</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Какое предложение грамматически правильное?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Quiero ir comprar hoy</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Va estudiar medicina</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Vais a empezar el curso mañana</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
   <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 4: ТЕСТ 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 2 — Составь предложения</h2>
-  </div>
-
-  <div class="quiz">
-    <h3>✏️ Вставь правильную форму</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. Yo ___ a estudiar esta tarde. (форма ir для «yo»)</div>
-      <input type="text" class="text-input" placeholder="voy / vas / va / vamos..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','voy','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ voy — «Yo voy a estudiar esta tarde» = Я собираюсь учиться сегодня вечером.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. Nosotros ___ a visitar a los abuelos el domingo. (форма ir для «nosotros»)</div>
-      <input type="text" class="text-input" placeholder="voy / vas / va / vamos..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','vamos','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ vamos — «Vamos a visitar a los abuelos» = Мы собираемся навестить бабушку и дедушку.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. ¿___ a venir a la fiesta mañana? (форма ir для «tú»)</div>
-      <input type="text" class="text-input" placeholder="voy / vas / va / vamos..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','Vas','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ Vas — «¿Vas a venir a la fiesta mañana?» = Ты придёшь на вечеринку завтра?</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. Ella va a ___ un nuevo trabajo. (buscar — искать)</div>
-      <input type="text" class="text-input" placeholder="busca / buscar / buscando..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','buscar','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ buscar — после «a» всегда инфинитив. «Ella va a buscar un nuevo trabajo» = Она собирается искать новую работу.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. No ___ a salir esta noche. (я не собираюсь)</div>
-      <input type="text" class="text-input" placeholder="voy / vas / va..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','voy','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ voy — «No voy a salir esta noche» = Я не собираюсь выходить сегодня вечером.</div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 5: ДИАЛОГИ -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Диалоги — Планируем будущее</h2>
+    <h2>Тест 2 — Вставь пропущенное слово</h2>
   </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Планы на выходные
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Заполни пропуск правильной формой конструкции. Вводи в нижнем регистре.</p>
+  <div class="quiz">
+    <h3>✏️ Заполни пропуски</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. Yo ___ a visitar a mi familia este fin de semana. (ir, 1-е л.)</div>
+      <input type="text" class="text-input" placeholder="форма IR..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','voy','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ voy — Yo voy a visitar a mi familia este fin de semana.</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Карл</div>
-      <div><div class="dlg-es">¿Qué vas a hacer este fin de semana?</div>
-      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Что ты собираешься делать на этих выходных?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">2. ¿Tú ___ a alquilar un piso en Barcelona? (ir, 2-е л. ед.ч.)</div>
+      <input type="text" class="text-input" placeholder="форма IR..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','vas','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ vas — ¿Tú vas a alquilar un piso en Barcelona?</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Сара</div>
-      <div><div class="dlg-es">Voy a visitar a mis padres en el pueblo. Y después vamos a ir todos juntos a la playa.</div>
-      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Я собираюсь навестить родителей в деревне. А потом мы все вместе собираемся поехать на пляж.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">3. Ellos van ___ firmar el contrato mañana. (предлог)</div>
+      <input type="text" class="text-input" placeholder="предлог..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','a','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ a — Ellos van a firmar el contrato mañana.</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Карл</div>
-      <div><div class="dlg-es">¡Qué bien! ¿Y el domingo?</div>
-      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Здорово! А в воскресенье?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">4. Nosotros ___ a mudarnos la próxima semana. (ir, 1-е л. мн.ч.)</div>
+      <input type="text" class="text-input" placeholder="форма IR..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','vamos','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ vamos — Nosotros vamos a mudarnos la próxima semana.</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Сара</div>
-      <div><div class="dlg-es">El domingo voy a descansar. No voy a hacer nada especial. ¿Y tú?</div>
-      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">В воскресенье я собираюсь отдохнуть. Не собираюсь ничего особенного делать. А ты?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">5. Ella no va a ___ hoy, está muy ocupada. (salir)</div>
+      <input type="text" class="text-input" placeholder="инфинитив..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','salir','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ salir — Ella no va a salir hoy, está muy ocupada.</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Карл</div>
-      <div><div class="dlg-es">Yo voy a estudiar español y luego voy a ver una película española.</div>
-      <div class="dlg-ru" id="tr-dlg1-5" style="display:none">Я собираюсь учить испанский, а потом собираюсь посмотреть испанский фильм.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">6. ¿A qué hora ___ a llegar los invitados? (ir, 3-е л. мн.ч.)</div>
+      <input type="text" class="text-input" placeholder="форма IR..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','van','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ van — ¿A qué hora van a llegar los invitados?</div>
     </div>
-    <div id="tr-dlg1" style="display:none"></div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Планы переезда
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Дмит</div>
-      <div><div class="dlg-es">¿Es verdad que vas a mudarte a España?</div>
-      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Правда, что ты собираешься переехать в Испанию?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Евг</div>
-      <div><div class="dlg-es">Sí, vamos a mudarnos a Barcelona el año que viene. Primero voy a conseguir la visa, y después va a venir toda la familia.</div>
-      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Да, мы собираемся переехать в Барселону в следующем году. Сначала я получу визу, а потом приедет вся семья.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Дмит</div>
-      <div><div class="dlg-es">¿Y vas a trabajar allí también?</div>
-      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">И ты тоже собираешься там работать?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Евг</div>
-      <div><div class="dlg-es">Sí, voy a trabajar de forma remota. No voy a cambiar de trabajo, solo de país.</div>
-      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Да, я собираюсь работать удалённо. Не собираюсь менять работу, только страну.</div></div>
-    </div>
-    <div id="tr-dlg2" style="display:none"></div>
   </div>
 </div>
 
-<!-- SECTION 6: ГОВОРЕНИЕ -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Говорение — Мои планы на ближайшее время</h2>
+    <h2>Диалоги — Планируем будущее</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Нажимай 🔊 у каждой реплики. Переводы скрыты — нажми «Все переводы».</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📅 Диалог 1: Планы на выходные — Карлос и Мария (11 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Oye, María, ¿qué vas a hacer este fin de semana? <button class="speak-btn" onclick="speak('Oye, María, ¿qué vas a hacer este fin de semana?')">🔊</button></div>
+        <div class="dlg-ru translation">Слушай, Мария, что ты собираешься делать в эти выходные?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">El sábado voy a visitar a mis padres. Y el domingo voy a descansar en casa. <button class="speak-btn" onclick="speak('El sábado voy a visitar a mis padres. Y el domingo voy a descansar en casa.')">🔊</button></div>
+        <div class="dlg-ru translation">В субботу я собираюсь навестить родителей. А в воскресенье собираюсь отдохнуть дома.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y por la noche? ¿Van a salir juntos? <button class="speak-btn" onclick="speak('¿Y por la noche? ¿Van a salir juntos?')">🔊</button></div>
+        <div class="dlg-ru translation">А вечером? Вы собираетесь выйти вместе?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, vamos a ir a un restaurante nuevo en el centro. Dicen que la comida es muy buena. <button class="speak-btn" onclick="speak('Sí, vamos a ir a un restaurante nuevo en el centro. Dicen que la comida es muy buena.')">🔊</button></div>
+        <div class="dlg-ru translation">Да, мы собираемся пойти в новый ресторан в центре. Говорят, еда там очень хорошая.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Qué bien! Yo también voy a hacer planes. Voy a llamar a Pedro. <button class="speak-btn" onclick="speak('¡Qué bien! Yo también voy a hacer planes. Voy a llamar a Pedro.')">🔊</button></div>
+        <div class="dlg-ru translation">Как здорово! Я тоже собираюсь строить планы. Собираюсь позвонить Педро.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Vais a ir al partido de fútbol del Barcelona? <button class="speak-btn" onclick="speak('¿Vais a ir al partido de fútbol del Barcelona?')">🔊</button></div>
+        <div class="dlg-ru translation">Вы собираетесь пойти на футбольный матч Барселоны?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, no vamos a ir al partido. Las entradas son muy caras. Vamos a ver el partido en casa. <button class="speak-btn" onclick="speak('No, no vamos a ir al partido. Las entradas son muy caras. Vamos a ver el partido en casa.')">🔊</button></div>
+        <div class="dlg-ru translation">Нет, на матч мы не собираемся. Билеты очень дорогие. Будем смотреть матч дома.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y la próxima semana? ¿Vas a estar libre? <button class="speak-btn" onclick="speak('¿Y la próxima semana? ¿Vas a estar libre?')">🔊</button></div>
+        <div class="dlg-ru translation">А на следующей неделе? Ты будешь свободен?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí. El martes voy a tener una reunión, pero el resto de la semana estoy libre. <button class="speak-btn" onclick="speak('Sí. El martes voy a tener una reunión, pero el resto de la semana estoy libre.')">🔊</button></div>
+        <div class="dlg-ru translation">Да. Во вторник у меня будет встреча, но остаток недели я свободен.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. Entonces vamos a quedar el miércoles para comer. ¿Te parece bien? <button class="speak-btn" onclick="speak('Perfecto. Entonces vamos a quedar el miércoles para comer. ¿Te parece bien?')">🔊</button></div>
+        <div class="dlg-ru translation">Отлично. Тогда в среду встретимся пообедать. Тебя устраивает?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Perfecto! Voy a reservar mesa en ese restaurante del que me hablaste. <button class="speak-btn" onclick="speak('¡Perfecto! Voy a reservar mesa en ese restaurante del que me hablaste.')">🔊</button></div>
+        <div class="dlg-ru translation">Отлично! Я закажу столик в том ресторане, о котором ты мне говорила.</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Базовый уровень</div>
-    <p>Расскажи о своих планах на эту неделю. Используй минимум 6 конструкций ir + a + infinitivo.</p>
-    <div class="es">Esta semana voy a... El fin de semana vamos a... Mañana no voy a...</div>
-    <div class="hint">Глаголы для вдохновения: trabajar, estudiar, cocinar, llamar, ver, leer, ir al gimnasio, descansar, comprar, visitar.</div>
-  </div>
-
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Продвинутый уровень</div>
-    <p>Расскажи о своих больших планах на ближайший год. Структурируй по месяцам.</p>
-    <div class="es">En [mes] voy a... En [mes] vamos a... El año que viene voy a mudarme a...</div>
-    <div class="hint">Представь, что разговариваешь с испанским другом. Объясни весь план переезда: визу, квартиру, работу, семью.</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏠 Диалог 2: Планируем переезд в Барселону — Андрей и арендодатель (12 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. Llamo porque voy a mudarme a Barcelona el próximo mes. <button class="speak-btn" onclick="speak('Buenos días. Llamo porque voy a mudarme a Barcelona el próximo mes.')">🔊</button></div>
+        <div class="dlg-ru translation2">Добрый день. Я звоню, потому что в следующем месяце собираюсь переехать в Барселону.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Propietario</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Bienvenido! ¿Qué tipo de piso va a necesitar? <button class="speak-btn" onclick="speak('¡Bienvenido! ¿Qué tipo de piso va a necesitar?')">🔊</button></div>
+        <div class="dlg-ru translation2">Добро пожаловать! Какой тип квартиры вам понадобится?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Voy a vivir con mi familia. Somos tres personas. Vamos a necesitar dos habitaciones. <button class="speak-btn" onclick="speak('Voy a vivir con mi familia. Somos tres personas. Vamos a necesitar dos habitaciones.')">🔊</button></div>
+        <div class="dlg-ru translation2">Буду жить с семьёй. Нас трое. Нам нужны две комнаты.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Propietario</div>
+      <div style="flex:1">
+        <div class="dlg-es">Tenemos un piso perfecto en el barrio del Eixample. ¿Cuándo va a poder visitarlo? <button class="speak-btn" onclick="speak('Tenemos un piso perfecto en el barrio del Eixample. ¿Cuándo va a poder visitarlo?')">🔊</button></div>
+        <div class="dlg-ru translation2">У нас есть отличная квартира в квартале Эшампле. Когда вы сможете её посмотреть?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Voy a llegar a Barcelona el jueves. Puedo verlo el viernes por la mañana. <button class="speak-btn" onclick="speak('Voy a llegar a Barcelona el jueves. Puedo verlo el viernes por la mañana.')">🔊</button></div>
+        <div class="dlg-ru translation2">В четверг я прилечу в Барселону. Могу посмотреть в пятницу утром.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Propietario</div>
+      <div style="flex:1">
+        <div class="dlg-es">De acuerdo. Vamos a quedar a las diez en la calle Gran Vía. <button class="speak-btn" onclick="speak('De acuerdo. Vamos a quedar a las diez en la calle Gran Vía.')">🔊</button></div>
+        <div class="dlg-ru translation2">Договорились. Встретимся в десять на улице Гран-Виа.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. ¿Voy a tener que pagar una fianza? <button class="speak-btn" onclick="speak('Perfecto. ¿Voy a tener que pagar una fianza?')">🔊</button></div>
+        <div class="dlg-ru translation2">Отлично. Мне нужно будет платить залог?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Propietario</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, va a ser un mes de fianza. Y también vamos a necesitar una referencia de su trabajo. <button class="speak-btn" onclick="speak('Sí, va a ser un mes de fianza. Y también vamos a necesitar una referencia de su trabajo.')">🔊</button></div>
+        <div class="dlg-ru translation2">Да, залог — один месяц аренды. И нам также понадобится справка с вашей работы.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">No hay problema. Voy a preparar todos los documentos antes del viernes. <button class="speak-btn" onclick="speak('No hay problema. Voy a preparar todos los documentos antes del viernes.')">🔊</button></div>
+        <div class="dlg-ru translation2">Без проблем. К пятнице я подготовлю все документы.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Propietario</div>
+      <div style="flex:1">
+        <div class="dlg-es">Bien. Si le gusta el piso, vamos a poder firmar el contrato ese mismo día. <button class="speak-btn" onclick="speak('Bien. Si le gusta el piso, vamos a poder firmar el contrato ese mismo día.')">🔊</button></div>
+        <div class="dlg-ru translation2">Хорошо. Если квартира вам понравится, мы сможем подписать договор в тот же день.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuándo voy a poder entrar a vivir? <button class="speak-btn" onclick="speak('¿Cuándo voy a poder entrar a vivir?')">🔊</button></div>
+        <div class="dlg-ru translation2">Когда я смогу въехать?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Propietario</div>
+      <div style="flex:1">
+        <div class="dlg-es">Si firmamos el viernes, va a poder mudarse el próximo lunes. ¡Bienvenido a Barcelona! <button class="speak-btn" onclick="speak('Si firmamos el viernes, va a poder mudarse el próximo lunes. ¡Bienvenido a Barcelona!')">🔊</button></div>
+        <div class="dlg-ru translation2">Если подпишем в пятницу, сможете въехать в следующий понедельник. Добро пожаловать в Барселону!</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue2()">▶ Воспроизвести диалог целиком</button>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: КУЛЬТУРА -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Культурная заметка</h2>
+    <h2>Говорение — Твоя очередь!</h2>
   </div>
-
-  <div class="culture">
-    <div class="ctag">🌍 Культурная заметка</div>
-    <h4>«¡Venga, vamos!» — испанский призыв к действию</h4>
-    <p>В испанской культуре «vamos» — это гораздо больше, чем просто «мы идём». Это слово-энергетик: ¡Vamos! — Поехали! Давай! ¡Vamos a por ello! — Давайте за это возьмёмся! В Испании вы постоянно услышите ¡Venga, vamos! как призыв к действию, выражение поддержки или просто попытку ускорить ход событий. Болельщики кричат ¡Vamos! своей команде. Люди говорят друг другу ¡Vamos! когда хотят подбодрить. Конструкция ir + a + infinitivo — это не просто грамматика, это часть испанской энергии.</p>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Расскажи о своих планах</div>
+    <p>Ответь вслух на вопросы, используя ir + a + infinitivo. Говори минимум 5-6 предложений:</p>
+    <div class="es">¿Qué vas a hacer esta tarde? ¿Y este fin de semana? ¿Qué planes tienes para la próxima semana? ¿Vas a estudiar mucho español?</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('¿Qué vas a hacer esta tarde? ¿Y este fin de semana? ¿Qué planes tienes para la próxima semana? ¿Vas a estudiar mucho español?')">🔊 Прослушать вопросы</button>
+    <div class="hint">Образец: «Esta tarde voy a estudiar español. Después voy a cenar con mi familia. Este fin de semana vamos a...»</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Барселоне: новый переезд</div>
+    <p>Ты только что нашёл квартиру в Барселоне. Расскажи соседу о своих планах на ближайший месяц:</p>
+    <div class="es">Hola, soy tu nuevo vecino. Voy a vivir aquí desde el próximo lunes. Vamos a instalarnos poco a poco. Primero voy a buscar un supermercado cerca. Después voy a registrarme en el ayuntamiento. También voy a buscar un médico de cabecera...</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Hola, soy tu nuevo vecino. Voy a vivir aquí desde el próximo lunes. Vamos a instalarnos poco a poco. Primero voy a buscar un supermercado cerca. Después voy a registrarme en el ayuntamiento.')">🔊 Прослушать пример</button>
+    <div class="hint">Используй: primero voy a..., después voy a..., también vamos a..., la próxima semana voy a...</div>
   </div>
 </div>
 
-<!-- SECTION 8: ANKI + ДОМАШНЕЕ ЗАДАНИЕ -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Anki и домашнее задание</h2>
+    <h2>🇪🇸 Испания на практике: Аренда квартиры в Барселоне</h2>
   </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏠 Реальная ситуация — Eixample, Барселона</div>
+    <p style="margin-bottom:12px">Ты нашёл объявление о сдаче квартиры на Idealista.com и звонишь арендодателю. В испанской аренде важно говорить о своих планах и намерениях — используй ir + a + infinitivo активно.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Voy a necesitar el piso desde el 1 de junio. <button class="speak-btn" onclick="speak('Voy a necesitar el piso desde el primero de junio.')">🔊</button></div>
+          <div class="phrase-ru">Квартира мне нужна с 1 июня.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Vamos a poder negociar el precio? <button class="speak-btn" onclick="speak('¿Vamos a poder negociar el precio?')">🔊</button></div>
+          <div class="phrase-ru">Мы сможем договориться о цене?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Voy a traer toda la documentación necesaria. <button class="speak-btn" onclick="speak('Voy a traer toda la documentación necesaria.')">🔊</button></div>
+          <div class="phrase-ru">Я принесу все необходимые документы.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuánto voy a pagar por los suministros? <button class="speak-btn" onclick="speak('¿Cuánto voy a pagar por los suministros?')">🔊</button></div>
+          <div class="phrase-ru">Сколько мне платить за коммунальные услуги?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Vamos a hacer el inventario antes de entrar. <button class="speak-btn" onclick="speak('Vamos a hacer el inventario antes de entrar.')">🔊</button></div>
+          <div class="phrase-ru">Мы составим опись имущества перед въездом.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuándo va a venir el técnico a reparar la lavadora? <button class="speak-btn" onclick="speak('¿Cuándo va a venir el técnico a reparar la lavadora?')">🔊</button></div>
+          <div class="phrase-ru">Когда придёт мастер починить стиральную машину?</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout info" style="margin-top:14px">
+      <h4>🏢 Важный разговор с propietario (арендодателем)</h4>
+      <p style="margin-bottom:8px">Типичный мини-диалог при первом звонке:</p>
+      <p><strong>Inquilino:</strong> Hola, llamo por el piso de la calle Valencia. Voy a mudarme a Barcelona en julio y voy a necesitar un piso de dos habitaciones.</p>
+      <p><strong>Propietario:</strong> Muy bien. ¿Cuándo va a poder venir a verlo?</p>
+      <p><strong>Inquilino:</strong> Voy a estar en Barcelona el próximo sábado. ¿Vamos a poder quedar por la mañana?</p>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> В Испании для аренды квартиры арендодатели обычно просят: (1) nóminas (расчётные листки) за последние 3 месяца, (2) contrato de trabajo (трудовой договор), (3) DNI или NIE (удостоверение личности). Иностранцам без NIE будет труднее — иногда нужен aval bancario (банковская гарантия). Договаривайся о встрече по телефону, используй конструкцию «voy a poder» — это звучит вежливо и профессионально.
+    </div>
+  </div>
+</div>
 
-  <!-- .wrap -->
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🌍 Futuro inmediato в разговорном испанском</div>
+    <h4>Почему испанцы почти не используют Futuro Simple в разговоре</h4>
+    <p>В современном разговорном испанском конструкция ir + a + infinitivo почти полностью вытеснила Futuro Simple в бытовом общении. Если спросить испанца о планах на завтра, 90% ответят «voy a...», а не «iré...». Это явление называется «perífrasis verbal» (глагольная перифраза) — и оно отражает общую тенденцию романских языков упрощать временны́е формы в пользу описательных конструкций. Интересно, что в Латинской Америке эта тенденция ещё сильнее: там Futuro Simple практически исчез из обиходной речи. Кстати, «vamos a» в начале предложения стало почти универсальным призывом к действию — «Vamos a empezar» (Начнём!) звучит в испанских классах, офисах и ресторанах каждый день.</p>
+  </div>
+</div>
 
-<!-- DONE BAR -->
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода L39 — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все карточки одним файлом для Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">voy a estudiar</div>
+        <div class="anki-card-back">я собираюсь учиться<br>ir + a + inf: yo → voy a</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">va a llegar</div>
+        <div class="anki-card-back">он/она собирается прийти<br>él/ella → va a</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">vamos a mudarnos</div>
+        <div class="anki-card-back">мы собираемся переехать<br>nosotros → vamos a</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">alquilar</div>
+        <div class="anki-card-back">снимать/сдавать в аренду<br>Voy a alquilar un piso.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">la próxima semana</div>
+        <div class="anki-card-back">на следующей неделе<br>Voy a llamar la próxima semana.</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL39()">📥 Скачать колоду Anki L39 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L40: Futuro Simple)</h4>
+    <ul>
+      <li><strong>Дневник планов:</strong> Каждый день этой недели записывай 3 плана на завтра, используя ir + a + inf. Например: «Mañana voy a...»</li>
+      <li><strong>Говорение:</strong> Расскажи вслух о своих планах на ближайшие 7 дней — минимум 10 предложений с ir + a + inf</li>
+      <li><strong>Dreaming Spanish Beginner:</strong> Смотри 10-15 минут. Обращай внимание когда говорящий использует «voy a», «vas a», «va a»</li>
+      <li><strong>Anki:</strong> Добавь 18 карточек из этого урока в свою колоду и повторяй ежедневно</li>
+      <li><strong>Polyglot #3:</strong> Если ещё не проходил — пройди урок #3 из курса Дмитрия Петрова как дополнение</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок 39 завершён!</h4>
+    <p>Ты освоил ir + a + infinitivo — главную конструкцию для разговора о будущем в испанском. Следующий урок: Futuro Simple — более формальное будущее время для предсказаний и далёких планов.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L38.html" class="nav-link-btn">← L38</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="../../lessons/lesson_03.html" class="nav-link-btn">📚 Polyglot #3</a>
-    <a href="L40.html" class="nav-link-btn">L40 →</a>
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L40.html" class="nav-link-btn">L40: Futuro Simple →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+// ─── speak() — Web Speech API ─────────────────────────────
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+// ─── Anki deck L39 ────────────────────────────────────────
+const ANKI_DECK_L39 = [
+  {front:"ir + a + infinitivo",back:"Конструкция ближайшего будущего<br>Пример: Voy a estudiar mañana.<br>Заметка: аналог 'going to' в английском"},
+  {front:"voy a",back:"Русский: я собираюсь (1л. ед.ч.)<br>Пример: Voy a llamarte esta tarde.<br>Заметка: yo → voy a"},
+  {front:"vas a",back:"Русский: ты собираешься (2л. ед.ч.)<br>Пример: ¿Qué vas a hacer mañana?<br>Заметка: tú → vas a"},
+  {front:"va a",back:"Русский: он/она собирается (3л. ед.ч.)<br>Пример: Ella va a mudarse pronto.<br>Заметка: él/ella/Ud. → va a"},
+  {front:"vamos a",back:"Русский: мы собираемся (1л. мн.ч.)<br>Пример: Vamos a comer juntos.<br>Заметка: nosotros → vamos a"},
+  {front:"vais a",back:"Русский: вы собираетесь (2л. мн.ч.)<br>Пример: ¿Vais a venir a la fiesta?<br>Заметка: vosotros → vais a (только Испания)"},
+  {front:"van a",back:"Русский: они собираются (3л. мн.ч.)<br>Пример: Van a abrir un restaurante.<br>Заметка: ellos/Uds. → van a"},
+  {front:"alquilar",back:"Русский: снимать/сдавать в аренду<br>Пример: Voy a alquilar un piso en el centro.<br>Заметка: inquilino=арендатор, propietario=хозяин"},
+  {front:"mudarse",back:"Русский: переехать<br>Пример: Vamos a mudarnos a Barcelona.<br>Заметка: возвратный глагол"},
+  {front:"el piso",back:"Русский: квартира (в Испании)<br>Пример: Busco un piso de dos habitaciones.<br>Заметка: =apartamento в Латинской Америке"},
+  {front:"firmar el contrato",back:"Русский: подписать договор<br>Пример: Vamos a firmar el contrato el viernes.<br>Заметка: firmar=подписывать, contrato=договор"},
+  {front:"la próxima semana",back:"Русский: на следующей неделе<br>Пример: La próxima semana voy a empezar el trabajo.<br>Заметка: próximo/a = следующий"},
+  {front:"el próximo mes",back:"Русский: в следующем месяце<br>Пример: El próximo mes vamos a mudarnos.<br>Заметка: próximo mes / la próxima semana"},
+  {front:"dentro de dos días",back:"Русский: через два дня<br>Пример: Dentro de dos días voy a recibir el contrato.<br>Заметка: dentro de + período"},
+  {front:"esta tarde",back:"Русский: сегодня вечером/днём<br>Пример: Esta tarde voy a estudiar.<br>Заметка: tarde = послеполудни + вечер"},
+  {front:"¿Qué vas a hacer?",back:"Русский: Что ты собираешься делать?<br>Пример: ¿Qué vas a hacer este fin de semana?<br>Заметка: самый частый вопрос о планах"},
+  {front:"No voy a salir",back:"Русский: Я не собираюсь выходить<br>Пример: No voy a salir esta noche, estoy cansado.<br>Заметка: no + voy a + infinitivo"},
+  {front:"la fianza",back:"Русский: залог (при аренде)<br>Пример: Voy a pagar un mes de fianza.<br>Заметка: стандарт в Испании = 1 месяц аренды"},
+];
+
+function exportAnkiL39() {
+  const tsv = ANKI_DECK_L39.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L39_spanish.txt';
+  a.click();
+}
+
+// ─── Play dialogues ────────────────────────────────────────
+function playDialogue1() {
+  const lines = [
+    'Oye, María, ¿qué vas a hacer este fin de semana?',
+    'El sábado voy a visitar a mis padres. Y el domingo voy a descansar en casa.',
+    '¿Y por la noche? ¿Van a salir juntos?',
+    'Sí, vamos a ir a un restaurante nuevo en el centro. Dicen que la comida es muy buena.',
+    '¡Qué bien! Yo también voy a hacer planes. Voy a llamar a Pedro.',
+    '¿Vais a ir al partido de fútbol del Barcelona?',
+    'No, no vamos a ir al partido. Las entradas son muy caras. Vamos a ver el partido en casa.',
+    '¿Y la próxima semana? ¿Vas a estar libre?',
+    'Sí. El martes voy a tener una reunión, pero el resto de la semana estoy libre.',
+    'Perfecto. Entonces vamos a quedar el miércoles para comer. ¿Te parece bien?',
+    '¡Perfecto! Voy a reservar mesa en ese restaurante del que me hablaste.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue2() {
+  const lines = [
+    'Buenos días. Llamo porque voy a mudarme a Barcelona el próximo mes.',
+    '¡Bienvenido! ¿Qué tipo de piso va a necesitar?',
+    'Voy a vivir con mi familia. Somos tres personas. Vamos a necesitar dos habitaciones.',
+    'Tenemos un piso perfecto en el barrio del Eixample. ¿Cuándo va a poder visitarlo?',
+    'Voy a llegar a Barcelona el jueves. Puedo verlo el viernes por la mañana.',
+    'De acuerdo. Vamos a quedar a las diez en la calle Gran Vía.',
+    'Perfecto. ¿Voy a tener que pagar una fianza?',
+    'Sí, va a ser un mes de fianza. Y también vamos a necesitar una referencia de su trabajo.',
+    'No hay problema. Voy a preparar todos los documentos antes del viernes.',
+    'Bien. Si le gusta el piso, vamos a poder firmar el contrato ese mismo día.',
+    '¿Cuándo voy a poder entrar a vivir?',
+    'Si firmamos el viernes, va a poder mudarse el próximo lunes. ¡Bienvenido a Barcelona!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+// ─── Progress tracking ────────────────────────────────────
 const LESSON_ID = 'L39';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'Vamos a comer — ir + a + инфинитив. «a» обязательна! Инфинитив не спрягается.',
-  q2:'vas a hacer = ты собираешься делать. «Qué» = что. mañana = завтра. Всё вместе: вопрос о планах.',
-  q3:'No + va + a + venir. Отрицание идёт перед формой ir, не перед «a».',
-  q4:'La semana que viene = следующая неделя (буквально «неделя, которая приходит»). Это идиома.',
-  q5:'¡Vamos a empezar! — когда vamos a используется как призыв «давайте», это не просто будущее, это инициатива.',
-  q6:'mudarse — возвратный глагол. С yo: mudarme. Полная форма: voy a mudarme. «Mudar» без «me» = менять что-то другое.',
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizExpl = {
+  w1:'hace dos semanas = два недели назад. Конструкция hace + число + время для выражения давности.',
+  w2:'hace tres meses = три месяца назад. Desde = с (момента), hace = назад/тому назад.',
+  w3:'desde + момент = с (какого момента). Здесь: учу испанский с сентября — процесс продолжается.',
+  w4:'el año pasado = в прошлом году. pasado = прошлый. próximo = следующий.',
+  q1:'Voy a estudiar — правильная конструкция: voy (1л.ед.ч.) + a + infinitivo. Предлог "a" обязателен.',
+  q2:'Va a mudarse — ella, 3л.ед.ч.: va a. Не voy (это я) и не van (это они).',
+  q3:'Vamos a firmar — nosotros: vamos a. Запомни: vamos = мы идём, но и форма ir для nosotros.',
+  q4:'¿Qué vas a hacer? — вопрос к tú (ты), поэтому vas. voy = я, va = он/она.',
+  q5:'No voy a salir hoy — no ставится перед формой ir. Порядок: no + voy/vas/va + a + inf.',
+  q6:'Van a buscar — они (ellos), поэтому van. vamos = мы, vais = вы (исп.), van = они.',
+  q7:'Vais a empezar el curso mañana — единственное грамматически правильное предложение. Остальные не имеют "a".',
 };
-let quizScore=0,quizTotal=0;
-function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
-function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
-function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const rows=document.querySelectorAll(`[id^="${id}-"]`);rows.forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
-const totalSections=8;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const clickedKey = el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];
+  if (clickedKey !== correctKey) el.classList.add('wrong');
+  const isCorrect = clickedKey === correctKey;
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>
