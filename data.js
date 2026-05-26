@@ -572,7 +572,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Вежливые просьбы и гипотетические ситуации: ¿Podría ayudarme?",
-      file:"lessons/L41.html", status:"pending"
+      file:"lessons/L41.html", status:"improved"
     },
     {
       id:"L42", num:42, phase:2, block:"B2B", level:"A2", day:88, week:15,
@@ -584,7 +584,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Рассказать о мечтах, целях и планах на ближайший год",
-      file:"lessons/L42.html", status:"pending"
+      file:"lessons/L42.html", status:"improved"
     },
     {
       id:"L43", num:43, phase:2, block:"B2B", level:"A2", day:90, week:15,
