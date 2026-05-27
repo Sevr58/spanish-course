@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L43: Сравнения и превосходная степень</title>
+<title>L43: Сравнения и превосходная степень — Más que, menos que, el más</title>
 <style>
 :root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -35,8 +34,16 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -71,7 +78,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -80,10 +87,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -91,411 +94,962 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-table{width:100%;border-collapse:collapse;margin:14px 0}
-th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
-td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid var(--bg3)}
-tr:last-child td{border-bottom:none}
-td:first-child{font-weight:600;color:var(--gold)}
-.formula-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:12px 0}
-.formula-box .fb-title{font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.formula-box .formula{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:4px}
-.formula-box .fb-example{font-size:.88rem;color:var(--muted)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(69,123,157,.05));border:1px solid rgba(255,214,10,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">A2 · Фаза 2 · День 90</span>
   <a href="L44.html">L44 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">⚖️ Фаза 2 · Блок 2B · Сравнения</div>
+  <div class="phase-tag">📊 Фаза 2 · Рост · Блок 2B · Урок 43 · 📚 Polyglot #9</div>
   <h1>Сравнения и <span class="hl">превосходная степень</span></h1>
-  <p class="sub">Más que, menos que, tan como, el más — сравниваем города, людей, варианты. Это расширение урока #9 из курса Polyglot.</p>
+  <p class="sub">Más que, menos que, tan como, el más — сравниваем города, людей, варианты</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Сравнивать людей, места и предметы на испанском</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
-    <div class="obj"><div class="ico">📚</div><div><strong>Polyglot</strong><p>Связь с уроком #9 курса Polyglot</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Сравниваем два города, два варианта</p></div></div>
+    <div class="obj"><div class="ico">📊</div><div><strong>Цель 1</strong><p>Строить сравнения: лучше/хуже/такой же как</p></div></div>
+    <div class="obj"><div class="ico">🏆</div><div><strong>Цель 2</strong><p>Использовать превосходную степень: самый, наилучший</p></div></div>
+    <div class="obj"><div class="ico">⚡</div><div><strong>Цель 3</strong><p>Освоить неправильные формы: mejor, peor, mayor, menor</p></div></div>
+    <div class="obj"><div class="ico">🗣️</div><div><strong>Цель 4</strong><p>Сравнить два города / два варианта в живом диалоге</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: ТЕОРИЯ -->
+<!-- 3. WARM-UP (повторение L42: планы, намерения, мечты) -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Три типа сравнений в испанском</h2>
+    <h2>Повторение — Урок 42: Планы, намерения, мечты</h2>
   </div>
-
-  <p style="margin-bottom:14px">Испанский сравнивает проще, чем русский — нет падежных форм. Всё строится по чётким формулам.</p>
-
-  <div class="formula-box">
-    <div class="fb-title">Сравнение превосходства (больше)</div>
-    <div class="formula">más + прилагательное/наречие + que</div>
-    <div class="fb-example">Barcelona es más grande que Valencia. — Барселона больше, чем Валенсия.<br>
-    Habla más rápido que yo. — Он говорит быстрее, чем я.</div>
-  </div>
-
-  <div class="formula-box">
-    <div class="fb-title">Сравнение уступки (меньше)</div>
-    <div class="formula">menos + прилагательное/наречие + que</div>
-    <div class="fb-example">Este hotel es menos caro que el otro. — Этот отель менее дорогой, чем другой.<br>
-    Duermo menos que antes. — Я сплю меньше, чем раньше.</div>
-  </div>
-
-  <div class="formula-box">
-    <div class="fb-title">Сравнение равенства (так же как)</div>
-    <div class="formula">tan + прилагательное + como / tanto/a/os/as + как + como</div>
-    <div class="fb-example">Es tan interesante como el otro. — Это так же интересно, как другое.<br>
-    Trabaja tanto como tú. — Он работает столько же, сколько ты.</div>
-  </div>
-
-  <div class="formula-box">
-    <div class="fb-title">Превосходная степень</div>
-    <div class="formula">el/la/los/las + más/menos + прилагательное + de</div>
-    <div class="fb-example">Es el más alto de la clase. — Он самый высокий в классе.<br>
-    Barcelona es la ciudad más bonita de España. — Барселона — самый красивый город Испании.</div>
-  </div>
-
-  <h3 style="margin:16px 0 10px;font-size:1rem">Неправильные сравнения (как в английском good→better→best)</h3>
-  <table>
-    <tr><th>Прилагательное</th><th>Сравнительная</th><th>Превосходная</th></tr>
-    <tr><td>bueno (хороший)</td><td>mejor (лучше)</td><td>el mejor (лучший)</td></tr>
-    <tr><td>malo (плохой)</td><td>peor (хуже)</td><td>el peor (худший)</td></tr>
-    <tr><td>grande (большой)</td><td>mayor (больше, старше)</td><td>el mayor (самый большой/старший)</td></tr>
-    <tr><td>pequeño (маленький)</td><td>menor (меньше, младше)</td><td>el menor (самый маленький/младший)</td></tr>
-  </table>
-
-  <div class="callout tip">
-    <h4>💡 mayor/menor — возраст!</h4>
-    <p>В испанском, когда речь о людях, «mayor» и «menor» часто означают «старший/младший»:<br>
-    Mi hermano mayor — мой старший брат.<br>
-    Mi hermana menor — моя младшая сестра.<br>
-    В английском: «elder/younger» — похожая система.</p>
-  </div>
-
-  <div class="callout warning">
-    <h4>⚠️ tan vs. tanto</h4>
-    <p><strong>tan</strong> + прилагательное/наречие: «tan bueno como» (так же хорошо как)<br>
-    <strong>tanto/a</strong> + существительное: «tanto dinero como» (столько же денег как)<br>
-    <strong>tanto</strong> (наречие): «trabaja tanto como» (работает столько же как)<br>
-    Ошибка: «tan dinero» — НЕЛЬЗЯ. Нужно: «tanto dinero».</p>
-  </div>
-
-  <div class="callout info">
-    <h4>🇬🇧 Сравнение с английским и русским</h4>
-    <p>Английский: more beautiful than → <strong>más hermosa que</strong><br>
-    Английский: as beautiful as → <strong>tan hermosa como</strong><br>
-    Английский: the most beautiful → <strong>la más hermosa</strong><br>
-    Русский: красивее, чем → más bonita que (испанский не меняет форму прилагательного, только добавляет «más»!)</p>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Быстрая проверка: L42 — esperar, pensar, querer + infinitivo, me gustaría. Выбери правильный вариант.</p>
+  <div class="quiz">
+    <h3>🔄 Вспоминаем урок 42</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. «Я надеюсь поехать в Испанию» — как сказать?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Quiero voy a España</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Espero ir a España</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Espero voy a España</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «Мне бы хотелось купить квартиру» — как правильно?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">Me gusta comprar un piso</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">Me gustaría comprar un piso</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">Me gustaría comprar un piso</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «Я планирую работать в Барселоне» — выбери правильный глагол:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Pienso trabajar en Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Pienso trabajo en Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Pienso a trabajar en Barcelona</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Что означает «Tengo ganas de aprender»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">Мне нужно учиться</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">Я уже учился</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">Мне хочется учиться / У меня есть желание учиться</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: СЛОВАРЬ -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — прилагательные для сравнений</h2>
+    <h2>Теория — Сравнения и превосходная степень</h2>
   </div>
 
-  <table>
-    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Сравнение</th></tr>
-    <tr><td>caro/barato</td><td>[КАро/баРАто]</td><td>дорогой/дешёвый</td><td>Es más caro que el otro. — Дороже, чем другой.</td></tr>
-    <tr><td>grande/pequeño</td><td>[ГРАНде/пеКЕНьо]</td><td>большой/маленький</td><td>Madrid es más grande que Bilbao.</td></tr>
-    <tr><td>bonito/feo</td><td>[боНИто/ФЕо]</td><td>красивый/некрасивый</td><td>Barcelona es más bonita que... (по мнению многих)</td></tr>
-    <tr><td>rápido/lento</td><td>[РАПидо/ЛЕНто]</td><td>быстрый/медленный</td><td>El AVE es más rápido que el autobús.</td></tr>
-    <tr><td>fácil/difícil</td><td>[ФАсиль/диФИсиль]</td><td>лёгкий/трудный</td><td>El español es más fácil que el chino.</td></tr>
-    <tr><td>mejor/peor</td><td>[меХОР/пеОР]</td><td>лучше/хуже</td><td>Este es mejor que el anterior.</td></tr>
-    <tr><td>mayor/menor</td><td>[маЙОР/меНОР]</td><td>старше-больше/младше-меньше</td><td>Mi hermano mayor tiene 30 años.</td></tr>
-    <tr><td>lejano/cercano</td><td>[леХАно/серКАно]</td><td>далёкий/близкий</td><td>El aeropuerto es más lejano que la estación.</td></tr>
-    <tr><td>antiguo/moderno</td><td>[антиГУо/моДЕРно]</td><td>старинный/современный</td><td>Roma es más antigua que Madrid.</td></tr>
-    <tr><td>tranquilo/ruidoso</td><td>[транКИло/руиДОсо]</td><td>спокойный/шумный</td><td>El campo es más tranquilo que la ciudad.</td></tr>
+  <div class="callout info">
+    <h4>📚 Это расширение урока #9 из курса Polyglot (Дмитрий Петров)</h4>
+    <p>В уроке 9 Polyglot вводятся базовые сравнения. Здесь мы углубляемся: неправильные формы, равенство, абсолютная превосходная степень и тонкие случаи.</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Зачем это нужно в Барселоне?</h4>
+    <p>Ты будешь сравнивать цены («este piso es más barato que aquel»), выбирать варианты («el médico de cabecera es mejor»), хвалить еду («¡Es lo más delicioso que he probado!»). Сравнения — основа живого разговора.</p>
+  </div>
+
+  <!-- Rule 1: Comparative of inequality -->
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 1</span>
+      <span class="rule-title">Сравнение неравенства: más/menos + que</span>
+      <span class="rule-arrow">больше/меньше... чем</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">
+      <strong>Структура:</strong> существительное/глагол + <span style="color:var(--gold)">más/menos</span> + прилагательное/существительное/наречие + <span style="color:var(--gold)">que</span> + то, с чем сравниваем.<br><br>
+      По-русски: «Барселона больше, чем Мадрид» → «Barcelona es <strong>más grande que</strong> Madrid».<br>
+      Важно: «que» перед местоимением → yo, tú, él (не me, te, le!): «Ella es más alta <strong>que yo</strong>».
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Madrid es grande</span><span class="sep">→</span><span class="ar">Barcelona es más grande que Madrid</span></div>
+      <div class="wp"><span class="en">El tren es rápido</span><span class="sep">→</span><span class="ar">El avión es más rápido que el tren</span></div>
+      <div class="wp"><span class="en">Este piso es caro</span><span class="sep">→</span><span class="ar">Este piso es más caro que el otro</span></div>
+      <div class="wp"><span class="en">El metro es barato</span><span class="sep">→</span><span class="ar">El bus es menos barato que el metro</span></div>
+      <div class="wp"><span class="en">Ella trabaja mucho</span><span class="sep">→</span><span class="ar">Él trabaja más que ella</span></div>
+      <div class="wp"><span class="en">Tengo dinero</span><span class="sep">→</span><span class="ar">Tengo más dinero que antes</span></div>
+      <div class="wp"><span class="en">Hay turistas</span><span class="sep">→</span><span class="ar">Hay más turistas en verano que en invierno</span></div>
+    </div>
+    <div style="margin-top:12px;padding:10px 14px;background:var(--bg3);border-radius:6px;font-size:.85rem">
+      <strong style="color:var(--gold)">⚠️ más de vs. más que:</strong> Перед числом используй <span style="color:var(--gold)">más de</span>: «Hay <strong>más de</strong> 20 tiendas» (больше 20 магазинов). <span style="color:var(--gold)">Más que</span> — перед существительным/прилагательным: «más caro <strong>que</strong> esto».
+    </div>
+  </div>
+
+  <!-- Rule 2: Comparative of equality -->
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 2</span>
+      <span class="rule-title">Сравнение равенства: tan...como / tanto...como</span>
+      <span class="rule-arrow">такой же... как / столько же... сколько</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">
+      <strong>tan + прилагательное/наречие + como</strong> = «такой же... как»<br>
+      <strong>tanto/a/os/as + существительное + como</strong> = «столько же... сколько» (согласуется с существительным!)<br>
+      <strong>tanto como</strong> (без существительного) = «так же много»<br><br>
+      По-русски: «Он такой же умный, как ты» = «Es <strong>tan inteligente como</strong> tú».
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">tan + adj + como</span><span class="sep">→</span><span class="ar">Es tan alta como su madre</span></div>
+      <div class="wp"><span class="en">tan + adv + como</span><span class="sep">→</span><span class="ar">Habla tan rápido como un nativo</span></div>
+      <div class="wp"><span class="en">tanto (m.sg.)</span><span class="sep">→</span><span class="ar">Tiene tanto dinero como yo</span></div>
+      <div class="wp"><span class="en">tanta (f.sg.)</span><span class="sep">→</span><span class="ar">Tiene tanta paciencia como su padre</span></div>
+      <div class="wp"><span class="en">tantos (m.pl.)</span><span class="sep">→</span><span class="ar">Hay tantos turistas como ayer</span></div>
+      <div class="wp"><span class="en">tantas (f.pl.)</span><span class="sep">→</span><span class="ar">Tengo tantas ganas como tú</span></div>
+      <div class="wp"><span class="en">tanto como (sin sust.)</span><span class="sep">→</span><span class="ar">No trabajo tanto como mi jefe</span></div>
+    </div>
+  </div>
+
+  <!-- Rule 3: Irregular comparatives -->
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 3</span>
+      <span class="rule-title">Неправильные сравнительные формы</span>
+      <span class="rule-arrow">mejor, peor, mayor, menor, superior, inferior</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">
+      Эти слова уже содержат значение сравнения — им не нужно «más». Никогда не говори «más bueno» или «más malo» в стандартном испанском!<br><br>
+      Исключение: <em>más bueno</em> и <em>más malo</em> допустимы только при моральной характеристике («es más bueno que el pan» = «добрейший человек») — но это устойчивые идиомы, не правило.
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">bueno → mejor</span><span class="sep">→</span><span class="ar">Este restaurante es mejor que aquel</span></div>
+      <div class="wp"><span class="en">malo → peor</span><span class="sep">→</span><span class="ar">El tráfico hoy es peor que ayer</span></div>
+      <div class="wp"><span class="en">grande → mayor*</span><span class="sep">→</span><span class="ar">Mi hermana es mayor que yo (старше)</span></div>
+      <div class="wp"><span class="en">pequeño → menor*</span><span class="sep">→</span><span class="ar">El riesgo es menor de lo esperado</span></div>
+      <div class="wp"><span class="en">alto → superior</span><span class="sep">→</span><span class="ar">La calidad es superior a la competencia</span></div>
+      <div class="wp"><span class="en">bajo → inferior</span><span class="sep">→</span><span class="ar">El precio es inferior al del mercado</span></div>
+      <div class="wp"><span class="en">mejor / peor + que</span><span class="sep">→</span><span class="ar">Esto es peor que lo de ayer</span></div>
+    </div>
+    <div style="margin-top:10px;padding:10px 14px;background:var(--bg3);border-radius:6px;font-size:.85rem">
+      <strong style="color:var(--gold)">*mayor/menor</strong> для возраста и абстрактных понятий. Для размера физического объекта используй <span style="color:var(--gold)">más grande / más pequeño</span>: «Esta caja es más grande que aquella» (не mayor).
+    </div>
+  </div>
+
+  <!-- Rule 4: Superlative -->
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 4</span>
+      <span class="rule-title">Превосходная степень: el/la/los/las más + de</span>
+      <span class="rule-arrow">самый/самая/самые из...</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">
+      <strong>Структура:</strong> <span style="color:var(--gold)">el/la/los/las + más/menos + прилагательное + de</span> + группа<br>
+      Артикль согласуется с существительным: «el hotel más caro», «la ciudad más bonita», «los pisos más baratos».<br>
+      После превосходной степени используй <span style="color:var(--gold)">de</span>, не «en»: «el mejor restaurante <strong>de</strong> Barcelona».
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">самый дорогой</span><span class="sep">→</span><span class="ar">el más caro de todos</span></div>
+      <div class="wp"><span class="en">самая красивая</span><span class="sep">→</span><span class="ar">la ciudad más bonita de España</span></div>
+      <div class="wp"><span class="en">лучший ресторан</span><span class="sep">→</span><span class="ar">el mejor restaurante de Barcelona</span></div>
+      <div class="wp"><span class="en">худший вариант</span><span class="sep">→</span><span class="ar">la peor opción de todas</span></div>
+      <div class="wp"><span class="en">самые дешёвые</span><span class="sep">→</span><span class="ar">los pisos más baratos del barrio</span></div>
+      <div class="wp"><span class="en">наименее сложный</span><span class="sep">→</span><span class="ar">el ejercicio menos difícil de todos</span></div>
+      <div class="wp"><span class="en">lo más importante</span><span class="sep">→</span><span class="ar">Lo más importante es la salud</span></div>
+    </div>
+  </div>
+
+  <!-- Rule 5: Absolute superlative -->
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 5</span>
+      <span class="rule-title">Абсолютная превосходная степень: -ísimo/a/os/as</span>
+      <span class="rule-arrow">очень-очень, крайне, чрезвычайно</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">
+      Добавляется к основе прилагательного (убрать -o/-a) + <span style="color:var(--gold)">-ísimo/a/os/as</span>. Не требует сравнения с чем-то — просто «суперстепень».<br>
+      Согласуется в роде и числе: <em>rapidísimo, rapidísima, rapidísimos, rapidísimas</em>.<br>
+      Орфография: rico → riquísimo (c→qu); largo → larguísimo (g→gu); feliz → felicísimo (z→c).
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">rico → riquísimo</span><span class="sep">→</span><span class="ar">¡Esta paella está riquísima!</span></div>
+      <div class="wp"><span class="en">caro → carísimo</span><span class="sep">→</span><span class="ar">El alquiler está carísimo ahora</span></div>
+      <div class="wp"><span class="en">fácil → facilísimo</span><span class="sep">→</span><span class="ar">El examen fue facilísimo</span></div>
+      <div class="wp"><span class="en">difícil → dificilísimo</span><span class="sep">→</span><span class="ar">La gramática es dificilísima</span></div>
+      <div class="wp"><span class="en">guapo → guapísimo</span><span class="sep">→</span><span class="ar">Ese actor es guapísimo</span></div>
+      <div class="wp"><span class="en">largo → larguísimo</span><span class="sep">→</span><span class="ar">El viaje fue larguísimo</span></div>
+      <div class="wp"><span class="en">bueno → bonísimo/buenísimo</span><span class="sep">→</span><span class="ar">¡Qué buenísimo está esto!</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>más bueno вместо mejor</td><td class="wrong-ex">Este hotel es más bueno</td><td class="right-ex">Este hotel es mejor</td><td>bueno/malo/grande/pequeño имеют неправильные формы</td></tr>
+    <tr><td>en вместо de в превосходной степени</td><td class="wrong-ex">el mejor restaurante en España</td><td class="right-ex">el mejor restaurante de España</td><td>После превосходной степени всегда «de»</td></tr>
+    <tr><td>tan вместо tanto с существительным</td><td class="wrong-ex">tan dinero como yo</td><td class="right-ex">tanto dinero como yo</td><td>tan + прил/нар, tanto/a/os/as + существительное</td></tr>
+    <tr><td>más de вместо más que</td><td class="wrong-ex">Es más alto de su padre</td><td class="right-ex">Es más alto que su padre</td><td>más de — перед числами, más que — перед словами</td></tr>
+    <tr><td>mayor для физического размера</td><td class="wrong-ex">Esta mesa es mayor que aquella</td><td class="right-ex">Esta mesa es más grande que aquella</td><td>mayor = старше/важнее (абстрактно), más grande = физически больше</td></tr>
+    <tr><td>Нет согласования в -ísimo</td><td class="wrong-ex">La pizza está riquísimo</td><td class="right-ex">La pizza está riquísima</td><td>-ísimo согласуется: riquísima (f.), riquísimos (m.pl.)</td></tr>
   </table>
 </div>
 
-<!-- SECTION 3: ТЕСТ 1 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Сравнения</h2>
+    <h2>Словарь — 18 ключевых слов для сравнений</h2>
   </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 для прослушивания каждого слова.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">mejor</div><div class="vocab-pron">[мэхо́р]</div><div class="vocab-ru">лучше / лучший</div></div><button class="speak-btn" onclick="speak('mejor')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">peor</div><div class="vocab-pron">[пэо́р]</div><div class="vocab-ru">хуже / худший</div></div><button class="speak-btn" onclick="speak('peor')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">mayor</div><div class="vocab-pron">[майо́р]</div><div class="vocab-ru">старше / больший (абстр.)</div></div><button class="speak-btn" onclick="speak('mayor')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">menor</div><div class="vocab-pron">[мэно́р]</div><div class="vocab-ru">младше / меньший (абстр.)</div></div><button class="speak-btn" onclick="speak('menor')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">más que</div><div class="vocab-pron">[мас кэ]</div><div class="vocab-ru">больше чем / более чем</div></div><button class="speak-btn" onclick="speak('más que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">menos que</div><div class="vocab-pron">[мэнос кэ]</div><div class="vocab-ru">меньше чем / менее чем</div></div><button class="speak-btn" onclick="speak('menos que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">tan...como</div><div class="vocab-pron">[тан...комо]</div><div class="vocab-ru">такой же... как</div></div><button class="speak-btn" onclick="speak('tan como')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">tanto como</div><div class="vocab-pron">[та́нто комо]</div><div class="vocab-ru">столько же... сколько</div></div><button class="speak-btn" onclick="speak('tanto como')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el más / la más</div><div class="vocab-pron">[эль мас / ля мас]</div><div class="vocab-ru">самый / самая</div></div><button class="speak-btn" onclick="speak('el más')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">barato/a</div><div class="vocab-pron">[бара́то]</div><div class="vocab-ru">дешёвый / недорогой</div></div><button class="speak-btn" onclick="speak('barato')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">caro/a</div><div class="vocab-pron">[ка́ро]</div><div class="vocab-ru">дорогой</div></div><button class="speak-btn" onclick="speak('caro')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">rápido/a</div><div class="vocab-pron">[ра́пидо]</div><div class="vocab-ru">быстрый</div></div><button class="speak-btn" onclick="speak('rápido')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">tranquilo/a</div><div class="vocab-pron">[тра́нкило]</div><div class="vocab-ru">спокойный / тихий</div></div><button class="speak-btn" onclick="speak('tranquilo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">céntrico/a</div><div class="vocab-pron">[сэ́нтрико]</div><div class="vocab-ru">центральный / в центре</div></div><button class="speak-btn" onclick="speak('céntrico')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">amplio/a</div><div class="vocab-pron">[а́мплио]</div><div class="vocab-ru">просторный / большой (о помещении)</div></div><button class="speak-btn" onclick="speak('amplio')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">riquísimo/a</div><div class="vocab-pron">[рики́симо]</div><div class="vocab-ru">очень вкусный / великолепный</div></div><button class="speak-btn" onclick="speak('riquísimo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">carísimo/a</div><div class="vocab-pron">[кари́симо]</div><div class="vocab-ru">очень дорогой</div></div><button class="speak-btn" onclick="speak('carísimo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">lo mejor de</div><div class="vocab-pron">[ло мэхо́р дэ]</div><div class="vocab-ru">лучшее из / лучшее в</div></div><button class="speak-btn" onclick="speak('lo mejor de')">🔊</button></div>
+  </div>
+</div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Выбери правильную форму</h3>
-
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Выбери правильное сравнение</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на вариант — получишь объяснение сразу. Правильный ответ всегда отмечен зелёным.</p>
+  <div class="quiz">
+    <h3>🎯 Сравнения в действии — 7 вопросов</h3>
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. Как сказать «Мадрид больше, чем Барселона»?</div>
+      <div class="q-text">1. «Этот ресторан лучше, чем тот» — как правильно?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Madrid es más grande que Barcelona</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Madrid es grande que Barcelona</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Madrid es más grande como Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Este restaurante es más bueno que aquel</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Este restaurante está mejor que aquel</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Este restaurante es mejor que aquel</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
-
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. «Mi hermano es mayor que yo» — что это значит?</div>
+      <div class="q-text">2. «Барселона — самый красивый город Испании» — выбери правильный вариант:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Мой брат старше меня</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Мой брат больше меня</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Мой брат лучше меня</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Barcelona es la ciudad más bonita de España</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Barcelona es la ciudad más bonita en España</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Barcelona es más bonita ciudad de España</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
-
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. Переведи: «Это так же дорого, как тот»</div>
+      <div class="q-text">3. «Она такая же умная, как её сестра» — выбери правильный вариант:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Es tan caro como ese</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Es tanto caro como ese</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Es más caro como ese</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Es tan inteligente que su hermana</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Es tanto inteligente como su hermana</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Es tan inteligente como su hermana</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
-
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. Превосходная степень от «bueno»:</div>
+      <div class="q-text">4. «У меня столько же работы, сколько у тебя» — правильно:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">el mejor</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">el más bueno</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">el buenísimo</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Tengo tan trabajo como tú</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Tengo tanto trabajo como tú</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Tengo más trabajo que tú</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
-
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. «Barcelona es la ciudad más bonita de España» — de здесь означает:</div>
+      <div class="q-text">5. «Эта пицца очень-очень вкусная» — абсолютная превосходная степень:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">из (в превосходной степени)</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">для</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">от</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Esta pizza está riquísima</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Esta pizza está la más rica</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Esta pizza está ricísima</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
-
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. Что правильно: «trabaja tan» или «trabaja tanto»?</div>
+      <div class="q-text">6. «Мой брат старше меня» — как правильно?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">trabaja tanto como tú (наречие)</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">trabaja tan como tú</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">оба варианта верны</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Mi hermano es más grande que yo</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Mi hermano es más viejo que yo</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Mi hermano es mayor que yo</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «В этом районе больше 50 ресторанов» — правильно:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Hay más que 50 restaurantes en este barrio</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Hay más de 50 restaurantes en este barrio</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Hay más 50 restaurantes en este barrio</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
   <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 4: ТЕСТ 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 2 — Составь сравнение</h2>
-  </div>
-
-  <div class="quiz">
-    <h3>✏️ Заполни нужным словом</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. El tren es más rápido ___ el autobús. (чем)</div>
-      <input type="text" class="text-input" placeholder="que / como / de..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','que','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ que — при неравных сравнениях (más/menos) используется «que».</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. Este restaurante es tan bueno ___ el otro. (как)</div>
-      <input type="text" class="text-input" placeholder="que / como / de..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','como','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ como — при равных сравнениях (tan...como) используется «como».</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. Es el ___ película del año. (лучший — форма для женского рода)</div>
-      <input type="text" class="text-input" placeholder="mejor / peor / mayor..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','mejor','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ mejor — неправильная форма, не меняется по роду: «la mejor película».</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. El español es ___ difícil que el ruso. (менее трудный)</div>
-      <input type="text" class="text-input" placeholder="más / menos / tan..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','menos','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ menos — «menos difícil que» = «менее трудный, чем».</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. Barcelona es la ciudad más bonita ___ España. (в/из Испании)</div>
-      <input type="text" class="text-input" placeholder="de / en / por..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','de','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ de — после превосходной степени «самый... в/из...» используется «de»: la más bonita DE España.</div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 5: ДИАЛОГИ -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Диалоги — Сравниваем города</h2>
+    <h2>Тест 2 — Заполни пропуски</h2>
   </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Барселона vs Мадрид
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи в нижнем регистре. Одно слово или фраза без лишних пробелов.</p>
+  <div class="quiz">
+    <h3>✏️ Впиши нужную форму</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. Este hotel es _____ (лучше) que el anterior. [неправильная форма]</div>
+      <input type="text" class="text-input" id="ti1" placeholder="Впиши слово...">
+      <button class="check-btn" onclick="checkText('ti1','mejor','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ mejor — неправильная форма от «bueno»</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Пабл</div>
-      <div><div class="dlg-es">¿Cuál te gusta más, Barcelona o Madrid?</div>
-      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Что тебе больше нравится — Барселона или Мадрид?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">2. Ella habla español _____ (так же хорошо, как) yo. [tan ... como → впиши среднее слово]</div>
+      <input type="text" class="text-input" id="ti2" placeholder="Впиши слово...">
+      <button class="check-btn" onclick="checkText('ti2','como','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ como — структура: tan bien como yo</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Эва</div>
-      <div><div class="dlg-es">Barcelona, sin duda. Es más bonita que Madrid y tiene mejor clima. Además, el mar está muy cerca.</div>
-      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Барселона, без сомнения. Она красивее Мадрида и имеет лучший климат. К тому же море очень близко.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">3. Madrid es la ciudad más importante _____ España. [предлог после превосходной степени]</div>
+      <input type="text" class="text-input" id="ti3" placeholder="Впиши предлог...">
+      <button class="check-btn" onclick="checkText('ti3','de','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ de — после превосходной степени всегда «de»</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Пабл</div>
-      <div><div class="dlg-es">Pero Madrid es más grande y tiene más oportunidades de trabajo.</div>
-      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Но Мадрид больше и имеет больше рабочих возможностей.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">4. ¡Esta paella está _____! [riquísima — абсолютная превосходная степень от «rico»]</div>
+      <input type="text" class="text-input" id="ti4" placeholder="Впиши слово...">
+      <button class="check-btn" onclick="checkText('ti4','riquísima','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ riquísima — rico → riquísimo (c→qu перед -ísimo)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Эва</div>
-      <div><div class="dlg-es">Es verdad. Pero la calidad de vida en Barcelona es tan buena como en Madrid, y es menos estresante. Para mí, Barcelona es la mejor ciudad de España.</div>
-      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Правда. Но качество жизни в Барселоне так же хорошо, как в Мадриде, и она менее стрессовая. Для меня Барселона — лучший город Испании.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">5. Tengo _____ trabajo como mi jefe. [столько же работы — tanto/tanta/tantos/tantas?]</div>
+      <input type="text" class="text-input" id="ti5" placeholder="Впиши слово...">
+      <button class="check-btn" onclick="checkText('ti5','tanto','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ tanto — trabajo мужского рода, tanto trabajo como</div>
     </div>
-    <div id="tr-dlg1" style="display:none"></div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Выбор квартиры
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+    <div class="text-ex">
+      <div class="tex-q">6. Aquí hay _____ de cien tiendas. [больше — перед числом]</div>
+      <input type="text" class="text-input" id="ti6" placeholder="Впиши фразу...">
+      <button class="check-btn" onclick="checkText('ti6','más de','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ más de — перед числами: más de cien tiendas</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Агент</div>
-      <div><div class="dlg-es">Tenemos dos apartamentos. El primero es más grande pero más caro. El segundo es más pequeño pero está más cerca del metro.</div>
-      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">У нас две квартиры. Первая больше, но дороже. Вторая меньше, но ближе к метро.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">¿Y cuál tiene mejor luz natural?</div>
-      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">А у какой лучше естественное освещение?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Агент</div>
-      <div><div class="dlg-es">El primero tiene más luz. Las habitaciones son tan luminosas como en un ático.</div>
-      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">В первой больше света. Комнаты такие же светлые, как в пентхаусе.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">Entonces el primero es mejor para nosotros. El precio es alto, pero la calidad es la mejor del barrio.</div>
-      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Тогда первая лучше для нас. Цена высокая, но качество — лучшее в районе.</div></div>
-    </div>
-    <div id="tr-dlg2" style="display:none"></div>
   </div>
 </div>
 
-<!-- SECTION 6: ГОВОРЕНИЕ -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Говорение — Сравниваем два варианта</h2>
+    <h2>Диалоги — Сравниваем в реальных ситуациях</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Нажимай 🔊 у каждой реплики. Используй кнопку «Все переводы».</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏠 Диалог 1: Выбираем пиши в Барселоне (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Анна</div>
+      <div style="flex:1">
+        <div class="dlg-es">Mira, he encontrado dos pisos. Uno en el Eixample y otro en Gràcia. <button class="speak-btn" onclick="speak('Mira, he encontrado dos pisos. Uno en el Eixample y otro en Gràcia.')">🔊</button></div>
+        <div class="dlg-ru translation">[Смотри, я нашла два пиши. Один в Эшампле, другой в Граше.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Борис</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuál es más céntrico? <button class="speak-btn" onclick="speak('¿Cuál es más céntrico?')">🔊</button></div>
+        <div class="dlg-ru translation">[Какой более центральный?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Анна</div>
+      <div style="flex:1">
+        <div class="dlg-es">El del Eixample es más céntrico que el de Gràcia, pero es carísimo. <button class="speak-btn" onclick="speak('El del Eixample es más céntrico que el de Gràcia, pero es carísimo.')">🔊</button></div>
+        <div class="dlg-ru translation">[Тот, что в Эшампле, более центральный, чем в Граше, но очень дорогой.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Борис</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y el de Gràcia? ¿Es más tranquilo? <button class="speak-btn" onclick="speak('¿Y el de Gràcia? ¿Es más tranquilo?')">🔊</button></div>
+        <div class="dlg-ru translation">[А тот, что в Граше? Он более тихий?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Анна</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, muchísimo más tranquilo. Y es tan amplio como el otro, pero 300 euros más barato. <button class="speak-btn" onclick="speak('Sí, muchísimo más tranquilo. Y es tan amplio como el otro, pero trescientos euros más barato.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, намного тише. И такой же просторный, как другой, но на 300 евро дешевле.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Борис</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuál tiene mejor transporte? <button class="speak-btn" onclick="speak('¿Cuál tiene mejor transporte?')">🔊</button></div>
+        <div class="dlg-ru translation">[У которого лучше транспорт?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Анна</div>
+      <div style="flex:1">
+        <div class="dlg-es">El Eixample tiene más líneas de metro, pero Gràcia tiene tantas paradas de autobús como aquel. <button class="speak-btn" onclick="speak('El Eixample tiene más líneas de metro, pero Gràcia tiene tantas paradas de autobús como aquel.')">🔊</button></div>
+        <div class="dlg-ru translation">[В Эшампле больше линий метро, но в Граше столько же автобусных остановок, сколько там.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Борис</div>
+      <div style="flex:1">
+        <div class="dlg-es">Para mí lo más importante es el precio. El de Gràcia es la mejor opción entonces. <button class="speak-btn" onclick="speak('Para mí lo más importante es el precio. El de Gràcia es la mejor opción entonces.')">🔊</button></div>
+        <div class="dlg-ru translation">[Для меня самое важное — цена. Тогда вариант в Граше — лучший.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Анна</div>
+      <div style="flex:1">
+        <div class="dlg-es">Estoy de acuerdo. Además, el barrio de Gràcia es uno de los más bonitos de Barcelona. <button class="speak-btn" onclick="speak('Estoy de acuerdo. Además, el barrio de Gràcia es uno de los más bonitos de Barcelona.')">🔊</button></div>
+        <div class="dlg-ru translation">[Согласна. К тому же, район Гра — один из самых красивых в Барселоне.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Борис</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Perfecto! Llama al propietario hoy mismo. <button class="speak-btn" onclick="speak('¡Perfecto! Llama al propietario hoy mismo.')">🔊</button></div>
+        <div class="dlg-ru translation">[Отлично! Позвони хозяину сегодня же.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Базовый — Два города</div>
-    <p>Сравни Москву и Барселону по 5 параметрам. Используй más que, menos que, tan como.</p>
-    <div class="es">Moscú es más fría que Barcelona pero tiene... Barcelona es más... que... El metro es tan... como...</div>
-    <div class="hint">Параметры: климат, размер, цены, транспорт, культура, природа, язык.</div>
-  </div>
-
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Продвинутый — Лучший выбор</div>
-    <p>Тебе нужно выбрать между двумя квартирами в Барселоне. Опиши обе и объясни свой выбор, используя все типы сравнений.</p>
-    <div class="es">La primera es más... pero la segunda es menos... La mejor opción es... porque es la más... de las dos.</div>
-    <div class="hint">Параметры квартир: цена, размер, расположение, свет, шум, соседи, транспорт.</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      🌆 Диалог 2: Сравниваем Мадрид и Барселону (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué te parece Barcelona? ¿Te gusta más que Madrid? <button class="speak-btn" onclick="speak('¿Qué te parece Barcelona? ¿Te gusta más que Madrid?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Как тебе Барселона? Нравится больше, чем Мадрид?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Наташа</div>
+      <div style="flex:1">
+        <div class="dlg-es">Barcelona me gusta muchísimo. Es más cosmopolita que Madrid, ¿no? <button class="speak-btn" onclick="speak('Barcelona me gusta muchísimo. Es más cosmopolita que Madrid, ¿no?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Барселона мне очень нравится. Она более космополитична, чем Мадрид, нет?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Bueno, depende. Madrid tiene tanto turismo como Barcelona hoy en día. <button class="speak-btn" onclick="speak('Bueno, depende. Madrid tiene tanto turismo como Barcelona hoy en día.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Ну, зависит. У Мадрида сегодня столько же туризма, сколько у Барселоны.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Наташа</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y el clima? ¿Es mejor en Barcelona? <button class="speak-btn" onclick="speak('¿Y el clima? ¿Es mejor en Barcelona?')">🔊</button></div>
+        <div class="dlg-ru translation2">[А климат? Он лучше в Барселоне?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Barcelona es más húmeda, pero tiene inviernos más suaves. Madrid es más seco y tiene veranos más calurosos. <button class="speak-btn" onclick="speak('Barcelona es más húmeda, pero tiene inviernos más suaves. Madrid es más seco y tiene veranos más calurosos.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Барселона более влажная, но у неё более мягкие зимы. Мадрид более сухой и имеет более жаркое лето.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Наташа</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y la comida? ¿Cuál es mejor en tu opinión? <button class="speak-btn" onclick="speak('¿Y la comida? ¿Cuál es mejor en tu opinión?')">🔊</button></div>
+        <div class="dlg-ru translation2">[А еда? Какая лучше, по-твоему?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Las tapas de Madrid son buenísimas! Pero el marisco de Barcelona es lo mejor que he probado en mi vida. <button class="speak-btn" onclick="speak('¡Las tapas de Madrid son buenísimas! Pero el marisco de Barcelona es lo mejor que he probado en mi vida.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Тапас Мадрида великолепны! Но морепродукты Барселоны — лучшее, что я пробовал в жизни.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Наташа</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y los precios? ¿Son más altos en Barcelona? <button class="speak-btn" onclick="speak('¿Y los precios? ¿Son más altos en Barcelona?')">🔊</button></div>
+        <div class="dlg-ru translation2">[А цены? Они выше в Барселоне?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Los alquileres en Barcelona son bastante más caros que en Madrid ahora mismo. Es un problema gravísimo. <button class="speak-btn" onclick="speak('Los alquileres en Barcelona son bastante más caros que en Madrid ahora mismo. Es un problema gravísimo.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Аренда в Барселоне сейчас значительно дороже, чем в Мадриде. Это огромная проблема.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Наташа</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, lo sé. Pero sigue siendo una de las mejores ciudades del mundo para vivir. <button class="speak-btn" onclick="speak('Sí, lo sé. Pero sigue siendo una de las mejores ciudades del mundo para vivir.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, знаю. Но она по-прежнему остаётся одним из лучших городов мира для жизни.]</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: КУЛЬТУРА -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Культурная заметка</h2>
+    <h2>Говорение — Твоя очередь сравнивать!</h2>
   </div>
-
-  <div class="culture">
-    <div class="ctag">🌍 Культурная заметка</div>
-    <h4>Барселона vs Мадрид: вечное соперничество</h4>
-    <p>Испанцы обожают сравнивать Барселону и Мадрид. Это своего рода национальный спорт. Мадридцы скажут: «Madrid es la mejor ciudad de España — cosmopolita, con mucha cultura y trabajo». Барселонцы ответят: «Barcelona es más bonita, más internacional y tiene el mar». Это соперничество отражается в футболе (Real Madrid vs FC Barcelona — «El Clásico»), в политике и в культуре. Интересный факт: туристы чаще едут в Барселону (один из самых посещаемых городов Европы), но испанцы чаще переезжают в Мадрид — там больше работы.</p>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Сравни два варианта</div>
+    <p>Сравни две вещи/ситуации на испанском. Используй не менее 3 структур из урока.</p>
+    <div class="es">Ejemplo: «El verano es más caluroso que el invierno. El invierno es menos húmedo. El otoño es la estación más bonita de todas para mí. Los veranos en Moscú no son tan largos como en España.»</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('El verano es más caluroso que el invierno. El invierno es menos húmedo. El otoño es la estación más bonita de todas para mí.')">🔊 Пример</button>
+    <div class="hint">Темы: лето/зима, кофе/чай, Москва/Барселона, работа в офисе/дома. Говори 60–90 секунд.</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Испании: выбираем район</div>
+    <p>Представь: риелтор показывает тебе два варианта квартир. Скажи вслух что ты предпочитаешь и почему.</p>
+    <div class="es">«Prefiero el piso de Gràcia porque es más tranquilo que el del Eixample. Además, es bastante más barato, aunque es menos céntrico. Para mí lo más importante es la tranquilidad. El barrio de Gràcia es también más auténtico que el Eixample.»</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Prefiero el piso de Gràcia porque es más tranquilo que el del Eixample. Además, es bastante más barato, aunque es menos céntrico. Para mí lo más importante es la tranquilidad.')">🔊 Пример</button>
+    <div class="hint">Замени детали на свои. Используй: más/menos, tan...como, mejor, el más importante, -ísimo.</div>
   </div>
 </div>
 
-<!-- SECTION 8: ANKI + ДОМАШНЕЕ ЗАДАНИЕ -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Anki и домашнее задание</h2>
+    <h2>🇪🇸 Испания на практике: Tarjeta sanitaria — сравниваем клиники</h2>
   </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏥 Реальная ситуация — Барселона, система здравоохранения</div>
+    <p style="margin-bottom:12px">Ты оформил tarjeta sanitaria (карту медицинского страхования) в Барселоне. Теперь ты выбираешь между несколькими вариантами медицинской помощи и объясняешь соседке-испанке, что тебе нужно.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">El médico de cabecera es mejor que ir directamente al hospital. <button class="speak-btn" onclick="speak('El médico de cabecera es mejor que ir directamente al hospital.')">🔊</button></div>
+          <div class="phrase-ru">Врач общей практики лучше, чем сразу идти в больницу.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué centro de salud está más cerca de aquí? <button class="speak-btn" onclick="speak('¿Qué centro de salud está más cerca de aquí?')">🔊</button></div>
+          <div class="phrase-ru">Какой медицинский центр ближе всего отсюда?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">La espera en urgencias es mucho más larga que en el CAP. <button class="speak-btn" onclick="speak('La espera en urgencias es mucho más larga que en el CAP.')">🔊</button></div>
+          <div class="phrase-ru">Ожидание в скорой помощи намного длиннее, чем в CAP (поликлинике).</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">La farmacia de la esquina es la más económica del barrio. <button class="speak-btn" onclick="speak('La farmacia de la esquina es la más económica del barrio.')">🔊</button></div>
+          <div class="phrase-ru">Аптека на углу — самая экономичная в квартале.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Este medicamento es tan efectivo como el otro? <button class="speak-btn" onclick="speak('¿Este medicamento es tan efectivo como el otro?')">🔊</button></div>
+          <div class="phrase-ru">Это лекарство так же эффективно, как другое?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">El genérico es más barato que la marca, pero igual de bueno. <button class="speak-btn" onclick="speak('El genérico es más barato que la marca, pero igual de bueno.')">🔊</button></div>
+          <div class="phrase-ru">Дженерик дешевле брендового, но одинаково хорош.</div>
+        </div>
+      </div>
+    </div>
 
-  <!-- .wrap -->
+    <div class="dialogue" style="margin-top:16px">
+      <div class="dlg-header">🏥 В регистратуре CAP (поликлиники) — мини-диалог</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Ты</div>
+        <div style="flex:1">
+          <div class="dlg-es">Buenos días. ¿Cuál es el médico más disponible hoy? <button class="speak-btn" onclick="speak('Buenos días. ¿Cuál es el médico más disponible hoy?')">🔊</button></div>
+          <div class="dlg-ru">Доброе утро. Какой врач сегодня более доступен?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Admin.</div>
+        <div style="flex:1">
+          <div class="dlg-es">La doctora García tiene menos pacientes que el doctor Martín. Puede pasar con ella. <button class="speak-btn" onclick="speak('La doctora García tiene menos pacientes que el doctor Martín. Puede pasar con ella.')">🔊</button></div>
+          <div class="dlg-ru">У доктора Гарсии меньше пациентов, чем у доктора Мартина. Вы можете пройти к ней.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Ты</div>
+        <div style="flex:1">
+          <div class="dlg-es">¿El tiempo de espera es más corto que esta mañana? <button class="speak-btn" onclick="speak('¿El tiempo de espera es más corto que esta mañana?')">🔊</button></div>
+          <div class="dlg-ru">Время ожидания короче, чем этим утром?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Admin.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Sí, bastante menos. Son unos veinte minutos como máximo. <button class="speak-btn" onclick="speak('Sí, bastante menos. Son unos veinte minutos como máximo.')">🔊</button></div>
+          <div class="dlg-ru">Да, значительно меньше. Максимум минут двадцать.</div>
+        </div>
+      </div>
+    </div>
 
-<!-- DONE BAR -->
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> В Каталонии медицинские центры называются CAP (Centre d'Atenció Primària). Там всегда нужно записываться к своему médico de cabecera (participante GP). Скорая помощь (urgencias) — только для реальных экстренных случаев: ждать там придётся значительно дольше, чем в CAP. Дженерики (genéricos) в испанских аптеках стоят значительно дешевле оригинальных препаратов и абсолютно эквивалентны.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🏆 Испанский язык и культура сравнения</div>
+    <h4>Почему испанцы так любят превосходную степень</h4>
+    <p>В испанской культуре принято выражать эмоции ярко — отсюда такое широкое использование -ísimo/a. Фраза «está buenísimo» (это великолепно вкусно!) звучит в испанских домах каждый день. Интересно, что в Испании слово «mejor» (лучший) используется значительно более широко, чем в русском: «¿Mejor mañana?» (Может, лучше завтра?) — это просто вежливое предложение. Кроме того, испанцы сравнивают города с нескрываемой страстью: споры «Barça o Real Madrid», «Barcelona o Madrid» — не просто о футболе, а о разных культурных идентичностях. Используй сравнения в разговоре — это покажет, что ты действительно погружён в язык.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек: сравнения</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все 18 для Anki одним кликом.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">mejor</div>
+        <div class="anki-card-back">лучше / лучший<br>Este hotel es mejor que aquel.<br>Неправильная форма от «bueno»</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">más...que</div>
+        <div class="anki-card-back">больше... чем<br>Madrid es más grande que Valencia.<br>Сравнение неравенства</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">tan...como</div>
+        <div class="anki-card-back">такой же... как<br>Es tan alto como su padre.<br>Сравнение равенства + прил/нар</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">riquísimo/a</div>
+        <div class="anki-card-back">очень вкусный/ая<br>¡Esta paella está riquísima!<br>rico → riquísimo (c→qu)</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">el más ... de</div>
+        <div class="anki-card-back">самый... из/в<br>el mejor restaurante de Barcelona<br>Превосходная степень + de!</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL43()">📥 Скачать колоду Anki L43 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L44: Двойные объектные местоимения)</h4>
+    <ul>
+      <li><strong>Dreaming Spanish (Beginner)</strong> — 15 мин. Слушай видео на тему путешествий или жизни в Испании. Замечай сравнения: más que, mejor, -ísimo.</li>
+      <li><strong>Упражнение «Сравни свой день»</strong> — запиши 5 предложений о сегодняшнем дне, используя все 5 изученных структур: más que, menos que, tan como, mejor/peor, -ísimo.</li>
+      <li><strong>Anki</strong> — повторяй 18 карточек из этого урока (10 мин).</li>
+      <li><strong>Realia</strong> — зайди на сайт Idealista.es или Fotocasa.es, выбери два пиши в Барселоне и мысленно сравни их по-испански вслух.</li>
+      <li><strong>Polyglot #9</strong> — если ещё не смотрел, посмотри урок #9 курса Polyglot Дмитрия Петрова: там вводятся базовые сравнения, которые мы углубили сегодня.</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Урок 43 завершён!</h4>
+    <p>Ты теперь умеешь сравнивать всё что угодно по-испански: города, цены, людей, еду. Следующий урок — двойные объектные местоимения: «me lo da», «te los envía».</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
     <a href="L42.html" class="nav-link-btn">← L42</a>
     <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="../../lessons/lesson_09.html" class="nav-link-btn">📚 Polyglot #9</a>
     <a href="L44.html" class="nav-link-btn">L44 →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L43 = [
+  {front:"mejor",back:"Русский: лучше / лучший<br><br>Пример: Este restaurante es mejor que aquel.<br>Заметка: неправильная форма от bueno. Никогда не говори «más bueno»!"},
+  {front:"peor",back:"Русский: хуже / худший<br><br>Пример: El tráfico hoy es peor que ayer.<br>Заметка: неправильная форма от malo"},
+  {front:"mayor",back:"Русский: старше / больший (абстрактно)<br><br>Пример: Mi hermana es mayor que yo.<br>Заметка: для возраста и абстрактных понятий, не для физического размера"},
+  {front:"menor",back:"Русский: младше / меньший (абстрактно)<br><br>Пример: El riesgo es menor de lo esperado.<br>Заметка: антоним mayor"},
+  {front:"más... que",back:"Русский: больше... чем / более... чем<br><br>Пример: Barcelona es más grande que Valencia.<br>Заметка: перед числами используй «más de»"},
+  {front:"menos... que",back:"Русский: меньше... чем / менее... чем<br><br>Пример: Este piso es menos caro que el otro.<br>Заметка: противоположно más...que"},
+  {front:"tan... como",back:"Русский: такой же... как (с прил/нар)<br><br>Пример: Es tan inteligente como su madre.<br>Заметка: tan + прилагательное/наречие + como"},
+  {front:"tanto... como",back:"Русский: столько же... сколько (с существ.)<br><br>Пример: Tengo tanto trabajo como tú.<br>Заметка: согласуется: tanto/tanta/tantos/tantas"},
+  {front:"el/la más... de",back:"Русский: самый/самая... из/в<br><br>Пример: Es la ciudad más bonita de España.<br>Заметка: после превосходной степени всегда «de», не «en»!"},
+  {front:"riquísimo/a",back:"Русский: очень вкусный / великолепный<br><br>Пример: ¡Esta paella está riquísima!<br>Заметка: rico → riquísimo (c→qu перед -ísimo)"},
+  {front:"carísimo/a",back:"Русский: очень дорогой<br><br>Пример: El alquiler está carísimo ahora.<br>Заметка: caro → carísimo"},
+  {front:"buenísimo/a",back:"Русский: очень хороший / великолепный<br><br>Пример: ¡Qué buenísimo está esto!<br>Заметка: bueno → buenísimo (или bonísimo)"},
+  {front:"más de + número",back:"Русский: больше + числительного<br><br>Пример: Hay más de 50 restaurantes aquí.<br>Заметка: más DE перед числами, más QUE перед словами"},
+  {front:"barato/a",back:"Русский: дешёвый / недорогой<br><br>Пример: Este piso es más barato que el otro.<br>Заметка: антоним: caro"},
+  {front:"céntrico/a",back:"Русский: центральный / расположенный в центре<br><br>Пример: El Eixample es muy céntrico.<br>Заметка: важное слово при поиске жилья в Испании"},
+  {front:"amplio/a",back:"Русский: просторный / широкий (о помещении)<br><br>Пример: El piso es muy amplio y luminoso.<br>Заметка: синоним espacioso"},
+  {front:"lo más importante",back:"Русский: самое важное / главное<br><br>Пример: Lo más importante es la salud.<br>Заметка: lo + más + adj = нейтральная превосходная степень"},
+  {front:"igual de + adj",back:"Русский: одинаково... / так же...<br><br>Пример: El genérico es igual de bueno que la marca.<br>Заметка: альтернатива tan...como"},
+];
+
+function exportAnkiL43() {
+  const tsv = ANKI_DECK_L43.map(c => c.front + '\t' + c.back).join('\n');
+  const header = '#separator:Tab\n#html:true\n#deck:L43 Comparaciones\n';
+  const blob = new Blob([header + tsv], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L43_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Mira, he encontrado dos pisos. Uno en el Eixample y otro en Gràcia.',
+    '¿Cuál es más céntrico?',
+    'El del Eixample es más céntrico que el de Gràcia, pero es carísimo.',
+    '¿Y el de Gràcia? ¿Es más tranquilo?',
+    'Sí, muchísimo más tranquilo. Y es tan amplio como el otro, pero trescientos euros más barato.',
+    '¿Cuál tiene mejor transporte?',
+    'El Eixample tiene más líneas de metro, pero Gràcia tiene tantas paradas de autobús como aquel.',
+    'Para mí lo más importante es el precio. El de Gràcia es la mejor opción entonces.',
+    'Estoy de acuerdo. Además, el barrio de Gràcia es uno de los más bonitos de Barcelona.',
+    '¡Perfecto! Llama al propietario hoy mismo.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
 const LESSON_ID = 'L43';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
 
-const quizExpl={
-  q1:'más grande QUE — при сравнении неравных объектов используется «que». «Como» — только при равенстве.',
-  q2:'mayor = старший (о возрасте людей). «Grande» = большой по размеру, «mayor» = старший по возрасту.',
-  q3:'tan + прилагательное + COMO — при сравнении равных. «tanto» — только с существительными или как наречие.',
-  q4:'el mejor — неправильная превосходная степень от bueno. «Más bueno» — так НЕ говорят!',
-  q5:'В превосходной степени «самый... В классе / В Испании» — используется «de», не «en».',
-  q6:'tanto (наречие) + como — для сравнения действий. tan (без -to) только перед прилагательными.',
+const quizExpl = {
+  w1:'esperar + infinitivo — «espero ir» = я надеюсь поехать. Не espero voy.',
+  w2:'me gustaría = мне бы хотелось (условное). Не путай с me gusta = мне нравится.',
+  w3:'pensar + infinitivo = планировать. «Pienso trabajar» — никакого «a» между ними.',
+  w4:'tener ganas de = хотеть / иметь желание сделать что-то. Очень разговорное выражение.',
+  q1:'mejor — неправильная форма от bueno. «Más bueno» — грубая ошибка в стандартном испанском.',
+  q2:'После превосходной степени — всегда «de», не «en»: la ciudad más bonita de España.',
+  q3:'tan + прилагательное + como. Никогда tanto с прилагательным: tanto — только с существительными.',
+  q4:'tanto trabajo como — tanto согласуется с существительным (trabajo — м.р., ед.ч.).',
+  q5:'riquísima — rico → riquísimo, c→qu перед -ísimo. Форма женского рода (pizza — f.).',
+  q6:'mayor = старше. Más grande = физически больше. Más viejo тоже возможно, но mayor — правильнее.',
+  q7:'más de перед числами: más de 50. Más que — перед словами/прилагательными.',
 };
-let quizScore=0,quizTotal=0;
-function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
-function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
-function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const rows=document.querySelectorAll(`[id^="${id}-"]`);rows.forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
-const totalSections=8;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const clickedKey = el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];
+  if (clickedKey !== correctKey) el.classList.add('wrong');
+  const isCorrect = clickedKey === correctKey;
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>

@@ -596,7 +596,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:9,
       speaking_focus:"Сравнить два города, два варианта, два человека",
-      file:"lessons/L43.html", status:"pending"
+      file:"lessons/L43.html", status:"improved"
     },
 
     // ─── Block 2C: More Grammar Tools ───────────────────────────
@@ -610,7 +610,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Отвечать кратко: ¿Me lo puedes dar? — Sí, te lo doy ahora.",
-      file:"lessons/L44.html", status:"pending"
+      file:"lessons/L44.html", status:"improved"
     },
     {
       id:"L45", num:45, phase:2, block:"B2C", level:"A2", day:95, week:16,

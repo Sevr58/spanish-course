@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L44: Двойные объектные местоимения</title>
+<title>L44: Двойные объектные местоимения — Me lo da, te los envía</title>
 <style>
 :root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -35,8 +34,16 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -71,7 +78,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -80,10 +87,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -91,362 +94,789 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-table{width:100%;border-collapse:collapse;margin:14px 0}
-th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
-td{padding:10px 12px;font-size:.88rem;border-bottom:1px solid var(--bg3)}
-tr:last-child td{border-bottom:none}
-td:first-child{font-weight:600;color:var(--gold)}
-.pronoun-box{background:var(--bg2);border:2px solid var(--gold);border-radius:8px;padding:16px;margin:14px 0;text-align:center}
-.pronoun-box .pb-formula{font-size:1.2rem;font-weight:800;color:var(--gold);margin-bottom:8px}
-.pronoun-box p{font-size:.88rem;color:var(--muted)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(69,123,157,.05));border:1px solid rgba(255,214,10,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.pronoun-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+.pronoun-table th{background:var(--bg3);padding:10px 14px;text-align:center;font-weight:700;color:var(--muted);border:1px solid var(--border)}
+.pronoun-table td{padding:10px 14px;border:1px solid var(--border);text-align:center}
+.pronoun-table .es-cell{color:var(--gold);font-weight:700;font-size:1rem}
+.pronoun-table .ru-cell{color:var(--muted);font-size:.8rem}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">A2 · Фаза 2 · День 93</span>
   <a href="L45.html">L45 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🔗 Фаза 2 · Блок 2C · Объектные местоимения</div>
+  <div class="phase-tag">🔗 Фаза 2 · Рост · Блок 2C · Урок 44</div>
   <h1>Двойные объектные <span class="hl">местоимения</span></h1>
-  <p class="sub">Me lo da, te los envía, se lo digo — объединяем прямые и косвенные местоимения</p>
+  <p class="sub">Me lo da, te los envía — объединяем прямые и косвенные местоимения в одно предложение</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Комбинировать прямые и косвенные местоимения в одном предложении</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>Аудирование</strong><p>Dreaming Spanish Beginner — диалоги с местоимениями</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Отвечать кратко: ¿Me lo puedes dar? — Sí, te lo doy ahora.</p></div></div>
+    <div class="obj"><div class="ico">🔗</div><div><strong>Цель 1</strong><p>Понять порядок IOP + DOP в испанском</p></div></div>
+    <div class="obj"><div class="ico">⚙️</div><div><strong>Цель 2</strong><p>Освоить замену le/les → se перед lo/la/los/las</p></div></div>
+    <div class="obj"><div class="ico">📍</div><div><strong>Цель 3</strong><p>Правильно ставить местоимения при инфинитиве и герундии</p></div></div>
+    <div class="obj"><div class="ico">🗣️</div><div><strong>Цель 4</strong><p>Отвечать кратко: ¿Me lo puedes dar? — Sí, te lo doy.</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: ТЕОРИЯ -->
+<!-- 3. WARM-UP (повторение L43: сравнения) -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Как объединить два местоимения</h2>
+    <h2>Повторение — Урок 43: Сравнения и превосходная степень</h2>
   </div>
-
-  <p style="margin-bottom:14px">Ты уже знаешь прямые местоимения (lo, la, los, las) и косвенные (me, te, le, nos, os, les). Когда они встречаются вместе — есть несколько правил.</p>
-
-  <div class="pronoun-box">
-    <div class="pb-formula">КОСВЕННОЕ + ПРЯМОЕ + глагол</div>
-    <p>Порядок всегда: сначала косвенное (me, te, le→se, nos, os, les→se), потом прямое (lo, la, los, las)</p>
-  </div>
-
-  <div class="callout tip">
-    <h4>💡 Главное правило</h4>
-    <p>Косвенное всегда ПЕРЕД прямым:<br>
-    Me lo da. — Он даёт мне это. (me = мне, lo = это)<br>
-    Te la envío. — Я отправляю тебе её. (te = тебе, la = её)<br>
-    Nos los trae. — Он приносит нам их. (nos = нам, los = их)</p>
-  </div>
-
-  <div class="callout warning">
-    <h4>⚠️ Le lo → SE lo! Самая важная замена</h4>
-    <p>Когда косвенное «le» или «les» стоит перед прямым «lo/la/los/las» — «le/les» МЕНЯЕТСЯ на «se»!<br>
-    Не говорят: «le lo doy». Говорят: <strong>se lo doy</strong>.<br>
-    Почему? Потому что «le lo» звучит слишком тяжело (два «л»). Испанцы заменили на «se».<br><br>
-    Se lo doy (a él/ella/usted). — Я даю ему/ей/вам это.<br>
-    Se la mando (a ellos). — Я отправляю им её.</p>
-  </div>
-
-  <h3 style="margin:16px 0 10px;font-size:1rem">Полная таблица комбинаций</h3>
-  <table>
-    <tr><th>Косвенное</th><th>+ прямое</th><th>Результат</th><th>Пример</th></tr>
-    <tr><td>me</td><td>lo/la/los/las</td><td>me lo, me la, me los, me las</td><td>Me lo da. — Он даёт мне это.</td></tr>
-    <tr><td>te</td><td>lo/la/los/las</td><td>te lo, te la, te los, te las</td><td>Te la envío. — Отправляю тебе её.</td></tr>
-    <tr><td>le → se</td><td>lo/la/los/las</td><td>se lo, se la, se los, se las</td><td>Se lo digo. — Говорю ему/ей это.</td></tr>
-    <tr><td>nos</td><td>lo/la/los/las</td><td>nos lo, nos la, nos los, nos las</td><td>Nos los trae. — Приносит нам их.</td></tr>
-    <tr><td>os</td><td>lo/la/los/las</td><td>os lo, os la, os los, os las</td><td>Os la mando. — Отправляю вам её.</td></tr>
-    <tr><td>les → se</td><td>lo/la/los/las</td><td>se lo, se la, se los, se las</td><td>Se la damos. — Мы даём им её.</td></tr>
-  </table>
-
-  <div class="callout info">
-    <h4>📍 Позиция местоимений</h4>
-    <p>С финитным (спрягаемым) глаголом: местоимения идут <strong>ПЕРЕД</strong> глаголом:<br>
-    <strong>Me lo</strong> das. — Ты даёшь мне это.<br><br>
-    С инфинитивом или герундием: можно поставить <strong>ПОСЛЕ</strong> (присоединив):<br>
-    Quiero <strong>dártelo</strong>. = Te lo quiero dar. — Я хочу дать тебе это.<br>
-    Estoy <strong>enviándoselo</strong>. = Se lo estoy enviando. — Отправляю ему это.</p>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Быстрая проверка по L43: más/menos que, tan como, mejor/peor, el más de, -ísimo.</p>
+  <div class="quiz">
+    <h3>🔄 Вспоминаем урок 43</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. «Этот ресторан лучше того» — правильно:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Este restaurante es más bueno que aquel</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Este restaurante es mejor que aquel</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Este restaurante está mejor que aquel</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «Самый дорогой ресторан Барселоны» — предлог после превосходной степени:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">el restaurante más caro en Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">el más caro restaurante de Barcelona</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">el restaurante más caro de Barcelona</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «Эта паэлья очень-очень вкусная» — абсолютная превосходная степень от «rico»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Esta paella está ricísima</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Esta paella está la más rica</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Esta paella está riquísima</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. «Она такая же высокая, как её мать» — правильно:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">Es tanto alta como su madre</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">Es tan alta que su madre</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">Es tan alta como su madre</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: СЛОВАРЬ -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — глаголы передачи и обмена</h2>
+    <h2>Теория — Двойные объектные местоимения</h2>
   </div>
 
-  <table>
-    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>С местоимениями</th></tr>
-    <tr><td>dar</td><td>[ДАР]</td><td>давать</td><td>Te lo doy. — Даю тебе это.</td></tr>
-    <tr><td>enviar / mandar</td><td>[эмБЬАР/манДАР]</td><td>отправлять</td><td>Se la envío. — Отправляю ему её.</td></tr>
-    <tr><td>traer</td><td>[траЭР]</td><td>приносить</td><td>¿Me lo traes? — Принесёшь мне это?</td></tr>
-    <tr><td>prestar</td><td>[пресТАР]</td><td>одалживать</td><td>¿Me lo prestas? — Одолжишь мне?</td></tr>
-    <tr><td>devolver</td><td>[дебоЛЬВЕР]</td><td>возвращать</td><td>Te lo devuelvo mañana. — Верну тебе завтра.</td></tr>
-    <tr><td>mostrar</td><td>[мосТРАР]</td><td>показывать</td><td>Se lo muestro. — Показываю ему это.</td></tr>
-    <tr><td>explicar</td><td>[эксплиКАР]</td><td>объяснять</td><td>Te lo explico. — Объясняю тебе.</td></tr>
-    <tr><td>contar</td><td>[конТАР]</td><td>рассказывать</td><td>Se lo cuento todo. — Расскажу ему всё.</td></tr>
-    <tr><td>regalar</td><td>[регаЛАР]</td><td>дарить</td><td>Se lo regalo. — Дарю ему это.</td></tr>
-    <tr><td>pedir</td><td>[пеДИР]</td><td>просить</td><td>Se lo pido por favor. — Прошу его об этом.</td></tr>
+  <div class="callout tip">
+    <h4>💡 Зачем это нужно?</h4>
+    <p>В испанском принято избегать повторений. Вместо «Doy el libro a María» → «Se lo doy». Двойные местоимения делают речь более естественной. Носители используют их постоянно — это признак настоящего владения языком.</p>
+  </div>
+
+  <div class="callout info">
+    <h4>📖 Напоминание: отдельные местоимения (из L25–L26)</h4>
+    <p><strong>Прямые (DOP — Direct Object Pronoun):</strong> lo, la, los, las (его, её, их / это)<br>
+    <strong>Косвенные (IOP — Indirect Object Pronoun):</strong> me, te, le, nos, os, les (мне, тебе, ему/ей, нам, вам, им)</p>
+  </div>
+
+  <!-- Rule 1: Order -->
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 1</span>
+      <span class="rule-title">Порядок: IOP всегда перед DOP</span>
+      <span class="rule-arrow">me lo, te la, nos los, os las...</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">
+      Когда в предложении есть оба местоимения, <span style="color:var(--gold)">косвенное (IOP) всегда стоит ПЕРЕД прямым (DOP)</span>.<br>
+      Мнемоника: «ИОП раньше ДОП» = «Индиана Опережает Директора».<br>
+      По-русски порядок не фиксирован, в испанском — строго: IOP + DOP + глагол.<br><br>
+      <strong>Схема:</strong> [IOP] + [DOP] + глагол → me lo da, te la manda, nos los trae
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Él me da el libro</span><span class="sep">→</span><span class="ar">Él me lo da [он даёт его мне]</span></div>
+      <div class="wp"><span class="en">Te mando la carta</span><span class="sep">→</span><span class="ar">Te la mando [посылаю её тебе]</span></div>
+      <div class="wp"><span class="en">Nos trae los documentos</span><span class="sep">→</span><span class="ar">Nos los trae [приносит их нам]</span></div>
+      <div class="wp"><span class="en">Os dejo las llaves</span><span class="sep">→</span><span class="ar">Os las dejo [оставляю их вам]</span></div>
+      <div class="wp"><span class="en">Me explica la situación</span><span class="sep">→</span><span class="ar">Me la explica [объясняет её мне]</span></div>
+      <div class="wp"><span class="en">Te presto el coche</span><span class="sep">→</span><span class="ar">Te lo presto [одалживаю его тебе]</span></div>
+      <div class="wp"><span class="en">Nos enseña el camino</span><span class="sep">→</span><span class="ar">Nos lo enseña [показывает его нам]</span></div>
+    </div>
+
+    <div style="margin-top:14px;overflow-x:auto">
+      <p style="font-size:.85rem;font-weight:700;margin-bottom:8px;color:var(--text)">📊 Таблица всех комбинаций:</p>
+      <table class="pronoun-table">
+        <tr>
+          <th>IOP ↓ / DOP →</th>
+          <th>lo (его/это)</th>
+          <th>la (её/это)</th>
+          <th>los (их)</th>
+          <th>las (их)</th>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--muted)">me (мне)</td>
+          <td class="es-cell">me lo</td>
+          <td class="es-cell">me la</td>
+          <td class="es-cell">me los</td>
+          <td class="es-cell">me las</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--muted)">te (тебе)</td>
+          <td class="es-cell">te lo</td>
+          <td class="es-cell">te la</td>
+          <td class="es-cell">te los</td>
+          <td class="es-cell">te las</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--gold)">le → se (ему/ей)</td>
+          <td class="es-cell" style="color:var(--red)">se lo</td>
+          <td class="es-cell" style="color:var(--red)">se la</td>
+          <td class="es-cell" style="color:var(--red)">se los</td>
+          <td class="es-cell" style="color:var(--red)">se las</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--muted)">nos (нам)</td>
+          <td class="es-cell">nos lo</td>
+          <td class="es-cell">nos la</td>
+          <td class="es-cell">nos los</td>
+          <td class="es-cell">nos las</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--muted)">os (вам)</td>
+          <td class="es-cell">os lo</td>
+          <td class="es-cell">os la</td>
+          <td class="es-cell">os los</td>
+          <td class="es-cell">os las</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--gold)">les → se (им)</td>
+          <td class="es-cell" style="color:var(--red)">se lo</td>
+          <td class="es-cell" style="color:var(--red)">se la</td>
+          <td class="es-cell" style="color:var(--red)">se los</td>
+          <td class="es-cell" style="color:var(--red)">se las</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Rule 2: le/les → se -->
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 2</span>
+      <span class="rule-title">le/les → se перед lo/la/los/las (ОБЯЗАТЕЛЬНО)</span>
+      <span class="rule-arrow">«le lo» — неправильно! → «se lo»</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">
+      Это <strong>автоматическая замена</strong>: когда косвенное местоимение le или les стоит перед прямым местоимением lo/la/los/las, оно ВСЕГДА заменяется на <span style="color:var(--gold)">se</span>.<br>
+      Причина: «le lo», «les la» — трудно произносить (два звука «л» подряд). Испанцы исторически стали говорить «se lo».<br><br>
+      <strong>Важно:</strong> это «se» не возвратное! Это просто замена le/les. Чтобы уточнить, кому именно — добавляй «a él/a ella/a usted/a María»: «Se lo doy <span style="color:var(--gold)">a ella</span>».
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Le doy el libro (a él)</span><span class="sep">→</span><span class="ar">Se lo doy (a él) ✅</span></div>
+      <div class="wp"><span class="en">Le mando la carta (a ella)</span><span class="sep">→</span><span class="ar">Se la mando (a ella) ✅</span></div>
+      <div class="wp"><span class="en">Les traigo los papeles</span><span class="sep">→</span><span class="ar">Se los traigo (a ellos) ✅</span></div>
+      <div class="wp"><span class="en">Le explico las normas</span><span class="sep">→</span><span class="ar">Se las explico (a usted) ✅</span></div>
+      <div class="wp"><span class="en">Le lo doy ❌</span><span class="sep">→</span><span class="ar">Se lo doy ✅ (le → se)</span></div>
+      <div class="wp"><span class="en">Les la mando ❌</span><span class="sep">→</span><span class="ar">Se la mando ✅ (les → se)</span></div>
+      <div class="wp"><span class="en">¿Le lo explicas? ❌</span><span class="sep">→</span><span class="ar">¿Se lo explicas? ✅</span></div>
+    </div>
+  </div>
+
+  <!-- Rule 3: Placement with infinitive/gerund -->
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 3</span>
+      <span class="rule-title">Местоположение при инфинитиве и герундии</span>
+      <span class="rule-arrow">можно перед глаголом ИЛИ присоединить к инфинитиву/герундию</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">
+      При конструкции «спрягаемый глагол + инфинитив/герундий» местоимения можно поставить двумя способами — оба правильны:<br><br>
+      <span style="color:var(--gold)">Вариант А:</span> оба местоимения ПЕРЕД спрягаемым глаголом<br>
+      <span style="color:var(--gold)">Вариант Б:</span> оба местоимения ПРИСОЕДИНЯЮТСЯ к инфинитиву/герундию (образуя одно слово с ударением)<br><br>
+      <strong>Внимание:</strong> при присоединении к герундию часто нужен графический акцент: dándomelo, mandándosela.
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Quiero dártelo</span><span class="sep">=</span><span class="ar">Te lo quiero dar</span></div>
+      <div class="wp"><span class="en">Puedo mandárselo</span><span class="sep">=</span><span class="ar">Se lo puedo mandar</span></div>
+      <div class="wp"><span class="en">Voy a explicártelo</span><span class="sep">=</span><span class="ar">Te lo voy a explicar</span></div>
+      <div class="wp"><span class="en">Está dándomelo</span><span class="sep">=</span><span class="ar">Me lo está dando</span></div>
+      <div class="wp"><span class="en">Sigo explicándoselo</span><span class="sep">=</span><span class="ar">Se lo sigo explicando</span></div>
+      <div class="wp"><span class="en">Tengo que prestárselo</span><span class="sep">=</span><span class="ar">Se lo tengo que prestar</span></div>
+      <div class="wp"><span class="en">Necesito enviártelos</span><span class="sep">=</span><span class="ar">Te los necesito enviar</span></div>
+    </div>
+  </div>
+
+  <!-- Rule 4: Placement with imperatives -->
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 4</span>
+      <span class="rule-title">Местоимения с повелительным наклонением</span>
+      <span class="rule-arrow">¡Dámelo! — присоединяются ТОЛЬКО к положительному императиву</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">
+      <strong>Положительный императив (+):</strong> местоимения присоединяются к глаголу сзади: <span style="color:var(--gold)">¡Dámelo!</span>, <span style="color:var(--gold)">¡Mándasela!</span><br>
+      <strong>Отрицательный императив (-):</strong> местоимения стоят ПЕРЕД глаголом: <span style="color:var(--gold)">¡No me lo des!</span>, <span style="color:var(--gold)">¡No se la mandes!</span><br><br>
+      При присоединении может потребоваться графический акцент: dá + me + lo = <em>dámelo</em>, mandá + se + la = <em>mándasela</em>.
+    </p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Dame el libro</span><span class="sep">→</span><span class="ar">¡Dámelo! [дай мне его]</span></div>
+      <div class="wp"><span class="en">Manda la carta a ella</span><span class="sep">→</span><span class="ar">¡Mándasela! [пошли её ей]</span></div>
+      <div class="wp"><span class="en">Trae los documentos</span><span class="sep">→</span><span class="ar">¡Tráemelos! [принеси их мне]</span></div>
+      <div class="wp"><span class="en">No me das el libro</span><span class="sep">→</span><span class="ar">¡No me lo des! [не давай мне его]</span></div>
+      <div class="wp"><span class="en">No le mandas la carta</span><span class="sep">→</span><span class="ar">¡No se la mandes! [не посылай её ей]</span></div>
+      <div class="wp"><span class="en">Deja las llaves para mí</span><span class="sep">→</span><span class="ar">¡Déjamelas! [оставь их мне]</span></div>
+      <div class="wp"><span class="en">No nos traes los papeles</span><span class="sep">→</span><span class="ar">¡No nos los traigas! [не приноси их нам]</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>le lo — неправильная комбинация</td><td class="wrong-ex">Le lo explico</td><td class="right-ex">Se lo explico</td><td>le/les → se перед lo/la/los/las — всегда!</td></tr>
+    <tr><td>DOP перед IOP</td><td class="wrong-ex">Lo me da</td><td class="right-ex">Me lo da</td><td>Порядок строгий: IOP (me) + DOP (lo) + глагол</td></tr>
+    <tr><td>Разделение местоимений при инфинитиве</td><td class="wrong-ex">Me quiero darlo</td><td class="right-ex">Me lo quiero dar / Quiero dármelo</td><td>Оба местоимения вместе — или оба перед, или оба после</td></tr>
+    <tr><td>Местоимение после спрягаемого глагола</td><td class="wrong-ex">Doy te lo</td><td class="right-ex">Te lo doy</td><td>При спрягаемом глаголе оба местоимения ставятся ПЕРЕД ним</td></tr>
+    <tr><td>Забыть акцент при присоединении</td><td class="wrong-ex">Damelo</td><td class="right-ex">Dámelo</td><td>При присоединении 3+ слогов нужен графический акцент</td></tr>
+    <tr><td>Присоединение к отрицательному императиву</td><td class="wrong-ex">¡No dámelo!</td><td class="right-ex">¡No me lo des!</td><td>При отрицательном императиве — местоимения перед глаголом</td></tr>
   </table>
 </div>
 
-<!-- SECTION 3: ТЕСТ 1 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Двойные местоимения</h2>
+    <h2>Словарь — 16 глаголов для практики двойных местоимений</h2>
   </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Эти глаголы чаще всего используются с двойными объектными местоимениями. Нажимай 🔊.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">dar</div><div class="vocab-pron">[дар]</div><div class="vocab-ru">давать → te lo doy</div></div><button class="speak-btn" onclick="speak('dar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">mandar / enviar</div><div class="vocab-pron">[манда́р / эмбья́р]</div><div class="vocab-ru">отправлять → te lo mando</div></div><button class="speak-btn" onclick="speak('mandar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">prestar</div><div class="vocab-pron">[преста́р]</div><div class="vocab-ru">одалживать → te lo presto</div></div><button class="speak-btn" onclick="speak('prestar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">explicar</div><div class="vocab-pron">[эксплика́р]</div><div class="vocab-ru">объяснять → te lo explico</div></div><button class="speak-btn" onclick="speak('explicar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">traer</div><div class="vocab-pron">[траэ́р]</div><div class="vocab-ru">приносить → te lo traigo</div></div><button class="speak-btn" onclick="speak('traer')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">mostrar</div><div class="vocab-pron">[мостра́р]</div><div class="vocab-ru">показывать → te lo muestro</div></div><button class="speak-btn" onclick="speak('mostrar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">contar</div><div class="vocab-pron">[конта́р]</div><div class="vocab-ru">рассказывать → te lo cuento</div></div><button class="speak-btn" onclick="speak('contar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">devolver</div><div class="vocab-pron">[дэволвэ́р]</div><div class="vocab-ru">возвращать → te lo devuelvo</div></div><button class="speak-btn" onclick="speak('devolver')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">comprar</div><div class="vocab-pron">[компра́р]</div><div class="vocab-ru">покупать → te lo compro</div></div><button class="speak-btn" onclick="speak('comprar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">preparar</div><div class="vocab-pron">[препара́р]</div><div class="vocab-ru">готовить → te lo preparo</div></div><button class="speak-btn" onclick="speak('preparar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">pedir</div><div class="vocab-pron">[педи́р]</div><div class="vocab-ru">просить → te lo pido</div></div><button class="speak-btn" onclick="speak('pedir')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">enseñar</div><div class="vocab-pron">[энсэня́р]</div><div class="vocab-ru">учить/показывать → te lo enseño</div></div><button class="speak-btn" onclick="speak('enseñar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">dejar</div><div class="vocab-pron">[дэха́р]</div><div class="vocab-ru">оставлять/одалживать → te lo dejo</div></div><button class="speak-btn" onclick="speak('dejar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">guardar</div><div class="vocab-pron">[гуарда́р]</div><div class="vocab-ru">хранить/оставить → te lo guardo</div></div><button class="speak-btn" onclick="speak('guardar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">firmar</div><div class="vocab-pron">[фирма́р]</div><div class="vocab-ru">подписывать → fírmemelo</div></div><button class="speak-btn" onclick="speak('firmar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">entregar</div><div class="vocab-pron">[энтрэга́р]</div><div class="vocab-ru">вручать/сдавать → se lo entrego</div></div><button class="speak-btn" onclick="speak('entregar')">🔊</button></div>
+  </div>
+</div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Выбери правильную форму</h3>
-
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Двойные местоимения: выбери правильный вариант</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на вариант — получишь объяснение.</p>
+  <div class="quiz">
+    <h3>🎯 Правила в действии — 7 вопросов</h3>
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. «Я даю тебе это» — как правильно?</div>
+      <div class="q-text">1. «Я дам тебе книгу» — с двойными местоимениями:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Te lo doy</div>
         <div class="opt" onclick="answerQuiz(this,'q1','b')">Lo te doy</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Te lo doy</div>
         <div class="opt" onclick="answerQuiz(this,'q1','c')">Te doy lo</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
-
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. «Он объяснит ему это» — что произойдёт с «le lo»?</div>
+      <div class="q-text">2. «Он объясняет ей задачу» → с местоимениями (le → ?)</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">le lo → se lo: Se lo explicará</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">le lo остаётся: Le lo explicará</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">lo le: Lo le explicará</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Le la explica</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">La le explica</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Se la explica</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
-
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. «¿Me lo puedes dar?» — что это значит?</div>
+      <div class="q-text">3. «Я хочу отправить ей письмо» — оба варианта правильны, выбери один:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Ты можешь дать мне это?</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Ты можешь взять у меня это?</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Мне нужно это тебе дать?</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Se lo quiero mandar / Quiero mandárselo</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Le lo quiero mandar</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Quiero mandar le lo</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
-
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Вернёшь мне их?» (devolver + te + los):</div>
+      <div class="q-text">4. «Дай мне это!» — положительный императив с двумя местоимениями:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">¿Los me devuelves?</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">¿Me los devuelves?</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">¿Devuelves me los?</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">¡Me lo da!</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">¡No me lo des!</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">¡Dámelo!</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
-
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. «Quiero dártelo» = ?</div>
+      <div class="q-text">5. «Не давай мне это!» — отрицательный императив:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Te lo quiero dar</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Lo quiero darte</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Quiero te lo dar</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">¡No dámelo!</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">¡No me lo des!</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">¡No lo me des!</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
-
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. «Мы показываем им её» (mostrar + les/se + la):</div>
+      <div class="q-text">6. «Она отправляет им документы» → с местоимениями:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Se la mostramos</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Les la mostramos</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">La les mostramos</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Les los manda</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Los les manda</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Se los manda</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «Он продолжает объяснять нам проект» — с герундием и местоимениями:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Sigue nos lo explicando</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Nos lo sigue explicando pero también sigue explicando nos lo</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Nos lo sigue explicando / Sigue explicándonoslo</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
   <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 4: ТЕСТ 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 2 — Замени на местоимения</h2>
-  </div>
-
-  <div class="quiz">
-    <h3>✏️ Замени выделенные слова местоимениями</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. Doy el libro a ti. → ___ ___ doy. (заменяй el libro → lo, a ti → te)</div>
-      <input type="text" class="text-input" placeholder="Te lo / Me lo / Se lo..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','Te lo','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ Te lo — el libro = lo (прямое), a ti = te (косвенное). Порядок: te + lo = «Te lo doy».</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. Explico la situación a él. → ___ ___ explico. (a él → le→se, la situación → la)</div>
-      <input type="text" class="text-input" placeholder="Se la / Le la / La se..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','Se la','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ Se la — le + la → se la. «Se la explico» = объясняю ему её (ситуацию).</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. ¿Puedes traer los documentos a mí? → ¿Puedes ___ ___ traer?</div>
-      <input type="text" class="text-input" placeholder="me los / te los / se los..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','me los','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ me los — los documentos = los (прямое), a mí = me (косвенное). «¿Puedes me los traer?» или «¿Me los puedes traer?»</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. Mandamos la carta a ellos. → ___ ___ mandamos.</div>
-      <input type="text" class="text-input" placeholder="Se la / Les la / La se..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','Se la','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ Se la — les + la → se la. «Se la mandamos» = отправляем им её.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. ¿Prestas el dinero a nosotros? → ¿___ ___ prestas?</div>
-      <input type="text" class="text-input" placeholder="nos lo / me lo / se lo..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','nos lo','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ nos lo — el dinero = lo, a nosotros = nos. «¿Nos lo prestas?» = одолжишь нам это?</div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 5: ДИАЛОГИ -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Диалоги — Обмен и просьбы</h2>
+    <h2>Тест 2 — Заполни пропуски</h2>
   </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Одолжи мне
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Впиши правильную комбинацию местоимений. Вводи в нижнем регистре.</p>
+  <div class="quiz">
+    <h3>✏️ Замени существительные на местоимения</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «Te mando el contrato» → «_____ mando» [te + lo → ?]</div>
+      <input type="text" class="text-input" id="ti1" placeholder="Впиши местоимения...">
+      <button class="check-btn" onclick="checkText('ti1','te lo','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ te lo — te (IOP) + lo (DOP, contrato=м.р.)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Хуан</div>
-      <div><div class="dlg-es">Oye, ¿me prestas el cargador? Me quedé sin batería.</div>
-      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Слушай, одолжишь мне зарядник? У меня кончилась батарейка.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">2. «Le explico la situación (a ella)» → «_____ explico» [le→se, la=ситуация]</div>
+      <input type="text" class="text-input" id="ti2" placeholder="Впиши местоимения...">
+      <button class="check-btn" onclick="checkText('ti2','se la','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ se la — le→se (обязательно!), la (ситуация=ж.р.)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Лаур</div>
-      <div><div class="dlg-es">Sí, te lo doy ahora. Está en mi bolso.</div>
-      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Да, дам тебе сейчас. Он у меня в сумке.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Nos traen los documentos» → «_____ traen» [nos + los → ?]</div>
+      <input type="text" class="text-input" id="ti3" placeholder="Впиши местоимения...">
+      <button class="check-btn" onclick="checkText('ti3','nos los','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ nos los — nos (IOP) + los (DOP, documentos=м.р.мн.)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Хуан</div>
-      <div><div class="dlg-es">Gracias. Te lo devuelvo en un rato.</div>
-      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Спасибо. Верну тебе через немного.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">4. «¡Da el libro a mí!» → «¡_____!» [императив: da+me+lo присоединяется]</div>
+      <input type="text" class="text-input" id="ti4" placeholder="Впиши императив с местоимениями...">
+      <button class="check-btn" onclick="checkText('ti4','dámelo','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ dámelo — да + ме + ло → dámelo (акцент обязателен!)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Лаур</div>
-      <div><div class="dlg-es">No te preocupes. Ah, ¿me puedes mandar también esa foto que sacamos ayer?</div>
-      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Не беспокойся. Ах, ты можешь также отправить мне то фото, которое мы сделали вчера?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">5. «Quiero dar las llaves a él» → «_____ quiero dar» [le→se, las=ключи ж.р.мн.]</div>
+      <input type="text" class="text-input" id="ti5" placeholder="Впиши местоимения...">
+      <button class="check-btn" onclick="checkText('ti5','se las','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ se las — le→se, las (llaves=ж.р.мн.)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Хуан</div>
-      <div><div class="dlg-es">Claro, te la mando ahora mismo.</div>
-      <div class="dlg-ru" id="tr-dlg1-5" style="display:none">Конечно, отправлю тебе её прямо сейчас.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">6. «Me está preparando la cena» → «_____ está preparando» [me + la → ?]</div>
+      <input type="text" class="text-input" id="ti6" placeholder="Впиши местоимения...">
+      <button class="check-btn" onclick="checkText('ti6','me la','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ me la — me (IOP) + la (cena=ж.р.)</div>
     </div>
-    <div id="tr-dlg1" style="display:none"></div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: В магазине
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Клиент</div>
-      <div><div class="dlg-es">Disculpe, ¿me puede mostrar esa chaqueta azul?</div>
-      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Извините, вы можете показать мне тот синий пиджак?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Vendedor</div>
-      <div><div class="dlg-es">Sí, se la muestro ahora. ¿Qué talla necesita?</div>
-      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Да, сейчас покажу вам её. Какой размер вам нужен?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Клиент</div>
-      <div><div class="dlg-es">La M, por favor. ¿También me puede traer esa de color negro?</div>
-      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">М, пожалуйста. Вы также можете принести мне ту чёрного цвета?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Vendedor</div>
-      <div><div class="dlg-es">Sí, se las traigo a las dos. Un momento.</div>
-      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Да, принесу вам обе. Одну минуту.</div></div>
-    </div>
-    <div id="tr-dlg2" style="display:none"></div>
   </div>
 </div>
 
-<!-- SECTION 6: ГОВОРЕНИЕ -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Говорение — Обмен информацией</h2>
+    <h2>Диалоги — Двойные местоимения в живой речи</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Обращай внимание на выделенные местоимения. Читай вслух, нажимай 🔊.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📄 Диалог 1: Оформление документов — в банке (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. Necesito abrir una cuenta bancaria. ¿Me puede explicar el proceso? <button class="speak-btn" onclick="speak('Buenos días. Necesito abrir una cuenta bancaria. ¿Me puede explicar el proceso?')">🔊</button></div>
+        <div class="dlg-ru translation">[Доброе утро. Мне нужно открыть банковский счёт. Вы можете объяснить мне процедуру?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Банкир</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro, <span style="color:var(--gold)">se lo</span> explico ahora mismo. Primero necesito su NIE. <button class="speak-btn" onclick="speak('Claro, se lo explico ahora mismo. Primero necesito su NIE.')">🔊</button></div>
+        <div class="dlg-ru translation">[Конечно, я объясню это вам сейчас же. Сначала мне нужен ваш NIE.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Aquí lo tiene. ¿Necesita también el contrato de alquiler? <button class="speak-btn" onclick="speak('Aquí lo tiene. ¿Necesita también el contrato de alquiler?')">🔊</button></div>
+        <div class="dlg-ru translation">[Вот, пожалуйста. Вам также нужен договор аренды?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Банкир</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, si <span style="color:var(--gold)">lo tiene</span>, <span style="color:var(--gold)">tráigamelo</span> por favor. <button class="speak-btn" onclick="speak('Sí, si lo tiene, tráigamelo por favor.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, если он у вас есть, принесите его мне, пожалуйста.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y el formulario? ¿Cuándo <span style="color:var(--gold)">me lo</span> da? <button class="speak-btn" onclick="speak('¿Y el formulario? ¿Cuándo me lo da?')">🔊</button></div>
+        <div class="dlg-ru translation">[А бланк? Когда вы мне его дадите?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Банкир</div>
+      <div style="flex:1">
+        <div class="dlg-es"><span style="color:var(--gold)">Se lo</span> doy ahora. Fírmelo aquí, por favor. <button class="speak-btn" onclick="speak('Se lo doy ahora. Fírmelo aquí, por favor.')">🔊</button></div>
+        <div class="dlg-ru translation">[Я дам его вам сейчас. Подпишите здесь, пожалуйста.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y la tarjeta de débito? ¿Cuándo <span style="color:var(--gold)">me la</span> envían? <button class="speak-btn" onclick="speak('¿Y la tarjeta de débito? ¿Cuándo me la envían?')">🔊</button></div>
+        <div class="dlg-ru translation">[А дебетовая карта? Когда вы мне её пришлёте?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Банкир</div>
+      <div style="flex:1">
+        <div class="dlg-es"><span style="color:var(--gold)">Se la</span> mandamos en 5 días laborables a su domicilio. <button class="speak-btn" onclick="speak('Se la mandamos en cinco días laborables a su domicilio.')">🔊</button></div>
+        <div class="dlg-ru translation">[Мы пришлём её вам в течение 5 рабочих дней по вашему адресу.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Puede darme también información sobre las comisiones? <button class="speak-btn" onclick="speak('¿Puede darme también información sobre las comisiones?')">🔊</button></div>
+        <div class="dlg-ru translation">[Вы можете также дать мне информацию о комиссиях?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Банкир</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por supuesto. <span style="color:var(--gold)">Se la</span> preparo en un momento. Esta cuenta no tiene comisiones. <button class="speak-btn" onclick="speak('Por supuesto. Se la preparo en un momento. Esta cuenta no tiene comisiones.')">🔊</button></div>
+        <div class="dlg-ru translation">[Конечно. Я подготовлю её для вас через мгновение. У этого счёта нет комиссий.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Базовый — Вопрос и ответ</div>
-    <p>Практикуй пары вопрос-ответ. Задай вопрос и ответь кратко с двойными местоимениями.</p>
-    <div class="es">¿Me puedes dar el número? — Sí, te lo doy ahora. / ¿Nos explicas el problema? — Se lo explico en un momento.</div>
-    <div class="hint">Создай 5 таких пар самостоятельно. Используй: dar, mandar, traer, mostrar, explicar, prestar, devolver.</div>
-  </div>
-
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Продвинутый — Звонок другу</div>
-    <p>Ты звонишь другу. Тебе нужно: попросить его что-то тебе принести, объяснить что-то, отправить документ. Используй местоимения в каждой просьбе.</p>
-    <div class="es">¿Me lo puedes traer? / ¿Me la puedes mandar? / ¿Me lo explicas? — Sí, te lo traigo / te la mando / te lo explico...</div>
-    <div class="hint">Минимум 6 обменов с двойными местоимениями.</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      📱 Диалог 2: Друзья — просьбы и одолжения (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Луис</div>
+      <div style="flex:1">
+        <div class="dlg-es">Oye, ¿<span style="color:var(--gold)">me puedes prestar</span> el cargador? El mío no funciona. <button class="speak-btn" onclick="speak('Oye, ¿me puedes prestar el cargador? El mío no funciona.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Слушай, ты можешь одолжить мне зарядку? Моя не работает.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, <span style="color:var(--gold)">te lo</span> doy ahora. Pero <span style="color:var(--gold)">devuélvemelo</span> mañana, ¿eh? <button class="speak-btn" onclick="speak('Sí, te lo doy ahora. Pero devuélvemelo mañana, ¿eh?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, дам тебе сейчас. Но верни мне его завтра, хорошо?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Луис</div>
+      <div style="flex:1">
+        <div class="dlg-es">Prometido. Oye, ¿y las fotos de la fiesta? ¿<span style="color:var(--gold)">me las</span> mandas? <button class="speak-btn" onclick="speak('Prometido. Oye, ¿y las fotos de la fiesta? ¿me las mandas?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Обещаю. Слушай, а фотографии с вечеринки? Пришлёшь мне их?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro, <span style="color:var(--gold)">te las</span> mando esta tarde por WhatsApp. <button class="speak-btn" onclick="speak('Claro, te las mando esta tarde por WhatsApp.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Конечно, пришлю тебе их сегодня вечером в WhatsApp.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Луис</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Genial! ¿Y le has contado a Pedro lo del trabajo nuevo? <button class="speak-btn" onclick="speak('¡Genial! ¿Y le has contado a Pedro lo del trabajo nuevo?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Отлично! А ты рассказала Педро о новой работе?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">Todavía no. <span style="color:var(--gold)">Se lo</span> cuento esta noche cuando le vea. <button class="speak-btn" onclick="speak('Todavía no. Se lo cuento esta noche cuando le vea.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Ещё нет. Расскажу ему это сегодня вечером, когда увижу его.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Луис</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y el regalo para Ana? ¿Ya <span style="color:var(--gold)">se lo</span> has comprado? <button class="speak-btn" onclick="speak('¿Y el regalo para Ana? ¿Ya se lo has comprado?')">🔊</button></div>
+        <div class="dlg-ru translation2">[А подарок для Аны? Ты уже купила его ей?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, <span style="color:var(--gold)">se lo</span> compré ayer. Un libro que ella quería. <button class="speak-btn" onclick="speak('Sí, se lo compré ayer. Un libro que ella quería.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, купила ей вчера. Книгу, которую она хотела.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Луис</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿<span style="color:var(--gold)">Me lo</span> puedes mostrar? Quizás yo también <span style="color:var(--gold)">se lo</span> compro a mi madre. <button class="speak-btn" onclick="speak('¿Me lo puedes mostrar? Quizás yo también se lo compro a mi madre.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Можешь показать мне его? Может, я тоже куплю его своей маме.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, <span style="color:var(--gold)">te lo</span> enseño mañana. Lo tengo en casa. <button class="speak-btn" onclick="speak('Sí, te lo enseño mañana. Lo tengo en casa.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, покажу тебе завтра. Оно у меня дома.]</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: КУЛЬТУРА -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Культурная заметка</h2>
+    <h2>Говорение — Отвечай кратко с местоимениями!</h2>
   </div>
-
-  <div class="culture">
-    <div class="ctag">🌍 Культурная заметка</div>
-    <h4>Местоимения — признак беглости испанского</h4>
-    <p>Умение правильно использовать двойные объектные местоимения — один из главных маркеров уверенного владения испанским. Носители языка используют их постоянно: «¿Te lo dejo?» (Оставить тебе это?), «Se lo dije» (Я ему сказал), «Dámelo» (Дай мне это). Если ты слышишь эти конструкции и понимаешь — значит, твой уровень вырос значительно. Интересный факт: в Латинской Америке иногда можно услышать «leísmo» — использование «le» вместо «lo» для прямого дополнения-мужчины («Le vi en la calle» вместо «Lo vi»). Это региональная особенность.</p>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Замена существительных на местоимения</div>
+    <p>Прочитай вопрос и ответь вслух, заменяя существительные на двойные местоимения:</p>
+    <div class="es">
+      ¿Le das el dinero a tu amigo? → Sí, se lo doy.<br>
+      ¿Me mandas las fotos? → Sí, te las mando.<br>
+      ¿Le explicas las reglas al niño? → Sí, se las explico.<br>
+      ¿Nos traes el contrato? → Sí, os lo traigo.<br>
+      ¿Me puedes prestar el coche? → Claro, te lo puedo prestar / puedo prestártelo.
+    </div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Sí, se lo doy. Sí, te las mando. Sí, se las explico.')">🔊 Пример ответов</button>
+    <div class="hint">Практикуй каждый ответ 3 раза вслух. Задавай вопросы себе сам!</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Испании: в банке BBVA</div>
+    <p>Ты открываешь счёт в банке. Ответь на вопросы служащего, используя двойные местоимения.</p>
+    <div class="es">Empleado: «¿Tiene usted el NIE?»<br>
+Tú: «Sí, aquí lo tiene. ¿Me lo devuelve después?»<br>
+Empleado: «Por supuesto, se lo devuelvo ahora mismo.»<br>
+Tú: «¿Y el contrato de la cuenta? ¿Cuándo me lo mandan?»<br>
+Empleado: «Se lo enviamos esta semana por correo electrónico.»</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Sí, aquí lo tiene. ¿Me lo devuelve después? ¿Y el contrato de la cuenta? ¿Cuándo me lo mandan?')">🔊 Твои реплики</button>
+    <div class="hint">Читай вслух роль «Tú». Потом читай обе роли. Обращай внимание на все двойные местоимения.</div>
   </div>
 </div>
 
-<!-- SECTION 8: ANKI + ДОМАШНЕЕ ЗАДАНИЕ -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Anki и домашнее задание</h2>
+    <h2>🇪🇸 Испания на практике: Открытие банковского счёта в Испании</h2>
   </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏦 Реальная ситуация — Барселона, банк CaixaBank или BBVA</div>
+    <p style="margin-bottom:12px">Открытие банковского счёта в Испании — один из первых шагов после переезда. Тебе понадобятся NIE/TIE, паспорт и, желательно, договор аренды. Здесь двойные местоимения — в постоянном употреблении: «¿me lo puede dar?», «se lo entrego ahora».</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Puede explicarme los requisitos? → ¿Puede explicármelos? <button class="speak-btn" onclick="speak('¿Puede explicarme los requisitos? ¿Puede explicármelos?')">🔊</button></div>
+          <div class="phrase-ru">Вы можете объяснить мне требования? → Вы можете объяснить их мне?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Aquí están los documentos. ¿Me los devuelve? <button class="speak-btn" onclick="speak('Aquí están los documentos. ¿Me los devuelve?')">🔊</button></div>
+          <div class="phrase-ru">Вот документы. Вы возвратите их мне?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿El contrato? Se lo entrego firmado ahora mismo. <button class="speak-btn" onclick="speak('¿El contrato? Se lo entrego firmado ahora mismo.')">🔊</button></div>
+          <div class="phrase-ru">Договор? Я передаю его вам подписанным прямо сейчас.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">La tarjeta, ¿cuándo me la envían? <button class="speak-btn" onclick="speak('La tarjeta, ¿cuándo me la envían?')">🔊</button></div>
+          <div class="phrase-ru">Карту, когда вы мне её пришлёте?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Las comisiones? Se las explico en este folleto. <button class="speak-btn" onclick="speak('¿Las comisiones? Se las explico en este folleto.')">🔊</button></div>
+          <div class="phrase-ru">Комиссии? Объясню их вам в этой брошюре.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿El formulario? Fírmemelo aquí, por favor. <button class="speak-btn" onclick="speak('¿El formulario? Fírmemelo aquí, por favor.')">🔊</button></div>
+          <div class="phrase-ru">Бланк? Подпишите его мне здесь, пожалуйста.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Для открытия счёта в испанском банке в большинстве случаев достаточно NIE/TIE и паспорта. Банки CaixaBank, BBVA, Santander и Sabadell имеют русскоязычных консультантов в крупных городах. Многие нерезиденты открывают «cuenta no residente» — счёт для нерезидентов. Онлайн-банк N26 или Revolut открывают счёт без визита в офис, но для полноценного испанского счёта нужна личная явка. Во всех этих разговорах двойные местоимения звучат постоянно!
+    </div>
+  </div>
+</div>
 
-  <!-- .wrap -->
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🔤 Лингвистика: почему «se lo» вместо «le lo»?</div>
+    <h4>История замены le/les → se в испанском</h4>
+    <p>Замена le/les на se перед прямыми местоимениями — один из самых изученных фонетических процессов в истории испанского языка. В средневековом кастильском языке сочетание «ge lo» (от латинского «illi illud») постепенно эволюционировало: ge → se, и к XVI веку форма «se lo» стала нормой. Интересно, что в некоторых диалектах и в разговорном испанском Латинской Америки иногда слышишь «te lo digo a ti» с удвоенным указанием — это называется «leísmo» или эмфаза. В деловом испанском Испании правило строгое: le/les → se обязательно, и ошибка здесь сразу выдаёт нечистый уровень. Зато когда ты говоришь «se lo explico» правильно — носители это замечают и оценивают.</p>
+  </div>
+</div>
 
-<!-- DONE BAR -->
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек: двойные местоимения</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай колоду для Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">te lo doy</div>
+        <div class="anki-card-back">я даю это тебе<br>IOP(te)+DOP(lo)+глагол<br>¿Me lo das? — Sí, te lo doy.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">se lo explico</div>
+        <div class="anki-card-back">объясняю это ему/ей/вам<br>le→se перед lo!<br>Никогда «le lo explico»!</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">¡Dámelo!</div>
+        <div class="anki-card-back">Дай мне это! (императив)<br>da+me+lo = dámelo<br>Акцент обязателен!</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">nos los trae</div>
+        <div class="anki-card-back">приносит их нам<br>nos(IOP)+los(DOP)+trae<br>Nos traen los documentos → nos los trae</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">te la mando</div>
+        <div class="anki-card-back">посылаю её тебе<br>te(IOP)+la(DOP, f.)+mando<br>¿Me mandas la carta? — Te la mando.</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL44()">📥 Скачать колоду Anki L44 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L45: Imperativo — повелительное наклонение)</h4>
+    <ul>
+      <li><strong>Dreaming Spanish (Beginner)</strong> — 15 мин. Слушай и замечай двойные местоимения: te lo, se lo, me la, nos los. Записывай примеры.</li>
+      <li><strong>Упражнение «Замени»</strong> — возьми 10 предложений из L43 (диалоги про квартиры) и перепиши их, заменив существительные на двойные местоимения.</li>
+      <li><strong>Anki</strong> — повторяй 18 карточек из этого урока (10 мин).</li>
+      <li><strong>Разговор с собой</strong> — опиши свой день, используя двойные местоимения: «Le conté el problema a mi amigo → se lo conté. Mi jefe me pidió el informe → me lo pidió».</li>
+      <li><strong>Таблица</strong> — перепиши таблицу комбинаций из урока от руки. Это лучший способ запомнить замену le/les → se.</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Урок 44 завершён!</h4>
+    <p>Ты освоил двойные объектные местоимения — один из самых сложных и важных механизмов испанского. Следующий урок — повелительное наклонение: ¡Habla! ¡Come! ¡Escucha!</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
     <a href="L43.html" class="nav-link-btn">← L43</a>
@@ -457,29 +887,177 @@ td:first-child{font-weight:600;color:var(--gold)}
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L44 = [
+  {front:"te lo doy",back:"Русский: я даю это тебе<br><br>Пример: ¿Me lo das? — Sí, te lo doy.<br>Заметка: IOP (te) всегда перед DOP (lo)"},
+  {front:"se lo explico",back:"Русский: объясняю это ему/ей/вам<br><br>Пример: Se lo explico ahora mismo.<br>Заметка: le → se обязательно перед lo/la/los/las!"},
+  {front:"me la manda",back:"Русский: посылает её мне<br><br>Пример: ¿La carta? Me la manda hoy.<br>Заметка: me(IOP) + la(DOP, f.) + глагол"},
+  {front:"nos los trae",back:"Русский: приносит их нам<br><br>Пример: Los documentos nos los trae mañana.<br>Заметка: nos(IOP) + los(DOP, m.pl.)"},
+  {front:"se la mandan",back:"Русский: посылают её ему/ей (pl. verb)<br><br>Пример: La tarjeta se la mandan en 5 días.<br>Заметка: les → se перед la"},
+  {front:"¡Dámelo!",back:"Русский: Дай мне это!<br><br>Пример: ¡Dámelo ahora mismo!<br>Заметка: da + me + lo = dámelo (акцент обязателен!)"},
+  {front:"¡No me lo des!",back:"Русский: Не давай мне это!<br><br>Пример: ¡No me lo des todavía!<br>Заметка: при отрицательном императиве — местоимения ПЕРЕД глаголом"},
+  {front:"quiero dártelo",back:"Русский: хочу дать тебе это<br><br>Пример: Quiero dártelo ahora. = Te lo quiero dar.<br>Заметка: оба варианта правильны!"},
+  {front:"se lo estoy explicando",back:"Русский: объясняю это ему/ей прямо сейчас<br><br>Пример: Se lo estoy explicando. = Estoy explicándoselo.<br>Заметка: le → se, при герундии акцент!"},
+  {front:"le → se",back:"Русский: обязательная замена<br><br>Пример: le lo → se lo; les la → se la<br>Заметка: перед любым DOP (lo, la, los, las) — le/les становится se"},
+  {front:"te los devuelvo",back:"Русский: возвращаю их тебе<br><br>Пример: Los libros, te los devuelvo mañana.<br>Заметка: te(IOP) + los(DOP, m.pl.)"},
+  {front:"¿Me lo puedes mostrar?",back:"Русский: Можешь мне это показать?<br><br>Пример: ¿Me lo puedes mostrar? = ¿Puedes mostrármelo?<br>Заметка: оба порядка правильны"},
+  {front:"se lo compré",back:"Русский: я купил(а) это ему/ей<br><br>Пример: Se lo compré ayer en el mercado.<br>Заметка: le → se, в прошедшем времени работает так же"},
+  {front:"os la enseño",back:"Русский: показываю её вам (мн.ч.)<br><br>Пример: La foto, os la enseño ahora.<br>Заметка: os(IOP) + la(DOP, f.) — для vosotros"},
+  {front:"¡Tráemelos!",back:"Русский: Принеси их мне!<br><br>Пример: Los documentos, ¡tráemelos ya!<br>Заметка: trae + me + los = tráemelos (акцент!)"},
+  {front:"me lo pidió",back:"Русский: он/она попросил(а) это у меня<br><br>Пример: Mi jefe me lo pidió ayer.<br>Заметка: me(IOP) + lo(DOP) + pretérito indefinido"},
+  {front:"se los entrego",back:"Русский: вручаю их ему/ей<br><br>Пример: Los papeles, se los entrego mañana.<br>Заметка: le → se, los (m.pl.)"},
+  {front:"¿Cuándo me la envías?",back:"Русский: Когда ты мне её пришлёшь?<br><br>Пример: ¿La tarjeta? ¿Cuándo me la envías?<br>Заметка: me(IOP) + la(DOP, f.) + envías"},
+];
+
+function exportAnkiL44() {
+  const tsv = ANKI_DECK_L44.map(c => c.front + '\t' + c.back).join('\n');
+  const header = '#separator:Tab\n#html:true\n#deck:L44 Pronombres Dobles\n';
+  const blob = new Blob([header + tsv], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L44_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Buenos días. Necesito abrir una cuenta bancaria. ¿Me puede explicar el proceso?',
+    'Claro, se lo explico ahora mismo. Primero necesito su NIE.',
+    'Aquí lo tiene. ¿Necesita también el contrato de alquiler?',
+    'Sí, si lo tiene, tráigamelo por favor.',
+    '¿Y el formulario? ¿Cuándo me lo da?',
+    'Se lo doy ahora. Fírmelo aquí, por favor.',
+    '¿Y la tarjeta de débito? ¿Cuándo me la envían?',
+    'Se la mandamos en cinco días laborables a su domicilio.',
+    '¿Puede darme también información sobre las comisiones?',
+    'Por supuesto. Se la preparo en un momento. Esta cuenta no tiene comisiones.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
 const LESSON_ID = 'L44';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
 
-const quizExpl={
-  q1:'Порядок: косвенное (te) + прямое (lo) + глагол. ВСЕГДА косвенное первым.',
-  q2:'le + lo → se lo. Это обязательная замена! «Le lo» — неправильно в современном испанском.',
-  q3:'Me lo puedes dar = можешь мне это дать. me = мне (косвенное), lo = это (прямое).',
-  q4:'Порядок: me (косвенное) + los (прямое) = me los. «¿Me los devuelves?»',
-  q5:'dártelo = dar + te + lo — все три соединились в одно слово. Это то же самое, что «te lo quiero dar».',
-  q6:'les + la → se la. «Se la mostramos» = мы показываем им её. les→se перед любым прямым местоимением.',
+const quizExpl = {
+  w1:'mejor — неправильная форма bueno. «Más bueno» — ошибка в стандартном испанском.',
+  w2:'Превосходная степень + de, не en: el restaurante más caro de Barcelona.',
+  w3:'riquísima — rico→riquísimo (c→qu), форма ж.р. для paella.',
+  w4:'tan + прилагательное + como. «Tanto alta» — ошибка, tanto с существительными.',
+  q1:'te lo doy — IOP(te) перед DOP(lo) перед глаголом. Порядок строгий.',
+  q2:'se la explica — le → se обязательно перед la. «Le la» — грубая ошибка.',
+  q3:'se lo quiero mandar / quiero mandárselo — le→se, оба варианта позиции верны.',
+  q4:'¡Dámelo! — положительный императив: местоимения присоединяются сзади.',
+  q5:'¡No me lo des! — отрицательный императив: местоимения перед глаголом.',
+  q6:'se los manda — les→se перед los. Никогда «les los».',
+  q7:'nos lo sigue explicando / sigue explicándonoslo — оба варианта правильны.',
 };
-let quizScore=0,quizTotal=0;
-function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];if(el.classList.contains('correct'))quizScore++;quizTotal++;updateScore();}
-function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
-function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||correct.startsWith(val)&&val.length>=correct.length-2){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`; }}
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const rows=document.querySelectorAll(`[id^="${id}-"]`);rows.forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
-const totalSections=8;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const clickedKey = el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];
+  if (clickedKey !== correctKey) el.classList.add('wrong');
+  const isCorrect = clickedKey === correctKey;
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>
