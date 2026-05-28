@@ -622,7 +622,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:12,
       speaking_focus:"Дать инструкцию, совет или рецепт",
-      file:"lessons/L45.html", status:"pending"
+      file:"lessons/L45.html", status:"improved"
     },
     {
       id:"L46", num:46, phase:2, block:"B2C", level:"A2", day:97, week:16,
@@ -634,7 +634,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:14,
       speaking_focus:"Использовать 20 самых частотных неправильных глаголов в разговоре",
-      file:"lessons/L46.html", status:"pending"
+      file:"lessons/L46.html", status:"improved"
     },
     {
       id:"L47", num:47, phase:2, block:"B2C", level:"A2", day:99, week:17,
