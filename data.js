@@ -646,7 +646,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot: null,
       speaking_focus:"Заказывать еду и услуги: ¿Me sirves más agua?",
-      file:"lessons/L47.html", status:"pending"
+      file:"lessons/L47.html", status:"improved"
     },
     {
       id:"L48", num:48, phase:2, block:"B2C", level:"A2", day:101, week:17,
@@ -658,7 +658,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:9,
       speaking_focus:"Описать как выполняется действие, насколько что-то хорошо",
-      file:"lessons/L48.html", status:"pending"
+      file:"lessons/L48.html", status:"improved"
     },
     {
       id:"L49", num:49, phase:2, block:"B2C", level:"A2", day:103, week:17,
