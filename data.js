@@ -670,7 +670,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Делать сложные описания людей и мест без пауз",
-      file:"lessons/L49.html", status:"pending"
+      file:"lessons/L49.html", status:"improved"
     },
     {
       id:"L50", num:50, phase:2, block:"B2C", level:"A2", day:105, week:18,
@@ -682,7 +682,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:10,
       speaking_focus:"Выражать отрицание эмфатически и в разных контекстах",
-      file:"lessons/L50.html", status:"pending"
+      file:"lessons/L50.html", status:"improved"
     },
     {
       id:"L51", num:51, phase:2, block:"B2C", level:"A2", day:107, week:18,
