@@ -694,7 +694,7 @@ const COURSE = {
       ds_level:"beginner",
       polyglot:10,
       speaking_focus:"Говорить о количестве, охвате, частичности",
-      file:"lessons/L51.html", status:"pending"
+      file:"lessons/L51.html", status:"improved"
     },
     {
       id:"L52", num:52, phase:2, block:"B2C", level:"A2", day:109, week:18,
@@ -706,7 +706,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Правильно выбирать ser/estar в 20 ловушечных ситуациях",
-      file:"lessons/L52.html", status:"pending"
+      file:"lessons/L52.html", status:"improved"
     },
     {
       id:"L53", num:53, phase:2, block:"B2C", level:"A2", day:111, week:19,
