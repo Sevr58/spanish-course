@@ -718,7 +718,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Читать объявления и вывески, понимать пассивные конструкции",
-      file:"lessons/L53.html", status:"pending"
+      file:"lessons/L53.html", status:"improved"
     },
     {
       id:"L54", num:54, phase:2, block:"B2C", level:"A2", day:113, week:19,
@@ -730,7 +730,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Говорить о своих и чужих эмоциях в разных ситуациях",
-      file:"lessons/L54.html", status:"pending"
+      file:"lessons/L54.html", status:"improved"
     },
     {
       id:"L55", num:55, phase:2, block:"B2C", level:"A2", day:115, week:19,
