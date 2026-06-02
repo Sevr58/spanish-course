@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L56: Повторение A2 — большой разговор</title>
+<title>L56: Повторение A2 — Большой разговор</title>
 <style>
 :root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -36,6 +35,15 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
 .callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -70,7 +78,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -79,10 +87,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -90,455 +94,991 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-.review-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:12px}
-.review-card h4{font-size:.9rem;font-weight:700;color:var(--gold);margin-bottom:8px}
-.review-card ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.review-card li{margin-bottom:4px}
-.interview-q{background:var(--bg3);border-radius:8px;padding:12px 16px;margin-bottom:8px;font-size:.9rem}
-.interview-q .q{color:var(--blue);font-weight:700;margin-bottom:4px}
-.interview-q .hint-ans{color:var(--muted);font-size:.82rem;display:none}
-.interview-q .show-hint{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(69,123,157,.05));border:1px solid rgba(255,214,10,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}
+.review-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.review-card .rc-label{font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.08em;margin-bottom:6px}
+.review-card .rc-title{font-weight:700;font-size:.95rem;color:var(--gold);margin-bottom:8px}
+.review-card .rc-ex{font-size:.85rem;color:var(--text);margin-bottom:3px}
+.review-card .rc-ru{font-size:.78rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}.review-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">A2 · Фаза 2 · День 118</span>
   <a href="L57.html">L57 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🔵 Фаза 2 · Рост · Блок 2C — ПОВТОРЕНИЕ · DS Intermediate</div>
-  <h1>Повторение A2 — <span class="hl">большой разговор</span></h1>
-  <p class="sub">Итоговая практика Phase 2 — все времена, темы и грамматика в одном уроке</p>
+  <div class="phase-tag">🏁 Фаза 2 · Практика A2 · Блок 2D · Финал уровня A2</div>
+  <h1>Повторение A2 — <span class="hl">Большой разговор</span></h1>
+  <p class="sub">Итоговая практика Phase 2 — все темы и времена вместе</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Закрепить весь материал A2 через активную речевую практику</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~60 минут — это большой урок-практика</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Сегодня — интенсивное аудирование 20+ мин</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Интервью — 20 вопросов о прошлом, настоящем и будущем</p></div></div>
+    <div class="obj"><div class="ico">🗺️</div><div><strong>Цель 1</strong><p>Повторить все 5 прошедших, настоящее и будущие времена</p></div></div>
+    <div class="obj"><div class="ico">💬</div><div><strong>Цель 2</strong><p>Ответить на 20 вопросов о прошлом, настоящем, будущем</p></div></div>
+    <div class="obj"><div class="ico">📋</div><div><strong>Цель 3</strong><p>Закрепить местоимения, ser/estar, сравнения и отрицания</p></div></div>
+    <div class="obj"><div class="ico">🇪🇸</div><div><strong>Цель 4</strong><p>Получить tarjeta sanitaria в Испании — ключевые фразы</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: REVIEW MAP -->
+<!-- 3. WARM-UP: повторение L55 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Карта знаний A2 — что ты изучил за Phase 2</h2>
+    <h2>Повторение L55 — Работа и профессии</h2>
   </div>
-
-  <p style="margin-bottom:14px">Прежде чем перейти к практике — вспомни всё, что ты уже знаешь. Это не пустая формальность: активация памяти перед практикой повышает качество речи на 30–40%.</p>
-
-  <div class="review-card">
-    <h4>🕐 Прошедшее время</h4>
-    <ul>
-      <li><strong>Pretérito Indefinido</strong> — конкретные события: Ayer comí, fui, hice...</li>
-      <li><strong>Pretérito Imperfecto</strong> — описание, привычки: Cuando era niño, vivía...</li>
-      <li><strong>Pretérito Perfecto</strong> — опыт / недавнее: He comido, he visto...</li>
-      <li>Правило выбора: Indefinido = действие, Imperfecto = фон/состояние</li>
-    </ul>
-  </div>
-
-  <div class="review-card">
-    <h4>🔮 Будущее и условное</h4>
-    <ul>
-      <li><strong>Ir + a + infinitivo</strong> — ближайшие планы: Voy a estudiar mañana.</li>
-      <li><strong>Futuro Simple</strong> — далёкое будущее / предсказания: Hablaré español bien.</li>
-      <li><strong>Condicional</strong> — вежливые просьбы / гипотезы: ¿Podría ayudarme?</li>
-    </ul>
-  </div>
-
-  <div class="review-card">
-    <h4>🔧 Грамматические инструменты</h4>
-    <ul>
-      <li>Двойное отрицание: No tengo nada / Nunca lo haré</li>
-      <li>Квантификаторы: mucho/poco/bastante/cada vez más</li>
-      <li>Ser vs. estar: сложные случаи (está listo vs. es listo)</li>
-      <li>Пассивный залог: Se vende / fue construido</li>
-      <li>Эмоции: ponerse/quedarse/volverse + прилагательное</li>
-      <li>Профессии: Soy + профессия (без артикля)</li>
-    </ul>
-  </div>
-
-  <div class="callout success">
-    <h4>✅ Ты знаешь больше, чем кажется</h4>
-    <p>К этому моменту у тебя: 3 прошедших времени, 2 вида будущего, условное наклонение, система отрицания, сравнения, относительные придаточные, глаголы-«сапожки», пассив, эмоции, профессии. Это полноценный A2. Осталось закрепить через практику.</p>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Предыдущий урок: <em>¿En qué trabajas? Soy médico. Trabajo en una empresa.</em> Проверяем!</p>
+  <div class="quiz">
+    <h3>🤔 Проверка L55 — 4 вопроса</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Как правильно сказать «Я адвокат» (женщина)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Estoy abogada</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Soy abogada</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Soy una abogada</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «Я занимаюсь дизайном» — правильно:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">Me dedico en diseño</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">Trabajo a diseño</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">Me dedico al diseño</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «Я в отпуске» — как сказать?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Estoy en vacación</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Estoy de vacaciones</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Tengo vacaciones</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. «Резюме» по-испански — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">el currículum</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">la nómina</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">el contrato</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: GRAMMAR REVIEW QUIZ -->
+<!-- 4. THEORY / REVIEW -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Тест 1 — Граммар-ревью: все темы A2</h2>
+    <h2>Обзор A2 — Карта грамматики Phase 2</h2>
   </div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Смешанный тест на все основные темы Phase 2</h3>
+  <div class="callout info">
+    <h4>📊 Что ты знаешь на уровне A2</h4>
+    <p>Фаза 2 охватила блоки 2A–2D (уроки L31–L56). Ты изучил 5 времён прошедшего, 2 формы будущего, условное наклонение, местоимения, сравнения, отрицания и продвинутый ser/estar. Сейчас — быстрое систематическое повторение.</p>
+  </div>
 
-    <div class="quiz-q" id="q1">
-      <div class="q-text">1. «Когда я был ребёнком, каждое лето ездил на море» — какое время?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Pretérito Indefinido</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Pretérito Imperfecto</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Pretérito Perfecto</div>
-      </div>
-      <div class="feedback" id="fb-q1"></div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="rc-label">Время L31–32</div>
+      <div class="rc-title">Pretérito Indefinido</div>
+      <div class="rc-ex">Ayer <strong>comí</strong> paella.</div>
+      <div class="rc-ru">Вчера я поел паэлью. (конкретный момент)</div>
+      <div class="rc-ex" style="margin-top:6px">Ella <strong>fue</strong> al banco ayer.</div>
+      <div class="rc-ru">Она пошла в банк вчера.</div>
     </div>
-
-    <div class="quiz-q" id="q2">
-      <div class="q-text">2. «Я ещё не завтракал» — какое время?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Pretérito Indefinido</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Pretérito Perfecto</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Futuro Simple</div>
-      </div>
-      <div class="feedback" id="fb-q2"></div>
+    <div class="review-card">
+      <div class="rc-label">Время L33–34</div>
+      <div class="rc-title">Pretérito Imperfecto</div>
+      <div class="rc-ex">Cuando era niño, <strong>vivía</strong> en Rusia.</div>
+      <div class="rc-ru">Когда был ребёнком, жил в России. (привычка, фон)</div>
+      <div class="rc-ex" style="margin-top:6px"><strong>Llovía</strong> cuando llegamos.</div>
+      <div class="rc-ru">Шёл дождь, когда мы приехали.</div>
     </div>
-
-    <div class="quiz-q" id="q3">
-      <div class="q-text">3. «Я бы хотел чашку кофе, пожалуйста» (вежливая просьба):</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Quisiera un café, por favor.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Quiero un café, por favor.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Querré un café, por favor.</div>
-      </div>
-      <div class="feedback" id="fb-q3"></div>
+    <div class="review-card">
+      <div class="rc-label">Время L35</div>
+      <div class="rc-title">Pretérito Perfecto</div>
+      <div class="rc-ex">Este año <strong>he viajado</strong> mucho.</div>
+      <div class="rc-ru">В этом году я много путешествовал. (связь с сейчас)</div>
+      <div class="rc-ex" style="margin-top:6px">¿<strong>Has comido</strong> ya?</div>
+      <div class="rc-ru">Ты уже поел?</div>
     </div>
-
-    <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Здесь никто не живёт» — с двойным отрицанием:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Aquí nadie no vive.</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Aquí no vive nadie.</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Aquí no vive ninguno.</div>
-      </div>
-      <div class="feedback" id="fb-q4"></div>
+    <div class="review-card">
+      <div class="rc-label">Будущее L39–40</div>
+      <div class="rc-title">Ir+a / Futuro Simple</div>
+      <div class="rc-ex"><strong>Voy a estudiar</strong> mañana.</div>
+      <div class="rc-ru">Собираюсь учить завтра. (ближайшее)</div>
+      <div class="rc-ex" style="margin-top:6px"><strong>Estudiaré</strong> más el año que viene.</div>
+      <div class="rc-ru">Буду больше учиться в следующем году.</div>
     </div>
-
-    <div class="quiz-q" id="q5">
-      <div class="q-text">5. Выбери правильную форму: «Когда я _____ в Барселоне, _____» (Indefinido + Imperfecto)</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">llegué / llovía</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">llegaba / llovió</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">he llegado / ha llovido</div>
-      </div>
-      <div class="feedback" id="fb-q5"></div>
+    <div class="review-card">
+      <div class="rc-label">Условное L41</div>
+      <div class="rc-title">Condicional Simple</div>
+      <div class="rc-ex">Con más dinero, <strong>viajaría</strong> por el mundo.</div>
+      <div class="rc-ru">С большими деньгами, путешествовал бы по миру.</div>
+      <div class="rc-ex" style="margin-top:6px">¿<strong>Podría</strong> ayudarme?</div>
+      <div class="rc-ru">Не могли бы вы помочь мне? (вежливость)</div>
     </div>
-
-    <div class="quiz-q" id="q6">
-      <div class="q-text">6. «Мой испанский становится всё лучше» — выбери выражение:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Mi español está más mejor.</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Mi español es cada vez mejor.</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Mi español va mejor siempre.</div>
-      </div>
-      <div class="feedback" id="fb-q6"></div>
+    <div class="review-card">
+      <div class="rc-label">Местоимения L25–26</div>
+      <div class="rc-title">OD + OI</div>
+      <div class="rc-ex">¿El libro? <strong>Lo</strong> tengo aquí.</div>
+      <div class="rc-ru">Книга? Она у меня здесь. (lo = прямой объект)</div>
+      <div class="rc-ex" style="margin-top:6px"><strong>Le</strong> doy el dinero a María.</div>
+      <div class="rc-ru">Я даю деньги Марии. (le = косвенный объект)</div>
     </div>
   </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Ключевой выбор</span>
+      <span class="rule-title">Indefinido vs. Imperfecto — алгоритм</span>
+      <span class="rule-arrow">«Когда что?»</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Это самый трудный выбор в испанском для носителей русского. Простая схема: Indefinido — «что случилось» (действие, событие, точка). Imperfecto — «как было» (фон, состояние, привычка, описание).</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Вдруг зазвонил телефон</span><span class="sep">→</span><span class="ar">De repente sonó (Ind.)</span></div>
+      <div class="wp"><span class="en">Я смотрел телевизор</span><span class="sep">→</span><span class="ar">Veía la tele (Imp.)</span></div>
+      <div class="wp"><span class="en">Мы жили в Москве</span><span class="sep">→</span><span class="ar">Vivíamos en Moscú (Imp.)</span></div>
+      <div class="wp"><span class="en">Он уехал в Барселону</span><span class="sep">→</span><span class="ar">Se fue a Barcelona (Ind.)</span></div>
+      <div class="wp"><span class="en">Я обычно ходил в спортзал</span><span class="sep">→</span><span class="ar">Solía ir al gimnasio (Imp.)</span></div>
+      <div class="wp"><span class="en">Вчера я пошёл в магазин</span><span class="sep">→</span><span class="ar">Ayer fui al supermercado (Ind.)</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Сравнения L43</span>
+      <span class="rule-title">Más/menos + adj + que | tan + adj + como</span>
+      <span class="rule-arrow">Barcelona es más grande que Madrid? ¡No!</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Неравенство: más/menos + прилагательное + que. Равенство: tan + прилагательное + como. Превосходная степень: el/la más + прилагательное (+ de).</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Мадрид больше Барселоны</span><span class="sep">→</span><span class="ar">Madrid es más grande que Barcelona</span></div>
+      <div class="wp"><span class="en">Он такой же умный, как она</span><span class="sep">→</span><span class="ar">Es tan inteligente como ella</span></div>
+      <div class="wp"><span class="en">самый дорогой отель в городе</span><span class="sep">→</span><span class="ar">el hotel más caro de la ciudad</span></div>
+      <div class="wp"><span class="en">лучше / хуже (исключения)</span><span class="sep">→</span><span class="ar">mejor / peor (не más bueno)</span></div>
+      <div class="wp"><span class="en">больше / меньше (исключения)</span><span class="sep">→</span><span class="ar">mayor / menor (возраст)</span></div>
+      <div class="wp"><span class="en">менее дорогой вариант</span><span class="sep">→</span><span class="ar">una opción menos cara</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Отрицания L50</span>
+      <span class="rule-title">Двойное отрицание — испанская норма</span>
+      <span class="rule-arrow">No tengo nada. (Я ничего не имею.)</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">В испанском двойное отрицание — не ошибка, а норма! Если отрицательное слово стоит после глагола, нужно «no» перед глаголом. Если перед глаголом — «no» не нужно.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Никто не пришёл</span><span class="sep">→</span><span class="ar">No vino nadie / Nadie vino</span></div>
+      <div class="wp"><span class="en">Я никогда не ем мяса</span><span class="sep">→</span><span class="ar">Nunca como carne</span></div>
+      <div class="wp"><span class="en">У меня ничего нет</span><span class="sep">→</span><span class="ar">No tengo nada</span></div>
+      <div class="wp"><span class="en">Он тоже не пришёл</span><span class="sep">→</span><span class="ar">Él tampoco vino</span></div>
+      <div class="wp"><span class="en">Я нигде не работаю</span><span class="sep">→</span><span class="ar">No trabajo en ningún sitio</span></div>
+      <div class="wp"><span class="en">Никогда больше!</span><span class="sep">→</span><span class="ar">¡Nunca más!</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Топ ошибок A2 уровня</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Indefinido вместо Imperfecto для описания</td><td class="wrong-ex">Era joven, tuve pelo largo</td><td class="right-ex">Era joven, tenía el pelo largo</td><td>Описание внешности = фон → Imperfecto</td></tr>
+    <tr><td>Одиночное отрицание</td><td class="wrong-ex">No tengo nothing (англ. влияние)</td><td class="right-ex">No tengo nada</td><td>Испанское двойное отрицание — норма</td></tr>
+    <tr><td>Неверный порядок OD+OI</td><td class="wrong-ex">Doy le lo</td><td class="right-ex">Se lo doy (le → se перед lo/la)</span></td><td>le/les → se перед lo/la/los/las</td></tr>
+    <tr><td>Mejor/peor с más</td><td class="wrong-ex">más mejor / más peor</td><td class="right-ex">mejor / peor</td><td>Irregular superlative — no uses más</td></tr>
+    <tr><td>Futuro Simple для ближних планов</td><td class="wrong-ex">Mañana comeré con Ana</td><td class="right-ex">Mañana voy a comer con Ana</td><td>Для ближайших планов предпочтителен ir+a+inf</td></tr>
+    <tr><td>Сondicional для предположений в прошлом</td><td class="wrong-ex">Ayer tendría hambre (предположение)</td><td class="right-ex">Ayer tendría hambre ✓ (верно!)</td><td>Condicional для предположений о прошлом — это правильно</td></tr>
+  </table>
 </div>
 
-<!-- SECTION 3: FILL IN QUIZ -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 2 — Заполни пропуски в тексте</h2>
+    <h2>Словарь — 20 ключевых слов повторения A2</h2>
   </div>
-
-  <div class="quiz">
-    <h3>✏️ Смешанные формы — все темы Phase 2</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. Ayer (ir) _____ al supermercado y (comprar) _____ mucha fruta. (я — yo)</div>
-      <input type="text" class="text-input" placeholder="fui / compré..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','fui','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">fui (ir — Indefinido) — конкретное прошедшее действие. Второй глагол: compré (comprar — Indefinido).</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. Cuando era pequeño, _____ (jugar) al fútbol todos los días. (habitual past)</div>
-      <input type="text" class="text-input" placeholder="jugaba / jugué / he jugado..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','jugaba','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">jugaba — привычное действие в прошлом = Imperfecto. «Cuando era pequeño» = маркер детских воспоминаний → Imperfecto.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. ¿_____ (haber-tú) estado alguna vez en Madrid? (опыт)</div>
-      <input type="text" class="text-input" placeholder="Has / Habías / Estuviste..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','Has','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">Has — «¿Has estado...?» = Pretérito Perfecto для опыта в жизни. «Alguna vez» — маркер Perfecto.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. Mañana _____ (ir-yo) a llamar a mis padres. (ближайшее будущее)</div>
-      <input type="text" class="text-input" placeholder="voy a / iré / llamaré..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','voy a','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">voy a — «voy a llamar» = ir + a + infinitivo для ближайших планов. Полное предложение: «Mañana voy a llamar a mis padres».</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. No conozco a _____ en esta ciudad todavía. (никого)</div>
-      <input type="text" class="text-input" placeholder="nadie / nada / ningún..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','nadie','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">nadie — после «no conozco a» нужен nadie (о людях). Двойное отрицание: no + nadie.</div>
-    </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Важные слова из всей фазы 2, которые нужно знать наизусть. Нажимай 🔊.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">ayer / anteayer</div><div class="vocab-ru">вчера / позавчера</div></div><button class="speak-btn" onclick="speak('ayer, anteayer')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">hace tres días</div><div class="vocab-ru">три дня назад</div></div><button class="speak-btn" onclick="speak('hace tres días')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el año pasado</div><div class="vocab-ru">в прошлом году</div></div><button class="speak-btn" onclick="speak('el año pasado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">de niño / de joven</div><div class="vocab-ru">в детстве / в молодости</div></div><button class="speak-btn" onclick="speak('de niño, de joven')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">mañana / la semana que viene</div><div class="vocab-ru">завтра / на следующей неделе</div></div><button class="speak-btn" onclick="speak('mañana, la semana que viene')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">todavía / ya no</div><div class="vocab-ru">ещё / уже не</div></div><button class="speak-btn" onclick="speak('todavía, ya no')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">sin embargo</div><div class="vocab-ru">однако / тем не менее</div></div><button class="speak-btn" onclick="speak('sin embargo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">además</div><div class="vocab-ru">кроме того / к тому же</div></div><button class="speak-btn" onclick="speak('además')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">por eso</div><div class="vocab-ru">поэтому / вот почему</div></div><button class="speak-btn" onclick="speak('por eso')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">aunque</div><div class="vocab-ru">хотя / несмотря на то что</div></div><button class="speak-btn" onclick="speak('aunque')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">en cuanto</div><div class="vocab-ru">как только</div></div><button class="speak-btn" onclick="speak('en cuanto')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">desde hace + tiempo</div><div class="vocab-ru">в течение (действие продолжается сейчас)</div></div><button class="speak-btn" onclick="speak('desde hace dos años')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">mientras</div><div class="vocab-ru">пока / в то время как</div></div><button class="speak-btn" onclick="speak('mientras')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">de repente</div><div class="vocab-ru">вдруг / внезапно</div></div><button class="speak-btn" onclick="speak('de repente')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">al final</div><div class="vocab-ru">в конце концов / наконец</div></div><button class="speak-btn" onclick="speak('al final')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">a lo mejor</div><div class="vocab-ru">может быть / возможно</div></div><button class="speak-btn" onclick="speak('a lo mejor')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¡Qué + adj!</div><div class="vocab-ru">Какой + прилагательное! (восклицание)</div></div><button class="speak-btn" onclick="speak('¡Qué bonito!')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">cada vez más</div><div class="vocab-ru">всё больше и больше</div></div><button class="speak-btn" onclick="speak('cada vez más')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">lo + adj (neutro)</div><div class="vocab-ru">то, что... / самое ... (lo bueno = хорошее)</div></div><button class="speak-btn" onclick="speak('lo bueno es que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">a pesar de</div><div class="vocab-ru">несмотря на</div></div><button class="speak-btn" onclick="speak('a pesar de')">🔊</button></div>
   </div>
 </div>
 
-<!-- SECTION 4: BIG INTERVIEW -->
+<!-- 6. QUIZ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Интервью — 20 вопросов на все темы A2</h2>
+    <h2>Тест 1 — Большая проверка A2</h2>
   </div>
-
-  <p style="margin-bottom:14px">Это главное задание урока. Ответь вслух на каждый вопрос развёрнутым предложением. Не спеши — важно говорить правильно и связно. После каждого ответа нажми «Показать подсказку».</p>
-
-  <div class="interview-q">
-    <div class="q">1. ¿Qué hiciste el fin de semana pasado?</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Indefinido: El fin de semana pasado fui a... / comí... / estuve...</div>
+  <div class="quiz">
+    <h3>🎯 8 вопросов — все темы фазы 2</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Когда я была маленькой, я <strong>жила</strong> в Сибири» — форма глагола:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">viví</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">vivía</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">he vivido</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Он никогда не ел суши» — правильный перевод:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">No comió sushi nunca jamás</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Él no comió sushi no</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Nunca ha comido sushi</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Я дам это тебе» — краткая форма (замени оба объекта местоимениями):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Le lo doy</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Te lo doy</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Lo te doy</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Барселона «такой же красивый город, как» Рим:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Barcelona es más bonita que Roma</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Barcelona es tan bonita que Roma</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Barcelona es tan bonita como Roma</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Если бы у меня было время, я бы путешествовал больше» — форма:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Si tengo tiempo, viajaré más</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Si tuviera tiempo, viajaría más</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Si tendría tiempo, viajaría más</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Я здесь уже три года» — como se dice (acción continua):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Hace tres años que estoy aquí / Llevo tres años aquí</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Estoy aquí por tres años</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Hace tres años que estoy aquí / Llevo tres años aquí</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «Мне нравится» — правильная конструкция gustar:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Me gusta el café</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Yo gusto el café</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Me gusto el café</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+    <div class="quiz-q" id="q8">
+      <div class="q-text">8. «Вдруг он пришёл, пока я спал» — выбери правильные времена:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q8','b')">De repente vino mientras dormí</div>
+        <div class="opt" onclick="answerQuiz(this,'q8','c')">De repente venía mientras dormía</div>
+        <div class="opt" onclick="answerQuiz(this,'q8','a')">De repente vino mientras dormía</div>
+      </div>
+      <div class="feedback" id="fb-q8"></div>
+    </div>
   </div>
-
-  <div class="interview-q">
-    <div class="q">2. ¿Cómo eras de pequeño? ¿Qué te gustaba hacer?</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Imperfecto: Cuando era pequeño/a, era... / me gustaba... / jugaba...</div>
-  </div>
-
-  <div class="interview-q">
-    <div class="q">3. ¿Qué países has visitado? ¿Cuál te ha gustado más?</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Perfecto: He visitado... / He estado en... El que más me ha gustado ha sido...</div>
-  </div>
-
-  <div class="interview-q">
-    <div class="q">4. ¿Qué vas a hacer este verano?</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Ir + a: Este verano voy a... / Tengo planes de... / Pienso...</div>
-  </div>
-
-  <div class="interview-q">
-    <div class="q">5. ¿En qué trabajas? ¿Cuánto tiempo llevas en ese trabajo?</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Soy... / Me dedico a... / Llevo X años trabajando como...</div>
-  </div>
-
-  <div class="interview-q">
-    <div class="q">6. ¿Qué te gusta y qué no te gusta de tu trabajo?</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Me gusta mucho... / No me gusta nada... / Lo que más / menos me gusta es...</div>
-  </div>
-
-  <div class="interview-q">
-    <div class="q">7. ¿Cuáles son tus planes para los próximos 5 años?</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Espero... / Me gustaría... / Tengo pensado... / En el futuro voy a...</div>
-  </div>
-
-  <div class="interview-q">
-    <div class="q">8. ¿Qué harías si pudieras vivir en cualquier ciudad del mundo?</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Condicional: Viviría en... / Elegiría... porque...</div>
-  </div>
-
-  <div class="interview-q">
-    <div class="q">9. Describe cómo es tu familia.</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Mi familia es... / Tengo... / Mi mujer/marido es... / Mis hijos tienen...</div>
-  </div>
-
-  <div class="interview-q">
-    <div class="q">10. ¿Qué tipo de música te gusta? ¿Por qué?</div>
-    <button class="show-hint" onclick="this.nextElementSibling.style.display='block'">Показать подсказку</button>
-    <div class="hint-ans" style="display:none;margin-top:6px;font-size:.82rem;color:var(--muted)">Me gusta / encanta / Me apasiona... porque... / Lo que más me gusta es...</div>
-  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 5: DIALOGUES -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Диалоги — смешанные времена и темы</h2>
+    <h2>Тест 2 — Заполни пропуски</h2>
   </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Случайная встреча — все три прошедших времени
-      <button class="dlg-toggle" onclick="toggleTranslation('tr1')">Показать перевод</button>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи ответ в нижнем регистре.</p>
+  <div class="quiz">
+    <h3>✏️ Большое повторение — 6 вопросов</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. El año pasado yo __ (viajar, pretérito indefinido) a Portugal. (1-е лицо ед.ч.)</div>
+      <input type="text" class="text-input" placeholder="Форма глагола..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','viajé','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ viajé — viajar → yo viajé (Indefinido)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Карлос</div>
-      <div><div class="dlg-es">¡Hola! ¿Qué tal? ¿Has estado de vacaciones?</div>
-      <div class="dlg-ru" id="tr1" style="display:none">Привет! Как дела? Ты был в отпуске?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">2. Cuando era pequeña, __ (tener) mucho miedo de los perros. (yo, Imperfecto)</div>
+      <input type="text" class="text-input" placeholder="Forma..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','tenía','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ tenía — Imperfecto de tener (habitual en el pasado)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Давид</div>
-      <div><div class="dlg-es">Sí, estuve en Portugal la semana pasada. Era mi primera vez allí.</div>
-      <div class="dlg-ru" id="tr1b" style="display:none">Да, я был в Португалии на прошлой неделе. Это был мой первый раз там.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">3. Este año he __ (ver) muchas películas españolas. (participio)</div>
+      <input type="text" class="text-input" placeholder="Participio..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','visto','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ visto — ver → visto (participio irregular)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Карлос</div>
-      <div><div class="dlg-es">¿Y qué te pareció? ¿Habías ido antes alguna vez?</div>
-      <div class="dlg-ru" id="tr1c" style="display:none">И как тебе показалось? Ты раньше ездил когда-нибудь?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">4. Si __ (tener, yo) más dinero, compraría un piso. (Imperfecto Subjuntivo)</div>
+      <input type="text" class="text-input" placeholder="Forma..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','tuviera','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ tuviera — Imperfecto Subjuntivo de tener</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Давид</div>
-      <div><div class="dlg-es">Nunca había ido. Me encantó. La comida estaba buenísima y la gente era muy amable.</div>
-      <div class="dlg-ru" id="tr1d" style="display:none">Никогда не ездил. Мне очень понравилось. Еда была потрясающей, и люди были очень приветливыми.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">5. Barcelona es la ciudad __ (más / tan) bonita de España. (превосходная степень)</div>
+      <input type="text" class="text-input" placeholder="más или tan..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','más','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ más — la ciudad más bonita = самый красивый (superlativo)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Карлос</div>
-      <div><div class="dlg-es">¿Volverás?</div>
-      <div class="dlg-ru" id="tr1e" style="display:none">Вернёшься?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Давид</div>
-      <div><div class="dlg-es">¡Con toda seguridad! De hecho, ya estoy pensando en volver el próximo año con la familia.</div>
-      <div class="dlg-ru" id="tr1f" style="display:none">Определённо! Честно говоря, я уже думаю о том, чтобы вернуться на следующий год с семьёй.</div></div>
-    </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Разговор о переезде (актуальная тема!)
-      <button class="dlg-toggle" onclick="toggleTranslation('tr2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Амина</div>
-      <div><div class="dlg-es">He escuchado que quieres mudarte a España. ¿Es verdad?</div>
-      <div class="dlg-ru" id="tr2" style="display:none">Я слышала, что ты хочешь переехать в Испанию. Это правда?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Евг.</div>
-      <div><div class="dlg-es">Sí, es uno de mis sueños. Me gustaría vivir en Barcelona. El clima es fantástico y hay mucha cultura.</div>
-      <div class="dlg-ru" id="tr2b" style="display:none">Да, это одна из моих мечт. Мне бы хотелось жить в Барселоне. Климат фантастический и много культуры.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Амина</div>
-      <div><div class="dlg-es">¿Y tu trabajo? ¿Podrías seguir trabajando desde allí?</div>
-      <div class="dlg-ru" id="tr2c" style="display:none">А работа? Ты смог бы продолжать работать оттуда?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Евг.</div>
-      <div><div class="dlg-es">Soy autónomo, así que sí. Trabajo de forma remota. No necesito estar en una oficina.</div>
-      <div class="dlg-ru" id="tr2d" style="display:none">Я самозанятый, так что да. Работаю удалённо. Мне не нужно быть в офисе.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Амина</div>
-      <div><div class="dlg-es">¡Qué envidia! Ojalá yo pudiera hacer lo mismo.</div>
-      <div class="dlg-ru" id="tr2e" style="display:none">Как я завидую! Жаль, что я не могу сделать то же самое.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">6. No quiero __ (ninguno/nada/nadie). Estoy llena. (ничего)</div>
+      <input type="text" class="text-input" placeholder="Слово..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','nada','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ nada — No quiero nada = ничего не хочу (двойное отрицание)</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: SPEAKING MARATHON -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Говорение — марафон на все темы</h2>
+    <h2>Диалоги — Свободный разговор на темах A2</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Нажимай 🔊. В этих диалогах используются все времена и конструкции A2.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🕰️ Диалог 1: Рассказ о прошлом — Indefinido + Imperfecto (11 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cómo fue tu verano? ¿Hiciste algo especial? <button class="speak-btn" onclick="speak('¿Cómo fue tu verano? ¿Hiciste algo especial?')">🔊</button></div>
+        <div class="dlg-ru translation">[Как прошло твоё лето? Делал что-нибудь особенное?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, viajé a Croacia con mi familia. Hacía mucho calor pero fue increíble. <button class="speak-btn" onclick="speak('Sí, viajé a Croacia con mi familia. Hacía mucho calor pero fue increíble.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, путешествовал в Хорватию с семьёй. Было очень жарко, но это было невероятно.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué visitaste? <button class="speak-btn" onclick="speak('¿Qué visitaste?')">🔊</button></div>
+        <div class="dlg-ru translation">[Что ты посетил?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es">Visitamos Dubrovnik y Split. Las ciudades eran preciosas y la gente era muy amable. Comimos mucho pescado fresco. <button class="speak-btn" onclick="speak('Visitamos Dubrovnik y Split. Las ciudades eran preciosas y la gente era muy amable. Comimos mucho pescado fresco.')">🔊</button></div>
+        <div class="dlg-ru translation">[Посетили Дубровник и Сплит. Города были прекрасны, а люди очень приветливы. Много ели свежей рыбы.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Habías estado antes en Croacia? <button class="speak-btn" onclick="speak('¿Habías estado antes en Croacia?')">🔊</button></div>
+        <div class="dlg-ru translation">[Ты был раньше в Хорватии?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, nunca había ido. Pero ya hemos ido a Italia dos veces, y Croacia es casi tan bonita como Italia. <button class="speak-btn" onclick="speak('No, nunca había ido. Pero ya hemos ido a Italia dos veces, y Croacia es casi tan bonita como Italia.')">🔊</button></div>
+        <div class="dlg-ru translation">[Нет, никогда не ездил. Но мы уже были в Италии два раза, и Хорватия почти такая же красивая, как Италия.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Qué envidia! Yo me quedé en Barcelona. Trabajé todo julio. <button class="speak-btn" onclick="speak('¡Qué envidia! Yo me quedé en Barcelona. Trabajé todo julio.')">🔊</button></div>
+        <div class="dlg-ru translation">[Как завидно! Я осталась в Барселоне. Работала весь июль.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y el año que viene, tienes planes? <button class="speak-btn" onclick="speak('¿Y el año que viene, tienes planes?')">🔊</button></div>
+        <div class="dlg-ru translation">[А в следующем году есть планы?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, voy a pedir más vacaciones. Y si puedo, me gustaría ir a Japón. <button class="speak-btn" onclick="speak('Sí, voy a pedir más vacaciones. Y si puedo, me gustaría ir a Japón.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, собираюсь попросить больше отпуска. И если смогу, хотела бы поехать в Японию.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пабло</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Japón es el destino más interesante del mundo! Si tuvieras compañía, yo iría contigo. <button class="speak-btn" onclick="speak('¡Japón es el destino más interesante del mundo! Si tuvieras compañía, yo iría contigo.')">🔊</button></div>
+        <div class="dlg-ru translation">[Япония — самое интересное направление в мире! Если бы тебе нужна была компания, я бы поехал с тобой.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Trato hecho! Lo planeamos juntos en cuanto lleguen las vacaciones. <button class="speak-btn" onclick="speak('¡Trato hecho! Lo planeamos juntos en cuanto lleguen las vacaciones.')">🔊</button></div>
+        <div class="dlg-ru translation">[По рукам! Планируем вместе, как только наступит отпуск.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 1 — Монолог «Моя жизнь»</div>
-    <p>Говори 3–5 минут без остановки. Используй все три прошедших времени, будущее и условное. Структура:</p>
-    <div class="es">1. Детство: Cuando era niño/a...<br>2. Прошлое: El año pasado...<br>3. Настоящее: Ahora me dedico a... / Soy...<br>4. Будущее: El próximo año voy a... / Me gustaría...</div>
-    <div class="hint">Цель: говорить связно, без длинных пауз. Не ищи идеальных слов — говори с тем, что знаешь.</div>
-  </div>
-
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 2 — Ролевая игра</div>
-    <p>Ты встретил испаноговорящего человека на вечеринке в Барселоне. Разговор длится 5 минут. Темы: работа, семья, переезд, мечты. Говори за обоих участников:</p>
-    <div class="es">Задай 5 вопросов и дай 5 развёрнутых ответов.<br>Используй: ¿En qué trabajas? / ¿De dónde eres? / ¿Qué te gusta de Barcelona?</div>
-    <div class="hint">Вопросы строй через: ¿Qué / Dónde / Cuándo / Por qué / Cómo + глагол?</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      🎤 Диалог 2: Интервью — 20 вопросов за 5 минут (11 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Интер.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Hola, Elena. ¿Puedes presentarte brevemente? <button class="speak-btn" onclick="speak('Hola, Elena. ¿Puedes presentarte brevemente?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Привет, Елена. Можешь кратко представиться?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Елена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro. Me llamo Elena, tengo treinta y dos años, soy rusa y llevo dos años viviendo en Barcelona. Soy diseñadora gráfica y trabajo en una agencia de publicidad. <button class="speak-btn" onclick="speak('Claro. Me llamo Elena, tengo treinta y dos años, soy rusa y llevo dos años viviendo en Barcelona.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Конечно. Меня зовут Елена, мне тридцать два года, я русская и живу в Барселоне уже два года. Я графический дизайнер и работаю в рекламном агентстве.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Интер.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Por qué elegiste Barcelona? <button class="speak-btn" onclick="speak('¿Por qué elegiste Barcelona?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Почему выбрала Барселону?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Елена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Porque siempre me había encantado el Mediterráneo. Además, mi empresa tiene oficina aquí y me ofrecieron un traslado. Fue la mejor decisión de mi vida. <button class="speak-btn" onclick="speak('Porque siempre me había encantado el Mediterráneo. Además, mi empresa tiene oficina aquí y me ofrecieron un traslado.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Потому что мне всегда нравилось Средиземноморье. К тому же, моя компания имеет офис здесь и мне предложили перевод. Это было лучшим решением моей жизни.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Интер.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué fue lo más difícil al principio? <button class="speak-btn" onclick="speak('¿Qué fue lo más difícil al principio?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Что было самым трудным в начале?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Елена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sin duda el idioma. Aunque estudié español antes de venir, en la vida real era mucho más rápido. Los papeles administrativos también eran complicados. <button class="speak-btn" onclick="speak('Sin duda el idioma. Aunque estudié español antes de venir, en la vida real era mucho más rápido.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Без сомнения, язык. Хотя я учила испанский до приезда, в реальной жизни это было намного быстрее. Административные документы тоже были сложными.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Интер.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuáles son tus planes para el futuro? <button class="speak-btn" onclick="speak('¿Cuáles son tus planes para el futuro?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Каковы твои планы на будущее?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Елена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Voy a quedarme aquí al menos cinco años más. Me gustaría abrir mi propio estudio de diseño y si todo va bien, traer a mi madre también. <button class="speak-btn" onclick="speak('Voy a quedarme aquí al menos cinco años más. Me gustaría abrir mi propio estudio de diseño.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Собираюсь остаться здесь ещё как минимум пять лет. Хотела бы открыть собственную дизайн-студию и, если всё пойдёт хорошо, привезти маму тоже.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Интер.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué consejo darías a alguien que quiere mudarse a Barcelona? <button class="speak-btn" onclick="speak('¿Qué consejo darías a alguien que quiere mudarse a Barcelona?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Какой совет дала бы тому, кто хочет переехать в Барселону?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Елена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Estudia español antes, consigue el NIE lo antes posible y hazte la tarjeta sanitaria desde el primer día. Y sé paciente con la burocracia española. <button class="speak-btn" onclick="speak('Estudia español antes, consigue el NIE lo antes posible y hazte la tarjeta sanitaria desde el primer día.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Учи испанский заранее, получи NIE как можно скорее и оформи медицинскую карту с первого дня. И будь терпелива с испанской бюрократией.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Интер.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Gracias, Elena. Ha sido muy interesante hablar contigo. <button class="speak-btn" onclick="speak('Gracias, Elena. Ha sido muy interesante hablar contigo.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Спасибо, Елена. Было очень интересно поговорить с тобой.]</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: CULTURE + ANKI -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Культура, Anki и подведение итогов</h2>
+    <h2>Говорение — Финальное задание A2</h2>
   </div>
 
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — 20 вопросов о тебе (5 минут)</div>
+    <p>Ответь на все вопросы вслух. По 2 предложения на каждый. Используй все времена фазы 2. Засеки время!</p>
+    <div class="es" style="line-height:2">
+      1. ¿Dónde naciste? 2. ¿Dónde vivías de niño/a? 3. ¿Qué hacías los veranos? 4. ¿Cuándo llegaste a España? 5. ¿Por qué elegiste Barcelona? 6. ¿Qué fue lo más difícil al principio? 7. ¿Qué has aprendido este año? 8. ¿Qué estás haciendo ahora en tu vida? 9. ¿En qué trabajas? 10. ¿Cómo es tu barrio? 11. ¿Tienes amigos españoles? 12. ¿Qué te gusta más de España? 13. ¿Qué es mejor: Barcelona o Madrid? 14. ¿Cuándo irás de vacaciones? 15. ¿Qué vas a hacer el año que viene? 16. Si pudieras vivir en otro país, ¿cuál sería? 17. ¿Cuál es la cosa más importante de tu vida? 18. ¿Qué no puedes vivir sin? 19. ¿Qué nunca has hecho pero quieres hacer? 20. ¿Cómo será tu vida en 5 años?
+    </div>
+    <div class="hint">Objetivo: responder sin pausas largas. Si no sabes una palabra, explícala con otras: "Es como... / Se usa para... / Es una cosa que..."</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🇪🇸 Упражнение 2 — Реальная ситуация: чистое интервью</div>
+    <p>Притворись, что ты даёшь интервью каталонскому изданию о жизни иностранцев в Барселоне. Запиши себя (3–4 минуты). Потом послушай и посчитай ошибки.</p>
+    <div class="es">Hola, soy [имя]. Llegué a Barcelona hace [tiempo]. Antes vivía en [ciudad] y trabajaba de [profesión]. Vine aquí porque [razón]. Al principio fue difícil porque [dificultad]. Ahora [situación actual]. En el futuro, me gustaría [plan]. Si pudiera dar un consejo, diría: [consejo].</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Hola. Llegué a Barcelona hace dos años. Antes vivía en Moscú y trabajaba de ingeniero. Vine aquí porque me gustan el sol y el mar. Al principio fue difícil por el idioma, pero cada vez mejoro más.')">🔊 Пример</button>
+    <div class="hint">Включи хотя бы 3 разных времени: Imperfecto, Indefinido и Condicional. Это финальный тест уровня A2!</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Tarjeta Sanitaria</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏥 Реальная ситуация — Получаем медицинскую карту (CAP Barcelona)</div>
+    <p style="margin-bottom:12px">Как только ты зарегистрирован в Испании (<em>empadronado</em>), ты имеешь право на бесплатную медицинскую помощь. Для этого нужно получить <strong>Tarjeta Sanitaria Individual (TSI)</strong> — аналог полиса ОМС. В Барселоне это делается в <em>CAP (Centro de Atención Primaria)</em> — поликлинике по месту жительства. Нужны: empadronamiento, NIE, паспорт.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Quiero solicitar la tarjeta sanitaria. <button class="speak-btn" onclick="speak('Quiero solicitar la tarjeta sanitaria.')">🔊</button></div>
+          <div class="phrase-ru">Хочу получить медицинскую карту.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Tengo el empadronamiento y el NIE. <button class="speak-btn" onclick="speak('Tengo el empadronamiento y el NIE.')">🔊</button></div>
+          <div class="phrase-ru">У меня есть справка о регистрации и NIE.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuál es mi médico de cabecera? <button class="speak-btn" onclick="speak('¿Cuál es mi médico de cabecera?')">🔊</button></div>
+          <div class="phrase-ru">Кто мой участковый врач?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Necesito pedir una cita con el médico. <button class="speak-btn" onclick="speak('Necesito pedir una cita con el médico.')">🔊</button></div>
+          <div class="phrase-ru">Мне нужно записаться на приём к врачу.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Está cubierto por la seguridad social? <button class="speak-btn" onclick="speak('¿Está cubierto por la seguridad social?')">🔊</button></div>
+          <div class="phrase-ru">Это покрывается системой социального страхования?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Necesito receta para este medicamento? <button class="speak-btn" onclick="speak('¿Necesito receta para este medicamento?')">🔊</button></div>
+          <div class="phrase-ru">Мне нужен рецепт на это лекарство?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">🏥 Мини-диалог: В поликлинике CAP (6 реплик)</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Паци.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Hola, buenos días. Quiero solicitar la tarjeta sanitaria por primera vez. <button class="speak-btn" onclick="speak('Hola, buenos días. Quiero solicitar la tarjeta sanitaria por primera vez.')">🔊</button></div>
+          <div class="dlg-ru">[Здравствуйте, доброе утро. Хочу получить медицинскую карту впервые.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Админ.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Claro. ¿Tiene el empadronamiento, el DNI o NIE y el pasaporte? <button class="speak-btn" onclick="speak('Claro. ¿Tiene el empadronamiento, el DNI o NIE y el pasaporte?')">🔊</button></div>
+          <div class="dlg-ru">[Конечно. У вас есть справка о регистрации, DNI или NIE и паспорт?]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Паци.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Sí, aquí los tengo todos. ¿Cuánto tiempo tarda en llegar la tarjeta? <button class="speak-btn" onclick="speak('Sí, aquí los tengo todos. ¿Cuánto tiempo tarda en llegar la tarjeta?')">🔊</button></div>
+          <div class="dlg-ru">[Да, вот они все. Сколько времени займёт получение карты?]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Админ.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Unos quince días hábiles. Mientras tanto, le doy este volante para que pueda ver al médico de cabecera. <button class="speak-btn" onclick="speak('Unos quince días hábiles. Mientras tanto, le doy este volante para que pueda ver al médico de cabecera.')">🔊</button></div>
+          <div class="dlg-ru">[Около пятнадцати рабочих дней. Тем временем даю вам этот направление, чтобы вы могли посетить участкового врача.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Паци.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Perfecto. ¿Y cómo pido cita con mi médico? <button class="speak-btn" onclick="speak('Perfecto. ¿Y cómo pido cita con mi médico?')">🔊</button></div>
+          <div class="dlg-ru">[Отлично. А как записаться к врачу?]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Админ.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Por teléfono, por la app «La Meva Salut» o en persona aquí. El médico asignado a su domicilio es el doctor García. <button class="speak-btn" onclick="speak('Por teléfono, por la app La Meva Salut o en persona aquí. El médico asignado a su domicilio es el doctor García.')">🔊</button></div>
+          <div class="dlg-ru">[По телефону, через приложение «La Meva Salut» или лично здесь. Врач, закреплённый за вашим адресом, — доктор Гарсия.]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Медицина в Испании — одна из лучших в Европе и бесплатна для всех, кто зарегистрирован. Tarjeta sanitaria нужна для: визита к врачу, получения рецептов со скидкой (до 90%!), вызова скорой помощи. В Каталонии также используется приложение <em>La Meva Salut</em>. Приём у специалиста (кардиолог, ортопед) требует направления от участкового врача — <em>médico de cabecera</em>. Для срочной помощи — urgencias в больнице или CAP.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
   <div class="culture">
-    <div class="ctag">🌍 Культурная заметка</div>
-    <h4>Испанская беседа — как не застрять в паузах</h4>
-    <p>Испанцы воспринимают паузы в разговоре как дискомфорт и активно их заполняют. У них есть целый арсенал «заполнителей»: «bueno» (ну), «pues» (итак / ну), «o sea» (то есть), «es que» (дело в том что), «la verdad es que» (если честно). Использование этих слов сделает твою речь гораздо более естественной. Вместо долгой паузы в поисках слова — произнеси «pues... es que...» и речь продолжится.</p>
+    <div class="ctag">🏆 Уровень A2 в испанском</div>
+    <h4>Что значит завершить Phase 2 курса</h4>
+    <p>Уровень A2 по CEFR — это «базовый пользователь». На этом уровне ты можешь понимать изолированные фразы и часто употребляемые выражения в областях, непосредственно связанных с повседневной жизнью: покупки, семья, работа, ближайшее окружение. Ты умеешь описывать прошлое, говорить о планах и выражать простые желания. По-испански ты уже можешь общаться в большинстве туристических и бытовых ситуаций. Путь от A2 до B1 — это переход от «выживания» к «свободному общению»: появляются сослагательное наклонение, сложные конструкции, беглость. Это самый ценный прыжок в изучении языка.</p>
   </div>
+</div>
 
-  <div style="margin-top:16px" class="anki">
-    <div class="atag">🃏 Anki — ключевые фразы для связной речи</div>
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек повторения A2</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Indefinido vs Imperfecto</div>
+        <div class="anki-card-back">Ind: «что случилось» (событие)<br>Imp: «как было» (фон, привычка)</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Nunca he comido sushi</div>
+        <div class="anki-card-back">Никогда не ел суши<br>Двойное отрицание = норма</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">tan bonito como</div>
+        <div class="anki-card-back">такой же красивый, как<br>Равенство: tan + adj + como</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Si tuviera dinero...</div>
+        <div class="anki-card-back">Если бы у меня были деньги...<br>Hipotético: si + subj. imp + condicional</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Te lo doy</div>
+        <div class="anki-card-back">Я тебе это дам<br>OI (te) + OD (lo) — правильный порядок</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL56()">📥 Скачать колоду Anki L56 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 Переход к Phase 3 — Сослагательное наклонение (L57+)</h4>
     <ul>
-      <li><strong>bueno</strong> — ну / хорошо (заполнитель паузы)</li>
-      <li><strong>pues</strong> — ну / итак (очень частый соединитель)</li>
-      <li><strong>es que</strong> — дело в том что / просто</li>
-      <li><strong>o sea</strong> — то есть</li>
-      <li><strong>la verdad es que</strong> — если честно</li>
-      <li><strong>lo que pasa es que</strong> — что происходит — это то что</li>
-      <li><strong>por cierto</strong> — кстати</li>
-      <li><strong>en fin</strong> — в общем / короче</li>
+      <li><strong>Dreaming Spanish Intermediate</strong> — 20 мин. ежедневно. Уровень intermediate теперь подходит тебе!</li>
+      <li><strong>Запиши себя</strong> — 5-минутный монолог о своей жизни, используя все 5 времён фазы 2. Потом прослушай и выпиши 5 ошибок для работы над ними.</li>
+      <li><strong>Пиши по 5 предложений в день</strong> — о вчерашнем дне (Indefinido), о детстве (Imperfecto), о планах (Futuro / ir+a).</li>
+      <li><strong>Anki</strong> — повторяй все карточки из уроков L31–L56 (делай по 20–30 карточек в день).</li>
+      <li><strong>Посмотри 1 серию</strong> испанского сериала с субтитрами на испанском — «La casa de papel», «Club de cuervos» или «Velvet».</li>
     </ul>
   </div>
-
-  
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Phase 2 завершена! Уровень A2 достигнут!</h4>
+    <p>Ты знаешь 5 времён прошедшего, будущее, условное, местоимения, сравнения, отрицания и продвинутый ser/estar. Следующая фаза — самое интересное: <strong>сослагательное наклонение (subjuntivo)</strong>. Добро пожаловать в Phase 3!</p>
+  </div>
+</div>
 
 </div><!-- .wrap -->
 
-<!-- DONE BAR -->
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L55.html" class="nav-link-btn">← L55</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L57.html" class="nav-link-btn">L57 →</a>
+    <a href="L55.html" class="nav-link-btn">← L55: Работа</a>
+    <a href="L57.html" class="nav-link-btn">L57: Ресторан →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+// ─── speak() — Web Speech API ─────────────────────────────
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+// ─── Anki deck L56 ───────────────────────────────────────
+const ANKI_DECK_L56 = [
+  {front:"Pretérito Indefinido",back:"Русский: прошедшее (действие, событие)<br>Пример: Ayer viajé a Croacia.<br>Заметка: маркеры: ayer, la semana pasada, hace X días"},
+  {front:"Pretérito Imperfecto",back:"Русский: прошедшее (описание, привычка, фон)<br>Пример: De niño vivía en Siberia.<br>Заметка: маркеры: siempre, cuando era niño, todos los días"},
+  {front:"Pretérito Perfecto",back:"Русский: «уже сделал» (связь с настоящим)<br>Пример: Este año he viajado mucho.<br>Заметка: haber + participio; маркеры: este año, hoy, ya, nunca"},
+  {front:"ir + a + infinitivo",back:"Русский: ближайшее будущее<br>Пример: Voy a estudiar mañana.<br>Заметка: намерение, план — предпочтительно для ближайшего будущего"},
+  {front:"Futuro Simple",back:"Русский: будущее (предсказания, далёкие планы)<br>Пример: El año que viene hablaré bien.<br>Заметка: regular: -é, -ás, -á, -emos, -éis, -án"},
+  {front:"Condicional Simple",back:"Русский: «бы» (вежливость, гипотезы)<br>Пример: ¿Podría ayudarme? / Yo viajaría más.<br>Заметка: -ía, -ías, -ía, -íamos, -íais, -ían"},
+  {front:"nunca / nadie / nada / tampoco",back:"Русский: никогда / никто / ничего / тоже нет<br>Пример: Nunca he comido sushi. No tengo nada.<br>Заметка: двойное отрицание — норма испанского"},
+  {front:"más + adj + que",back:"Русский: более ... чем (неравенство)<br>Пример: Madrid es más grande que Barcelona.<br>Заметка: исключения: mejor (bueno), peor (malo), mayor, menor"},
+  {front:"tan + adj + como",back:"Русский: такой же ... как (равенство)<br>Пример: Es tan inteligente como su hermana.<br>Заметка: НЕ «como que» или «tan como»"},
+  {front:"el más / la más + adj + de",back:"Русский: самый ... из/в (превосходная степень)<br>Пример: Es el hotel más caro de la ciudad.<br>Заметка: el/la/los/las + más/menos + adj + de"},
+  {front:"Te lo doy / Se lo doy",back:"Русский: Я тебе / ему это дам.<br>Пример: ¿El libro? Te lo doy ahora.<br>Заметка: OI + OD — le/les → se перед lo/la/los/las"},
+  {front:"Si tuviera dinero, viajaría",back:"Русский: Если бы у меня были деньги, я бы путешествовал.<br>Пример: Si pudiera, me quedaría en Barcelona.<br>Заметка: si + Imperfecto Subj. + Condicional (гипотеза)"},
+  {front:"hace + tiempo + que + presente",back:"Русский: уже [время] как ... (действие продолжается)<br>Пример: Hace dos años que vivo en Barcelona.<br>Заметка: = Llevo dos años viviendo en Barcelona"},
+  {front:"de repente / mientras",back:"Русский: вдруг / пока (нарративные связки)<br>Пример: De repente sonó el teléfono mientras dormía.<br>Заметка: de repente + Indefinido; mientras + Imperfecto"},
+  {front:"sin embargo / además",back:"Русский: однако / к тому же<br>Пример: Me gusta Barcelona; sin embargo, echo de menos Rusia.<br>Заметка: sin embargo = but (контраст); además = also (добавление)"},
+  {front:"tarjeta sanitaria (TSI)",back:"Русский: медицинская карта (полис ОМС Испании)<br>Пример: Necesito solicitar la tarjeta sanitaria.<br>Заметка: нужны: empadronamiento + NIE; получают в CAP (поликлиника)"},
+  {front:"médico de cabecera",back:"Русский: участковый врач<br>Пример: Mi médico de cabecera es el doctor García.<br>Заметка: нужен для направления к специалистам"},
+  {front:"pedir cita",back:"Русский: записаться на приём<br>Пример: Quiero pedir cita con el médico.<br>Заметка: por teléfono o por internet; «cita previa» = предварительная запись"},
+];
+
+function exportAnkiL56() {
+  const tsv = ANKI_DECK_L56.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L56_spanish.txt';
+  a.click();
+}
+
+// ─── Play dialogue 1 ─────────────────────────────────────
+function playDialogue1() {
+  const lines = [
+    '¿Cómo fue tu verano? ¿Hiciste algo especial?',
+    'Sí, viajé a Croacia con mi familia. Hacía mucho calor pero fue increíble.',
+    '¿Qué visitaste?',
+    'Visitamos Dubrovnik y Split. Las ciudades eran preciosas y la gente era muy amable.',
+    '¿Habías estado antes en Croacia?',
+    'No, nunca había ido. Pero ya hemos ido a Italia dos veces.',
+    '¡Qué envidia! Yo me quedé en Barcelona. Trabajé todo julio.',
+    '¿Y el año que viene, tienes planes?',
+    'Sí, voy a pedir más vacaciones. Me gustaría ir a Japón.',
+    '¡Japón es el destino más interesante del mundo!',
+    '¡Trato hecho! Lo planeamos juntos.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+// ─── Progress tracking ────────────────────────────────────
 const LESSON_ID = 'L56';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'Pretérito Imperfecto — «каждое лето» = привычное повторяющееся действие. «Cuando era niño» тоже указывает на Imperfecto.',
-  q2:'Pretérito Perfecto — «ещё не» = todavía no + Perfecto. Опыт / связь с настоящим → Perfecto.',
-  q3:'Quisiera — условная форма querer. Используется как вежливая форма «я бы хотел». Звучит гораздо вежливее, чем «quiero».',
-  q4:'Aquí no vive nadie — правильное двойное отрицание. «Nadie no vive» — двойное «не» но в неправильном порядке.',
-  q5:'Llegué / llovía — llegué (Indefinido) = конкретное действие «я приехал». Llovía (Imperfecto) = фоновое описание погоды.',
-  q6:'cada vez mejor — стандартное выражение для прогресса. «Más mejor» — грамматически неверно (нельзя удваивать сравнительную степень).'
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizExpl = {
+  w1:'После ser + профессия — никогда артикль. Soy abogada. Женский род: abogada (не abogado).',
+  w2:'Dedicarse A (не en) las ventas. Предлог a обязателен с этим глаголом.',
+  w3:'Estar DE vacaciones — устойчивое выражение. Всегда мн.ч.: las vacaciones.',
+  w4:'El currículum = резюме. La nómina = расчётный лист зарплаты. El contrato = трудовой договор.',
+  q1:'Vivía — Imperfecto. «Cuando era niño» = описание прошлого состояния/привычки. Indefinido «viví» = для конкретного события.',
+  q2:'Nunca ha comido sushi — двойное отрицание (nunca + отрицательный глагол) — это норма. Или: No ha comido sushi nunca.',
+  q3:'Te lo doy — OI (te = тебе) + OD (lo = это). Правильный порядок: OI + OD перед глаголом.',
+  q4:'Tan bonita como — равенство. «Que» используется при неравенстве (más/menos que). Не «tan ... que»!',
+  q5:'Si tuviera tiempo, viajaría — гипотетическое условие. Формула: Si + Imp. Subj. + Condicional.',
+  q6:'Hace tres años que estoy aquí / Llevo tres años aquí — оба варианта верны для длящегося действия. Оба варианта a/c — верны.',
+  q7:'Me gusta el café — gustar — обратный глагол. Субъект = el café, me = косвенное дополнение. Никогда «yo gusto».',
+  q8:'De repente vino (Indefinido = событие) mientras dormía (Imperfecto = фон/процесс).',
 };
 
-function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const clickedKey = el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];
+  if (clickedKey !== correctKey) el.classList.add('wrong');
+  const isCorrect = clickedKey === correctKey;
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
 
-function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||val===correct.replace('é','e').replace('ó','o')){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Ответ: "${answer}"`; }}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
 
-function showAns(id){document.getElementById(id).classList.add('show');}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
 
-function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e',id+'f'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
 
-const totalSections=8;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L55: Работа и профессии</title>
+<title>L55: Работа и профессии — ¿En qué trabajas?</title>
 <style>
 :root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -36,13 +35,15 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
 .callout ul{margin-left:16px}.callout li{margin-bottom:3px}
-.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
-.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-.vocab-table td{padding:10px 12px;border-top:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
-.vocab-table tr:hover td{background:var(--bg2)}
-.vocab-table .es{font-weight:700;color:var(--text)}
-.vocab-table .tr{color:var(--muted);font-size:.8rem}
-.vocab-table .ex{color:var(--muted);font-size:.8rem;font-style:italic}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -77,7 +78,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -86,10 +87,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -97,401 +94,1040 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-.gram-table{width:100%;border-collapse:collapse;margin:14px 0}
-.gram-table th{background:var(--bg3);padding:9px 12px;text-align:left;font-size:.82rem;color:var(--muted);font-weight:700}
-.gram-table td{padding:9px 12px;border-top:1px solid var(--bg3);font-size:.88rem}
-.gram-table .es{color:var(--gold);font-weight:700}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(69,123,157,.05));border:1px solid rgba(255,214,10,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">A2 · Фаза 2 · День 115</span>
   <a href="L56.html">L56 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🔵 Фаза 2 · Рост · Блок 2C · DS Intermediate</div>
-  <h1>Работа и <span class="hl">профессии</span></h1>
-  <p class="sub">¿En qué trabajas? — Офис, карьера, поиск работы — всё по-испански</p>
+  <div class="phase-tag">💼 Фаза 2 · Прогресс · Блок 2C · Уровень A2</div>
+  <h1>¿En qué <span class="hl">trabajas</span>?</h1>
+  <p class="sub">Работа и профессии — офис, карьера, поиск работы в Испании</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Говорить о работе, профессии и карьере уверенно</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Видео на Dreaming Spanish о работе и карьере</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Рассказать о своей работе, задать вопросы о работе собеседника</p></div></div>
+    <div class="obj"><div class="ico">🏢</div><div><strong>Цель 1</strong><p>Называть профессии и место работы по-испански</p></div></div>
+    <div class="obj"><div class="ico">💬</div><div><strong>Цель 2</strong><p>Различать «soy médico» и «trabajo en un hospital»</p></div></div>
+    <div class="obj"><div class="ico">📝</div><div><strong>Цель 3</strong><p>Описать свои рабочие обязанности и распорядок</p></div></div>
+    <div class="obj"><div class="ico">🇪🇸</div><div><strong>Цель 4</strong><p>Открыть счёт в банке Испании — ключевые фразы</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: THEORY -->
+<!-- 3. WARM-UP: повторение L54 — Эмоции -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Как говорить о профессии — ключевые грамматические тонкости</h2>
+    <h2>Повторение L54 — Эмоции и чувства</h2>
   </div>
-
-  <p style="margin-bottom:14px">Тема работы кажется простой, но в испанском есть несколько ловушек, о которых важно знать.</p>
-
-  <div class="callout tip">
-    <h4>💡 Главная разница: «Soy médico» vs «Trabajo en un hospital»</h4>
-    <p>В испанском профессия обозначается через <strong>ser</strong> БЕЗ артикля: «Soy médico» (не «Soy un médico»). Артикль добавляется только если есть дополнительное описание: «Soy un médico muy ocupado». Это отличает испанский от русского («Я — врач») и похоже на английский («I am a doctor» — но в испанском артикль убирается!).</p>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Предыдущий урок: <em>estar enamorado, sentirse triste, ponerse nervioso</em>. Проверяем, что помним!</p>
+  <div class="quiz">
+    <h3>🤔 Быстрая проверка — 4 вопроса</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Как сказать «я влюблён» (временное состояние)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Estoy enamorado</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Soy enamorado</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Tengo enamorado</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «Ponerse nervioso» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">быть нервным всегда</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">разнервничаться / занервничать (изменение состояния)</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">успокоиться</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Как выразить «мне грустно» используя sentirse?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Estoy sentir triste</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Me siento tristemente</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Me siento triste</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. «Quedarse sorprendido» = ?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">остаться удивлённым / быть поражённым</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">удивить кого-то</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">чувствовать страх</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
-
-  <table class="gram-table">
-    <tr><th>Конструкция</th><th>Когда использовать</th><th>Пример</th></tr>
-    <tr><td class="es">Soy + профессия</td><td>Назвать профессию</td><td class="es">Soy diseñador.</td></tr>
-    <tr><td class="es">Trabajo en + место</td><td>Назвать место работы</td><td class="es">Trabajo en una empresa.</td></tr>
-    <tr><td class="es">Trabajo como + профессия</td><td>Уточнить роль</td><td class="es">Trabajo como freelance.</td></tr>
-    <tr><td class="es">Me dedico a + деятельность</td><td>Описать чем занимаешься</td><td class="es">Me dedico a la publicidad.</td></tr>
-    <tr><td class="es">Tengo mi propio negocio</td><td>Свой бизнес</td><td class="es">Tengo mi propia empresa.</td></tr>
-    <tr><td class="es">Soy autónomo/freelance</td><td>Самозанятый/фрилансер</td><td class="es">Soy autónomo, trabajo desde casa.</td></tr>
-  </table>
-
-  <div class="callout warning">
-    <h4>⚠️ Ловушка: «embarazada» — опасное слово!</h4>
-    <p>Если ты хочешь сказать «я смущён/растерян» — НЕ говори «estoy embarazado/a»! Это значит «я беременна». Чтобы сказать «я смущён»: «estoy avergonzado», «estoy confundido», «me da vergüenza». А «embarazada» — только о беременности.</p>
-  </div>
-
-  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 10px">Полезные фразы о работе</h3>
-  <table class="gram-table">
-    <tr><th>Испанский</th><th>Русский</th></tr>
-    <tr><td class="es">estar en paro / desempleado</td><td>быть безработным</td></tr>
-    <tr><td class="es">buscar trabajo</td><td>искать работу</td></tr>
-    <tr><td class="es">solicitar un puesto</td><td>подавать заявку на должность</td></tr>
-    <tr><td class="es">hacer una entrevista</td><td>проходить собеседование</td></tr>
-    <tr><td class="es">cobrar (el sueldo)</td><td>получать (зарплату)</td></tr>
-    <tr><td class="es">ascender / ser ascendido</td><td>повыситься / получить повышение</td></tr>
-    <tr><td class="es">dimitir / renunciar</td><td>уволиться / подать в отставку</td></tr>
-    <tr><td class="es">ser despedido</td><td>быть уволенным</td></tr>
-    <tr><td class="es">trabajar a tiempo completo/parcial</td><td>работать полный/неполный день</td></tr>
-    <tr><td class="es">tener flexibilidad horaria</td><td>иметь гибкий график</td></tr>
-  </table>
 </div>
 
-<!-- SECTION 2: VOCABULARY -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — профессии и рабочая лексика</h2>
+    <h2>Теория — Профессии, место работы, обязанности</h2>
   </div>
 
-  <table class="vocab-table">
-    <tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
-    <tr><td class="es">médico/a</td><td class="tr">[ме-ди-ко]</td><td>врач</td><td class="ex">Soy médico en un hospital.</td></tr>
-    <tr><td class="es">abogado/a</td><td class="tr">[або-га-до]</td><td>адвокат / юрист</td><td class="ex">Trabaja como abogada.</td></tr>
-    <tr><td class="es">ingeniero/a</td><td class="tr">[инхе-ньеро]</td><td>инженер</td><td class="ex">Es ingeniero de software.</td></tr>
-    <tr><td class="es">diseñador/a</td><td class="tr">[дисе-ньа-дор]</td><td>дизайнер</td><td class="ex">Soy diseñadora gráfica.</td></tr>
-    <tr><td class="es">empresario/a</td><td class="tr">[эмп-ре-са-рьо]</td><td>предприниматель</td><td class="ex">Es empresaria de éxito.</td></tr>
-    <tr><td class="es">autónomo/a</td><td class="tr">[ау-то-но-мо]</td><td>самозанятый</td><td class="ex">Trabajo como autónomo.</td></tr>
-    <tr><td class="es">el sueldo</td><td class="tr">[суэль-до]</td><td>зарплата</td><td class="ex">Mi sueldo es bastante bueno.</td></tr>
-    <tr><td class="es">el jefe / la jefa</td><td class="tr">[хе-фе]</td><td>начальник / шеф</td><td class="ex">Mi jefe es muy exigente.</td></tr>
-    <tr><td class="es">el compañero de trabajo</td><td class="tr">[ком-па-ньеро]</td><td>коллега</td><td class="ex">Tengo buenos compañeros.</td></tr>
-    <tr><td class="es">la reunión</td><td class="tr">[реу-ньон]</td><td>собрание / встреча</td><td class="ex">Tengo una reunión a las 10.</td></tr>
-    <tr><td class="es">el plazo / la fecha límite</td><td class="tr">[пла-со]</td><td>срок / дедлайн</td><td class="ex">El plazo es mañana.</td></tr>
-    <tr><td class="es">el contrato</td><td class="tr">[кон-тра-то]</td><td>контракт / договор</td><td class="ex">Firmé el contrato ayer.</td></tr>
-    <tr><td class="es">la empresa</td><td class="tr">[эм-пре-са]</td><td>компания / предприятие</td><td class="ex">Trabajo en una empresa pequeña.</td></tr>
-    <tr><td class="es">el horario</td><td class="tr">[о-ра-рьо]</td><td>расписание / график</td><td class="ex">Tengo horario flexible.</td></tr>
+  <div class="callout info">
+    <h4>🔑 Ключевое различие: SER vs TRABAJAR EN</h4>
+    <p>В испанском есть два способа говорить о профессии. Они не взаимозаменяемы! <strong>Soy + профессия</strong> — идентификация (кто ты есть). <strong>Trabajo en + место</strong> — где работаешь (что делаешь). По-русски оба значат «я работаю», но по-испански это разные конструкции.</p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 1</span>
+      <span class="rule-title">SER + профессия — «кто ты»</span>
+      <span class="rule-arrow">Soy médico. (Я врач.)</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">После глагола <strong>ser</strong> перед профессией <em>не нужен артикль</em>! Это главное отличие от русского. «Soy <em>un</em> médico» — ошибка (или подчёркнутое значение «один из многих врачей»).</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Я врач</span><span class="sep">→</span><span class="ar">Soy médico/a</span></div>
+      <div class="wp"><span class="en">Она учитель</span><span class="sep">→</span><span class="ar">Es profesora</span></div>
+      <div class="wp"><span class="en">Он инженер</span><span class="sep">→</span><span class="ar">Es ingeniero</span></div>
+      <div class="wp"><span class="en">Я программист</span><span class="sep">→</span><span class="ar">Soy programador/a</span></div>
+      <div class="wp"><span class="en">Она журналист</span><span class="sep">→</span><span class="ar">Es periodista</span></div>
+      <div class="wp"><span class="en">Я директор</span><span class="sep">→</span><span class="ar">Soy director/a</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 2</span>
+      <span class="rule-title">TRABAJAR EN + место — «где работаешь»</span>
+      <span class="rule-arrow">Trabajo en un hospital. (Работаю в больнице.)</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Глагол <strong>trabajar</strong> описывает место или сферу. Часто дополняет «ser»: <em>Soy médico y trabajo en un hospital privado.</em> Можно использовать одно или оба.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">в офисе</span><span class="sep">→</span><span class="ar">en una oficina</span></div>
+      <div class="wp"><span class="en">в банке</span><span class="sep">→</span><span class="ar">en un banco</span></div>
+      <div class="wp"><span class="en">в школе</span><span class="sep">→</span><span class="ar">en un colegio</span></div>
+      <div class="wp"><span class="en">дома (удалённо)</span><span class="sep">→</span><span class="ar">desde casa</span></div>
+      <div class="wp"><span class="en">на стройке</span><span class="sep">→</span><span class="ar">en una obra</span></div>
+      <div class="wp"><span class="en">в ресторане</span><span class="sep">→</span><span class="ar">en un restaurante</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 3</span>
+      <span class="rule-title">DEDICARSE A — чем занимаешься</span>
+      <span class="rule-arrow">Me dedico a la enseñanza. (Я занимаюсь преподаванием.)</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px"><strong>Dedicarse a</strong> + существительное / инфинитив — более формальный или точный способ объяснить сферу деятельности. Часто используется в резюме и деловых разговорах.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Я занимаюсь IT</span><span class="sep">→</span><span class="ar">Me dedico a la informática</span></div>
+      <div class="wp"><span class="en">занимаюсь продажами</span><span class="sep">→</span><span class="ar">Me dedico a las ventas</span></div>
+      <div class="wp"><span class="en">занимаюсь строительством</span><span class="sep">→</span><span class="ar">Me dedico a la construcción</span></div>
+      <div class="wp"><span class="en">занимаюсь финансами</span><span class="sep">→</span><span class="ar">Me dedico a las finanzas</span></div>
+      <div class="wp"><span class="en">занимаюсь дизайном</span><span class="sep">→</span><span class="ar">Me dedico al diseño</span></div>
+      <div class="wp"><span class="en">занимаюсь маркетингом</span><span class="sep">→</span><span class="ar">Me dedico al marketing</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 4</span>
+      <span class="rule-title">Род профессий — окончания</span>
+      <span class="rule-arrow">médico → médica, director → directora</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Большинство профессий имеют мужскую и женскую форму. Если слово на -o/-or, женская форма на -a/-ora. Слова на -ista, -nte одинаковы для обоих родов.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">médico / médica</span><span class="sep">→</span><span class="ar">врач (м/ж)</span></div>
+      <div class="wp"><span class="en">director / directora</span><span class="sep">→</span><span class="ar">директор (м/ж)</span></div>
+      <div class="wp"><span class="en">el/la periodista</span><span class="sep">→</span><span class="ar">журналист (м/ж)</span></div>
+      <div class="wp"><span class="en">el/la estudiante</span><span class="sep">→</span><span class="ar">студент (м/ж)</span></div>
+      <div class="wp"><span class="en">abogado / abogada</span><span class="sep">→</span><span class="ar">адвокат (м/ж)</span></div>
+      <div class="wp"><span class="en">enfermero / enfermera</span><span class="sep">→</span><span class="ar">медсестра/медбрат</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 5</span>
+      <span class="rule-title">Рабочие обязанности и действия</span>
+      <span class="rule-arrow">Atiendo a clientes. (Я обслуживаю клиентов.)</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Глаголы для описания рабочих обязанностей. Используются в настоящем времени для описания постоянных обязанностей.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">управлять командой</span><span class="sep">→</span><span class="ar">dirigir un equipo</span></div>
+      <div class="wp"><span class="en">решать проблемы</span><span class="sep">→</span><span class="ar">resolver problemas</span></div>
+      <div class="wp"><span class="en">организовывать встречи</span><span class="sep">→</span><span class="ar">organizar reuniones</span></div>
+      <div class="wp"><span class="en">работать с данными</span><span class="sep">→</span><span class="ar">trabajar con datos</span></div>
+      <div class="wp"><span class="en">обслуживать клиентов</span><span class="sep">→</span><span class="ar">atender a clientes</span></div>
+      <div class="wp"><span class="en">писать отчёты</span><span class="sep">→</span><span class="ar">redactar informes</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки с профессиями</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Почему</th></tr>
+    <tr><td>Артикль перед профессией</td><td class="wrong-ex">Soy un médico</td><td class="right-ex">Soy médico</td><td>После ser + профессия артикль не нужен (если не добавляешь прилагательное)</td></tr>
+    <tr><td>Неверный род</td><td class="wrong-ex">Ella es médico</td><td class="right-ex">Ella es médica</td><td>Профессии согласуются с родом говорящего</td></tr>
+    <tr><td>Работа в + артикль</td><td class="wrong-ex">Trabajo en el banco</td><td class="right-ex">Trabajo en un banco / en el banco BBVA</td><td>Без артикля — общее место, с артиклем — конкретное</td></tr>
+    <tr><td>Hacer вместо trabajar</td><td class="wrong-ex">¿Qué haces de trabajo?</td><td class="right-ex">¿En qué trabajas? / ¿A qué te dedicas?</td><td>Естественный вопрос о профессии — ¿en qué trabajas?</td></tr>
+    <tr><td>Прямой перевод «я работаю врачом»</td><td class="wrong-ex">Trabajo como médico (разг.)</td><td class="right-ex">Soy médico (нейтрально)</td><td>«Trabajar como» используется когда хотят подчеркнуть временность или контракт</td></tr>
+    <tr><td>Смешение dedicarse с trabajar</td><td class="wrong-ex">Me dedico en ventas</td><td class="right-ex">Me dedico a las ventas</td><td>Dedicarse требует предлог «a», не «en»</td></tr>
   </table>
 </div>
 
-<!-- SECTION 3: QUIZ 1 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Работа и профессии</h2>
+    <h2>Словарь — 20 профессий и рабочих слов</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Уровень A2: ключевые слова для разговора о работе. Нажимай 🔊 для прослушивания.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">médico/a</div><div class="vocab-ru">врач</div></div><button class="speak-btn" onclick="speak('médico')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">abogado/a</div><div class="vocab-ru">адвокат / юрист</div></div><button class="speak-btn" onclick="speak('abogado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">ingeniero/a</div><div class="vocab-ru">инженер</div></div><button class="speak-btn" onclick="speak('ingeniero')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">programador/a</div><div class="vocab-ru">программист</div></div><button class="speak-btn" onclick="speak('programador')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">periodista</div><div class="vocab-ru">журналист (м. и ж.)</div></div><button class="speak-btn" onclick="speak('periodista')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">contable</div><div class="vocab-ru">бухгалтер</div></div><button class="speak-btn" onclick="speak('contable')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">comercial</div><div class="vocab-ru">торговый представитель / менеджер по продажам</div></div><button class="speak-btn" onclick="speak('comercial')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">autónomo/a</div><div class="vocab-ru">фрилансер / самозанятый</div></div><button class="speak-btn" onclick="speak('autónomo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el jefe / la jefa</div><div class="vocab-ru">начальник / шеф</div></div><button class="speak-btn" onclick="speak('el jefe')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el/la colega</div><div class="vocab-ru">коллега</div></div><button class="speak-btn" onclick="speak('colega')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el sueldo</div><div class="vocab-ru">зарплата</div></div><button class="speak-btn" onclick="speak('el sueldo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la empresa</div><div class="vocab-ru">компания / предприятие</div></div><button class="speak-btn" onclick="speak('la empresa')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el contrato</div><div class="vocab-ru">контракт / договор</div></div><button class="speak-btn" onclick="speak('el contrato')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la reunión</div><div class="vocab-ru">встреча / совещание</div></div><button class="speak-btn" onclick="speak('la reunión')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el horario</div><div class="vocab-ru">расписание / рабочий график</div></div><button class="speak-btn" onclick="speak('el horario')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">las vacaciones</div><div class="vocab-ru">отпуск (всегда во мн.ч.!)</div></div><button class="speak-btn" onclick="speak('las vacaciones')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el currículum</div><div class="vocab-ru">резюме (CV)</div></div><button class="speak-btn" onclick="speak('el currículum')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la entrevista</div><div class="vocab-ru">собеседование / интервью</div></div><button class="speak-btn" onclick="speak('la entrevista')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el trabajo a tiempo parcial</div><div class="vocab-ru">работа на неполный день</div></div><button class="speak-btn" onclick="speak('trabajo a tiempo parcial')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">estar en paro</div><div class="vocab-ru">быть безработным</div></div><button class="speak-btn" onclick="speak('estar en paro')">🔊</button></div>
   </div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Правильная конструкция для работы</h3>
-
-    <div class="quiz-q" id="q1">
-      <div class="q-text">1. Как правильно сказать «Я — врач»?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Soy un médico.</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Soy médico.</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Estoy médico.</div>
-      </div>
-      <div class="feedback" id="fb-q1"></div>
-    </div>
-
-    <div class="quiz-q" id="q2">
-      <div class="q-text">2. «Я работаю в маленькой компании» — как сказать?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Soy en una empresa pequeña.</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Trabajo en una empresa pequeña.</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Estoy trabajando una empresa pequeña.</div>
-      </div>
-      <div class="feedback" id="fb-q2"></div>
-    </div>
-
-    <div class="quiz-q" id="q3">
-      <div class="q-text">3. «Он получил повышение» — как сказать по-испански?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Ha sido ascendido.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Ha dimidido.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Ha sido despedido.</div>
-      </div>
-      <div class="feedback" id="fb-q3"></div>
-    </div>
-
-    <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Я занимаюсь рекламой» — какая конструкция?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Trabajo en publicidad.</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Me dedico a la publicidad.</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Soy publicidad.</div>
-      </div>
-      <div class="feedback" id="fb-q4"></div>
-    </div>
-
-    <div class="quiz-q" id="q5">
-      <div class="q-text">5. Что значит «Está en paro»?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Он безработный.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Он в отпуске.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Он на перерыве.</td>
-      </div>
-      <div class="feedback" id="fb-q5"></div>
-    </div>
-
-    <div class="quiz-q" id="q6">
-      <div class="q-text">6. «Он ушёл с работы по собственному желанию» — как сказать?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Fue despedido.</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Dimitió.</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Fue ascendido.</div>
-      </div>
-      <div class="feedback" id="fb-q6"></div>
-    </div>
+  <div class="callout tip" style="margin-top:16px">
+    <h4>💡 Полезные выражения о работе</h4>
+    <ul>
+      <li><strong>¿En qué trabajas?</strong> — Кем ты работаешь? (дословно: «в чём работаешь?»)</li>
+      <li><strong>¿A qué te dedicas?</strong> — Чем ты занимаешься? (более формально)</li>
+      <li><strong>Trabajo por cuenta propia</strong> — Работаю на себя (самозанятый)</li>
+      <li><strong>Trabajo por cuenta ajena</strong> — Работаю по найму (на другого)</li>
+      <li><strong>Cobrar el sueldo</strong> — Получать зарплату</li>
+    </ul>
   </div>
 </div>
 
-<!-- SECTION 4: QUIZ 2 -->
+<!-- 6. QUIZ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Тест 2 — Рассказ о работе</h2>
+    <h2>Тест 1 — Профессии и конструкции</h2>
   </div>
-
   <div class="quiz">
-    <h3>✏️ Заполни пропуски в рассказе о работе</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. _____ diseñador gráfico y _____ en una agencia de publicidad. (Я дизайнер... работаю...)</div>
-      <input type="text" class="text-input" placeholder="Soy / Trabajo..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','soy','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">Soy (diseñador gráfico) — профессия через ser без артикля. Второй пробел: trabajo (en una agencia).</div>
+    <h3>🎯 Выбери правильный вариант — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как правильно сказать «Я программист»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Trabajo como un programador</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Estoy programador</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Soy programador</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. Tengo una _____ importante mañana con un cliente. (встреча)</div>
-      <input type="text" class="text-input" placeholder="reunión / plazo / horario..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','reunión','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">reunión — встреча (деловая). Plazo = срок/дедлайн. Horario = расписание/график.</div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Врач-женщина скажет о себе:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Soy médica</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Soy un médico</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Estoy médica</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. Cobro mi _____ a final de mes. (зарплату)</div>
-      <input type="text" class="text-input" placeholder="sueldo / contrato / empresa..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','sueldo','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">sueldo — зарплата. «Cobrar el sueldo» = получить зарплату. Contrato = контракт, empresa = компания.</div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Зарплата по-испански — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">el contrato</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">el sueldo</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">el horario</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. Me _____ a la producción de audio y vídeo. (занимаюсь)</div>
-      <input type="text" class="text-input" placeholder="dedico / trabajo / soy..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','dedico','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">dedico — «me dedico a» = я занимаюсь (чем-то). Более элегантная конструкция, чем просто «trabajo en».</div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Меня интересует работа на полный день» — ¿cómo se dice?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Quiero trabajo a tiempo parcial</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Busco trabajo sin horario</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Me interesa un trabajo a tiempo completo</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. Soy _____ — trabajo desde casa y tengo mis propios clientes. (самозанятый)</div>
-      <input type="text" class="text-input" placeholder="autónomo / empleado / jefe..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','autónomo','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">autónomo — самозанятый / ИП по-испански. Equivalente español del freelancer con registro fiscal.</div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Я занимаюсь продажами» — правильный вариант:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Me dedico a las ventas</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Me dedico en ventas</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Trabajo a las ventas</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Я в отпуске» — как сказать?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Estoy en vacación</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Estoy de vacaciones</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Soy de vacaciones</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Фрилансер / самозанятый по-испански:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">temporero</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">desempleado</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">autónomo</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 5: DIALOGUES -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Диалоги — рабочие разговоры</h2>
+    <h2>Тест 2 — Напиши правильную форму</h2>
   </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Знакомство на деловой встрече
-      <button class="dlg-toggle" onclick="toggleTranslation('tr1')">Показать перевод</button>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи ответ в нижнем регистре. Пиши только недостающее слово или фразу.</p>
+  <div class="quiz">
+    <h3>✏️ Заполни пропуски</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. María es abogada. Ella trabaja __ un bufete de abogados. (в юридической фирме)</div>
+      <input type="text" class="text-input" placeholder="Введи предлог..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','en','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ en — trabajar en + место</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Алехо</div>
-      <div><div class="dlg-es">Hola, soy Alejandro García. ¿En qué trabajas?</div>
-      <div class="dlg-ru" id="tr1" style="display:none">Привет, я Алехандро Гарсия. Чем ты занимаешься?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">2. ¿A qué te ___? (Чем занимаешься? — глагол dedicarse, yo-form)</div>
+      <input type="text" class="text-input" placeholder="Форма глагола..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','dedicas','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ dedicas — ¿A qué te dedicas? (tú)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Евг.</div>
-      <div><div class="dlg-es">Me dedico a la producción publicitaria. Tengo mi propio estudio en Rusia.</div>
-      <div class="dlg-ru" id="tr1b" style="display:none">Я занимаюсь рекламным производством. У меня собственная студия в России.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">3. Tengo una ___ de trabajo mañana a las 10. (собеседование)</div>
+      <input type="text" class="text-input" placeholder="Слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','entrevista','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ entrevista — una entrevista de trabajo</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Алехо</div>
-      <div><div class="dlg-es">¡Interesante! ¿Trabajas como autónomo o tienes empleados?</div>
-      <div class="dlg-ru" id="tr1c" style="display:none">Интересно! Ты работаешь как самозанятый или у тебя есть сотрудники?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">4. Él es periodista. Trabaja ___ cuenta propia. (на себя, фриланс)</div>
+      <input type="text" class="text-input" placeholder="Предлог..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','por','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ por — trabajar por cuenta propia</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Евг.</div>
-      <div><div class="dlg-es">Tengo un equipo pequeño. Trabajo con guionistas, locutores y técnicos de sonido.</div>
-      <div class="dlg-ru" id="tr1d" style="display:none">У меня небольшая команда. Работаю со сценаристами, дикторами и звукотехниками.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">5. Mi empresa tiene 50 empleados y veinticinco días de ___. (отпуск, мн.ч.)</div>
+      <input type="text" class="text-input" placeholder="Слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','vacaciones','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ vacaciones — всегда множественное число!</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Алехо</div>
-      <div><div class="dlg-es">¿Y piensas seguir en Rusia o tienes planes de expandirte?</div>
-      <div class="dlg-ru" id="tr1e" style="display:none">И ты планируешь остаться в России или у тебя есть планы по расширению?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Евг.</div>
-      <div><div class="dlg-es">Me gustaría trabajar desde España. Es uno de mis objetivos principales para el próximo año.</div>
-      <div class="dlg-ru" id="tr1f" style="display:none">Я хотел бы работать из Испании. Это одна из моих главных целей на следующий год.</div></div>
-    </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Поиск работы в Испании
-      <button class="dlg-toggle" onclick="toggleTranslation('tr2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">HR</div>
-      <div><div class="dlg-es">Buenos días. Hemos recibido su solicitud para el puesto de director creativo.</div>
-      <div class="dlg-ru" id="tr2" style="display:none">Доброе утро. Мы получили вашу заявку на должность креативного директора.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Канд.</div>
-      <div><div class="dlg-es">Sí, me dedico a la publicidad desde hace 15 años. Tengo mi propia empresa.</div>
-      <div class="dlg-ru" id="tr2b" style="display:none">Да, я занимаюсь рекламой уже 15 лет. У меня есть собственная компания.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">HR</div>
-      <div><div class="dlg-es">¿Cuál es su sueldo actual?</div>
-      <div class="dlg-ru" id="tr2c" style="display:none">Какая у вас текущая зарплата?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Канд.</div>
-      <div><div class="dlg-es">Como autónomo, mis ingresos varían. Pero busco estabilidad con contrato a tiempo completo.</div>
-      <div class="dlg-ru" id="tr2d" style="display:none">Как самозанятый, мои доходы варьируются. Но я ищу стабильность с полной занятостью по контракту.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">6. Para trabajar en España necesitas un ___ de trabajo. (контракт)</div>
+      <input type="text" class="text-input" placeholder="Слово..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','contrato','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ contrato — un contrato de trabajo</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: SPEAKING -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Говорение — расскажи о своей работе</h2>
+    <h2>Диалоги — Разговоры о работе</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух все реплики. Нажимай 🔊 у каждой фразы. Кнопка «Все переводы» — показать/скрыть русский текст.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💼 Диалог 1: Знакомство на вечеринке — «Чем занимаешься?» (11 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лаура</div>
+      <div style="flex:1">
+        <div class="dlg-es">Hola, soy Laura. ¿A qué te dedicas? <button class="speak-btn" onclick="speak('Hola, soy Laura. ¿A qué te dedicas?')">🔊</button></div>
+        <div class="dlg-ru translation">[Привет, я Лаура. Чем ты занимаешься?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Серхио</div>
+      <div style="flex:1">
+        <div class="dlg-es">Soy programador. Trabajo en una empresa de tecnología en el centro de Barcelona. <button class="speak-btn" onclick="speak('Soy programador. Trabajo en una empresa de tecnología en el centro de Barcelona.')">🔊</button></div>
+        <div class="dlg-ru translation">[Я программист. Работаю в технологической компании в центре Барселоны.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лаура</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Qué interesante! ¿Te gusta tu trabajo? <button class="speak-btn" onclick="speak('¡Qué interesante! ¿Te gusta tu trabajo?')">🔊</button></div>
+        <div class="dlg-ru translation">[Как интересно! Тебе нравится работа?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Серхио</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, mucho. Me encanta programar, aunque a veces el horario es muy intenso. Trabajo de nueve a siete. <button class="speak-btn" onclick="speak('Sí, mucho. Me encanta programar, aunque a veces el horario es muy intenso. Trabajo de nueve a siete.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, очень. Мне нравится программировать, хотя иногда график очень напряжённый. Работаю с девяти до семи.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лаура</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Vaya! ¿Y tus colegas son simpáticos? <button class="speak-btn" onclick="speak('¡Vaya! ¿Y tus colegas son simpáticos?')">🔊</button></div>
+        <div class="dlg-ru translation">[Ничего себе! А коллеги приятные?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Серхио</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, el equipo es genial. Mi jefa también es muy profesional. ¿Y tú, en qué trabajas? <button class="speak-btn" onclick="speak('Sí, el equipo es genial. Mi jefa también es muy profesional. ¿Y tú, en qué trabajas?')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, команда отличная. Начальница тоже очень профессиональная. А ты, кем работаешь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лаура</div>
+      <div style="flex:1">
+        <div class="dlg-es">Soy médica. Trabajo en el Hospital Vall d'Hebron. Es un hospital muy grande. <button class="speak-btn" onclick="speak('Soy médica. Trabajo en el Hospital Vall d\'Hebron. Es un hospital muy grande.')">🔊</button></div>
+        <div class="dlg-ru translation">[Я врач. Работаю в больнице Валь д'Эброн. Это очень большая больница.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Серхио</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Qué importante! ¿Cuántas horas trabajas a la semana? <button class="speak-btn" onclick="speak('¡Qué importante! ¿Cuántas horas trabajas a la semana?')">🔊</button></div>
+        <div class="dlg-ru translation">[Какая важная работа! Сколько часов в неделю работаешь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лаура</div>
+      <div style="flex:1">
+        <div class="dlg-es">Cuarenta horas semanales, pero a veces hay guardias. No tengo muchas vacaciones, pero me encanta lo que hago. <button class="speak-btn" onclick="speak('Cuarenta horas semanales, pero a veces hay guardias. No tengo muchas vacaciones, pero me encanta lo que hago.')">🔊</button></div>
+        <div class="dlg-ru translation">[Сорок часов в неделю, но иногда бывают дежурства. Не так много отпуска, но мне нравится то, что делаю.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Серхио</div>
+      <div style="flex:1">
+        <div class="dlg-es">Es lo más importante, ¿no? Hacer algo que te apasiona. <button class="speak-btn" onclick="speak('Es lo más importante, ¿no? Hacer algo que te apasiona.')">🔊</button></div>
+        <div class="dlg-ru translation">[Это самое важное, правда? Делать то, что тебя захватывает.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лаура</div>
+      <div style="flex:1">
+        <div class="dlg-es">Exactamente. ¡Encantada de conocerte, Sergio! <button class="speak-btn" onclick="speak('Exactamente. ¡Encantada de conocerte, Sergio!')">🔊</button></div>
+        <div class="dlg-ru translation">[Именно. Приятно познакомиться, Серхио!]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 1 — Представься как профессионал</div>
-    <p>Представь, что ты на нетворкинге в Барселоне. Расскажи о своей работе за 1 минуту:</p>
-    <div class="es">Me llamo... Soy... y me dedico a...<br>Tengo mi propia empresa / Trabajo como autónomo...<br>Mis clientes son... / Mi especialidad es...</div>
-    <div class="hint">Используй: soy + профессия (без артикля), me dedico a + деятельность, trabajo en/como, tengo + что имею</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      📋 Диалог 2: Собеседование на работу (11 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рекр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días, pase. ¿Es usted el señor Volkov? <button class="speak-btn" onclick="speak('Buenos días, pase. ¿Es usted el señor Volkov?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Доброе утро, проходите. Вы господин Волков?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, soy yo. Buenos días. <button class="speak-btn" onclick="speak('Sí, soy yo. Buenos días.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, это я. Доброс утро.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рекр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Cuénteme un poco sobre usted. ¿A qué se dedica actualmente? <button class="speak-btn" onclick="speak('Cuénteme un poco sobre usted. ¿A qué se dedica actualmente?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Расскажите немного о себе. Чем занимаетесь в настоящее время?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">Actualmente trabajo como ingeniero de software en una empresa de Moscú, pero me dedico a proyectos de inteligencia artificial. <button class="speak-btn" onclick="speak('Actualmente trabajo como ingeniero de software en una empresa de Moscú, pero me dedico a proyectos de inteligencia artificial.')">🔊</button></div>
+        <div class="dlg-ru translation2">[В данный момент работаю как программный инженер в компании в Москве, но занимаюсь проектами искусственного интеллекта.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рекр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Por qué quiere trabajar en nuestra empresa? <button class="speak-btn" onclick="speak('¿Por qué quiere trabajar en nuestra empresa?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Почему хотите работать в нашей компании?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">Porque su empresa tiene proyectos muy innovadores y Barcelona me ofrece una calidad de vida excelente para mi familia. <button class="speak-btn" onclick="speak('Porque su empresa tiene proyectos muy innovadores y Barcelona me ofrece una calidad de vida excelente para mi familia.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Потому что у вашей компании очень инновационные проекты, и Барселона предлагает отличное качество жизни для моей семьи.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рекр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuáles son sus puntos fuertes? <button class="speak-btn" onclick="speak('¿Cuáles son sus puntos fuertes?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Каковы ваши сильные стороны?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">Soy muy organizado, trabajo bien en equipo y aprendo rápido. Hablo inglés y ruso con fluidez, y mi español mejora cada día. <button class="speak-btn" onclick="speak('Soy muy organizado, trabajo bien en equipo y aprendo rápido. Hablo inglés y ruso con fluidez, y mi español mejora cada día.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Я очень организованный, хорошо работаю в команде и быстро учусь. Говорю на английском и русском свободно, а мой испанский улучшается каждый день.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рекр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Tiene alguna pregunta sobre el puesto? <button class="speak-btn" onclick="speak('¿Tiene alguna pregunta sobre el puesto?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Есть ли у вас вопросы о должности?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, ¿cuál es el horario de trabajo y hay posibilidad de trabajar desde casa algún día? <button class="speak-btn" onclick="speak('Sí, ¿cuál es el horario de trabajo y hay posibilidad de trabajar desde casa algún día?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, каков рабочий график и есть ли возможность работать из дома иногда?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рекр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">El horario es flexible, de lunes a viernes, y sí, ofrecemos dos días de teletrabajo por semana. Le contactaremos la semana que viene. <button class="speak-btn" onclick="speak('El horario es flexible, de lunes a viernes, y sí, ofrecemos dos días de teletrabajo por semana. Le contactaremos la semana que viene.')">🔊</button></div>
+        <div class="dlg-ru translation2">[График гибкий, с понедельника по пятницу, и да, мы предлагаем два дня удалённой работы в неделю. Мы свяжемся с вами на следующей неделе.]</div>
+      </div>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 2 — Собеседование на работу</div>
-    <p>Представь, что ты проходишь собеседование для работы в испанской компании. Ответь на эти вопросы вслух:</p>
-    <div class="es">1. ¿En qué trabajas actualmente?<br>2. ¿Cuánto tiempo llevas en este sector?<br>3. ¿Qué habilidades tienes?<br>4. ¿Por qué quieres trabajar en España?</div>
-    <div class="hint">Шаблон: «Actualmente trabajo como... / Llevo X años... / Mis habilidades principales son... / Quiero trabajar en España porque...»</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      📞 Диалог 3: Звонок в офис по поводу вакансии (8 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Секр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Empresa TecnoBarcelona, buenos días. ¿En qué le puedo ayudar? <button class="speak-btn" onclick="speak('Empresa TecnoBarcelona, buenos días. ¿En qué le puedo ayudar?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Компания ТекноБарселона, доброе утро. Чем могу помочь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Наташа</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. Me llamo Natasha Sokolova. Llamo para informarme sobre la oferta de trabajo de contable que vi en InfoJobs. <button class="speak-btn" onclick="speak('Buenos días. Me llamo Natasha Sokolova. Llamo para informarme sobre la oferta de trabajo de contable que vi en InfoJobs.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Доброе утро. Меня зовут Наташа Соколова. Звоню, чтобы узнать о вакансии бухгалтера, которую видела на InfoJobs.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Секр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro. ¿Tiene experiencia en el sector? <button class="speak-btn" onclick="speak('Claro. ¿Tiene experiencia en el sector?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Конечно. У вас есть опыт в этой сфере?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Наташа</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, tengo cinco años de experiencia como contable en Rusia y un año aquí en España. <button class="speak-btn" onclick="speak('Sí, tengo cinco años de experiencia como contable en Rusia y un año aquí en España.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Да, у меня пять лет опыта бухгалтером в России и один год здесь в Испании.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Секр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. ¿Puede enviar su currículum al email que está en la oferta? <button class="speak-btn" onclick="speak('Perfecto. ¿Puede enviar su currículum al email que está en la oferta?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Отлично. Можете отправить резюме на email, указанный в объявлении?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Наташа</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por supuesto. ¿Cuándo tienen previstas las entrevistas? <button class="speak-btn" onclick="speak('Por supuesto. ¿Cuándo tienen previstas las entrevistas?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Конечно. Когда у вас запланированы собеседования?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Секр.</div>
+      <div style="flex:1">
+        <div class="dlg-es">La semana que viene. Le llaman si su perfil encaja. <button class="speak-btn" onclick="speak('La semana que viene. Le llaman si su perfil encaja.')">🔊</button></div>
+        <div class="dlg-ru translation3">[На следующей неделе. Вам позвонят, если ваш профиль подходит.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Наташа</div>
+      <div style="flex:1">
+        <div class="dlg-es">Muchas gracias. ¡Hasta luego! <button class="speak-btn" onclick="speak('Muchas gracias. ¡Hasta luego!')">🔊</button></div>
+        <div class="dlg-ru translation3">[Большое спасибо. До свидания!]</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: CULTURE + ANKI -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Культура, Anki и домашнее задание</h2>
+    <h2>Говорение — Твоя очередь!</h2>
   </div>
 
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Расскажи о своей работе</div>
+    <p>Ответь на все эти вопросы вслух на испанском. Говори по 2-3 предложения на каждый вопрос:</p>
+    <div class="es">¿En qué trabajas? ¿Dónde trabajas? ¿Cuántas horas trabajas a la semana? ¿Te gusta tu trabajo? ¿Cuáles son tus responsabilidades principales? ¿Cuándo tienes vacaciones?</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('¿En qué trabajas? ¿Dónde trabajas? ¿Cuántas horas trabajas a la semana? ¿Te gusta tu trabajo?')">🔊 Прослушать вопросы</button>
+    <div class="hint">Образец ответа: «Soy [профессия]. Trabajo en [место]. Trabajo [X] horas a la semana. Me gusta mi trabajo porque...»</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🇪🇸 Упражнение 2 — Реальная ситуация: знакомство на барселонском нетворкинге</div>
+    <p>В Барселоне много профессиональных встреч и коворкингов. Представь, что ты на бизнес-вечеринке в районе Пиуник. Познакомься с двумя людьми. Скажи вслух:</p>
+    <div class="es">Hola, soy [имя]. Soy [профессия] y trabajo en [sector]. Llevo [X] años en Barcelona. Antes trabajaba en [страна/город]. ¿Y tú, a qué te dedicas?</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Hola, soy Alejandro. Soy programador y trabajo en el sector tecnológico. Llevo dos años en Barcelona. Antes trabajaba en Moscú. ¿Y tú, a qué te dedicas?')">🔊 Пример</button>
+    <div class="hint">Замени на свои данные! Главное — использовать ser para profesión + trabajar en para lugar.</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Открываем счёт в банке</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏦 Реальная ситуация — Барселона, банк CaixaBank / Sabadell</div>
+    <p style="margin-bottom:12px">Когда ты нашёл работу в Испании, тебе обязательно нужен банковский счёт — <em>cuenta bancaria</em> — чтобы получать зарплату. В Испании это называется <strong>cobrar el sueldo en cuenta</strong>. Основные банки: CaixaBank, Sabadell, BBVA, Santander. Для открытия счёта нужны: NIE (номер иностранца), паспорт и иногда контракт или адрес.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Quiero abrir una cuenta bancaria. <button class="speak-btn" onclick="speak('Quiero abrir una cuenta bancaria.')">🔊</button></div>
+          <div class="phrase-ru">Хочу открыть банковский счёт.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué documentos necesito? <button class="speak-btn" onclick="speak('¿Qué documentos necesito?')">🔊</button></div>
+          <div class="phrase-ru">Какие документы мне нужны?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Necesito domiciliar mi sueldo en esta cuenta. <button class="speak-btn" onclick="speak('Necesito domiciliar mi sueldo en esta cuenta.')">🔊</button></div>
+          <div class="phrase-ru">Мне нужно перечислить зарплату на этот счёт.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Tiene comisiones esta cuenta? <button class="speak-btn" onclick="speak('¿Tiene comisiones esta cuenta?')">🔊</button></div>
+          <div class="phrase-ru">У этого счёта есть комиссии?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Puedo hacer transferencias internacionales? <button class="speak-btn" onclick="speak('¿Puedo hacer transferencias internacionales?')">🔊</button></div>
+          <div class="phrase-ru">Могу делать международные переводы?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuál es el número de cuenta (IBAN)? <button class="speak-btn" onclick="speak('¿Cuál es el número de cuenta?')">🔊</button></div>
+          <div class="phrase-ru">Какой номер счёта (IBAN)?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">🏦 Мини-диалог: В банке (6 реплик)</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Клиент</div>
+        <div style="flex:1">
+          <div class="dlg-es">Buenos días. Quiero abrir una cuenta corriente para domiciliar mi nómina. <button class="speak-btn" onclick="speak('Buenos días. Quiero abrir una cuenta corriente para domiciliar mi nómina.')">🔊</button></div>
+          <div class="dlg-ru">[Доброе утро. Хочу открыть текущий счёт для получения зарплаты.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Банк</div>
+        <div style="flex:1">
+          <div class="dlg-es">Claro. Necesita el NIE, el pasaporte y, si es posible, el contrato de trabajo o un justificante de ingresos. <button class="speak-btn" onclick="speak('Claro. Necesita el NIE, el pasaporte y, si es posible, el contrato de trabajo o un justificante de ingresos.')">🔊</button></div>
+          <div class="dlg-ru">[Конечно. Вам нужен NIE, паспорт и, если возможно, трудовой договор или справка о доходах.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Клиент</div>
+        <div style="flex:1">
+          <div class="dlg-es">Aquí los tengo. ¿La cuenta tiene comisión mensual? <button class="speak-btn" onclick="speak('Aquí los tengo. ¿La cuenta tiene comisión mensual?')">🔊</button></div>
+          <div class="dlg-ru">[Вот они. У счёта есть ежемесячная комиссия?]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Банк</div>
+        <div style="flex:1">
+          <div class="dlg-es">Si domicilia la nómina, la cuenta es gratuita. <button class="speak-btn" onclick="speak('Si domicilia la nómina, la cuenta es gratuita.')">🔊</button></div>
+          <div class="dlg-ru">[Если зачисляете зарплату, счёт бесплатный.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Клиент</div>
+        <div style="flex:1">
+          <div class="dlg-es">Perfecto. ¿Cuándo recibiré la tarjeta de débito? <button class="speak-btn" onclick="speak('Perfecto. ¿Cuándo recibiré la tarjeta de débito?')">🔊</button></div>
+          <div class="dlg-ru">[Отлично. Когда я получу дебетовую карту?]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Банк</div>
+        <div style="flex:1">
+          <div class="dlg-es">En unos 5 días hábiles llega por correo a su domicilio. <button class="speak-btn" onclick="speak('En unos 5 días hábiles llega por correo a su domicilio.')">🔊</button></div>
+          <div class="dlg-ru">[Примерно через 5 рабочих дней придёт по почте на ваш адрес.]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Без NIE открыть счёт сложно, но возможно — попросите счёт «para no residentes» (для нерезидентов). CaixaBank и Santander открывают счета для иностранцев по паспорту. Многие русскоязычные используют Revolut или N26 как временное решение. IBAN в Испании начинается с ES. La nómina = расчётный лист зарплаты.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
   <div class="culture">
-    <div class="ctag">🌍 Культурная заметка</div>
-    <h4>Рабочая культура Испании — что нужно знать</h4>
-    <p>Испания известна сиестой (хотя в крупных городах она почти исчезла), но важнее другое: рабочий день часто начинается в 9–10 утра и заканчивается в 7–8 вечера с длинным перерывом на обед. Lunch (almuerzo) — социальная традиция, не просто еда. Деловые обеды длятся 1,5–2 часа. Для цифровых кочевников (Digital Nomad Visa) важно знать: «teletrabajo» (удалённая работа) юридически регулируется с 2021 года. Испания активно привлекает высококвалифицированных специалистов из стран вне ЕС через DNV.</p>
+    <div class="ctag">💼 Рынок труда в Испании</div>
+    <h4>Что нужно знать о работе в Испании</h4>
+    <p>Рабочая неделя в Испании официально составляет 40 часов, но реально многие компании придерживаются 37,5 часов. Испанцы традиционно работают до 20:00, а обеденный перерыв — <em>la pausa del mediodía</em> — может длиться 1,5–2 часа. В последние годы, особенно после пандемии, <em>el teletrabajo</em> (удалённая работа) стал очень распространён. Минимальная зарплата в Испании (<em>salario mínimo interprofesional, SMI</em>) в 2024 году составляет около 1 134 евро в месяц. Чтобы работать легально, иностранцу нужен NIE и регистрация в Seguridad Social. Высокий уровень безработицы среди молодёжи (<em>paro juvenil</em>) — давняя проблема, особенно в южных регионах.</p>
   </div>
+</div>
 
-  <div style="margin-top:16px" class="anki">
-    <div class="atag">🃏 Anki — карточки урока</div>
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек по теме «Работа»</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все карточки для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">¿En qué trabajas?</div>
+        <div class="anki-card-back">Кем ты работаешь?<br>Естественный вопрос о профессии</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Soy médico/a</div>
+        <div class="anki-card-back">Я врач.<br>БЕЗ артикля после ser!</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">el sueldo / la nómina</div>
+        <div class="anki-card-back">зарплата / расчётный лист<br>Cobrar el sueldo = получать зп</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">autónomo/a</div>
+        <div class="anki-card-back">фрилансер / самозанятый<br>Trabajar por cuenta propia</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">estar de vacaciones</div>
+        <div class="anki-card-back">быть в отпуске<br>Всегда мн.ч.: las vacaciones</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL55()">📥 Скачать колоду Anki L55 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L56: Повторение A2)</h4>
     <ul>
-      <li><strong>Soy + профессия (без артикля)</strong> — Soy médico / diseñadora</li>
-      <li><strong>Me dedico a</strong> — я занимаюсь (чем-то)</li>
-      <li><strong>el sueldo</strong> — зарплата</li>
-      <li><strong>la reunión</strong> — встреча / собрание</li>
-      <li><strong>ser ascendido</strong> — получить повышение</li>
-      <li><strong>dimitir</strong> — уволиться по собственному желанию</li>
-      <li><strong>ser despedido</strong> — быть уволенным (принудительно)</li>
-      <li><strong>autónomo/a</strong> — самозанятый / ИП</li>
+      <li><strong>Dreaming Spanish Intermediate</strong> — посмотри 15–20 мин. видео про профессии или работу в Испании: ищи «trabajo en España» на их канале</li>
+      <li><strong>Напиши мини-резюме</strong> — 5 предложений о себе на испанском: профессия, опыт, навыки. Используй soy, trabajo en, me dedico a</li>
+      <li><strong>Составь 5 вопросов</strong> для собеседования и ответь на них вслух. Запиши себя на телефон.</li>
+      <li><strong>Anki</strong> — повторяй 18 карточек из этого урока (10 мин в день)</li>
+      <li><strong>Найди</strong> реальную испанскую вакансию на InfoJobs.net или LinkedIn и прочитай её — узнай 10 новых слов</li>
     </ul>
   </div>
-
-  
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Урок 55 завершён!</h4>
+    <p>Ты знаешь основные профессии и умеешь говорить о работе по-испански. Важное различие: <em>soy</em> + профессия (кто ты) vs <em>trabajo en</em> (где работаешь). Следующий урок — большое повторение всего уровня A2.</p>
+  </div>
+</div>
 
 </div><!-- .wrap -->
 
-<!-- DONE BAR -->
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L54.html" class="nav-link-btn">← L54</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L56.html" class="nav-link-btn">L56 →</a>
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L56.html" class="nav-link-btn">L56: Повторение A2 →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+// ─── speak() — Web Speech API ─────────────────────────────
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+// ─── Anki deck L55 ───────────────────────────────────────
+const ANKI_DECK_L55 = [
+  {front:"¿En qué trabajas?",back:"Русский: Кем ты работаешь? / Чем занимаешься?<br>Пример: ¿En qué trabajas, María?<br>Заметка: Самый естественный вопрос о профессии"},
+  {front:"Soy médico / Soy médica",back:"Русский: Я врач.<br>Пример: Soy médica y trabajo en un hospital.<br>Заметка: БЕЗ артикля после ser + профессия"},
+  {front:"trabajo en + lugar",back:"Русский: работаю в + место<br>Пример: Trabajo en una oficina en Barcelona.<br>Заметка: описывает где, не кто"},
+  {front:"Me dedico a las ventas",back:"Русский: Я занимаюсь продажами.<br>Пример: Me dedico al diseño gráfico.<br>Заметка: dedicarse a + сфера деятельности"},
+  {front:"el sueldo",back:"Русский: зарплата<br>Пример: Mi sueldo es de 2000 euros al mes.<br>Заметка: cobrar el sueldo = получать зарплату"},
+  {front:"la nómina",back:"Русский: расчётный лист / ведомость зарплаты<br>Пример: Necesito la nómina para el banco.<br>Заметка: domiciliar la nómina = перечислять зарплату на счёт"},
+  {front:"autónomo/a",back:"Русский: фрилансер / самозанятый<br>Пример: Soy autónoma, trabajo desde casa.<br>Заметка: trabajar por cuenta propia = работать на себя"},
+  {front:"el jefe / la jefa",back:"Русский: начальник / шеф<br>Пример: Mi jefa es muy exigente pero justa.<br>Заметка: jefe directo = непосредственный начальник"},
+  {front:"el contrato de trabajo",back:"Русский: трудовой договор<br>Пример: Firmé el contrato ayer.<br>Заметка: contrato indefinido = бессрочный, contrato temporal = временный"},
+  {front:"la entrevista de trabajo",back:"Русский: собеседование<br>Пример: Tengo una entrevista de trabajo mañana.<br>Заметка: entrevistar = проводить собеседование"},
+  {front:"el horario",back:"Русский: рабочий график / расписание<br>Пример: El horario es de 9 a 18 horas.<br>Заметка: horario flexible = гибкий график"},
+  {front:"estar de vacaciones",back:"Русский: быть в отпуске<br>Пример: Estoy de vacaciones hasta el lunes.<br>Заметка: ВСЕГДА: las vacaciones (мн.ч.)"},
+  {front:"el currículum",back:"Русский: резюме (CV)<br>Пример: Voy a actualizar mi currículum.<br>Заметка: también: el CV [se-uve]"},
+  {front:"el equipo",back:"Русский: команда<br>Пример: Trabajo bien en equipo.<br>Заметка: trabajo en equipo = командная работа"},
+  {front:"a tiempo completo / parcial",back:"Русский: полный / неполный рабочий день<br>Пример: Busco trabajo a tiempo completo.<br>Заметка: contraste con media jornada"},
+  {front:"el teletrabajo",back:"Русский: удалённая работа<br>Пример: Hago teletrabajo dos días a la semana.<br>Заметка: trabajar desde casa = работать из дома"},
+  {front:"estar en paro",back:"Русский: быть безработным<br>Пример: Llevo tres meses en paro.<br>Заметка: el paro = безработица; cobrar el paro = получать пособие по безработице"},
+  {front:"dirigir un equipo",back:"Русский: руководить командой<br>Пример: Dirijo un equipo de diez personas.<br>Заметка: director/a = руководитель; gestionar = управлять"},
+];
+
+function exportAnkiL55() {
+  const tsv = ANKI_DECK_L55.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L55_spanish.txt';
+  a.click();
+}
+
+// ─── Play dialogue 1 ─────────────────────────────────────
+function playDialogue1() {
+  const lines = [
+    'Hola, soy Laura. ¿A qué te dedicas?',
+    'Soy programador. Trabajo en una empresa de tecnología en el centro de Barcelona.',
+    '¡Qué interesante! ¿Te gusta tu trabajo?',
+    'Sí, mucho. Me encanta programar, aunque a veces el horario es muy intenso.',
+    '¡Vaya! ¿Y tus colegas son simpáticos?',
+    'Sí, el equipo es genial. Mi jefa también es muy profesional. ¿Y tú, en qué trabajas?',
+    'Soy médica. Trabajo en el Hospital Vall d\'Hebron.',
+    '¡Qué importante! ¿Cuántas horas trabajas a la semana?',
+    'Cuarenta horas semanales, pero a veces hay guardias.',
+    'Es lo más importante, ¿no? Hacer algo que te apasiona.',
+    'Exactamente. ¡Encantada de conocerte, Sergio!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+// ─── Progress tracking ────────────────────────────────────
 const LESSON_ID = 'L55';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'Soy médico — профессия через ser БЕЗ неопределённого артикля (un). Это отличие испанского от английского (I am a doctor → Soy médico).',
-  q2:'Trabajo en una empresa pequeña — место работы через «trabajar en». «Soy en» — не испанская конструкция.',
-  q3:'Ha sido ascendido — получить повышение. Dimitir = уволиться самому. Despedir = уволить (кого-то).',
-  q4:'Me dedico a la publicidad — более элегантная конструкция для описания сферы деятельности. Обе формы возможны, но «me dedico a» звучит профессиональнее.',
-  q5:'Estar en paro = быть безработным. «Paro» = безработица. «Estoy de vacaciones» = в отпуске. «Estoy de descanso» = на отдыхе.',
-  q6:'Dimitió — уволился по собственному желанию (dimisión). Despedido = уволили принудительно. Ascendido = повысили.'
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizExpl = {
+  w1:'Estar + enamorado — временное состояние. Ser + enamorado было бы постоянной чертой характера.',
+  w2:'Ponerse + прилагательное = изменение состояния (начать чувствовать). Estar nervioso = быть нервным (без изменения).',
+  w3:'Sentirse + adjective = чувствовать себя. Me siento triste — правильная конструкция.',
+  w4:'Quedarse + adjective = остаться в каком-то состоянии после события. Quedarse sorprendido = быть поражённым/удивлённым.',
+  q1:'Soy programador — после ser профессия без артикля. «Trabajo como un programador» — грамматически верно, но звучит как временная роль.',
+  q2:'Женщина-врач = médica (женский род). Никогда не «un médico» для женщины.',
+  q3:'El sueldo = зарплата. El contrato = контракт. El horario = расписание.',
+  q4:'Trabajo a tiempo completo = работа на полный день. Parcial = неполный день.',
+  q5:'Dedicarse A (не en!) las ventas. Предлог a обязателен.',
+  q6:'Estar DE vacaciones — устойчивое выражение. Никогда «en vacación» (vacaciones всегда мн.ч.).',
+  q7:'Autónomo = самозанятый/фрилансер. Desempleado = безработный. Temporero = сезонный рабочий.',
 };
 
-function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const clickedKey = el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];
+  if (clickedKey !== correctKey) el.classList.add('wrong');
+  const isCorrect = clickedKey === correctKey;
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
 
-function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||val===correct.replace('ó','o').replace('é','e').replace('ú','u').replace('í','i').replace('á','a')){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Ответ: "${answer}"`; }}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = `❌ Попробуй ещё. Подсказка: начинается на "${answer[0]}"`;
+  }
+}
 
-function showAns(id){document.getElementById(id).classList.add('show');}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
 
-function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e',id+'f'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
 
-const totalSections=8;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => {
+    el.style.display = showingTrans3 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(el => { el.style.display='none'; });
+
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>

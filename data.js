@@ -742,7 +742,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Рассказать о своей работе и задать вопросы о работе собеседника",
-      file:"lessons/L55.html", status:"pending"
+      file:"lessons/L55.html", status:"improved"
     },
     {
       id:"L56", num:56, phase:2, block:"B2C", level:"A2", day:118, week:20,
@@ -754,7 +754,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Интервью — ответить на 20 вопросов о прошлом, настоящем и будущем",
-      file:"lessons/L56.html", status:"pending"
+      file:"lessons/L56.html", status:"improved"
     },
 
     // ─── Block 2D: Practice ──────────────────────────────────────
