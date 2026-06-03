@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L57: Практика — в ресторане</title>
+<title>L57: Практика — в ресторане. Полная симуляция</title>
 <style>
 :root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -13,14 +13,13 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
 .nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
 .hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
-.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
 .hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
 .hero h1 .hl{color:var(--gold)}
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -36,13 +35,15 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
 .callout ul{margin-left:16px}.callout li{margin-bottom:3px}
-.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
-.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-.vocab-table td{padding:10px 12px;border-top:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
-.vocab-table tr:hover td{background:var(--bg2)}
-.vocab-table .es{font-weight:700;color:var(--text)}
-.vocab-table .tr{color:var(--muted);font-size:.8rem}
-.vocab-table .ex{color:var(--muted);font-size:.8rem;font-style:italic}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -77,7 +78,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -86,10 +87,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -97,477 +94,1033 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-.scenario-box{background:linear-gradient(135deg,rgba(255,214,10,.06),rgba(45,198,83,.04));border:1px solid rgba(255,214,10,.3);border-radius:8px;padding:16px 20px;margin:14px 0}
-.scenario-box h4{color:var(--gold);font-size:.95rem;font-weight:700;margin-bottom:8px}
-.scenario-box p,.scenario-box ul{font-size:.88rem;color:var(--muted)}
-.scenario-box ul{margin-left:16px}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(69,123,157,.05));border:1px solid rgba(255,214,10,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
-  <a href="../index.html">← Дашборд</a>
-  <span class="level">A2 · Фаза 2 · День 120</span>
-  <a href="L58.html">L58 →</a>
+  <a href="../index.html">&#8592; Дашборд</a>
+  <span class="level">A2 &middot; Фаза 2 &middot; День 120</span>
+  <a href="L58.html">L58 &rarr;</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🔵 Фаза 2 · Практика · Блок 2D · DS Intermediate</div>
-  <h1>Практика: <span class="hl">в ресторане</span></h1>
-  <p class="sub">Полная симуляция — от резервации до чаевых. Говорим как настоящие гости!</p>
+  <div class="phase-tag">&#127829; Фаза 2 &middot; Блок 2D: Практика &middot; Dreaming Spanish: Intermediate &middot; Polyglot #13</div>
+  <h1>Практика: в <span class="hl">ресторане</span></h1>
+  <p class="sub">Полная симуляция — от резервации до чаевых. Это расширение урока #13 курса Polyglot (Дмитрий Петров): еда и ресторан.</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Провести полный ресторанный разговор от входа до оплаты</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут — урок-симуляция</p></div></div>
-    <div class="obj"><div class="ico">📚</div><div><strong>Polyglot</strong><p>Расширение урока #13 курса Polyglot (Дмитрий Петров)</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Резервация → заказ → жалоба → оплата</p></div></div>
+    <div class="obj"><div class="ico">&#128483;&#65039;</div><div><strong>Цель 1</strong><p>Сделать резервацию по телефону</p></div></div>
+    <div class="obj"><div class="ico">&#128203;</div><div><strong>Цель 2</strong><p>Читать меню, спрашивать об ингредиентах</p></div></div>
+    <div class="obj"><div class="ico">&#9888;&#65039;</div><div><strong>Цель 3</strong><p>Пожаловаться вежливо и решить проблему</p></div></div>
+    <div class="obj"><div class="ico">&#128179;</div><div><strong>Цель 4</strong><p>Попросить счёт, разделить его, оставить чаевые</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: THEORY + PHRASES -->
+<!-- 3. WARM-UP -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Ресторанный язык — от А до Я</h2>
+    <h2>Повторение — Урок 56: Итоги A2</h2>
   </div>
-
-  <p style="margin-bottom:14px">Это расширение урока #13 из курса Polyglot (Дмитрий Петров). Здесь мы берём базовую лексику из того урока и наращиваем на неё полную коммуникацию: резервация, меню, заказ, жалоба, оплата, чаевые.</p>
-
-  <div class="callout tip">
-    <h4>💡 Уровни вежливости в ресторане</h4>
-    <p>В испанских ресторанах используют usted с незнакомыми официантами (формальный стиль). Команды дают через: «<strong>Quisiera</strong>...» (я бы хотел), «<strong>Me pone</strong>...» (принесите мне), «<strong>Póngame</strong>...» (повелительное). Избегай «<strong>Quiero</strong>» — звучит немного грубовато, хотя и понятно.</p>
-  </div>
-
-  <h3 style="font-size:1rem;font-weight:700;margin:18px 0 10px">Фазы ресторанного визита</h3>
-
-  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
-    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">📞 Резервация по телефону</p>
-    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
-      <li>Quisiera <strong>reservar una mesa</strong> para dos personas.</li>
-      <li>¿Para qué día y a qué hora? — Para el viernes a las <strong>nueve de la noche</strong>.</li>
-      <li>¿A nombre de quién? — A nombre de <strong>[tu apellido]</strong>.</li>
-      <li>¿Hay <strong>lista de espera</strong>? — Есть ли очередь ожидания?</li>
-    </ul>
-  </div>
-
-  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
-    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">🚪 Вход и размещение</p>
-    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
-      <li>Buenas noches. <strong>Tengo una reserva</strong> a nombre de García.</li>
-      <li>¿Nos puede poner <strong>cerca de la ventana</strong>? — Поставьте нас у окна?</li>
-      <li>¿Está libre <strong>esa mesa</strong>? — Этот столик свободен?</li>
-      <li>Somos <strong>cuatro</strong>. — Нас четверо.</li>
-    </ul>
-  </div>
-
-  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
-    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">📋 Изучение меню и заказ</p>
-    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
-      <li>¿Nos puede traer <strong>la carta</strong>, por favor? — Принесите, пожалуйста, меню.</li>
-      <li>¿Cuál es el <strong>plato del día</strong>? — Что сегодня блюдо дня?</li>
-      <li>¿Qué <strong>recomienda</strong> usted? — Что вы рекомендуете?</li>
-      <li>De <strong>primero</strong> quisiera... / De <strong>segundo</strong>... / De <strong>postre</strong>...</li>
-      <li>¿Está incluida la <strong>bebida</strong>? — Напиток включён?</li>
-      <li>¿Tiene algo <strong>sin gluten/vegetariano</strong>? — Есть что-нибудь без глютена/вегетарианское?</li>
-    </ul>
-  </div>
-
-  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
-    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">⚠️ Жалоба или проблема</p>
-    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
-      <li>Perdone, creo que hay un <strong>error en el pedido</strong>. — Извините, кажется ошибка в заказе.</li>
-      <li>Este plato está <strong>demasiado salado/frío</strong>. — Это блюдо слишком солёное/холодное.</li>
-      <li>Pedí el bistec <strong>poco hecho</strong>, no bien hecho. — Я заказывал стейк с кровью, не прожаренный.</li>
-      <li>¿Puede cambiarlo, por favor? — Не могли бы вы заменить это?</li>
-    </ul>
-  </div>
-
-  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
-    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">💳 Счёт и оплата</p>
-    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
-      <li>¿Nos puede traer <strong>la cuenta</strong>, por favor? — Принесите, пожалуйста, счёт.</li>
-      <li>¿<strong>Están incluidas</strong> las consumiciones? — Напитки включены?</li>
-      <li>¿Puedo pagar <strong>con tarjeta</strong>? — Можно оплатить картой?</li>
-      <li>¿Lo cobramos <strong>junto o por separado</strong>? — Платим вместе или раздельно?</li>
-      <li>El servicio está <strong>incluido</strong>. / Vamos a dejar <strong>propina</strong>. — Чаевые включены / оставим чаевые.</li>
-    </ul>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Быстрая проверка тем из предыдущего урока. 4 вопроса — отвечай сразу.</p>
+  <div class="quiz">
+    <h3>&#128260; Что помнишь из L56?</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Как сказать «я уже ел» (опыт, недавнее действие)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Comí (pretérito indefinido)</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">He comido (pretérito perfecto)</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Comería (condicional)</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «Cuando era niño, vivía en Madrid» — какое время?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">Pretérito imperfecto — описание привычки/состояния в прошлом</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">Pretérito indefinido — конкретное действие</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">Presente — настоящее время</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «Mañana voy a estudiar español» — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Futuro simple (estudiaré)</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Condicional (estudiaría)</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Perífrasis ir + a + infinitivo — ближайшее будущее</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Как вежливо попросить что-то с condicional?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">Quiero un café.</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">Dame un café.</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">¿Podría traerme un café?</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: VOCABULARY -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — ресторан от А до Я</h2>
+    <h2>Теория — Язык ресторана</h2>
   </div>
 
-  <table class="vocab-table">
-    <tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
-    <tr><td class="es">la carta / el menú</td><td class="tr">[ла кар-та]</td><td>меню</td><td class="ex">¿Me trae la carta?</td></tr>
-    <tr><td class="es">el plato del día</td><td class="tr">[пла-то дель диа]</td><td>блюдо дня</td><td class="ex">¿Cuál es el plato del día?</td></tr>
-    <tr><td class="es">el primer plato</td><td class="tr">[при-мер]</td><td>первое блюдо / закуска</td><td class="ex">De primer plato quiero ensalada.</td></tr>
-    <tr><td class="es">el segundo plato</td><td class="tr">[се-гун-до]</td><td>второе блюдо</td><td class="ex">De segundo, el pollo.</td></tr>
-    <tr><td class="es">el postre</td><td class="tr">[пос-тре]</td><td>десерт</td><td class="ex">¿Qué postres tienen?</td></tr>
-    <tr><td class="es">el camarero / la camarera</td><td class="tr">[ка-ма-ре-ро]</td><td>официант/ка</td><td class="ex">¡Oiga, camarero!</td></tr>
-    <tr><td class="es">la cuenta</td><td class="tr">[квен-та]</td><td>счёт</td><td class="ex">La cuenta, por favor.</td></tr>
-    <tr><td class="es">la propina</td><td class="tr">[про-пи-на]</td><td>чаевые</td><td class="ex">Dejamos propina.</td></tr>
-    <tr><td class="es">la reserva</td><td class="tr">[ре-сер-ба]</td><td>резервация / бронь</td><td class="ex">Tengo una reserva a las 9.</td></tr>
-    <tr><td class="es">el pedido</td><td class="tr">[пе-ди-до]</td><td>заказ</td><td class="ex">¿Tomamos el pedido?</td></tr>
-    <tr><td class="es">poco hecho</td><td class="tr">[по-ко эчо]</td><td>с кровью (стейк)</td><td class="ex">El bistec, poco hecho.</td></tr>
-    <tr><td class="es">bien hecho</td><td class="tr">[бьен эчо]</td><td>хорошо прожаренный</td><td class="ex">Bien hecho, por favor.</td></tr>
-    <tr><td class="es">al punto</td><td class="tr">[аль пун-то]</td><td>средней прожарки</td><td class="ex">El filete al punto.</td></tr>
+  <div class="callout info">
+    <h4>&#128218; Polyglot #13 — Еда и ресторан</h4>
+    <p>Этот урок расширяет урок #13 курса Polyglot (Дмитрий Петров): словарь кафе и кухни, глаголы querer/pedir. Сегодня добавляем полную симуляцию: резервация, жалоба, оплата.</p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 1</span>
+      <span class="rule-title">Резервация стола</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">Используй <strong>Quisiera reservar una mesa</strong> (хотел бы зарезервировать) — condicional делает просьбу максимально вежливой. Можно также: <em>¿Tienen mesa disponible?</em> (есть ли свободный стол?)</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Зарезервировать</span><span class="sep">&rarr;</span><span class="ar">reservar una mesa</span></div>
+      <div class="wp"><span class="en">На двоих</span><span class="sep">&rarr;</span><span class="ar">para dos personas</span></div>
+      <div class="wp"><span class="en">На 8 вечера</span><span class="sep">&rarr;</span><span class="ar">para las ocho de la noche</span></div>
+      <div class="wp"><span class="en">На имя...</span><span class="sep">&rarr;</span><span class="ar">a nombre de...</span></div>
+      <div class="wp"><span class="en">Есть столик?</span><span class="sep">&rarr;</span><span class="ar">¿Tienen mesa disponible?</span></div>
+      <div class="wp"><span class="en">На террасе</span><span class="sep">&rarr;</span><span class="ar">en la terraza</span></div>
+      <div class="wp"><span class="en">Сколько ждать?</span><span class="sep">&rarr;</span><span class="ar">¿Cuánto tiempo de espera?</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 2</span>
+      <span class="rule-title">Заказ блюд — pedir vs. querer vs. poner</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px"><strong>Querer</strong> — хотеть (нейтрально): <em>Quiero la ensalada.</em> | <strong>Pedir</strong> — попросить/заказать: <em>Voy a pedir el menú del día.</em> | <strong>Poner</strong> — поставить (разг.): <em>Ponme un café.</em> В Испании «ordenar» в смысле «заказать» почти не используется — это латиноамериканизм.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Что порекомендуете?</span><span class="sep">&rarr;</span><span class="ar">¿Qué me recomienda?</span></div>
+      <div class="wp"><span class="en">Что входит в блюдо?</span><span class="sep">&rarr;</span><span class="ar">¿Qué lleva este plato?</span></div>
+      <div class="wp"><span class="en">Без лука</span><span class="sep">&rarr;</span><span class="ar">sin cebolla, por favor</span></div>
+      <div class="wp"><span class="en">Меню дня</span><span class="sep">&rarr;</span><span class="ar">el menú del día</span></div>
+      <div class="wp"><span class="en">А la carte</span><span class="sep">&rarr;</span><span class="ar">a la carta</span></div>
+      <div class="wp"><span class="en">Первое/Второе</span><span class="sep">&rarr;</span><span class="ar">el primero / el segundo</span></div>
+      <div class="wp"><span class="en">Что-нибудь ещё?</span><span class="sep">&rarr;</span><span class="ar">¿Algo más?</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 3</span>
+      <span class="rule-title">Вежливая жалоба</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">Испанцы жалуются вежливо, но прямо. Формула: <strong>Disculpe/Perdona + проблема + ¿Podría...?</strong>. «Perdona» — неформально, «disculpe» — формально.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Блюдо холодное</span><span class="sep">&rarr;</span><span class="ar">este plato está frío</span></div>
+      <div class="wp"><span class="en">Я не заказывал это</span><span class="sep">&rarr;</span><span class="ar">no he pedido esto</span></div>
+      <div class="wp"><span class="en">Долго жду</span><span class="sep">&rarr;</span><span class="ar">llevo mucho tiempo esperando</span></div>
+      <div class="wp"><span class="en">Ошибка в счёте</span><span class="sep">&rarr;</span><span class="ar">hay un error en la cuenta</span></div>
+      <div class="wp"><span class="en">Это несвежее</span><span class="sep">&rarr;</span><span class="ar">esto no está fresco</span></div>
+      <div class="wp"><span class="en">Говорить с менеджером</span><span class="sep">&rarr;</span><span class="ar">hablar con el encargado</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 4</span>
+      <span class="rule-title">Счёт и оплата</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">В Испании чаевые (propina) не обязательны, но 5–10% за хорошее обслуживание — хороший тон. Спроси сначала: <em>¿Está incluido el servicio?</em></p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Счёт, пожалуйста</span><span class="sep">&rarr;</span><span class="ar">la cuenta, por favor</span></div>
+      <div class="wp"><span class="en">Раздельно</span><span class="sep">&rarr;</span><span class="ar">por separado</span></div>
+      <div class="wp"><span class="en">Всё вместе</span><span class="sep">&rarr;</span><span class="ar">todo junto</span></div>
+      <div class="wp"><span class="en">Картой/наличными</span><span class="sep">&rarr;</span><span class="ar">con tarjeta / en efectivo</span></div>
+      <div class="wp"><span class="en">Я плачу</span><span class="sep">&rarr;</span><span class="ar">invito yo / yo pago</span></div>
+      <div class="wp"><span class="en">Чаевые</span><span class="sep">&rarr;</span><span class="ar">la propina</span></div>
+      <div class="wp"><span class="en">Сдача</span><span class="sep">&rarr;</span><span class="ar">el cambio / la vuelta</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">&#9888;&#65039; Типичные ошибки в ресторане</h3>
+  <table class="mistakes">
+    <tr><th>Ситуация</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Попросить счёт</td><td class="wrong-ex">¿Me das la bill?</td><td class="right-ex">La cuenta, por favor</td><td>«Bill» — английское. По-испански: la cuenta</td></tr>
+    <tr><td>Заказ</td><td class="wrong-ex">Quiero ordenar el pollo</td><td class="right-ex">Voy a pedir el pollo</td><td>«Ordenar» = латиноамериканизм. В Испании: pedir</td></tr>
+    <tr><td>Звать официанта</td><td class="wrong-ex">¡Oye! ¡Eh!</td><td class="right-ex">Perdona / Disculpe</td><td>Кричать — грубо. Машут рукой + говорят тихо</td></tr>
+    <tr><td>«Очень вкусно»</td><td class="wrong-ex">Muy delicioso</td><td class="right-ex">¡Está riquísimo!</td><td>«Rico» — живее и разговорнее в Испании</td></tr>
+    <tr><td>Без аллергена</td><td class="wrong-ex">No quiero cebolla</td><td class="right-ex">Sin cebolla, por favor</td><td>Sin + sustantivo — правильная формула ограничений</td></tr>
+    <tr><td>Чаевые</td><td class="wrong-ex">¿Cuánto es el tip?</td><td class="right-ex">¿Está incluido el servicio?</td><td>В Испании обслуживание бывает включено — сначала спроси</td></tr>
   </table>
 </div>
 
-<!-- SECTION 3: QUIZ 1 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Что сказать в ресторане?</h2>
+    <h2>Словарь ресторана — 20 ключевых слов</h2>
   </div>
-
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Ресторанный сценарий — выбери правильную фразу</h3>
-
-    <div class="quiz-q" id="q1">
-      <div class="q-text">1. Ты хочешь попросить меню. Что говоришь?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">¿Nos puede traer la carta, por favor?</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Dame el libro de comida.</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">¿Qué tienen para comer?</div>
-      </div>
-      <div class="feedback" id="fb-q1"></div>
-    </div>
-
-    <div class="quiz-q" id="q2">
-      <div class="q-text">2. Официант принёс не то блюдо. Как вежливо указать на ошибку?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">¡Esto no es lo que pedí! ¡Es un error!</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Perdone, creo que hay un error en el pedido.</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">No quiero esto.</div>
-      </div>
-      <div class="feedback" id="fb-q2"></div>
-    </div>
-
-    <div class="quiz-q" id="q3">
-      <div class="q-text">3. Как вежливо попросить счёт?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">¿Nos puede traer la cuenta, por favor?</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Quiero pagar ahora.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">¿Cuánto dinero debo?</div>
-      </div>
-      <div class="feedback" id="fb-q3"></div>
-    </div>
-
-    <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Я заказываю стейк средней прожарки» — как сказать?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">El bistec bien hecho.</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">El bistec al punto.</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">El bistec poco hecho.</div>
-      </div>
-      <div class="feedback" id="fb-q4"></div>
-    </div>
-
-    <div class="quiz-q" id="q5">
-      <div class="q-text">5. Ты хочешь забронировать столик по телефону. С чего начинаешь?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Quisiera reservar una mesa para dos personas.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Quiero una mesa.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">¿Tienen mesas libres hoy?</div>
-      </div>
-      <div class="feedback" id="fb-q5"></div>
-    </div>
-
-    <div class="quiz-q" id="q6">
-      <div class="q-text">6. Как спросить, есть ли вегетарианские блюда?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">¿Tienen platos sin carne?</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">¿Tienen opciones vegetarianas?</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">No como carne. ¿Qué tienen?</div>
-      </div>
-      <div class="feedback" id="fb-q6"></div>
-    </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай &#128266; для произношения. Уровень A2 — акцент на полезные фразы.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">el menú del día</div><div class="vocab-ru">комплексный обед</div></div><button class="speak-btn" onclick="speak('el menú del día')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la carta</div><div class="vocab-ru">меню (карта блюд)</div></div><button class="speak-btn" onclick="speak('la carta')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el camarero / la camarera</div><div class="vocab-ru">официант / официантка</div></div><button class="speak-btn" onclick="speak('el camarero')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la reserva</div><div class="vocab-ru">резервация / бронирование</div></div><button class="speak-btn" onclick="speak('la reserva')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el primer plato</div><div class="vocab-ru">первое блюдо (закуска)</div></div><button class="speak-btn" onclick="speak('el primer plato')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el segundo plato</div><div class="vocab-ru">второе блюдо (основное)</div></div><button class="speak-btn" onclick="speak('el segundo plato')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el postre</div><div class="vocab-ru">десерт</div></div><button class="speak-btn" onclick="speak('el postre')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">pedir</div><div class="vocab-ru">заказывать (блюдо)</div></div><button class="speak-btn" onclick="speak('pedir')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la cuenta</div><div class="vocab-ru">счёт</div></div><button class="speak-btn" onclick="speak('la cuenta')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la propina</div><div class="vocab-ru">чаевые</div></div><button class="speak-btn" onclick="speak('la propina')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">sin gluten</div><div class="vocab-ru">без глютена</div></div><button class="speak-btn" onclick="speak('sin gluten')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¿Qué lleva...?</div><div class="vocab-ru">Что входит в...?</div></div><button class="speak-btn" onclick="speak('¿Qué lleva?')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">está frío / está fresco</div><div class="vocab-ru">холодное / свежее</div></div><button class="speak-btn" onclick="speak('está frío')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">riquísimo</div><div class="vocab-ru">очень вкусно (разг.)</div></div><button class="speak-btn" onclick="speak('riquísimo')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la terraza</div><div class="vocab-ru">терраса (столики снаружи)</div></div><button class="speak-btn" onclick="speak('la terraza')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">para llevar</div><div class="vocab-ru">с собой / на вынос</div></div><button class="speak-btn" onclick="speak('para llevar')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¿Podría traerme...?</div><div class="vocab-ru">Не могли бы принести...?</div></div><button class="speak-btn" onclick="speak('¿Podría traerme?')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la especialidad de la casa</div><div class="vocab-ru">фирменное блюдо</div></div><button class="speak-btn" onclick="speak('la especialidad de la casa')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">incluido el servicio</div><div class="vocab-ru">обслуживание включено</div></div><button class="speak-btn" onclick="speak('incluido el servicio')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el datáfono</div><div class="vocab-ru">карточный терминал</div></div><button class="speak-btn" onclick="speak('el datáfono')">&#128266;</button></div>
   </div>
 </div>
 
-<!-- SECTION 4: QUIZ 2 -->
+<!-- 6. QUIZ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Тест 2 — Заполни диалог</h2>
+    <h2>Тест 1 — Словарь и фразы ресторана</h2>
   </div>
-
   <div class="quiz">
-    <h3>✏️ Ресторанный диалог — вставь нужную фразу</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. Официант: «¿Están listos para pedir?» — Ты: «Sí. De primero quisiera la _____ del día.» (блюдо)</div>
-      <input type="text" class="text-input" placeholder="carta / plato / menú..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','sopa','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">sopa (суп) — например. Или: ensalada, crema... Фраза «De primero quisiera la sopa del día» = «На первое я бы хотел суп дня».</div>
+    <h3>&#127919; Ресторанный испанский — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как правильно попросить счёт у официанта?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">La cuenta, por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">El bill, por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Quiero pagar la factura.</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. Ты: «Perdone, este plato está demasiado _____. ¿Puede cambiarlo?» (холодное)</div>
-      <input type="text" class="text-input" placeholder="frío / caliente / salado..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','frío','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">frío — «demasiado frío» = слишком холодное. Это стандартная жалоба в ресторане.</div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Ты хочешь узнать состав блюда. Спросишь:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">¿Cómo se llama este plato?</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">¿Qué lleva este plato?</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">¿Este plato es bueno?</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. Ты: «¿Puedo pagar con _____?» (картой)</div>
-      <input type="text" class="text-input" placeholder="tarjeta / efectivo / propina..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','tarjeta','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">tarjeta — «¿Puedo pagar con tarjeta?» = Можно оплатить картой? Efectivo = наличные.</div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Ты хочешь зарезервировать столик. Скажешь:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Necesito una mesa ahora mismo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Quisiera reservar una mesa para esta noche.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Quiero comer aquí esta noche.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. Официант: «¿Lo cobro junto?» — Ты: «Por separado, por _____.» (пожалуйста)</div>
-      <input type="text" class="text-input" placeholder="favor / gracias / supuesto..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','favor','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">favor — «Por separado, por favor» = Раздельно, пожалуйста. Стандартная фраза при раздельной оплате.</div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Блюдо пришло холодным. Вежливая жалоба:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">¡Esto está horrible!</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">No me gusta esto para nada.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Disculpe, este plato está frío. ¿Podría calentarlo?</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. Официант: «¿Les traigo algo más?» — Ты: «No, gracias. Solo la _____, por favor.» (счёт)</div>
-      <input type="text" class="text-input" placeholder="cuenta / carta / propina..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','cuenta','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">cuenta — «Solo la cuenta, por favor» = Только счёт, пожалуйста. La cuenta = счёт в ресторане.</div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Что значит <strong>«el menú del día»</strong> в Испании?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Специальное блюдо для туристов</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Список блюд на доске</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Комплексный обед из 2–3 блюд по фиксированной цене</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Разговорный способ заказать кофе в Испании:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Ponme un café, por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Necesito un café urgentemente.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Me gustaría tener un café.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Ты хочешь платить отдельно. Скажешь:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Quiero pagar solo lo mío.</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Por separado, por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">No voy a pagar todo junto.</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 5: FULL SIMULATION DIALOGUES -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Полная симуляция — от звонка до чаевых</h2>
+    <h2>Тест 2 — Заполни пропуски</h2>
   </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прочитай весь диалог вслух. Ты — Клиент, читай обе роли. Обрати внимание на все три временных плана и вежливость.</p>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      📞 Сцена 1: Резервация по телефону
-      <button class="dlg-toggle" onclick="toggleTranslation('tr1')">Показать перевод</button>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи в нижнем регистре. Одно слово на каждый пропуск.</p>
+  <div class="quiz">
+    <h3>&#9999;&#65039; Ресторан — впиши нужное слово</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «Не могли бы вы принести мне воды?» &rarr; ¿________ traerme agua?</div>
+      <input type="text" class="text-input" placeholder="глагол в condicional..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','podría','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">&#9989; podría — ¿Podría traerme agua? (condicional = вежливость)</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Ресторан</div>
-      <div><div class="dlg-es">Restaurante La Barceloneta, buenos días, ¿dígame?</div>
-      <div class="dlg-ru" id="tr1" style="display:none">Ресторан Ла Барселонета, добрый день, слушаю вас?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">2. «Что входит в это блюдо?» &rarr; ¿Qué ________ este plato?</div>
+      <input type="text" class="text-input" placeholder="глагол для состава блюда..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','lleva','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">&#9989; lleva — llevar используется для состава/содержания блюда</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">Hola, buenos días. Quisiera reservar una mesa para cuatro personas para el sábado por la noche.</div>
-      <div class="dlg-ru" id="tr1b" style="display:none">Здравствуйте, добрый день. Я бы хотел забронировать столик на четырёх человек на субботний вечер.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Блюдо с собой, пожалуйста» &rarr; Para ________, por favor.</div>
+      <input type="text" class="text-input" placeholder="..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','llevar','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">&#9989; llevar — para llevar = на вынос</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Ресторан</div>
-      <div><div class="dlg-es">¿A qué hora y a nombre de quién, por favor?</div>
-      <div class="dlg-ru" id="tr1c" style="display:none">На какое время и на чьё имя, пожалуйста?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">4. «Счёт, пожалуйста» &rarr; La ________, por favor.</div>
+      <input type="text" class="text-input" placeholder="..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','cuenta','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">&#9989; cuenta — la cuenta = счёт в ресторане</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">A las nueve. A nombre de Sevrugin.</div>
-      <div class="dlg-ru" id="tr1d" style="display:none">На девять. На имя Севрюгин.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">5. «Это очень вкусно!» (разг.) &rarr; ¡Está ________!</div>
+      <input type="text" class="text-input" placeholder="суперлатив от rico..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','riquísimo','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">&#9989; riquísimo — суперлатив от rico. Также: buenísimo</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Ресторан</div>
-      <div><div class="dlg-es">Perfecto. Mesa para cuatro, el sábado a las nueve a nombre de Sevrugin. Le esperamos.</div>
-      <div class="dlg-ru" id="tr1e" style="display:none">Отлично. Столик на четырёх, суббота в девять на имя Севрюгин. Ждём вас.</div></div>
-    </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      🍽️ Сцена 2: Заказ и небольшая проблема
-      <button class="dlg-toggle" onclick="toggleTranslation('tr2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Офиц.</div>
-      <div><div class="dlg-es">Buenas noches. Bienvenidos. ¿Tienen reserva?</div>
-      <div class="dlg-ru" id="tr2" style="display:none">Добрый вечер. Добро пожаловать. У вас есть бронь?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">Sí, a nombre de Sevrugin. Mesa para cuatro.</div>
-      <div class="dlg-ru" id="tr2b" style="display:none">Да, на имя Севрюгин. Столик на четырёх.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Офиц.</div>
-      <div><div class="dlg-es">Por aquí, por favor. ¿Quieren empezar con algo de beber?</div>
-      <div class="dlg-ru" id="tr2c" style="display:none">Прошу, сюда. Хотите начать с чего-нибудь выпить?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">Sí, agua mineral sin gas y una botella de vino blanco. Y la carta, por favor.</div>
-      <div class="dlg-ru" id="tr2d" style="display:none">Да, минеральную воду без газа и бутылку белого вина. И меню, пожалуйста.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Офиц.</div>
-      <div><div class="dlg-es">¿Han decidido ya?</div>
-      <div class="dlg-ru" id="tr2e" style="display:none">Вы уже решили?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">Sí. De primero, la sopa del día. De segundo, el filete de ternera al punto. Y de postre veremos.</div>
-      <div class="dlg-ru" id="tr2f" style="display:none">Да. На первое, суп дня. На второе, телячий стейк средней прожарки. А с десертом посмотрим.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Офиц.</div>
-      <div><div class="dlg-es">[Trae el filete bien hecho] Aquí tiene, el filete.</div>
-      <div class="dlg-ru" id="tr2g" style="display:none">[Приносит прожаренный стейк] Вот ваш стейк.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">Perdone, pedí el filete al punto, no bien hecho. ¿Podría cambiarlo, por favor?</div>
-      <div class="dlg-ru" id="tr2h" style="display:none">Простите, я заказывал стейк средней прожарки, не прожаренный. Не могли бы вы заменить, пожалуйста?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Офиц.</div>
-      <div><div class="dlg-es">Por supuesto, disculpe el error. Enseguida le traigo otro.</div>
-      <div class="dlg-ru" id="tr2i" style="display:none">Конечно, извините за ошибку. Сейчас принесу другой.</div></div>
-    </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💳 Сцена 3: Оплата и чаевые
-      <button class="dlg-toggle" onclick="toggleTranslation('tr3')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">¿Nos puede traer la cuenta, por favor?</div>
-      <div class="dlg-ru" id="tr3" style="display:none">Не могли бы вы принести счёт, пожалуйста?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Офиц.</div>
-      <div><div class="dlg-es">¿Lo cobro junto o por separado?</div>
-      <div class="dlg-ru" id="tr3b" style="display:none">Вместе или раздельно?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">Junto, por favor. ¿Está incluido el servicio?</div>
-      <div class="dlg-ru" id="tr3c" style="display:none">Вместе, пожалуйста. Обслуживание включено?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Офиц.</div>
-      <div><div class="dlg-es">No está incluido. Son 87 euros en total.</div>
-      <div class="dlg-ru" id="tr3d" style="display:none">Нет, не включено. Итого 87 евро.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Клиент</div>
-      <div><div class="dlg-es">Aquí tiene 100. Quédese con el cambio.</div>
-      <div class="dlg-ru" id="tr3e" style="display:none">Вот 100. Сдачи не надо.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Офиц.</div>
-      <div><div class="dlg-es">Muchas gracias. Que les vaya bien. ¡Hasta pronto!</div>
-      <div class="dlg-ru" id="tr3f" style="display:none">Большое спасибо. Удачи вам. До скорого!</div></div>
+    <div class="text-ex">
+      <div class="tex-q">6. «Без лука, пожалуйста» &rarr; ________ cebolla, por favor.</div>
+      <input type="text" class="text-input" placeholder="предлог 'без'..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','sin','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">&#9989; sin — предлог «без». Sin cebolla / sin gluten / sin sal.</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: SPEAKING -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Говорение — полный ресторанный сценарий</h2>
+    <h2>Диалоги — 3 сцены в ресторане</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух, играя обе роли. Нажимай &#128266; у каждой реплики.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      &#128222; Диалог 1: Резервация по телефону (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ресторан</div>
+      <div style="flex:1">
+        <div class="dlg-es">Restaurante El Xampanyet, buenas tardes, ¿dígame? <button class="speak-btn" onclick="speak('Restaurante El Xampanyet, buenas tardes, dígame.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Ресторан «Эль Шампаньет», добрый день, слушаю вас?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Hola, quisiera reservar una mesa para esta noche, para las nueve. <button class="speak-btn" onclick="speak('Hola, quisiera reservar una mesa para esta noche, para las nueve.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Здравствуйте, хотел бы зарезервировать столик на сегодня вечером, на девять.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ресторан</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Para cuántas personas? <button class="speak-btn" onclick="speak('¿Para cuántas personas?')">&#128266;</button></div>
+        <div class="dlg-ru translation">На сколько человек?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Para tres personas, por favor. ¿Tienen mesa en la terraza? <button class="speak-btn" onclick="speak('Para tres personas, por favor. ¿Tienen mesa en la terraza?')">&#128266;</button></div>
+        <div class="dlg-ru translation">На троих, пожалуйста. У вас есть стол на террасе?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ресторан</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, tenemos disponible. ¿A nombre de quién hago la reserva? <button class="speak-btn" onclick="speak('Sí, tenemos disponible. ¿A nombre de quién hago la reserva?')">&#128266;</button></div>
+        <div class="dlg-ru translation">Да, есть свободный. На чьё имя?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">A nombre de Ivanov. <button class="speak-btn" onclick="speak('A nombre de Ivanov.')">&#128266;</button></div>
+        <div class="dlg-ru translation">На имя Иванов.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ресторан</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. ¿Me puede dar un número de teléfono? <button class="speak-btn" onclick="speak('Perfecto. ¿Me puede dar un número de teléfono?')">&#128266;</button></div>
+        <div class="dlg-ru translation">Отлично. Можете дать номер телефона?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, es el seis, ocho, cinco, tres, dos, uno, cuatro, siete. <button class="speak-btn" onclick="speak('Seis, ocho, cinco, tres, dos, uno, cuatro, siete.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Да, шесть восемь пять три два один четыре семь.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ресторан</div>
+      <div style="flex:1">
+        <div class="dlg-es">Reserva confirmada: tres personas, hoy a las nueve, terraza. <button class="speak-btn" onclick="speak('Reserva confirmada: tres personas, hoy a las nueve, terraza.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Резервация подтверждена: трое, сегодня в девять, терраса.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Muchas gracias. Hasta luego. <button class="speak-btn" onclick="speak('Muchas gracias. Hasta luego.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Большое спасибо. До свидания.</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">&#9654; Воспроизвести диалог целиком</button>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание — Полная симуляция</div>
-    <p>Разыграй полный сценарий ресторанного визита самостоятельно — говори за обе стороны. Включи все 4 этапа:</p>
-    <div class="es">1. Звонок — резервация на 2 человека на завтра в 8 вечера<br>2. Приход — уточни место у окна, попроси меню<br>3. Заказ — закуска, основное блюдо, спроси о вегетарианских вариантах<br>4. Оплата — картой, вместе, оставь комплимент заведению</div>
-    <div class="hint">Используй: quisiera (вежливее чем quiero), perdone (для привлечения внимания), por favor везде</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      &#127869;&#65039; Диалог 2: Заказ блюд и вопросы о меню (11 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenas noches. ¿Ya saben qué van a tomar? <button class="speak-btn" onclick="speak('Buenas noches. ¿Ya saben qué van a tomar?')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Добрый вечер. Уже знаете, что будете?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Todavía no. ¿Qué me recomienda? <button class="speak-btn" onclick="speak('Todavía no. ¿Qué me recomienda?')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Пока нет. Что рекомендуете?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">La especialidad de la casa es el bacallà a la catalana. Está buenísimo. <button class="speak-btn" onclick="speak('La especialidad de la casa es el bacallà a la catalana. Está buenísimo.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Фирменное блюдо — треска по-каталонски. Очень вкусно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué lleva exactamente? Tengo alergia al gluten. <button class="speak-btn" onclick="speak('¿Qué lleva exactamente? Tengo alergia al gluten.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Что туда входит? У меня аллергия на глютен.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Lleva bacallà, tomate, aceite de oliva y ajo. Sin harina, es apto para celíacos. <button class="speak-btn" onclick="speak('Lleva bacallà, tomate, aceite de oliva y ajo. Sin harina.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Треска, томат, оливковое масло и чеснок. Без муки — подходит для целиаков.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. Voy a pedir el bacallà. Y de primero, la sopa del día. <button class="speak-btn" onclick="speak('Perfecto. Voy a pedir el bacallà. Y de primero, la sopa del día.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Отлично. Закажу треску. На первое — суп дня.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y para beber? Tenemos vino de la tierra, muy recomendable. <button class="speak-btn" onclick="speak('¿Y para beber? Tenemos vino de la tierra, muy recomendable.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">А пить что? Местное вино — очень рекомендую.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Media botella de vino blanco y agua con gas, por favor. <button class="speak-btn" onclick="speak('Media botella de vino blanco y agua con gas, por favor.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Полбутылки белого вина и газированной воды, пожалуйста.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y de postre? Tenemos crema catalana casera. <button class="speak-btn" onclick="speak('¿Y de postre? Tenemos crema catalana casera.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">А на десерт? У нас домашняя crema catalana.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">De postre ya veré, gracias. <button class="speak-btn" onclick="speak('De postre ya veré, gracias.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Насчёт десерта подумаю потом, спасибо.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Enseguida. <button class="speak-btn" onclick="speak('Enseguida.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Сейчас принесу.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      &#128179; Диалог 3: Проблема и оплата (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perdona, este plato está frío. ¿Podría calentarlo un poco? <button class="speak-btn" onclick="speak('Perdona, este plato está frío. ¿Podría calentarlo un poco?')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Простите, блюдо холодное. Могли бы подогреть немного?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Mil disculpas, lo llevo a la cocina ahora mismo. <button class="speak-btn" onclick="speak('Mil disculpas, lo llevo a la cocina ahora mismo.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Тысяча извинений, сейчас отнесу на кухню.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Gracias. Y disculpe, creo que me han traído el plato equivocado. Yo pedí la sopa. <button class="speak-btn" onclick="speak('Disculpe, creo que me han traído el plato equivocado. Yo pedí la sopa.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Спасибо. И извините, мне принесли не то. Я заказывал суп.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Tiene usted razón, ha sido un error nuestro. Traigo la sopa en un momento. <button class="speak-btn" onclick="speak('Tiene usted razón, ha sido un error nuestro. Traigo la sopa en un momento.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Вы правы, это наша ошибка. Принесу суп через минуту.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Todo estaba riquísimo. Nos puede traer la cuenta, por favor. <button class="speak-btn" onclick="speak('Todo estaba riquísimo. Nos puede traer la cuenta, por favor.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Всё было очень вкусно. Можете принести нам счёт?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Todo junto o por separado? <button class="speak-btn" onclick="speak('¿Todo junto o por separado?')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Всё вместе или по отдельности?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por separado, somos tres. <button class="speak-btn" onclick="speak('Por separado, somos tres.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">По отдельности, нас трое.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Aquí tienen: 28 euros, 22 euros y 30 euros. El servicio no está incluido. <button class="speak-btn" onclick="speak('Aquí tienen: 28 euros, 22 euros y 30 euros. El servicio no está incluido.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Пожалуйста: 28, 22 и 30 евро. Обслуживание не включено.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Puedo pagar con tarjeta? <button class="speak-btn" onclick="speak('¿Puedo pagar con tarjeta?')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Могу заплатить картой?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Камар.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por supuesto. Aquí tiene el datáfono. <button class="speak-btn" onclick="speak('Por supuesto. Aquí tiene el datáfono.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Конечно. Вот терминал.</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue3()">&#9654; Воспроизвести диалог целиком</button>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: CULTURE + ANKI -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Культура, Anki и домашнее задание</h2>
+    <h2>Говорение — Твоя очередь</h2>
   </div>
+  <div class="speak-box">
+    <div class="speak-tag">&#127897;&#65039; Упражнение 1 — Импровизация: жалоба на ожидание</div>
+    <p>Представь: ты в ресторане, ждёшь заказ уже 40 минут. Скажи вслух 3–4 предложения официанту — вежливо, но чётко:</p>
+    <div class="es">Perdona... llevo cuarenta minutos esperando mi plato. ¿Podría traerlo pronto? Tengo que irme en media hora.</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Perdona, llevo cuarenta minutos esperando mi plato. ¿Podría traerlo pronto? Tengo que irme en media hora.')">&#128266; Пример</button>
+    <div class="hint">Попробуй изменить детали: другое время ожидания, другая причина спешки.</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">&#127897;&#65039; Упражнение 2 — Жизнь в Испании: первый ужин в Барселоне</div>
+    <p>Представь: ты только переехал в Барселону. Идёшь в местный ресторан. Разыграй полную сцену вслух:</p>
+    <div class="es">1. «Buenas noches. ¿Tienen mesa para dos personas?»<br>2. «¿Cuál es la especialidad de la casa?»<br>3. «Voy a pedir el menú del día, por favor.»<br>4. «La cuenta, por favor. ¿Está incluido el servicio?»</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Buenas noches. ¿Tienen mesa para dos personas? ¿Cuál es la especialidad de la casa? Voy a pedir el menú del día, por favor. La cuenta, por favor.')">&#128266; Пример</button>
+    <div class="hint">Проговори весь сценарий без остановок. Норма для A2 — 4–6 предложений подряд без паузы.</div>
+  </div>
+</div>
 
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>&#127466;&#127480; Испания на практике: Открываем счёт в банке</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">&#127968; Реальная ситуация — Барселона: CaixaBank / Sabadell</div>
+    <p style="margin-bottom:12px">Ты переехал в Испанию и тебе нужен банковский счёт. Без него нельзя платить аренду, получать зарплату, оформить контракт. Для открытия нужен паспорт и NIE (Número de Identificación de Extranjero).</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Quisiera abrir una cuenta corriente. <button class="speak-btn" onclick="speak('Quisiera abrir una cuenta corriente.')">&#128266;</button></div>
+          <div class="phrase-ru">Я бы хотел открыть текущий счёт.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué documentos necesito? <button class="speak-btn" onclick="speak('¿Qué documentos necesito?')">&#128266;</button></div>
+          <div class="phrase-ru">Какие документы мне нужны?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Tengo pasaporte y NIE. <button class="speak-btn" onclick="speak('Tengo pasaporte y NIE.')">&#128266;</button></div>
+          <div class="phrase-ru">У меня есть паспорт и NIE.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Hay comisiones mensuales? <button class="speak-btn" onclick="speak('¿Hay comisiones mensuales?')">&#128266;</button></div>
+          <div class="phrase-ru">Есть ли ежемесячные комиссии?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuándo recibiré la tarjeta de débito? <button class="speak-btn" onclick="speak('¿Cuándo recibiré la tarjeta de débito?')">&#128266;</button></div>
+          <div class="phrase-ru">Когда получу дебетовую карту?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Puedo hacer transferencias internacionales? <button class="speak-btn" onclick="speak('¿Puedo hacer transferencias internacionales?')">&#128266;</button></div>
+          <div class="phrase-ru">Могу делать международные переводы?</div>
+        </div>
+      </div>
+    </div>
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">&#127968; Мини-диалог: в банке (6 реплик)</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Клиент</div>
+        <div style="flex:1">
+          <div class="dlg-es">Buenos días. Quisiera abrir una cuenta corriente. <button class="speak-btn" onclick="speak('Buenos días. Quisiera abrir una cuenta corriente.')">&#128266;</button></div>
+          <div class="dlg-ru">Доброе утро. Хотел бы открыть текущий счёт.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Банк</div>
+        <div style="flex:1">
+          <div class="dlg-es">Claro. ¿Tiene NIE y pasaporte? <button class="speak-btn" onclick="speak('Claro. ¿Tiene NIE y pasaporte?')">&#128266;</button></div>
+          <div class="dlg-ru">Конечно. У вас есть NIE и паспорт?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Клиент</div>
+        <div style="flex:1">
+          <div class="dlg-es">Sí, aquí los tiene. ¿Hay comisión mensual? <button class="speak-btn" onclick="speak('Sí, aquí los tiene. ¿Hay comisión mensual?')">&#128266;</button></div>
+          <div class="dlg-ru">Да, вот они. Есть ежемесячная комиссия?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Банк</div>
+        <div style="flex:1">
+          <div class="dlg-es">No si domicilia la nómina. La tarjeta llega en 5–7 días hábiles. <button class="speak-btn" onclick="speak('No si domicilia la nómina. La tarjeta llega en cinco a siete días hábiles.')">&#128266;</button></div>
+          <div class="dlg-ru">Нет, если подключите зарплатный счёт. Карта придёт через 5–7 рабочих дней.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Клиент</div>
+        <div style="flex:1">
+          <div class="dlg-es">¿Y puedo hacer transferencias online desde la app? <button class="speak-btn" onclick="speak('¿Y puedo hacer transferencias online desde la app?')">&#128266;</button></div>
+          <div class="dlg-ru">Могу делать переводы онлайн через приложение?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Банк</div>
+        <div style="flex:1">
+          <div class="dlg-es">Por supuesto. Le damos acceso a la banca online en el momento. <button class="speak-btn" onclick="speak('Por supuesto. Le damos acceso a la banca online en el momento.')">&#128266;</button></div>
+          <div class="dlg-ru">Конечно. Доступ к онлайн-банку дадим сразу.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Без NIE банк обычно не откроет счёт резиденту. CaixaBank — крупнейший банк Каталонии; Sabadell и BBVA — другие популярные варианты. Многие иностранцы используют N26 или Revolut как временное решение до получения NIE. Типичный вопрос сотрудника: ¿Trabaja por cuenta ajena o por cuenta propia? (Вы работаете по найму или самостоятельно?)
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
   <div class="culture">
-    <div class="ctag">🌍 Культурная заметка</div>
-    <h4>Ужин в Испании — время, этикет, чаевые</h4>
-    <p>Испанцы ужинают поздно — не раньше 9 вечера, а в выходные часто в 10–11. Рестораны до 8–8:30 вечера почти пусты. Чаевые (propina) в Испании — не обязательны, но приветствуются: 5–10% от счёта. Можно сказать «Quédese con el cambio» (оставьте сдачу) или просто оставить монеты на столе. Приносить счёт без просьбы — дурной тон: официант ждёт, пока клиент не попросит.</p>
+    <div class="ctag">&#127869;&#65039; Ресторанная культура Испании</div>
+    <h4>Почему испанцы едят так поздно?</h4>
+    <p>В Испании обед (la comida) — главный приём пищи дня, приходится на 14:00–16:00. Ужин (la cena) начинается не раньше 21:00, а в Барселоне нередко и в 22:00. Если придёшь в ресторан в 19:00 — он может быть ещё закрыт или пустым. Многие заведения предлагают «menú del día» только в обед: три блюда плюс напиток и хлеб за 10–15 евро — лучшее соотношение цены и качества в Испании. Тапас-культура пришла из Андалусии; в некоторых барах tapa к напитку бесплатна. Чаевые не обязательны — округлить или оставить монеты считается нормальным знаком благодарности.</p>
   </div>
+</div>
 
-  <div style="margin-top:16px" class="anki">
-    <div class="atag">🃏 Anki — карточки урока</div>
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>&#127183; Anki-колода — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку чтобы перевернуть. Скачай всю колоду для Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">la cuenta</div>
+        <div class="anki-card-back">счёт (в ресторане)<br>La cuenta, por favor.<br>Не путай с «bill»!</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">¿Qué lleva...?</div>
+        <div class="anki-card-back">Что входит в...?<br>llevar = содержать<br>¿Qué lleva la paella?</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">el menú del día</div>
+        <div class="anki-card-back">Комплексный обед<br>3 блюда + напиток<br>10–15€, только в обед</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">para llevar</div>
+        <div class="anki-card-back">На вынос / с собой<br>¿Lo puede hacer para llevar?<br>Противоп.: para tomar aquí</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">¿Podría traerme...?</div>
+        <div class="anki-card-back">Не могли бы принести?<br>Condicional = вежливость<br>¿Podría traerme la carta?</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL57()">&#128229; Скачать колоду Anki L57 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>&#128197; До следующего урока (L58: Путешествие и отель)</h4>
     <ul>
-      <li><strong>Quisiera reservar una mesa</strong> — Я бы хотел забронировать столик</li>
-      <li><strong>¿Nos puede traer la carta?</strong> — Принесите, пожалуйста, меню</li>
-      <li><strong>De primero / segundo / postre</strong> — На первое / второе / десерт</li>
-      <li><strong>Perdone, hay un error en el pedido</strong> — Извините, ошибка в заказе</li>
-      <li><strong>¿Nos trae la cuenta?</strong> — Принесите, пожалуйста, счёт</li>
-      <li><strong>¿Puedo pagar con tarjeta?</strong> — Можно оплатить картой?</li>
-      <li><strong>Quédese con el cambio</strong> — Сдачи не надо (оставьте сдачу)</li>
-      <li><strong>al punto / poco hecho / bien hecho</strong> — средней / с кровью / хорошо прожаренный</li>
+      <li><strong>Dreaming Spanish Intermediate</strong> — посмотри видео о еде или ресторанах Испании (15–20 мин). Уровень A2–B1 — немного сложно, но понятно из контекста</li>
+      <li><strong>Polyglot #13</strong> — повтори урок Дмитрия Петрова, сравни словарь с тем, что выучил сегодня</li>
+      <li><strong>Живая практика</strong> — зайди в любое кафе. Закажи полностью по-испански: приветствие → заказ → счёт. Даже если тебе ответят по-русски — практика считается</li>
+      <li><strong>Anki</strong> — повторяй карточки L57 каждый день, 10 минут</li>
+      <li><strong>Задание</strong> — напиши воображаемое меню ресторана (5 блюд с ценами) по-испански</li>
     </ul>
   </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>&#127881; L57 завершён!</h4>
+    <p>Ты знаешь весь ресторанный цикл: резервация → заказ → жалоба → оплата. Следующий урок — путешествия и отель: аэропорт, check-in, проблемы в поездке.</p>
+  </div>
+</div>
 
-  
+</div>
 
-</div><!-- .wrap -->
-
-<!-- DONE BAR -->
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L56.html" class="nav-link-btn">← L56</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="../../lessons/lesson_13.html" class="nav-link-btn">📚 Polyglot #13</a>
-    <a href="L58.html" class="nav-link-btn">L58 →</a>
+    <a href="../index.html" class="nav-link-btn">&#8592; Дашборд</a>
+    <a href="L58.html" class="nav-link-btn">L58: Путешествие &rarr;</a>
   </div>
-  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+  <button class="done-btn" id="done-btn" onclick="markDone()">&#10003; Отметить пройденным</button>
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L57 = [
+  {front:"la cuenta",back:"Русский: счёт (в ресторане)<br><br>Пример: La cuenta, por favor.<br>Заметка: Не «bill» — это английское слово"},
+  {front:"el menú del día",back:"Русский: комплексный обед<br><br>Пример: ¿Tienen menú del día?<br>Заметка: Обычно 10–15€, только в обед"},
+  {front:"pedir",back:"Русский: заказывать (еду)<br><br>Пример: Voy a pedir el bacallà.<br>Заметка: Не ordenar — это латиноамериканизм"},
+  {front:"la reserva",back:"Русский: резервация / бронирование<br><br>Пример: Tengo una reserva a nombre de Ivanov.<br>Заметка: reservar = бронировать"},
+  {front:"¿Qué lleva este plato?",back:"Русский: Что входит в это блюдо?<br><br>Пример: ¿Qué lleva la paella valenciana?<br>Заметка: llevar = содержать (о составе)"},
+  {front:"la propina",back:"Русский: чаевые<br><br>Пример: Dejo una propina del 10%.<br>Заметка: Не обязательны, но приятны"},
+  {front:"para llevar",back:"Русский: на вынос / с собой<br><br>Пример: ¿Lo puede hacer para llevar?<br>Заметка: Противоположность: para tomar aquí"},
+  {front:"sin cebolla",back:"Русский: без лука<br><br>Пример: Sin cebolla, por favor.<br>Заметка: sin + sustantivo = без чего-либо"},
+  {front:"la especialidad de la casa",back:"Русский: фирменное блюдо заведения<br><br>Пример: ¿Cuál es la especialidad de la casa?<br>Заметка: Всегда стоит попробовать"},
+  {front:"¿Podría traerme...?",back:"Русский: Не могли бы вы принести...?<br><br>Пример: ¿Podría traerme más agua?<br>Заметка: Condicional = максимальная вежливость"},
+  {front:"está frío",back:"Русский: холодное (блюдо)<br><br>Пример: Disculpe, este plato está frío.<br>Заметка: estar (не ser) — временное состояние"},
+  {front:"riquísimo",back:"Русский: очень вкусно<br><br>Пример: ¡Está riquísimo!<br>Заметка: Суперлатив от rico. Разговорно и живо"},
+  {front:"por separado",back:"Русский: по отдельности<br><br>Пример: La cuenta, por separado, por favor.<br>Заметка: Противоположность: todo junto"},
+  {front:"el camarero",back:"Русский: официант<br><br>Пример: El camarero trajo la carta.<br>Заметка: la camarera — официантка"},
+  {front:"¿Tienen mesa disponible?",back:"Русский: Есть ли свободный столик?<br><br>Пример: ¿Tienen mesa disponible para dos?<br>Заметка: disponible = свободный, доступный"},
+  {front:"la terraza",back:"Русский: терраса (открытая площадка)<br><br>Пример: Prefiero sentarme en la terraza.<br>Заметка: В Испании открыта почти весь год"},
+  {front:"incluido el servicio",back:"Русский: обслуживание включено<br><br>Пример: ¿Está incluido el servicio?<br>Заметка: Спроси перед тем как оставить чаевые"},
+  {front:"Ponme un café",back:"Русский: Поставь мне кофе (разговорный заказ)<br><br>Пример: Ponme un café con leche, por favor.<br>Заметка: Неформально, но очень распространено"},
+];
+
+function exportAnkiL57() {
+  const tsv = ANKI_DECK_L57.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L57_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Restaurante El Xampanyet, buenas tardes, dígame.',
+    'Hola, quisiera reservar una mesa para esta noche, para las nueve.',
+    '¿Para cuántas personas?',
+    'Para tres personas, por favor. ¿Tienen mesa en la terraza?',
+    'Sí, tenemos disponible. ¿A nombre de quién hago la reserva?',
+    'A nombre de Ivanov.',
+    'Perfecto. ¿Me puede dar un número de teléfono?',
+    'Seis, ocho, cinco, tres, dos, uno, cuatro, siete.',
+    'Reserva confirmada: tres personas, hoy a las nueve, terraza.',
+    'Muchas gracias. Hasta luego.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue3() {
+  const lines = [
+    'Perdona, este plato está frío. ¿Podría calentarlo un poco?',
+    'Mil disculpas, lo llevo a la cocina ahora mismo.',
+    'Todo estaba riquísimo. Nos puede traer la cuenta, por favor.',
+    '¿Todo junto o por separado?',
+    'Por separado, somos tres.',
+    '¿Puedo pagar con tarjeta?',
+    'Por supuesto. Aquí tiene el datáfono.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
 const LESSON_ID = 'L57';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'¿Nos puede traer la carta? — стандартная вежливая просьба принести меню. «La carta» = меню (бумажное). «El menú» в Испании часто означает «бизнес-ланч» (комплекс).',
-  q2:'Perdone, creo que hay un error — вежливая формулировка. «Creo que» = «кажется» смягчает претензию и звучит культурно.',
-  q3:'¿Nos puede traer la cuenta? — стандарт. «La cuenta» = счёт в ресторане. Официанты ждут этой просьбы — сами счёт не принесут.',
-  q4:'al punto — средняя прожарка. Poco hecho = с кровью (rare). Bien hecho = хорошо прожаренный (well done).',
-  q5:'Quisiera reservar una mesa — «quisiera» = условная форма querer, более вежливая, чем «quiero». Стандарт для резервации.',
-  q6:'¿Tienen opciones vegetarianas? — наиболее прямой вопрос. «¿Tienen platos sin carne?» тоже корректно, но «opciones vegetarianas» — стандартный термин.'
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed && st.completed.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'He comido — pretérito perfecto, используется для опыта и недавних действий. Comí — indefinido, конкретное завершённое действие в прошлом.',
+  w2:'Pretérito imperfecto описывает привычные или повторяющиеся действия и состояния в прошлом. Vivía = я жил (привычно, описательно).',
+  w3:'Ir + a + infinitivo — перифраз для ближайшего будущего или намерений. Более разговорный и частый, чем futuro simple.',
+  w4:'¿Podría traerme...? — condicional делает просьбу максимально вежливой. В ресторанах это стандарт.',
+  q1:'La cuenta — стандартная просьба о счёте в Испании. «Bill» — английское, не используется.',
+  q2:'¿Qué lleva? — дословно «что несёт в себе?». Глагол llevar в значении «содержать».',
+  q3:'Quisiera + infinitivo — самый вежливый способ зарезервировать. Quisiera = imperfecto de subjuntivo как вежливость.',
+  q4:'Disculpe + описание проблемы + ¿Podría...? = идеальная вежливая жалоба. Предложить решение — признак культуры.',
+  q5:'Menú del día — испанская традиция комплексного обеда. 2–3 блюда + напиток + хлеб по фиксированной цене.',
+  q6:'Ponme un café — разговорный способ заказать. Imperativo от poner. Очень распространено.',
+  q7:'Por separado — самая простая и понятная формулировка для раздельного счёта.'
 };
 
-function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const clickedKey = el.getAttribute('onclick') && el.getAttribute('onclick').match(/'([abc])'\)/);
+  const ck = clickedKey ? clickedKey[1] : null;
+  if (ck !== correctKey) el.classList.add('wrong');
+  const isCorrect = ck === correctKey;
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
+}
 
-function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct||val.startsWith(correct.slice(0,3))){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! Например: '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Например: "${answer}"`; }}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
+  }
+}
 
-function showAns(id){document.getElementById(id).classList.add('show');}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
 
-function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e',id+'f',id+'g',id+'h',id+'i'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(function(el) {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
 
-const totalSections=8;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(function(el) {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(function(el) {
+    el.style.display = showingTrans3 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(function(el) { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(function(el) { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(function(el) { el.style.display='none'; });
+
+var totalSections = 14;
+function updateProgress() {
+  var scrolled = window.scrollY;
+  var total = document.body.scrollHeight - window.innerHeight;
+  var pct = Math.min(100, Math.round(scrolled / total * 100));
+  var sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>

@@ -768,7 +768,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot:13,
       speaking_focus:"Провести полный ресторанный разговор: резервация, заказ, жалоба, оплата",
-      file:"lessons/L57.html", status:"pending"
+      file:"lessons/L57.html", status:"improved"
     },
     {
       id:"L58", num:58, phase:2, block:"B2D", level:"A2", day:122, week:20,
@@ -780,7 +780,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot:15,
       speaking_focus:"Пройти сценарий: прилёт → отель → проблема → решение",
-      file:"lessons/L58.html", status:"pending"
+      file:"lessons/L58.html", status:"improved"
     },
     {
       id:"L59", num:59, phase:2, block:"B2D", level:"A2", day:124, week:21,

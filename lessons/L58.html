@@ -13,14 +13,13 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
 .nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
 .hero{background:linear-gradient(135deg,#1a1d2e 0%,#0f1118 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
-.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:8px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
 .hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
 .hero h1 .hl{color:var(--gold)}
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -36,13 +35,15 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
 .callout ul{margin-left:16px}.callout li{margin-bottom:3px}
-.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
-.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-.vocab-table td{padding:10px 12px;border-top:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
-.vocab-table tr:hover td{background:var(--bg2)}
-.vocab-table .es{font-weight:700;color:var(--text)}
-.vocab-table .tr{color:var(--muted);font-size:.8rem}
-.vocab-table .ex{color:var(--muted);font-size:.8rem;font-style:italic}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -77,7 +78,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -86,442 +87,1039 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
 .done-btn.marked{background:var(--muted)}
-.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(255,214,10,.05),rgba(69,123,157,.05));border:1px solid rgba(255,214,10,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
-  <a href="../index.html">← Дашборд</a>
-  <span class="level">A2 · Фаза 2 · День 122</span>
-  <a href="L59.html">L59 →</a>
+  <a href="L57.html">&#8592; L57</a>
+  <span class="level">A2 &middot; Фаза 2 &middot; День 122</span>
+  <a href="L59.html">L59 &rarr;</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🔵 Фаза 2 · Практика · Блок 2D · DS Intermediate</div>
+  <div class="phase-tag">&#9992;&#65039; Фаза 2 &middot; Блок 2D: Практика &middot; Dreaming Spanish: Intermediate &middot; Polyglot #15</div>
   <h1>Практика: <span class="hl">путешествие и отель</span></h1>
-  <p class="sub">Аэропорт → отель → проблема → решение — полный сценарий поездки по-испански</p>
+  <p class="sub">Аэропорт, отель, проблемы в поездке — всё по-испански. Это расширение урока #15 курса Polyglot (Дмитрий Петров): город и транспорт.</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Провести полную коммуникацию в контексте путешествия</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут — урок-симуляция</p></div></div>
-    <div class="obj"><div class="ico">📚</div><div><strong>Polyglot</strong><p>Расширение урока #15 курса Polyglot (Дмитрий Петров)</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Аэропорт → заселение → проблема → решение</p></div></div>
+    <div class="obj"><div class="ico">&#9992;&#65039;</div><div><strong>Цель 1</strong><p>Пройти регистрацию в аэропорту и контроль</p></div></div>
+    <div class="obj"><div class="ico">&#127968;</div><div><strong>Цель 2</strong><p>Заселиться в отель, объяснить запросы</p></div></div>
+    <div class="obj"><div class="ico">&#9888;&#65039;</div><div><strong>Цель 3</strong><p>Решить типичные проблемы: потеря, задержка, жалоба</p></div></div>
+    <div class="obj"><div class="ico">&#128506;&#65039;</div><div><strong>Цель 4</strong><p>Спросить дорогу и ориентироваться в незнакомом городе</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: PHRASES BY CONTEXT -->
+<!-- 3. WARM-UP -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Фразы по ситуациям — путешествие шаг за шагом</h2>
+    <h2>Повторение — Урок 57: В ресторане</h2>
   </div>
-
-  <p style="margin-bottom:14px">Это расширение урока #15 из курса Polyglot (Дмитрий Петров). Мы строим полный нарратив путешествия с лексикой для каждого этапа.</p>
-
-  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
-    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">✈️ В аэропорту</p>
-    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
-      <li>¿Dónde está el <strong>mostrador de facturación</strong>? — Где стойка регистрации?</li>
-      <li>Quisiera <strong>facturar</strong> esta maleta. — Я бы хотел сдать этот чемодан.</li>
-      <li>¿Cuál es la <strong>puerta de embarque</strong>? — Какой выход на посадку?</li>
-      <li>El vuelo está <strong>retrasado</strong> una hora. — Рейс задержан на час.</li>
-      <li>¿Puedo llevar esto en el <strong>equipaje de mano</strong>? — Можно взять это в ручную кладь?</li>
-    </ul>
-  </div>
-
-  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
-    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">🏨 В отеле — заселение</p>
-    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
-      <li>Buenas tardes. Tengo una <strong>reserva</strong> a nombre de... — Добрый день. У меня бронь на имя...</li>
-      <li>Quisiera una <strong>habitación doble/individual</strong>. — Номер на двоих/одиночный.</li>
-      <li>¿Está el <strong>desayuno incluido</strong>? — Завтрак включён?</li>
-      <li>¿A qué hora es el <strong>check-out</strong>? — Во сколько выезд?</li>
-      <li>¿Pueden subir el <strong>equipaje</strong> a la habitación? — Могут подняться с багажом в номер?</li>
-      <li>¿Hay <strong>wifi</strong> en la habitación? — В номере есть wi-fi?</li>
-    </ul>
-  </div>
-
-  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
-    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">⚠️ Проблемы в отеле</p>
-    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
-      <li>Perdone, hay un problema con mi habitación. — Извините, проблема с номером.</li>
-      <li>El aire acondicionado <strong>no funciona</strong>. — Кондиционер не работает.</li>
-      <li>El cuarto de baño está <strong>sucio/inundado</strong>. — Ванная грязная/затоплена.</li>
-      <li>¿Pueden <strong>cambiarme de habitación</strong>? — Не могут ли переселить в другой номер?</li>
-      <li>Hay mucho <strong>ruido</strong> en el pasillo. — В коридоре очень шумно.</li>
-      <li>He perdido la <strong>llave de la habitación</strong>. — Я потерял ключ от номера.</li>
-    </ul>
-  </div>
-
-  <div style="background:var(--bg2);border-radius:8px;padding:16px 20px;margin-bottom:14px">
-    <p style="font-weight:700;color:var(--gold);margin-bottom:8px">🗺️ Ориентирование в городе</p>
-    <ul style="margin-left:16px;font-size:.88rem;color:var(--muted)">
-      <li>Perdone, ¿cómo se va a...? — Извините, как добраться до...?</li>
-      <li>¿Está lejos de aquí? — Это далеко отсюда?</li>
-      <li>¿Puedo ir a pie? — Можно пойти пешком?</li>
-      <li>Tome la <strong>primera calle a la derecha</strong>. — Возьмите первую улицу направо.</li>
-      <li>Está a <strong>cinco minutos</strong> caminando. — Пять минут ходьбы.</li>
-      <li>¿Dónde hay una parada de <strong>metro / autobús</strong>? — Где станция метро / остановка автобуса?</li>
-    </ul>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">4 вопроса по материалу предыдущего урока. Ответь не подглядывая.</p>
+  <div class="quiz">
+    <h3>&#128260; Ресторан — помнишь?</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Как попросить счёт в испанском ресторане?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">El bill, por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">La cuenta, por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">La factura, por favor.</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Как спросить о составе блюда?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">¿Qué lleva este plato?</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">¿Qué tiene este plato?</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">¿Cómo está hecho este plato?</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «Без лука, пожалуйста» — как сказать по-испански?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">No cebolla, por favor.</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Sin cebollas gracias.</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Sin cebolla, por favor.</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Разговорный способ заказать кофе в испанском баре:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">Me gustaría un café.</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">Quiero que me traigan un café.</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">Ponme un café, por favor.</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: VOCABULARY -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — путешествие и отель</h2>
+    <h2>Теория — Язык путешественника</h2>
   </div>
 
-  <table class="vocab-table">
-    <tr><th>Испанский</th><th>Транскрипция</th><th>Русский</th><th>Пример</th></tr>
-    <tr><td class="es">el vuelo</td><td class="tr">[буэ-ло]</td><td>рейс / полёт</td><td class="ex">Mi vuelo sale a las 10.</td></tr>
-    <tr><td class="es">facturar</td><td class="tr">[фак-ту-рар]</td><td>регистрировать / сдавать багаж</td><td class="ex">¿Dónde facturo el equipaje?</td></tr>
-    <tr><td class="es">el equipaje</td><td class="tr">[эки-па-хе]</td><td>багаж</td><td class="ex">El equipaje está en la cinta.</td></tr>
-    <tr><td class="es">la maleta</td><td class="tr">[ма-ле-та]</td><td>чемодан</td><td class="ex">Esta maleta es muy pesada.</td></tr>
-    <tr><td class="es">retrasado</td><td class="tr">[ре-тра-са-до]</td><td>задержан</td><td class="ex">El vuelo está retrasado.</td></tr>
-    <tr><td class="es">la habitación</td><td class="tr">[аби-та-сьон]</td><td>номер (в отеле) / комната</td><td class="ex">¿Puedo ver la habitación?</td></tr>
-    <tr><td class="es">el check-in / el check-out</td><td class="tr">[чек-ин]</td><td>заселение / выселение</td><td class="ex">El check-out es a las 12.</td></tr>
-    <tr><td class="es">el desayuno</td><td class="tr">[де-са-йу-но]</td><td>завтрак</td><td class="ex">¿El desayuno está incluido?</td></tr>
-    <tr><td class="es">funcionar</td><td class="tr">[фун-сьо-нар]</td><td>работать (техника)</td><td class="ex">La ducha no funciona.</td></tr>
-    <tr><td class="es">el pasillo</td><td class="tr">[па-си-йо]</td><td>коридор</td><td class="ex">Hay ruido en el pasillo.</td></tr>
-    <tr><td class="es">la llave</td><td class="tr">[йа-бе]</td><td>ключ</td><td class="ex">He olvidado la llave.</td></tr>
-    <tr><td class="es">a pie</td><td class="tr">[а пье]</td><td>пешком</td><td class="ex">¿Podemos ir a pie?</td></tr>
-    <tr><td class="es">la parada</td><td class="tr">[па-ра-да]</td><td>остановка</td><td class="ex">La parada de metro está cerca.</td></tr>
+  <div class="callout info">
+    <h4>&#128218; Polyglot #15 — Город и транспорт</h4>
+    <p>Этот урок расширяет урок #15 курса Polyglot (Дмитрий Петров): ориентация в городе, транспорт, вопросы о дороге. Сегодня добавляем аэропорт, отель и решение проблем в поездке.</p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 1</span>
+      <span class="rule-title">В аэропорту</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">Аэропорт — первый тест для языка. Все основные фразы строятся на глаголах <strong>facturar</strong> (регистрировать багаж), <strong>embarcar</strong> (садиться на борт) и существительных <strong>vuelo</strong> (рейс), <strong>puerta</strong> (выход на посадку).</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Регистрация</span><span class="sep">&rarr;</span><span class="ar">el mostrador de facturación</span></div>
+      <div class="wp"><span class="en">Рейс</span><span class="sep">&rarr;</span><span class="ar">el vuelo</span></div>
+      <div class="wp"><span class="en">Посадочный талон</span><span class="sep">&rarr;</span><span class="ar">la tarjeta de embarque</span></div>
+      <div class="wp"><span class="en">Выход на посадку</span><span class="sep">&rarr;</span><span class="ar">la puerta de embarque</span></div>
+      <div class="wp"><span class="en">Ручная кладь</span><span class="sep">&rarr;</span><span class="ar">el equipaje de mano</span></div>
+      <div class="wp"><span class="en">Зарегистрированный багаж</span><span class="sep">&rarr;</span><span class="ar">el equipaje facturado</span></div>
+      <div class="wp"><span class="en">Задержка рейса</span><span class="sep">&rarr;</span><span class="ar">el vuelo está retrasado</span></div>
+      <div class="wp"><span class="en">Паспортный контроль</span><span class="sep">&rarr;</span><span class="ar">el control de pasaportes</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 2</span>
+      <span class="rule-title">Регистрация в отеле</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px"><strong>Check-in</strong> = hacer el check-in / registrarse. <strong>Check-out</strong> = hacer el check-out / dejar la habitación. Ключевые глаголы: <em>reservar, confirmar, subir (el equipaje), bajar (al desayuno)</em>.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Заселение</span><span class="sep">&rarr;</span><span class="ar">el check-in / el registro</span></div>
+      <div class="wp"><span class="en">Номер</span><span class="sep">&rarr;</span><span class="ar">la habitación</span></div>
+      <div class="wp"><span class="en">Одноместный/двухместный</span><span class="sep">&rarr;</span><span class="ar">individual / doble</span></div>
+      <div class="wp"><span class="en">С завтраком</span><span class="sep">&rarr;</span><span class="ar">con desayuno incluido</span></div>
+      <div class="wp"><span class="en">Ключ / карта</span><span class="sep">&rarr;</span><span class="ar">la llave / la tarjeta</span></div>
+      <div class="wp"><span class="en">Этаж</span><span class="sep">&rarr;</span><span class="ar">la planta / el piso</span></div>
+      <div class="wp"><span class="en">Лифт</span><span class="sep">&rarr;</span><span class="ar">el ascensor</span></div>
+      <div class="wp"><span class="en">Будить</span><span class="sep">&rarr;</span><span class="ar">despertar (llamada de despertador)</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 3</span>
+      <span class="rule-title">Проблемы в поездке</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">Главная формула для жалобы или проблемы: <strong>He perdido... / Me han robado... / No funciona...</strong>. Всегда называй, что случилось, и чего хочешь.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Я потерял паспорт</span><span class="sep">&rarr;</span><span class="ar">he perdido el pasaporte</span></div>
+      <div class="wp"><span class="en">Меня ограбили</span><span class="sep">&rarr;</span><span class="ar">me han robado</span></div>
+      <div class="wp"><span class="en">Не работает</span><span class="sep">&rarr;</span><span class="ar">no funciona</span></div>
+      <div class="wp"><span class="en">Рейс отменён</span><span class="sep">&rarr;</span><span class="ar">el vuelo está cancelado</span></div>
+      <div class="wp"><span class="en">Потерял багаж</span><span class="sep">&rarr;</span><span class="ar">han perdido mi maleta</span></div>
+      <div class="wp"><span class="en">Мне нужна помощь</span><span class="sep">&rarr;</span><span class="ar">necesito ayuda</span></div>
+      <div class="wp"><span class="en">Где ближайшее посольство?</span><span class="sep">&rarr;</span><span class="ar">¿Dónde está la embajada más cercana?</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 4</span>
+      <span class="rule-title">Направления и транспорт</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">Расширение темы из Polyglot #15. Три способа добраться: <strong>en metro, en taxi, a pie</strong>. Ключевые вопросы: <em>¿Cómo llego a...? / ¿Cuánto tarda? / ¿Hay algún autobús directo?</em></p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Как добраться до...?</span><span class="sep">&rarr;</span><span class="ar">¿Cómo llego a...?</span></div>
+      <div class="wp"><span class="en">Сколько времени?</span><span class="sep">&rarr;</span><span class="ar">¿Cuánto tarda / tardo?</span></div>
+      <div class="wp"><span class="en">Первый/последний метро</span><span class="sep">&rarr;</span><span class="ar">el primer / último metro</span></div>
+      <div class="wp"><span class="en">Прямой маршрут</span><span class="sep">&rarr;</span><span class="ar">línea directa / sin transbordo</span></div>
+      <div class="wp"><span class="en">Пересадка</span><span class="sep">&rarr;</span><span class="ar">el transbordo / el trasbordo</span></div>
+      <div class="wp"><span class="en">Вход / выход</span><span class="sep">&rarr;</span><span class="ar">la entrada / la salida</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">&#9888;&#65039; Типичные ошибки в поездке</h3>
+  <table class="mistakes">
+    <tr><th>Ситуация</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Потерял вещи</td><td class="wrong-ex">Perdí mi pasaporte (indefinido)</td><td class="right-ex">He perdido mi pasaporte (perfecto)</td><td>Perfecto используется для недавних событий, актуальных сейчас</td></tr>
+    <tr><td>Задержка рейса</td><td class="wrong-ex">Mi vuelo es retrasado</td><td class="right-ex">Mi vuelo está retrasado</td><td>Estar — временное состояние. Ser — постоянное свойство</td></tr>
+    <tr><td>Регистрация в отеле</td><td class="wrong-ex">Quiero hacer check-in de mi habitación</td><td class="right-ex">Quisiera hacer el check-in, tengo una reserva</td><td>Чётче назвать, что у тебя есть бронь: tengo una reserva</td></tr>
+    <tr><td>Этаж</td><td class="wrong-ex">Estoy en el floor cinco</td><td class="right-ex">Estoy en la quinta planta</td><td>Floor — английское. Этаж = la planta / el piso. Порядковые числа!</td></tr>
+    <tr><td>Пересадка</td><td class="wrong-ex">Necesito un transfer</td><td class="right-ex">Tengo que hacer transbordo en...</td><td>Transfer — не испанское. Transbordo = пересадка в транспорте</td></tr>
+    <tr><td>Просьба о помощи</td><td class="wrong-ex">Necesito help</td><td class="right-ex">Necesito ayuda / ¿Puede ayudarme?</td><td>«Help» — английское. ayuda = помощь; ayudar = помогать</td></tr>
   </table>
 </div>
 
-<!-- SECTION 3: QUIZ 1 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — В аэропорту и отеле</html></h2>
+    <h2>Словарь путешественника — 20 слов</h2>
   </div>
-
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Туристический сценарий — что сказать?</h3>
-
-    <div class="quiz-q" id="q1">
-      <div class="q-text">1. Ты хочешь сдать чемодан. Что говоришь?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Quisiera facturar esta maleta.</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Quiero poner la maleta aquí.</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">¿Dónde está mi maleta?</div>
-      </div>
-      <div class="feedback" id="fb-q1"></div>
-    </div>
-
-    <div class="quiz-q" id="q2">
-      <div class="q-text">2. На ресепшн. У тебя есть бронь. Как представить себя?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Hola, soy yo.</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Buenas tardes. Tengo una reserva a nombre de García.</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Quiero una habitación, por favor.</div>
-      </div>
-      <div class="feedback" id="fb-q2"></div>
-    </div>
-
-    <div class="quiz-q" id="q3">
-      <div class="q-text">3. Кондиционер не работает. Как пожаловаться?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">El aire acondicionado no funciona.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">El aire acondicionado está roto para siempre.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">No me gusta el frío.</div>
-      </div>
-      <div class="feedback" id="fb-q3"></div>
-    </div>
-
-    <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Далеко ли отсюда?» — спрашиваем на улице:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">¿Es muy distancia de aquí?</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">¿Está lejos de aquí?</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">¿Hay mucha distancia?</div>
-      </div>
-      <div class="feedback" id="fb-q4"></div>
-    </div>
-
-    <div class="quiz-q" id="q5">
-      <div class="q-text">5. Хочешь узнать время выезда из отеля:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">¿A qué hora es el check-out?</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">¿Cuándo debo salir del hotel?</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">¿Cuándo termina mi habitación?</div>
-      </div>
-      <div class="feedback" id="fb-q5"></div>
-    </div>
-
-    <div class="quiz-q" id="q6">
-      <div class="q-text">6. Как сказать «Я потерял ключ от номера»?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">He olvidado la llave de mi habitación.</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">He perdido la llave de la habitación.</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">No tengo mi llave.</div>
-      </div>
-      <div class="feedback" id="fb-q6"></div>
-    </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай &#128266; для произношения. Самые важные слова и фразы для поездки в Испанию.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">el vuelo</div><div class="vocab-ru">рейс / полёт</div></div><button class="speak-btn" onclick="speak('el vuelo')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la tarjeta de embarque</div><div class="vocab-ru">посадочный талон</div></div><button class="speak-btn" onclick="speak('la tarjeta de embarque')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el equipaje de mano</div><div class="vocab-ru">ручная кладь</div></div><button class="speak-btn" onclick="speak('el equipaje de mano')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la puerta de embarque</div><div class="vocab-ru">выход на посадку (гейт)</div></div><button class="speak-btn" onclick="speak('la puerta de embarque')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la habitación</div><div class="vocab-ru">номер (в отеле)</div></div><button class="speak-btn" onclick="speak('la habitación')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la reserva</div><div class="vocab-ru">бронирование</div></div><button class="speak-btn" onclick="speak('la reserva')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">con desayuno incluido</div><div class="vocab-ru">с включённым завтраком</div></div><button class="speak-btn" onclick="speak('con desayuno incluido')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el ascensor</div><div class="vocab-ru">лифт</div></div><button class="speak-btn" onclick="speak('el ascensor')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la planta / el piso</div><div class="vocab-ru">этаж</div></div><button class="speak-btn" onclick="speak('la planta')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">facturar el equipaje</div><div class="vocab-ru">сдать багаж (зарегистрировать)</div></div><button class="speak-btn" onclick="speak('facturar el equipaje')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el vuelo está retrasado</div><div class="vocab-ru">рейс задержан</div></div><button class="speak-btn" onclick="speak('el vuelo está retrasado')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">he perdido mi maleta</div><div class="vocab-ru">я потерял чемодан</div></div><button class="speak-btn" onclick="speak('he perdido mi maleta')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">no funciona</div><div class="vocab-ru">не работает</div></div><button class="speak-btn" onclick="speak('no funciona')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¿Cómo llego a...?</div><div class="vocab-ru">Как добраться до...?</div></div><button class="speak-btn" onclick="speak('¿Cómo llego?')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el transbordo</div><div class="vocab-ru">пересадка (в транспорте)</div></div><button class="speak-btn" onclick="speak('el transbordo')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">me han robado</div><div class="vocab-ru">меня обокрали</div></div><button class="speak-btn" onclick="speak('me han robado')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">necesito ayuda</div><div class="vocab-ru">мне нужна помощь</div></div><button class="speak-btn" onclick="speak('necesito ayuda')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la recepción</div><div class="vocab-ru">ресепшн (стойка отеля)</div></div><button class="speak-btn" onclick="speak('la recepción')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el pasillo / la ventana</div><div class="vocab-ru">место у прохода / у окна</div></div><button class="speak-btn" onclick="speak('el pasillo')">&#128266;</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la sala de espera</div><div class="vocab-ru">зал ожидания</div></div><button class="speak-btn" onclick="speak('la sala de espera')">&#128266;</button></div>
   </div>
 </div>
 
-<!-- SECTION 4: QUIZ 2 -->
+<!-- 6. QUIZ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Тест 2 — Заполни диалог в отеле</h2>
+    <h2>Тест 1 — Путешествие и отель</h2>
   </div>
-
   <div class="quiz">
-    <h3>✏️ Диалог на ресепшн — вставь нужное слово</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. — Buenas tardes. Tengo una _____  a nombre de Petrov. (бронь)</div>
-      <input type="text" class="text-input" placeholder="reserva / habitación / cita..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','reserva','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">reserva — бронь/резервация. «Tengo una reserva» = у меня есть бронь.</div>
+    <h3>&#127919; 7 вопросов — аэропорт, отель, транспорт</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как сказать «посадочный талон» по-испански?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">la tarjeta de embarque</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">el ticket de vuelo</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">el documento de viaje</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. — ¿Está el desayuno _____? (включён)</div>
-      <input type="text" class="text-input" placeholder="incluido / servido / gratis..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','incluido','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">incluido — «¿Está incluido?» = включено ли? Стандартный вопрос при заселении.</div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Рейс задержан» — правильная форма:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">El vuelo es retrasado.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">El vuelo está retrasado.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">El vuelo tiene retraso mucho.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. — Perdone, la ducha no _____. (работает)</div>
-      <input type="text" class="text-input" placeholder="funciona / trabaja / sirve..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','funciona','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">funciona — «funcionar» = работать (о технике, механизмах). «Trabajar» — для людей, не для вещей.</div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. В аэропорту ты хочешь сдать чемодан. Скажешь на стойке регистрации:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Quiero poner mi maleta en el avión.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Quisiera facturar esta maleta.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Necesito enviar mi equipaje.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. — ¿Pueden _____me de habitación? (переселить)</div>
-      <input type="text" class="text-input" placeholder="cambiar / mover / poner..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','cambiar','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">cambiar — «cambiarme de habitación» = переселить меня в другой номер. «Me» = мне (косвенное местоимение).</div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Ты заселяешься в отель. Как сообщить о брони?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Quiero una habitación ahora.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">He pagado el hotel online.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Tengo una reserva a nombre de Ivanov.</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. — ¿Cómo se va al centro? ¿Puedo ir a _____? (пешком)</div>
-      <input type="text" class="text-input" placeholder="pie / metro / bus..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','pie','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">pie — «a pie» = пешком. «Ir a pie» = идти пешком. «Ir en metro/bus» = ехать на метро/автобусе.</div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Как правильно сказать «я потерял паспорт» (недавно, актуально сейчас)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Perdí mi pasaporte.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Mi pasaporte está perdido.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">He perdido mi pasaporte.</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Как спросить, сколько времени занимает дорога?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">¿Cuánto tarda en llegar?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">¿Cuánto tiempo necesitas?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">¿Cuánto dura el camino exactamente?</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Что значит <strong>«sin transbordo»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Без остановок</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Без задержек</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Без пересадки (прямой рейс/маршрут)</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 5: DIALOGUES -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Полный сценарий — прилёт, отель, проблема</h2>
+    <h2>Тест 2 — Заполни пропуски</h2>
   </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      ✈️ Сцена 1: В аэропорту Барселоны
-      <button class="dlg-toggle" onclick="toggleTranslation('tr1')">Показать перевод</button>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи в нижнем регистре. Одно слово на пропуск.</p>
+  <div class="quiz">
+    <h3>&#9999;&#65039; Аэропорт и отель — впиши слово</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «Рейс задержан» &rarr; El vuelo está ________.</div>
+      <input type="text" class="text-input" placeholder="прилагательное..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','retrasado','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">&#9989; retrasado — estar retrasado = быть задержанным</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Турист</div>
-      <div><div class="dlg-es">Perdone, ¿dónde está el mostrador de facturación de Iberia?</div>
-      <div class="dlg-ru" id="tr1" style="display:none">Извините, где стойка регистрации Iberia?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">2. «Я потерял чемодан» &rarr; He ________ mi maleta.</div>
+      <input type="text" class="text-input" placeholder="причастие от perder..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','perdido','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">&#9989; perdido — participio de perder. He perdido = pretérito perfecto</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Персонал</div>
-      <div><div class="dlg-es">Está en el área D, al fondo a la derecha. ¿Necesita ayuda con el equipaje?</div>
-      <div class="dlg-ru" id="tr1b" style="display:none">Он в зоне D, в конце направо. Нужна помощь с багажом?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Мне нужна помощь» &rarr; Necesito ________.</div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','ayuda','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">&#9989; ayuda — помощь. ayudar = помогать</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Турист</div>
-      <div><div class="dlg-es">No, gracias. Oiga, ¿el vuelo IB3422 sale a tiempo?</div>
-      <div class="dlg-ru" id="tr1c" style="display:none">Нет, спасибо. Скажите, рейс IB3422 вылетает вовремя?</div></div>
+    <div class="text-ex">
+      <div class="tex-q">4. «С включённым завтраком» &rarr; Con desayuno ________.</div>
+      <input type="text" class="text-input" placeholder="причастие..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','incluido','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">&#9989; incluido — включённый. Participio de incluir.</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Персонал</div>
-      <div><div class="dlg-es">Lo siento, está retrasado una hora. La salida es ahora a las 15:30.</div>
-      <div class="dlg-ru" id="tr1d" style="display:none">К сожалению, задержан на час. Вылет теперь в 15:30.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">5. «Как добраться до центра?» &rarr; ¿Cómo ________ al centro?</div>
+      <input type="text" class="text-input" placeholder="глагол (1 л. ед.ч.)..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','llego','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">&#9989; llego — от llegar (добираться, приезжать). ¿Cómo llego a...?</div>
     </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      🏨 Сцена 2: Заселение в отеле
-      <button class="dlg-toggle" onclick="toggleTranslation('tr2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Турист</div>
-      <div><div class="dlg-es">Buenas tardes. Tengo una reserva a nombre de Petrov, Evgeny.</div>
-      <div class="dlg-ru" id="tr2" style="display:none">Добрый день. У меня бронь на имя Петров, Евгений.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Ресепш.</div>
-      <div><div class="dlg-es">Sí, aquí le tenemos. Habitación doble, tres noches. ¿Me puede dar su pasaporte?</div>
-      <div class="dlg-ru" id="tr2b" style="display:none">Да, вот ваша запись. Двухместный номер, три ночи. Можете дать ваш паспорт?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Турист</div>
-      <div><div class="dlg-es">Aquí tiene. ¿Está el desayuno incluido? ¿Y hay wifi en la habitación?</div>
-      <div class="dlg-ru" id="tr2c" style="display:none">Пожалуйста. Завтрак включён? И в номере есть wi-fi?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Ресепш.</div>
-      <div><div class="dlg-es">El desayuno se sirve de 7 a 10. El wifi es gratuito — la contraseña está en la llave.</div>
-      <div class="dlg-ru" id="tr2d" style="display:none">Завтрак подают с 7 до 10. Wi-fi бесплатный — пароль написан на ключе.</div></div>
-    </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      ⚠️ Сцена 3: Проблема в номере
-      <button class="dlg-toggle" onclick="toggleTranslation('tr3')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Турист</div>
-      <div><div class="dlg-es">Buenas noches. Perdone, tengo un problema. El aire acondicionado de mi habitación no funciona.</div>
-      <div class="dlg-ru" id="tr3" style="display:none">Добрый вечер. Извините, у меня проблема. Кондиционер в моём номере не работает.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Ресепш.</div>
-      <div><div class="dlg-es">Lo siento mucho. ¿Qué número de habitación tiene usted?</div>
-      <div class="dlg-ru" id="tr3b" style="display:none">Очень сожалею. Какой у вас номер комнаты?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Турист</div>
-      <div><div class="dlg-es">Habitación 315. Además hay mucho ruido en el pasillo y no puedo dormir.</div>
-      <div class="dlg-ru" id="tr3c" style="display:none">Номер 315. Кроме того, в коридоре очень шумно и я не могу спать.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Ресепш.</div>
-      <div><div class="dlg-es">Le cambio a la habitación 412, que es más tranquila. Enviamos a mantenimiento esta noche.</div>
-      <div class="dlg-ru" id="tr3d" style="display:none">Переселяю вас в номер 412, он потише. Сегодня ночью пришлём техника.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Турист</div>
-      <div><div class="dlg-es">Muchas gracias, se lo agradezco mucho.</div>
-      <div class="dlg-ru" id="tr3e" style="display:none">Большое спасибо, очень признателен.</div></div>
+    <div class="text-ex">
+      <div class="tex-q">6. «Пересадка» (в транспорте) &rarr; el ________</div>
+      <input type="text" class="text-input" placeholder="существительное..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','transbordo','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">&#9989; transbordo — пересадка. Hacer transbordo = делать пересадку.</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: SPEAKING -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Говорение — симуляция поездки</h2>
+    <h2>Диалоги — 3 сцены путешествия</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух, играя обе роли. Нажимай &#128266; у каждой реплики.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      &#9992;&#65039; Диалог 1: Регистрация в аэропорту (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. Quisiera facturar mi maleta y hacer el check-in. <button class="speak-btn" onclick="speak('Buenos días. Quisiera facturar mi maleta y hacer el check-in.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Доброе утро. Хотел бы сдать чемодан и зарегистрироваться.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Su pasaporte y número de vuelo, por favor. <button class="speak-btn" onclick="speak('Su pasaporte y número de vuelo, por favor.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Ваш паспорт и номер рейса, пожалуйста.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Aquí tiene. El vuelo IB3456 a Madrid. <button class="speak-btn" onclick="speak('Aquí tiene. El vuelo IB tres cuatro cinco seis a Madrid.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Пожалуйста. Рейс IB3456 в Мадрид.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Prefiere asiento de pasillo o ventana? <button class="speak-btn" onclick="speak('¿Prefiere asiento de pasillo o ventana?')">&#128266;</button></div>
+        <div class="dlg-ru translation">Предпочитаете место у прохода или у окна?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Ventana, por favor. ¿Está retrasado el vuelo? <button class="speak-btn" onclick="speak('Ventana, por favor. ¿Está retrasado el vuelo?')">&#128266;</button></div>
+        <div class="dlg-ru translation">У окна, пожалуйста. Рейс задержан?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, sale a tiempo. La puerta de embarque es la C14. <button class="speak-btn" onclick="speak('No, sale a tiempo. La puerta de embarque es la C catorce.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Нет, вылетает вовремя. Гейт C14.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Esta maleta puede ir de equipaje de mano? <button class="speak-btn" onclick="speak('¿Esta maleta puede ir de equipaje de mano?')">&#128266;</button></div>
+        <div class="dlg-ru translation">Этот чемодан может идти как ручная кладь?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Tiene que facturarla, supera los 10 kg permitidos. <button class="speak-btn" onclick="speak('Tiene que facturarla, supera los diez kilos permitidos.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Нужно сдать в багаж — превышает 10 кг разрешённых.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">De acuerdo. ¿Dónde está el control de pasaportes? <button class="speak-btn" onclick="speak('De acuerdo. ¿Dónde está el control de pasaportes?')">&#128266;</button></div>
+        <div class="dlg-ru translation">Хорошо. Где паспортный контроль?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Todo recto hasta el fondo, luego a la derecha. Buen viaje. <button class="speak-btn" onclick="speak('Todo recto hasta el fondo, luego a la derecha. Buen viaje.')">&#128266;</button></div>
+        <div class="dlg-ru translation">Прямо до конца, потом направо. Счастливого пути.</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">&#9654; Воспроизвести диалог целиком</button>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 1 — Рассказ о поездке</div>
-    <p>Расскажи о реальной или воображаемой поездке. Используй прошедшее время (llegué, fui, me quedé) и описание (era, había, estaba). 2 минуты:</p>
-    <div class="es">El año pasado fui a... El vuelo duró... / estaba retrasado...<br>El hotel era... / estaba en... / tenía...<br>Un día tuve un problema: el... no funcionaba...</div>
-    <div class="hint">Чередуй Indefinido (действия) и Imperfecto (описания)</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      &#127968; Диалог 2: Заселение в отель (11 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Гость</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenas tardes. Tengo una reserva a nombre de Ivanov. <button class="speak-btn" onclick="speak('Buenas tardes. Tengo una reserva a nombre de Ivanov.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Добрый день. У меня бронирование на имя Иванов.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рецепц.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, aquí está. Habitación doble con desayuno incluido, tres noches. <button class="speak-btn" onclick="speak('Sí, aquí está. Habitación doble con desayuno incluido, tres noches.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Да, вот. Двухместный номер с завтраком, три ночи.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Гость</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿En qué planta está la habitación? <button class="speak-btn" onclick="speak('¿En qué planta está la habitación?')">&#128266;</button></div>
+        <div class="dlg-ru translation2">На каком этаже номер?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рецепц.</div>
+      <div style="flex:1">
+        <div class="dlg-es">En la quinta planta. Hay ascensor al fondo del pasillo. <button class="speak-btn" onclick="speak('En la quinta planta. Hay ascensor al fondo del pasillo.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">На пятом этаже. Лифт в конце коридора.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Гость</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿A qué hora es el desayuno? <button class="speak-btn" onclick="speak('¿A qué hora es el desayuno?')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Во сколько завтрак?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рецепц.</div>
+      <div style="flex:1">
+        <div class="dlg-es">De siete a diez y media en el restaurante de la planta baja. <button class="speak-btn" onclick="speak('De siete a diez y media en el restaurante de la planta baja.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">С семи до половины одиннадцатого в ресторане на первом этаже.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Гость</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Tienen wifi gratuito en la habitación? <button class="speak-btn" onclick="speak('¿Tienen wifi gratuito en la habitación?')">&#128266;</button></div>
+        <div class="dlg-ru translation2">В номере есть бесплатный wifi?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рецепц.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, la contraseña está en la tarjeta de la habitación. <button class="speak-btn" onclick="speak('Sí, la contraseña está en la tarjeta de la habitación.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Да, пароль указан на карточке номера.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Гость</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Puede despertarme mañana a las siete? <button class="speak-btn" onclick="speak('¿Puede despertarme mañana a las siete?')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Можете разбудить меня завтра в семь?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Рецепц.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro, con mucho gusto. Aquí tiene su llave. Disfrute de su estancia. <button class="speak-btn" onclick="speak('Claro, con mucho gusto. Aquí tiene su llave. Disfrute de su estancia.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Конечно, с удовольствием. Вот ваш ключ. Приятного пребывания.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Гость</div>
+      <div style="flex:1">
+        <div class="dlg-es">Muchas gracias. <button class="speak-btn" onclick="speak('Muchas gracias.')">&#128266;</button></div>
+        <div class="dlg-ru translation2">Большое спасибо.</div>
+      </div>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 2 — Позвони в отель</div>
-    <p>Сыграй обе роли: ты звонишь забронировать номер. Нужно:</p>
-    <div class="es">— Забронировать двухместный номер на 5 ночей<br>— Спросить о завтраке и wi-fi<br>— Уточнить время заселения (check-in)<br>— Попросить номер поближе к морю (cerca del mar)</div>
-    <div class="hint">Начни: «Hola, quisiera reservar una habitación doble para cinco noches...»</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      &#9888;&#65039; Диалог 3: Проблема — потеря багажа (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Disculpe, he llegado en el vuelo IB3456 y no encuentro mi maleta. <button class="speak-btn" onclick="speak('Disculpe, he llegado en el vuelo IB tres cuatro cinco seis y no encuentro mi maleta.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Извините, я прилетел рейсом IB3456 и не нахожу свой чемодан.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Agente</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿En qué cinta de equipajes estaba buscando? <button class="speak-btn" onclick="speak('¿En qué cinta de equipajes estaba buscando?')">&#128266;</button></div>
+        <div class="dlg-ru translation3">На какой ленте багажа вы искали?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">En la cinta 7. Ya no hay maletas. <button class="speak-btn" onclick="speak('En la cinta siete. Ya no hay maletas.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">На ленте 7. Чемоданов уже нет.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Agente</div>
+      <div style="flex:1">
+        <div class="dlg-es">Necesito su tarjeta de embarque y la etiqueta del equipaje. <button class="speak-btn" onclick="speak('Necesito su tarjeta de embarque y la etiqueta del equipaje.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Мне нужен ваш посадочный талон и багажная бирка.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Aquí las tiene. La maleta es grande, de color azul marino. <button class="speak-btn" onclick="speak('Aquí las tiene. La maleta es grande, de color azul marino.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Вот. Чемодан большой, тёмно-синего цвета.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Agente</div>
+      <div style="flex:1">
+        <div class="dlg-es">Parece que su maleta se quedó en el vuelo de conexión. La localizamos en el sistema. <button class="speak-btn" onclick="speak('Parece que su maleta se quedó en el vuelo de conexión. La localizamos en el sistema.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Похоже, чемодан остался на стыковочном рейсе. Отслеживаем в системе.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuándo la recibiré? Necesito ropa para mañana. <button class="speak-btn" onclick="speak('¿Cuándo la recibiré? Necesito ropa para mañana.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Когда получу? Мне нужна одежда на завтра.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Agente</div>
+      <div style="flex:1">
+        <div class="dlg-es">En 24 horas máximo. Le enviamos la maleta al hotel. ¿Me da su dirección? <button class="speak-btn" onclick="speak('En 24 horas máximo. Le enviamos la maleta al hotel. ¿Me da su dirección?')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Максимум за 24 часа. Доставим чемодан в отель. Дайте адрес?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пас.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Hotel Catalonia, calle Pelai 28, Barcelona. <button class="speak-btn" onclick="speak('Hotel Catalonia, calle Pelai veintiocho, Barcelona.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Отель Catalonia, улица Пелай 28, Барселона.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Agente</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. Le llamamos en cuanto la localicemos. Disculpe las molestias. <button class="speak-btn" onclick="speak('Perfecto. Le llamamos en cuanto la localicemos. Disculpe las molestias.')">&#128266;</button></div>
+        <div class="dlg-ru translation3">Отлично. Позвоним, как только найдём. Извините за неудобства.</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue3()">&#9654; Воспроизвести диалог целиком</button>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: CULTURE + ANKI -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Культура, Anki и домашнее задание</h2>
+    <h2>Говорение — Твоя очередь</h2>
   </div>
+  <div class="speak-box">
+    <div class="speak-tag">&#127897;&#65039; Упражнение 1 — Экстренная ситуация: потеря документов</div>
+    <p>Ты в аэропорту Барселоны. Ты только что понял, что потерял паспорт. Скажи вслух 3–4 предложения — что случилось и что тебе нужно:</p>
+    <div class="es">Disculpe, necesito ayuda. He perdido mi pasaporte. Llegué en el vuelo de Moscú hace una hora. ¿Dónde está la embajada rusa más cercana?</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Disculpe, necesito ayuda. He perdido mi pasaporte. Llegué en el vuelo de Moscú hace una hora. ¿Dónde está la embajada rusa más cercana?')">&#128266; Пример</button>
+    <div class="hint">Попробуй сменить документ (cartera = кошелёк, teléfono = телефон) и рейс.</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">&#127897;&#65039; Упражнение 2 — Жизнь в Испании: первый приезд в Барселону</div>
+    <p>Ты только прилетел в Барселону жить. Разыграй вслух весь сценарий — от аэропорта до отеля:</p>
+    <div class="es">1. В аэропорту: «Quisiera facturar mi maleta. Vuelo IB3456.»<br>2. В Metro: «¿Cómo llego al centro? ¿Hay que hacer transbordo?»<br>3. В отеле: «Tengo una reserva a nombre de Ivanov. ¿En qué planta está la habitación?»<br>4. Вопрос: «¿A qué hora es el desayuno y tienen wifi?»</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Quisiera facturar mi maleta. ¿Cómo llego al centro? ¿Hay que hacer transbordo? Tengo una reserva a nombre de Ivanov. ¿A qué hora es el desayuno?')">&#128266; Пример</button>
+    <div class="hint">Это реальный сценарий первого дня переезда в Испанию. Проговори без остановок!</div>
+  </div>
+</div>
 
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>&#127466;&#127480; Испания на практике: Оформление tarjeta sanitaria</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">&#128138; Реальная ситуация — Барселона: Centro de Atención Primaria (CAP)</div>
+    <p style="margin-bottom:12px">Tarjeta sanitaria (медицинская карта) нужна для бесплатного обслуживания в испанской системе здравоохранения. После эмпадронамьенто (регистрации по месту жительства) ты имеешь право её получить. Обращаться нужно в ближайший CAP (Centro de Atención Primaria).</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Quisiera solicitar la tarjeta sanitaria. <button class="speak-btn" onclick="speak('Quisiera solicitar la tarjeta sanitaria.')">&#128266;</button></div>
+          <div class="phrase-ru">Я бы хотел оформить медицинскую карту.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Estoy empadronado en Barcelona. <button class="speak-btn" onclick="speak('Estoy empadronado en Barcelona.')">&#128266;</button></div>
+          <div class="phrase-ru">Я зарегистрирован по месту жительства в Барселоне.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué documentos necesito traer? <button class="speak-btn" onclick="speak('¿Qué documentos necesito traer?')">&#128266;</button></div>
+          <div class="phrase-ru">Какие документы мне нужно принести?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Tengo NIE, volante de empadronamiento y pasaporte. <button class="speak-btn" onclick="speak('Tengo NIE, volante de empadronamiento y pasaporte.')">&#128266;</button></div>
+          <div class="phrase-ru">У меня есть NIE, справка о регистрации и паспорт.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuándo recibiré la tarjeta? <button class="speak-btn" onclick="speak('¿Cuándo recibiré la tarjeta?')">&#128266;</button></div>
+          <div class="phrase-ru">Когда получу карту?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuál es mi médico de cabecera asignado? <button class="speak-btn" onclick="speak('¿Cuál es mi médico de cabecera asignado?')">&#128266;</button></div>
+          <div class="phrase-ru">Какой мне назначен участковый врач?</div>
+        </div>
+      </div>
+    </div>
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">&#128138; Мини-диалог: в CAP (получение tarjeta sanitaria)</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Клиент</div>
+        <div style="flex:1">
+          <div class="dlg-es">Buenos días. Quisiera solicitar la tarjeta sanitaria. <button class="speak-btn" onclick="speak('Buenos días. Quisiera solicitar la tarjeta sanitaria.')">&#128266;</button></div>
+          <div class="dlg-ru">Доброе утро. Хотел бы оформить медицинскую карту.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Recep.</div>
+        <div style="flex:1">
+          <div class="dlg-es">¿Tiene el volante de empadronamiento y el NIE? <button class="speak-btn" onclick="speak('¿Tiene el volante de empadronamiento y el NIE?')">&#128266;</button></div>
+          <div class="dlg-ru">У вас есть справка о регистрации и NIE?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Клиент</div>
+        <div style="flex:1">
+          <div class="dlg-es">Sí, aquí están. También tengo el pasaporte. <button class="speak-btn" onclick="speak('Sí, aquí están. También tengo el pasaporte.')">&#128266;</button></div>
+          <div class="dlg-ru">Да, вот они. У меня также есть паспорт.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Recep.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Perfecto. La tarjeta llega por correo en unos 15 días. Su médico asignado es el doctor Martínez. <button class="speak-btn" onclick="speak('Perfecto. La tarjeta llega por correo en unos quince días. Su médico asignado es el doctor Martínez.')">&#128266;</button></div>
+          <div class="dlg-ru">Отлично. Карта придёт по почте примерно через 15 дней. Ваш участковый — доктор Мартинес.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Клиент</div>
+        <div style="flex:1">
+          <div class="dlg-es">¿Puedo pedir cita con él esta semana? Tengo algunos síntomas. <button class="speak-btn" onclick="speak('¿Puedo pedir cita con él esta semana? Tengo algunos síntomas.')">&#128266;</button></div>
+          <div class="dlg-ru">Могу записаться к нему на этой неделе? У меня есть некоторые симптомы.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Recep.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Sí, le doy cita para el miércoles a las 10:30. ¿Le va bien? <button class="speak-btn" onclick="speak('Sí, le doy cita para el miércoles a las diez y media. ¿Le va bien?')">&#128266;</button></div>
+          <div class="dlg-ru">Да, запишу вас на среду в 10:30. Вам удобно?</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Tarjeta sanitaria открывает доступ к бесплатной медицине (Sistema Nacional de Salud). Нужны: NIE, volante de empadronamiento (выдаётся в Ayuntamiento) и паспорт. В Каталонии система называется CatSalut. Медицинский центр первичной помощи — CAP (Centro de Atención Primaria). Запись к врачу через приложение La Meva Salut или по телефону 061.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
   <div class="culture">
-    <div class="ctag">🌍 Культурная заметка</div>
-    <h4>Испанские аэропорты и транспорт — что знать</h4>
-    <p>Аэропорт Барселоны El Prat (BCN) — второй по величине в Испании. В него ходит Aerobus (прямо до Plaça Catalunya) и метро (линия L9 Sud). Поезд Renfe Cercanías — самый дешёвый вариант. В испанских аэропортах объявления делают на каталанском, испанском и английском. «Embarque inmediato» = посадка немедленно (беги к выходу!). «Vuelo retrasado» = задержан. «Cancelado» = отменён.</p>
+    <div class="ctag">&#9992;&#65039; Авиация и транспорт в Испании</div>
+    <h4>Лучший способ добраться из аэропорта Барселоны в центр</h4>
+    <p>Аэропорт Барселоны — El Prat de Llobregat (IATA: BCN) — в 13 км от центра города. Самый дешёвый вариант: автобус Aerobús (7–8€, 35 минут до Plaça de Catalunya) или метро линия L9 Sud (4,60€ до центра). Такси обойдётся около 35–40€. Испанская национальная авиакомпания — Iberia (IB), но по внутренним маршрутам доминирует Vueling. В Испании действует удобная сеть скоростных поездов AVE: Мадрид — Барселона за 2,5 часа. Главный жд вокзал Барселоны — Sants (Barcelona Sants). На путешествие по стране выгодно купить Renfe Multi: проездной на несколько поездок.</p>
   </div>
+</div>
 
-  <div style="margin-top:16px" class="anki">
-    <div class="atag">🃏 Anki — карточки урока</div>
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>&#127183; Anki-колода — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку чтобы перевернуть. Скачай всю колоду для Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">la tarjeta de embarque</div>
+        <div class="anki-card-back">посадочный талон<br>Показывают при посадке<br>embarcar = садиться на борт</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">he perdido mi maleta</div>
+        <div class="anki-card-back">я потерял чемодан<br>Pretérito perfecto<br>Актуально сейчас!</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">la habitación</div>
+        <div class="anki-card-back">номер (в отеле) / комната<br>habitación doble = двухместный<br>individual = одноместный</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">¿Cómo llego a...?</div>
+        <div class="anki-card-back">Как добраться до...?<br>llegar = приезжать, добираться<br>¿Cómo llego al centro?</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">el vuelo está retrasado</div>
+        <div class="anki-card-back">Рейс задержан<br>estar = временное состояние<br>NE: *es retrasado</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL58()">&#128229; Скачать колоду Anki L58 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>&#128197; До следующего урока (L59: Рассказ о себе)</h4>
     <ul>
-      <li><strong>facturar el equipaje</strong> — сдавать багаж</li>
-      <li><strong>retrasado</strong> — задержан (рейс)</li>
-      <li><strong>Tengo una reserva a nombre de...</strong> — У меня бронь на имя...</li>
-      <li><strong>¿Está el desayuno incluido?</strong> — Завтрак включён?</li>
-      <li><strong>no funciona</strong> — не работает (техника)</li>
-      <li><strong>¿Pueden cambiarme de habitación?</strong> — Могут переселить?</li>
-      <li><strong>¿Está lejos de aquí?</strong> — Это далеко отсюда?</li>
-      <li><strong>a pie</strong> — пешком</li>
+      <li><strong>Dreaming Spanish Intermediate</strong> — посмотри видео о путешествиях по Испании (15–20 мин). Слушай, не переводи — comprehensible input</li>
+      <li><strong>Polyglot #15</strong> — повтори урок Дмитрия Петрова о городе и транспорте. Сравни фразы с сегодняшним уроком</li>
+      <li><strong>Задание</strong> — напиши мини-историю (5–7 предложений): ты приехал в Испанию, что-то пошло не так — потерянный багаж или задержка рейса. Используй pretérito perfecto и imperfecto</li>
+      <li><strong>Anki</strong> — повторяй карточки L57 и L58 ежедневно по 10 минут</li>
+      <li><strong>Живая практика</strong> — зайди на сайт renfe.com и найди поезд Barcelona Sants — Madrid Atocha. Все интерфейсы — по-испански!</li>
     </ul>
   </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>&#127881; L58 завершён!</h4>
+    <p>Ты знаешь язык путешественника: аэропорт, отель, проблемы и транспорт. Следующий урок — свободный монолог о себе: кто ты, откуда, чем занимаешься — 5 минут без остановок.</p>
+  </div>
+</div>
 
-  
+</div>
 
-</div><!-- .wrap -->
-
-<!-- DONE BAR -->
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L57.html" class="nav-link-btn">← L57</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="../../lessons/lesson_15.html" class="nav-link-btn">📚 Polyglot #15</a>
-    <a href="L59.html" class="nav-link-btn">L59 →</a>
+    <a href="L57.html" class="nav-link-btn">&#8592; L57</a>
+    <a href="L59.html" class="nav-link-btn">L59: О себе &rarr;</a>
   </div>
-  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+  <button class="done-btn" id="done-btn" onclick="markDone()">&#10003; Отметить пройденным</button>
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L58 = [
+  {front:"la tarjeta de embarque",back:"Русский: посадочный талон<br><br>Пример: Necesito la tarjeta de embarque.<br>Заметка: embarcar = садиться на борт"},
+  {front:"el vuelo",back:"Русский: рейс / полёт<br><br>Пример: El vuelo IB3456 a Madrid.<br>Заметка: vuelo retrasado = задержан; cancelado = отменён"},
+  {front:"facturar el equipaje",back:"Русский: сдать багаж / зарегистрировать<br><br>Пример: Quisiera facturar esta maleta.<br>Заметка: el mostrador de facturación = стойка регистрации"},
+  {front:"la habitación",back:"Русский: номер в отеле / комната<br><br>Пример: Tengo reservada una habitación doble.<br>Заметка: individual = одноместный; doble = двухместный"},
+  {front:"tengo una reserva",back:"Русский: у меня есть бронирование<br><br>Пример: Tengo una reserva a nombre de Ivanov.<br>Заметка: Ключевая фраза при заселении"},
+  {front:"con desayuno incluido",back:"Русский: с включённым завтраком<br><br>Пример: Quiero habitación con desayuno incluido.<br>Заметка: sin desayuno = без завтрака"},
+  {front:"el ascensor",back:"Русский: лифт<br><br>Пример: El ascensor está al fondo del pasillo.<br>Заметка: la planta baja = первый этаж (нулевой)"},
+  {front:"he perdido mi pasaporte",back:"Русский: я потерял паспорт<br><br>Пример: Disculpe, he perdido mi pasaporte.<br>Заметка: Pretérito perfecto — актуально сейчас"},
+  {front:"el vuelo está retrasado",back:"Русский: рейс задержан<br><br>Пример: ¿Está retrasado el vuelo a Madrid?<br>Заметка: estar — временное состояние (не ser!)"},
+  {front:"¿Cómo llego a...?",back:"Русский: Как добраться до...?<br><br>Пример: ¿Cómo llego al centro desde el aeropuerto?<br>Заметка: llegar = приезжать, добираться"},
+  {front:"el transbordo",back:"Русский: пересадка (в транспорте)<br><br>Пример: Hay que hacer transbordo en Passeig de Gràcia.<br>Заметка: sin transbordo = без пересадки"},
+  {front:"me han robado",back:"Русский: меня обокрали<br><br>Пример: ¡Socorro! Me han robado la cartera.<br>Заметка: Pretérito perfecto пассивный"},
+  {front:"necesito ayuda",back:"Русский: мне нужна помощь<br><br>Пример: Necesito ayuda, por favor.<br>Заметка: ¿Puede ayudarme? = Можете помочь мне?"},
+  {front:"la planta / el piso",back:"Русский: этаж<br><br>Пример: Estoy en la quinta planta.<br>Заметка: Порядковые числа: primera, segunda, tercera..."},
+  {front:"la puerta de embarque",back:"Русский: гейт / выход на посадку<br><br>Пример: La puerta de embarque es la C14.<br>Заметка: embarque = посадка"},
+  {front:"buen viaje",back:"Русский: счастливого пути<br><br>Пример: ¡Buen viaje! Que tenga un buen viaje.<br>Заметка: Стандартное прощание при отъезде"},
+  {front:"la sala de espera",back:"Русский: зал ожидания<br><br>Пример: Espere en la sala de espera, por favor.<br>Заметка: esperar = ждать; espera = ожидание"},
+  {front:"tarjeta sanitaria",back:"Русский: медицинская карта<br><br>Пример: Necesito solicitar la tarjeta sanitaria.<br>Заметка: Нужна для бесплатной медицины в Испании"},
+];
+
+function exportAnkiL58() {
+  const tsv = ANKI_DECK_L58.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L58_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Buenos días. Quisiera facturar mi maleta y hacer el check-in.',
+    'Su pasaporte y número de vuelo, por favor.',
+    'Aquí tiene. El vuelo IB tres cuatro cinco seis a Madrid.',
+    '¿Prefiere asiento de pasillo o ventana?',
+    'Ventana, por favor. ¿Está retrasado el vuelo?',
+    'No, sale a tiempo. La puerta de embarque es la C catorce.',
+    'Todo recto hasta el fondo, luego a la derecha. Buen viaje.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue3() {
+  const lines = [
+    'Disculpe, he llegado en el vuelo IB tres cuatro cinco seis y no encuentro mi maleta.',
+    '¿En qué cinta de equipajes estaba buscando?',
+    'En la cinta siete. Ya no hay maletas.',
+    'Necesito su tarjeta de embarque y la etiqueta del equipaje.',
+    'Aquí las tiene. La maleta es grande, de color azul marino.',
+    'En 24 horas máximo. Le enviamos la maleta al hotel.',
+    'Perfecto. Le llamamos en cuanto la localicemos. Disculpe las molestias.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
 const LESSON_ID = 'L58';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'Quisiera facturar esta maleta — «facturar» = регистрировать/сдавать в багаж. «Quisiera» вежливее «quiero».',
-  q2:'Tengo una reserva a nombre de García — стандартная фраза при заселении. Обязательно называй имя.',
-  q3:'El aire acondicionado no funciona — «funcionar» = работать (о технике). «Trabajar» не используется для техники.',
-  q4:'¿Está lejos de aquí? — стандартный вопрос о расстоянии. «Es muy distancia» — не испанская конструкция.',
-  q5:'¿A qué hora es el check-out? — вопрос о времени выезда. «¿Cuándo debo salir?» тоже верно, но менее стандартно.',
-  q6:'He perdido la llave — Pretérito Perfecto = я потерял (актуальное для настоящего). «He olvidado» = я забыл — тоже возможно.'
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed && st.completed.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'La cuenta — стандартно. La factura — это счёт-фактура в деловом контексте. «Bill» — английское.',
+  w2:'¿Qué lleva? — использует глагол llevar в значении «содержать в себе». Стандартный вопрос о составе блюда.',
+  w3:'Sin + sustantivo — формула для ограничений в заказе. Sin cebolla = без лука.',
+  w4:'Ponme un café — imperativo от poner. Разговорный, очень распространённый в испанских барах.',
+  q1:'La tarjeta de embarque — дословно «карта посадки». embarcar = садиться на борт.',
+  q2:'Estar retrasado — временное состояние (задержка). Ser retrasado означало бы постоянное свойство.',
+  q3:'Quisiera facturar — вежливая просьба с condicional. facturar = сдавать багаж на регистрацию.',
+  q4:'Tengo una reserva a nombre de... — стандартная фраза при check-in в любом отеле.',
+  q5:'He perdido — pretérito perfecto, подчёркивает актуальность ситуации сейчас. Perdí — просто факт прошлого.',
+  q6:'¿Cuánto tarda? — сколько времени занимает? tardar = занимать время.',
+  q7:'Sin transbordo = без пересадки. Прямой маршрут. transbordo = пересадка в транспорте.'
 };
 
-function answerQuiz(el,qId,correctKey){const container=el.closest('.quiz-q');const opts=container.querySelectorAll('.opt');opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');const fb=document.getElementById(`fb-${qId}`);fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];}
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const clickedKey = el.getAttribute('onclick') && el.getAttribute('onclick').match(/'([abc])'\)/);
+  const ck = clickedKey ? clickedKey[1] : null;
+  if (ck !== correctKey) el.classList.add('wrong');
+  const isCorrect = ck === correctKey;
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
+}
 
-function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ Правильно! '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent=`❌ Попробуй ещё. Ответ: "${answer}"`; }}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.toLowerCase().trim();
+  const correct = answer.toLowerCase().trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (val === correct) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.textContent = '✅ Правильно! ' + answer;
+  } else {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
+  }
+}
 
-function showAns(id){document.getElementById(id).classList.add('show');}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
 
-function toggleTranslation(id){const ids=[id,id+'b',id+'c',id+'d',id+'e'];ids.forEach(i=>{const el=document.getElementById(i);if(el)el.style.display=el.style.display==='none'?'block':'none';});}
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(function(el) {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
 
-const totalSections=8;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(function(el) {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(function(el) {
+    el.style.display = showingTrans3 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(function(el) { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(function(el) { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(function(el) { el.style.display='none'; });
+
+var totalSections = 14;
+function updateProgress() {
+  var scrolled = window.scrollY;
+  var total = document.body.scrollHeight - window.innerHeight;
+  var pct = Math.min(100, Math.round(scrolled / total * 100));
+  var sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>
