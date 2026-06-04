@@ -792,7 +792,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot:16,
       speaking_focus:"Монолог 5 минут: кто я, откуда, чем занимаюсь, мечты, планы",
-      file:"lessons/L59.html", status:"pending"
+      file:"lessons/L59.html", status:"improved"
     },
     {
       id:"L60", num:60, phase:2, block:"B2D", level:"A2", day:127, week:21,
@@ -804,7 +804,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Тест + честная самооценка по CEFR A2 criteria",
-      file:"lessons/L60.html", status:"pending"
+      file:"lessons/L60.html", status:"improved"
     },
 
     // ═══════════════════════════════════════════════════════════
