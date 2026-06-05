@@ -136,7 +136,58 @@ function speakSequence(phrases,delay){delay=delay||2400;window.speechSynthesis.c
 function playD1(){speakSequence(['¿Qué le regalas a tu mujer?','Le compro un libro y le doy flores.','¿Y a tus hijas? ¿Les regalas algo?','Sí, les compro juguetes nuevos.','¿Se lo vas a decir antes?','No, no se lo digo. Es sorpresa.'],2600);}
 const quizExpl={r1:'lo veo.',r2:'Te quiero.',r3:'с людьми.',r4:'La quiero comprar.',q1:'Le escribo.',q2:'Les envío.',q3:'Te regalo.',q4:'Se lo digo (le→se).',q5:'Te lo enseño.',q6:'косв+прямое+глагол.'};
 function answerQuiz(el,qId,correctKey){const c=el.closest('.quiz-q');if(c.dataset.answered==='true')return;c.dataset.answered='true';c.querySelectorAll('.opt').forEach(function(o){const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');o.onclick=null;});const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);const userKey=um&&um[1];if(userKey!==correctKey)el.classList.add('wrong');const fb=document.getElementById('fb-'+qId);fb.className='feedback show '+(userKey===correctKey?'ok':'no');fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');}
-function checkText(inputId,answer,fbId){const input=document.getElementById(inputId);const val=input.value.toLowerCase().trim();const correct=answer.toLowerCase().trim();const fb=document.getElementById(fbId);fb.className='feedback show';if(val===correct){input.className='text-input correct';fb.className+=' ok';fb.textContent='✅ '+answer;}else{input.className='text-input wrong';fb.className+=' no';fb.textContent='❌ '+answer[0]+'...';}}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (!raw) {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
+    return;
+  }
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
+  const userN = norm(raw);
+  const correctN = norm(answer);
+  if (userN === correctN) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
+      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
+    } else {
+      fb.textContent = '✅ Правильно! ' + answer;
+    }
+    return;
+  }
+  const lev = (a, b) => {
+    const m = a.length, n = b.length;
+    if (!m) return n;
+    if (!n) return m;
+    let prev = Array.from({length: n+1}, (_,i) => i);
+    let curr = new Array(n+1).fill(0);
+    for (let i = 1; i <= m; i++) {
+      curr[0] = i;
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i-1] === b[j-1] ? 0 : 1;
+        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
+      }
+      [prev, curr] = [curr, prev];
+    }
+    return prev[n];
+  };
+  const dist = lev(userN, correctN);
+  const tol = correctN.length >= 6 ? 2 : 1;
+  if (dist > 0 && dist <= tol) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
+    return;
+  }
+  input.className = 'text-input wrong';
+  fb.className += ' no';
+  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
+}
 function showAns(id){document.getElementById(id).classList.add('show');}
 let showingTrans=false;function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
 document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});

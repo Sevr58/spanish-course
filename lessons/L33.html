@@ -95,7 +95,58 @@ const st=getState();if(st.completed&&st.completed.includes(LESSON_ID)){const btn
 function speak(t,l){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(t);u.lang=l||'es-ES';u.rate=0.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}
 const quizExpl={q1:'hablaba.',q2:'comíamos.',q3:'siempre.',q4:'vivían.',q5:'одинаковые.'};
 function answerQuiz(el,qId,k){const c=el.closest('.quiz-q');if(c.dataset.answered==='true')return;c.dataset.answered='true';c.querySelectorAll('.opt').forEach(function(o){const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);if(m&&m[1]===k)o.classList.add('correct');o.onclick=null;});const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);const u=um&&um[1];if(u!==k)el.classList.add('wrong');const fb=document.getElementById('fb-'+qId);fb.className='feedback show '+(u===k?'ok':'no');fb.textContent=(u===k?'✅ ':'❌ ')+(quizExpl[qId]||'');}
-function checkText(id,a,fb){const i=document.getElementById(id);const v=i.value.toLowerCase().trim();const c=a.toLowerCase().trim();const f=document.getElementById(fb);f.className='feedback show';if(v===c){i.className='text-input correct';f.className+=' ok';f.textContent='✅ '+a;}else{i.className='text-input wrong';f.className+=' no';f.textContent='❌ '+a[0]+'...';}}
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (!raw) {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
+    return;
+  }
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
+  const userN = norm(raw);
+  const correctN = norm(answer);
+  if (userN === correctN) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
+      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
+    } else {
+      fb.textContent = '✅ Правильно! ' + answer;
+    }
+    return;
+  }
+  const lev = (a, b) => {
+    const m = a.length, n = b.length;
+    if (!m) return n;
+    if (!n) return m;
+    let prev = Array.from({length: n+1}, (_,i) => i);
+    let curr = new Array(n+1).fill(0);
+    for (let i = 1; i <= m; i++) {
+      curr[0] = i;
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i-1] === b[j-1] ? 0 : 1;
+        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
+      }
+      [prev, curr] = [curr, prev];
+    }
+    return prev[n];
+  };
+  const dist = lev(userN, correctN);
+  const tol = correctN.length >= 6 ? 2 : 1;
+  if (dist > 0 && dist <= tol) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
+    return;
+  }
+  input.className = 'text-input wrong';
+  fb.className += ' no';
+  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
+}
 function showAns(id){document.getElementById(id).classList.add('show');}
 const ANKI_DECK=[{front:"-AR Imperfecto",back:"-aba, -abas, -aba, -ábamos, -abais, -aban\n\nhablaba, hablabas..."},{front:"-ER/-IR Imperfecto",back:"-ía, -ías, -ía, -íamos, -íais, -ían\n\ncomía/vivía одинаковые!"},{front:"Imperfecto vs Indefinido",back:"Imperfecto = фон, привычка, описание\nIndefinido = точечное действие\n\nViajaba mucho. = ездил часто.\nViajé a Madrid. = поехал один раз."},{front:"cuando era niño",back:"Когда я был ребёнком\n\nПервая фраза для Imperfecto"},{front:"siempre / a menudo",back:"Всегда / часто\n\nМаркеры привычки = Imperfecto"},{front:"hablaba",back:"Я говорил (привычно, фон)"},{front:"comía",back:"Я ел (регулярно)"},{front:"vivía",back:"Я жил (в прошлом, длительно)"},{front:"yo = él",back:"В Imperfecto эти формы одинаковые\n\nhablaba = «я говорил» И «он говорил»"},{front:"De pequeño",back:"В детстве\n\nDe pequeño, jugaba al fútbol."}];
 function exportAnki(){const tsv=ANKI_DECK.map(c=>c.front+'\t'+c.back.replace(/\n/g,'<br>')).join('\n');const h='#separator:Tab\n#html:true\n#deck:L33 Spanish\n';const b=new Blob([h+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='L33_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
