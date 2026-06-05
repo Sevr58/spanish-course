@@ -820,7 +820,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Понять разницу между реальностью и желанием",
-      file:"lessons/L61.html", status:"pending"
+      file:"lessons/L61.html", status:"improved"
     },
     {
       id:"L62", num:62, phase:3, block:"B3A", level:"B1", day:132, week:22,
@@ -832,7 +832,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Выражать желания для других: Quiero que vengas.",
-      file:"lessons/L62.html", status:"pending"
+      file:"lessons/L62.html", status:"improved"
     },
     {
       id:"L63", num:63, phase:3, block:"B3A", level:"B1", day:134, week:23,

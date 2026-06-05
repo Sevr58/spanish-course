@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L61: Сослагательное наклонение — введение</title>
+<style>
+:root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#f1f3f7 0%,#e8ebf1 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
+.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.mood-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.mood-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.mood-box .mood-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.mood-box .mood-title.ind{color:var(--blue)}
+.mood-box .mood-title.subj{color:var(--purple)}
+.mood-box ul{margin-left:16px;font-size:.87rem}
+.mood-box li{margin-bottom:4px;color:var(--muted)}
+.mood-box li strong{color:var(--text)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}.mood-compare{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1. NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A2→B1 · Фаза 3 · День 130</span>
+  <a href="L62.html">L62 →</a>
+</div>
+
+<!-- 2. HERO -->
+<div class="hero">
+  <div class="phase-tag">🚀 Фаза 3 · Прорыв · Блок 3A — Сослагательное наклонение</div>
+  <h1>Сослагательное наклонение — <span class="hl">введение</span></h1>
+  <p class="sub">Что такое subjuntivo, зачем он нужен и как его узнать в тексте. Самая важная концепция уровня B1.</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Понять разницу indicativo vs subjuntivo на примерах</p></div></div>
+    <div class="obj"><div class="ico">🔗</div><div><strong>Цель 2</strong><p>Освоить структуру: триггер + que + subjuntivo</p></div></div>
+    <div class="obj"><div class="ico">🗂️</div><div><strong>Цель 3</strong><p>Запомнить категории WEIRDO — 6 типов триггеров</p></div></div>
+    <div class="obj"><div class="ico">🏫</div><div><strong>Цель 4</strong><p>Использовать первые фразы с querer que и esperar que</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- 3. WARM-UP: review L60 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Повторение — проверяем уровень A2 после контрольной</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">На прошлом уроке (L60) ты прошёл контрольную точку A2. Быстро проверим ключевые темы перед стартом новой фазы!</p>
+  <div class="quiz">
+    <h3>🔄 Разминка — темы A2</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Какую форму прошедшего времени выбрать? <strong>«Cuando era niño, ___ (jugar) en el parque todos los días.»</strong></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">jugaba (импerfecto — привычное действие в прошлом)</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">jugó (indefinido)</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">jugará (futuro)</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Ser или estar? <strong>«La paella ___ deliciosa, pero hoy ___ fría.»</strong></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">es / es</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">está / está</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">es / está (ser = характеристика; estar = временное состояние)</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Двойное отрицание. Как правильно: <strong>«У меня ничего нет»?</strong></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">No tengo nada. (В испанском двойное отрицание — норма!)</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">No tengo algo.</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Tengo nada.</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Пассивная конструкция. <strong>«В Испании говорят по-испански» — как сказать через se?</strong></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">España habla español.</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">En España se habla español.</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">En España es hablado español.</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
+  <div class="callout success">
+    <h4>🚀 Добро пожаловать в Фазу 3!</h4>
+    <p>Ты прошёл уровень A2 — это серьёзное достижение. Впереди самая интересная часть испанской грамматики — el subjuntivo. Именно он отличает «туристический испанский» от настоящего владения языком.</p>
+  </div>
+</div>
+
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — Что такое сослагательное наклонение?</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>💡 Главная идея</h4>
+    <p>В испанском есть два основных наклонения: <strong>indicativo</strong> (изъявительное) описывает факты и реальность; <strong>subjuntivo</strong> (сослагательное) описывает желания, сомнения, эмоции и гипотезы. Это как разница между «он пришёл» (факт) и «хочу, чтобы он пришёл» (желание).</p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Концепция 1</span>
+      <span class="rule-title">Indicativo vs. Subjuntivo — реальность vs. желание</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:14px">Сравни пары предложений. Обрати внимание: в субъюнктиве та же идея выражается иначе — через призму желания, эмоции или сомнения.</p>
+    <div class="mood-compare">
+      <div class="mood-box">
+        <div class="mood-title ind">📋 Indicativo — факт</div>
+        <ul>
+          <li><strong>Sé que hablas</strong> español.<br><span style="font-size:.8rem">Я знаю, что ты говоришь по-испански.</span></li>
+          <li><strong>Creo que viene</strong> mañana.<br><span style="font-size:.8rem">Думаю, (что) он придёт завтра.</span></li>
+          <li><strong>Es verdad que trabaja</strong> mucho.<br><span style="font-size:.8rem">Правда, что он много работает.</span></li>
+          <li><strong>Veo que entiendes</strong> bien.<br><span style="font-size:.8rem">Вижу, что ты хорошо понимаешь.</span></li>
+          <li><strong>Es obvio que tiene</strong> razón.<br><span style="font-size:.8rem">Очевидно, что он прав.</span></li>
+          <li><strong>Dice que está</strong> cansado.<br><span style="font-size:.8rem">Говорит, что устал.</span></li>
+        </ul>
+      </div>
+      <div class="mood-box">
+        <div class="mood-title subj">✨ Subjuntivo — желание/сомнение</div>
+        <ul>
+          <li><strong>Quiero que hables</strong> español.<br><span style="font-size:.8rem">Хочу, чтобы ты говорил по-испански.</span></li>
+          <li><strong>Espero que venga</strong> mañana.<br><span style="font-size:.8rem">Надеюсь, что он придёт завтра.</span></li>
+          <li><strong>Es importante que trabaje</strong> mucho.<br><span style="font-size:.8rem">Важно, чтобы он много работал.</span></li>
+          <li><strong>Quiero que entiendas</strong> bien.<br><span style="font-size:.8rem">Хочу, чтобы ты хорошо понял.</span></li>
+          <li><strong>Dudo que tenga</strong> razón.<br><span style="font-size:.8rem">Сомневаюсь, что он прав.</span></li>
+          <li><strong>Me alegra que estés</strong> aquí.<br><span style="font-size:.8rem">Рада, что ты здесь.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Концепция 2</span>
+      <span class="rule-title">Структура: Субъект 1 + триггер + que + Субъект 2 + Subjuntivo</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px"><strong>Ключевое правило:</strong> Subjuntivo используется когда у главного и придаточного предложения РАЗНЫЕ субъекты (подлежащие). Если субъект один — используй инфинитив.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en" style="color:var(--red)">❌ Один субъект</span><span class="ar">Quiero estudiar. (Я хочу учиться — инфинитив)</span></div>
+      <div class="wp"><span class="en" style="color:var(--green)">✅ Два субъекта</span><span class="ar">Quiero que tú estudies. (Хочу, чтобы ТЫ учился)</span></div>
+      <div class="wp"><span class="en" style="color:var(--red)">❌ Один субъект</span><span class="ar">Espero llegar tarde. (Надеюсь прийти вовремя)</span></div>
+      <div class="wp"><span class="en" style="color:var(--green)">✅ Два субъекта</span><span class="ar">Espero que él llegue. (Надеюсь, что ОН придёт)</span></div>
+      <div class="wp"><span class="en" style="color:var(--red)">❌ Один субъект</span><span class="ar">Necesito comer. (Мне нужно поесть)</span></div>
+      <div class="wp"><span class="en" style="color:var(--green)">✅ Два субъекта</span><span class="ar">Necesito que comas. (Нужно, чтобы ты поел)</span></div>
+      <div class="wp"><span class="en" style="color:var(--red)">❌ Один субъект</span><span class="ar">Prefiero salir pronto. (Предпочитаю уйти рано)</span></div>
+      <div class="wp"><span class="en" style="color:var(--green)">✅ Два субъекта</span><span class="ar">Prefiero que salgas pronto. (Предпочитаю, чтобы ты ушёл рано)</span></div>
+    </div>
+    <div class="callout tip" style="margin-top:12px">
+      <h4>🇷🇺 Аналогия с русским языком</h4>
+      <p>В русском: «хочу + чтобы + прошедшее время» = «Хочу, чтобы он <em>пришёл</em>». В испанском вместо прошедшего времени используется subjuntivo: «Quiero que <em>venga</em>». Конструкция та же — только форма глагола другая.</p>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Концепция 3</span>
+      <span class="rule-title">WEIRDO — 6 категорий триггеров subjuntivo</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px">Запомни аббревиатуру <strong>WEIRDO</strong> — она охватывает все случаи, когда нужен subjuntivo:</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en" style="color:var(--gold);font-weight:700">W — Wishes</span><span class="ar">Желания: querer, desear, esperar</span></div>
+      <div class="wp"><span class="en" style="color:var(--gold);font-weight:700">E — Emotion</span><span class="ar">Эмоции: alegrarse, temer, sentir</span></div>
+      <div class="wp"><span class="en" style="color:var(--gold);font-weight:700">I — Impersonal</span><span class="ar">Безличные: es importante, es necesario</span></div>
+      <div class="wp"><span class="en" style="color:var(--gold);font-weight:700">R — Recommend</span><span class="ar">Рекомендации: recomendar, aconsejar</span></div>
+      <div class="wp"><span class="en" style="color:var(--gold);font-weight:700">D — Doubt/Denial</span><span class="ar">Сомнение: dudar, no creer, negar</span></div>
+      <div class="wp"><span class="en" style="color:var(--gold);font-weight:700">O — Obligation</span><span class="ar">Обязанность: exigir, pedir, insistir</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Концепция 4</span>
+      <span class="rule-title">Querer que — хотеть чтобы (6 примеров)</span>
+    </div>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Quiero que vengas.</span><span class="ar">Хочу, чтобы ты пришёл.</span></div>
+      <div class="wp"><span class="en">Quiero que estudies más.</span><span class="ar">Хочу, чтобы ты учился больше.</span></div>
+      <div class="wp"><span class="en">Quiero que ella hable.</span><span class="ar">Хочу, чтобы она говорила.</span></div>
+      <div class="wp"><span class="en">Quiero que seáis felices.</span><span class="ar">Хочу, чтобы вы были счастливы.</span></div>
+      <div class="wp"><span class="en">Quiero que el niño coma.</span><span class="ar">Хочу, чтобы ребёнок поел.</span></div>
+      <div class="wp"><span class="en">Quiero que me escuches.</span><span class="ar">Хочу, чтобы ты меня слушал.</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Концепция 5</span>
+      <span class="rule-title">Esperar que — надеяться что / Es importante que — важно чтобы</span>
+    </div>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Espero que llegues a tiempo.</span><span class="ar">Надеюсь, что ты придёшь вовремя.</span></div>
+      <div class="wp"><span class="en">Espero que todo salga bien.</span><span class="ar">Надеюсь, что всё получится.</span></div>
+      <div class="wp"><span class="en">Espero que os guste.</span><span class="ar">Надеюсь, вам понравится.</span></div>
+      <div class="wp"><span class="en">Es importante que estudies.</span><span class="ar">Важно, чтобы ты учился.</span></div>
+      <div class="wp"><span class="en">Es necesario que vengas mañana.</span><span class="ar">Необходимо, чтобы ты пришёл завтра.</span></div>
+      <div class="wp"><span class="en">Es posible que llueva hoy.</span><span class="ar">Возможно, сегодня пойдёт дождь.</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Концепция 6</span>
+      <span class="rule-title">Оjalá — волшебное слово желания</span>
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:12px"><strong>Ojalá</strong> — «если бы только...» / «надеюсь, что...». Происходит от арабского «inshallah» (إن شاء الله). Всегда требует subjuntivo и НЕ требует que!</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">¡Ojalá venga!</span><span class="ar">Если бы только он пришёл! / Надеюсь, придёт!</span></div>
+      <div class="wp"><span class="en">¡Ojalá haga buen tiempo!</span><span class="ar">Надеюсь, будет хорошая погода!</span></div>
+      <div class="wp"><span class="en">¡Ojalá apruebe el examen!</span><span class="ar">Надеюсь, сдам экзамен!</span></div>
+      <div class="wp"><span class="en">¡Ojalá tengáis suerte!</span><span class="ar">Желаю вам удачи!</span></div>
+      <div class="wp"><span class="en">¡Ojalá pueda ayudarte!</span><span class="ar">Надеюсь, смогу тебе помочь!</span></div>
+      <div class="wp"><span class="en">¡Ojalá todo salga bien!</span><span class="ar">Надеюсь, всё получится!</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих с subjuntivo</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Почему</th></tr>
+    <tr><td>Indicativo вместо subjuntivo</td><td class="wrong-ex">Quiero que vienes mañana.</td><td class="right-ex">Quiero que vengas mañana.</td><td>После querer que — всегда subjuntivo</td></tr>
+    <tr><td>Subjuntivo вместо indicativo</td><td class="wrong-ex">Sé que hables español.</td><td class="right-ex">Sé que hablas español.</td><td>После saber que — indicativo (факт, а не желание)</td></tr>
+    <tr><td>Пропуск que</td><td class="wrong-ex">Quiero vengas.</td><td class="right-ex">Quiero que vengas.</td><td>Que обязательно (кроме ojalá)</td></tr>
+    <tr><td>Infinitivo при двух субъектах</td><td class="wrong-ex">Quiero él venir.</td><td class="right-ex">Quiero que él venga.</td><td>Разные субъекты → структура + que + subjuntivo</td></tr>
+    <tr><td>Забыть про creer que + indicativo</td><td class="wrong-ex">Creo que venga.</td><td class="right-ex">Creo que viene.</td><td>Creo que (утверждение) → indicativo; No creo que → subjuntivo</td></tr>
+    <tr><td>Путаница с ojalá</td><td class="wrong-ex">Ojalá que venga. (лишнее que)</td><td class="right-ex">¡Ojalá venga! (без que)</td><td>Ojalá используется без que</td></tr>
+  </table>
+</div>
+
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — 18 ключевых слов и выражений</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 для прослушивания. Эти слова — строительные блоки всего, что связано с subjuntivo.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">el subjuntivo</div><div class="vocab-ru">сослагательное наклонение</div></div><button class="speak-btn" onclick="speak('el subjuntivo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el indicativo</div><div class="vocab-ru">изъявительное наклонение</div></div><button class="speak-btn" onclick="speak('el indicativo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el deseo</div><div class="vocab-ru">желание</div></div><button class="speak-btn" onclick="speak('el deseo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la duda</div><div class="vocab-ru">сомнение</div></div><button class="speak-btn" onclick="speak('la duda')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la emoción</div><div class="vocab-ru">эмоция / чувство</div></div><button class="speak-btn" onclick="speak('la emoción')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">querer (que)</div><div class="vocab-ru">хотеть (чтобы)</div></div><button class="speak-btn" onclick="speak('querer que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">esperar (que)</div><div class="vocab-ru">надеяться / ждать (что)</div></div><button class="speak-btn" onclick="speak('esperar que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">desear (que)</div><div class="vocab-ru">желать (чтобы)</div></div><button class="speak-btn" onclick="speak('desear que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">es importante que</div><div class="vocab-ru">важно, чтобы</div></div><button class="speak-btn" onclick="speak('es importante que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">es necesario que</div><div class="vocab-ru">необходимо, чтобы</div></div><button class="speak-btn" onclick="speak('es necesario que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">es posible que</div><div class="vocab-ru">возможно, что</div></div><button class="speak-btn" onclick="speak('es posible que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">dudar que</div><div class="vocab-ru">сомневаться, что</div></div><button class="speak-btn" onclick="speak('dudar que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">alegrarse de que</div><div class="vocab-ru">радоваться, что</div></div><button class="speak-btn" onclick="speak('alegrarse de que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">temer que</div><div class="vocab-ru">бояться, что</div></div><button class="speak-btn" onclick="speak('temer que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">pedir que</div><div class="vocab-ru">просить, чтобы</div></div><button class="speak-btn" onclick="speak('pedir que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">recomendar que</div><div class="vocab-ru">рекомендовать, чтобы</div></div><button class="speak-btn" onclick="speak('recomendar que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">ojalá</div><div class="vocab-ru">о, если бы / надеюсь, что</div></div><button class="speak-btn" onclick="speak('ojalá')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">exigir que</div><div class="vocab-ru">требовать, чтобы</div></div><button class="speak-btn" onclick="speak('exigir que')">🔊</button></div>
+  </div>
+</div>
+
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Понимание концепции subjuntivo</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на вариант — получишь мгновенный ответ с объяснением.</p>
+  <div class="quiz">
+    <h3>🎯 Indicativo vs. Subjuntivo — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Выбери правильный вариант: <strong>«Я знаю, что ты говоришь по-испански.»</strong></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Sé que hables español.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Sé que hablas español.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Sé que hablar español.</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Выбери правильный вариант: <strong>«Хочу, чтобы ты пришёл завтра.»</strong></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Quiero que vienes mañana.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Quiero venir mañana.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Quiero que vengas mañana.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Один субъект или два? <strong>«Espero ganar el partido.»</strong> — это значит:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Надеюсь выиграть матч. (один субъект → инфинитив, правильно!)</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Надеюсь, что он выиграет матч.</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Хочу, чтобы выиграл матч.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Какое предложение требует subjuntivo? Найди триггер:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Sé que trabaja mucho.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Veo que estudia bien.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Es importante que trabaje mucho.</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Что означает <strong>«¡Ojalá llueva mañana!»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Надеюсь, завтра пойдёт дождь! (ojalá + subjuntivo = желание)</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Завтра точно пойдёт дождь.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Вчера шёл дождь.</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. К какой категории WEIRDO относится фраза <strong>«Me alegra que estés aquí»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">W — Wishes (желания)</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">E — Emotion (радоваться — это эмоция)</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">D — Doubt (сомнение)</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Creo que vs. No creo que — выбери правильное:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Creo que viene (ind.) / No creo que venga (subj.)</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Creo que venga / No creo que viene</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Оба варианта используют subjuntivo</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуски</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Введи пропущенное слово или фразу. Вводи в нижнем регистре.</p>
+  <div class="quiz">
+    <h3>✏️ Дополни предложение</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. Структура с двумя субъектами: «Quiero ___ estudies más.» (пропущено связующее слово)</div>
+      <input type="text" class="text-input" placeholder="Напиши пропущенное слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','que','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ que — Quiero <strong>que</strong> estudies más. (Хочу, чтобы ты учился больше)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. Безличное выражение: «Es ___ que vengas mañana.» (нужно — необходимо)</div>
+      <input type="text" class="text-input" placeholder="Напиши прилагательное..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','necesario','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ necesario — Es <strong>necesario</strong> que vengas mañana. (Необходимо, чтобы ты пришёл завтра)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. Желание: «___ venga pronto.» (о, если бы только — без que!)</div>
+      <input type="text" class="text-input" placeholder="Магическое слово желания..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','ojalá','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ ojalá — ¡<strong>Ojalá</strong> venga pronto! (Надеюсь, придёт скоро!)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. Сомнение требует subjuntivo: «___ que tenga razón.» (я сомневаюсь, что...)</div>
+      <input type="text" class="text-input" placeholder="Глагол сомнения..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','dudo','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ dudo — <strong>Dudo</strong> que tenga razón. (Сомневаюсь, что он прав)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. Радость — эмоция = subjuntivo: «Me ___ de que estés aquí.» (радоваться)</div>
+      <input type="text" class="text-input" placeholder="Глагол эмоции..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','alegro','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ alegro — Me <strong>alegro</strong> de que estés aquí. (Рад/а, что ты здесь)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. Рекомендация: «Te ___ que descanses más.» (советую — рекомендую)</div>
+      <input type="text" class="text-input" placeholder="Глагол рекомендации..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','recomiendo','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ recomiendo — Te <strong>recomiendo</strong> que descanses más. (Рекомендую тебе отдыхать больше)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Subjuntivo в живой речи</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">В этих диалогах subjuntivo используется естественно. Обращай внимание на выделенные формы — пока просто узнавай их, формы разберём в L62.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Коллеги обсуждают рабочий проект (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Marta, quiero que <span style="color:var(--purple);font-weight:700">presentes</span> el informe el viernes. <button class="speak-btn" onclick="speak('Marta, quiero que presentes el informe el viernes.')">🔊</button></div>
+        <div class="dlg-ru translation">[Марта, хочу, чтобы ты представила отчёт в пятницу.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">De acuerdo. Espero que el cliente <span style="color:var(--purple);font-weight:700">esté</span> satisfecho. <button class="speak-btn" onclick="speak('De acuerdo. Espero que el cliente esté satisfecho.')">🔊</button></div>
+        <div class="dlg-ru translation">[Хорошо. Надеюсь, клиент останется доволен.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Es importante que <span style="color:var(--purple);font-weight:700">incluyas</span> los datos del último trimestre. <button class="speak-btn" onclick="speak('Es importante que incluyas los datos del último trimestre.')">🔊</button></div>
+        <div class="dlg-ru translation">[Важно, чтобы ты включила данные за последний квартал.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro. ¿Necesitas que <span style="color:var(--purple);font-weight:700">prepare</span> también una presentación? <button class="speak-btn" onclick="speak('Claro. ¿Necesitas que prepare también una presentación?')">🔊</button></div>
+        <div class="dlg-ru translation">[Конечно. Тебе нужно, чтобы я подготовила ещё и презентацию?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, te pido que la <span style="color:var(--purple);font-weight:700">hagas</span> breve — máximo diez diapositivas. <button class="speak-btn" onclick="speak('Sí, te pido que la hagas breve, máximo diez diapositivas.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, прошу тебя сделать её краткой — максимум десять слайдов.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">Entendido. Dudo que <span style="color:var(--purple);font-weight:700">sea</span> suficiente con diez, pero lo intentaré. <button class="speak-btn" onclick="speak('Entendido. Dudo que sea suficiente con diez, pero lo intentaré.')">🔊</button></div>
+        <div class="dlg-ru translation">[Понял(а). Сомневаюсь, что десяти хватит, но постараюсь.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Te recomiendo que <span style="color:var(--purple);font-weight:700">uses</span> gráficos en lugar de tablas. <button class="speak-btn" onclick="speak('Te recomiendo que uses gráficos en lugar de tablas.')">🔊</button></div>
+        <div class="dlg-ru translation">[Рекомендую тебе использовать графики вместо таблиц.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buena idea. Me alegra que <span style="color:var(--purple);font-weight:700">confíes</span> en mí para esto. <button class="speak-btn" onclick="speak('Buena idea. Me alegra que confíes en mí para esto.')">🔊</button></div>
+        <div class="dlg-ru translation">[Хорошая идея. Рада, что ты доверяешь мне это.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Es necesario que todos <span style="color:var(--purple);font-weight:700">estén</span> presentes el viernes a las 10. <button class="speak-btn" onclick="speak('Es necesario que todos estén presentes el viernes a las diez.')">🔊</button></div>
+        <div class="dlg-ru translation">[Необходимо, чтобы все присутствовали в пятницу в 10.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Ojalá <span style="color:var(--purple);font-weight:700">salga</span> todo bien! Hasta el viernes. <button class="speak-btn" onclick="speak('¡Ojalá salga todo bien! Hasta el viernes.')">🔊</button></div>
+        <div class="dlg-ru translation">[Надеюсь, всё получится! До пятницы.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏫 Диалог 2: Родитель разговаривает с другом о записи ребёнка в школу (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Mañana voy al colegio. Quiero que <span style="color:var(--purple);font-weight:700">admitan</span> a mi hijo en primero de primaria. <button class="speak-btn" onclick="speak('Mañana voy al colegio. Quiero que admitan a mi hijo en primero de primaria.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Завтра иду в школу. Хочу, чтобы моего сына приняли в первый класс.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Ojalá <span style="color:var(--purple);font-weight:700">haya</span> plaza! Los colegios públicos de Barcelona son muy solicitados. <button class="speak-btn" onclick="speak('¡Ojalá haya plaza! Los colegios públicos de Barcelona son muy solicitados.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Надеюсь, будет место! Государственные школы Барселоны очень востребованы.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Es importante que el colegio <span style="color:var(--purple);font-weight:700">tenga</span> buenas actividades extraescolares. <button class="speak-btn" onclick="speak('Es importante que el colegio tenga buenas actividades extraescolares.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Важно, чтобы в школе были хорошие внеклассные занятия.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Te recomiendo que <span style="color:var(--purple);font-weight:700">hables</span> directamente con el director. <button class="speak-btn" onclick="speak('Te recomiendo que hables directamente con el director.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Рекомендую тебе поговорить напрямую с директором.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí. Espero que él <span style="color:var(--purple);font-weight:700">entienda</span> nuestra situación como extranjeros. <button class="speak-btn" onclick="speak('Sí. Espero que él entienda nuestra situación como extranjeros.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да. Надеюсь, он поймёт нашу ситуацию как иностранцев.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Es necesario que <span style="color:var(--purple);font-weight:700">lleves</span> el empadronamiento y el libro de familia. <button class="speak-btn" onclick="speak('Es necesario que lleves el empadronamiento y el libro de familia.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Необходимо, чтобы ты принесла справку о регистрации и книгу семьи.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y si no tengo todos los papeles? Dudo que <span style="color:var(--purple);font-weight:700">acepten</span> la solicitud incompleta. <button class="speak-btn" onclick="speak('¿Y si no tengo todos los papeles? Dudo que acepten la solicitud incompleta.')">🔊</button></div>
+        <div class="dlg-ru translation2">[А если у меня нет всех документов? Сомневаюсь, что примут неполную заявку.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Te aconsejo que <span style="color:var(--purple);font-weight:700">llames</span> antes para preguntar qué documentos hacen falta. <button class="speak-btn" onclick="speak('Te aconsejo que llames antes para preguntar qué documentos hacen falta.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Советую тебе позвонить заранее и спросить, какие документы нужны.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Me alegra que <span style="color:var(--purple);font-weight:700">sepas</span> tanto sobre el sistema educativo aquí. <button class="speak-btn" onclick="speak('Me alegra que sepas tanto sobre el sistema educativo aquí.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Рада, что ты так много знаешь об образовательной системе здесь.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Ojalá todo <span style="color:var(--purple);font-weight:700">salga</span> bien mañana! ¡Mucho ánimo! <button class="speak-btn" onclick="speak('¡Ojalá todo salga bien mañana! ¡Mucho ánimo!')">🔊</button></div>
+        <div class="dlg-ru translation2">[Надеюсь, завтра всё пройдёт хорошо! Держись!]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue2()">▶ Воспроизвести диалог целиком</button>
+    </div>
+  </div>
+</div>
+
+<!-- 9. SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Выражай желания и надежды</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Мои желания на испанском</div>
+    <p>Скажи вслух 5 своих желаний или надежд. Используй: <strong>Quiero que... / Espero que... / Es importante que... / Ojalá... / Me alegra que...</strong></p>
+    <div class="es">
+      Quiero que mi español mejore cada día.<br>
+      Espero que mis amigos entiendan mis esfuerzos.<br>
+      Es importante que practique todos los días.<br>
+      ¡Ojalá viaje a Barcelona pronto!<br>
+      Me alegra que exista este curso.
+    </div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Quiero que mi español mejore cada día. Espero que mis amigos entiendan mis esfuerzos. Es importante que practique todos los días. ¡Ojalá viaje a Barcelona pronto! Me alegra que exista este curso.')">🔊 Пример</button>
+    <div class="hint">Теперь составь свои 5 предложений. Можно о семье, работе, планах — всё что угодно!</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Испании: первый день в школе</div>
+    <p>Представь: ты разговариваешь с директором barcelonesa школы о своём ребёнке. Скажи вслух:</p>
+    <div class="es">
+      Buenos días. Quiero que mi hijo empiece en este colegio.<br>
+      Espero que haya una plaza disponible.<br>
+      Es importante que los profesores sepan que viene de Rusia.<br>
+      ¿Es posible que empiece la próxima semana?
+    </div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Buenos días. Quiero que mi hijo empiece en este colegio. Espero que haya una plaza disponible. Es importante que los profesores sepan que viene de Rusia. ¿Es posible que empiece la próxima semana?')">🔊 Пример</button>
+    <div class="hint">Говори медленно, чётко. Обрати внимание на выделенные формы subjuntivo — пока просто произноси, в L62 узнаешь как их образовывать.</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Запись ребёнка в школу — Barcelona</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏫 Реальная ситуация — Colegio público в Барселоне</div>
+    <p style="margin-bottom:12px">Ты только переехал(а) в Барселону и нужно записать ребёнка в местную школу. Всё общение — на испанском, и subjuntivo здесь появляется естественно: директор хочет, <em>чтобы</em> ты принёс(ла) документы; ты надеешься, <em>чтобы</em> было место. Вот ключевые фразы для первого визита.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Quiero que mi hijo/hija empiece en este colegio. <button class="speak-btn" onclick="speak('Quiero que mi hijo empiece en este colegio.')">🔊</button></div>
+          <div class="phrase-ru">Хочу, чтобы мой сын/дочь начала учиться в этой школе.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Espero que haya una plaza disponible para el año que viene. <button class="speak-btn" onclick="speak('Espero que haya una plaza disponible para el año que viene.')">🔊</button></div>
+          <div class="phrase-ru">Надеюсь, будет свободное место на следующий год.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Es importante que el tutor sepa que el niño no habla catalán todavía. <button class="speak-btn" onclick="speak('Es importante que el tutor sepa que el niño no habla catalán todavía.')">🔊</button></div>
+          <div class="phrase-ru">Важно, чтобы классный руководитель знал, что ребёнок пока не говорит по-каталонски.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Es posible que empiece a partir de enero? <button class="speak-btn" onclick="speak('¿Es posible que empiece a partir de enero?')">🔊</button></div>
+          <div class="phrase-ru">Возможно ли, что он начнёт с января?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Necesito que me expliquen el proceso de matrícula. <button class="speak-btn" onclick="speak('Necesito que me expliquen el proceso de matrícula.')">🔊</button></div>
+          <div class="phrase-ru">Мне нужно, чтобы мне объяснили процесс записи.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué documentos hace falta que lleve? <button class="speak-btn" onclick="speak('¿Qué documentos hace falta que lleve?')">🔊</button></div>
+          <div class="phrase-ru">Какие документы нужно, чтобы я принёс(ла)?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:16px">
+      <div class="dlg-header">
+        📋 Мини-диалог: первый визит в школу
+        <button class="dlg-toggle" onclick="togglePractice()">Переводы</button>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Padre</div>
+        <div style="flex:1">
+          <div class="dlg-es">Buenos días. Quiero que mi hija empiece en este colegio en septiembre. <button class="speak-btn" onclick="speak('Buenos días. Quiero que mi hija empiece en este colegio en septiembre.')">🔊</button></div>
+          <div class="dlg-ru dlg-practice">[Доброе утро. Хочу, чтобы моя дочь начала учиться в этой школе в сентябре.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Direct.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Con mucho gusto. Es necesario que rellene la solicitud antes del 15 de marzo. <button class="speak-btn" onclick="speak('Con mucho gusto. Es necesario que rellene la solicitud antes del quince de marzo.')">🔊</button></div>
+          <div class="dlg-ru dlg-practice">[С удовольствием. Необходимо, чтобы вы заполнили заявление до 15 марта.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Padre</div>
+        <div style="flex:1">
+          <div class="dlg-es">¿Qué documentos hace falta que lleve? <button class="speak-btn" onclick="speak('¿Qué documentos hace falta que lleve?')">🔊</button></div>
+          <div class="dlg-ru dlg-practice">[Какие документы нужно, чтобы я принёс?]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Direct.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Es importante que traiga el libro de familia, el DNI y el certificado de empadronamiento. <button class="speak-btn" onclick="speak('Es importante que traiga el libro de familia, el DNI y el certificado de empadronamiento.')">🔊</button></div>
+          <div class="dlg-ru dlg-practice">[Важно, чтобы вы принесли книгу семьи, удостоверение личности и справку о регистрации.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Padre</div>
+        <div style="flex:1">
+          <div class="dlg-es">Espero que haya plaza. ¿Cuántos alumnos hay en cada clase? <button class="speak-btn" onclick="speak('Espero que haya plaza. ¿Cuántos alumnos hay en cada clase?')">🔊</button></div>
+          <div class="dlg-ru dlg-practice">[Надеюсь, будет место. Сколько учеников в каждом классе?]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Direct.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Veinticinco. ¡Ojalá podamos ofrecerle una plaza! <button class="speak-btn" onclick="speak('Veinticinco. ¡Ojalá podamos ofrecerle una plaza!')">🔊</button></div>
+          <div class="dlg-ru dlg-practice">[Двадцать пять. Надеюсь, сможем предложить вам место!]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> В Барселоне государственные школы (colegios públicos) преподают на каталонском языке (català) с испанским как вторым языком. Если твой ребёнок не говорит по-каталонски, школы обязаны обеспечить поддержку адаптации. Записаться нужно в период матрикуляции (период записи, обычно март–апрель для следующего учебного года). Понятие subjuntivo здесь очень практично: все официальные просьбы и требования используют конструкции «Es necesario que...», «Es importante que...».
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🌍 Почему испанский subjuntivo — это не просто грамматика?</div>
+    <h4>Сослагательное наклонение как зеркало испанской культуры</h4>
+    <p>Испанский subjuntivo — это не просто грамматическая конструкция, это отражение того, как испанцы воспринимают мир. Там, где русский скажет «хочу, чтобы ты пришёл» используя прошедшее время, испанец создаёт отдельный глагольный мир — мир желаний и гипотез, отдельный от мира фактов. Исторически subjuntivo сохранился в испанском и португальском значительно лучше, чем во французском или итальянском, где он постепенно вытесняется indicativo в разговорной речи. Это означает, что испанцы всё ещё активно используют subjuntivo в повседневной речи — не только в письменном языке. Знание subjuntivo — это буквально разница между тем, кто «понимает испанский», и тем, кто «говорит по-испански»: носители мгновенно слышат отсутствие subjuntivo и воспринимают это как признак иностранца. Начиная с этого урока, ты входишь в ту часть языка, которая делает тебя настоящим говорящим.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все 18 для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Quiero que...</div>
+        <div class="anki-card-back">Хочу, чтобы...<br>+ subjuntivo (другой субъект)<br>Пример: Quiero que vengas.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Es importante que</div>
+        <div class="anki-card-back">Важно, чтобы...<br>Безличное выражение → subj.<br>Es importante que estudies.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">¡Ojalá...</div>
+        <div class="anki-card-back">Если бы только... / Надеюсь...<br>Без que! + subjuntivo<br>¡Ojalá venga!</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">WEIRDO</div>
+        <div class="anki-card-back">Wishes, Emotion, Impersonal,<br>Recommend, Doubt, Obligation<br>→ все требуют subjuntivo</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Dudo que...</div>
+        <div class="anki-card-back">Я сомневаюсь, что...<br>Сомнение → subjuntivo<br>Dudo que tenga razón.</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL61()">📥 Скачать колоду L61 (.txt для Anki)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L62: Subjuntivo presente — формы)</h4>
+    <ul>
+      <li><strong>Напиши 10 предложений</strong> со структурой «триггер + que + subjuntivo» на любые темы своей жизни</li>
+      <li><strong>Найди subjuntivo</strong> в испанском тексте — инстаграм, новости, субтитры сериала. Запиши 5 примеров.</li>
+      <li><strong>Dreaming Spanish (Intermediate)</strong> — найди видео с разговором между двумя людьми. Слушай и замечай, где звучит subjuntivo: quiero que, espero que, es importante que</li>
+      <li><strong>Anki</strong> — добавь 18 карточек этого урока. Повторяй 10 мин в день</li>
+      <li><strong>Произнеси вслух</strong> 6 фраз раздела «Испания на практике» — запись детей в школу. Представь себя в кабинете директора.</li>
+    </ul>
+  </div>
+  <div class="callout info" style="margin-top:14px">
+    <h4>🎧 Dreaming Spanish — что смотреть</h4>
+    <p>Уровень: <strong>Intermediate</strong>. Ищи темы: «quiero que», «escuela en España», «vida en Barcelona». Subjuntivo появляется постоянно — твоя задача его замечать, не переводить каждое слово.</p>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎯 Следующий урок — L62: Формы subjuntivo</h4>
+    <p>В L62 ты узнаешь как образовываются формы: hable, comas, viva. Есть простой секрет — «магический трюк» с yo-формой. Подсказка: -AR глаголы используют -E окончания, -ER/-IR глаголы — -A окончания. Попробуй угадать логику!</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L62.html" class="nav-link-btn">L62: Subjuntivo — формы →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L61 = [
+  {front:"el subjuntivo",back:"Русский: сослагательное наклонение\n\nПример: El subjuntivo expresa deseos y dudas.\nЗаметка: Используется после триггерных глаголов"},
+  {front:"Quiero que...",back:"Русский: Хочу, чтобы...\n\nПример: Quiero que vengas mañana.\nЗаметка: Разные субъекты → subjuntivo"},
+  {front:"Espero que...",back:"Русский: Надеюсь, что...\n\nПример: Espero que todo salga bien.\nЗаметка: Желание о будущем"},
+  {front:"es importante que",back:"Русский: важно, чтобы\n\nПример: Es importante que estudies cada día.\nЗаметка: Безличное выражение → subjuntivo"},
+  {front:"es necesario que",back:"Русский: необходимо, чтобы\n\nПример: Es necesario que lleves los documentos.\nЗаметка: I из WEIRDO — impersonal"},
+  {front:"es posible que",back:"Русский: возможно, что\n\nПример: Es posible que llueva mañana.\nЗаметка: Неопределённость → subjuntivo"},
+  {front:"¡Ojalá...!",back:"Русский: Надеюсь, что... / Если бы только...\n\nПример: ¡Ojalá venga pronto!\nЗаметка: Без que! От арабского inshallah"},
+  {front:"dudar que",back:"Русский: сомневаться, что\n\nПример: Dudo que tenga razón.\nЗаметка: Сомнение = D из WEIRDO → subjuntivo"},
+  {front:"alegrarse de que",back:"Русский: радоваться, что\n\nПример: Me alegro de que estés aquí.\nЗаметка: Эмоция = E из WEIRDO → subjuntivo"},
+  {front:"temer que",back:"Русский: бояться, что\n\nПример: Temo que llegue tarde.\nЗаметка: Страх = эмоция → subjuntivo"},
+  {front:"recomendar que",back:"Русский: рекомендовать, чтобы\n\nПример: Te recomiendo que descanses más.\nЗаметка: R из WEIRDO — recommendation"},
+  {front:"pedir que",back:"Русский: просить, чтобы\n\nПример: Te pido que me escuches.\nЗаметка: O из WEIRDO — obligation/request"},
+  {front:"WEIRDO",back:"W=Wishes, E=Emotion, I=Impersonal\nR=Recommendation, D=Doubt, O=Obligation\n\nПример: Все 6 категорий → subjuntivo"},
+  {front:"Один субъект → infinitivo",back:"Русский: один субъект = инфинитив\n\nПример: Quiero estudiar. (Я хочу учиться)\nЗаметка: Оба действия мои → инфинитив"},
+  {front:"Два субъекта → subjuntivo",back:"Русский: разные субъекты = subjuntivo\n\nПример: Quiero que tú estudies. (Хочу, чтобы ТЫ)\nЗаметка: Ключевой принцип subjuntivo"},
+  {front:"no creer que",back:"Русский: не верить, что\n\nПример: No creo que venga hoy.\nЗаметка: Отрицание creer → subjuntivo; creo que → indicativo"},
+  {front:"el deseo",back:"Русский: желание\n\nПример: El subjuntivo expresa el deseo.\nЗаметка: Желание — основной триггер subjuntivo"},
+  {front:"la duda",back:"Русский: сомнение\n\nПример: Tengo muchas dudas sobre esto.\nЗаметка: Duda = D из WEIRDO → subjuntivo"},
+];
+
+function exportAnkiL61() {
+  const tsv = ANKI_DECK_L61.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const header = '#separator:Tab\n#html:true\n#deck:L61 Spanish\n';
+  const blob = new Blob([header + tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L61_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Marta, quiero que presentes el informe el viernes.',
+    'De acuerdo. Espero que el cliente esté satisfecho.',
+    'Es importante que incluyas los datos del último trimestre.',
+    'Claro. ¿Necesitas que prepare también una presentación?',
+    'Sí, te pido que la hagas breve, máximo diez diapositivas.',
+    'Entendido. Dudo que sea suficiente con diez, pero lo intentaré.',
+    'Te recomiendo que uses gráficos en lugar de tablas.',
+    'Buena idea. Me alegra que confíes en mí para esto.',
+    'Es necesario que todos estén presentes el viernes a las diez.',
+    '¡Ojalá salga todo bien! Hasta el viernes.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue2() {
+  const lines = [
+    'Mañana voy al colegio. Quiero que admitan a mi hijo en primero de primaria.',
+    '¡Ojalá haya plaza! Los colegios públicos de Barcelona son muy solicitados.',
+    'Es importante que el colegio tenga buenas actividades extraescolares.',
+    'Te recomiendo que hables directamente con el director.',
+    'Sí. Espero que él entienda nuestra situación como extranjeros.',
+    'Es necesario que lleves el empadronamiento y el libro de familia.',
+    '¿Y si no tengo todos los papeles? Dudo que acepten la solicitud incompleta.',
+    'Te aconsejo que llames antes para preguntar qué documentos hacen falta.',
+    'Me alegra que sepas tanto sobre el sistema educativo aquí.',
+    '¡Ojalá todo salga bien mañana! ¡Mucho ánimo!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+const LESSON_ID = 'L61';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  if (btn) { btn.textContent = '✅ Пройден!'; btn.className = 'done-btn marked'; }
+}
+
+const quizExpl = {
+  w1:'jugaba — imperfecto для привычных действий в прошлом. «Todos los días» — ключевой маркер импerfecto.',
+  w2:'es / está — ser для постоянных характеристик (paella всегда вкусная), estar для временных состояний (сейчас холодная).',
+  w3:'No tengo nada — в испанском двойное отрицание обязательно и правильно!',
+  w4:'En España se habla español — конструкция se + глагол для пассивного значения.',
+  q1:'Sé que hablas español — после saber que (знать, что) используется indicativo, потому что это факт.',
+  q2:'Quiero que vengas mañana — querer que требует subjuntivo (vengas, не vienes). Разные субъекты!',
+  q3:'Espero ganar el partido — один субъект (я надеюсь И я выиграю) → инфинитив без que.',
+  q4:'Es importante que trabaje — безличное выражение «es importante» → subjuntivo. Saber que и ver que → indicativo.',
+  q5:'¡Ojalá llueva mañana! — ojalá всегда требует subjuntivo и выражает желание/надежду.',
+  q6:'Me alegra — выражение радости, это эмоция (E из WEIRDO) → subjuntivo.',
+  q7:'Creo que viene (indicativo — утверждение), No creo que venga (subjuntivo — отрицание веры).',
+};
+
+let quizScore = 0, quizTotal = 0;
+
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    if (m && m[1] === correctKey) o.classList.add('correct');
+  });
+  const clickedKey = el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];
+  if (clickedKey !== correctKey) el.classList.add('wrong');
+  const isCorrect = clickedKey === correctKey;
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (!raw) {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
+    return;
+  }
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
+  const userN = norm(raw);
+  const correctN = norm(answer);
+  if (userN === correctN) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
+      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
+    } else {
+      fb.textContent = '✅ Правильно! ' + answer;
+    }
+    return;
+  }
+  const lev = (a, b) => {
+    const m = a.length, n = b.length;
+    if (!m) return n; if (!n) return m;
+    let prev = Array.from({length: n+1}, (_,i) => i);
+    let curr = new Array(n+1).fill(0);
+    for (let i = 1; i <= m; i++) {
+      curr[0] = i;
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i-1] === b[j-1] ? 0 : 1;
+        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
+      }
+      [prev, curr] = [curr, prev];
+    }
+    return prev[n];
+  };
+  const dist = lev(userN, correctN);
+  const tol = correctN.length >= 6 ? 2 : 1;
+  if (dist > 0 && dist <= tol) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
+    return;
+  }
+  input.className = 'text-input wrong';
+  fb.className += ' no';
+  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+let showingPractice = false;
+function togglePractice() {
+  showingPractice = !showingPractice;
+  document.querySelectorAll('.dlg-practice').forEach(el => {
+    el.style.display = showingPractice ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.dlg-practice').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>
