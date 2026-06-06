@@ -844,7 +844,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Использовать неправильные формы в живой речи",
-      file:"lessons/L63.html", status:"pending"
+      file:"lessons/L63.html", status:"improved"
     },
     {
       id:"L64", num:64, phase:3, block:"B3A", level:"B1", day:136, week:23,
@@ -856,7 +856,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Выражать желания и просьбы через subjuntivo",
-      file:"lessons/L64.html", status:"pending"
+      file:"lessons/L64.html", status:"improved"
     },
     {
       id:"L65", num:65, phase:3, block:"B3A", level:"B1", day:138, week:23,
