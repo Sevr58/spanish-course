@@ -24,6 +24,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin-bottom:28px}
 .section{margin-bottom:36px}
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .section-header h2{font-size:1.15rem;font-weight:700}
@@ -33,7 +34,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
 .callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
-.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:6px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
 .callout ul{margin-left:16px}
 .callout li{margin-bottom:3px}
@@ -70,26 +71,32 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
 .check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
 .check-btn:hover{opacity:.88}
-.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline;margin-left:8px}
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
 .answer-reveal.show{display:block}
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
+.dlg-speaker.c{color:var(--purple)}
+.dlg-text{flex:1}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
-.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.dlg-controls{display:flex;gap:6px;align-items:center;margin-top:4px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline;padding:0}
 .culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block;margin:8px}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
 .anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
 .anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -101,137 +108,323 @@ table.vocab{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
 table.vocab th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;color:var(--muted);border-bottom:1px solid var(--border)}
 table.vocab td{padding:8px 10px;border-bottom:1px solid var(--bg3);vertical-align:top}
 table.vocab td:first-child{font-weight:700;color:var(--gold)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
+table.errors{width:100%;border-collapse:collapse;margin:14px 0;font-size:.85rem}
+table.errors th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;color:var(--muted);border-bottom:1px solid var(--border)}
+table.errors td{padding:8px 10px;border-bottom:1px solid var(--bg3);vertical-align:top}
+table.errors tr td:first-child{color:var(--red);font-style:italic}
+table.errors tr td:nth-child(2){color:var(--green)}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.phrase-item{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.phrase-es{font-weight:600;font-size:.92rem}
+.phrase-ru{color:var(--muted);font-size:.82rem}
+.culture-tip{background:rgba(200,144,0,.08);border-left:3px solid var(--gold);border-radius:4px;padding:12px 14px;margin-top:14px;font-size:.86rem}
+.export-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:12px}
+.export-btn:hover{opacity:.88}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.hw-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:12px}
+.hw-block h4{font-size:.9rem;font-weight:700;margin-bottom:8px;color:var(--gold)}
+.hw-block p,.hw-block li{font-size:.87rem;color:var(--muted)}
+.hw-block ul{margin-left:16px}
+.hw-block li{margin-bottom:4px}
+.rule-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:14px}
+.rule-box .rule-title{font-weight:700;font-size:.95rem;margin-bottom:8px;color:var(--blue)}
+.rule-ex{background:var(--bg3);border-radius:5px;padding:6px 12px;margin-bottom:5px;font-size:.87rem}
+.rule-ex .es{font-weight:600}
+.rule-ex .ru{color:var(--muted);font-size:.8rem}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.done-bar{flex-direction:column;gap:8px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
-<div class="nav">
+<!-- SECTION 1: NAV -->
+<nav class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">B1 · Фаза 3 · День 140</span>
   <a href="L67.html">L67 →</a>
-</div>
+</nav>
 
-<!-- HERO -->
+<!-- SECTION 2: HERO -->
 <div class="hero">
   <div class="phase-tag">🔥 Фаза 3 · Прорыв · Блок 3A — Сослагательное наклонение</div>
   <h1>Subjuntivo — <span class="hl">эмоции</span></h1>
-  <p class="sub">Me alegra que..., Es una lástima que..., Odio que... — реагируем на события с чувствами</p>
+  <p class="sub">Me alegra que..., Es una lástima que..., Odio que... — выражаем чувства через subjuntivo</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Выражать радость, сожаление, страх, раздражение через subjuntivo</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + Anki</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Слушай эмоциональные истории — замечай «me alegra», «qué pena que»</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Реагируем на новости как настоящий испанец</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Понять: эмоция + 2 субъекта → subjuntivo</p></div></div>
+    <div class="obj"><div class="ico">😊</div><div><strong>Цель 2</strong><p>6 групп эмоциональных триггеров: радость, сожаление, страх, злость, удивление, восклицания</p></div></div>
+    <div class="obj"><div class="ico">🇪🇸</div><div><strong>Цель 3</strong><p>Говорить эмоционально по-испански — как настоящий барселонец</p></div></div>
+    <div class="obj"><div class="ico">📚</div><div><strong>Цель 4</strong><p>18 Anki-карточек + 3 диалога + AMPA-сценарий</p></div></div>
   </div>
+  <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">0 / 14 разделов</div>
 </div>
 
-<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<!-- SECTION 3: WARM-UP (повторение L65) -->
+<section class="card">
+  <div class="section-header">
+    <div class="section-num">◀</div>
+    <h2>Повторение L65 — сомнение и отрицание</h2>
+  </div>
+  <p style="font-size:.9rem;color:var(--muted);margin-bottom:16px">Прежде чем начать — проверь, что помнишь материал прошлого урока.</p>
 
-<!-- SECTION 1: THEORY -->
-<div class="section">
+  <div class="quiz" id="wu-quiz">
+    <h3>🔄 Быстрый тест: No creo que..., Dudo que...</h3>
+
+    <div class="quiz-q" id="wu1">
+      <div class="q-text">1. «Я не думаю, что она придёт» → <strong>No creo que ella ___</strong></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'wu1','a')">venga</div>
+        <div class="opt" onclick="answerQuiz(this,'wu1','b')">viene</div>
+        <div class="opt" onclick="answerQuiz(this,'wu1','c')">vendrá</div>
+      </div>
+      <div class="feedback" id="fb-wu1"></div>
+    </div>
+
+    <div class="quiz-q" id="wu2">
+      <div class="q-text">2. «Сомневаюсь, что это правда» → <strong>Dudo que ___ verdad</strong></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'wu2','b')">es</div>
+        <div class="opt" onclick="answerQuiz(this,'wu2','a')">sea</div>
+        <div class="opt" onclick="answerQuiz(this,'wu2','c')">será</div>
+      </div>
+      <div class="feedback" id="fb-wu2"></div>
+    </div>
+
+    <div class="quiz-q" id="wu3">
+      <div class="q-text">3. «Неправда, что он умеет петь» → <strong>No es verdad que él ___</strong></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'wu3','c')">puede cantar</div>
+        <div class="opt" onclick="answerQuiz(this,'wu3','b')">canta</div>
+        <div class="opt" onclick="answerQuiz(this,'wu3','a')">sepa cantar</div>
+      </div>
+      <div class="feedback" id="fb-wu3"></div>
+    </div>
+
+    <div class="quiz-q" id="wu4">
+      <div class="q-text">4. Исключение: «A lo mejor» + ___</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'wu4','b')">subjuntivo</div>
+        <div class="opt" onclick="answerQuiz(this,'wu4','c')">infinitivo</div>
+        <div class="opt" onclick="answerQuiz(this,'wu4','a')">indicativo</div>
+      </div>
+      <div class="feedback" id="fb-wu4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: THEORY -->
+<section class="card">
   <div class="section-header">
     <div class="section-num">1</div>
     <h2>Теория — эмоции как триггер subjuntivo (WEIRDO — E)</h2>
   </div>
 
-  <p style="margin-bottom:14px">Когда ты выражаешь <strong>эмоциональную реакцию</strong> на действие другого человека — используй subjuntivo. Логика та же: два субъекта. Ты чувствуешь → другой человек делает что-то.</p>
+  <p style="margin-bottom:14px">Когда ты выражаешь <strong>эмоциональную реакцию</strong> на действие другого человека — используется subjuntivo. Ключевой принцип: два разных субъекта. <em>Ты</em> испытываешь эмоцию — <em>другой человек</em> что-то делает.</p>
 
   <div class="callout tip">
-    <h4>💡 Структура: [эмоция] + que + [subjuntivo]</h4>
+    <h4>💡 Золотое правило: [эмоция] + que + [subjuntivo]</h4>
     <p>Шаблон всегда одинаков:<br>
     <strong>Me alegra que estés aquí.</strong> — Рад(а), что ты здесь.<br>
     <strong>Es una lástima que no puedas venir.</strong> — Жаль, что ты не можешь прийти.<br>
-    <strong>Me sorprende que hable tan bien.</strong> — Удивляет, что он так хорошо говорит.</p>
-  </div>
-
-  <!-- Позитивные эмоции -->
-  <div class="emotion-card">
-    <div class="ec-trigger">😊 Радость и удовольствие</div>
-    <div class="ec-meaning">alegrarse de que, estar feliz de que, gustar que, encantar que</div>
-    <div class="ex"><div class="es">Me alegra que <strong>hayas llegado</strong> bien.</div><div class="ru">Рад(а), что ты добрался хорошо.</div></div>
-    <div class="ex"><div class="es">Me encanta que <strong>te guste</strong> Barcelona.</div><div class="ru">Мне очень нравится, что тебе нравится Барселона.</div></div>
-    <div class="ex"><div class="es">Estoy feliz de que <strong>hayamos tomado</strong> esta decisión.</div><div class="ru">Счастлив(а), что мы приняли это решение.</div></div>
-  </div>
-
-  <!-- Сожаление -->
-  <div class="emotion-card">
-    <div class="ec-trigger">😔 Сожаление и печаль</div>
-    <div class="ec-meaning">es una lástima que, sentir que, lamentarse de que, qué pena que</div>
-    <div class="ex"><div class="es">Es una lástima que <strong>no puedas</strong> venir.</div><div class="ru">Жаль, что ты не можешь прийти.</div></div>
-    <div class="ex"><div class="es">Siento mucho que <strong>estés</strong> enfermo.</div><div class="ru">Мне очень жаль, что ты болен.</div></div>
-    <div class="ex"><div class="es">¡Qué pena que <strong>haya terminado</strong> el verano!</div><div class="ru">Как жаль, что лето закончилось!</div></div>
-  </div>
-
-  <!-- Раздражение -->
-  <div class="emotion-card">
-    <div class="ec-trigger">😠 Раздражение и злость</div>
-    <div class="ec-meaning">molestar que, odiar que, fastidiar que, no soportar que</div>
-    <div class="ex"><div class="es">Me molesta que <strong>llegues</strong> tarde siempre.</div><div class="ru">Меня раздражает, что ты всегда опаздываешь.</div></div>
-    <div class="ex"><div class="es">Odio que <strong>hablen</strong> durante la película.</div><div class="ru">Ненавижу, когда разговаривают во время фильма.</div></div>
-    <div class="ex"><div class="es">No soporto que <strong>fumen</strong> cerca de los niños.</div><div class="ru">Не выношу, когда курят рядом с детьми.</div></div>
-  </div>
-
-  <!-- Страх и тревога -->
-  <div class="emotion-card">
-    <div class="ec-trigger">😨 Страх и беспокойство</div>
-    <div class="ec-meaning">temer que, tener miedo de que, preocupar que</div>
-    <div class="ex"><div class="es">Temo que <strong>no haya</strong> plazas en el colegio.</div><div class="ru">Боюсь, что не окажется мест в школе.</div></div>
-    <div class="ex"><div class="es">Me preocupa que <strong>tardemos</strong> mucho en adaptarnos.</div><div class="ru">Меня беспокоит, что нам потребуется много времени для адаптации.</div></div>
-  </div>
-
-  <!-- Удивление -->
-  <div class="emotion-card">
-    <div class="ec-trigger">😲 Удивление</div>
-    <div class="ec-meaning">sorprender que, extrañar que, parecer increíble que</div>
-    <div class="ex"><div class="es">Me sorprende que <strong>hable</strong> catalán también.</div><div class="ru">Удивляет, что он говорит и по-каталански.</div></div>
-    <div class="ex"><div class="es">Es increíble que <strong>hayas aprendido</strong> tanto en un año.</div><div class="ru">Невероятно, что ты выучил столько за год.</div></div>
+    <strong>Odio que lleguen tarde.</strong> — Ненавижу, что они опаздывают.</p>
   </div>
 
   <div class="callout warning">
-    <h4>⚠️ Когда эмоция + ОДИН субъект → инфинитив</h4>
+    <h4>⚠️ Один субъект → инфинитив, два субъекта → subjuntivo</h4>
     <ul>
-      <li>«Me alegra <strong>estar</strong> aquí.» — Рад(а) быть здесь. (я радуюсь + я здесь → один субъект → инфинитив)</li>
-      <li>«Me alegra que <strong>estés</strong> aquí.» — Рад(а), что ты здесь. (я радуюсь + ты здесь → два субъекта → subjuntivo)</li>
+      <li><strong>Me alegra estar aquí.</strong> — Рад(а) быть здесь. (один субъект)</li>
+      <li><strong>Me alegra que <em>tú</em> estés aquí.</strong> — Рад(а), что <em>ты</em> здесь. (два субъекта)</li>
+      <li><strong>Siento no poder ir.</strong> — Жаль, что не могу пойти. (один субъект)</li>
+      <li><strong>Siento que <em>él</em> no pueda ir.</strong> — Жаль, что <em>он</em> не может пойти. (два субъекта)</li>
     </ul>
   </div>
-</div>
 
-<!-- SECTION 2: VOCABULARY -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">2</div>
-    <h2>Словарь — эмоциональные триггеры</h2>
+  <!-- Радость -->
+  <div class="rule-box">
+    <div class="rule-title">😊 Правило 1: Радость и удовольствие</div>
+    <p style="font-size:.87rem;color:var(--muted);margin-bottom:10px">Глаголы: <strong>alegrarse de que, gustar que, encantar que, estar feliz de que, estar contento de que</strong></p>
+    <div class="rule-ex"><div class="es">Me alegra que <strong>hayas llegado</strong> bien. <button class="speak-btn" onclick="speak('Me alegra que hayas llegado bien')">🔊</button></div><div class="ru">Рад(а), что ты добрался хорошо.</div></div>
+    <div class="rule-ex"><div class="es">Me encanta que <strong>te guste</strong> Barcelona. <button class="speak-btn" onclick="speak('Me encanta que te guste Barcelona')">🔊</button></div><div class="ru">Мне очень нравится, что тебе нравится Барселона.</div></div>
+    <div class="rule-ex"><div class="es">Estoy feliz de que <strong>hayamos tomado</strong> esta decisión. <button class="speak-btn" onclick="speak('Estoy feliz de que hayamos tomado esta decisión')">🔊</button></div><div class="ru">Счастлив(а), что мы приняли это решение.</div></div>
+    <div class="rule-ex"><div class="es">Me alegro de que <strong>los niños estén</strong> bien en el colegio. <button class="speak-btn" onclick="speak('Me alegro de que los niños estén bien en el colegio')">🔊</button></div><div class="ru">Рад(а), что дети хорошо себя чувствуют в школе.</div></div>
+    <div class="rule-ex"><div class="es">Estoy contento de que <strong>hayas encontrado</strong> trabajo. <button class="speak-btn" onclick="speak('Estoy contento de que hayas encontrado trabajo')">🔊</button></div><div class="ru">Доволен, что ты нашёл работу.</div></div>
   </div>
 
-  <table class="vocab">
-    <tr><th>Выражение</th><th>Перевод</th><th>Пример</th></tr>
-    <tr><td>alegrarse de que</td><td>радоваться что</td><td>Me alegro de que hayas venido.</td></tr>
-    <tr><td>gustar que</td><td>нравиться что</td><td>Me gusta que seas honesto.</td></tr>
-    <tr><td>encantar que</td><td>очень нравиться что</td><td>Me encanta que cocines tan bien.</td></tr>
-    <tr><td>es una lástima que</td><td>жаль что</td><td>Es una lástima que no vengas.</td></tr>
-    <tr><td>sentir que</td><td>жалеть что / быть жаль</td><td>Siento que estés triste.</td></tr>
-    <tr><td>molestar que</td><td>раздражать что</td><td>Me molesta que grites.</td></tr>
-    <tr><td>odiar que</td><td>ненавидеть что</td><td>Odio que llegues tarde.</td></tr>
-    <tr><td>temer que</td><td>бояться что</td><td>Temo que no haya solución.</td></tr>
-    <tr><td>sorprender que</td><td>удивлять что</td><td>Me sorprende que sepas eso.</td></tr>
-    <tr><td>qué pena que</td><td>как жаль что</td><td>¡Qué pena que no puedas venir!</td></tr>
-    <tr><td>qué bien que</td><td>как здорово что</td><td>¡Qué bien que hayas aprobado!</td></tr>
-    <tr><td>es increíble que</td><td>невероятно что</td><td>Es increíble que hable 5 idiomas.</td></tr>
-  </table>
-</div>
+  <!-- Сожаление -->
+  <div class="rule-box">
+    <div class="rule-title">😔 Правило 2: Сожаление и печаль</div>
+    <p style="font-size:.87rem;color:var(--muted);margin-bottom:10px">Глаголы: <strong>es una lástima que, sentir que, lamentarse de que, qué pena que, es una pena que</strong></p>
+    <div class="rule-ex"><div class="es">Es una lástima que <strong>no puedas</strong> venir a la cena. <button class="speak-btn" onclick="speak('Es una lástima que no puedas venir a la cena')">🔊</button></div><div class="ru">Жаль, что ты не можешь прийти на ужин.</div></div>
+    <div class="rule-ex"><div class="es">Siento mucho que <strong>estés</strong> enfermo. <button class="speak-btn" onclick="speak('Siento mucho que estés enfermo')">🔊</button></div><div class="ru">Мне очень жаль, что ты болен.</div></div>
+    <div class="rule-ex"><div class="es">¡Qué pena que <strong>haya terminado</strong> el verano! <button class="speak-btn" onclick="speak('¡Qué pena que haya terminado el verano!')">🔊</button></div><div class="ru">Как жаль, что лето закончилось!</div></div>
+    <div class="rule-ex"><div class="es">Es una pena que <strong>no hables</strong> catalán todavía. <button class="speak-btn" onclick="speak('Es una pena que no hables catalán todavía')">🔊</button></div><div class="ru">Жаль, что ты ещё не говоришь по-каталански.</div></div>
+    <div class="rule-ex"><div class="es">Me lamento de que <strong>no seamos</strong> vecinos. <button class="speak-btn" onclick="speak('Me lamento de que no seamos vecinos')">🔊</button></div><div class="ru">Жаль, что мы не соседи.</div></div>
+  </div>
 
-<!-- SECTION 3: QUIZ 1 -->
-<div class="section">
+  <!-- Раздражение -->
+  <div class="rule-box">
+    <div class="rule-title">😠 Правило 3: Раздражение и злость</div>
+    <p style="font-size:.87rem;color:var(--muted);margin-bottom:10px">Глаголы: <strong>molestar que, odiar que, fastidiar que, no soportar que, no aguantar que, dar rabia que</strong></p>
+    <div class="rule-ex"><div class="es">Me molesta que <strong>llegues</strong> tarde siempre. <button class="speak-btn" onclick="speak('Me molesta que llegues tarde siempre')">🔊</button></div><div class="ru">Меня раздражает, что ты всегда опаздываешь.</div></div>
+    <div class="rule-ex"><div class="es">Odio que <strong>hablen</strong> durante la película. <button class="speak-btn" onclick="speak('Odio que hablen durante la película')">🔊</button></div><div class="ru">Ненавижу, когда разговаривают во время фильма.</div></div>
+    <div class="rule-ex"><div class="es">No soporto que <strong>fumen</strong> cerca de los niños. <button class="speak-btn" onclick="speak('No soporto que fumen cerca de los niños')">🔊</button></div><div class="ru">Не выношу, когда курят рядом с детьми.</div></div>
+    <div class="rule-ex"><div class="es">Me da rabia que <strong>no nos avisen</strong> con tiempo. <button class="speak-btn" onclick="speak('Me da rabia que no nos avisen con tiempo')">🔊</button></div><div class="ru">Меня злит, что нас не предупреждают заранее.</div></div>
+    <div class="rule-ex"><div class="es">Me fastidia que <strong>siempre sea</strong> lo mismo. <button class="speak-btn" onclick="speak('Me fastidia que siempre sea lo mismo')">🔊</button></div><div class="ru">Надоедает, что всегда одно и то же.</div></div>
+  </div>
+
+  <!-- Страх -->
+  <div class="rule-box">
+    <div class="rule-title">😨 Правило 4: Страх и беспокойство</div>
+    <p style="font-size:.87rem;color:var(--muted);margin-bottom:10px">Глаголы: <strong>temer que, tener miedo de que, preocupar que, inquietar que</strong></p>
+    <div class="rule-ex"><div class="es">Temo que <strong>no haya</strong> plazas en el colegio. <button class="speak-btn" onclick="speak('Temo que no haya plazas en el colegio')">🔊</button></div><div class="ru">Боюсь, что в школе нет мест.</div></div>
+    <div class="rule-ex"><div class="es">Me preocupa que <strong>tardemos</strong> tanto en adaptarnos. <button class="speak-btn" onclick="speak('Me preocupa que tardemos tanto en adaptarnos')">🔊</button></div><div class="ru">Беспокоит, что нам так долго адаптироваться.</div></div>
+    <div class="rule-ex"><div class="es">Tengo miedo de que <strong>no entiendan</strong> a los niños. <button class="speak-btn" onclick="speak('Tengo miedo de que no entiendan a los niños')">🔊</button></div><div class="ru">Боюсь, что детей не поймут.</div></div>
+    <div class="rule-ex"><div class="es">Me inquieta que <strong>no hayan respondido</strong> todavía. <button class="speak-btn" onclick="speak('Me inquieta que no hayan respondido todavía')">🔊</button></div><div class="ru">Тревожит, что они ещё не ответили.</div></div>
+    <div class="rule-ex"><div class="es">Me preocupa que <strong>el contrato sea</strong> temporal. <button class="speak-btn" onclick="speak('Me preocupa que el contrato sea temporal')">🔊</button></div><div class="ru">Беспокоит, что контракт временный.</div></div>
+  </div>
+
+  <!-- Удивление -->
+  <div class="rule-box">
+    <div class="rule-title">😲 Правило 5: Удивление</div>
+    <p style="font-size:.87rem;color:var(--muted);margin-bottom:10px">Глаголы: <strong>sorprender que, extrañar que, resultar extraño que, parecer increíble que</strong></p>
+    <div class="rule-ex"><div class="es">Me sorprende que <strong>hable</strong> catalán también. <button class="speak-btn" onclick="speak('Me sorprende que hable catalán también')">🔊</button></div><div class="ru">Удивляет, что он говорит и по-каталански.</div></div>
+    <div class="rule-ex"><div class="es">Me extraña que <strong>no lo sepas</strong>. <button class="speak-btn" onclick="speak('Me extraña que no lo sepas')">🔊</button></div><div class="ru">Странно, что ты этого не знаешь.</div></div>
+    <div class="rule-ex"><div class="es">Es increíble que <strong>hayas aprendido</strong> tanto en un año. <button class="speak-btn" onclick="speak('Es increíble que hayas aprendido tanto en un año')">🔊</button></div><div class="ru">Невероятно, что ты выучил столько за год.</div></div>
+    <div class="rule-ex"><div class="es">Me parece extraño que <strong>no quieran</strong> venir. <button class="speak-btn" onclick="speak('Me parece extraño que no quieran venir')">🔊</button></div><div class="ru">Кажется странным, что они не хотят приходить.</div></div>
+    <div class="rule-ex"><div class="es">Me sorprende que todavía <strong>no hayan llegado</strong>. <button class="speak-btn" onclick="speak('Me sorprende que todavía no hayan llegado')">🔊</button></div><div class="ru">Удивляет, что они до сих пор не приехали.</div></div>
+  </div>
+
+  <!-- Восклицания -->
+  <div class="rule-box">
+    <div class="rule-title">🎉 Правило 6: Восклицательные выражения</div>
+    <p style="font-size:.87rem;color:var(--muted);margin-bottom:10px">Формы: <strong>¡Qué bien que...! ¡Qué pena que...! ¡Qué rabia que...! ¡Qué suerte que...!</strong></p>
+    <div class="rule-ex"><div class="es">¡Qué bien que <strong>hayas aprobado</strong> el examen! <button class="speak-btn" onclick="speak('¡Qué bien que hayas aprobado el examen!')">🔊</button></div><div class="ru">Как здорово, что ты сдал экзамен!</div></div>
+    <div class="rule-ex"><div class="es">¡Qué rabia que <strong>no haya</strong> entradas! <button class="speak-btn" onclick="speak('¡Qué rabia que no haya entradas!')">🔊</button></div><div class="ru">Как обидно, что нет билетов!</div></div>
+    <div class="rule-ex"><div class="es">¡Qué suerte que <strong>estés</strong> cerca! <button class="speak-btn" onclick="speak('¡Qué suerte que estés cerca!')">🔊</button></div><div class="ru">Как повезло, что ты рядом!</div></div>
+    <div class="rule-ex"><div class="es">¡Qué lástima que <strong>no podáis</strong> venir! <button class="speak-btn" onclick="speak('¡Qué lástima que no podáis venir!')">🔊</button></div><div class="ru">Как жаль, что вы не можете прийти!</div></div>
+    <div class="rule-ex"><div class="es">¡Qué bonito que <strong>hayan decorado</strong> así la calle! <button class="speak-btn" onclick="speak('¡Qué bonito que hayan decorado así la calle!')">🔊</button></div><div class="ru">Как красиво, что так украсили улицу!</div></div>
+  </div>
+
+  <div class="callout info">
+    <h4>📌 Сравнение с русским и английским</h4>
+    <ul>
+      <li><strong>Русский:</strong> «Рад, что ты пришёл» — индикатив (пришёл = изъявит.). В испанском после radость — subjuntivo: <em>Me alegra que hayas venido</em>.</li>
+      <li><strong>Английский:</strong> «I'm glad that you came» — просто прошедшее. Испанский точнее: перфект субхунтиво = действие произошло до момента речи.</li>
+      <li><strong>Русский:</strong> «Жаль, что он не пришёл» = факт. Испанский: <em>Es una lástima que no haya venido</em> — тоже факт, но с subjuntivo после эмоции.</li>
+    </ul>
+  </div>
+
+  <!-- Таблица ошибок -->
+  <h3 style="font-size:.95rem;font-weight:700;margin:20px 0 10px">❌ Типичные ошибки русскоговорящих</h3>
+  <table class="errors">
+    <tr><th>Неверно</th><th>Верно</th><th>Почему</th></tr>
+    <tr><td>Me alegra que vienes.</td><td>Me alegra que vengas.</td><td>После эмоций — subjuntivo, не indicativo</td></tr>
+    <tr><td>Siento que no puede venir.</td><td>Siento que no pueda venir.</td><td>sentir + 2 субъекта → subjuntivo</td></tr>
+    <tr><td>Es una lástima que no viniste.</td><td>Es una lástima que no hayas venido.</td><td>Прошедшее в subjuntivo = perfeito субхунтиво</td></tr>
+    <tr><td>Me sorprende que habla catalán.</td><td>Me sorprende que hable catalán.</td><td>sorprender — эмоция → subjuntivo</td></tr>
+    <tr><td>Temo que no hay plazas.</td><td>Temo que no haya plazas.</td><td>temer que → всегда subjuntivo</td></tr>
+    <tr><td>Odio que siempre llega tarde.</td><td>Odio que siempre llegue tarde.</td><td>odiar que = эмоция → subjuntivo</td></tr>
+    <tr><td>Me alegra estar aquí tú.</td><td>Me alegra que estés aquí.</td><td>Два субъекта → нужен que + subjuntivo</td></tr>
+  </table>
+</section>
+
+<!-- SECTION 5: VOCABULARY -->
+<section class="card">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Словарь — эмоциональные триггеры (18 слов)</h2>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">Нажимай 🔊 чтобы услышать произношение. Вводи в нижнем регистре при тестах.</p>
+
+  <table class="vocab">
+    <tr>
+      <th>Выражение</th><th>Перевод</th><th>Пример</th><th>🔊</th>
+    </tr>
+    <tr>
+      <td>alegrarse de que</td><td>радоваться, что</td><td>Me alegro de que hayas llegado.</td>
+      <td><button class="speak-btn" onclick="speak('alegrarse de que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>gustar que</td><td>нравиться, что</td><td>Me gusta que seas honesto.</td>
+      <td><button class="speak-btn" onclick="speak('gustar que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>encantar que</td><td>очень нравиться, что</td><td>Me encanta que cocines tan bien.</td>
+      <td><button class="speak-btn" onclick="speak('encantar que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>estar feliz de que</td><td>быть счастлив, что</td><td>Estoy feliz de que estés aquí.</td>
+      <td><button class="speak-btn" onclick="speak('estar feliz de que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>es una lástima que</td><td>жаль, что</td><td>Es una lástima que no vengas.</td>
+      <td><button class="speak-btn" onclick="speak('es una lástima que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>sentir que</td><td>жалеть / быть жаль</td><td>Siento que estés triste.</td>
+      <td><button class="speak-btn" onclick="speak('sentir que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>qué pena que</td><td>как жаль, что</td><td>¡Qué pena que no puedas venir!</td>
+      <td><button class="speak-btn" onclick="speak('qué pena que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>molestar que</td><td>раздражать, что</td><td>Me molesta que grites.</td>
+      <td><button class="speak-btn" onclick="speak('molestar que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>odiar que</td><td>ненавидеть, что</td><td>Odio que llegues tarde.</td>
+      <td><button class="speak-btn" onclick="speak('odiar que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>fastidiar que</td><td>надоедать, что</td><td>Me fastidia que no avisen.</td>
+      <td><button class="speak-btn" onclick="speak('fastidiar que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>dar rabia que</td><td>злить / бесить, что</td><td>Me da rabia que no haya solución.</td>
+      <td><button class="speak-btn" onclick="speak('dar rabia que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>no soportar que</td><td>не выносить, что</td><td>No soporto que fumen aquí.</td>
+      <td><button class="speak-btn" onclick="speak('no soportar que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>temer que</td><td>бояться, что</td><td>Temo que no haya plazas.</td>
+      <td><button class="speak-btn" onclick="speak('temer que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>preocupar que</td><td>беспокоить, что</td><td>Me preocupa que llegue tarde.</td>
+      <td><button class="speak-btn" onclick="speak('preocupar que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>tener miedo de que</td><td>бояться, что</td><td>Tengo miedo de que no vengan.</td>
+      <td><button class="speak-btn" onclick="speak('tener miedo de que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>sorprender que</td><td>удивлять, что</td><td>Me sorprende que sepas eso.</td>
+      <td><button class="speak-btn" onclick="speak('sorprender que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>extrañar que</td><td>казаться странным</td><td>Me extraña que no digan nada.</td>
+      <td><button class="speak-btn" onclick="speak('extrañar que')">🔊</button></td>
+    </tr>
+    <tr>
+      <td>es increíble que</td><td>невероятно, что</td><td>Es increíble que hable 5 idiomas.</td>
+      <td><button class="speak-btn" onclick="speak('es increíble que')">🔊</button></td>
+    </tr>
+  </table>
+</section>
+
+<!-- SECTION 6: QUIZ 1 -->
+<section class="card">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Эмоции + subjuntivo</h2>
+    <h2>Тест 1 — Выбери правильную форму</h2>
   </div>
 
   <div class="quiz" id="quiz1">
-    <h3>🎯 Правильная форма после эмоции</h3>
+    <h3>🎯 Эмоции + subjuntivo (7 вопросов)</h3>
 
     <div class="quiz-q" id="q1">
       <div class="q-text">1. Me alegra que ella <strong>___ (estar)</strong> bien después de la operación.</div>
@@ -274,7 +467,7 @@ table.vocab td:first-child{font-weight:700;color:var(--gold)}
     </div>
 
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. Temo que <strong>___ (haber)</strong> problemas con el visado digital.</div>
+      <div class="q-text">5. Temo que <strong>___ (haber)</strong> problemas con el visado.</div>
       <div class="options">
         <div class="opt" onclick="answerQuiz(this,'q5','c')">hay</div>
         <div class="opt" onclick="answerQuiz(this,'q5','b')">habrá</div>
@@ -292,22 +485,32 @@ table.vocab td:first-child{font-weight:700;color:var(--gold)}
       </div>
       <div class="feedback" id="fb-q6"></div>
     </div>
-  </div>
-</div>
 
-<!-- SECTION 4: QUIZ 2 -->
-<div class="section">
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Me extraña que no <strong>___ (decir, vosotros)</strong> nada sobre el problema.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">decís</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">digáis</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">diréis</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: QUIZ 2 -->
+<section class="card">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Тест 2 — Заполни с правильной формой</h2>
+    <h2>Тест 2 — Вставь правильную форму</h2>
   </div>
 
   <div class="quiz">
-    <h3>✏️ Эмоции в действии</h3>
+    <h3>✏️ Заполни пропуски (вводи в нижнем регистре)</h3>
 
     <div class="text-ex">
-      <div class="tex-q">1. Me encanta que vosotros ___ (venir) a visitarme. → subjuntivo vosotros</div>
-      <input type="text" class="text-input" placeholder="venir → vosotros..." id="ti1">
+      <div class="tex-q">1. Me encanta que vosotros ___ (venir) a visitarme cada año.</div>
+      <input type="text" class="text-input" placeholder="venir → vosotros subjuntivo..." id="ti1">
       <button class="check-btn" onclick="checkText('ti1','vengáis','fb-te1')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
       <div class="feedback" id="fb-te1"></div>
@@ -315,8 +518,8 @@ table.vocab td:first-child{font-weight:700;color:var(--gold)}
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">2. Es una lástima que ellos no ___ (poder) quedarse más tiempo. → subjuntivo ellos</div>
-      <input type="text" class="text-input" placeholder="poder → ellos..." id="ti2">
+      <div class="tex-q">2. Es una lástima que ellos no ___ (poder) quedarse más tiempo.</div>
+      <input type="text" class="text-input" placeholder="poder → ellos subjuntivo..." id="ti2">
       <button class="check-btn" onclick="checkText('ti2','puedan','fb-te2')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
       <div class="feedback" id="fb-te2"></div>
@@ -324,123 +527,308 @@ table.vocab td:first-child{font-weight:700;color:var(--gold)}
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">3. Me sorprende que tú ___ (saber) cocinar paella. → subjuntivo tú</div>
-      <input type="text" class="text-input" placeholder="saber → tú..." id="ti3">
+      <div class="tex-q">3. Me sorprende que tú ___ (saber) cocinar paella tan bien.</div>
+      <input type="text" class="text-input" placeholder="saber → tú subjuntivo..." id="ti3">
       <button class="check-btn" onclick="checkText('ti3','sepas','fb-te3')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
       <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ sepas — saber → sepa / sepas / sepa / sepamos / sepáis / sepan</div>
+      <div class="answer-reveal" id="ans-te3">✅ sepas — saber (irregular): sepa / sepas / sepa / sepamos / sepáis / sepan</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">4. Me molesta que el piso ___ (ser) tan ruidoso. → subjuntivo él/ella</div>
-      <input type="text" class="text-input" placeholder="ser → él/ella..." id="ti4">
+      <div class="tex-q">4. Me molesta que el piso ___ (ser) tan ruidoso por las noches.</div>
+      <input type="text" class="text-input" placeholder="ser → él/ella subjuntivo..." id="ti4">
       <button class="check-btn" onclick="checkText('ti4','sea','fb-te4')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
       <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ sea — ser → sea (él/ella)</div>
+      <div class="answer-reveal" id="ans-te4">✅ sea — ser (irregular): sea / seas / sea / seamos / seáis / sean</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">5. Temo que nosotros no ___ (encontrar) piso a tiempo. → subjuntivo nosotros</div>
-      <input type="text" class="text-input" placeholder="encontrar → nosotros..." id="ti5">
+      <div class="tex-q">5. Temo que nosotros no ___ (encontrar) piso a tiempo antes de la mudanza.</div>
+      <input type="text" class="text-input" placeholder="encontrar → nosotros subjuntivo..." id="ti5">
       <button class="check-btn" onclick="checkText('ti5','encontremos','fb-te5')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
       <div class="feedback" id="fb-te5"></div>
       <div class="answer-reveal" id="ans-te5">✅ encontremos — encontrar (-ar), nosotros: encontr- + -emos</div>
     </div>
-  </div>
-</div>
 
-<!-- SECTION 5: DIALOGUES -->
-<div class="section">
+    <div class="text-ex">
+      <div class="tex-q">6. ¡Qué bien que ya ___ (aprender, tú) tanto vocabulario en español!</div>
+      <input type="text" class="text-input" placeholder="aprender → tú perfecto subjuntivo..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','hayas aprendido','fb-te6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
+      <div class="feedback" id="fb-te6"></div>
+      <div class="answer-reveal" id="ans-te6">✅ hayas aprendido — perfecto de subjuntivo: haber (hayas) + participio (aprendido). Действие уже произошло.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: DIALOGUES -->
+<section class="card">
   <div class="section-header">
     <div class="section-num">5</div>
     <h2>Диалоги — реагируем эмоционально</h2>
   </div>
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Читай вслух, передавая эмоции. Это не упражнение — это живой испанский!</p>
+  <p style="font-size:.9rem;color:var(--muted);margin-bottom:14px">Читай вслух с выражением. Нажимай 🔊 на каждую реплику. Переводы скрыты — показывай только при необходимости.</p>
 
+  <!-- Диалог 1 -->
   <div class="dialogue">
     <div class="dlg-header">
-      💬 Диалог 1: Получили визу!
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+      <span>💬 Диалог 1: Получили разрешение на работу!</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="dlg-toggle" onclick="toggleAll1()">Показать перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue1()">▶ Воспроизвести</button>
+      </div>
     </div>
+
     <div class="dlg-line">
       <div class="dlg-speaker">IRINA</div>
-      <div>
-        <div class="dlg-es">¡Nos han concedido la visa! ¡Es increíble que <strong>haya salido</strong> todo tan bien!</div>
-        <div class="dlg-ru" id="tr-dlg1" style="display:none">Нам выдали визу! Невероятно, что всё прошло так хорошо!</div>
+      <div class="dlg-text">
+        <div class="dlg-es">¡Nos han concedido el permiso de trabajo! ¡Es increíble que <strong>haya salido</strong> todo tan rápido! <button class="speak-btn" onclick="speak('¡Nos han concedido el permiso de trabajo! ¡Es increíble que haya salido todo tan rápido!')">🔊</button></div>
+        <div class="dlg-ru tr-dlg1" style="display:none">Нам дали разрешение на работу! Невероятно, что всё прошло так быстро!</div>
       </div>
     </div>
     <div class="dlg-line">
       <div class="dlg-speaker b">EVGENI</div>
-      <div>
-        <div class="dlg-es">¡Me alegra tanto que <strong>hayan aprobado</strong> toda la documentación! Temía que <strong>hubiera</strong> algún problema.</div>
-        <div class="dlg-ru" style="display:none">Так рад, что они одобрили всю документацию! Боялся, что возникнет какая-то проблема.</div>
+      <div class="dlg-text">
+        <div class="dlg-es">¡Me alegra tanto que <strong>hayan aprobado</strong> toda la documentación! Temía que <strong>hubiera</strong> algún problema con los papeles. <button class="speak-btn" onclick="speak('¡Me alegra tanto que hayan aprobado toda la documentación! Temía que hubiera algún problema con los papeles.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg1" style="display:none">Так рад, что одобрили всю документацию! Боялся, что возникнет проблема с бумагами.</div>
       </div>
     </div>
     <div class="dlg-line">
       <div class="dlg-speaker">IRINA</div>
-      <div>
-        <div class="dlg-es">Es una lástima que <strong>tengamos</strong> que esperar hasta octubre. Pero ¡qué bien que <strong>sea</strong> oficial!</div>
-        <div class="dlg-ru" style="display:none">Жаль, что нам нужно ждать до октября. Но как здорово, что это официально!</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Es una lástima que <strong>tengamos</strong> que esperar hasta octubre para el inicio. Pero ¡qué suerte que <strong>sea</strong> todo oficial! <button class="speak-btn" onclick="speak('Es una lástima que tengamos que esperar hasta octubre para el inicio. Pero ¡qué suerte que sea todo oficial!')">🔊</button></div>
+        <div class="dlg-ru tr-dlg1" style="display:none">Жаль, что нужно ждать до октября. Но как повезло, что всё официально!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">EVGENI</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Me sorprende que el trámite <strong>haya sido</strong> tan fácil. Pensaba que sería mucho más complicado. <button class="speak-btn" onclick="speak('Me sorprende que el trámite haya sido tan fácil. Pensaba que sería mucho más complicado.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg1" style="display:none">Удивляет, что процедура оказалась такой простой. Думал, это будет намного сложнее.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">IRINA</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Me preocupa un poco que el sueldo <strong>sea</strong> temporal al principio. Pero estoy feliz de que <strong>hayamos dado</strong> este paso. <button class="speak-btn" onclick="speak('Me preocupa un poco que el sueldo sea temporal al principio. Pero estoy feliz de que hayamos dado este paso.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg1" style="display:none">Немного беспокоит, что зарплата поначалу временная. Но рада, что мы сделали этот шаг.</div>
       </div>
     </div>
   </div>
 
+  <!-- Диалог 2 -->
   <div class="dialogue">
     <div class="dlg-header">
-      💬 Диалог 2: Жалобы на новый офис
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+      <span>💬 Диалог 2: Жалобы на нового соседа</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="dlg-toggle" onclick="toggleAll2()">Показать перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue2()">▶ Воспроизвести</button>
+      </div>
     </div>
+
     <div class="dlg-line">
       <div class="dlg-speaker">SARA</div>
-      <div>
-        <div class="dlg-es">Me molesta mucho que el jefe no <strong>escuche</strong> nuestras ideas.</div>
-        <div class="dlg-ru" id="tr-dlg2" style="display:none">Меня очень раздражает, что шеф не слушает наши идеи.</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Me molesta mucho que el vecino nuevo <strong>ponga</strong> música hasta las dos de la madrugada. <button class="speak-btn" onclick="speak('Me molesta mucho que el vecino nuevo ponga música hasta las dos de la madrugada.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg2" style="display:none">Очень раздражает, что новый сосед включает музыку до двух ночи.</div>
       </div>
     </div>
     <div class="dlg-line">
       <div class="dlg-speaker b">PAU</div>
-      <div>
-        <div class="dlg-es">Sí. Y no soporto que <strong>llegue</strong> siempre tarde a las reuniones.</div>
-        <div class="dlg-ru" style="display:none">Да. И терпеть не могу, что он всегда опаздывает на собрания.</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Sí. Y no soporto que <strong>deje</strong> la basura en el rellano. Es increíble que <strong>haga</strong> eso. <button class="speak-btn" onclick="speak('Sí. Y no soporto que deje la basura en el rellano. Es increíble que haga eso.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg2" style="display:none">Да. И терпеть не могу, что оставляет мусор на лестнице. Невероятно, что он так делает.</div>
       </div>
     </div>
     <div class="dlg-line">
       <div class="dlg-speaker">SARA</div>
-      <div>
-        <div class="dlg-es">Me sorprende que nadie <strong>diga</strong> nada. ¡Es increíble que lo <strong>toleremos</strong>!</div>
-        <div class="dlg-ru" style="display:none">Удивляет, что никто ничего не говорит. Невероятно, что мы это терпим!</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Me sorprende que nadie <strong>diga</strong> nada en la comunidad. ¡Qué rabia que <strong>tengamos</strong> que aguantarlo! <button class="speak-btn" onclick="speak('Me sorprende que nadie diga nada en la comunidad. ¡Qué rabia que tengamos que aguantarlo!')">🔊</button></div>
+        <div class="dlg-ru tr-dlg2" style="display:none">Удивляет, что никто ничего не говорит на собрании жильцов. Как обидно, что приходится это терпеть!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">PAU</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Temo que si <strong>hablemos</strong> con él, se ponga peor. Pero me preocupa que <strong>siga</strong> así. <button class="speak-btn" onclick="speak('Temo que si hablemos con él, se ponga peor. Pero me preocupa que siga así.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg2" style="display:none">Боюсь, что если поговорим с ним, станет хуже. Но беспокоит, что так продолжится.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">SARA</div>
+      <div class="dlg-text">
+        <div class="dlg-es">¡Qué lástima que el piso <strong>sea</strong> tan bonito pero el vecindario, así! Me alegra que al menos nosotros <strong>nos llevemos</strong> bien. <button class="speak-btn" onclick="speak('¡Qué lástima que el piso sea tan bonito pero el vecindario, así! Me alegra que al menos nosotros nos llevemos bien.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg2" style="display:none">Как жаль, что квартира такая красивая, а соседи — вот так! Рада, что мы хотя бы ладим друг с другом.</div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- SECTION 6: SPEAKING -->
-<div class="section">
+  <!-- Диалог 3 -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>💬 Диалог 3: Первый день детей в испанской школе</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="dlg-toggle" onclick="toggleAll3()">Показать перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue3()">▶ Воспроизвести</button>
+      </div>
+    </div>
+
+    <div class="dlg-line">
+      <div class="dlg-speaker">OLGA</div>
+      <div class="dlg-text">
+        <div class="dlg-es">¡Me alegra tanto que <strong>les haya gustado</strong> el colegio! Temía que <strong>fuera</strong> muy difícil para ellos. <button class="speak-btn" onclick="speak('¡Me alegra tanto que les haya gustado el colegio! Temía que fuera muy difícil para ellos.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg3" style="display:none">Так рада, что им понравилась школа! Боялась, что им будет очень трудно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">TUTOR</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Es increíble que <strong>se hayan adaptado</strong> tan rápido. Me alegra que <strong>participen</strong> bien en clase. <button class="speak-btn" onclick="speak('Es increíble que se hayan adaptado tan rápido. Me alegra que participen bien en clase.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg3" style="display:none">Невероятно, что они так быстро адаптировались. Рад, что хорошо участвуют на уроке.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">OLGA</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Es una lástima que <strong>no sepan</strong> mucho catalán todavía. Me preocupa que <strong>tengan</strong> dificultades con algunas asignaturas. <button class="speak-btn" onclick="speak('Es una lástima que no sepan mucho catalán todavía. Me preocupa que tengan dificultades con algunas asignaturas.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg3" style="display:none">Жаль, что они пока не знают много каталанского. Беспокоит, что могут быть трудности с некоторыми предметами.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">TUTOR</div>
+      <div class="dlg-text">
+        <div class="dlg-es">No se preocupe. Me sorprende que <strong>entiendan</strong> tan bien el español. ¡Qué bien que <strong>hayan empezado</strong> en septiembre! <button class="speak-btn" onclick="speak('No se preocupe. Me sorprende que entiendan tan bien el español. ¡Qué bien que hayan empezado en septiembre!')">🔊</button></div>
+        <div class="dlg-ru tr-dlg3" style="display:none">Не беспокойтесь. Удивляет, что они так хорошо понимают испанский. Как хорошо, что начали в сентябре!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">OLGA</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Me alegra mucho que <strong>sean</strong> tan comprensivos aquí. Odio que en algunos colegios <strong>no den</strong> apoyo a los niños extranjeros. <button class="speak-btn" onclick="speak('Me alegra mucho que sean tan comprensivos aquí. Odio que en algunos colegios no den apoyo a los niños extranjeros.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg3" style="display:none">Очень рада, что здесь такие понимающие. Ненавижу, что в некоторых школах не поддерживают иностранных детей.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: SPEAKING -->
+<section class="card">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Говорение — реагируем на новости</h2>
+    <h2>Говорение — реагируй как испанец</h2>
   </div>
 
   <div class="speak-box">
-    <div class="speak-tag">🎙 Сценарий: Тебе рассказывают новости — реагируй!</div>
-    <p>Твой друг сообщает: «Ваши дочери уже говорят по-испански!» Отреагируй 4–5 фразами с разными эмоциями:</p>
-    <div class="es">¡Es increíble que ya hablen tan bien! Me alegra mucho que les guste el idioma. No me sorprende que hayan aprendido rápido — son inteligentes. Me encanta que estén felices en el nuevo colegio.</div>
-    <div class="hint">Каждая фраза = одна эмоция + que + subjuntivo. Говори вслух с выражением!</div>
+    <div class="speak-tag">🎙 Сценарий 1: Отреагируй на новости друга</div>
+    <p>Друг рассказывает: «Наши дети уже говорят по-испански!» Отреагируй 4–5 фразами с разными эмоциями.</p>
+    <div class="es">¡Es increíble que ya hablen tan bien! Me alegra mucho que les guste el idioma. No me sorprende que hayan aprendido rápido — son muy inteligentes. Me encanta que estén felices en el nuevo colegio. ¡Qué bien que hayáis tomado la decisión de venir!</div>
+    <div class="hint">Используй: es increíble que, me alegra que, me sorprende que, me encanta que, ¡qué bien que! — по одной эмоции на фразу.</div>
   </div>
 
   <div class="speak-box">
-    <div class="speak-tag">🎙 Продвинутый: Что тебя раздражает в переезде?</div>
-    <p>Говори откровенно — что тебя беспокоит, злит, радует в процессе переезда. Используй «me molesta que», «temo que», «me alegra que»:</p>
-    <div class="es">Me molesta que los trámites burocráticos sean tan lentos. Temo que no encontremos piso bueno en el presupuesto. Pero me alegra que la ciudad sea tan acogedora para las familias...</div>
-    <div class="hint">B1: умение переключаться между положительными и отрицательными эмоциями в одном монологе</div>
+    <div class="speak-tag">🎙 Сценарий 2 (B1): Эмоции о переезде в Испанию</div>
+    <p>Говори откровенно — что беспокоит, злит и радует в процессе адаптации. Переключайся между положительными и отрицательными эмоциями.</p>
+    <div class="es">Me molesta que los trámites burocráticos sean tan lentos y complicados. Temo que no encontremos piso bueno dentro del presupuesto. Pero me alegra que la gente sea tan acogedora y abierta. Es increíble que los niños se hayan adaptado tan rápido. Me sorprende que el sol brille tanto incluso en noviembre...</div>
+    <div class="hint">B1-цель: монолог 5-7 фраз, переключение между эмоциями, натуральная интонация.</div>
   </div>
-</div>
+</section>
 
-<!-- SECTION 7: CULTURE -->
-<div class="section">
+<!-- SECTION 10: SPAIN IN PRACTICE -->
+<section class="card">
+  <h2>🇪🇸 Испания на практике: AMPA и внешкольные активности</h2>
+  <p style="font-size:.9rem;margin-bottom:12px">Твой ребёнок в испанской школе — CEIP. Тебе предлагают записать его на внешкольные занятия через AMPA (Asociación de Madres y Padres de Alumnos). Нужно поговорить с координатором и выразить своё отношение.</p>
+
+  <div class="phrase-list">
+    <div class="phrase-item">
+      <div>
+        <div class="phrase-es">Me alegra que <strong>haya tantas actividades</strong> extraescolares.</div>
+        <div class="phrase-ru">Рада, что есть так много внешкольных занятий.</div>
+      </div>
+      <button class="speak-btn" onclick="speak('Me alegra que haya tantas actividades extraescolares.')">🔊</button>
+    </div>
+    <div class="phrase-item">
+      <div>
+        <div class="phrase-es">Es una lástima que el inglés <strong>sea</strong> solo dos días a la semana.</div>
+        <div class="phrase-ru">Жаль, что английский — только два дня в неделю.</div>
+      </div>
+      <button class="speak-btn" onclick="speak('Es una lástima que el inglés sea solo dos días a la semana.')">🔊</button>
+    </div>
+    <div class="phrase-item">
+      <div>
+        <div class="phrase-es">Me preocupa que el horario <strong>coincida</strong> con las clases de idiomas.</div>
+        <div class="phrase-ru">Беспокоит, что расписание совпадает с языковыми курсами.</div>
+      </div>
+      <button class="speak-btn" onclick="speak('Me preocupa que el horario coincida con las clases de idiomas.')">🔊</button>
+    </div>
+    <div class="phrase-item">
+      <div>
+        <div class="phrase-es">Me sorprende que el precio <strong>sea</strong> tan asequible para las familias.</div>
+        <div class="phrase-ru">Удивляет, что цена такая доступная для семей.</div>
+      </div>
+      <button class="speak-btn" onclick="speak('Me sorprende que el precio sea tan asequible para las familias.')">🔊</button>
+    </div>
+    <div class="phrase-item">
+      <div>
+        <div class="phrase-es">¡Qué bien que <strong>haya plazas</strong> disponibles todavía!</div>
+        <div class="phrase-ru">Как хорошо, что места ещё есть!</div>
+      </div>
+      <button class="speak-btn" onclick="speak('¡Qué bien que haya plazas disponibles todavía!')">🔊</button>
+    </div>
+    <div class="phrase-item">
+      <div>
+        <div class="phrase-es">Me molesta que no <strong>nos avisen</strong> con más antelación sobre los cambios.</div>
+        <div class="phrase-ru">Раздражает, что не предупреждают нас заблаговременно об изменениях.</div>
+      </div>
+      <button class="speak-btn" onclick="speak('Me molesta que no nos avisen con más antelación sobre los cambios.')">🔊</button>
+    </div>
+  </div>
+
+  <!-- Мини-диалог -->
+  <div class="dialogue" style="margin-top:16px">
+    <div class="dlg-header">
+      <span>💬 В AMPA: запись на футбол</span>
+      <button class="dlg-toggle" onclick="toggleAll4()">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">TÚ</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Me alegra que <strong>haya</strong> fútbol entre las actividades. Mi hijo es muy activo. <button class="speak-btn" onclick="speak('Me alegra que haya fútbol entre las actividades. Mi hijo es muy activo.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg4" style="display:none">Рад, что среди занятий есть футбол. Мой сын очень активный.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">AMPA</div>
+      <div class="dlg-text">
+        <div class="dlg-es">¡Perfecto! Es una lástima que <strong>solo quede</strong> una plaza. ¿Quiere apuntarlo ya? <button class="speak-btn" onclick="speak('¡Perfecto! Es una lástima que solo quede una plaza. ¿Quiere apuntarlo ya?')">🔊</button></div>
+        <div class="dlg-ru tr-dlg4" style="display:none">Отлично! Жаль, что осталось только одно место. Хотите записать его сейчас?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">TÚ</div>
+      <div class="dlg-text">
+        <div class="dlg-es">Sí, por favor. Me sorprende que <strong>quede</strong> un hueco — pensaba que todo estaba lleno. <button class="speak-btn" onclick="speak('Sí, por favor. Me sorprende que quede un hueco — pensaba que todo estaba lleno.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg4" style="display:none">Да, пожалуйста. Удивляет, что место ещё есть — думал, всё занято.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">AMPA</div>
+      <div class="dlg-text">
+        <div class="dlg-es">¡Qué suerte que <strong>haya venido</strong> hoy! Mañana ya no habría plazas. <button class="speak-btn" onclick="speak('¡Qué suerte que haya venido hoy! Mañana ya no habría plazas.')">🔊</button></div>
+        <div class="dlg-ru tr-dlg4" style="display:none">Как вам повезло, что пришли сегодня! Завтра мест уже не было бы.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="culture-tip">
+    <strong>Важно в Испании:</strong> AMPA — это родительский комитет, очень активный в испанских школах. Они организуют extraescolares (внешкольные занятия) — футбол, английский, рисование, танцы. Запись обычно происходит в сентябре, места быстро заканчиваются. Стоимость — около 20–50€ в месяц за активность. Если ты не в AMPA — тебе всё равно доступны их программы.
+  </div>
+</section>
+
+<!-- SECTION 11: CULTURE NOTE -->
+<section class="card">
   <div class="section-header">
     <div class="section-num">7</div>
     <h2>Культурная заметка</h2>
@@ -448,21 +836,95 @@ table.vocab td:first-child{font-weight:700;color:var(--gold)}
 
   <div class="culture">
     <div class="ctag">🌍 Культурная заметка</div>
-    <h4>«¡Qué pena!» — испанская культура выражения эмоций</h4>
-    <p>Испанцы — эмоциональная культура. Восклицания «¡Qué bien!», «¡Qué pena!», «¡Qué rabia!» — это повседневный язык, а не театральность. Когда испанец говорит «¡Es una lástima que no puedas venir!» — это искренно. В русской культуре принято сдерживать эмоции в речи; в испанской — наоборот. Привыкай <em>говорить</em> с эмоциями, а не только думать о них. Это важнее грамматики.</p>
+    <h4>«¡Qué pena!» — испанская культура открытого выражения эмоций</h4>
+    <p>Испанцы — одна из самых эмоционально открытых культур Европы. Восклицания «¡Qué bien!», «¡Qué pena!», «¡Qué rabia!» — это повседневный разговорный язык, а не театральность. Когда испанец говорит «¡Es una lástima que no puedas venir!» — это искренне, а не формально. В русской и немецкой культурах принято сдерживать эмоции в публичной речи; в испанской — наоборот. Особенно в Каталонии, несмотря на репутацию «сдержанных», люди всё равно эмоциональны в bares и en família. Привыкай <em>говорить</em> с эмоциями — это важнее грамматики на уровне B1.</p>
   </div>
-</div>
+</section>
 
-<!-- SECTION 8: ANKI -->
-<div class="section">
+<!-- SECTION 12: ANKI -->
+<section class="card">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Anki + Домашнее задание</h2>
+    <h2>Anki-колода — эмоции + subjuntivo</h2>
   </div>
 
-  <!-- .wrap -->
+  <div class="anki">
+    <div class="atag">📇 Anki-колода L66 — 18 карточек</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">Нажимай на карточку чтобы перевернуть. Скачай TSV для импорта в Anki.</p>
 
-<!-- DONE BAR -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:center">
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">me alegra que</div>
+          <div class="anki-card-back">Рад(а), что... (+ subjuntivo)<br><em>Me alegra que estés aquí.</em></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">es una lástima que</div>
+          <div class="anki-card-back">Жаль, что... (+ subjuntivo)<br><em>Es una lástima que no vengas.</em></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">me molesta que</div>
+          <div class="anki-card-back">Меня раздражает, что... (+ subjuntivo)<br><em>Me molesta que llegues tarde.</em></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">temo que</div>
+          <div class="anki-card-back">Боюсь, что... (+ subjuntivo)<br><em>Temo que no haya plazas.</em></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">¡qué bien que...!</div>
+          <div class="anki-card-back">Как хорошо, что...! (+ subjuntivo)<br><em>¡Qué bien que hayas llegado!</em></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="export-btn" onclick="exportAnkiL66()">📥 Скачать колоду Anki (.txt)</button>
+  </div>
+</section>
+
+<!-- SECTION 13: HOMEWORK -->
+<section class="card">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Домашнее задание</h2>
+  </div>
+
+  <div class="hw-block">
+    <h4>📝 Задание 1: Дневник эмоций</h4>
+    <p>Напиши 8–10 предложений на испанском о своём дне или переезде, используя только эмоциональные триггеры из этого урока. Минимум: 2 радости, 1 сожаление, 1 раздражение, 1 страх, 1 удивление. Можно писать о реальных чувствах!</p>
+  </div>
+
+  <div class="hw-block">
+    <h4>📝 Задание 2: Переделай с subjuntivo</h4>
+    <p>Переведи на испанский с правильным subjuntivo:</p>
+    <ul>
+      <li>Жаль, что ты не можешь остаться подольше.</li>
+      <li>Рад, что ты нашла работу в Барселоне.</li>
+      <li>Меня злит, что они не отвечают на письма.</li>
+      <li>Беспокоит, что дети ещё не выучили испанский.</li>
+      <li>Невероятно, что она заговорила по-каталански за 3 месяца!</li>
+    </ul>
+  </div>
+
+  <div class="hw-block">
+    <h4>📺 Dreaming Spanish — DS Intermediate</h4>
+    <p>Ищи видео, где говорящий реагирует на события или новости. Слушай и замечай фразы: «me alegra que», «qué pena que», «me sorprende que». Можешь ставить на паузу и повторять с той же интонацией.</p>
+  </div>
+
+  <div class="hw-block">
+    <h4>🃏 Anki</h4>
+    <p>Добавь 18 карточек из этого урока в Anki. Приоритет: разница между инфинитивом (1 субъект) и subjuntivo (2 субъекта). Повторяй ежедневно.</p>
+  </div>
+</section>
+
+<!-- SECTION 14: DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
     <a href="L65.html" class="nav-link-btn">← L65</a>
@@ -472,36 +934,72 @@ table.vocab td:first-child{font-weight:700;color:var(--gold)}
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
+</div><!-- end .wrap -->
+
 <script>
+// ---- speak (Web Speech API) ----
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+// ---- Lesson state ----
 const LESSON_ID = 'L66';
 const LS_KEY = 'esp_course_progress';
 function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-
-const quizExpl={
-  q1:'esté — me alegra que + subjuntivo. estar → esté (ella)',
-  q2:'puedas — es una lástima que + subjuntivo. poder (o→ue) tú: pued- + -as',
-  q3:'hagan — me molesta que + subjuntivo. hacer: hago → hag- + -an (ellos)',
-  q4:'hable — me sorprende que + subjuntivo. hablar (-ar) ella: habl- + -e',
-  q5:'haya — temer que + subjuntivo. haber безличное → haya',
-  q6:'hayas conseguido — ¡qué bien que! + перфект субхунтиво (действие уже совершилось). haber → hayas + conseguido'
-};
-
-let quizScore=0,quizTotal=0;
-function answerQuiz(el,qId,correctKey){
-  const container=el.closest('.quiz-q');
-  const opts=container.querySelectorAll('.opt');
-  opts.forEach(o=>{o.onclick=null;o.style.cursor='default';});
-  opts.forEach(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');});
-  el.classList.add(el===([...opts].find(o=>{const m=o.getAttribute('onclick')?.match(/'([abc])'\)/);return m&&m[1]===correctKey;}))?'correct':'wrong');
-  const fb=document.getElementById(`fb-${qId}`);
-  fb.className='feedback show '+(el.classList.contains('correct')?'ok':'no');
-  fb.textContent=(el.classList.contains('correct')?'✅ ':'❌ ')+quizExpl[qId];
-  if(el.classList.contains('correct'))quizScore++;
-  quizTotal++;
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';
+  btn.className='done-btn marked';
+}
+const _st=getState();
+if(_st.completed?.includes(LESSON_ID)){
+  const btn=document.getElementById('done-btn');
+  if(btn){btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 }
 
+// ---- Quiz explanations ----
+const quizExpl = {
+  wu1: 'venga — No creo que + subjuntivo. venir: vengo → veng- + subjuntivo ella: venga',
+  wu2: 'sea — Dudo que + subjuntivo. ser → sea (él/ella). Indicativo es «es».',
+  wu3: 'sepa cantar — No es verdad que + subjuntivo de saber. saber → sepa (irregular)',
+  wu4: 'indicativo — исключение! «A lo mejor» = вероятность, но всегда с indicativo. Например: «A lo mejor viene mañana.»',
+  q1: 'esté — me alegra que + subjuntivo. estar → esté (ella)',
+  q2: 'puedas — es una lástima que + subjuntivo. poder (o→ue): pued- tú: puedas',
+  q3: 'hagan — me molesta que + subjuntivo. hacer: hago → hag- + -an (ellos)',
+  q4: 'hable — me sorprende que + subjuntivo. hablar (-ar) ella: habl- + -e',
+  q5: 'haya — temer que + subjuntivo. haber безличное → haya',
+  q6: 'hayas conseguido — ¡qué bien que! + perfecto de subjuntivo. haber→hayas + conseguido (действие уже произошло)',
+  q7: 'digáis — me extraña que + subjuntivo. decir: digo → dig- + subjuntivo vosotros -áis = digáis'
+};
+
+// ---- answerQuiz ----
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
+  const correctEl = [...opts].find(o => {
+    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
+    return m && m[1] === correctKey;
+  });
+  if(correctEl) correctEl.classList.add('correct');
+  const isCorrect = (el === correctEl);
+  if(!isCorrect) el.classList.add('wrong');
+  const fb = document.getElementById('fb-' + qId);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
+}
+
+// ---- checkText (verbatim from L00) ----
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -528,8 +1026,7 @@ function checkText(inputId, answer, fbId) {
   }
   const lev = (a, b) => {
     const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
+    if (!m) return n; if (!n) return m;
     let prev = Array.from({length: n+1}, (_,i) => i);
     let curr = new Array(n+1).fill(0);
     for (let i = 1; i <= m; i++) {
@@ -555,12 +1052,113 @@ function checkText(inputId, answer, fbId) {
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
 
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+// ---- Show answer ----
+function showAns(id) { document.getElementById(id).classList.add('show'); }
 
-const totalSections=8;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+// ---- Toggle translations ----
+function toggleTranslation(id) {
+  const el = document.getElementById(id);
+  if(el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+function toggleAll1() {
+  document.querySelectorAll('.tr-dlg1').forEach(el => {
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+}
+function toggleAll2() {
+  document.querySelectorAll('.tr-dlg2').forEach(el => {
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+}
+function toggleAll3() {
+  document.querySelectorAll('.tr-dlg3').forEach(el => {
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+}
+function toggleAll4() {
+  document.querySelectorAll('.tr-dlg4').forEach(el => {
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+}
+
+// ---- Play dialogues ----
+const dlg1Lines = [
+  '¡Nos han concedido el permiso de trabajo! ¡Es increíble que haya salido todo tan rápido!',
+  '¡Me alegra tanto que hayan aprobado toda la documentación! Temía que hubiera algún problema con los papeles.',
+  'Es una lástima que tengamos que esperar hasta octubre para el inicio. Pero ¡qué suerte que sea todo oficial!',
+  'Me sorprende que el trámite haya sido tan fácil. Pensaba que sería mucho más complicado.',
+  'Me preocupa un poco que el sueldo sea temporal al principio. Pero estoy feliz de que hayamos dado este paso.'
+];
+const dlg2Lines = [
+  'Me molesta mucho que el vecino nuevo ponga música hasta las dos de la madrugada.',
+  'Sí. Y no soporto que deje la basura en el rellano. Es increíble que haga eso.',
+  'Me sorprende que nadie diga nada en la comunidad. ¡Qué rabia que tengamos que aguantarlo!',
+  'Temo que si hablemos con él, se ponga peor. Pero me preocupa que siga así.',
+  '¡Qué lástima que el piso sea tan bonito pero el vecindario, así! Me alegra que al menos nosotros nos llevemos bien.'
+];
+const dlg3Lines = [
+  '¡Me alegra tanto que les haya gustado el colegio! Temía que fuera muy difícil para ellos.',
+  'Es increíble que se hayan adaptado tan rápido. Me alegra que participen bien en clase.',
+  'Es una lástima que no sepan mucho catalán todavía. Me preocupa que tengan dificultades con algunas asignaturas.',
+  'No se preocupe. Me sorprende que entiendan tan bien el español. ¡Qué bien que hayan empezado en septiembre!',
+  'Me alegra mucho que sean tan comprensivos aquí. Odio que en algunos colegios no den apoyo a los niños extranjeros.'
+];
+
+function playLines(lines) {
+  window.speechSynthesis.cancel();
+  lines.forEach((line, i) => {
+    setTimeout(() => speak(line), i * 4000);
+  });
+}
+function playDialogue1() { playLines(dlg1Lines); }
+function playDialogue2() { playLines(dlg2Lines); }
+function playDialogue3() { playLines(dlg3Lines); }
+
+// ---- Anki deck ----
+const ANKI_DECK_L66 = [
+  {front:'me alegra que', back:'Перевод: Рад(а), что... (+ subjuntivo)\n\nПример: Me alegra que estés aquí.\nПравило: эмоция + 2 субъекта → subjuntivo'},
+  {front:'es una lástima que', back:'Перевод: Жаль, что... (+ subjuntivo)\n\nПример: Es una lástima que no puedas venir.\nЗаметка: lástima = сожаление'},
+  {front:'me molesta que', back:'Перевод: Меня раздражает, что... (+ subjuntivo)\n\nПример: Me molesta que llegues tarde.\nЗаметка: molestar = раздражать'},
+  {front:'odiar que', back:'Перевод: Ненавидеть, что... (+ subjuntivo)\n\nПример: Odio que hablen durante la película.\nЗаметка: odio = я ненавижу'},
+  {front:'temer que', back:'Перевод: Бояться, что... (+ subjuntivo)\n\nПример: Temo que no haya plazas.\nЗаметка: temer = бояться (как temer a алго)'},
+  {front:'me preocupa que', back:'Перевод: Меня беспокоит, что... (+ subjuntivo)\n\nПример: Me preocupa que llegue tarde.\nЗаметка: preocupar = беспокоить'},
+  {front:'me sorprende que', back:'Перевод: Меня удивляет, что... (+ subjuntivo)\n\nПример: Me sorprende que sepa catalán.\nЗаметка: sorprender = удивлять'},
+  {front:'me extraña que', back:'Перевод: Мне странно, что... (+ subjuntivo)\n\nПример: Me extraña que no lo sepas.\nЗаметка: extrañar = казаться странным'},
+  {front:'¡qué bien que...!', back:'Перевод: Как хорошо, что...! (+ subjuntivo)\n\nПример: ¡Qué bien que hayas llegado!\nЗаметка: часто с perfecto subjuntivo для прошедшего'},
+  {front:'¡qué pena que...!', back:'Перевод: Как жаль, что...! (+ subjuntivo)\n\nПример: ¡Qué pena que no puedas venir!\nЗаметка: pena = жаль, горе'},
+  {front:'¡qué rabia que...!', back:'Перевод: Как обидно/злит, что...! (+ subjuntivo)\n\nПример: ¡Qué rabia que no haya entradas!\nЗаметка: rabia = злость, ярость'},
+  {front:'es increíble que', back:'Перевод: Невероятно, что... (+ subjuntivo)\n\nПример: Es increíble que hable 5 idiomas.\nЗаметка: impersonal expression → subjuntivo'},
+  {front:'me encanta que', back:'Перевод: Мне очень нравится, что... (+ subjuntivo)\n\nПример: Me encanta que cocines tan bien.\nЗаметка: encantar = очень нравиться (gustar fuerte)'},
+  {front:'no soporto que', back:'Перевод: Не выношу, что... (+ subjuntivo)\n\nПример: No soporto que fumen aquí.\nЗаметка: soportar = переносить, терпеть'},
+  {front:'me da rabia que', back:'Перевод: Меня злит, что... (+ subjuntivo)\n\nПример: Me da rabia que no nos avisen.\nЗаметка: dar rabia = злить (= me enfada que)'},
+  {front:'estar feliz de que', back:'Перевод: Быть счастлив, что... (+ subjuntivo)\n\nПример: Estoy feliz de que estés aquí.\nЗаметка: два субъекта → subjuntivo; один → infinitivo'},
+  {front:'sentir que', back:'Перевод: Сожалеть / жалеть, что... (+ subjuntivo)\n\nПример: Siento que no puedas venir.\nЗаметка: sentir = чувствовать / сожалеть'},
+  {front:'эмоция + 1 субъект', back:'Перевод: → инфинитив\n\nПример: Me alegra estar aquí. (я рад + я здесь)\nПравило: если один субъект → no que, только infinitivo'}
+];
+
+function exportAnkiL66() {
+  const tsv = ANKI_DECK_L66.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L66_spanish.txt';
+  a.click();
+}
+
+// ---- Progress bar ----
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? Math.min(100, Math.round(scrolled / total * 100)) : 0;
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  const fill = document.getElementById('progress-fill');
+  const label = document.getElementById('progress-label');
+  if(fill) fill.style.width = pct + '%';
+  if(label) label.textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
 </script>
 </body>
 </html>

@@ -868,7 +868,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Выражать сомнение и несогласие деликатно",
-      file:"lessons/L65.html", status:"pending"
+      file:"lessons/L65.html", status:"improved"
     },
     {
       id:"L66", num:66, phase:3, block:"B3A", level:"B1", day:140, week:24,
@@ -880,7 +880,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Реагировать на новости с эмоцией + subjuntivo",
-      file:"lessons/L66.html", status:"pending"
+      file:"lessons/L66.html", status:"improved"
     },
     {
       id:"L67", num:67, phase:3, block:"B3A", level:"B1", day:142, week:24,
