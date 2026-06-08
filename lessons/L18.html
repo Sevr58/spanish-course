@@ -38,7 +38,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}.quiz-q:last-child{border-bottom:none}
 .quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
 .options{display:flex;flex-wrap:wrap;gap:6px}
-.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem}.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem}
 .feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
 .text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
 .text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none}
@@ -75,7 +75,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px;flex-wrap:wrap}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;color:var(--text);text-decoration:none;font-weight:600}
 @media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
-</style></head>
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style></head>
 <body><div class="wrap">
 <div class="nav"><a href="../index.html">← Дашборд</a><span class="level">A1 · Фаза 1 · День 36</span><a href="L19.html">L19 →</a></div>
 
@@ -249,7 +249,38 @@ function speakSequence(phrases,delay){delay=delay||2400;window.speechSynthesis.c
 function playD1(){speakSequence(['¿Tomamos un café mañana?','Sí, ¿a qué hora?','¿A las cinco de la tarde te viene bien?','A las cinco no puedo. ¿Y a las seis y media?','Perfecto. ¿Dónde nos vemos?','En el café de la plaza Reial, a las seis y media.'],2700);}
 function playD2(){speakSequence(['Disculpe, ¿a qué hora abren?','De lunes a viernes, de nueve a dos y de cinco a ocho.','¿Y los sábados?','Solo por la mañana, hasta las dos. Los domingos cerrado.','¿Tienen horario especial en agosto?','Sí, cerramos las dos primeras semanas de agosto.'],2700);}
 const quizExpl={r1:'quinientos.',r2:'un millón de personas.',r3:'la hipoteca.',r4:'cinco mil — mil не меняется.',q1:'Es la una (ед.ч.).',q2:'Son las tres y media.',q3:'a las nueve de la mañana.',q4:'Son las siete menos cuarto.',q5:'de la tarde (12-20).',q6:'el horario.'};
-function answerQuiz(el,qId,correctKey){const c=el.closest('.quiz-q');if(c.dataset.answered==='true')return;c.dataset.answered='true';c.querySelectorAll('.opt').forEach(function(o){const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);if(m&&m[1]===correctKey)o.classList.add('correct');o.onclick=null;});const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);const userKey=um&&um[1];if(userKey!==correctKey)el.classList.add('wrong');const fb=document.getElementById('fb-'+qId);fb.className='feedback show '+(userKey===correctKey?'ok':'no');fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');}
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  if (container.dataset.answered === '1') return;
+  container.dataset.answered = '1';
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
+  let correctText = '';
+  let pickedText = '';
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
+    const key = m ? m[1] : null;
+    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
+    else { o.classList.add('wrong'); }
+    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
+  });
+  const isCorrect = correctKey === 'a';
+  const fb = document.getElementById('fb-' + qId);
+  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
+  if (isCorrect) {
+    fb.className = 'feedback show ok';
+    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
+  } else {
+    fb.className = 'feedback show no';
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
+  }
+  if (typeof quizScore !== 'undefined') {
+    if (isCorrect) quizScore++;
+    quizTotal++;
+    const scoreEl = document.getElementById('quiz-score');
+    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
+  }
+}
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();

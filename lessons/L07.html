@@ -77,8 +77,8 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
-.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+
+
 .feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
 .text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
@@ -128,7 +128,8 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-link-btn:hover{border-color:var(--muted)}
 @media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}.ser-estar-grid{grid-template-columns:1fr}}
 
-/* ─── AI Tutor ─────────────────────────────────────────── */
+
+/* ─── AI Tutor v2 ─────────────────────────────────────── */
 .tutor-setup{background:rgba(111,45,191,.05);border:1px solid rgba(111,45,191,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px}
 .tutor-key-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .tutor-key-input{flex:1;min-width:200px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.88rem;font-family:monospace;outline:none}
@@ -139,13 +140,18 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .tutor-task-header{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:8px}
 .tutor-task h3{font-size:.95rem;font-weight:700;margin-bottom:8px}
 .tutor-task p,.tutor-task ul{font-size:.88rem;color:var(--muted);margin-bottom:10px}
-.tutor-textarea{width:100%;min-height:100px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px 12px;color:var(--text);font-size:.9rem;line-height:1.6;outline:none;resize:vertical;font-family:'Segoe UI',sans-serif}
+.tutor-textarea{width:100%;min-height:80px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px 12px;color:var(--text);font-size:.9rem;line-height:1.6;outline:none;resize:vertical;font-family:'Segoe UI',sans-serif}
 .tutor-textarea:focus{border-color:var(--purple)}
-.tutor-submit{background:var(--purple);color:#fff;border:none;border-radius:6px;padding:9px 18px;cursor:pointer;font-size:.88rem;margin-top:8px;font-weight:600;transition:.2s}
+.tutor-btn-row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.tutor-submit{background:var(--purple);color:#fff;border:none;border-radius:6px;padding:9px 18px;cursor:pointer;font-size:.88rem;font-weight:600;transition:.2s}
 .tutor-submit:hover{opacity:.88}
 .tutor-submit:disabled{opacity:.5;cursor:default}
+.tutor-help{background:transparent;color:var(--purple);border:1px dashed var(--purple);border-radius:6px;padding:9px 14px;cursor:pointer;font-size:.85rem;font-weight:600;transition:.2s}
+.tutor-help:hover{background:rgba(111,45,191,.08)}
+.tutor-help:disabled{opacity:.5;cursor:default}
 .tutor-response{margin-top:12px;padding:14px 16px;background:rgba(111,45,191,.05);border-radius:8px;border-left:3px solid var(--purple);font-size:.88rem;line-height:1.7;display:none;white-space:pre-wrap;color:var(--text)}
 .tutor-response.show{display:block}
+.tutor-response.help{background:rgba(200,144,0,.07);border-left-color:var(--gold)}
 .tutor-chat-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:14px}
 .chat-messages{min-height:120px;max-height:400px;overflow-y:auto;margin-bottom:12px;display:flex;flex-direction:column;gap:10px}
 .chat-msg{padding:10px 14px;border-radius:8px;font-size:.88rem;line-height:1.6;max-width:90%}
@@ -159,6 +165,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .translate-items{margin:8px 0;background:var(--bg3);border-radius:6px;padding:10px 14px}
 .translate-item{padding:5px 0;border-bottom:1px solid var(--border);font-size:.88rem}
 .translate-item:last-child{border-bottom:none}
+.tutor-hint{font-size:.78rem;color:var(--muted);margin-top:6px;font-style:italic}
 </style>
 </head>
 <body>
@@ -781,8 +788,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 
 </div>
 
-
-<!-- AI TUTOR (L07) -->
+<!-- AI TUTOR v2 (L07) -->
 <div class="section" id="ai-tutor-section">
   <div class="section-header">
     <div class="section-num">🤖</div>
@@ -790,7 +796,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   </div>
 
   <div class="tutor-setup">
-    <p style="font-size:.88rem"><strong>🔑 Anthropic API ключ</strong> — Claude проверит твои тексты на испанском и объяснит ошибки на русском. Ключ хранится только в твоём браузере (localStorage) и отправляется только на api.anthropic.com.</p>
+    <p style="font-size:.88rem"><strong>🔑 Anthropic API ключ</strong> — Claude проверит твои тексты на испанском и объяснит ошибки на русском. Ключ хранится только в твоём браузере (localStorage).</p>
     <div class="tutor-key-row">
       <input type="password" class="tutor-key-input" id="tutor-key-input" placeholder="sk-ant-api03-..." />
       <button class="tutor-save-btn" onclick="saveTutorApiKey()">Сохранить</button>
@@ -798,42 +804,52 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <p id="tutor-key-status" style="font-size:.78rem;color:var(--muted);margin-top:6px"></p>
   </div>
 
-  <!-- Task: describe -->
+  <!-- Task: warm -->
   <div class="tutor-task">
-    <div class="tutor-task-header">📝 Задание 1 · Опиши себя и семью</div>
-    <h3>Напиши 5–6 предложений о себе и семье — смешай ser и estar</h3>
-    <p>Используй <strong>ser</strong> для: национальности, профессии, характера, родства. <strong>Estar</strong> — для: настроения, местонахождения, временного состояния.</p>
+    <div class="tutor-task-header">📝 Задание 1 · Разминка</div>
+    <h3>Напиши 2 фразы: «Я русский» (ser) и «Я в Барселоне» (estar)</h3>
+    <p>Ser: национальность = постоянно. Estar: местонахождение = временно.</p>
 
-    <textarea class="tutor-textarea" id="task1-input" placeholder="Soy ruso. Soy productor de publicidad. Mi mujer es profesora. Hoy estoy cansado porque estoy en el estudio desde las 7..."></textarea>
-    <button class="tutor-submit" id="task1-btn" onclick="submitTask('task1','describe')">Проверить ✓</button>
+    <textarea class="tutor-textarea" id="task1-input" placeholder="Soy ruso. Estoy en Barcelona."></textarea>
+    <div class="tutor-hint">Не знаешь с чего начать? Нажми 🆘 — Claude даст готовый шаблон с переводом.</div>
+    <div class="tutor-btn-row">
+      <button class="tutor-submit" id="task1-btn" onclick="submitTask('task1','warm')">Проверить ✓</button>
+      <button class="tutor-help" id="task1-help" onclick="requestHelp('task1','warm')">🆘 Дай шаблон</button>
+    </div>
     <div class="tutor-response" id="task1-response"></div>
   </div>
 
   <!-- Task: translation -->
   <div class="tutor-task">
-    <div class="tutor-task-header">🔄 Задание 2 · Перевод (тонкости ser/estar)</div>
-    <h3>Переведи предложения — выбери ser или estar правильно</h3>
-    <p>Подсказка: «находится» — где = estar; характеристика = ser; время = ser.</p>
+    <div class="tutor-task-header">🔄 Задание 2 · Перевод (тонкости)</div>
+    <h3>Переведи на испанский (3 фразы)</h3>
+    <p>Где = estar; временное состояние = estar; профессия = ser.</p>
     <div class="translate-items">
         <div class="translate-item">1. Барселона находится в Каталонии.</div>
-        <div class="translate-item">2. Кофе горячий (только что налили).</div>
-        <div class="translate-item">3. Этот кофе очень хороший (характеристика).</div>
-        <div class="translate-item">4. Мой друг — врач, но сегодня он на больничном.</div>
-        <div class="translate-item">5. Сейчас 10 часов вечера.</div>
+        <div class="translate-item">2. Я уставший сегодня.</div>
+        <div class="translate-item">3. Моя жена — учительница.</div>
     </div>
     <textarea class="tutor-textarea" id="task2-input" placeholder="1. Barcelona está en Cataluña.&#10;2. ..."></textarea>
-    <button class="tutor-submit" id="task2-btn" onclick="submitTask('task2','translation')">Проверить ✓</button>
+    <div class="tutor-hint">Не знаешь с чего начать? Нажми 🆘 — Claude даст готовый шаблон с переводом.</div>
+    <div class="tutor-btn-row">
+      <button class="tutor-submit" id="task2-btn" onclick="submitTask('task2','translation')">Проверить ✓</button>
+      <button class="tutor-help" id="task2-help" onclick="requestHelp('task2','translation')">🆘 Дай шаблон</button>
+    </div>
     <div class="tutor-response" id="task2-response"></div>
   </div>
 
   <!-- Task: city -->
   <div class="tutor-task">
-    <div class="tutor-task-header">🏙️ Задание 3 · Барселона</div>
-    <h3>Опиши Барселону (6–8 предложений) — где она, какая она, чем известна</h3>
-    <p>Смесь ser (характеристики, происхождение, чем известна) и estar (где находится, текущее состояние, погода).</p>
+    <div class="tutor-task-header">🏙️ Задание 3 · Барселона (для смелых)</div>
+    <h3>Опиши Барселону 5-6 фразами — ser и estar</h3>
+    <p>Где она = estar. Какая она, чем известна = ser. Не знаешь — 🆘.</p>
 
-    <textarea class="tutor-textarea" id="task3-input" placeholder="Barcelona está en el noreste de España. Es una ciudad grande y moderna. La gente es..."></textarea>
-    <button class="tutor-submit" id="task3-btn" onclick="submitTask('task3','city')">Проверить ✓</button>
+    <textarea class="tutor-textarea" id="task3-input" placeholder="Barcelona está en el noreste de España. Es una ciudad grande..."></textarea>
+    <div class="tutor-hint">Не знаешь с чего начать? Нажми 🆘 — Claude даст готовый шаблон с переводом.</div>
+    <div class="tutor-btn-row">
+      <button class="tutor-submit" id="task3-btn" onclick="submitTask('task3','city')">Проверить ✓</button>
+      <button class="tutor-help" id="task3-help" onclick="requestHelp('task3','city')">🆘 Дай шаблон</button>
+    </div>
     <div class="tutor-response" id="task3-response"></div>
   </div>
 
@@ -844,10 +860,10 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
       <h2>Живой чат с репетитором</h2>
     </div>
     <div class="chat-messages" id="chat-messages">
-      <div class="chat-msg ai">¡Hola! Я репетитор по теме «Ser vs. Estar». Напиши пару предложений с ser и estar — проверю выбор. Подсказка: ser — что ты есть (постоянное); estar — как ты есть и где (временное).</div>
+      <div class="chat-msg ai">¡Hola! Я репетитор по ser/estar. Напиши «Я русский» (ser) или «Я устал» (estar) — проверю. Подсказка: ser = что ты ЕСТЬ (постоянное); estar = как ты есть и ГДЕ (временное).</div>
     </div>
     <div class="chat-input-row">
-      <input type="text" class="chat-input" id="chat-input" placeholder="¿Cómo se dice ... en español?" onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendChat()" />
+      <input type="text" class="chat-input" id="chat-input" placeholder="Пиши на испанском ИЛИ задавай вопрос на русском..." onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendChat()" />
       <button class="chat-send-btn" onclick="sendChat()">→</button>
     </div>
   </div>
@@ -942,22 +958,37 @@ const quizExpl={
   q6:'Es médico. Профессия = ser.'
 };
 
-function answerQuiz(el,qId,correctKey){
-  const container=el.closest('.quiz-q');
-  if(container.dataset.answered==='true')return;
-  container.dataset.answered='true';
-  const opts=container.querySelectorAll('.opt');
-  opts.forEach(function(o){
-    const m=o.getAttribute('onclick')&&o.getAttribute('onclick').match(/'([abc])'\)/);
-    if(m&&m[1]===correctKey)o.classList.add('correct');
-    o.onclick=null;o.style.cursor='default';
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  if (container.dataset.answered === '1') return;
+  container.dataset.answered = '1';
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
+  let correctText = '';
+  let pickedText = '';
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
+    const key = m ? m[1] : null;
+    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
+    else { o.classList.add('wrong'); }
+    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
   });
-  const um=el.getAttribute('onclick')&&el.getAttribute('onclick').match(/'([abc])'\)/);
-  const userKey=um&&um[1];
-  if(userKey!==correctKey)el.classList.add('wrong');
-  const fb=document.getElementById('fb-'+qId);
-  fb.className='feedback show '+(userKey===correctKey?'ok':'no');
-  fb.textContent=(userKey===correctKey?'✅ ':'❌ ')+(quizExpl[qId]||'');
+  const isCorrect = correctKey === 'a';
+  const fb = document.getElementById('fb-' + qId);
+  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
+  if (isCorrect) {
+    fb.className = 'feedback show ok';
+    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
+  } else {
+    fb.className = 'feedback show no';
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
+  }
+  if (typeof quizScore !== 'undefined') {
+    if (isCorrect) quizScore++;
+    quizTotal++;
+    const scoreEl = document.getElementById('quiz-score');
+    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
+  }
 }
 
 function checkText(inputId, answer, fbId) {
@@ -1074,18 +1105,25 @@ function exportAnkiL07(){
   URL.revokeObjectURL(a.href);
 }
 
-// ─── AI Tutor ──────────────────────────────────────────────
+
+// ─── AI Tutor v2 ──────────────────────────────────────────
 const TUTOR_MODEL = 'claude-haiku-4-5-20251001';
 const TUTOR_PRICE = { input: 0.80 / 1e6, output: 4.00 / 1e6 };
 let sessionCost = 0;
 const chatHistory = [];
 
-const TUTOR_SYSTEM = `Ты репетитор испанского для русскоязычного ученика уровня A0–A1.\nТема урока L07: «Ser vs. Estar — два глагола «быть»».\nФокус: разница ser (постоянные качества, идентичность, время, происхождение) vs. estar (временные состояния, местонахождение, настроение).\nВСЕГДА отвечай на русском языке.\n\nКогда ученик пишет текст на испанском — проверь его и ответь строго в этом формате:\n\n🔍 Ошибки: [перечисли ошибки с кратким объяснением на русском, или «Ошибок нет! ¡Excelente!»]\n✅ Исправлено: [исправленный вариант на испанском]\n📝 Следующее задание: [одно короткое новое задание на ту же грамматику]\n\nЕсли ученик задаёт вопрос по-русски — просто ответь кратко и ясно. Будь ободряющим. Объяснения короткие, с примерами. Учитывай типичные ошибки русскоязычных в испанском (ser/estar, артикли, рода, ¿¡).`;
+const TUTOR_SYSTEM = `Ты репетитор испанского для русскоязычного НАЧИНАЮЩЕГО ученика (A0-A1).\nТема урока L07: «Ser vs. Estar».\nФокус: ser (постоянное: национальность, профессия, характер, время) vs. estar (временное: настроение, местонахождение, состояние).\n\nВАЖНЫЕ ПРАВИЛА:\n1. ВСЕГДА отвечай на русском языке.\n2. Ученик НАЧИНАЮЩИЙ — у него МАЛО слов в активе.\n3. Если ученик пишет «сложно», «не знаю», «не понимаю», «помоги», «как начать» — НЕ обрушивай теорию. Дай ОДИН готовый шаблон 2-3 фраз с переводом, максимум 5 строк. Без длинных объяснений.\n4. Если ученик пишет испанский текст — проверь и ответь СТРОГО в этом формате:\n🔍 Ошибки: [найденные ошибки кратко, или «Ошибок нет! ¡Excelente!»]\n✅ Исправлено: [исправленный вариант]\n📝 Следующее: [ОДНА короткая подсказка к улучшению]\n\n5. Если ученик задаёт вопрос по-русски — ответь КРАТКО (2-3 строки), с одним примером.\n6. НИКОГДА не пиши списки с 5+ пунктами. НИКОГДА не пиши длинные ответы. Цель — не утопить новичка теорией, а дать ему уверенность.\n7. Будь ободряющим. Используй простые слова. Знай типичные ошибки русскоязычных (ser/estar, артикли, рода, ¿¡ в начале вопросов).`;
 
 const TASK_CONTEXTS = {
-  describe: "Контекст: ученик описывал себя и семью 5–6 предложениями с ser/estar. Проверь правильность выбора глагола в каждом случае.",
-  translation: "Контекст: ученик переводил на испанский с акцентом на разницу ser/estar:\n1. Барселона находится в Каталонии.\n2. Кофе горячий (только что налили).\n3. Этот кофе очень хороший.\n4. Мой друг — врач, но сегодня он на больничном.\n5. Сейчас 10 часов вечера.",
-  city: "Контекст: ученик описывал Барселону 6–8 предложениями — смесь ser/estar для местонахождения и характеристик."
+  warm: "Контекст: ученик пишет 2 фразы — ser (национальность) и estar (местонахождение).",
+  translation: "Контекст: ученик переводил:\n1. Барселона находится в Каталонии.\n2. Я уставший сегодня.\n3. Моя жена — учительница.",
+  city: "Контекст: ученик описывал Барселону 5-6 фразами со смесью ser/estar."
+};
+
+const HELP_CONTEXTS = {
+  warm: "Дай шаблон: «Soy ruso. — Я русский. Estoy en Barcelona. — Я в Барселоне.» Объясни одним коротким предложением, почему ser/estar.",
+  translation: "Дай шаблоны для: «Барселона находится в Каталонии», «Я уставший сегодня», «Моя жена учительница». Кратко.",
+  city: "Дай шаблон 5-6 фраз про Барселону с ser/estar. Простой испанский + русский. Кратко."
 };
 
 function getTutorKey() { return localStorage.getItem('ai_tutor_key') || ''; }
@@ -1123,7 +1161,7 @@ async function callClaude(messages, extraContext) {
       'anthropic-version': '2023-06-01',
       'anthropic-dangerous-direct-browser-access': 'true'
     },
-    body: JSON.stringify({ model: TUTOR_MODEL, max_tokens: 800, system, messages })
+    body: JSON.stringify({ model: TUTOR_MODEL, max_tokens: 600, system, messages })
   });
   if (!resp.ok) {
     const err = await resp.json().catch(() => ({}));
@@ -1144,8 +1182,9 @@ async function submitTask(taskId, taskType) {
   const input = document.getElementById(taskId + '-input').value.trim();
   if (!input) { alert('Напиши текст задания.'); return; }
   const btn = document.getElementById(taskId + '-btn');
+  const help = document.getElementById(taskId + '-help');
   const resp = document.getElementById(taskId + '-response');
-  btn.disabled = true;
+  btn.disabled = true; help.disabled = true;
   btn.textContent = '⏳ Проверяю...';
   resp.className = 'tutor-response show';
   resp.textContent = '⏳ Claude анализирует...';
@@ -1155,8 +1194,27 @@ async function submitTask(taskId, taskType) {
   } catch (e) {
     resp.textContent = '❌ Ошибка: ' + e.message;
   }
-  btn.disabled = false;
+  btn.disabled = false; help.disabled = false;
   btn.textContent = 'Проверить ✓';
+}
+
+async function requestHelp(taskId, taskType) {
+  const btn = document.getElementById(taskId + '-help');
+  const submit = document.getElementById(taskId + '-btn');
+  const resp = document.getElementById(taskId + '-response');
+  btn.disabled = true; submit.disabled = true;
+  btn.textContent = '⏳ Думаю...';
+  resp.className = 'tutor-response show help';
+  resp.textContent = '⏳ Claude готовит шаблон...';
+  try {
+    const userMsg = 'Дай мне короткий шаблон по этому заданию — я начинающий и не знаю, как начать. Только испанский + русский перевод, без теории.';
+    const text = await callClaude([{ role: 'user', content: userMsg }], HELP_CONTEXTS[taskType]);
+    resp.textContent = text || '(пустой ответ)';
+  } catch (e) {
+    resp.textContent = '❌ Ошибка: ' + e.message;
+  }
+  btn.disabled = false; submit.disabled = false;
+  btn.textContent = '🆘 Дай шаблон';
 }
 
 async function sendChat() {

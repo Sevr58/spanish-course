@@ -58,8 +58,8 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-.opt.correct{background:rgba(45,198,83,.15);border-color:var(--green)!important;color:var(--green)}
-.opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red)!important;color:var(--red)}
+
+
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -131,7 +131,7 @@ table.mistakes tr:last-child td{border-bottom:none}
 .example-block .es{font-weight:600;font-size:1rem}
 .example-block .ru{font-size:.85rem;color:var(--muted);margin-top:2px}
 @media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
-</style>
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
 </head>
 <body>
 <div class="wrap">
@@ -1049,22 +1049,35 @@ const quizExpl = {
 let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
+  if (container.dataset.answered === '1') return;
+  container.dataset.answered = '1';
   const opts = container.querySelectorAll('.opt');
-  opts.forEach(o => { o.onclick = null; o.style.cursor='default'; });
+  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
+  let correctText = '';
+  let pickedText = '';
   opts.forEach(o => {
-    const m = o.getAttribute('onclick')?.match(/'([abc])'\)/);
-    if (m && m[1] === correctKey) o.classList.add('correct');
+    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
+    const key = m ? m[1] : null;
+    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
+    else { o.classList.add('wrong'); }
+    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
   });
-  const clickedKey = el.getAttribute('onclick')?.match(/'([abc])'\)/)?.[1];
-  if (clickedKey !== correctKey) el.classList.add('wrong');
-  const isCorrect = clickedKey === correctKey;
+  const isCorrect = correctKey === 'a';
   const fb = document.getElementById('fb-' + qId);
-  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'no');
-  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + (quizExpl[qId] || '');
-  if (isCorrect) quizScore++;
-  quizTotal++;
-  const scoreEl = document.getElementById('quiz-score');
-  if (scoreEl) scoreEl.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
+  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
+  if (isCorrect) {
+    fb.className = 'feedback show ok';
+    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
+  } else {
+    fb.className = 'feedback show no';
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
+  }
+  if (typeof quizScore !== 'undefined') {
+    if (isCorrect) quizScore++;
+    quizTotal++;
+    const scoreEl = document.getElementById('quiz-score');
+    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
+  }
 }
 
 function checkText(inputId, answer, fbId) {
