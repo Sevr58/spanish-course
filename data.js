@@ -892,7 +892,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Давать рекомендации и говорить о необходимости",
-      file:"lessons/L67.html", status:"pending"
+      file:"lessons/L67.html", status:"improved"
     },
     {
       id:"L68", num:68, phase:3, block:"B3A", level:"B1", day:144, week:24,
@@ -904,7 +904,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Избегать ошибок выбора наклонения в 30 тренировочных предложениях",
-      file:"lessons/L68.html", status:"pending"
+      file:"lessons/L68.html", status:"improved"
     },
     {
       id:"L69", num:69, phase:3, block:"B3A", level:"B1", day:146, week:25,
