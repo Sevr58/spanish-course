@@ -155,6 +155,18 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .translate-item{padding:5px 0;border-bottom:1px solid var(--border);font-size:.88rem}
 .translate-item:last-child{border-bottom:none}
 .tutor-hint{font-size:.78rem;color:var(--muted);margin-top:6px;font-style:italic}
+
+/* ─── Pronunciation check (Web Speech API) ─────────────── */
+.mic-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;padding:0 4px;color:var(--red);transition:.2s;vertical-align:middle}
+.mic-btn:hover{opacity:1;transform:scale(1.25)}
+.mic-btn.recording{opacity:1;animation:pulse-rec 1s infinite}
+.mic-btn.recording::after{content:' rec'}
+@keyframes pulse-rec{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.pron-result{display:inline-block;font-size:.78rem;padding:3px 8px;border-radius:5px;margin-left:6px;vertical-align:middle;font-weight:500}
+.pron-result.ok{background:rgba(45,143,60,.18);color:var(--green)}
+.pron-result.partial{background:rgba(200,144,0,.15);color:var(--gold)}
+.pron-result.bad{background:rgba(193,18,31,.13);color:var(--red)}
+.pron-result.warn{background:rgba(107,114,128,.13);color:var(--muted);font-style:italic}
 </style>
 </head>
 <body>
@@ -264,14 +276,14 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   <p style="margin-bottom:14px">Все вопросительные слова всегда имеют знак ударения ´. Это отличает их от обычных слов.</p>
 
   <div class="qw-grid">
-    <div class="qw-card"><span class="word">¿Qué?</span><span class="tr">Что?</span><button class="speak-btn" onclick="speak('¿Qué?')">🔊</button></div>
-    <div class="qw-card"><span class="word">¿Quién?</span><span class="tr">Кто?</span><button class="speak-btn" onclick="speak('¿Quién?')">🔊</button></div>
-    <div class="qw-card"><span class="word">¿Dónde?</span><span class="tr">Где?</span><button class="speak-btn" onclick="speak('¿Dónde?')">🔊</button></div>
-    <div class="qw-card"><span class="word">¿Cuándo?</span><span class="tr">Когда?</span><button class="speak-btn" onclick="speak('¿Cuándo?')">🔊</button></div>
-    <div class="qw-card"><span class="word">¿Cómo?</span><span class="tr">Как?</span><button class="speak-btn" onclick="speak('¿Cómo?')">🔊</button></div>
-    <div class="qw-card"><span class="word">¿Por qué?</span><span class="tr">Почему?</span><button class="speak-btn" onclick="speak('¿Por qué?')">🔊</button></div>
-    <div class="qw-card"><span class="word">¿Cuánto?</span><span class="tr">Сколько?</span><button class="speak-btn" onclick="speak('¿Cuánto?')">🔊</button></div>
-    <div class="qw-card"><span class="word">¿Cuál?</span><span class="tr">Какой? (из нескольких)</span><button class="speak-btn" onclick="speak('¿Cuál?')">🔊</button></div>
+    <div class="qw-card"><span class="word">¿Qué?</span><span class="tr">Что?</span><button class="speak-btn" onclick="speak('¿Qué?')">🔊</button><button onclick="pronounce('¿Qué?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
+    <div class="qw-card"><span class="word">¿Quién?</span><span class="tr">Кто?</span><button class="speak-btn" onclick="speak('¿Quién?')">🔊</button><button onclick="pronounce('¿Quién?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
+    <div class="qw-card"><span class="word">¿Dónde?</span><span class="tr">Где?</span><button class="speak-btn" onclick="speak('¿Dónde?')">🔊</button><button onclick="pronounce('¿Dónde?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
+    <div class="qw-card"><span class="word">¿Cuándo?</span><span class="tr">Когда?</span><button class="speak-btn" onclick="speak('¿Cuándo?')">🔊</button><button onclick="pronounce('¿Cuándo?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
+    <div class="qw-card"><span class="word">¿Cómo?</span><span class="tr">Как?</span><button class="speak-btn" onclick="speak('¿Cómo?')">🔊</button><button onclick="pronounce('¿Cómo?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
+    <div class="qw-card"><span class="word">¿Por qué?</span><span class="tr">Почему?</span><button class="speak-btn" onclick="speak('¿Por qué?')">🔊</button><button onclick="pronounce('¿Por qué?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
+    <div class="qw-card"><span class="word">¿Cuánto?</span><span class="tr">Сколько?</span><button class="speak-btn" onclick="speak('¿Cuánto?')">🔊</button><button onclick="pronounce('¿Cuánto?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
+    <div class="qw-card"><span class="word">¿Cuál?</span><span class="tr">Какой? (из нескольких)</span><button class="speak-btn" onclick="speak('¿Cuál?')">🔊</button><button onclick="pronounce('¿Cuál?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
   </div>
 
   <div class="callout warning">
@@ -280,16 +292,16 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   </div>
 
   <h3 style="font-size:1rem;margin:18px 0 10px">10 готовых вопросов:</h3>
-  <div class="speak-box"><div class="es">¿Cómo te llamas? <button class="speak-btn" onclick="speak('¿Cómo te llamas?')">🔊</button></div></div>
-  <div class="speak-box"><div class="es">¿De dónde eres? <button class="speak-btn" onclick="speak('¿De dónde eres?')">🔊</button></div></div>
-  <div class="speak-box"><div class="es">¿Cuántos años tienes? <button class="speak-btn" onclick="speak('¿Cuántos años tienes?')">🔊</button></div></div>
-  <div class="speak-box"><div class="es">¿A qué te dedicas? <button class="speak-btn" onclick="speak('¿A qué te dedicas?')">🔊</button></div><div class="hint">[Чем ты занимаешься?] Стандартный вопрос про профессию.</div></div>
-  <div class="speak-box"><div class="es">¿Dónde está la farmacia? <button class="speak-btn" onclick="speak('¿Dónde está la farmacia?')">🔊</button></div></div>
-  <div class="speak-box"><div class="es">¿Por qué estudias español? <button class="speak-btn" onclick="speak('¿Por qué estudias español?')">🔊</button></div></div>
-  <div class="speak-box"><div class="es">¿A qué hora abren? <button class="speak-btn" onclick="speak('¿A qué hora abren?')">🔊</button></div></div>
-  <div class="speak-box"><div class="es">¿Cuánto cuesta? <button class="speak-btn" onclick="speak('¿Cuánto cuesta?')">🔊</button></div></div>
-  <div class="speak-box"><div class="es">¿Habla inglés? <button class="speak-btn" onclick="speak('¿Habla inglés?')">🔊</button></div><div class="hint">[Вы говорите по-английски?] usted-форма для незнакомых.</div></div>
-  <div class="speak-box"><div class="es">¿Tienes WhatsApp? <button class="speak-btn" onclick="speak('¿Tienes WhatsApp?')">🔊</button></div></div>
+  <div class="speak-box"><div class="es">¿Cómo te llamas? <button class="speak-btn" onclick="speak('¿Cómo te llamas?')">🔊</button><button onclick="pronounce('¿Cómo te llamas?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div></div>
+  <div class="speak-box"><div class="es">¿De dónde eres? <button class="speak-btn" onclick="speak('¿De dónde eres?')">🔊</button><button onclick="pronounce('¿De dónde eres?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div></div>
+  <div class="speak-box"><div class="es">¿Cuántos años tienes? <button class="speak-btn" onclick="speak('¿Cuántos años tienes?')">🔊</button><button onclick="pronounce('¿Cuántos años tienes?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div></div>
+  <div class="speak-box"><div class="es">¿A qué te dedicas? <button class="speak-btn" onclick="speak('¿A qué te dedicas?')">🔊</button><button onclick="pronounce('¿A qué te dedicas?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div><div class="hint">[Чем ты занимаешься?] Стандартный вопрос про профессию.</div></div>
+  <div class="speak-box"><div class="es">¿Dónde está la farmacia? <button class="speak-btn" onclick="speak('¿Dónde está la farmacia?')">🔊</button><button onclick="pronounce('¿Dónde está la farmacia?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div></div>
+  <div class="speak-box"><div class="es">¿Por qué estudias español? <button class="speak-btn" onclick="speak('¿Por qué estudias español?')">🔊</button><button onclick="pronounce('¿Por qué estudias español?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div></div>
+  <div class="speak-box"><div class="es">¿A qué hora abren? <button class="speak-btn" onclick="speak('¿A qué hora abren?')">🔊</button><button onclick="pronounce('¿A qué hora abren?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div></div>
+  <div class="speak-box"><div class="es">¿Cuánto cuesta? <button class="speak-btn" onclick="speak('¿Cuánto cuesta?')">🔊</button><button onclick="pronounce('¿Cuánto cuesta?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div></div>
+  <div class="speak-box"><div class="es">¿Habla inglés? <button class="speak-btn" onclick="speak('¿Habla inglés?')">🔊</button><button onclick="pronounce('¿Habla inglés?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div><div class="hint">[Вы говорите по-английски?] usted-форма для незнакомых.</div></div>
+  <div class="speak-box"><div class="es">¿Tienes WhatsApp? <button class="speak-btn" onclick="speak('¿Tienes WhatsApp?')">🔊</button><button onclick="pronounce('¿Tienes WhatsApp?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div></div>
 </div>
 
 <!-- SECTION 4: Отрицание — no -->
@@ -301,17 +313,17 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   <table class="vocab-table">
     <thead><tr><th>Утверждение</th><th>Отрицание</th><th>🔊</th></tr></thead>
     <tbody>
-      <tr><td class="es">Hablo español.</td><td class="es">No hablo español.</td><td><button class="speak-btn" onclick="speak('No hablo español.')">🔊</button></td></tr>
-      <tr><td class="es">Vivo aquí.</td><td class="es">No vivo aquí.</td><td><button class="speak-btn" onclick="speak('No vivo aquí.')">🔊</button></td></tr>
-      <tr><td class="es">Soy ruso.</td><td class="es">No soy ruso.</td><td><button class="speak-btn" onclick="speak('No soy ruso.')">🔊</button></td></tr>
-      <tr><td class="es">Tengo dinero.</td><td class="es">No tengo dinero.</td><td><button class="speak-btn" onclick="speak('No tengo dinero.')">🔊</button></td></tr>
-      <tr><td class="es">Está abierto.</td><td class="es">No está abierto.</td><td><button class="speak-btn" onclick="speak('No está abierto.')">🔊</button></td></tr>
+      <tr><td class="es">Hablo español.</td><td class="es">No hablo español.</td><td><button class="speak-btn" onclick="speak('No hablo español.')">🔊</button><button onclick="pronounce('No hablo español.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td></tr>
+      <tr><td class="es">Vivo aquí.</td><td class="es">No vivo aquí.</td><td><button class="speak-btn" onclick="speak('No vivo aquí.')">🔊</button><button onclick="pronounce('No vivo aquí.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td></tr>
+      <tr><td class="es">Soy ruso.</td><td class="es">No soy ruso.</td><td><button class="speak-btn" onclick="speak('No soy ruso.')">🔊</button><button onclick="pronounce('No soy ruso.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td></tr>
+      <tr><td class="es">Tengo dinero.</td><td class="es">No tengo dinero.</td><td><button class="speak-btn" onclick="speak('No tengo dinero.')">🔊</button><button onclick="pronounce('No tengo dinero.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td></tr>
+      <tr><td class="es">Está abierto.</td><td class="es">No está abierto.</td><td><button class="speak-btn" onclick="speak('No está abierto.')">🔊</button><button onclick="pronounce('No está abierto.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td></tr>
     </tbody>
   </table>
 
   <h3 style="font-size:1rem;margin:18px 0 10px">«Нет» как ответ vs «не» в предложении</h3>
   <div class="speak-box">
-    <div class="es">— ¿Hablas inglés? — No, no hablo inglés. <button class="speak-btn" onclick="speak('¿Hablas inglés? No, no hablo inglés.')">🔊</button></div>
+    <div class="es">— ¿Hablas inglés? — No, no hablo inglés. <button class="speak-btn" onclick="speak('¿Hablas inglés? No, no hablo inglés.')">🔊</button><button onclick="pronounce('¿Hablas inglés? No, no hablo inglés.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
     <div class="hint">[— Говоришь по-английски? — Нет, не говорю.] ОДНО «no» = ответ, второе «no» = отрицание глагола. Они часто стоят рядом — это нормально.</div>
   </div>
 </div>
@@ -325,11 +337,11 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   <table class="vocab-table">
     <thead><tr><th>Слово</th><th>Перевод</th><th>🔊</th><th>Пример</th></tr></thead>
     <tbody>
-      <tr><td class="es">nada</td><td>ничего</td><td><button class="speak-btn" onclick="speak('nada')">🔊</button></td><td>No tengo nada.</td></tr>
-      <tr><td class="es">nadie</td><td>никто</td><td><button class="speak-btn" onclick="speak('nadie')">🔊</button></td><td>No hay nadie aquí.</td></tr>
-      <tr><td class="es">nunca</td><td>никогда</td><td><button class="speak-btn" onclick="speak('nunca')">🔊</button></td><td>No bebo nunca alcohol.</td></tr>
-      <tr><td class="es">ningún/ninguna</td><td>никакой/никакая</td><td><button class="speak-btn" onclick="speak('ningún, ninguna')">🔊</button></td><td>No tengo ningún problema.</td></tr>
-      <tr><td class="es">tampoco</td><td>тоже не</td><td><button class="speak-btn" onclick="speak('tampoco')">🔊</button></td><td>Yo tampoco hablo francés.</td></tr>
+      <tr><td class="es">nada</td><td>ничего</td><td><button class="speak-btn" onclick="speak('nada')">🔊</button><button onclick="pronounce('nada', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td><td>No tengo nada.</td></tr>
+      <tr><td class="es">nadie</td><td>никто</td><td><button class="speak-btn" onclick="speak('nadie')">🔊</button><button onclick="pronounce('nadie', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td><td>No hay nadie aquí.</td></tr>
+      <tr><td class="es">nunca</td><td>никогда</td><td><button class="speak-btn" onclick="speak('nunca')">🔊</button><button onclick="pronounce('nunca', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td><td>No bebo nunca alcohol.</td></tr>
+      <tr><td class="es">ningún/ninguna</td><td>никакой/никакая</td><td><button class="speak-btn" onclick="speak('ningún, ninguna')">🔊</button><button onclick="pronounce('ningún, ninguna', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td><td>No tengo ningún problema.</td></tr>
+      <tr><td class="es">tampoco</td><td>тоже не</td><td><button class="speak-btn" onclick="speak('tampoco')">🔊</button><button onclick="pronounce('tampoco', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td><td>Yo tampoco hablo francés.</td></tr>
     </tbody>
   </table>
 
@@ -340,8 +352,8 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 
   <h3 style="font-size:1rem;margin:18px 0 10px">Когда NO НЕ нужен</h3>
   <p style="margin-bottom:10px">Если отрицательное слово стоит ПЕРЕД глаголом — «no» не нужно:</p>
-  <div class="speak-box"><div class="es">Nadie habla. <button class="speak-btn" onclick="speak('Nadie habla.')">🔊</button></div><div class="hint">[Никто не говорит.] = «No habla nadie.» — тоже правильно.</div></div>
-  <div class="speak-box"><div class="es">Nunca como carne. <button class="speak-btn" onclick="speak('Nunca como carne.')">🔊</button></div><div class="hint">[Никогда не ем мясо.] = «No como nunca carne.» — оба варианта работают.</div></div>
+  <div class="speak-box"><div class="es">Nadie habla. <button class="speak-btn" onclick="speak('Nadie habla.')">🔊</button><button onclick="pronounce('Nadie habla.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div><div class="hint">[Никто не говорит.] = «No habla nadie.» — тоже правильно.</div></div>
+  <div class="speak-box"><div class="es">Nunca como carne. <button class="speak-btn" onclick="speak('Nunca como carne.')">🔊</button><button onclick="pronounce('Nunca como carne.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div><div class="hint">[Никогда не ем мясо.] = «No como nunca carne.» — оба варианта работают.</div></div>
 </div>
 
 <!-- SECTION 6: También vs Tampoco -->
@@ -352,10 +364,10 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 
   <table class="vocab-table">
     <tr><th>Реплика</th><th>Согласие</th><th>🔊</th></tr>
-    <tr><td>Hablo español.</td><td class="es">Yo también.</td><td><button class="speak-btn" onclick="speak('Yo también.')">🔊</button></td></tr>
-    <tr><td>No hablo francés.</td><td class="es">Yo tampoco.</td><td><button class="speak-btn" onclick="speak('Yo tampoco.')">🔊</button></td></tr>
-    <tr><td>Vivo en Barcelona.</td><td class="es">Yo también.</td><td><button class="speak-btn" onclick="speak('Yo también.')">🔊</button></td></tr>
-    <tr><td>No tengo coche.</td><td class="es">Yo tampoco.</td><td><button class="speak-btn" onclick="speak('Yo tampoco.')">🔊</button></td></tr>
+    <tr><td>Hablo español.</td><td class="es">Yo también.</td><td><button class="speak-btn" onclick="speak('Yo también.')">🔊</button><button onclick="pronounce('Yo también.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td></tr>
+    <tr><td>No hablo francés.</td><td class="es">Yo tampoco.</td><td><button class="speak-btn" onclick="speak('Yo tampoco.')">🔊</button><button onclick="pronounce('Yo tampoco.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td></tr>
+    <tr><td>Vivo en Barcelona.</td><td class="es">Yo también.</td><td><button class="speak-btn" onclick="speak('Yo también.')">🔊</button><button onclick="pronounce('Yo también.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td></tr>
+    <tr><td>No tengo coche.</td><td class="es">Yo tampoco.</td><td><button class="speak-btn" onclick="speak('Yo tampoco.')">🔊</button><button onclick="pronounce('Yo tampoco.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></td></tr>
   </table>
 
   <div class="callout info">
@@ -516,39 +528,39 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
       </div>
     </div>
     <div class="dlg-line"><div class="dlg-speaker">А</div><div>
-      <div class="dlg-es">¿Cómo te llamas? <button class="speak-btn" onclick="speak('¿Cómo te llamas?')">🔊</button></div>
+      <div class="dlg-es">¿Cómo te llamas? <button class="speak-btn" onclick="speak('¿Cómo te llamas?')">🔊</button><button onclick="pronounce('¿Cómo te llamas?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Как тебя зовут?</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
-      <div class="dlg-es">Me llamo Lucía. ¿Y tú? <button class="speak-btn" onclick="speak('Me llamo Lucía. ¿Y tú?')">🔊</button></div>
+      <div class="dlg-es">Me llamo Lucía. ¿Y tú? <button class="speak-btn" onclick="speak('Me llamo Lucía. ¿Y tú?')">🔊</button><button onclick="pronounce('Me llamo Lucía. ¿Y tú?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Меня зовут Лусия. А тебя?</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker">А</div><div>
-      <div class="dlg-es">Soy Evgeni. ¿Eres de Barcelona? <button class="speak-btn" onclick="speak('Soy Evgeni. ¿Eres de Barcelona?')">🔊</button></div>
+      <div class="dlg-es">Soy Evgeni. ¿Eres de Barcelona? <button class="speak-btn" onclick="speak('Soy Evgeni. ¿Eres de Barcelona?')">🔊</button><button onclick="pronounce('Soy Evgeni. ¿Eres de Barcelona?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Я Евгений. Ты из Барселоны?</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
-      <div class="dlg-es">No, no soy de Barcelona. Soy de Sevilla. ¿Tú? <button class="speak-btn" onclick="speak('No, no soy de Barcelona. Soy de Sevilla. ¿Tú?')">🔊</button></div>
+      <div class="dlg-es">No, no soy de Barcelona. Soy de Sevilla. ¿Tú? <button class="speak-btn" onclick="speak('No, no soy de Barcelona. Soy de Sevilla. ¿Tú?')">🔊</button><button onclick="pronounce('No, no soy de Barcelona. Soy de Sevilla. ¿Tú?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Нет, не из Барселоны. Я из Севильи. А ты?</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker">А</div><div>
-      <div class="dlg-es">Soy ruso, pero vivo aquí ahora. ¿Hablas inglés? <button class="speak-btn" onclick="speak('Soy ruso, pero vivo aquí ahora. ¿Hablas inglés?')">🔊</button></div>
+      <div class="dlg-es">Soy ruso, pero vivo aquí ahora. ¿Hablas inglés? <button class="speak-btn" onclick="speak('Soy ruso, pero vivo aquí ahora. ¿Hablas inglés?')">🔊</button><button onclick="pronounce('Soy ruso, pero vivo aquí ahora. ¿Hablas inglés?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Я русский, но живу здесь сейчас. По-английски говоришь?</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
-      <div class="dlg-es">Sí, hablo inglés y un poco de francés. ¿Y tú? <button class="speak-btn" onclick="speak('Sí, hablo inglés y un poco de francés. ¿Y tú?')">🔊</button></div>
+      <div class="dlg-es">Sí, hablo inglés y un poco de francés. ¿Y tú? <button class="speak-btn" onclick="speak('Sí, hablo inglés y un poco de francés. ¿Y tú?')">🔊</button><button onclick="pronounce('Sí, hablo inglés y un poco de francés. ¿Y tú?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Да, говорю по-английски и немного по-французски. А ты?</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker">А</div><div>
-      <div class="dlg-es">Yo también hablo inglés. Pero francés no, tampoco. <button class="speak-btn" onclick="speak('Yo también hablo inglés. Pero francés no, tampoco.')">🔊</button></div>
+      <div class="dlg-es">Yo también hablo inglés. Pero francés no, tampoco. <button class="speak-btn" onclick="speak('Yo también hablo inglés. Pero francés no, tampoco.')">🔊</button><button onclick="pronounce('Yo también hablo inglés. Pero francés no, tampoco.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Я тоже говорю по-английски. Но французский — нет.</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker b">Б</div><div>
-      <div class="dlg-es">¿Por qué aprendes español? <button class="speak-btn" onclick="speak('¿Por qué aprendes español?')">🔊</button></div>
+      <div class="dlg-es">¿Por qué aprendes español? <button class="speak-btn" onclick="speak('¿Por qué aprendes español?')">🔊</button><button onclick="pronounce('¿Por qué aprendes español?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Почему учишь испанский?</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker">А</div><div>
-      <div class="dlg-es">Porque vivo aquí con mi familia. <button class="speak-btn" onclick="speak('Porque vivo aquí con mi familia.')">🔊</button></div>
+      <div class="dlg-es">Porque vivo aquí con mi familia. <button class="speak-btn" onclick="speak('Porque vivo aquí con mi familia.')">🔊</button><button onclick="pronounce('Porque vivo aquí con mi familia.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Потому что живу здесь с семьёй.</div>
     </div></div>
   </div>
@@ -561,35 +573,35 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
       </div>
     </div>
     <div class="dlg-line"><div class="dlg-speaker">П</div><div>
-      <div class="dlg-es">Hola, ¿hablas inglés? <button class="speak-btn" onclick="speak('Hola, ¿hablas inglés?')">🔊</button></div>
+      <div class="dlg-es">Hola, ¿hablas inglés? <button class="speak-btn" onclick="speak('Hola, ¿hablas inglés?')">🔊</button><button onclick="pronounce('Hola, ¿hablas inglés?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Привет, говоришь по-английски?</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
-      <div class="dlg-es">Un poco, sí. <button class="speak-btn" onclick="speak('Un poco, sí.')">🔊</button></div>
+      <div class="dlg-es">Un poco, sí. <button class="speak-btn" onclick="speak('Un poco, sí.')">🔊</button><button onclick="pronounce('Un poco, sí.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Немного, да.</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker">П</div><div>
-      <div class="dlg-es">¿Tienes un minuto? Soy de una organización... <button class="speak-btn" onclick="speak('¿Tienes un minuto? Soy de una organización...')">🔊</button></div>
+      <div class="dlg-es">¿Tienes un minuto? Soy de una organización... <button class="speak-btn" onclick="speak('¿Tienes un minuto? Soy de una organización...')">🔊</button><button onclick="pronounce('¿Tienes un minuto? Soy de una organización...', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— У тебя минутка есть? Я из организации...</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
-      <div class="dlg-es">No, perdona, no tengo tiempo. <button class="speak-btn" onclick="speak('No, perdona, no tengo tiempo.')">🔊</button></div>
+      <div class="dlg-es">No, perdona, no tengo tiempo. <button class="speak-btn" onclick="speak('No, perdona, no tengo tiempo.')">🔊</button><button onclick="pronounce('No, perdona, no tengo tiempo.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Нет, извини, у меня нет времени.</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker">П</div><div>
-      <div class="dlg-es">Pero es solo un momento... <button class="speak-btn" onclick="speak('Pero es solo un momento...')">🔊</button></div>
+      <div class="dlg-es">Pero es solo un momento... <button class="speak-btn" onclick="speak('Pero es solo un momento...')">🔊</button><button onclick="pronounce('Pero es solo un momento...', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Но это только минута...</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
-      <div class="dlg-es">No me interesa, gracias. <button class="speak-btn" onclick="speak('No me interesa, gracias.')">🔊</button></div>
+      <div class="dlg-es">No me interesa, gracias. <button class="speak-btn" onclick="speak('No me interesa, gracias.')">🔊</button><button onclick="pronounce('No me interesa, gracias.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Меня не интересует, спасибо.</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker">П</div><div>
-      <div class="dlg-es">Vale, que tengas un buen día. <button class="speak-btn" onclick="speak('Vale, que tengas un buen día.')">🔊</button></div>
+      <div class="dlg-es">Vale, que tengas un buen día. <button class="speak-btn" onclick="speak('Vale, que tengas un buen día.')">🔊</button><button onclick="pronounce('Vale, que tengas un buen día.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— Хорошо, хорошего дня.</div>
     </div></div>
     <div class="dlg-line"><div class="dlg-speaker b">Я</div><div>
-      <div class="dlg-es">Tú también. Adiós. <button class="speak-btn" onclick="speak('Tú también. Adiós.')">🔊</button></div>
+      <div class="dlg-es">Tú también. Adiós. <button class="speak-btn" onclick="speak('Tú también. Adiós.')">🔊</button><button onclick="pronounce('Tú también. Adiós.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
       <div class="dlg-ru translation">— И тебе. Пока.</div>
     </div></div>
   </div>
@@ -602,14 +614,14 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   <div class="speak-box">
     <div class="speak-tag">🎙 Упражнение 1 — задай 10 вопросов</div>
     <p>Произнеси вслух 10 вопросов подряд (представь что познакомился с испанцем):</p>
-    <div class="es" style="line-height:1.9">¿Cómo te llamas? ¿De dónde eres? ¿Cuántos años tienes? ¿Dónde vives? ¿A qué te dedicas? ¿Hablas inglés? ¿Tienes hijos? ¿Por qué estás aquí? ¿Cuándo llegaste? ¿Qué te gusta de Barcelona? <button class="speak-btn" onclick="speak('¿Cómo te llamas? ¿De dónde eres? ¿Cuántos años tienes? ¿Dónde vives? ¿A qué te dedicas? ¿Hablas inglés? ¿Tienes hijos? ¿Por qué estás aquí? ¿Cuándo llegaste? ¿Qué te gusta de Barcelona?')">🔊</button></div>
+    <div class="es" style="line-height:1.9">¿Cómo te llamas? ¿De dónde eres? ¿Cuántos años tienes? ¿Dónde vives? ¿A qué te dedicas? ¿Hablas inglés? ¿Tienes hijos? ¿Por qué estás aquí? ¿Cuándo llegaste? ¿Qué te gusta de Barcelona? <button class="speak-btn" onclick="speak('¿Cómo te llamas? ¿De dónde eres? ¿Cuántos años tienes? ¿Dónde vives? ¿A qué te dedicas? ¿Hablas inglés? ¿Tienes hijos? ¿Por qué estás aquí? ¿Cuándo llegaste? ¿Qué te gusta de Barcelona?')">🔊</button><button onclick="pronounce('¿Cómo te llamas? ¿De dónde eres? ¿Cuántos años tienes? ¿Dónde vives? ¿A qué te dedicas? ¿Hablas inglés? ¿Tienes hijos? ¿Por qué estás aquí? ¿Cuándo llegaste? ¿Qué te gusta de Barcelona?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
     <div class="hint">[Как зовут? Откуда? Сколько лет? Где живёшь? Чем занимаешься? Английский? Дети? Зачем здесь? Когда приехал? Что нравится в Барселоне?]</div>
   </div>
 
   <div class="speak-box">
     <div class="speak-tag">🎙 Упражнение 2 — отказывайся вежливо</div>
     <p>5 готовых отказов для разных ситуаций. Произнеси все:</p>
-    <div class="es" style="line-height:1.9">No, gracias. / No me interesa, gracias. / No tengo tiempo, perdona. / No, ahora no puedo. / Yo tampoco. <button class="speak-btn" onclick="speak('No, gracias. No me interesa, gracias. No tengo tiempo, perdona. No, ahora no puedo. Yo tampoco.')">🔊</button></div>
+    <div class="es" style="line-height:1.9">No, gracias. / No me interesa, gracias. / No tengo tiempo, perdona. / No, ahora no puedo. / Yo tampoco. <button class="speak-btn" onclick="speak('No, gracias. No me interesa, gracias. No tengo tiempo, perdona. No, ahora no puedo. Yo tampoco.')">🔊</button><button onclick="pronounce('No, gracias. No me interesa, gracias. No tengo tiempo, perdona. No, ahora no puedo. Yo tampoco.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
     <div class="hint">[Нет, спасибо. / Не интересует. / Нет времени. / Сейчас не могу. / Я тоже нет.] Знай эти фразы — пригодятся на La Rambla каждый день.</div>
   </div>
 </div>
@@ -626,32 +638,32 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <div class="phrase-list">
       <div class="phrase">
         <span class="es">Disculpe, ¿dónde está...?</span>
-        <button class="speak-btn" onclick="speak('Disculpe, ¿dónde está la catedral?')">🔊</button>
+        <button class="speak-btn" onclick="speak('Disculpe, ¿dónde está la catedral?')">🔊</button><button onclick="pronounce('Disculpe, ¿dónde está la catedral?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button>
         <span class="tr">Извините, где...? (Disculpe = вежливо)</span>
       </div>
       <div class="phrase">
         <span class="es">¿Está lejos?</span>
-        <button class="speak-btn" onclick="speak('¿Está lejos?')">🔊</button>
+        <button class="speak-btn" onclick="speak('¿Está lejos?')">🔊</button><button onclick="pronounce('¿Está lejos?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button>
         <span class="tr">Это далеко?</span>
       </div>
       <div class="phrase">
         <span class="es">¿A qué distancia está?</span>
-        <button class="speak-btn" onclick="speak('¿A qué distancia está?')">🔊</button>
+        <button class="speak-btn" onclick="speak('¿A qué distancia está?')">🔊</button><button onclick="pronounce('¿A qué distancia está?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button>
         <span class="tr">На каком расстоянии? (точнее)</span>
       </div>
       <div class="phrase">
         <span class="es">¿Cómo llego a...?</span>
-        <button class="speak-btn" onclick="speak('¿Cómo llego a la Sagrada Familia?')">🔊</button>
+        <button class="speak-btn" onclick="speak('¿Cómo llego a la Sagrada Familia?')">🔊</button><button onclick="pronounce('¿Cómo llego a la Sagrada Familia?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button>
         <span class="tr">Как добраться до...?</span>
       </div>
       <div class="phrase">
         <span class="es">No comprendo. ¿Más despacio, por favor?</span>
-        <button class="speak-btn" onclick="speak('No comprendo. ¿Más despacio, por favor?')">🔊</button>
+        <button class="speak-btn" onclick="speak('No comprendo. ¿Más despacio, por favor?')">🔊</button><button onclick="pronounce('No comprendo. ¿Más despacio, por favor?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button>
         <span class="tr">Не понимаю. Помедленнее?</span>
       </div>
       <div class="phrase">
         <span class="es">¿Puede repetir, por favor?</span>
-        <button class="speak-btn" onclick="speak('¿Puede repetir, por favor?')">🔊</button>
+        <button class="speak-btn" onclick="speak('¿Puede repetir, por favor?')">🔊</button><button onclick="pronounce('¿Puede repetir, por favor?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button>
         <span class="tr">Можете повторить?</span>
       </div>
     </div>
@@ -661,35 +673,35 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
         <button class="speak-btn-big" onclick="playStreet()">▶ Воспроизвести</button>
       </div>
       <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
-        <div class="dlg-es">Disculpe, ¿dónde está la estación de metro? <button class="speak-btn" onclick="speak('Disculpe, ¿dónde está la estación de metro?')">🔊</button></div>
+        <div class="dlg-es">Disculpe, ¿dónde está la estación de metro? <button class="speak-btn" onclick="speak('Disculpe, ¿dónde está la estación de metro?')">🔊</button><button onclick="pronounce('Disculpe, ¿dónde está la estación de metro?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
         <div class="dlg-ru">— Извините, где станция метро?</div>
       </div></div>
       <div class="dlg-line"><div class="dlg-speaker b">П</div><div>
-        <div class="dlg-es">¿Qué estación buscas? ¿Jaume I o Barceloneta? <button class="speak-btn" onclick="speak('¿Qué estación buscas? ¿Jaume I o Barceloneta?')">🔊</button></div>
+        <div class="dlg-es">¿Qué estación buscas? ¿Jaume I o Barceloneta? <button class="speak-btn" onclick="speak('¿Qué estación buscas? ¿Jaume I o Barceloneta?')">🔊</button><button onclick="pronounce('¿Qué estación buscas? ¿Jaume I o Barceloneta?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
         <div class="dlg-ru">— Какую станцию ищешь? Жауме Первый или Барселонета?</div>
       </div></div>
       <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
-        <div class="dlg-es">Jaume I. ¿Está cerca? <button class="speak-btn" onclick="speak('Jaume I. ¿Está cerca?')">🔊</button></div>
+        <div class="dlg-es">Jaume I. ¿Está cerca? <button class="speak-btn" onclick="speak('Jaume I. ¿Está cerca?')">🔊</button><button onclick="pronounce('Jaume I. ¿Está cerca?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
         <div class="dlg-ru">— Жауме I. Близко?</div>
       </div></div>
       <div class="dlg-line"><div class="dlg-speaker b">П</div><div>
-        <div class="dlg-es">Sí, muy cerca. Sigue recto y al final de la calle giras a la derecha. <button class="speak-btn" onclick="speak('Sí, muy cerca. Sigue recto y al final de la calle giras a la derecha.')">🔊</button></div>
+        <div class="dlg-es">Sí, muy cerca. Sigue recto y al final de la calle giras a la derecha. <button class="speak-btn" onclick="speak('Sí, muy cerca. Sigue recto y al final de la calle giras a la derecha.')">🔊</button><button onclick="pronounce('Sí, muy cerca. Sigue recto y al final de la calle giras a la derecha.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
         <div class="dlg-ru">— Да, очень близко. Иди прямо, и в конце улицы поверни направо.</div>
       </div></div>
       <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
-        <div class="dlg-es">Perdona, no comprendo. ¿Más despacio, por favor? <button class="speak-btn" onclick="speak('Perdona, no comprendo. ¿Más despacio, por favor?')">🔊</button></div>
+        <div class="dlg-es">Perdona, no comprendo. ¿Más despacio, por favor? <button class="speak-btn" onclick="speak('Perdona, no comprendo. ¿Más despacio, por favor?')">🔊</button><button onclick="pronounce('Perdona, no comprendo. ¿Más despacio, por favor?', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
         <div class="dlg-ru">— Извини, не понял. Помедленнее?</div>
       </div></div>
       <div class="dlg-line"><div class="dlg-speaker b">П</div><div>
-        <div class="dlg-es">Claro. Recto... derecha. Cinco minutos. <button class="speak-btn" onclick="speak('Claro. Recto... derecha. Cinco minutos.')">🔊</button></div>
+        <div class="dlg-es">Claro. Recto... derecha. Cinco minutos. <button class="speak-btn" onclick="speak('Claro. Recto... derecha. Cinco minutos.')">🔊</button><button onclick="pronounce('Claro. Recto... derecha. Cinco minutos.', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
         <div class="dlg-ru">— Конечно. Прямо... направо. 5 минут.</div>
       </div></div>
       <div class="dlg-line"><div class="dlg-speaker">Я</div><div>
-        <div class="dlg-es">¡Muchas gracias! <button class="speak-btn" onclick="speak('¡Muchas gracias!')">🔊</button></div>
+        <div class="dlg-es">¡Muchas gracias! <button class="speak-btn" onclick="speak('¡Muchas gracias!')">🔊</button><button onclick="pronounce('¡Muchas gracias!', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
         <div class="dlg-ru">— Большое спасибо!</div>
       </div></div>
       <div class="dlg-line"><div class="dlg-speaker b">П</div><div>
-        <div class="dlg-es">De nada. ¡Buen viaje! <button class="speak-btn" onclick="speak('De nada. ¡Buen viaje!')">🔊</button></div>
+        <div class="dlg-es">De nada. ¡Buen viaje! <button class="speak-btn" onclick="speak('De nada. ¡Buen viaje!')">🔊</button><button onclick="pronounce('De nada. ¡Buen viaje!', this)" class="mic-btn" title="Запиши и проверь произношение (нужен Chrome/Edge + микрофон)">🎤</button></div>
         <div class="dlg-ru">— Не за что. Счастливо!</div>
       </div></div>
     </div>
@@ -1191,6 +1203,117 @@ function appendMsg(role, text) {
   return div;
 }
 
+
+// ─── Pronunciation Check (Web Speech API) ──────────────────
+const PRON_LANG = 'es-ES';
+let currentMic = null;
+
+function normalizeForPron(s) {
+  return s.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[¿¡?!.,;:]/g, '')
+    .replace(/\s+/g, ' ').trim();
+}
+
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  if (!m) return n;
+  if (!n) return m;
+  let prev = Array.from({length: n+1}, (_,i) => i);
+  let curr = new Array(n+1).fill(0);
+  for (let i = 1; i <= m; i++) {
+    curr[0] = i;
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i-1] === b[j-1] ? 0 : 1;
+      curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
+    }
+    [prev, curr] = [curr, prev];
+  }
+  return prev[n];
+}
+
+function showPronResult(btnEl, cls, text) {
+  let r = btnEl.nextElementSibling;
+  if (!r || !r.classList || !r.classList.contains('pron-result')) {
+    r = document.createElement('span');
+    r.className = 'pron-result';
+    btnEl.parentNode.insertBefore(r, btnEl.nextSibling);
+  }
+  r.className = 'pron-result ' + cls;
+  r.textContent = text;
+  if (cls === 'ok' || cls === 'partial') {
+    setTimeout(() => { if (r.parentNode) r.parentNode.removeChild(r); }, 6000);
+  }
+}
+
+function pronounce(expected, btnEl) {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    showPronResult(btnEl, 'warn', 'Браузер не поддерживает (нужен Chrome/Edge)');
+    return;
+  }
+  if (location.protocol === 'file:') {
+    showPronResult(btnEl, 'warn', 'Открой через локальный сервер (run_local.bat)');
+    return;
+  }
+  if (currentMic && currentMic.btnEl !== btnEl) {
+    try { currentMic.rec.abort(); } catch(e) {}
+    currentMic.btnEl.classList.remove('recording');
+  }
+  const rec = new SR();
+  rec.lang = PRON_LANG;
+  rec.continuous = false;
+  rec.interimResults = false;
+  rec.maxAlternatives = 3;
+  btnEl.classList.add('recording');
+  currentMic = { rec, btnEl };
+  showPronResult(btnEl, 'warn', 'Говори...');
+  rec.onresult = (e) => {
+    btnEl.classList.remove('recording');
+    currentMic = null;
+    const alts = [];
+    for (let i = 0; i < e.results[0].length; i++) alts.push(e.results[0][i].transcript);
+    const heard = alts[0];
+    const expN = normalizeForPron(expected);
+    const heardN = normalizeForPron(heard);
+    if (heardN === expN) {
+      showPronResult(btnEl, 'ok', '✅ Отлично!');
+      return;
+    }
+    for (const alt of alts.slice(1)) {
+      if (normalizeForPron(alt) === expN) {
+        showPronResult(btnEl, 'ok', '✅ Отлично! (' + alt + ')');
+        return;
+      }
+    }
+    const dist = levenshtein(heardN, expN);
+    const tol = Math.max(1, Math.floor(expN.length * 0.25));
+    if (dist <= tol) {
+      showPronResult(btnEl, 'partial', '⚠️ Близко: услышал «' + heard + '»');
+    } else {
+      showPronResult(btnEl, 'bad', '❌ Услышал «' + heard + '», надо «' + expected + '»');
+    }
+  };
+  rec.onerror = (e) => {
+    btnEl.classList.remove('recording');
+    currentMic = null;
+    if (e.error === 'not-allowed') {
+      showPronResult(btnEl, 'warn', 'Разреши доступ к микрофону в браузере');
+    } else if (e.error === 'no-speech') {
+      showPronResult(btnEl, 'warn', 'Ничего не услышал');
+    } else {
+      showPronResult(btnEl, 'warn', 'Ошибка: ' + e.error);
+    }
+  };
+  rec.onend = () => {
+    btnEl.classList.remove('recording');
+    if (currentMic && currentMic.btnEl === btnEl) currentMic = null;
+  };
+  try { rec.start(); } catch(e) {
+    btnEl.classList.remove('recording');
+    showPronResult(btnEl, 'warn', 'Не удалось запустить запись');
+  }
+}
 </script>
 </body>
 </html>
