@@ -916,7 +916,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Строить планы с условными временными рамками",
-      file:"lessons/L69.html", status:"pending"
+      file:"lessons/L69.html", status:"improved"
     },
     {
       id:"L70", num:70, phase:3, block:"B3A", level:"B1", day:148, week:25,
@@ -928,7 +928,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Вежливо просить и выражать гипотетические желания",
-      file:"lessons/L70.html", status:"pending"
+      file:"lessons/L70.html", status:"improved"
     },
 
     // ─── Block 3B: Advanced Tenses ───────────────────────────────
