@@ -942,7 +942,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Описывать действия, завершившиеся до другого прошлого события",
-      file:"lessons/L71.html", status:"pending"
+      file:"lessons/L71.html", status:"improved"
     },
     {
       id:"L72", num:72, phase:3, block:"B3B", level:"B1", day:153, week:26,
@@ -954,7 +954,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Говорить о сожалениях и нереализованных возможностях",
-      file:"lessons/L72.html", status:"pending"
+      file:"lessons/L72.html", status:"improved"
     },
     {
       id:"L73", num:73, phase:3, block:"B3B", level:"B1", day:155, week:26,

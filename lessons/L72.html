@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -35,10 +34,9 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
 .cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
-.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
 .cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
 .cog-rule .rule-title{font-weight:700;font-size:1rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
@@ -48,436 +46,938 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
 .quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
 .quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
-.quiz-q{margin-bottom:20px}
-.quiz-q p{font-size:.95rem;margin-bottom:10px}
-.opts{display:flex;flex-direction:column;gap:7px}
-.opt{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 14px;font-size:.9rem;cursor:pointer;text-align:left;transition:border-color .2s,background .2s}
-.opt:hover{border-color:var(--gold);background:rgba(200,144,0,.06)}
-
-
-.feedback{font-size:.84rem;margin-top:8px;padding:8px 12px;border-radius:6px;display:none}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
-.feedback.ok{background:rgba(45,198,83,.1);color:var(--green)}
-.feedback.no{background:rgba(230,57,70,.1);color:var(--red)}
-.text-input{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-size:.95rem;color:var(--text);width:100%;max-width:320px;margin:6px 0}
-.text-input.correct{border-color:var(--green)}
-.text-input.wrong{border-color:var(--red)}
-.check-btn{background:var(--gold);color:#000;border:none;border-radius:7px;padding:8px 18px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:4px}
-.check-btn:hover{opacity:.85}
-.show-btn{background:transparent;border:1px solid var(--border);border-radius:7px;padding:6px 14px;font-size:.82rem;color:var(--muted);cursor:pointer;margin-top:6px}
-.show-btn:hover{border-color:var(--gold);color:var(--text)}
-.ans{display:none;background:rgba(200,144,0,.08);border:1px solid rgba(200,144,0,.3);border-radius:7px;padding:8px 12px;font-size:.88rem;margin-top:6px}
-.ans.show{display:block}
-table.conj{width:100%;border-collapse:collapse;font-size:.88rem;margin:14px 0}
-table.conj th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border)}
-table.conj td{padding:8px 10px;border-bottom:1px solid rgba(42,47,66,.5)}
-table.conj tr:last-child td{border-bottom:none}
-table.conj .form{font-weight:600;color:var(--gold)}
-table.conj .pron{color:var(--muted)}
-table.conj .ru{color:var(--muted);font-size:.82rem}
-table.vocab{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0}
-table.vocab th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-table.vocab td{padding:8px 10px;border-bottom:1px solid rgba(42,47,66,.5)}
-table.vocab tr:last-child td{border-bottom:none}
-table.vocab .es{font-weight:600;color:var(--gold)}
-table.vocab .ru{color:var(--muted)}
-table.comp{width:100%;border-collapse:collapse;font-size:.88rem;margin:14px 0}
-table.comp th{background:var(--bg3);padding:8px 10px;text-align:left;color:var(--muted);font-size:.78rem;text-transform:uppercase;border-bottom:1px solid var(--border)}
-table.comp td{padding:8px 10px;border-bottom:1px solid rgba(42,47,66,.5);vertical-align:top}
-table.comp tr:last-child td{border-bottom:none}
-table.comp .es{font-weight:600}
-.if-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin-bottom:14px}
-.if-block .if-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--purple);margin-bottom:8px}
-.if-block .if-formula{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:8px}
-.if-block .if-ex{font-size:.88rem;color:var(--muted);font-style:italic}
-.if-block .if-ru{font-size:.84rem;color:var(--muted);margin-top:4px}
-.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;margin-bottom:14px}
-.dialogue h4{font-size:.88rem;font-weight:700;margin-bottom:14px;color:var(--muted)}
-.line{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
-.line .speaker{font-weight:700;min-width:40px;font-size:.82rem;flex-shrink:0;padding-top:2px}
-.line .speaker.a{color:var(--blue)}
-.line .speaker.b{color:var(--purple)}
-.line .bubble{font-size:.9rem}
-.line .bubble .tr{font-size:.8rem;color:var(--muted);cursor:pointer;margin-top:2px;display:none}
-.line .bubble .tr.vis{display:block}
-.tr-toggle{font-size:.75rem;color:var(--muted);cursor:pointer;text-decoration:underline;margin-bottom:8px}
-.tr-toggle:hover{color:var(--text)}
-.anki-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.anki-card .q{font-size:.88rem}
-.anki-card .a{font-size:.85rem;color:var(--gold);text-align:right}
-.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:100}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
 .nav-links{display:flex;gap:10px}
-.nav-link-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text);text-decoration:none;padding:8px 16px;border-radius:7px;font-size:.85rem;transition:border-color .2s}
-.nav-link-btn:hover{border-color:var(--gold)}
-.done-btn{background:var(--gold);color:#000;border:none;border-radius:7px;padding:10px 24px;font-weight:700;font-size:.9rem;cursor:pointer;transition:opacity .2s}
-.done-btn:hover{opacity:.85}
-.done-btn.marked{background:var(--green);color:#fff}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+.conj-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+.conj-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;color:var(--muted)}
+.conj-table td{padding:8px 12px;border-bottom:1px solid var(--border)}
+.conj-table .es-form{color:var(--gold);font-weight:600}
+.conj-table .ru-form{color:var(--muted)}
+.cond-box{background:var(--bg2);border:2px solid var(--gold);border-radius:10px;padding:16px 20px;margin:14px 0;text-align:center;font-size:.95rem}
+.cond-box .formula{font-size:1.05rem;font-weight:700;color:var(--gold);margin:8px 0}
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="L71.html">← L71: Pluscuamperfecto</a>
-  <span class="level">B1 · День 153</span>
-  <a href="L73.html">L73: Futuro Perfecto →</a>
-</nav>
+<!-- 1. NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 153</span>
+  <a href="L73.html">L73 →</a>
+</div>
 
-<!-- PROGRESS -->
-<div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
-
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">Фаза 3 · Блок B3B · Составные времена</div>
-  <h1>Condicional Compuesto<br><span class="hl">«сделал бы»</span></h1>
-  <div class="sub">Habría hecho, habrías ido — нереальное прошлое сослагательного наклонения</div>
+  <div class="phase-tag">📘 Фаза 3 · Блок 3B · Сложные времена · DS: Intermediate</div>
+  <h1><span class="hl">Condicional Compuesto</span> — «сделал бы»</h1>
+  <p class="sub">Habría hecho, habrías ido — условное прошедшее. Сожаления, несбывшиеся возможности, третий тип условных предложений.</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🔮</div><div><strong>Цель урока</strong><p>Строить habría + participio для нереальных сценариев</p></div></div>
-    <div class="obj"><div class="ico">🔗</div><div><strong>Связь с subjuntivo</strong><p>Si hubiera... + habría = тип 3 условного</p></div></div>
-    <div class="obj"><div class="ico">📣</div><div><strong>Dreaming Spanish</strong><p>Intermediate: гипотезы и сожаления в прошлом</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Образовать condicional compuesto от любого глагола</p></div></div>
+    <div class="obj"><div class="ico">😔</div><div><strong>Цель 2</strong><p>Говорить о сожалениях: Yo habría hecho diferente...</p></div></div>
+    <div class="obj"><div class="ico">🔀</div><div><strong>Цель 3</strong><p>Строить тип III условных: Si hubiera + cond. compuesto</p></div></div>
+    <div class="obj"><div class="ico">🏫</div><div><strong>Цель 4</strong><p>Реальный разговор с учителем об успехах и альтернативах</p></div></div>
   </div>
 </div>
 
-<!-- SECTION 1: THEORY -->
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- 3. WARM-UP: повторение L71 (Pluscuamperfecto) -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Что такое Condicional Compuesto</h2>
+    <h2>Повторение — Урок L71: Pluscuamperfecto</h2>
   </div>
-
-  <div class="callout info">
-    <h4>Главная идея</h4>
-    <p>Condicional compuesto = <strong>habría + participio</strong>. Переводится «сделал бы» (если бы...). Говорит о действии, которое <strong>не произошло в прошлом</strong> — потому что условие не выполнилось.<br><br>
-    «Если бы у меня было больше денег, я бы купил квартиру» = Si hubiera tenido más dinero, <strong>habría comprado</strong> el piso.</p>
-  </div>
-
-  <div class="callout tip">
-    <h4>Два главных применения</h4>
-    <ul>
-      <li><strong>Тип 3 условного предложения:</strong> Si + pluscuamperfecto subj. → condicional compuesto</li>
-      <li><strong>Сожаление / упрёк:</strong> «Я бы так не сделал», «Ты мог бы позвонить!»</li>
-    </ul>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прошлый урок: había comido, habías llegado, ya / todavía no. Быстро проверь себя перед новой темой.</p>
+  <div class="quiz">
+    <h3>🔁 Проверь себя — L71</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Pluscuamperfecto образуется как:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">haber (presente) + participio</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">haber (imperfecto) + participio</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">ser (imperfecto) + participio</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Форма pluscuamperfecto от <strong>ver</strong> (él):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">había vido</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">habría visto</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">había visto</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «Когда ты позвонил, я уже ушёл»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Cuando llamaste, me fui ya.</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Cuando llamaste, me iba ya.</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Cuando llamaste, ya me había ido.</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Participio pasado от глагола <strong>hacer</strong>:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">hacido</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">hacho</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">hecho</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: FORMATION -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Образование: habría + participio</h2>
+    <h2>Теория — Condicional Compuesto: условное прошедшее</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Condicional Compuesto («условное прошедшее») отвечает на вопрос: «что бы произошло, если бы (но не произошло)?» По-русски: «сделал бы», «пошёл бы», «сказал бы» — но в прошедшем времени. В английском — Conditional Perfect (would have done).</p>
+
+  <div class="callout info">
+    <h4>🧭 В чём отличие от Condicional Simple?</h4>
+    <p><strong>Condicional Simple</strong> (hablaría) — гипотеза о настоящем или будущем:<br>
+    «Si tuviera dinero, viajaría.» (если бы у меня были деньги — сейчас или вообще — я бы путешествовал.)<br><br>
+    <strong>Condicional Compuesto</strong> (habría hablado) — гипотеза о ПРОШЛОМ, которая уже не может сбыться:<br>
+    «Si hubiera tenido dinero, habría viajado.» (если бы у меня были деньги тогда — я бы путешествовал, но уже нет такого шанса.)</p>
   </div>
 
   <div class="cog-rule">
     <div class="rule-header">
-      <div class="rule-badge">ФОРМУЛА</div>
-      <div class="rule-title">habría/habrías/habría... + participio (-ado / -ido)</div>
+      <span class="rule-badge">Образование</span>
+      <span class="rule-title">haber (condicional) + participio pasado</span>
     </div>
-    <p style="font-size:.88rem;color:var(--muted)">Вспомогательный глагол — <strong>haber в конdicional simple</strong>. Конdicional simple haber: habría, habrías, habría, habríamos, habríais, habrían.</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">Вспомогательный глагол haber в condicional simple (habría, habrías, habría...) + причастие основного глагола. Причастие неизменяемо!</p>
+    <table class="conj-table">
+      <tr><th>Лицо</th><th>Haber (condicional)</th><th>+ participio</th><th>Перевод</th></tr>
+      <tr><td>yo</td><td class="es-form">habría</td><td>hablado / comido / vivido</td><td class="ru-form">я бы (по)говорил/(по)ел/(про)жил</td></tr>
+      <tr><td>tú</td><td class="es-form">habrías</td><td>ido / hecho / visto</td><td class="ru-form">ты бы пошёл/сделал/увидел</td></tr>
+      <tr><td>él/ella</td><td class="es-form">habría</td><td>llegado / dicho / puesto</td><td class="ru-form">он/она бы пришёл/сказал/положил</td></tr>
+      <tr><td>nosotros</td><td class="es-form">habríamos</td><td>terminado / escrito / salido</td><td class="ru-form">мы бы закончили/написали/вышли</td></tr>
+      <tr><td>vosotros</td><td class="es-form">habríais</td><td>venido / abierto / roto</td><td class="ru-form">вы бы пришли/открыли/сломали</td></tr>
+      <tr><td>ellos</td><td class="es-form">habrían</td><td>podido / tenido / sido</td><td class="ru-form">они бы смогли/имели/были</td></tr>
+    </table>
   </div>
 
-  <table class="conj">
-    <tr><th>Лицо</th><th>haber (cond. simple)</th><th>hacer → hecho</th><th>ir → ido</th></tr>
-    <tr><td class="pron">yo</td><td class="form">habría</td><td>habría hecho</td><td>habría ido</td></tr>
-    <tr><td class="pron">tú</td><td class="form">habrías</td><td>habrías hecho</td><td>habrías ido</td></tr>
-    <tr><td class="pron">él/ella</td><td class="form">habría</td><td>habría hecho</td><td>habría ido</td></tr>
-    <tr><td class="pron">nosotros</td><td class="form">habríamos</td><td>habríamos hecho</td><td>habríamos ido</td></tr>
-    <tr><td class="pron">vosotros</td><td class="form">habríais</td><td>habríais hecho</td><td>habríais ido</td></tr>
-    <tr><td class="pron">ellos</td><td class="form">habrían</td><td>habrían hecho</td><td>habrían ido</td></tr>
-  </table>
-
-  <div class="callout success">
-    <h4>Те же неправильные причастия!</h4>
-    <ul>
-      <li>hacer → <strong>hecho</strong>: habría hecho</li>
-      <li>decir → <strong>dicho</strong>: habría dicho</li>
-      <li>poner → <strong>puesto</strong>: habría puesto</li>
-      <li>ver → <strong>visto</strong>: habría visto</li>
-      <li>volver → <strong>vuelto</strong>: habría vuelto</li>
-      <li>escribir → <strong>escrito</strong>: habría escrito</li>
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Употребление 1</span>
+      <span class="rule-title">Сожаления о прошлом — «я бы сделал иначе»</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Самое эмоциональное употребление. Говоришь о несбывшемся.</p>
+    <ul style="margin-left:18px;font-size:.88rem;color:var(--muted)">
+      <li>Yo en tu lugar <strong style="color:var(--gold)">habría hablado</strong> con el jefe antes. — Я бы на твоём месте сначала поговорил с начальником.</li>
+      <li>¡<strong style="color:var(--gold)">Habría estudiado</strong> más si hubiera sabido que había examen! — Я бы учил больше, если бы знал о контрольной!</li>
+      <li>Nunca <strong style="color:var(--gold)">habría dicho</strong> eso en su lugar. — Я бы никогда такого не сказал на его месте.</li>
+      <li>¿Tú <strong style="color:var(--gold)">habrías aceptado</strong> la oferta? — Ты бы принял это предложение?</li>
+      <li>No <strong style="color:var(--gold)">habría comprado</strong> ese coche. Era demasiado caro. — Я бы не купил эту машину. Слишком дорого.</li>
+      <li>Ella <strong style="color:var(--gold)">habría preferido</strong> quedarse en casa. — Она бы предпочла остаться дома.</li>
+      <li>Nosotros <strong style="color:var(--gold)">habríamos llegado</strong> a tiempo si no hubiera habido tráfico. — Мы бы приехали вовремя, если бы не было пробок.</li>
     </ul>
   </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Употребление 2</span>
+      <span class="rule-title">Тип III условных: Si hubiera + condicional compuesto</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Нереальное условие в ПРОШЛОМ. Ни условие, ни следствие уже не могут осуществиться.</p>
+    <div class="cond-box">
+      <div class="formula">Si + hubiera/hubiese [participio] → habría [participio]</div>
+      <div style="font-size:.82rem;color:var(--muted)">Si hubiera estudiado más → habría aprobado el examen</div>
+    </div>
+    <ul style="margin-left:18px;font-size:.88rem;color:var(--muted)">
+      <li>Si <strong style="color:var(--blue)">hubiera sabido</strong> la dirección, no me <strong style="color:var(--gold)">habría perdido</strong>. — Если бы я знал адрес, не заблудился бы.</li>
+      <li>Si <strong style="color:var(--blue)">hubiéramos llegado</strong> antes, <strong style="color:var(--gold)">habríamos visto</strong> el concierto. — Если бы мы пришли раньше, увидели бы концерт.</li>
+      <li>Si <strong style="color:var(--blue)">hubiera tenido</strong> más tiempo, <strong style="color:var(--gold)">habría viajado</strong> más. — Если бы у меня было больше времени, я бы больше путешествовал.</li>
+      <li>Si tú <strong style="color:var(--blue)">hubieras venido</strong>, todo <strong style="color:var(--gold)">habría salido</strong> mejor. — Если бы ты пришёл, всё бы получилось лучше.</li>
+      <li>Si <strong style="color:var(--blue)">hubiera estudiado</strong> medicina, <strong style="color:var(--gold)">habría sido</strong> médico. — Если бы я изучил медицину, был бы врачом.</li>
+    </ul>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Употребление 3</span>
+      <span class="rule-title">Косвенная речь — будущее стало прошлым</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Когда пересказываем о будущем, которое говорилось в прошлом, futuro simple → condicional compuesto.</p>
+    <ul style="margin-left:18px;font-size:.88rem;color:var(--muted)">
+      <li>Dijo: «Lo haré.» → Dijo que lo <strong style="color:var(--gold)">habría hecho</strong>. — Он сказал, что сделает (= тогда сказал).</li>
+      <li>Prometió que <strong style="color:var(--gold)">habría terminado</strong> el proyecto. — Он обещал, что закончит проект.</li>
+      <li>Pensé que ya <strong style="color:var(--gold)">habrías llegado</strong> a casa. — Я думал, ты уже придёшь домой (но не пришёл).</li>
+      <li>Me aseguró que <strong style="color:var(--gold)">habría resuelto</strong> el problema antes del viernes. — Он заверил, что решит проблему к пятнице.</li>
+    </ul>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Употребление 4</span>
+      <span class="rule-title">Предположение о прошлом («должно быть, уже...»)</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Выражение предположения о том, что уже произошло.</p>
+    <ul style="margin-left:18px;font-size:.88rem;color:var(--muted)">
+      <li>A estas horas ya <strong style="color:var(--gold)">habrá llegado</strong>. — К этому времени он, должно быть, уже приехал.</li>
+      <li>¿<strong style="color:var(--gold)">Habrá olvidado</strong> la reunión? — Он что, забыл про встречу?</li>
+      <li>Ya <strong style="color:var(--gold)">habrán visto</strong> las noticias. — Они, наверное, уже видели новости.</li>
+      <li>¿Qué les <strong style="color:var(--gold)">habrá pasado</strong>? — Интересно, что с ними случилось?</li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Путаница с pluscuamperfecto</td><td class="wrong-ex">Si había tenido, había ido</td><td class="right-ex">Si hubiera tenido, habría ido</td><td>В Тип III: Si + hubiera/hubiese + participio — НЕ pluscuamperfecto!</td></tr>
+    <tr><td>Неверный вспомогательный</td><td class="wrong-ex">haría hecho / hubría hecho</td><td class="right-ex">habría hecho</td><td>habría — от haber в condicional simple, не от hacer</td></tr>
+    <tr><td>Condicional compuesto в обеих частях</td><td class="wrong-ex">Si habría sabido → habría ido</td><td class="right-ex">Si hubiera sabido → habría ido</td><td>В Si-clause — НИКОГДА condicional! Только subj. imperfecto или pluscuamperfecto de subj.</td></tr>
+    <tr><td>Путаница с condicional simple</td><td class="wrong-ex">Si hubiera tenido, iría</td><td class="right-ex">Si hubiera tenido, habría ido</td><td>Тип III требует condicional compuesto в главной части, не simple</td></tr>
+    <tr><td>Согласование participio</td><td class="wrong-ex">habrían comidas / habría idos</td><td class="right-ex">habrían comido / habría ido</td><td>Причастие в составном времени НИКОГДА не согласуется</td></tr>
+    <tr><td>Перевод «бы» → conditional simple</td><td class="wrong-ex">Yo haría diferente (о прошлом)</td><td class="right-ex">Yo lo habría hecho diferente</td><td>«Я бы сделал иначе» (о прошлом) = condicional compuesto, не simple</td></tr>
+  </table>
 </div>
 
-<!-- SECTION 3: USES -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Три ситуации применения</h2>
+    <h2>Словарь — Выражения сожаления и гипотез о прошлом</h2>
   </div>
-
-  <div class="if-block">
-    <div class="if-label">Тип 3 — нереальное прошлое условие</div>
-    <div class="if-formula">Si + hubiera/hubiese + participio → habría + participio</div>
-    <div class="if-ex">Si hubiera estudiado más, habría aprobado el examen.</div>
-    <div class="if-ru">Если бы я больше учился, сдал бы экзамен. (но не учился → не сдал)</div>
-  </div>
-
-  <div class="if-block">
-    <div class="if-label">Сожаление / упрёк</div>
-    <div class="if-formula">habría + participio (без si-придаточного)</div>
-    <div class="if-ex">Yo no habría dicho eso. / Podrías haberlo llamado.</div>
-    <div class="if-ru">Я бы такого не сказал. / Ты мог бы ему позвонить.</div>
-  </div>
-
-  <div class="if-block">
-    <div class="if-label">Будущее в прошлом (косвенная речь)</div>
-    <div class="if-formula">Dijo que lo haría → Dijo que ya lo habría hecho para entonces.</div>
-    <div class="if-ex">Prometió que habría terminado antes de las 5.</div>
-    <div class="if-ru">Он обещал, что закончит к пяти. (сдвиг в косвенной речи)</div>
-  </div>
-
-  <div class="callout warning">
-    <h4>Частая ошибка</h4>
-    <p>В испанском НЕЛЬЗЯ: <span style="color:var(--red)">Si habría tenido...</span> — после si в условном типа 3 всегда subjuntivo: <span style="color:var(--green)">Si hubiera tenido...</span></p>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 для прослушивания. 18 единиц для свободного выражения сожаления и предположений.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">habría hecho</div><div class="vocab-ru">я/он бы сделал</div></div><button class="speak-btn" onclick="speak('habría hecho')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">ojalá hubiera</div><div class="vocab-ru">если бы только (сожаление)</div></div><button class="speak-btn" onclick="speak('ojalá hubiera')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">si hubiera sabido</div><div class="vocab-ru">если бы я знал (тогда)</div></div><button class="speak-btn" onclick="speak('si hubiera sabido')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">yo en tu lugar</div><div class="vocab-ru">я бы на твоём месте</div></div><button class="speak-btn" onclick="speak('yo en tu lugar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">me arrepiento de</div><div class="vocab-ru">я сожалею о</div></div><button class="speak-btn" onclick="speak('me arrepiento de')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">lástima que no</div><div class="vocab-ru">жаль, что не...</div></div><button class="speak-btn" onclick="speak('lástima que no')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">hubiera podido</div><div class="vocab-ru">мог бы (но не смог)</div></div><button class="speak-btn" onclick="speak('hubiera podido')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">habría preferido</div><div class="vocab-ru">предпочёл бы</div></div><button class="speak-btn" onclick="speak('habría preferido')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">de haber sabido</div><div class="vocab-ru">если бы знал (книжный стиль)</div></div><button class="speak-btn" onclick="speak('de haber sabido')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¿qué habrías hecho?</div><div class="vocab-ru">что бы ты сделал?</div></div><button class="speak-btn" onclick="speak('¿qué habrías hecho?')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">no lo habría creído</div><div class="vocab-ru">я бы не поверил</div></div><button class="speak-btn" onclick="speak('no lo habría creído')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">habría sido mejor</div><div class="vocab-ru">было бы лучше</div></div><button class="speak-btn" onclick="speak('habría sido mejor')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">nunca habría imaginado</div><div class="vocab-ru">никогда бы не представил</div></div><button class="speak-btn" onclick="speak('nunca habría imaginado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">habría evitado</div><div class="vocab-ru">избежал бы</div></div><button class="speak-btn" onclick="speak('habría evitado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">no habría dicho nada</div><div class="vocab-ru">ничего бы не сказал</div></div><button class="speak-btn" onclick="speak('no habría dicho nada')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">habrían llegado a tiempo</div><div class="vocab-ru">они бы успели вовремя</div></div><button class="speak-btn" onclick="speak('habrían llegado a tiempo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">si lo hubiera sabido antes</div><div class="vocab-ru">знай я это раньше...</div></div><button class="speak-btn" onclick="speak('si lo hubiera sabido antes')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">habrías aprobado</div><div class="vocab-ru">ты бы сдал (экзамен)</div></div><button class="speak-btn" onclick="speak('habrías aprobado')">🔊</button></div>
   </div>
 </div>
 
-<!-- SECTION 4: CONTRAST TABLE -->
+<!-- 6. QUIZ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Три типа условных: сравнительная таблица</h2>
+    <h2>Тест 1 — Множественный выбор</h2>
   </div>
-
-  <table class="comp">
-    <tr><th>Тип</th><th>Si-часть</th><th>Главная часть</th><th>Значение</th></tr>
-    <tr>
-      <td><strong>1 — реальное</strong></td>
-      <td>si + presente/futuro</td>
-      <td>futuro simple</td>
-      <td>«Если выучу — сдам» (вероятно)</td>
-    </tr>
-    <tr>
-      <td><strong>2 — нереальное настоящее</strong></td>
-      <td>si + imperfecto subj.</td>
-      <td>condicional simple</td>
-      <td>«Если бы учил — сдавал бы» (сейчас нереально)</td>
-    </tr>
-    <tr>
-      <td><strong>3 — нереальное прошлое</strong></td>
-      <td>si + pluscuamperf. subj.</td>
-      <td><strong>condicional compuesto</strong></td>
-      <td>«Если бы выучил — сдал бы» (уже не изменить)</td>
-    </tr>
-  </table>
-
-  <p style="font-size:.85rem;color:var(--muted);margin-top:8px">Пример с DNV: <em>Si hubiera empezado a aprender español antes, habría llegado a Barcelona ya.</em> — Если бы я начал учить испанский раньше, я бы уже приехал в Барселону.</p>
-</div>
-
-<!-- SECTION 5: VOCAB -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">5</div>
-    <h2>Словарь урока</h2>
-  </div>
-
-  <table class="vocab">
-    <tr><th>Испанский</th><th>Русский</th><th>Пример</th></tr>
-    <tr><td class="es">habría hecho</td><td class="ru">сделал бы</td><td>Lo habría hecho mejor.</td></tr>
-    <tr><td class="es">habría ido</td><td class="ru">пошёл бы</td><td>Habría ido contigo.</td></tr>
-    <tr><td class="es">hubiera sabido</td><td class="ru">если бы знал (si)</td><td>Si hubiera sabido, habría ido.</td></tr>
-    <tr><td class="es">podría haber + inf.</td><td class="ru">мог бы</td><td>Podrías haberlo dicho.</td></tr>
-    <tr><td class="es">debería haber + inf.</td><td class="ru">должен был бы</td><td>Debería haber estudiado más.</td></tr>
-    <tr><td class="es">ojalá hubiera</td><td class="ru">жаль что не было</td><td>Ojalá hubiera más tiempo.</td></tr>
-    <tr><td class="es">al menos</td><td class="ru">хотя бы</td><td>Al menos lo habría intentado.</td></tr>
-    <tr><td class="es">en ese caso</td><td class="ru">в таком случае</td><td>En ese caso, habría aceptado.</td></tr>
-    <tr><td class="es">de haberlo sabido</td><td class="ru">знай я об этом</td><td>De haberlo sabido, habría ido.</td></tr>
-    <tr><td class="es">lamentablemente</td><td class="ru">к сожалению</td><td>Lamentablemente, no habría cambiado nada.</td></tr>
-  </table>
-</div>
-
-<!-- SECTION 6: QUIZ 1 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <h2>Тест: выбор формы</h2>
-  </div>
-
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на вариант — получишь ответ и объяснение.</p>
   <div class="quiz">
-    <h3>Выбери правильный ответ</h3>
-
+    <h3>🎯 Condicional Compuesto — 7 вопросов</h3>
     <div class="quiz-q" id="q1">
-      <p><strong>1.</strong> Si hubiera estudiado más, ______ el examen.</p>
-      <div class="opts">
-        <button class="opt" onclick="answerQuiz(this,'q1','a')">habría aprobado</button>
-        <button class="opt" onclick="answerQuiz(this,'q1','b')">habría aprobado si</button>
-        <button class="opt" onclick="answerQuiz(this,'q1','c')">hubiera aprobado</button>
+      <div class="q-text">1. «Я бы не сказал такого» — выбери правильный перевод:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">No lo habría dicho.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">No lo habría decir.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">No lo había dicho.</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
-
     <div class="quiz-q" id="q2">
-      <p><strong>2.</strong> Yo no ______ eso en tu lugar. (decir)</p>
-      <div class="opts">
-        <button class="opt" onclick="answerQuiz(this,'q2','a')">habría dicho</button>
-        <button class="opt" onclick="answerQuiz(this,'q2','b')">había dicho</button>
-        <button class="opt" onclick="answerQuiz(this,'q2','c')">diría</button>
+      <div class="q-text">2. Тип III условного: «Si hubiera llegado antes, ___»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">habría llegado</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">llegaría</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">habría visto el concierto</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
-
     <div class="quiz-q" id="q3">
-      <p><strong>3.</strong> Si ______ el visado antes, ya estaría en Barcelona.</p>
-      <div class="opts">
-        <button class="opt" onclick="answerQuiz(this,'q3','a')">hubiera solicitado</button>
-        <button class="opt" onclick="answerQuiz(this,'q3','b')">habría solicitado</button>
-        <button class="opt" onclick="answerQuiz(this,'q3','c')">había solicitado</button>
+      <div class="q-text">3. «¿Tú habrías aceptado el trabajo?» — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">вопрос о будущем</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">констатация факта</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">гипотетический вопрос о прошлом</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
-
     <div class="quiz-q" id="q4">
-      <p><strong>4.</strong> ¡Podrías ______ antes! (llamar)</p>
-      <div class="opts">
-        <button class="opt" onclick="answerQuiz(this,'q4','a')">haber llamado</button>
-        <button class="opt" onclick="answerQuiz(this,'q4','b')">llamado haber</button>
-        <button class="opt" onclick="answerQuiz(this,'q4','c')">habría llamado</button>
+      <div class="q-text">4. Condicional compuesto (nosotros) от <strong>ir</strong>:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">habríamos ido</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">habríamos ido</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">habríamos yendo</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
-
     <div class="quiz-q" id="q5">
-      <p><strong>5.</strong> De haberlo sabido, ______ (nosotros, venir) antes.</p>
-      <div class="opts">
-        <button class="opt" onclick="answerQuiz(this,'q5','a')">habríamos venido</button>
-        <button class="opt" onclick="answerQuiz(this,'q5','b')">hubiéramos venido</button>
-        <button class="opt" onclick="answerQuiz(this,'q5','c')">vendríamos</button>
+      <div class="q-text">5. «Si <strong>___</strong> más, habrías aprobado.» (estudiar — тип III)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">estudiarías</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">habías estudiado</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">hubieras estudiado</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Yo en tu lugar habría esperado.» Перевод:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Я жду на твоём месте.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Я подожду на твоём месте.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Я бы на твоём месте подождал.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Какая форма НЕВЕРНА для condicional compuesto?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">habría comido</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">habrían llegado</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">haría comido</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи форму condicional compuesto. Вводи в нижнем регистре. Ударения необязательны (но система их показывает).</p>
+  <div class="quiz">
+    <h3>✏️ Образуй форму Condicional Compuesto</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «Я бы не принял это решение.» — No <strong>___</strong> (yo — tomar) esa decisión.</div>
+      <input type="text" class="text-input" placeholder="habría..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','habría tomado','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ habría tomado (yo → habría + tomar→tomado)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. «Если бы я знал, я бы пришёл.» — Si hubiera sabido, <strong>___</strong> (yo — venir).</div>
+      <input type="text" class="text-input" placeholder="habría..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','habría venido','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ habría venido (venir → venido — правильное причастие)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Они бы никогда не поверили.» — Ellos nunca <strong>___</strong> (creer).</div>
+      <input type="text" class="text-input" placeholder="habrían..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','habrían creído','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ habrían creído (ellos + habrían + creer→creído)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. «Она бы сделала лучше.» — Ella lo <strong>___</strong> (hacer) mejor.</div>
+      <input type="text" class="text-input" placeholder="habría..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','habría hecho','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ habría hecho (hacer → hecho — нерегулярное причастие!)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. «Мы бы предпочли другой вариант.» — Nosotros <strong>___</strong> (preferir) otra opción.</div>
+      <input type="text" class="text-input" placeholder="habríamos..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','habríamos preferido','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ habríamos preferido (nosotros + habríamos + preferir→preferido)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. «Ты бы открыл магазин?» — ¿Tú <strong>___</strong> (abrir) una tienda?</div>
+      <input type="text" class="text-input" placeholder="habrías..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','habrías abierto','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ habrías abierto (tú + habrías + abrir→abierto — нерегулярное)</div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: QUIZ 2 -->
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Condicional Compuesto в живой речи</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. 🔊 — произношение реплики. «Переводы» — показать/скрыть русский текст.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      😔 Диалог 1: Разговор о несбывшихся планах (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алиса</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Sabes que perdí ese trabajo? Me lo dieron a otro. <button class="speak-btn" onclick="speak('¿Sabes que perdí ese trabajo? Me lo dieron a otro.')">🔊</button></div>
+        <div class="dlg-ru translation">Ты знаешь, что я потеряла эту работу? Её отдали другому.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Бернар</div>
+      <div style="flex:1">
+        <div class="dlg-es">Lo siento. ¿Qué habrías hecho diferente en la entrevista? <button class="speak-btn" onclick="speak('Lo siento. ¿Qué habrías hecho diferente en la entrevista?')">🔊</button></div>
+        <div class="dlg-ru translation">Жаль. Что бы ты сделала иначе на интервью?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алиса</div>
+      <div style="flex:1">
+        <div class="dlg-es">Habría preparado más ejemplos concretos. Y habría llegado antes. <button class="speak-btn" onclick="speak('Habría preparado más ejemplos concretos. Y habría llegado antes.')">🔊</button></div>
+        <div class="dlg-ru translation">Подготовила бы больше конкретных примеров. И пришла бы раньше.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Бернар</div>
+      <div style="flex:1">
+        <div class="dlg-es">Yo en tu lugar habría investigado más sobre la empresa. <button class="speak-btn" onclick="speak('Yo en tu lugar habría investigado más sobre la empresa.')">🔊</button></div>
+        <div class="dlg-ru translation">Я бы на твоём месте больше изучил компанию.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алиса</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, si hubiera tenido más tiempo, lo habría hecho. <button class="speak-btn" onclick="speak('Sí, si hubiera tenido más tiempo, lo habría hecho.')">🔊</button></div>
+        <div class="dlg-ru translation">Да, если бы у меня было больше времени, я бы это сделала.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Бернар</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Habrías aceptado el trabajo si te lo hubieran ofrecido igualmente? <button class="speak-btn" onclick="speak('¿Habrías aceptado el trabajo si te lo hubieran ofrecido igualmente?')">🔊</button></div>
+        <div class="dlg-ru translation">Ты бы приняла работу, если бы её предложили в любом случае?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алиса</div>
+      <div style="flex:1">
+        <div class="dlg-es">Creo que no. El salario habría sido demasiado bajo para Barcelona. <button class="speak-btn" onclick="speak('Creo que no. El salario habría sido demasiado bajo para Barcelona.')">🔊</button></div>
+        <div class="dlg-ru translation">Думаю, нет. Зарплата была бы слишком низкой для Барселоны.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Бернар</div>
+      <div style="flex:1">
+        <div class="dlg-es">Tienes razón. Yo tampoco lo habría aceptado en esas condiciones. <button class="speak-btn" onclick="speak('Tienes razón. Yo tampoco lo habría aceptado en esas condiciones.')">🔊</button></div>
+        <div class="dlg-ru translation">Ты права. Я бы тоже не принял в таких условиях.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алиса</div>
+      <div style="flex:1">
+        <div class="dlg-es">Si hubiera sabido el salario desde el principio, no habría ido a la entrevista. <button class="speak-btn" onclick="speak('Si hubiera sabido el salario desde el principio, no habría ido a la entrevista.')">🔊</button></div>
+        <div class="dlg-ru translation">Если бы я знала зарплату с самого начала, не пошла бы на интервью.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Бернар</div>
+      <div style="flex:1">
+        <div class="dlg-es">Bueno, la experiencia siempre vale. Nunca lo habrías sabido sin intentarlo. <button class="speak-btn" onclick="speak('Bueno, la experiencia siempre vale. Nunca lo habrías sabido sin intentarlo.')">🔊</button></div>
+        <div class="dlg-ru translation">Ну, опыт всегда ценен. Ты бы никогда не узнала, не попробовав.</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDlg1()">▶ Воспроизвести диалог целиком</button>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏫 Диалог 2: Родитель и учитель — обсуждение успехов (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Учит.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días, señora Ivanova. Siéntese, por favor. Quería hablar sobre su hija. <button class="speak-btn" onclick="speak('Buenos días, señora Ivanova. Siéntese, por favor. Quería hablar sobre su hija.')">🔊</button></div>
+        <div class="dlg-ru translation2">Добрый день, сеньора Иванова. Присаживайтесь. Хотела поговорить о вашей дочери.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мама</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Ha pasado algo? ¿Habría podido hacer algo diferente desde casa? <button class="speak-btn" onclick="speak('¿Ha pasado algo? ¿Habría podido hacer algo diferente desde casa?')">🔊</button></div>
+        <div class="dlg-ru translation2">Что-то случилось? Могла ли я что-то сделать иначе дома?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Учит.</div>
+      <div style="flex:1">
+        <div class="dlg-es">No se preocupe, son buenas noticias. Ha mejorado mucho. Si hubiera llegado en septiembre, habría tenido más dificultades. Llegó en enero y lo está haciendo muy bien. <button class="speak-btn" onclick="speak('No se preocupe, son buenas noticias. Ha mejorado mucho.')">🔊</button></div>
+        <div class="dlg-ru translation2">Не беспокойтесь, это хорошие новости. Она очень улучшилась. Если бы она приехала в сентябре, было бы сложнее. Она приехала в январе и справляется отлично.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мама</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cree que habría sido mejor empezar antes del curso? <button class="speak-btn" onclick="speak('¿Cree que habría sido mejor empezar antes del curso?')">🔊</button></div>
+        <div class="dlg-ru translation2">Думаете, было бы лучше начать до начала учебного года?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Учит.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Habría sido más fácil para integrarse socialmente, sí. Pero académicamente va muy bien. <button class="speak-btn" onclick="speak('Habría sido más fácil para integrarse socialmente, sí. Pero académicamente va muy bien.')">🔊</button></div>
+        <div class="dlg-ru translation2">Для социальной интеграции было бы проще, да. Но академически — всё очень хорошо.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мама</div>
+      <div style="flex:1">
+        <div class="dlg-es">Si hubiéramos llegado antes, ¿habría tenido acceso a clases de catalán intensivas? <button class="speak-btn" onclick="speak('Si hubiéramos llegado antes, ¿habría tenido acceso a clases de catalán intensivas?')">🔊</button></div>
+        <div class="dlg-ru translation2">Если бы мы приехали раньше, у неё был бы доступ к интенсивным курсам каталанского?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Учит.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, habría habido más opciones en el plan de acogida. Pero ahora también hay recursos disponibles. <button class="speak-btn" onclick="speak('Sí, habría habido más opciones en el plan de acogida. Pero ahora también hay recursos disponibles.')">🔊</button></div>
+        <div class="dlg-ru translation2">Да, в плане поддержки было бы больше вариантов. Но сейчас тоже есть доступные ресурсы.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мама</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué habría recomendado usted a otros padres en mi situación? <button class="speak-btn" onclick="speak('¿Qué habría recomendado usted a otros padres en mi situación?')">🔊</button></div>
+        <div class="dlg-ru translation2">Что бы вы порекомендовали другим родителям в моей ситуации?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Учит.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Habría recomendado contactar con la escuela antes de llegar al país, si fuera posible. <button class="speak-btn" onclick="speak('Habría recomendado contactar con la escuela antes de llegar al país, si fuera posible.')">🔊</button></div>
+        <div class="dlg-ru translation2">Порекомендовала бы связаться со школой ещё до приезда в страну, если возможно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мама</div>
+      <div style="flex:1">
+        <div class="dlg-es">Lo tendré en cuenta. Si lo hubiera sabido, lo habría hecho. Muchas gracias por todo. <button class="speak-btn" onclick="speak('Lo tendré en cuenta. Si lo hubiera sabido, lo habría hecho. Muchas gracias por todo.')">🔊</button></div>
+        <div class="dlg-ru translation2">Учту это. Если бы я знала, так бы и сделала. Большое спасибо за всё.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🌙 Диалог 3: Размышление о жизненных решениях (8 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Хорхе</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Alguna vez piensas en cómo habría sido tu vida si no te hubieras mudado a España? <button class="speak-btn" onclick="speak('¿Alguna vez piensas en cómo habría sido tu vida si no te hubieras mudado a España?')">🔊</button></div>
+        <div class="dlg-ru translation3">Ты иногда думаешь, какой была бы твоя жизнь, если бы ты не переехал в Испанию?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, claro. Habría seguido en el mismo trabajo aburrido, supongo. <button class="speak-btn" onclick="speak('Sí, claro. Habría seguido en el mismo trabajo aburrido, supongo.')">🔊</button></div>
+        <div class="dlg-ru translation3">Да, конечно. Остался бы на той же скучной работе, полагаю.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Хорхе</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Habrías aprendido otro idioma de todas formas? <button class="speak-btn" onclick="speak('¿Habrías aprendido otro idioma de todas formas?')">🔊</button></div>
+        <div class="dlg-ru translation3">Ты бы в любом случае выучил другой язык?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">No lo creo. Sin la necesidad real, nunca lo habría hecho con tanta intensidad. <button class="speak-btn" onclick="speak('No lo creo. Sin la necesidad real, nunca lo habría hecho con tanta intensidad.')">🔊</button></div>
+        <div class="dlg-ru translation3">Не думаю. Без реальной необходимости я бы никогда не делал это с такой интенсивностью.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Хорхе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Si no hubieras venido, no nos habríamos conocido. <button class="speak-btn" onclick="speak('Si no hubieras venido, no nos habríamos conocido.')">🔊</button></div>
+        <div class="dlg-ru translation3">Если бы ты не приехал, мы бы не познакомились.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Exacto. Nunca habría imaginado que mi decisión habría cambiado tanto mi vida. <button class="speak-btn" onclick="speak('Exacto. Nunca habría imaginado que mi decisión habría cambiado tanto mi vida.')">🔊</button></div>
+        <div class="dlg-ru translation3">Именно. Я никогда не представлял, что моё решение так изменит мою жизнь.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Хорхе</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Habrías hecho algo diferente desde el principio? <button class="speak-btn" onclick="speak('¿Habrías hecho algo diferente desde el principio?')">🔊</button></div>
+        <div class="dlg-ru translation3">Ты бы что-то сделал иначе с самого начала?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Habría aprendido catalán desde el primer día. Eso habría facilitado todo muchísimo. <button class="speak-btn" onclick="speak('Habría aprendido catalán desde el primer día. Eso habría facilitado todo muchísimo.')">🔊</button></div>
+        <div class="dlg-ru translation3">Учил бы каталанский с первого дня. Это бы очень всё упростило.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Тест: переводи</h2>
+    <h2>Говорение — Твоя очередь</h2>
   </div>
-
-  <div class="quiz">
-    <h3>Введи форму</h3>
-
-    <div class="quiz-q">
-      <p><strong>1.</strong> «Я бы пошёл» — yo, ir:</p>
-      <input class="text-input" id="t1" type="text" placeholder="habría ...">
-      <br><button class="check-btn" onclick="checkText('t1','habría ido','fb-t1')">Проверить</button>
-      <div class="feedback" id="fb-t1"></div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Твои сожаления и альтернативы</div>
+    <p>Ответь вслух на эти вопросы, используя condicional compuesto:</p>
+    <div class="es">
+      ¿Qué habrías hecho diferente en tu vida?<br>
+      ¿Habrías elegido vivir en otro país?<br>
+      Si hubieras empezado el español antes, ¿qué habría cambiado?<br>
+      ¿Qué decisión nunca habrías tomado si lo hubieras sabido todo?
     </div>
-
-    <div class="quiz-q">
-      <p><strong>2.</strong> «Мы бы сделали» — nosotros, hacer:</p>
-      <input class="text-input" id="t2" type="text" placeholder="habríamos ...">
-      <br><button class="check-btn" onclick="checkText('t2','habríamos hecho','fb-t2')">Проверить</button>
-      <div class="feedback" id="fb-t2"></div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('¿Qué habrías hecho diferente en tu vida? ¿Habrías elegido vivir en otro país?')">🔊 Прослушать вопросы</button>
+    <div class="hint">Отвечай полными предложениями: «Yo habría estudiado más antes de mudarme...» / «Si hubiera sabido...»</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Разговор с учителем школы в Барселоне</div>
+    <p>Ты на встрече с учителем. Обсуди, что было бы, если бы ты записал ребёнка иначе:</p>
+    <div class="es">
+      «Si hubiera contactado con la escuela antes de llegar a España, habría preparado mejor los documentos. Habría conseguido el empadronamiento antes. Y mi hijo habría tenido más tiempo para aprender catalán antes del primer día de clase...»
     </div>
-
-    <div class="quiz-q">
-      <p><strong>3.</strong> «Если бы он знал» (saber) — si-часть типа 3:</p>
-      <input class="text-input" id="t3" type="text" placeholder="si hubiera ...">
-      <br><button class="check-btn" onclick="checkText('t3','si hubiera sabido','fb-t3')">Проверить</button>
-      <div class="feedback" id="fb-t3"></div>
-    </div>
-
-    <div class="quiz-q">
-      <p><strong>4.</strong> «Он должен был бы позвонить» — deber + haber + llamar:</p>
-      <input class="text-input" id="t4" type="text" placeholder="debería haber ...">
-      <br><button class="check-btn" onclick="checkText('t4','debería haber llamado','fb-t4')">Проверить</button>
-      <div class="feedback" id="fb-t4"></div>
-    </div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Si hubiera contactado con la escuela antes de llegar a España, habría preparado mejor los documentos.')">🔊 Пример</button>
+    <div class="hint">Продолжи: ¿Qué más habrías hecho diferente? Цель — 5–7 предложений с Si hubiera → habría.</div>
   </div>
 </div>
 
-<!-- SECTION 8: DIALOGUES -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Диалоги: condicional compuesto в контексте</h2>
+    <h2>🇪🇸 Испания на практике: Разговор с tutora в каталонской школе</h2>
   </div>
-
-  <div class="dialogue">
-    <h4>📍 Барселона. Разговор о переезде</h4>
-    <span class="tr-toggle" onclick="document.querySelectorAll('#d1 .tr').forEach(t=>t.classList.toggle('vis'))">Показать / скрыть перевод</span>
-    <div id="d1">
-      <div class="line"><span class="speaker a">Амига</span><div class="bubble">Si hubieras empezado a aprender español hace cinco años, ¿habrías solicitado la visa antes?<div class="tr">Если бы ты начал учить испанский пять лет назад, ты бы подал заявку раньше?</div></div></div>
-      <div class="line"><span class="speaker b">Евгений</span><div class="bubble">Definitivamente. Habría solicitado la DNV mucho antes y ya habría vivido en Barcelona.<div class="tr">Определённо. Я бы подал DNV намного раньше и уже жил бы в Барселоне.</div></div></div>
-      <div class="line"><span class="speaker a">Амига</span><div class="bubble">¿Y habrías traído a tu familia también?<div class="tr">И ты бы привёз семью тоже?</div></div></div>
-      <div class="line"><span class="speaker b">Евгений</span><div class="bubble">Claro, habríamos venido todos juntos. Mis hijas habrían aprendido español desde pequeñas.<div class="tr">Конечно, мы бы приехали все вместе. Мои дочки бы выучили испанский с детства.</div></div></div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏫 Реальная ситуация — Tutoría / Parent-teacher meeting</div>
+    <p style="margin-bottom:12px">В Каталонии дважды в год проходят tutorías (родительские собрания один на один с учителем). Это важное событие, где обсуждается прогресс ребёнка. На них часто используют condicional compuesto, когда говорят об альтернативных подходах и гипотетических улучшениях. Записывайся заранее — tutorías нужно reservar por anticipado.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Si hubiera empezado antes, habría progresado más rápido. <button class="speak-btn" onclick="speak('Si hubiera empezado antes, habría progresado más rápido.')">🔊</button></div>
+          <div class="phrase-ru">Если бы он начал раньше, продвинулся бы быстрее.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué habría sido diferente si hubiera venido en septiembre? <button class="speak-btn" onclick="speak('¿Qué habría sido diferente si hubiera venido en septiembre?')">🔊</button></div>
+          <div class="phrase-ru">Что было бы иначе, если бы он пришёл в сентябре?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Habría sido mejor con más apoyo en casa. <button class="speak-btn" onclick="speak('Habría sido mejor con más apoyo en casa.')">🔊</button></div>
+          <div class="phrase-ru">Было бы лучше с большей поддержкой дома.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Si hubiera hecho los deberes todos los días, habría aprobado el trimestre. <button class="speak-btn" onclick="speak('Si hubiera hecho los deberes todos los días, habría aprobado el trimestre.')">🔊</button></div>
+          <div class="phrase-ru">Если бы он делал домашнее задание каждый день, закрыл бы триместр.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Habría recomendado usted algún recurso específico? <button class="speak-btn" onclick="speak('¿Habría recomendado usted algún recurso específico?')">🔊</button></div>
+          <div class="phrase-ru">Порекомендовали бы вы какой-то конкретный ресурс?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Si lo hubiera sabido antes, lo habría preparado diferente. <button class="speak-btn" onclick="speak('Si lo hubiera sabido antes, lo habría preparado diferente.')">🔊</button></div>
+          <div class="phrase-ru">Если бы я знала заранее, подготовилась бы иначе.</div>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="dialogue">
-    <h4>📍 Офис. Разбор ошибок проекта</h4>
-    <span class="tr-toggle" onclick="document.querySelectorAll('#d2 .tr').forEach(t=>t.classList.toggle('vis'))">Показать / скрыть перевод</span>
-    <div id="d2">
-      <div class="line"><span class="speaker a">Jefe</span><div class="bubble">Si hubiéramos revisado el contrato, no habría habido problemas.<div class="tr">Если бы мы проверили контракт, проблем бы не было.</div></div></div>
-      <div class="line"><span class="speaker b">Коллега</span><div class="bubble">Debería haberlo revisado yo. Lo siento.<div class="tr">Мне следовало его проверить. Извините.</div></div></div>
-      <div class="line"><span class="speaker a">Jefe</span><div class="bubble">Yo tampoco lo habría hecho diferente en tu situación. La próxima vez.<div class="tr">Я бы тоже не сделал по-другому на твоём месте. В следующий раз.</div></div></div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Tutorías в Каталонии ведутся на каталанском и/или кастильском (испанском). Учитель называется tutor/tutora. Если ваш испанский ещё слабый, можно попросить: «¿Podría hablar un poco más despacio, por favor?» Или взять переводчика — школы в Барселоне привыкли к иностранным семьям. Не стесняйся — общение с учителем критически важно для успеха ребёнка.
     </div>
   </div>
 </div>
 
-<!-- SECTION 9: CULTURE + ANKI -->
+<!-- 11. CULTURE NOTE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">9</div>
-    <h2>Культура, Anki и домашнее задание</h2>
+    <h2>Культурная заметка</h2>
   </div>
-
-  <div class="callout info">
-    <h4>Dreaming Spanish — Intermediate</h4>
-    <p>Condicional compuesto в DS Intermediate часто встречается в обсуждениях альтернативных сценариев истории: «¿Qué habría pasado si...?» — «Что бы случилось, если бы...?». Слушай подкасты о культуре и политике — там эта конструкция особенно частотна.</p>
+  <div class="culture">
+    <div class="ctag">🎭 Condicional Compuesto в испанской культуре сожаления</div>
+    <h4>«¿Y si hubiera sido diferente?» — испанская философия несбывшегося</h4>
+    <p>В испанском языке есть целый культурный пласт вокруг сожаления и несбывшихся возможностей. Condicional compuesto — его грамматический инструмент. Испанцы активно используют конструкцию «yo en tu lugar habría...» (я бы на твоём месте...) не как критику, а как дружескую поддержку — совет задним числом, который помогает переосмыслить ситуацию. Интересно, что в латиноамериканском испанском эту конструкцию иногда заменяют на более простые формы, или вовсе выражают сожаление через «ojalá que + subjuntivo». В Испании же condicional compuesto очень популярен в разговорной речи, особенно в контексте футбола: «Si el árbitro no hubiera pitado ese penalti, habríamos ganado» — это сакральная фраза для любого испанского болельщика.</p>
   </div>
+</div>
 
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку — перевернётся. Скачай все 18 для Anki одним файлом.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">habría hecho</div>
+        <div class="anki-card-back">я/он бы сделал<br>haber (cond.) + hecho<br>Condicional compuesto</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">si hubiera sabido</div>
+        <div class="anki-card-back">если бы я знал (тогда)<br>Тип III: Si + pluscuamp. subj.<br>→ condicional compuesto</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">yo en tu lugar</div>
+        <div class="anki-card-back">я бы на твоём месте...<br>+ condicional compuesto<br>Дружеский совет задним числом</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">habría sido mejor</div>
+        <div class="anki-card-back">было бы лучше<br>ser (cond. comp.) = habría sido<br>Часто используется для советов</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">nunca habría imaginado</div>
+        <div class="anki-card-back">никогда бы не представил<br>Cond. compuesto + отрицание<br>Выражение удивления</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL72()">📥 Скачать колоду L72 (.txt для Anki)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
   <div class="callout tip">
-    <h4>Укороченная форма «de haberlo»</h4>
-    <p><strong>De + infinitivo compuesto</strong> = альтернатива si-придаточному типа 3.<br>
-    «De haberlo sabido, habría venido» = «Si lo hubiera sabido, habría venido».<br>
-    Звучит более литературно и часто встречается в письменной речи.</p>
+    <h4>📅 До следующего урока (L73: Futuro Perfecto)</h4>
+    <ul>
+      <li><strong>Dreaming Spanish Intermediate</strong> — 15–20 мин. Слушай истории, где герои рассказывают о несбывшихся планах — замечай condicional compuesto.</li>
+      <li><strong>Письменное задание</strong> — Напиши 5 предложений типа «Si hubiera + participio → habría + participio» о реальных событиях своей жизни. Например: Si hubiera llegado a España en verano, habría aprendido español más rápido.</li>
+      <li><strong>Разговорное упражнение</strong> — Задай другу или партнёру вопрос «¿Qué habrías hecho si...?» и поговорите на испанском 5 минут о несбывшихся сценариях.</li>
+      <li><strong>Чтение</strong> — Найди в испанской газете (El País, La Vanguardia) статью с анализом прошлых событий — там будет много condicional compuesto и pluscuamperfecto.</li>
+      <li><strong>Anki</strong> — Повторяй 18 карточек из этого урока + все предыдущие (10–15 мин в день).</li>
+    </ul>
   </div>
-
-  <h3 style="margin:20px 0 12px;font-size:.95rem">Anki-карточки урока</h3>
-  <div class="anki-card"><span class="q">Si hubiera tenido más tiempo, ______ (estudiar) más</span><span class="a">habría estudiado</span></div>
-  <div class="anki-card"><span class="q">Yo no ______ (decir) eso. (сожаление)</span><span class="a">habría dicho</span></div>
-  <div class="anki-card"><span class="q">Podrías ______ (llamar) antes! (упрёк)</span><span class="a">haber llamado</span></div>
-  <div class="anki-card"><span class="q">De haberlo ______ (saber), habría ayudado.</span><span class="a">sabido</span></div>
-  <div class="anki-card"><span class="q">habríamos ______ (hacer)</span><span class="a">habríamos hecho</span></div>
-  <div class="anki-card"><span class="q">Тип 3: Si + ??? + → condicional compuesto</span><span class="a">si + pluscuamperf. subj. (hubiera)</span></div>
-  <div class="anki-card"><span class="q">НЕЛЬЗЯ: Si ______ tenido... (ошибка!)</span><span class="a">НЕЛЬЗЯ: Si habría — только Si hubiera!</span></div>
-  <div class="anki-card"><span class="q">«Мы бы вернулись» — volver</span><span class="a">habríamos vuelto</span></div>
-
-  
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок L72 завершён!</h4>
+    <p>Ты освоил условное прошедшее — одно из самых выразительных времён испанского. Следующий урок — Futuro Perfecto (habré terminado cuando llegues): завершённое будущее.</p>
+  </div>
+</div>
 
 </div><!-- .wrap -->
 
-<!-- DONE BAR -->
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
     <a href="L71.html" class="nav-link-btn">← L71</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L73.html" class="nav-link-btn">L73 →</a>
+    <a href="L73.html" class="nav-link-btn">L73: Futuro Perfecto →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L72 = [
+  {front:"habría hecho",back:"Русский: я/он бы сделал\n\nПример: Yo nunca habría hecho eso.\nЗаметка: haber (cond.) + hecho — condicional compuesto"},
+  {front:"si hubiera sabido",back:"Русский: если бы я знал (тогда)\n\nПример: Si hubiera sabido, habría venido.\nЗаметка: pluscuamperfecto de subjuntivo в Si-clause"},
+  {front:"habría ido",back:"Русский: я/он бы пошёл\n\nПример: Si me lo hubieras pedido, habría ido.\nЗаметка: ir → ido"},
+  {front:"habrías dicho",back:"Русский: ты бы сказал\n\nПример: ¿Tú habrías dicho la verdad?\nЗаметка: decir → dicho (нерегулярное!)"},
+  {front:"habríamos llegado",back:"Русский: мы бы прибыли\n\nПример: Si no hubiera habido tráfico, habríamos llegado a tiempo.\nЗаметка: nosotros + habríamos"},
+  {front:"habrían podido",back:"Русский: они бы смогли\n\nПример: Con más tiempo, habrían podido estudiar más.\nЗаметка: poder → podido"},
+  {front:"yo en tu lugar",back:"Русский: я бы на твоём месте\n\nПример: Yo en tu lugar no habría aceptado.\nЗаметка: устойчивое выражение + cond. compuesto"},
+  {front:"si hubiera tenido",back:"Русский: если бы у меня было\n\nПример: Si hubiera tenido dinero, habría viajado.\nЗаметка: tener→tenido, pluscuamp. subj."},
+  {front:"habría sido mejor",back:"Русский: было бы лучше\n\nПример: Habría sido mejor hablar antes.\nЗаметка: ser → sido"},
+  {front:"nunca habría imaginado",back:"Русский: никогда не представил бы\n\nПример: Nunca habría imaginado vivir en España.\nЗаметка: imaginar → imaginado"},
+  {front:"habría preferido",back:"Русский: предпочёл бы\n\nПример: Yo habría preferido quedarme en casa.\nЗаметка: preferir → preferido"},
+  {front:"si no hubiera venido",back:"Русский: если бы не пришёл\n\nПример: Si no hubiera venido, no te habría conocido.\nЗаметка: venir → venido, pluscuamp. subj."},
+  {front:"habrías aprobado",back:"Русский: ты бы сдал (экзамен)\n\nПример: Si hubieras estudiado más, habrías aprobado.\nЗаметка: aprobar → aprobado"},
+  {front:"habría evitado",back:"Русский: избежал бы\n\nПример: Con más cuidado, lo habría evitado.\nЗаметка: evitar → evitado"},
+  {front:"de haber sabido",back:"Русский: знай я это / если бы знал\n\nПример: De haber sabido, no habría venido.\nЗаметка: книжная / формальная альтернатива Si hubiera sabido"},
+  {front:"no lo habría creído",back:"Русский: я бы не поверил\n\nПример: Si no lo hubiera visto, no lo habría creído.\nЗаметка: creer → creído"},
+  {front:"habría cambiado todo",back:"Русский: изменило бы всё\n\nПример: Una decisión diferente habría cambiado todo.\nЗаметка: cambiar → cambiado"},
+  {front:"¿qué habrías hecho?",back:"Русский: что бы ты сделал?\n\nПример: ¿Qué habrías hecho en mi lugar?\nЗаметка: риторический вопрос о несбывшемся прошлом"}
+];
+
+function exportAnkiL72() {
+  const tsv = ANKI_DECK_L72.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L72_spanish.txt';
+  a.click();
+}
+
+function playDlg1() {
+  const lines = [
+    '¿Sabes que perdí ese trabajo? Me lo dieron a otro.',
+    'Lo siento. ¿Qué habrías hecho diferente en la entrevista?',
+    'Habría preparado más ejemplos concretos. Y habría llegado antes.',
+    'Yo en tu lugar habría investigado más sobre la empresa.',
+    'Sí, si hubiera tenido más tiempo, lo habría hecho.',
+    '¿Habrías aceptado el trabajo si te lo hubieran ofrecido igualmente?',
+    'Creo que no. El salario habría sido demasiado bajo para Barcelona.',
+    'Tienes razón. Yo tampoco lo habría aceptado en esas condiciones.',
+    'Si hubiera sabido el salario desde el principio, no habría ido a la entrevista.',
+    'Bueno, la experiencia siempre vale. Nunca lo habrías sabido sin intentarlo.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
 const LESSON_ID = 'L72';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
 
-const quizExpl={
-  q1:'habría aprobado — главная часть типа 3: condicional compuesto. Si hubiera (pluscuamperf. subj.) → habría + participio.',
-  q2:'habría dicho — сожаление/мнение о прошлом. decir → dicho (неправильное причастие). Не «había dicho» (это плюсквамперфект изъявительного)!',
-  q3:'hubiera solicitado — это Si-часть (после si → subjuntivo, не condicional!). Si hubiera = тип 3 условного.',
-  q4:'haber llamado — «poder + haber + participio» = «мог бы [сделать]». Порядок: podrías + haber + llamado.',
-  q5:'habríamos venido — nosotros + haber cond.comp + venir → vuelto? Нет! venir → venido. habríamos venido.'
+const quizExpl = {
+  w1:'Pluscuamperfecto = haber (imperfecto) + participio: había, habías, había, habíamos, habíais, habían.',
+  w2:'había visto — haber imperfecto + visto (ver→visto, нерегулярное). habría visto = condicional compuesto (другое время!).',
+  w3:'Cuando llamaste, ya me había ido — pluscuamperfecto показывает: уход произошёл РАНЬШЕ звонка.',
+  w4:'hacer → hecho — одно из самых частых нерегулярных причастий. Запомни: h-echo как echo (звук).',
+  q1:'No lo habría dicho — condicional compuesto отрицательный. decir→dicho — нерегулярное причастие.',
+  q2:'habría visto el concierto — главная часть тип III всегда condicional compuesto. Si hubiera + cond. compuesto.',
+  q3:'¿Qué habrías hecho? — гипотетический вопрос о прошлом. Condicional compuesto выражает нереальное прошлое.',
+  q4:'habríamos ido — nosotros + habríamos + ir→ido. habríamos ido — правильно.',
+  q5:'hubieras estudiado — Si-clause Тип III требует pluscuamperfecto de subjuntivo (hubiera/hubieses/hubiéramos...).',
+  q6:'Yo en tu lugar habría esperado = Я бы на твоём месте подождал. Cond. compuesto = гипотеза о прошлом.',
+  q7:'haría comido — НЕВЕРНО. haría = condicional от hacer, это НЕ вспомогательный для составного времени. Нужно: habría comido.'
 };
 
-let quizScore=0,quizTotal=0;
+let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -501,14 +1001,12 @@ function answerQuiz(el, qId, correctKey) {
     fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
   } else {
     fb.className = 'feedback show no';
-    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», правильный ответ — <strong>«' + correctText + '»</strong>.<br>💡 ' + expl;
   }
-  if (typeof quizScore !== 'undefined') {
-    if (isCorrect) quizScore++;
-    quizTotal++;
-    const scoreEl = document.getElementById('quiz-score');
-    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
-  }
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
 }
 
 function checkText(inputId, answer, fbId) {
@@ -529,7 +1027,7 @@ function checkText(inputId, answer, fbId) {
     input.className = 'text-input correct';
     fb.className += ' ok';
     if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
-      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
+      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения)</span>';
     } else {
       fb.textContent = '✅ Правильно! ' + answer;
     }
@@ -537,8 +1035,7 @@ function checkText(inputId, answer, fbId) {
   }
   const lev = (a, b) => {
     const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
+    if (!m) return n; if (!n) return m;
     let prev = Array.from({length: n+1}, (_,i) => i);
     let curr = new Array(n+1).fill(0);
     for (let i = 1; i <= m; i++) {
@@ -564,12 +1061,36 @@ function checkText(inputId, answer, fbId) {
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
 
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
+function showAns(id) { document.getElementById(id).classList.add('show'); }
 
-const totalSections=9;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => { el.style.display = showingTrans ? 'block' : 'none'; });
+}
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => { el.style.display = showingTrans2 ? 'block' : 'none'; });
+}
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => { el.style.display = showingTrans3 ? 'block' : 'none'; });
+}
+
+document.querySelectorAll('.translation, .translation2, .translation3').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>
