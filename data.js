@@ -966,7 +966,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Говорить о завершении дел к определённому сроку",
-      file:"lessons/L73.html", status:"pending"
+      file:"lessons/L73.html", status:"improved"
     },
     {
       id:"L74", num:74, phase:3, block:"B3B", level:"B1", day:157, week:27,
@@ -978,7 +978,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Читать сложный текст и правильно трактовать все временны́е формы",
-      file:"lessons/L74.html", status:"pending"
+      file:"lessons/L74.html", status:"improved"
     },
 
     // ─── Block 3C: Complex Communication ────────────────────────

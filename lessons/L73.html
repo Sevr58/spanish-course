@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L73: Futuro Perfecto — уже сделаю к тому моменту</title>
+<style>
+:root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#f1f3f7 0%,#e8ebf1 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.tense-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem}
+.tense-table th{background:var(--gold);color:#000;padding:9px 12px;text-align:left;font-weight:700}
+.tense-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.tense-table tr:nth-child(even) td{background:var(--bg3)}
+.tense-table .form{color:var(--gold);font-weight:700}
+.example-block{background:var(--bg2);border-left:3px solid var(--gold);padding:10px 14px;margin:8px 0;border-radius:0 6px 6px 0;font-size:.9rem}
+.example-block .es{font-weight:600;margin-bottom:3px}
+.example-block .ru{color:var(--muted);font-size:.83rem}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1. NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 155</span>
+  <a href="L74.html">L74 →</a>
+</div>
+
+<!-- 2. HERO -->
+<div class="hero">
+  <div class="phase-tag">⏰ Фаза 3 · Сложные времена · Блок 3B</div>
+  <h1><span class="hl">Futuro Perfecto</span> — уже сделаю к тому моменту</h1>
+  <p class="sub">Habré terminado cuando llegues — будущее завершённое действие, вероятность и предположения о настоящем</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🏗️</div><div><strong>Цель 1</strong><p>Образовывать futuro perfecto всех глаголов (правильных и неправильных)</p></div></div>
+    <div class="obj"><div class="ico">⏱️</div><div><strong>Цель 2</strong><p>Выражать действия, завершённые к будущему моменту времени</p></div></div>
+    <div class="obj"><div class="ico">🔮</div><div><strong>Цель 3</strong><p>Использовать futuro perfecto для вероятных предположений о прошлом</p></div></div>
+    <div class="obj"><div class="ico">🗣️</div><div><strong>Цель 4</strong><p>Применять время в реальных ситуациях жизни в Испании</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- 3. WARM-UP — повторение L72: Condicional Compuesto -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Повторение L72 — Condicional Compuesto</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прошлый урок: <strong>habría + participio</strong> — «я бы сделал». Проверь себя перед новой темой.</p>
+  <div class="quiz">
+    <h3>🔄 Condicional Compuesto — быстрая проверка</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Condicional compuesto выражает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">действие, которое произойдёт в будущем</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">гипотетическое завершённое действие в прошлом («я бы сделал»)</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">незавершённое действие в настоящем</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Выбери правильную форму: «Ellos _____ ganado el partido si hubieran entrenado más.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">hubieran</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">habrían</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">habrán</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Переведи: «Yo habría estudiado más si hubiera tenido tiempo.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Я бы занялся больше, если бы у меня было время</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Я буду заниматься больше, если у меня будет время</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Я занимался больше, когда у меня было время</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Какой участник в: «habría <strong>vuelto</strong>»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">volvido (правильный)</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">vuelvo (это настоящее время)</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">vuelto (неправильный participio)</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — Futuro Perfecto: образование и употребление</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>🧠 Что такое Futuro Perfecto?</h4>
+    <p>Futuro Perfecto — это <strong>будущее завершённое время</strong>. По-русски аналога нет как отдельной формы, но смысл передаётся конструкцией «к тому моменту я уже сделаю/сделаю». По-английски это <em>Future Perfect: "will have done"</em>. В испанском используется значительно чаще, чем в русском.</p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Образование</span>
+      <span class="rule-title">haber (futuro simple) + participio pasado</span>
+    </div>
+    <table class="tense-table">
+      <tr><th>Местоимение</th><th>Haber (futuro)</th><th>+ participio</th><th>Пример</th></tr>
+      <tr><td>yo</td><td class="form">habré</td><td>+ hablado / comido / vivido</td><td>habré terminado — я уже закончу</td></tr>
+      <tr><td>tú</td><td class="form">habrás</td><td>+ llegado / visto / hecho</td><td>habrás llegado — ты уже приедешь</td></tr>
+      <tr><td>él / ella / Ud.</td><td class="form">habrá</td><td>+ salido / escrito / puesto</td><td>habrá salido — он уже уйдёт</td></tr>
+      <tr><td>nosotros</td><td class="form">habremos</td><td>+ acabado / vuelto / dicho</td><td>habremos acabado — мы уже закончим</td></tr>
+      <tr><td>vosotros</td><td class="form">habréis</td><td>+ comprado / roto / abierto</td><td>habréis comprado — вы уже купите</td></tr>
+      <tr><td>ellos / Uds.</td><td class="form">habrán</td><td>+ llegado / muerto / cubierto</td><td>habrán llegado — они уже приедут</td></tr>
+    </table>
+    <div class="callout tip" style="margin-top:10px">
+      <h4>📌 Неправильные participios — повторение</h4>
+      <p>hacer→<strong>hecho</strong>, decir→<strong>dicho</strong>, ver→<strong>visto</strong>, volver→<strong>vuelto</strong>, poner→<strong>puesto</strong>, escribir→<strong>escrito</strong>, abrir→<strong>abierto</strong>, romper→<strong>roto</strong>, morir→<strong>muerto</strong>, cubrir→<strong>cubierto</strong>, resolver→<strong>resuelto</strong>, descubrir→<strong>descubierto</strong></p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">Употребление 1 — Завершённое действие до будущего момента</h3>
+  <p style="color:var(--muted);font-size:.9rem;margin-bottom:12px">Futuro perfecto описывает действие, которое <strong>уже будет завершено</strong> к определённому моменту в будущем. Часто используется с: <em>para + время, cuando, antes de que, en cuanto</em>.</p>
+
+  <div class="example-block">
+    <div class="es">Para el viernes, habré terminado el informe. <button class="speak-btn" onclick="speak('Para el viernes, habré terminado el informe.')">🔊</button></div>
+    <div class="ru">К пятнице я уже закончу доклад.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Cuando llegues a casa, ya habré preparado la cena. <button class="speak-btn" onclick="speak('Cuando llegues a casa, ya habré preparado la cena.')">🔊</button></div>
+    <div class="ru">Когда ты придёшь домой, я уже приготовлю ужин.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Para las diez, habremos llegado al aeropuerto. <button class="speak-btn" onclick="speak('Para las diez, habremos llegado al aeropuerto.')">🔊</button></div>
+    <div class="ru">К десяти часам мы уже доберёмся до аэропорта.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Antes de que empiece la reunión, habré leído todos los documentos. <button class="speak-btn" onclick="speak('Antes de que empiece la reunión, habré leído todos los documentos.')">🔊</button></div>
+    <div class="ru">До начала собрания я уже прочитаю все документы.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Para fin de año, habrá aprendido a hablar español con fluidez. <button class="speak-btn" onclick="speak('Para fin de año, habrá aprendido a hablar español con fluidez.')">🔊</button></div>
+    <div class="ru">К концу года он уже научится свободно говорить по-испански.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">En cuanto te llame el médico, ya habrán salido los resultados. <button class="speak-btn" onclick="speak('En cuanto te llame el médico, ya habrán salido los resultados.')">🔊</button></div>
+    <div class="ru">Как только позвонит врач, результаты уже будут готовы.</div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">Употребление 2 — Предположение / вероятность о прошлом</h3>
+  <p style="color:var(--muted);font-size:.9rem;margin-bottom:12px">Futuro perfecto часто используется для <strong>логического предположения или вероятности</strong> о том, что произошло (но говорящий не уверен). По-русски: «наверное уже сделал», «должно быть уже пришёл».</p>
+
+  <div class="example-block">
+    <div class="es">¿Por qué no ha contestado? Habrá perdido el móvil. <button class="speak-btn" onclick="speak('¿Por qué no ha contestado? Habrá perdido el móvil.')">🔊</button></div>
+    <div class="ru">Почему не ответил? Наверное, потерял телефон.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">No hay nadie en casa — habrán salido a hacer las compras. <button class="speak-btn" onclick="speak('No hay nadie en casa, habrán salido a hacer las compras.')">🔊</button></div>
+    <div class="ru">Никого нет дома — наверное, ушли за покупками.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Mira qué bronceado está — habrá estado de vacaciones en la playa. <button class="speak-btn" onclick="speak('Mira qué bronceado está, habrá estado de vacaciones en la playa.')">🔊</button></div>
+    <div class="ru">Смотри, какой загорелый — наверное, был в отпуске на пляже.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Están tardando mucho, habrán tenido un problema en el metro. <button class="speak-btn" onclick="speak('Están tardando mucho, habrán tenido un problema en el metro.')">🔊</button></div>
+    <div class="ru">Очень задерживаются, наверное, что-то случилось в метро.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">¿Ya habrá llegado el paquete? Lleva tres días en camino. <button class="speak-btn" onclick="speak('¿Ya habrá llegado el paquete? Lleva tres días en camino.')">🔊</button></div>
+    <div class="ru">Посылка уже, наверное, пришла? Она в пути уже три дня.</div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">Употребление 3 — С выражениями времени и планами</h3>
+  <p style="color:var(--muted);font-size:.9rem;margin-bottom:12px">Часто используется с <em>para cuando, en tres años, para entonces, a estas horas</em> для выражения планов и прогнозов.</p>
+
+  <div class="example-block">
+    <div class="es">Para cuando acabes el máster, yo ya habré encontrado trabajo. <button class="speak-btn" onclick="speak('Para cuando acabes el máster, yo ya habré encontrado trabajo.')">🔊</button></div>
+    <div class="ru">К тому времени как ты закончишь магистратуру, я уже найду работу.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">En tres años, habremos ahorrado suficiente para comprar un piso. <button class="speak-btn" onclick="speak('En tres años, habremos ahorrado suficiente para comprar un piso.')">🔊</button></div>
+    <div class="ru">Через три года мы уже накопим достаточно для покупки квартиры.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">A estas horas, ya habrán aterrizado en Barcelona. <button class="speak-btn" onclick="speak('A estas horas, ya habrán aterrizado en Barcelona.')">🔊</button></div>
+    <div class="ru">В этот час они уже, наверное, приземлились в Барселоне.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Para el próximo curso, el niño ya habrá aprendido a leer y escribir. <button class="speak-btn" onclick="speak('Para el próximo curso, el niño ya habrá aprendido a leer y escribir.')">🔊</button></div>
+    <div class="ru">К следующему учебному году ребёнок уже научится читать и писать.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Para entonces, la situación habrá cambiado completamente. <button class="speak-btn" onclick="speak('Para entonces, la situación habrá cambiado completamente.')">🔊</button></div>
+    <div class="ru">К тому времени ситуация полностью изменится.</div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки с Futuro Perfecto</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Путать с Condicional Compuesto</td><td class="wrong-ex">Si llega mañana, habría visto el partido</td><td class="right-ex">Si llega mañana, habrá visto el partido</td><td>Futuro Perf. — для реального будущего; Cond. Comp. — для нереального прошлого</td></tr>
+    <tr><td>Неправильный participio</td><td class="wrong-ex">habré escribido / habré rompido</td><td class="right-ex">habré escrito / habré roto</td><td>escrito, roto — неправильные participios, нужно учить наизусть</td></tr>
+    <tr><td>Futuro simple вместо perfecto</td><td class="wrong-ex">Para el lunes, terminaré el proyecto</td><td class="right-ex">Para el lunes, habré terminado el proyecto</td><td>Futuro perfecto подчёркивает завершённость к моменту</td></tr>
+    <tr><td>Путать habré с habría</td><td class="wrong-ex">Habría llegado ya — (предположение)</td><td class="right-ex">Habrá llegado ya — (предположение)</td><td>Для вероятности используется habrá (futuro), не habría (condicional)</td></tr>
+    <tr><td>Не согласовать participio</td><td class="wrong-ex">Nosotros habremos llegadas</td><td class="right-ex">Nosotros habremos llegado</td><td>Participio в составном времени не согласуется: всегда -ado/-ido</td></tr>
+    <tr><td>Пропустить «ya»</td><td class="wrong-ex">Cuando llegues, habré preparado la cena</td><td class="right-ex">Cuando llegues, ya habré preparado la cena</td><td>«Ya» усиливает завершённость — важно для носителей языка</td></tr>
+  </table>
+
+  <div class="callout success">
+    <h4>✅ Сравнение трёх будущих времён</h4>
+    <p><strong>Futuro simple:</strong> Mañana <em>comeré</em> paella. — Завтра я поем паэлью (просто будущее).</p>
+    <p><strong>Ir + a + inf:</strong> Mañana <em>voy a comer</em> paella. — Завтра я собираюсь поесть паэлью (ближайший план).</p>
+    <p><strong>Futuro perfecto:</strong> Para las dos, ya <em>habré comido</em>. — К двум часам я уже поем (завершённость к моменту).</p>
+  </div>
+</div>
+
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — 18 ключевых выражений для Futuro Perfecto</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 для произношения каждого слова или фразы.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">para entonces</div><div class="vocab-ru">к тому времени</div></div><button class="speak-btn" onclick="speak('para entonces')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">a estas horas</div><div class="vocab-ru">в это время / сейчас уже</div></div><button class="speak-btn" onclick="speak('a estas horas')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">para fin de año</div><div class="vocab-ru">к концу года</div></div><button class="speak-btn" onclick="speak('para fin de año')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">antes de que (+ subj.)</div><div class="vocab-ru">до того как (+ сослагат.)</div></div><button class="speak-btn" onclick="speak('antes de que llegues')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">en cuanto (+ subj.)</div><div class="vocab-ru">как только</div></div><button class="speak-btn" onclick="speak('en cuanto llegues')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">para cuando (+ subj.)</div><div class="vocab-ru">к тому времени когда</div></div><button class="speak-btn" onclick="speak('para cuando llegues')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">habrá perdido</div><div class="vocab-ru">наверное потерял (вероятность)</div></div><button class="speak-btn" onclick="speak('habrá perdido')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">terminar</div><div class="vocab-ru">заканчивать / завершать</div></div><button class="speak-btn" onclick="speak('terminar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">ahorrar</div><div class="vocab-ru">копить / экономить</div></div><button class="speak-btn" onclick="speak('ahorrar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">aterrizar</div><div class="vocab-ru">приземляться (самолёт)</div></div><button class="speak-btn" onclick="speak('aterrizar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">resolver</div><div class="vocab-ru">решать (проблему)</div></div><button class="speak-btn" onclick="speak('resolver')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">matricularse</div><div class="vocab-ru">записываться / поступать (в учебное заведение)</div></div><button class="speak-btn" onclick="speak('matricularse')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">entregar</div><div class="vocab-ru">сдавать / передавать (документы)</div></div><button class="speak-btn" onclick="speak('entregar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">ya habrá llegado</div><div class="vocab-ru">уже должен был прийти</div></div><button class="speak-btn" onclick="speak('ya habrá llegado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">con toda seguridad</div><div class="vocab-ru">наверняка / с полной уверенностью</div></div><button class="speak-btn" onclick="speak('con toda seguridad')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">supongo que habrá...</div><div class="vocab-ru">полагаю, что уже...</div></div><button class="speak-btn" onclick="speak('supongo que habrá terminado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">cumplir un plazo</div><div class="vocab-ru">соблюсти срок / успеть к дедлайну</div></div><button class="speak-btn" onclick="speak('cumplir un plazo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">habremos conseguido</div><div class="vocab-ru">мы уже достигнем / добьёмся</div></div><button class="speak-btn" onclick="speak('habremos conseguido')">🔊</button></div>
+  </div>
+</div>
+
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Выбери правильную форму</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на вариант — получишь ответ и объяснение.</p>
+  <div class="quiz">
+    <h3>🎯 Futuro Perfecto — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Para el lunes, nosotros ya _____ el contrato.» (firmar)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">habramos firmado</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">habríamos firmado</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">habremos firmado</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Выражение вероятности: «No contesta. _____ salido ya.» (ella)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Habría</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Habrá</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Ha</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Неправильный participio: «habré _____ la verdad» (decir)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">dicho</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">decido</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">dicido</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Cuando tú llegues, yo ya _____ todo.» (preparar)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">prepararé</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">haya preparado</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">habré preparado</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «¿Habrán _____ el avión ya?» (perder)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">perdado</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">perdo</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">perdido</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Какое предложение правильно использует futuro perfecto?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Mañana comeré paella en el restaurante</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Si tuviera dinero, habría viajado</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Para las tres, ya habremos terminado la reunión</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «En dos años, ella _____ el doctorado.» (terminar)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">habrá terminaba</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">terminaría</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">habrá terminado</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Напиши форму Futuro Perfecto</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи в нижнем регистре с ударениями. Глагол должен быть в форме futuro perfecto.</p>
+  <div class="quiz">
+    <h3>✏️ Образуй правильную форму</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. Yo / terminar: «Para las cinco, yo ya _____ el trabajo.»</div>
+      <input type="text" class="text-input" placeholder="habré ..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','habré terminado','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ habré terminado</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. Él / llegar: «A estas horas, él ya _____ al aeropuerto.» (вероятность)</div>
+      <input type="text" class="text-input" placeholder="habrá ..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','habrá llegado','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ habrá llegado</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. Nosotros / resolver: «Para fin de mes, _____ todos los problemas.»</div>
+      <input type="text" class="text-input" placeholder="habremos ..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','habremos resuelto','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ habremos resuelto (resuelto — неправильный participio!)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. Ellos / escribir: «¿Crees que para mañana ellos ya _____ el correo?»</div>
+      <input type="text" class="text-input" placeholder="habrán ..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','habrán escrito','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ habrán escrito (escrito — неправильный participio!)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. Tú / volver: «Cuando yo llegue al trabajo, tú ya _____ a casa.»</div>
+      <input type="text" class="text-input" placeholder="habrás ..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','habrás vuelto','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ habrás vuelto (vuelto — неправильный participio!)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. Ella / hacer: «Para esa fecha, ella ya _____ todo el papeleo.»</div>
+      <input type="text" class="text-input" placeholder="habrá ..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','habrá hecho','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ habrá hecho (hecho — неправильный participio!)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Futuro Perfecto в жизни</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Обращай внимание на futuro perfecto в контексте.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📋 Диалог 1: Дедлайн на работе (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">Marta, ¿para cuándo tendrás el informe listo? <button class="speak-btn" onclick="speak('Marta, ¿para cuándo tendrás el informe listo?')">🔊</button></div>
+        <div class="dlg-ru translation">[Марта, к какому времени у тебя будет готов доклад?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Marta</div>
+      <div style="flex:1">
+        <div class="dlg-es">Para el jueves por la tarde, ya lo habré terminado completamente. <button class="speak-btn" onclick="speak('Para el jueves por la tarde, ya lo habré terminado completamente.')">🔊</button></div>
+        <div class="dlg-ru translation">[К четвергу вечером я его полностью закончу.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y los gráficos? ¿Los habrás incluido también? <button class="speak-btn" onclick="speak('¿Y los gráficos? ¿Los habrás incluido también?')">🔊</button></div>
+        <div class="dlg-ru translation">[А графики? Ты их тоже уже включишь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Marta</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí. Para entonces, habré revisado todos los datos con el equipo. <button class="speak-btn" onclick="speak('Sí. Para entonces, habré revisado todos los datos con el equipo.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да. К тому времени я уже проверю все данные с командой.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y Carlos? Lleva dos días sin responder mis mensajes. <button class="speak-btn" onclick="speak('¿Y Carlos? Lleva dos días sin responder mis mensajes.')">🔊</button></div>
+        <div class="dlg-ru translation">[А Карлос? Он два дня не отвечает на мои сообщения.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Marta</div>
+      <div style="flex:1">
+        <div class="dlg-es">Habrá tenido problemas con el ordenador. O habrá perdido el móvil. <button class="speak-btn" onclick="speak('Habrá tenido problemas con el ordenador. O habrá perdido el móvil.')">🔊</button></div>
+        <div class="dlg-ru translation">[Наверное, проблема с компьютером. Или потерял телефон.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">En cualquier caso, para el viernes la reunión habrá empezado sin él si no aparece. <button class="speak-btn" onclick="speak('En cualquier caso, para el viernes la reunión habrá empezado sin él si no aparece.')">🔊</button></div>
+        <div class="dlg-ru translation">[В любом случае, к пятнице собрание уже начнётся без него, если не появится.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Marta</div>
+      <div style="flex:1">
+        <div class="dlg-es">No te preocupes. Para entonces, yo ya habré hablado con él. <button class="speak-btn" onclick="speak('No te preocupes. Para entonces, yo ya habré hablado con él.')">🔊</button></div>
+        <div class="dlg-ru translation">[Не беспокойся. К тому времени я уже поговорю с ним.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. ¿Y habrás enviado también el presupuesto al cliente? <button class="speak-btn" onclick="speak('Perfecto. ¿Y habrás enviado también el presupuesto al cliente?')">🔊</button></div>
+        <div class="dlg-ru translation">[Отлично. А счёт клиенту тоже уже отправишь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Marta</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro. Para el mediodía del jueves, habremos enviado todo. <button class="speak-btn" onclick="speak('Claro. Para el mediodía del jueves, habremos enviado todo.')">🔊</button></div>
+        <div class="dlg-ru translation">[Конечно. К полудню четверга мы уже всё отправим.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог</button>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🔮 Диалог 2: Предположения о прошлом (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Luis</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Sabes algo de Ana? No ha venido hoy al trabajo. <button class="speak-btn" onclick="speak('¿Sabes algo de Ana? No ha venido hoy al trabajo.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Знаешь что-нибудь об Ане? Она сегодня не пришла на работу.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Elena</div>
+      <div style="flex:1">
+        <div class="dlg-es">Habrá estado enferma. Ayer tenía mala cara. <button class="speak-btn" onclick="speak('Habrá estado enferma. Ayer tenía mala cara.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Наверное, заболела. Вчера выглядела неважно.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Luis</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Le habrá pasado algo serio? Tampoco responde al teléfono. <button class="speak-btn" onclick="speak('¿Le habrá pasado algo serio? Tampoco responde al teléfono.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Может, случилось что-то серьёзное? Не отвечает и по телефону.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Elena</div>
+      <div style="flex:1">
+        <div class="dlg-es">No creo. Se habrá quedado dormida, o habrá ido al médico. <button class="speak-btn" onclick="speak('No creo. Se habrá quedado dormida, o habrá ido al médico.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Не думаю. Наверное, проспала или пошла к врачу.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Luis</div>
+      <div style="flex:1">
+        <div class="dlg-es">Quizás habrá tenido un problema con el transporte. <button class="speak-btn" onclick="speak('Quizás habrá tenido un problema con el transporte.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Возможно, была проблема с транспортом.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Elena</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, hoy hubo huelga de metro. Se habrá tenido que ir en autobús. <button class="speak-btn" onclick="speak('Sí, hoy hubo huelga de metro. Se habrá tenido que ir en autobús.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, сегодня была забастовка метро. Наверное, пришлось ехать на автобусе.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Luis</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por eso tardará tanto. Habrá perdido mucho tiempo esperando. <button class="speak-btn" onclick="speak('Por eso tardará tanto. Habrá perdido mucho tiempo esperando.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Вот почему так долго. Наверное, много времени потерял в ожидании.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Elena</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro. Para cuando llegue, ya habremos comido sin ella. <button class="speak-btn" onclick="speak('Claro. Para cuando llegue, ya habremos comido sin ella.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Конечно. К тому времени когда она придёт, мы уже пообедаем без неё.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Luis</div>
+      <div style="flex:1">
+        <div class="dlg-es">Le guardaremos algo. Habrá tenido un día horrible. <button class="speak-btn" onclick="speak('Le guardaremos algo. Habrá tenido un día horrible.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Оставим ей что-нибудь. Наверное, у неё был ужасный день.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Elena</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí. Y para mañana, espero que todo se habrá solucionado. <button class="speak-btn" onclick="speak('Sí. Y para mañana, espero que todo se habrá solucionado.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да. И к завтрашнему дню надеюсь, всё решится.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🎓 Диалог 3: Планы на будущее (9 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Papá</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué harás cuando termines la carrera? <button class="speak-btn" onclick="speak('¿Qué harás cuando termines la carrera?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Что ты будешь делать, когда закончишь учёбу?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Hija</div>
+      <div style="flex:1">
+        <div class="dlg-es">Para entonces, ya habré conseguido prácticas en una empresa de tecnología. <button class="speak-btn" onclick="speak('Para entonces, ya habré conseguido prácticas en una empresa de tecnología.')">🔊</button></div>
+        <div class="dlg-ru translation3">[К тому времени я уже получу стажировку в технологической компании.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Papá</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y el máster? ¿Lo habrás pensado bien? <button class="speak-btn" onclick="speak('¿Y el máster? ¿Lo habrás pensado bien?')">🔊</button></div>
+        <div class="dlg-ru translation3">[А магистратура? Ты всё хорошо обдумаешь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Hija</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí. Para junio, habremos decidido si voy a España o me quedo aquí. <button class="speak-btn" onclick="speak('Sí. Para junio, habremos decidido si voy a España o me quedo aquí.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Да. К июню мы уже решим — еду в Испанию или остаюсь здесь.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Papá</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿A España? ¿Habrás aprendido español para entonces? <button class="speak-btn" onclick="speak('¿A España? ¿Habrás aprendido español para entonces?')">🔊</button></div>
+        <div class="dlg-ru translation3">[В Испанию? Ты к тому времени уже выучишь испанский?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Hija</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Claro! Para el próximo año, habré alcanzado el nivel B2 con toda seguridad. <button class="speak-btn" onclick="speak('¡Claro! Para el próximo año, habré alcanzado el nivel B2 con toda seguridad.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Конечно! К следующему году я точно достигну уровня B2.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Papá</div>
+      <div style="flex:1">
+        <div class="dlg-es">Bien. Pero antes de que vayas, ¿habrás ahorrado lo suficiente? <button class="speak-btn" onclick="speak('Bien. Pero antes de que vayas, ¿habrás ahorrado lo suficiente?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Хорошо. Но до того как поедешь, ты уже накопишь достаточно?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Hija</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, papá. Para octubre, habré trabajado en verano y habré ahorrado dos mil euros. <button class="speak-btn" onclick="speak('Sí, papá. Para octubre, habré trabajado en verano y habré ahorrado dos mil euros.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Да, папа. К октябрю поработаю летом и накоплю две тысячи евро.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Papá</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Fantástico! Para cuando vuelvas, habrás madurado mucho. <button class="speak-btn" onclick="speak('¡Fantástico! Para cuando vuelvas, habrás madurado mucho.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Фантастично! К тому времени как вернёшься, ты сильно повзрослеешь.]</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Практика вслух</h2>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Твои планы через год</div>
+    <p>Расскажи вслух, что ты <strong>уже сделаешь</strong> к следующему году. Используй futuro perfecto минимум 5 раз:</p>
+    <div class="es">«Para este tiempo el año que viene, yo habré... / habremos... / habrán...»</div>
+    <div class="hint">Темы: изучение языка, работа, путешествия, семья, здоровье, жильё. Говори 1–2 минуты без остановок.</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Испании: школьный год</div>
+    <p>Представь: ты записываешь ребёнка в испанскую школу. Расскажи директору, что ты уже сделаешь к сентябрю:</p>
+    <div class="es">«Para septiembre, habremos completado todos los documentos. Habremos obtenido el empadronamiento. El niño habrá hecho el examen de nivel. Para entonces, también habremos buscado un piso cerca del colegio.»</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Para septiembre, habremos completado todos los documentos. Habremos obtenido el empadronamiento. El niño habrá hecho el examen de nivel. Para entonces, también habremos buscado un piso cerca del colegio.')">🔊 Прослушать пример</button>
+    <div class="hint">Измени детали под свою ситуацию. Добавь свои предложения с futuro perfecto.</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Запись ребёнка в школу — планирование</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏫 Реальная ситуация — Барселона, colegio público</div>
+    <p style="margin-bottom:12px">В Испании запись в государственную школу проходит в марте–апреле на следующий учебный год. Процесс требует нескольких документов и встреч с administración. Futuro perfecto — идеальный инструмент для планирования этого процесса.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Para el plazo de matriculación, habremos reunido todos los documentos. <button class="speak-btn" onclick="speak('Para el plazo de matriculación, habremos reunido todos los documentos.')">🔊</button></div>
+          <div class="phrase-ru">К дедлайну записи мы уже соберём все документы.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Ya habrán publicado las listas de admitidos? <button class="speak-btn" onclick="speak('¿Ya habrán publicado las listas de admitidos?')">🔊</button></div>
+          <div class="phrase-ru">Списки принятых уже, наверное, опубликовали?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Para septiembre, el niño ya habrá hecho las pruebas de nivel. <button class="speak-btn" onclick="speak('Para septiembre, el niño ya habrá hecho las pruebas de nivel.')">🔊</button></div>
+          <div class="phrase-ru">К сентябрю ребёнок уже пройдёт вступительные тесты.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Habremos obtenido el certificado de empadronamiento antes de que cierre el plazo. <button class="speak-btn" onclick="speak('Habremos obtenido el certificado de empadronamiento antes de que cierre el plazo.')">🔊</button></div>
+          <div class="phrase-ru">Получим справку о регистрации до закрытия срока.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿La tutora ya habrá revisado el expediente académico del niño? <button class="speak-btn" onclick="speak('¿La tutora ya habrá revisado el expediente académico del niño?')">🔊</button></div>
+          <div class="phrase-ru">Классный руководитель уже просмотрела академические документы ребёнка?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Para el primer día de clase, ya se habrá adaptado al nuevo entorno. <button class="speak-btn" onclick="speak('Para el primer día de clase, ya se habrá adaptado al nuevo entorno.')">🔊</button></div>
+          <div class="phrase-ru">К первому учебному дню он уже привыкнет к новой обстановке.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">🏫 Мини-диалог: В секретариате школы</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Tú</div>
+        <div style="flex:1">
+          <div class="dlg-es">Buenos días. Quería preguntar sobre la matrícula para mi hijo. ¿Para cuándo tienen que estar listos los documentos? <button class="speak-btn" onclick="speak('Buenos días. Quería preguntar sobre la matrícula para mi hijo. ¿Para cuándo tienen que estar listos los documentos?')">🔊</button></div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Secret.</div>
+        <div style="flex:1">
+          <div class="dlg-es">El plazo cierra el 15 de abril. Para esa fecha, usted habrá tenido que entregar el DNI, el libro de familia y el certificado de empadronamiento. <button class="speak-btn" onclick="speak('El plazo cierra el 15 de abril. Para esa fecha, usted habrá tenido que entregar el DNI, el libro de familia y el certificado de empadronamiento.')">🔊</button></div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Tú</div>
+        <div style="flex:1">
+          <div class="dlg-es">Perfecto. Para entonces ya habré tramitado el empadronamiento. ¿Y las listas de admitidos? <button class="speak-btn" onclick="speak('Perfecto. Para entonces ya habré tramitado el empadronamiento. ¿Y las listas de admitidos?')">🔊</button></div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Secret.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Las publicaremos el 25 de mayo. Para esa fecha, habremos revisado todas las solicitudes. <button class="speak-btn" onclick="speak('Las publicaremos el 25 de mayo. Para esa fecha, habremos revisado todas las solicitudes.')">🔊</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> В Каталонии (Barcelona) при записи в школу проверяют адрес регистрации (empadronamiento). Дети с пропиской в зоне школы имеют приоритет. Futuro perfecto часто используется в официальных разговорах: «¿Ya habrán tramitado mi solicitud?» — естественно и вежливо.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🌍 Futuro Perfecto в реальной речи испанцев</div>
+    <h4>Вероятность и предположение — живая функция времени</h4>
+    <p>В разговорной речи испанцев futuro perfecto с функцией вероятности встречается гораздо чаще, чем в учебниках. Фраза «Habrá salido ya» звучит более сдержанно и интеллигентно, чем «Probablemente ya salió». Мадридцы особенно активно используют эту конструкцию в повседневной речи: «¿Habrá llegado ya el paquete?», «No sé, habrán tenido reunión». Каталонцы в Барселоне сохраняют эту же традицию. Эта черта отличает носителей испанского от продвинутых иностранцев — ты звучишь как настоящий испанец, когда используешь futuro perfecto для предположений вместо громоздкого «supongo que probablemente».</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 17 карточек по Futuro Perfecto</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Кликни на карточку чтобы перевернуть. Скачай все карточки для Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">habré terminado</div>
+        <div class="anki-card-back">я уже закончу<br>Para el lunes, habré terminado el proyecto.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Habrá perdido el móvil</div>
+        <div class="anki-card-back">Наверное, потерял телефон<br>(вероятность о прошлом)</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">habremos ahorrado</div>
+        <div class="anki-card-back">мы уже накопим<br>En dos años, habremos ahorrado suficiente.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">habrán llegado</div>
+        <div class="anki-card-back">они уже прибудут / наверное прибыли<br>A estas horas, ya habrán llegado.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">para entonces</div>
+        <div class="anki-card-back">к тому времени<br>Para entonces, todo habrá cambiado.</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL73()">📥 Скачать колоду L73 Anki (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L74: Последовательность времён)</h4>
+    <ul>
+      <li><strong>Напиши 10 предложений</strong> с futuro perfecto о своих реальных планах на следующий год</li>
+      <li><strong>Dreaming Spanish (intermediate)</strong> — найди видео, где используется futuro. Запиши 2–3 примера futuro perfecto (если услышишь)</li>
+      <li><strong>Anki</strong> — повторяй 17 карточек из этого урока ежедневно (10 мин)</li>
+      <li><strong>Составь «вероятностный монолог»</strong>: представь, что твой друг не пришёл на встречу. Объясни 5 возможных причин, используя habrá/habrán...</li>
+      <li><strong>Читай</strong> новости на испанском (elpais.com, elperiodico.com) — замечай futuro perfecto в заголовках и текстах</li>
+    </ul>
+  </div>
+  <div class="callout info" style="margin-top:14px">
+    <h4>🎧 Dreaming Spanish — Intermediate level</h4>
+    <p>Слушай видео на уровне intermediate. Не останавливайся на каждом слове — тренируй понимание потока речи. Цель: 20–30 минут в день.</p>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок L73 завершён!</h4>
+    <p>Ты освоил futuro perfecto: образование, два главных значения (завершённость и вероятность), неправильные participios. Следующий урок — Последовательность времён: как все испанские времена работают вместе в сложных предложениях.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L72.html" class="nav-link-btn">← L72</a>
+    <a href="L74.html" class="nav-link-btn">L74: Посл. времён →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L73 = [
+  {front:"habré terminado",back:"Русский: я уже закончу (к моменту)<br>Ejemplo: Para el viernes, habré terminado el informe.<br>Nota: futuro perfecto = habrá + participio"},
+  {front:"habrás llegado",back:"Русский: ты уже приедешь<br>Ejemplo: Para cuando yo llegue, tú ya habrás llegado.<br>Nota: используется с 'cuando', 'para'"},
+  {front:"habrá salido",back:"Русский: он уже уйдёт / наверное ушёл<br>Ejemplo: No contesta, habrá salido ya.<br>Nota: двойное значение — план и вероятность"},
+  {front:"habremos acabado",back:"Русский: мы уже закончим<br>Ejemplo: Para las tres, habremos acabado la reunión.<br>Nota: nosotros → habremos"},
+  {front:"habrán llegado",back:"Русский: они уже прибудут / наверное прибыли<br>Ejemplo: A estas horas, ya habrán llegado a Madrid.<br>Nota: ellos/ellas → habrán"},
+  {front:"habré hecho",back:"Русский: я уже сделаю<br>Ejemplo: Para esa fecha, habré hecho todo el papeleo.<br>Nota: hecho — неправильный participio (hacer)"},
+  {front:"habré escrito",back:"Русский: я уже напишу<br>Ejemplo: Para mañana, habré escrito el correo.<br>Nota: escrito — неправильный participio (escribir)"},
+  {front:"habrá vuelto",back:"Русский: он уже вернётся<br>Ejemplo: Para las diez, habrá vuelto a casa.<br>Nota: vuelto — неправильный participio (volver)"},
+  {front:"habremos resuelto",back:"Русский: мы уже решим<br>Ejemplo: Para fin de mes, habremos resuelto el problema.<br>Nota: resuelto — неправильный participio (resolver)"},
+  {front:"habrán perdido",back:"Русский: они наверное потеряли<br>Ejemplo: No están aquí, habrán perdido el tren.<br>Nota: функция вероятности о прошлом"},
+  {front:"para entonces",back:"Русский: к тому времени<br>Ejemplo: Para entonces, todo habrá cambiado.<br>Nota: маркер времени для futuro perfecto"},
+  {front:"a estas horas",back:"Русский: в это время / сейчас уже<br>Ejemplo: A estas horas, ya habrán aterrizado.<br>Nota: выражает вероятность в данный момент"},
+  {front:"antes de que + subj.",back:"Русский: до того как (+ сослагательное)<br>Ejemplo: Antes de que llegues, ya habré preparado todo.<br>Nota: требует subjuntivo в придаточном"},
+  {front:"para cuando + subj.",back:"Русский: к тому времени когда<br>Ejemplo: Para cuando vuelvas, habré terminado.<br>Nota: 'cuando' всегда с subjuntivo в будущем"},
+  {front:"habrá tenido",back:"Русский: у него наверное было / к тому моменту у него будет<br>Ejemplo: No llama, habrá tenido un problema.<br>Nota: tener → tenido (правильный participio)"},
+  {front:"habré ahorrado",back:"Русский: я уже накоплю<br>Ejemplo: Para octubre, habré ahorrado dos mil euros.<br>Nota: ahorrar — копить, откладывать деньги"},
+  {front:"¿Ya habrán publicado...?",back:"Русский: Уже наверное опубликовали?<br>Ejemplo: ¿Ya habrán publicado los resultados?<br>Nota: вопрос о вероятном прошлом действии"},
+];
+
+function exportAnkiL73() {
+  const tsv = ANKI_DECK_L73.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L73_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Marta, ¿para cuándo tendrás el informe listo?',
+    'Para el jueves por la tarde, ya lo habré terminado completamente.',
+    '¿Y los gráficos? ¿Los habrás incluido también?',
+    'Sí. Para entonces, habré revisado todos los datos con el equipo.',
+    '¿Y Carlos? Lleva dos días sin responder mis mensajes.',
+    'Habrá tenido problemas con el ordenador. O habrá perdido el móvil.',
+    'En cualquier caso, para el viernes la reunión habrá empezado sin él.',
+    'No te preocupes. Para entonces, yo ya habré hablado con él.',
+    'Perfecto. ¿Y habrás enviado también el presupuesto al cliente?',
+    'Claro. Para el mediodía del jueves, habremos enviado todo.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 900);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+const LESSON_ID = 'L73';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'Condicional Compuesto = habría + participio. Выражает «я бы сделал» — гипотетическое завершённое действие.',
+  w2:'Habrían — condicional compuesto. Правильно: «habrían ganado» (они бы выиграли, если бы...).',
+  w3:'Habría estudiado más = Я бы занялся больше. Si + pluscuamperfecto subj. + condicional compuesto.',
+  w4:'Vuelto — неправильный participio глагола volver. Важно запомнить: volver→vuelto.',
+  q1:'habremos firmado — nosotros + habré = habremos. Firmado — правильный participio.',
+  q2:'Habrá — futuro perfecto для вероятности. Habría — это condicional, не для вероятности о настоящем.',
+  q3:'Dicho — неправильный participio от decir. Запомни: decir→dicho.',
+  q4:'Habré preparado — futuro perfecto, завершённость к будущему моменту. С «cuando» всегда subjuntivo.',
+  q5:'Perdido — правильный participio от perder: perder→perdido.',
+  q6:'«Para las tres, ya habremos terminado» — классическое употребление futuro perfecto с «para + время».',
+  q7:'Habrá terminado — futuro perfecto 3-го лица ед.ч. В три года к определённой точке.',
+};
+
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  if (container.dataset.answered === '1') return;
+  container.dataset.answered = '1';
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
+  let correctText = '';
+  let pickedText = '';
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
+    const key = m ? m[1] : null;
+    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
+    else { o.classList.add('wrong'); }
+    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
+  });
+  const isCorrect = correctKey === 'a';
+  const fb = document.getElementById('fb-' + qId);
+  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
+  if (isCorrect) {
+    fb.className = 'feedback show ok';
+    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
+  } else {
+    fb.className = 'feedback show no';
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
+  }
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (!raw) {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
+    return;
+  }
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
+  const userN = norm(raw);
+  const correctN = norm(answer);
+  if (userN === correctN) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
+      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения)</span>';
+    } else {
+      fb.textContent = '✅ Правильно! ' + answer;
+    }
+    return;
+  }
+  const lev = (a, b) => {
+    const m = a.length, n = b.length;
+    if (!m) return n; if (!n) return m;
+    let prev = Array.from({length: n+1}, (_,i) => i);
+    let curr = new Array(n+1).fill(0);
+    for (let i = 1; i <= m; i++) {
+      curr[0] = i;
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i-1] === b[j-1] ? 0 : 1;
+        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
+      }
+      [prev, curr] = [curr, prev];
+    }
+    return prev[n];
+  };
+  const dist = lev(userN, correctN);
+  const tol = correctN.length >= 6 ? 2 : 1;
+  if (dist > 0 && dist <= tol) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
+    return;
+  }
+  input.className = 'text-input wrong';
+  fb.className += ' no';
+  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => { el.style.display = showingTrans ? 'block' : 'none'; });
+}
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => { el.style.display = showingTrans2 ? 'block' : 'none'; });
+}
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => { el.style.display = showingTrans3 ? 'block' : 'none'; });
+}
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

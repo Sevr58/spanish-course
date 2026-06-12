@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L74: Последовательность времён</title>
+<title>L74: Последовательность времён — полная карта</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -28,7 +27,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .section-header h2{font-size:1.15rem;font-weight:700}
 .section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.divider{height:1px;background:var(--border);margin:32px 0}
 .callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
 .callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
 .callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
@@ -36,17 +34,11 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
 .cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
-.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
 .cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
 .cog-rule .rule-title{font-weight:700;font-size:1rem}
-.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
-.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
-.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
-.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
-.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -61,9 +53,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
-.opt:disabled,.opt[disabled]{cursor:default}
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -82,7 +71,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -91,10 +80,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -102,450 +87,951 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
-th{background:var(--bg3);color:var(--gold);padding:8px 12px;text-align:left;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
-td{padding:8px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
-tr:last-child td{border-bottom:none}
-.tense-map{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;margin:14px 0}
-.tense-map h4{color:var(--gold);font-size:.9rem;margin-bottom:10px}
-.tense-row{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:8px;font-size:.87rem}
-.tense-row .arr{color:var(--muted);text-align:center}
-.tense-row .main{background:var(--bg3);padding:6px 10px;border-radius:6px}
-.tense-row .dep{background:rgba(69,123,157,.1);padding:6px 10px;border-radius:6px;color:var(--blue)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.tense-map{width:100%;border-collapse:collapse;margin:16px 0;font-size:.84rem}
+.tense-map th{background:var(--gold);color:#000;padding:9px 12px;text-align:left;font-weight:700}
+.tense-map td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.tense-map tr:nth-child(even) td{background:var(--bg3)}
+.tense-map .main{color:var(--blue);font-weight:700}
+.tense-map .sub{color:var(--gold);font-weight:700}
+.example-block{background:var(--bg2);border-left:3px solid var(--gold);padding:10px 14px;margin:8px 0;border-radius:0 6px 6px 0;font-size:.9rem}
+.example-block .es{font-weight:600;margin-bottom:3px}
+.example-block .ru{color:var(--muted);font-size:.83rem}
+.authentic-text{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:14px 0;font-style:italic;font-size:.92rem}
+.authentic-text .label{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:8px;font-style:normal}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">B1 · Фаза 3 · День 157</span>
   <a href="L75.html">L75 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">Фаза 3 · Блок B3B · Сложная коммуникация</div>
-  <h1>Последовательность <span class="hl">времён</span></h1>
-  <p class="sub">Как времена сочетаются между собой — общая карта. Почему «сказал, что придёт» — это другое время, чем «скажет».</p>
+  <div class="phase-tag">🗺️ Фаза 3 · Сложные времена · Блок 3B</div>
+  <h1><span class="hl">Последовательность времён</span> — полная карта</h1>
+  <p class="sub">Как все испанские времена связаны между собой — общая схема, concordancia de tiempos, косвенная речь</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🗺</div><div><strong>Карта времён</strong><p>Понять, какое время тянет за собой какое в придаточных предложениях</p></div></div>
-    <div class="obj"><div class="ico">📰</div><div><strong>Аутентичный текст</strong><p>Читать новостные статьи и понимать все временны́е формы</p></div></div>
-    <div class="obj"><div class="ico">🎧</div><div><strong>Dreaming Spanish</strong><p>Intermediate — истории с нарративом в прошлом</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорение</strong><p>Пересказать сложный текст, сохранив логику времён</p></div></div>
+    <div class="obj"><div class="ico">🗺️</div><div><strong>Цель 1</strong><p>Понять общую карту испанских времён и их взаимосвязь</p></div></div>
+    <div class="obj"><div class="ico">🔗</div><div><strong>Цель 2</strong><p>Правильно выбирать время в придаточном по времени главного предложения</p></div></div>
+    <div class="obj"><div class="ico">💬</div><div><strong>Цель 3</strong><p>Передавать чужую речь с правильным сдвигом времён (косвенная речь)</p></div></div>
+    <div class="obj"><div class="ico">📝</div><div><strong>Цель 4</strong><p>Читать и понимать сложные тексты с несколькими временны́ми планами</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: Теория -->
+<!-- 3. WARM-UP — повторение L73: Futuro Perfecto -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Карта согласования времён</h2>
+    <h2>Повторение L73 — Futuro Perfecto</h2>
   </div>
-
-  <p style="margin-bottom:14px">В испанском, как и в русском, главное предложение «диктует» время придаточному. Если главный глагол в настоящем или будущем — придаточное тоже живёт в настоящем-будущем. Если главный глагол ушёл в прошлое — придаточное тоже смещается назад. Это называется <strong>concordancia de tiempos</strong>.</p>
-
-  <div class="callout tip">
-    <h4>💡 Главный принцип</h4>
-    <p>В русском: «Он говорит, что придёт» vs «Он сказал, что придёт». В испанском принцип тот же, но смещение времён более строгое и системное. Настоящее время в главном → настоящее/будущее в придаточном. Прошедшее в главном → прошедшее/условное в придаточном.</p>
-  </div>
-
-  <div class="tense-map">
-    <h4>Карта согласования</h4>
-    <div style="font-size:.8rem;color:var(--muted);margin-bottom:10px">Главное предложение → Придаточное предложение</div>
-    <div class="tense-row">
-      <div class="main">Presente / Futuro<br><span style="color:var(--muted);font-size:.8rem">Creo que / Diré que</span></div>
-      <div class="arr">→</div>
-      <div class="dep">Presente / Futuro<br><span style="font-size:.8rem">...viene / ...vendrá</span></div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прошлый урок: <strong>habré + participio</strong> — завершённость к будущему моменту и вероятность о прошлом.</p>
+  <div class="quiz">
+    <h3>🔄 Futuro Perfecto — быстрая проверка</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. «Para las doce, yo ya _____ el informe.» (terminar)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">terminaré</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">habré terminado</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">habría terminado</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
     </div>
-    <div class="tense-row">
-      <div class="main">Pretérito Perfecto<br><span style="color:var(--muted);font-size:.8rem">He dicho que</span></div>
-      <div class="arr">→</div>
-      <div class="dep">Presente / Pretérito<br><span style="font-size:.8rem">...viene / ...venía</span></div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Вероятность: «No está en casa — _____ salido ya.» (él)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">ha</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">habría</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">habrá</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
     </div>
-    <div class="tense-row">
-      <div class="main">Pretérito Indefinido<br><span style="color:var(--muted);font-size:.8rem">Dijo que / Pensó que</span></div>
-      <div class="arr">→</div>
-      <div class="dep">Imperfecto / Condicional<br><span style="font-size:.8rem">...venía / ...vendría</span></div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Неправильный participio: «habré _____ la ventana» (abrir)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">abrido</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">abierto</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">abrido</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
     </div>
-    <div class="tense-row">
-      <div class="main">Imperfecto<br><span style="color:var(--muted);font-size:.8rem">Decía que / Pensaba que</span></div>
-      <div class="arr">→</div>
-      <div class="dep">Imperfecto / Condicional<br><span style="font-size:.8rem">...venía / ...vendría</span></div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. «Cuando _____ la película, ellos ya habrán comido.» (empezar)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">empezará</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">empiece</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">empieza</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
     </div>
-  </div>
-
-  <div class="callout info">
-    <h4>🔍 Примеры в действии</h4>
-    <ul>
-      <li><strong>Creo que <span style="color:var(--gold)">viene</span> mañana.</strong> — Думаю, что он придёт завтра. (настоящее → настоящее)</li>
-      <li><strong>Dijo que <span style="color:var(--gold)">vendría</span> mañana.</strong> — Он сказал, что придёт завтра. (прошедшее → условное)</li>
-      <li><strong>Pensaba que <span style="color:var(--gold)">era</span> difícil.</strong> — Думал, что это сложно. (имперфект → имперфект)</li>
-      <li><strong>Me informó de que el vuelo <span style="color:var(--gold)">había salido</span>.</strong> — Сообщил, что рейс уже вылетел. (прош. → плюсквамперфект)</li>
-    </ul>
-  </div>
-
-  <div class="callout warning">
-    <h4>⚠️ Главная ловушка для русскоговорящих</h4>
-    <p>По-русски мы говорим «он сказал, что <em>придёт</em>» — будущее время остаётся будущим. По-испански прошедшее в главном «притягивает» придаточное: <em>dijo que <strong>vendría</strong></em> — будущее становится кондиционалем. Никогда не говорите *<em>dijo que vendrá</em> — это звучит как ошибка.</p>
-  </div>
-
-  <p style="margin-bottom:12px"><strong>Плюсквамперфект как «прошлое прошлого»:</strong></p>
-  <p style="margin-bottom:14px;font-size:.9rem;color:var(--muted)">Если в прошлом описывается действие, которое произошло ещё раньше, используется <strong>había + participio</strong>:</p>
-
-  <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;font-size:.9rem;margin-bottom:14px">
-    <p>«Cuando llegué, Juan <strong>ya se había ido</strong>.» — Когда я пришёл, Хуан уже ушёл.</p>
-    <p style="margin-top:8px">«Me dijo que <strong>había estudiado</strong> toda la noche.» — Он сказал мне, что учился всю ночь (до нашего разговора).</p>
   </div>
 </div>
 
-<!-- SECTION 2: Словарь -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — Выражения согласования времён</h2>
-  </div>
-
-  <table>
-    <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
-    <tr><td><strong>afirmar</strong></td><td>[афир-МАР]</td><td>утверждать</td><td>Afirmó que todo estaba bien.</td></tr>
-    <tr><td><strong>asegurar</strong></td><td>[асегу-РАР]</td><td>заверять, заявлять</td><td>Me aseguró que llegaría a tiempo.</td></tr>
-    <tr><td><strong>comentar</strong></td><td>[комен-ТАР]</td><td>комментировать, заметить</td><td>Comentó que el precio había subido.</td></tr>
-    <tr><td><strong>reconocer</strong></td><td>[реконо-СЕР]</td><td>признавать</td><td>Reconoció que se había equivocado.</td></tr>
-    <tr><td><strong>negar</strong></td><td>[не-ГАР]</td><td>отрицать, отказывать</td><td>Negó que hubiera mentido.</td></tr>
-    <tr><td><strong>suponer</strong></td><td>[супо-НЕР]</td><td>предполагать</td><td>Supuse que estarías cansado.</td></tr>
-    <tr><td><strong>cuando</strong></td><td>[КУАН-до]</td><td>когда (+ сослагат.)</td><td>Cuando llegues, llámame.</td></tr>
-    <tr><td><strong>mientras</strong></td><td>[МЬЕН-трас]</td><td>пока, в то время как</td><td>Mientras estudiaba, sonó el teléfono.</td></tr>
-    <tr><td><strong>antes de que</strong></td><td>[АН-тес де ке]</td><td>до того как</td><td>Antes de que te vayas, firma esto.</td></tr>
-    <tr><td><strong>después de que</strong></td><td>[дес-ПУЭС де ке]</td><td>после того как</td><td>Después de que llegó, descansamos.</td></tr>
-    <tr><td><strong>la concordancia</strong></td><td>[кон-кор-ДАН-сья]</td><td>согласование</td><td>La concordancia de tiempos es esencial.</td></tr>
-    <tr><td><strong>el pluscuamperfecto</strong></td><td>[плюскуам-ПЕР-фекто]</td><td>плюсквамперфект</td><td>Usamos el pluscuamperfecto para el pasado del pasado.</td></tr>
-  </table>
-
-  <div class="callout tip">
-    <h4>💡 Глаголы сообщения — самые важные</h4>
-    <p>Decir, afirmar, asegurar, comentar, reconocer, negar, suponer — запомни их, потому что именно они «запускают» согласование времён в косвенной речи. Каждый из них работает по одной и той же схеме.</p>
-  </div>
-</div>
-
-<!-- SECTION 3: Тест 1 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">3</div>
-    <h2>Тест 1 — Выбери правильное время</h2>
-  </div>
-
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Согласование времён</h3>
-
-    <div class="quiz-q" id="q1">
-      <div class="q-text">1. «Él me dijo que _____ tarde.» (llegar)</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">llegaría</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">llegará</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">llega</div>
-      </div>
-      <div class="feedback" id="fb-q1"></div>
-    </div>
-
-    <div class="quiz-q" id="q2">
-      <div class="q-text">2. «Creo que María _____ en casa.» (estar)</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">estuvo</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">está</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">estaría</div>
-      </div>
-      <div class="feedback" id="fb-q2"></div>
-    </div>
-
-    <div class="quiz-q" id="q3">
-      <div class="q-text">3. «Cuando llegué, ella ya _____.» (irse)</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">se fue</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">se va</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">se había ido</div>
-      </div>
-      <div class="feedback" id="fb-q3"></div>
-    </div>
-
-    <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Pensaba que el examen _____ fácil.» (ser)</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">era</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">es</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">sería</div>
-      </div>
-      <div class="feedback" id="fb-q4"></div>
-    </div>
-
-    <div class="quiz-q" id="q5">
-      <div class="q-text">5. «Me aseguró que lo _____ antes del lunes.» (terminar)</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">terminará</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">terminaría</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">termina</div>
-      </div>
-      <div class="feedback" id="fb-q5"></div>
-    </div>
-
-    <div class="quiz-q" id="q6">
-      <div class="q-text">6. «Negó que _____ la verdad.» (saber)</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">sabe</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">sabría</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">supiera</div>
-      </div>
-      <div class="feedback" id="fb-q6"></div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 4: Тест 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 2 — Трансформация прямой речи</h2>
-  </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Перефразируй прямую речь в косвенную с правильным согласованием времён.</p>
-
-  <div class="quiz">
-    <h3>✏️ Трансформируй предложения</h3>
-
-    <div class="text-ex" id="te1">
-      <div class="tex-q">1. «Estoy cansado» → Dijo que _____ (estar, él)</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','estaba','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ estaba — прямая речь «estoy» (наст.) → косвенная после dijo (прош.) = estaba (имперфект)</div>
-    </div>
-
-    <div class="text-ex" id="te2">
-      <div class="tex-q">2. «Voy a venir mañana» → Me dijo que _____ al día siguiente (venir)</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','vendría','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ vendría — будущее «voy a venir» после прошедшего главного = конд. vendría</div>
-    </div>
-
-    <div class="text-ex" id="te3">
-      <div class="tex-q">3. «Ya he terminado» → Afirmó que ya _____ (terminar)</div>
-      <input type="text" class="text-input" placeholder="два слова..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','había terminado','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ había terminado — «he terminado» (prét. perfecto) после прошедшего = pluscuamperfecto</div>
-    </div>
-
-    <div class="text-ex" id="te4">
-      <div class="tex-q">4. «No sé nada» → Dijo que no _____ nada (saber)</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','sabía','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ sabía — «no sé» (наст.) → после dijo (прош.) = sabía (имперф.)</div>
-    </div>
-
-    <div class="text-ex" id="te5">
-      <div class="tex-q">5. «Quiero hablar contigo» → Me comentó que _____ hablar conmigo (querer)</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','quería','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ quería — хотел (тогда), поэтому имперфект</div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 5: Аутентичный текст -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">5</div>
-    <h2>Аутентичный текст — Новостной отрывок</h2>
+    <h2>Теория — Concordancia de tiempos: общая карта</h2>
   </div>
 
   <div class="callout info">
-    <h4>📰 Отрывок из испанской прессы</h4>
-    <p style="font-style:italic;margin-top:6px">Прочитай текст и определи все выделенные времена. Почему они использованы именно так?</p>
+    <h4>🗺️ Зачем нужна карта времён?</h4>
+    <p>Испанский язык имеет более 14 грамматических времён. Ключевой навык B1 — понимать, <strong>как времена сочетаются</strong> в сложном предложении. Есть два основных «временных плана»: настоящее (присутствие, будущее) и прошлое. Каждый план требует своего набора времён в придаточном.</p>
+  </div>
+
+  <h3 style="margin-top:20px;margin-bottom:12px;font-size:1rem;font-weight:700">Часть 1 — Общая карта времён испанского</h3>
+
+  <table class="tense-map">
+    <tr><th>Временной план</th><th>Время</th><th>Когда используется</th><th>Пример</th></tr>
+    <tr><td rowspan="5" style="font-weight:700;color:var(--blue);vertical-align:top;padding-top:12px">НАСТОЯЩЕЕ /<br>БУДУЩЕЕ</td>
+        <td class="sub">Presente</td><td>Действия сейчас, привычки, факты</td><td>Hablo español.</td></tr>
+    <tr><td class="sub">Futuro Simple</td><td>Будущие действия, предсказания</td><td>Hablaré mejor.</td></tr>
+    <tr><td class="sub">Futuro Perfecto</td><td>Завершённость к буд. моменту, вероятность</td><td>Para mañana, habré estudiado.</td></tr>
+    <tr><td class="sub">Pres. Perfecto</td><td>Недавнее прошлое, связанное с настоящим</td><td>He comido paella hoy.</td></tr>
+    <tr><td class="sub">Pres. Subjuntivo</td><td>Придаточные при «настоящем» главном</td><td>Quiero que vengas.</td></tr>
+    <tr><td rowspan="6" style="font-weight:700;color:var(--red);vertical-align:top;padding-top:12px">ПРОШЛОЕ</td>
+        <td class="sub">Pretérito Indefinido</td><td>Завершённые действия в прошлом</td><td>Ayer comí paella.</td></tr>
+    <tr><td class="sub">Pretérito Imperfecto</td><td>Незавершённые, привычные, описательные</td><td>Cuando era niño, vivía en Rusia.</td></tr>
+    <tr><td class="sub">Pluscuamperfecto</td><td>Завершённость до другого прошлого</td><td>Cuando llegué, ya había salido.</td></tr>
+    <tr><td class="sub">Condicional Simple</td><td>«Будущее в прошлом», вежливые просьбы</td><td>Dijo que vendría.</td></tr>
+    <tr><td class="sub">Condicional Compuesto</td><td>Гипотетическое завершённое в прошлом</td><td>Habría ido si hubiera podido.</td></tr>
+    <tr><td class="sub">Imp. Subjuntivo</td><td>Придаточные при «прошлом» главном</td><td>Quería que vinieras.</td></tr>
+  </table>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">Часть 2 — Concordancia de tiempos: правило согласования</h3>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило</span>
+      <span class="rule-title">Главное предложение → Придаточное</span>
+    </div>
+    <table class="tense-map">
+      <tr><th>Главное предложение</th><th>Придаточное (subj.)</th><th>Пример</th></tr>
+      <tr><td class="main">Presente / Futuro</td><td class="sub">Presente de Subjuntivo</td><td>Quiero que <strong>vengas</strong>.</td></tr>
+      <tr><td class="main">Presente / Futuro</td><td class="sub">Pres. Perfecto de Subj.</td><td>Es bueno que <strong>hayas venido</strong>.</td></tr>
+      <tr><td class="main">Pretérito Indefinido</td><td class="sub">Imperfecto de Subjuntivo</td><td>Quise que <strong>vinieras</strong>.</td></tr>
+      <tr><td class="main">Pretérito Imperfecto</td><td class="sub">Imperfecto de Subjuntivo</td><td>Quería que <strong>vinieras</strong>.</td></tr>
+      <tr><td class="main">Condicional</td><td class="sub">Imperfecto de Subjuntivo</td><td>Querría que <strong>vinieras</strong>.</td></tr>
+      <tr><td class="main">Pluscuamperfecto</td><td class="sub">Pluscuamp. de Subjuntivo</td><td>Habría querido que <strong>hubieras venido</strong>.</td></tr>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Главное правило запомни так:</h4>
+    <p>Главное — НАСТОЯЩЕЕ/БУДУЩЕЕ → придаточное Presente Subjuntivo<br>Главное — ПРОШЕДШЕЕ → придаточное Imperfecto Subjuntivo<br>Это правило работает в 90% случаев.</p>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">5–7 примеров — Настоящее главное + Subjuntivo:</h3>
+
+  <div class="example-block">
+    <div class="es">Espero que todo salga bien. <button class="speak-btn" onclick="speak('Espero que todo salga bien.')">🔊</button></div>
+    <div class="ru">Надеюсь, всё получится. (espero = наст. → salga = pres. subj.)</div>
+  </div>
+  <div class="example-block">
+    <div class="es">El médico recomienda que comas menos azúcar. <button class="speak-btn" onclick="speak('El médico recomienda que comas menos azúcar.')">🔊</button></div>
+    <div class="ru">Врач рекомендует, чтобы ты ел меньше сахара.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Es importante que llegues a tiempo. <button class="speak-btn" onclick="speak('Es importante que llegues a tiempo.')">🔊</button></div>
+    <div class="ru">Важно, чтобы ты пришёл вовремя.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">No creo que tenga razón. <button class="speak-btn" onclick="speak('No creo que tenga razón.')">🔊</button></div>
+    <div class="ru">Не думаю, что он прав. (presente → presente subj.)</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Me alegra que hayas aprendido tanto. <button class="speak-btn" onclick="speak('Me alegra que hayas aprendido tanto.')">🔊</button></div>
+    <div class="ru">Рад, что ты так много выучил. (pres. → perf. subj.)</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Cuando llegues a Barcelona, te escribiré. <button class="speak-btn" onclick="speak('Cuando llegues a Barcelona, te escribiré.')">🔊</button></div>
+    <div class="ru">Когда ты приедешь в Барселону, я напишу тебе. (futuro → pres. subj.)</div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">5–7 примеров — Прошедшее главное + Imperfecto Subjuntivo:</h3>
+
+  <div class="example-block">
+    <div class="es">Esperaba que todo saliera bien. <button class="speak-btn" onclick="speak('Esperaba que todo saliera bien.')">🔊</button></div>
+    <div class="ru">Надеялся, что всё получится. (imperfecto → impf. subj.)</div>
+  </div>
+  <div class="example-block">
+    <div class="es">El médico recomendó que comiera menos azúcar. <button class="speak-btn" onclick="speak('El médico recomendó que comiera menos azúcar.')">🔊</button></div>
+    <div class="ru">Врач порекомендовал есть меньше сахара. (indefinido → impf. subj.)</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Era importante que llegaras a tiempo. <button class="speak-btn" onclick="speak('Era importante que llegaras a tiempo.')">🔊</button></div>
+    <div class="ru">Было важно, чтобы ты пришёл вовремя.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">No creía que tuviera razón. <button class="speak-btn" onclick="speak('No creía que tuviera razón.')">🔊</button></div>
+    <div class="ru">Не думал, что он прав. (imperfecto → impf. subj.)</div>
+  </div>
+  <div class="example-block">
+    <div class="es">Me alegró que hubieras aprendido tanto. <button class="speak-btn" onclick="speak('Me alegró que hubieras aprendido tanto.')">🔊</button></div>
+    <div class="ru">Обрадовался, что ты так много выучил. (indefinido → pluscuamp. subj.)</div>
+  </div>
+  <div class="example-block">
+    <div class="es">El profesor quería que los alumnos estudiasen más. <button class="speak-btn" onclick="speak('El profesor quería que los alumnos estudiasen más.')">🔊</button></div>
+    <div class="ru">Учитель хотел, чтобы ученики занимались больше.</div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">Часть 3 — Косвенная речь: сдвиг времён</h3>
+  <p style="color:var(--muted);font-size:.9rem;margin-bottom:12px">Когда пересказываешь чужие слова, время «сдвигается назад» если главное предложение в прошлом:</p>
+
+  <table class="tense-map">
+    <tr><th>Прямая речь</th><th>→</th><th>Косвенная речь (pasado)</th></tr>
+    <tr><td>«Estudio español.» (Presente)</td><td>→</td><td>Dijo que <strong>estudiaba</strong> español. (Imperfecto)</td></tr>
+    <tr><td>«Estudiaré más.» (Futuro)</td><td>→</td><td>Dijo que <strong>estudiaría</strong> más. (Condicional)</td></tr>
+    <tr><td>«He terminado.» (Perfecto)</td><td>→</td><td>Dijo que <strong>había terminado</strong>. (Pluscuamperfecto)</td></tr>
+    <tr><td>«Terminaré para el lunes.» (Futuro)</td><td>→</td><td>Dijo que <strong>terminaría</strong> para el lunes. (Condicional)</td></tr>
+    <tr><td>«Ven aquí.» (Imperativo)</td><td>→</td><td>Me pidió que <strong>fuera</strong> allí. (Impf. Subj.)</td></tr>
+    <tr><td>«¿Cuándo llegas?» (Pregunta)</td><td>→</td><td>Me preguntó cuándo <strong>llegaba</strong>. (Imperfecto)</td></tr>
+  </table>
+
+  <div class="example-block">
+    <div class="es">«Vivo en Barcelona» → Dijo que vivía en Barcelona. <button class="speak-btn" onclick="speak('Dijo que vivía en Barcelona.')">🔊</button></div>
+    <div class="ru">«Я живу в Барселоне» → Он сказал, что жил в Барселоне.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">«Vendré mañana» → Me dijo que vendría al día siguiente. <button class="speak-btn" onclick="speak('Me dijo que vendría al día siguiente.')">🔊</button></div>
+    <div class="ru">«Я приду завтра» → Он сказал, что придёт на следующий день.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">«He perdido las llaves» → Dijo que había perdido las llaves. <button class="speak-btn" onclick="speak('Dijo que había perdido las llaves.')">🔊</button></div>
+    <div class="ru">«Я потерял ключи» → Он сказал, что потерял ключи.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">«Habla más despacio» → Me pidió que hablara más despacio. <button class="speak-btn" onclick="speak('Me pidió que hablara más despacio.')">🔊</button></div>
+    <div class="ru">«Говори медленнее» → Попросил меня говорить медленнее.</div>
+  </div>
+  <div class="example-block">
+    <div class="es">«¿Cuántos años tienes?» → Me preguntó cuántos años tenía. <button class="speak-btn" onclick="speak('Me preguntó cuántos años tenía.')">🔊</button></div>
+    <div class="ru">«Сколько тебе лет?» → Спросил, сколько мне лет.</div>
+  </div>
+
+  <div class="authentic-text">
+    <div class="label">📰 Аутентичный фрагмент — El País (стиль)</div>
+    «El portavoz del Ministerio declaró que el gobierno había aprobado el presupuesto y que las medidas entrarían en vigor el mes siguiente. Añadió que esperaba que los ciudadanos comprendieran la necesidad de los cambios.»
+    <div style="font-size:.82rem;color:var(--muted);margin-top:6px">Найди все времена: declaró (indef.), había aprobado (pluscuamp.), entrarían (cond.), esperaba (impf.), comprendieran (impf. subj.)</div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки с последовательностью времён</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Presente subj. после прошедшего</td><td class="wrong-ex">Quería que vengas</td><td class="right-ex">Quería que vinieras</td><td>Прошедшее главное → imperfecto subjuntivo</td></tr>
+    <tr><td>Impf. subj. после настоящего</td><td class="wrong-ex">Quiero que vinieras</td><td class="right-ex">Quiero que vengas</td><td>Настоящее главное → presente subjuntivo</td></tr>
+    <tr><td>Не сдвигать время в косвенной речи</td><td class="wrong-ex">Dijo que viene mañana</td><td class="right-ex">Dijo que vendría al día siguiente</td><td>Futuro→Condicional при передаче прошлых слов</td></tr>
+    <tr><td>Путать «mañana» / «al día siguiente»</td><td class="wrong-ex">Dijo que llegará mañana</td><td class="right-ex">Dijo que llegaría al día siguiente</td><td>В косвенной речи «mañana»→«al día siguiente», «ayer»→«el día anterior»</td></tr>
+    <tr><td>Presente вместо Imperfecto в нарративе</td><td class="wrong-ex">Cuando entré, ella duerme</td><td class="right-ex">Cuando entré, ella dormía</td><td>Описание фона в прошлом → imperfecto, не presente</td></tr>
+    <tr><td>Condicional вместо Impf. Subj. после «si»</td><td class="wrong-ex">Si tendría tiempo, vendría</td><td class="right-ex">Si tuviera tiempo, vendría</td><td>После «si» в нереальных условиях — imperfecto subjuntivo, не condicional</td></tr>
+  </table>
+</div>
+
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — 18 слов и выражений для работы со временами</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 для произношения.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">afirmar / declarar</div><div class="vocab-ru">утверждать / заявлять</div></div><button class="speak-btn" onclick="speak('declarar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">añadir</div><div class="vocab-ru">добавлять (при пересказе)</div></div><button class="speak-btn" onclick="speak('añadir')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">asegurar que...</div><div class="vocab-ru">заверять / утверждать что...</div></div><button class="speak-btn" onclick="speak('asegurar que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">comentar que...</div><div class="vocab-ru">комментировать / говорить что...</div></div><button class="speak-btn" onclick="speak('comentar que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">al día siguiente</div><div class="vocab-ru">на следующий день (косв. речь)</div></div><button class="speak-btn" onclick="speak('al día siguiente')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el día anterior</div><div class="vocab-ru">в предыдущий день (косв. речь)</div></div><button class="speak-btn" onclick="speak('el día anterior')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">en aquel momento</div><div class="vocab-ru">в тот момент</div></div><button class="speak-btn" onclick="speak('en aquel momento')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">según (él / ella)</div><div class="vocab-ru">по словам (его / её)</div></div><button class="speak-btn" onclick="speak('según él')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">en ese momento</div><div class="vocab-ru">в тот момент / тогда</div></div><button class="speak-btn" onclick="speak('en ese momento')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">preguntar si...</div><div class="vocab-ru">спросить, является ли...</div></div><button class="speak-btn" onclick="speak('preguntar si')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">pedir que (+ subj.)</div><div class="vocab-ru">просить чтобы (+ сослагат.)</div></div><button class="speak-btn" onclick="speak('pedir que hicieras')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">ordenar que (+ subj.)</div><div class="vocab-ru">приказывать чтобы</div></div><button class="speak-btn" onclick="speak('ordenar que lo hiciera')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">suponer que...</div><div class="vocab-ru">предполагать что...</div></div><button class="speak-btn" onclick="speak('suponer que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">negar que (+ subj.)</div><div class="vocab-ru">отрицать что... (+ сослагат.)</div></div><button class="speak-btn" onclick="speak('negar que fuera verdad')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">insistir en que...</div><div class="vocab-ru">настаивать на том что...</div></div><button class="speak-btn" onclick="speak('insistir en que viniera')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">concordancia de tiempos</div><div class="vocab-ru">согласование времён</div></div><button class="speak-btn" onclick="speak('concordancia de tiempos')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">discurso indirecto</div><div class="vocab-ru">косвенная речь</div></div><button class="speak-btn" onclick="speak('discurso indirecto')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">en ese entonces</div><div class="vocab-ru">в то время / тогда</div></div><button class="speak-btn" onclick="speak('en ese entonces')">🔊</button></div>
+  </div>
+</div>
+
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Выбери правильное время</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Применяй правила concordancia de tiempos.</p>
+  <div class="quiz">
+    <h3>🎯 Последовательность времён — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Главное — настоящее: «Espero que él _____ mañana.» (venir)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">viniera</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">viene</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">venga</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Главное — прошедшее: «Le pedí que _____ más despacio.» (hablar)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">hable</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">habla</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">hablara</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. Косвенная речь: «Llego mañana» → Dijo que _____ al día siguiente.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">llegaría</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">llegará</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">llega</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «He comido» → Dijo que _____.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">ha comido</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">comió</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">había comido</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Cuando _____ (tú, llegar), yo ya habré salido.» — какое время?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">llegarás</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">llegues</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">llegues</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «¿Hablas ruso?» → Me preguntó si _____ ruso.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">hablo</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">hablaré</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">hablaba</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «Era importante que los niños _____ a la escuela.» (ir)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">vayan</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">irán</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">fueran</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Переведи в косвенную речь</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Запиши правильную форму глагола в косвенной речи.</p>
+  <div class="quiz">
+    <h3>✏️ Discurso indirecto</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «Estoy cansado.» → Dijo que _____ cansado.</div>
+      <input type="text" class="text-input" placeholder="estaba / estaba cansado" id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','estaba','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ estaba — presente→imperfecto в косвенной речи после прошлого</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. «Vendré mañana.» → Prometió que _____ al día siguiente.</div>
+      <input type="text" class="text-input" placeholder="vendría" id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','vendría','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ vendría — futuro→condicional en discurso indirecto</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Ven aquí.» → Me pidió que _____ allí.</div>
+      <input type="text" class="text-input" placeholder="fuera" id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','fuera','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ fuera — imperativo→imperfecto subjuntivo (ir→fuera)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. Главное в прошлом: «Quería que los alumnos _____ más.» (estudiar)</div>
+      <input type="text" class="text-input" placeholder="estudiaran" id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','estudiaran','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ estudiaran — quería (impf.) → imperfecto subjuntivo</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. Главное настоящее: «Es necesario que _____ empadronados.» (estar)</div>
+      <input type="text" class="text-input" placeholder="estéis" id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','estéis','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ estéis (vosotros) — presente subj. после presente principal</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. «He terminado el trabajo.» → Dijo que _____ el trabajo.</div>
+      <input type="text" class="text-input" placeholder="había terminado" id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','había terminado','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ había terminado — perfecto→pluscuamperfecto</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Concordancia de tiempos в действии</h2>
   </div>
 
   <div class="dialogue">
     <div class="dlg-header">
-      📰 El Periódico — стиль новостного репортажа
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-news')">Показать анализ</button>
+      📢 Диалог 1: Пересказ разговора с директором (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
     </div>
     <div class="dlg-line">
-      <div>
-        <div class="dlg-es" style="line-height:2">
-          El ministro <strong style="color:var(--gold)">declaró</strong> ayer que la nueva ley <strong style="color:var(--blue)">entraría</strong> en vigor en enero. Afirmó que su equipo <strong style="color:var(--blue)">había trabajado</strong> durante meses en el proyecto y que los ciudadanos <strong style="color:var(--blue)">verían</strong> los resultados pronto. Sin embargo, la oposición <strong style="color:var(--gold)">señaló</strong> que <strong style="color:var(--blue)">era</strong> demasiado pronto para celebrar.
-        </div>
-        <div class="dlg-ru" id="tr-news" style="display:none;margin-top:10px">
-          <strong>Анализ времён:</strong><br>
-          • declaró, señaló — основные действия репортажа (pretérito indefinido)<br>
-          • entraría — будущее от лица прошлого (condicional, согласование с declaró)<br>
-          • había trabajado — действие, завершившееся ещё до declaró (pluscuamperfecto)<br>
-          • verían — ещё одно будущее-от-прошлого (condicional)<br>
-          • era — состояние в прошлом (imperfecto)
-        </div>
+      <div class="dlg-speaker">María</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué te dijo el director en la reunión? <button class="speak-btn" onclick="speak('¿Qué te dijo el director en la reunión?')">🔊</button></div>
+        <div class="dlg-ru translation">[Что тебе сказал директор на встрече?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Pedro</div>
+      <div style="flex:1">
+        <div class="dlg-es">Dijo que el proyecto era muy importante y que necesitaba más recursos. <button class="speak-btn" onclick="speak('Dijo que el proyecto era muy importante y que necesitaba más recursos.')">🔊</button></div>
+        <div class="dlg-ru translation">[Сказал, что проект очень важен и что ему нужно больше ресурсов.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">María</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y mencionó cuándo habría presupuesto? <button class="speak-btn" onclick="speak('¿Y mencionó cuándo habría presupuesto?')">🔊</button></div>
+        <div class="dlg-ru translation">[И упомянул, когда будет бюджет?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Pedro</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí. Prometió que para noviembre ya habría aprobado el presupuesto. <button class="speak-btn" onclick="speak('Sí. Prometió que para noviembre ya habría aprobado el presupuesto.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да. Обещал, что к ноябрю бюджет уже будет одобрен.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">María</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Pidió algo concreto al equipo? <button class="speak-btn" onclick="speak('¿Pidió algo concreto al equipo?')">🔊</button></div>
+        <div class="dlg-ru translation">[Он попросил что-то конкретное от команды?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Pedro</div>
+      <div style="flex:1">
+        <div class="dlg-es">Nos pidió que entregáramos un informe antes del miércoles. <button class="speak-btn" onclick="speak('Nos pidió que entregáramos un informe antes del miércoles.')">🔊</button></div>
+        <div class="dlg-ru translation">[Попросил нас сдать доклад до среды.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">María</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y qué más? ¿Dijo si era urgente? <button class="speak-btn" onclick="speak('¿Y qué más? ¿Dijo si era urgente?')">🔊</button></div>
+        <div class="dlg-ru translation">[И что ещё? Сказал ли, что это срочно?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Pedro</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, insistió en que era muy urgente y que no podíamos retrasarlo más. <button class="speak-btn" onclick="speak('Sí, insistió en que era muy urgente y que no podíamos retrasarlo más.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, настаивал на том, что это очень срочно и что мы не можем больше откладывать.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">María</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿También habló de las vacaciones? Yo le había pedido que me las aprobara. <button class="speak-btn" onclick="speak('¿También habló de las vacaciones? Yo le había pedido que me las aprobara.')">🔊</button></div>
+        <div class="dlg-ru translation">[Он также говорил об отпуске? Я просила его одобрить мой.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Pedro</div>
+      <div style="flex:1">
+        <div class="dlg-es">Dijo que las aprobaría en cuanto terminara el proyecto. <button class="speak-btn" onclick="speak('Dijo que las aprobaría en cuanto terminara el proyecto.')">🔊</button></div>
+        <div class="dlg-ru translation">[Сказал, что одобрит их, как только закончится проект.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог</button>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏫 Диалог 2: Родитель рассказывает учителю о разговоре с директором (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Profe</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. ¿Ha hablado ya con la directora sobre la matrícula de su hijo? <button class="speak-btn" onclick="speak('Buenos días. ¿Ha hablado ya con la directora sobre la matrícula de su hijo?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Доброе утро. Вы уже говорили с директором о записи вашего сына?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Mamá</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí. La directora me dijo que necesitaban el certificado de empadronamiento antes del 15. <button class="speak-btn" onclick="speak('Sí. La directora me dijo que necesitaban el certificado de empadronamiento antes del 15.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да. Директор сказала, что им нужна справка о регистрации до 15-го.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Profe</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y le mencionó si había plazas disponibles en el curso que le interesa? <button class="speak-btn" onclick="speak('¿Y le mencionó si había plazas disponibles en el curso que le interesa?')">🔊</button></div>
+        <div class="dlg-ru translation2">[И упомянула, есть ли места в нужном вам классе?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Mamá</div>
+      <div style="flex:1">
+        <div class="dlg-es">Me explicó que todavía había dos plazas libres, pero que se llenarían pronto. <button class="speak-btn" onclick="speak('Me explicó que todavía había dos plazas libres, pero que se llenarían pronto.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Объяснила, что ещё есть два свободных места, но что они скоро заполнятся.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Profe</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Le pidió que hiciera algo más? <button class="speak-btn" onclick="speak('¿Le pidió que hiciera algo más?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Она попросила вас сделать что-то ещё?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Mamá</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, me pidió que rellenara el formulario online antes de entregar los documentos. <button class="speak-btn" onclick="speak('Sí, me pidió que rellenara el formulario online antes de entregar los documentos.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, попросила заполнить онлайн-форму до сдачи документов.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Profe</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y qué dijo sobre el nivel de español del niño? <button class="speak-btn" onclick="speak('¿Y qué dijo sobre el nivel de español del niño?')">🔊</button></div>
+        <div class="dlg-ru translation2">[А что она сказала об уровне испанского вашего ребёнка?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Mamá</div>
+      <div style="flex:1">
+        <div class="dlg-es">Dijo que sería necesario que hiciera una prueba de nivel y que el orientador lo evaluaría. <button class="speak-btn" onclick="speak('Dijo que sería necesario que hiciera una prueba de nivel y que el orientador lo evaluaría.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Сказала, что ему нужно будет пройти тест уровня и что куратор его оценит.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Profe</div>
+      <div style="flex:1">
+        <div class="dlg-es">Bien. Yo le recomendaría que también hablara con la profesora de apoyo lingüístico. <button class="speak-btn" onclick="speak('Bien. Yo le recomendaría que también hablara con la profesora de apoyo lingüístico.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Хорошо. Я бы рекомендовала вам также поговорить с учителем языковой поддержки.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Mamá</div>
+      <div style="flex:1">
+        <div class="dlg-es">Gracias. La directora también había mencionado que existía un programa de acogida para familias inmigrantes. <button class="speak-btn" onclick="speak('Gracias. La directora también había mencionado que existía un programa de acogida para familias inmigrantes.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Спасибо. Директор также упомянула, что существует программа приёма для семей иммигрантов.]</div>
       </div>
     </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание для говорения</div>
-    <p>Перескажи этот новостной отрывок от первого лица, как будто ты журналист. Сохрани согласование времён.</p>
-    <div class="es">El ministro dijo que la ley _____ en vigor en enero y que su equipo _____...</div>
-    <div class="hint">Заполни пробелы и прочитай весь пересказ вслух. Это ключевой навык B1.</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      📰 Диалог 3: Анализ новостного текста — времена в журналистике (9 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Prof.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Lee este fragmento y dime qué tiempos verbales aparecen. <button class="speak-btn" onclick="speak('Lee este fragmento y dime qué tiempos verbales aparecen.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Прочитай этот отрывок и скажи, какие глагольные времена встречаются.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Alum.</div>
+      <div style="flex:1">
+        <div class="dlg-es">«El ministro declaró que el gobierno había tomado la decisión y que la implementaría en breve.» Veo indefinido, pluscuamperfecto y condicional. <button class="speak-btn" onclick="speak('Veo indefinido, pluscuamperfecto y condicional.')">🔊</button></div>
+        <div class="dlg-ru translation3">[«Министр заявил, что правительство приняло решение и что реализует его в ближайшее время.» Вижу: indefinido, pluscuamperfecto и condicional.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Prof.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Exacto. ¿Por qué «había tomado» y no «tomó»? <button class="speak-btn" onclick="speak('Exacto. ¿Por qué había tomado y no tomó?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Именно. Почему «había tomado», а не «tomó»?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Alum.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Porque la decisión ya se había tomado antes de que el ministro declarara. Es anterior a otro pasado. <button class="speak-btn" onclick="speak('Porque la decisión ya se había tomado antes de que el ministro declarara.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Потому что решение было принято до того, как министр заявил. Это действие предшествует другому прошлому.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Prof.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. ¿Y por qué «implementaría» y no «implementará»? <button class="speak-btn" onclick="speak('Perfecto. ¿Y por qué implementaría y no implementará?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Отлично. А почему «implementaría», а не «implementará»?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Alum.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Porque es el «futuro del pasado». Cuando alguien dijo algo en pasado sobre el futuro, usamos condicional. <button class="speak-btn" onclick="speak('Porque es el futuro del pasado. Cuando alguien dijo algo en pasado sobre el futuro, usamos condicional.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Потому что это «будущее в прошлом». Когда кто-то в прошлом говорил о будущем, используем condicional.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Prof.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Muy bien. ¿Y si el ministro dijera esto hoy? ¿Cómo cambiarían los tiempos? <button class="speak-btn" onclick="speak('Muy bien. ¿Y si el ministro dijera esto hoy? ¿Cómo cambiarían los tiempos?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Очень хорошо. А если министр скажет это сегодня? Как изменятся времена?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Alum.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Diría: «El ministro declara que el gobierno ha tomado la decisión y que la implementará en breve.» <button class="speak-btn" onclick="speak('El ministro declara que el gobierno ha tomado la decisión y que la implementará en breve.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Сказал бы: «Министр заявляет, что правительство приняло решение и что реализует его в ближайшее время.»]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Prof.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Exactamente! Presente→perfecto→futuro. Pasado→pluscuamperfecto→condicional. Eso es la concordancia de tiempos. <button class="speak-btn" onclick="speak('Exactamente. Presente, perfecto, futuro. Pasado, pluscuamperfecto, condicional.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Именно! Настоящее→перфект→будущее. Прошлое→плюсквамперфект→кондиционал. Это и есть concordancia de tiempos.]</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 6: Диалоги -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <h2>Диалоги — Пересказ разговора</h2>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Что сказал Пабло?
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Ана</div>
-      <div><div class="dlg-es">¿Qué te dijo Pablo sobre la reunión?</div>
-      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Что тебе сказал Пабло о встрече?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Luis</div>
-      <div><div class="dlg-es">Dijo que no podría venir porque tenía otro compromiso.</div>
-      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Сказал, что не сможет прийти, потому что у него было другое дело.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Ана</div>
-      <div><div class="dlg-es">¿Y cuándo dijo que vendría?</div>
-      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">И когда он сказал, что придёт?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Luis</div>
-      <div><div class="dlg-es">Me comentó que había llamado antes pero que nadie contestó. Que lo intentaría el jueves.</div>
-      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Сказал мне, что звонил раньше, но никто не ответил. Что попробует в четверг.</div></div>
-    </div>
-    <div id="tr-dlg1" style="display:none"></div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Что писали в новостях?
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Marta</div>
-      <div><div class="dlg-es">¿Has visto las noticias? Decían que el aeropuerto estaba cerrado.</div>
-      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Ты видел новости? Говорили, что аэропорт закрыт.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Carlos</div>
-      <div><div class="dlg-es">Sí, lo vi. Informaron de que había habido una huelga y que no se sabía cuándo reanudarían los vuelos.</div>
-      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Да, видел. Сообщили, что прошла забастовка и что не известно, когда возобновятся рейсы.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Marta</div>
-      <div><div class="dlg-es">¿Y dijeron cuándo se solucionaría?</div>
-      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">И они сказали, когда это разрешится?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Carlos</div>
-      <div><div class="dlg-es">Afirmaron que para el viernes estaría todo normalizado. Pero yo no me fiaría mucho...</div>
-      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Заявили, что к пятнице всё нормализуется. Но я бы не очень доверял...</div></div>
-    </div>
-    <div id="tr-dlg2" style="display:none"></div>
-  </div>
-
-  <div class="callout tip">
-    <h4>🗣 Прочитай оба диалога вслух!</h4>
-    <p>Играй обе роли. Обращай особое внимание на выделенные глаголы — именно они показывают согласование времён в живой речи.</p>
-  </div>
-</div>
-
-<!-- SECTION 7: Говорение -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Говорение — Пересказ сложного текста</h2>
+    <h2>Говорение — Пересказ и анализ</h2>
   </div>
-
   <div class="speak-box">
-    <div class="speak-tag">🎙 Сценарий A — Базовый</div>
-    <p>Прочитал новость: «Испания откроет новые визовые центры в России». Перескажи её другу, используя dijo que / informaron de que.</p>
-    <div class="es">El periódico informó de que España _____ nuevos centros de visado y que el proceso _____ más rápido.</div>
-    <div class="hint">Шаблон: informó de que + imperfecto / condicional</div>
+    <div class="speak-tag">🎙 Упражнение 1 — Пересказ разговора</div>
+    <p>Расскажи вслух о любом реальном разговоре, который у тебя был. Используй косвенную речь: dijo que..., me preguntó si..., me pidió que...</p>
+    <div class="es">«Ayer hablé con... Me dijo que... También preguntó si... Y me pidió que...»</div>
+    <div class="hint">Цель: 1–2 минуты, минимум 5 глагольных форм в косвенной речи с правильным сдвигом времён.</div>
   </div>
-
   <div class="speak-box">
-    <div class="speak-tag">🎙 Сценарий B — Продвинутый</div>
-    <p>Перескажи собеседнику разговор с работодателем. Используй минимум 4 разных глагола сообщения (dijo, comentó, afirmó, preguntó).</p>
-    <div class="es">El jefe me dijo que el proyecto _____ bien. Me preguntó si yo _____ con el equipo. Comentó que los resultados _____ a finales de mes...</div>
-    <div class="hint">Запиши или произнеси вслух минимум 6 предложений.</div>
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Испании: после встречи в школе</div>
+    <p>Ты только что вышел(а) из школы после встречи с учителем. Перескажи разговор партнёру по-испански:</p>
+    <div class="es">«La tutora me dijo que mi hijo se adaptaba bien. Me explicó que necesitaba más apoyo en matemáticas. Me pidió que comprara un cuaderno de práctica. También dijo que habría una reunión de padres el próximo mes y que era importante que asistiéramos.»</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('La tutora me dijo que mi hijo se adaptaba bien. Me explicó que necesitaba más apoyo en matemáticas. Me pidió que comprara un cuaderno de práctica.')">🔊 Прослушать пример</button>
+    <div class="hint">Измени детали. Добавь свои предложения. Обрати внимание на согласование времён.</div>
   </div>
 </div>
 
-<!-- SECTION 8: Культурная заметка -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Культурная заметка</h2>
+    <h2>🇪🇸 Испания на практике: Общение с учителями и школьной администрацией</h2>
   </div>
-
-  <div class="culture">
-    <div class="ctag">Культура языка</div>
-    <h4>Почему в испанских новостях столько condicional?</h4>
-    <p>Испанские журналисты активно используют конд. для «непроверенных» сведений: вместо «murió» (умер — факт) пишут «habría muerto» (якобы умер). Это называется <em>condicional de rumor</em> или <em>condicional de probabilidad</em>. Этот приём защищает от судебных претензий и одновременно сигнализирует читателю: информация из второисточников. Когда видишь подобное в новостях — теперь знаешь, что это значит.</p>
+  <div class="spain-practice">
+    <div class="spain-tag">🏫 Реальная ситуация — Барселона, reunión de padres</div>
+    <p style="margin-bottom:12px">В испанских школах регулярно проходят reuniones de padres (родительские собрания) и tutorías (индивидуальные встречи с классным руководителем). Умение пересказывать и обсуждать эти разговоры — важный навык для жизни в Испании.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">La tutora me explicó que mi hijo necesitaba apoyo. <button class="speak-btn" onclick="speak('La tutora me explicó que mi hijo necesitaba apoyo.')">🔊</button></div>
+          <div class="phrase-ru">Классный руководитель объяснила, что моему сыну нужна поддержка.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Me pidió que viniera a una tutoría individual la semana siguiente. <button class="speak-btn" onclick="speak('Me pidió que viniera a una tutoría individual la semana siguiente.')">🔊</button></div>
+          <div class="phrase-ru">Попросила меня прийти на индивидуальную встречу на следующей неделе.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">El director dijo que habría un cambio en el horario a partir de enero. <button class="speak-btn" onclick="speak('El director dijo que habría un cambio en el horario a partir de enero.')">🔊</button></div>
+          <div class="phrase-ru">Директор сказал, что с января будет изменение расписания.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">La secretaria me informó de que había que renovar el seguro escolar. <button class="speak-btn" onclick="speak('La secretaria me informó de que había que renovar el seguro escolar.')">🔊</button></div>
+          <div class="phrase-ru">Секретарь сообщила, что нужно обновить школьную страховку.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">El orientador recomendó que el niño asistiera a clases de refuerzo. <button class="speak-btn" onclick="speak('El orientador recomendó que el niño asistiera a clases de refuerzo.')">🔊</button></div>
+          <div class="phrase-ru">Куратор порекомендовал, чтобы ребёнок посещал дополнительные занятия.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Los profesores nos pidieron que firmáramos el consentimiento para la excursión. <button class="speak-btn" onclick="speak('Los profesores nos pidieron que firmáramos el consentimiento para la excursión.')">🔊</button></div>
+          <div class="phrase-ru">Учителя попросили подписать согласие на экскурсию.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> В испанской школьной системе много письменных коммуникаций через платформы (agenda escolar, Clickedu, Raíces). Родители регулярно получают уведомления с просьбами: «Se ruega que se firme el documento adjunto» — «Просим подписать прилагаемый документ». Понимание косвенной речи поможет правильно интерпретировать такие сообщения.
+    </div>
   </div>
 </div>
 
-<!-- SECTION 9: Anki + ДЗ -->
+<!-- 11. CULTURE NOTE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">9</div>
-    <h2>Anki + Домашнее задание</h2>
+    <h2>Культурная заметка</h2>
   </div>
+  <div class="culture">
+    <div class="ctag">🌍 Временно́й план в испанской журналистике</div>
+    <h4>Как испанские СМИ используют concordancia de tiempos</h4>
+    <p>Испанские газеты (El País, El Mundo, La Vanguardia) активно используют косвенную речь в репортажах. Глагол-вводитель почти всегда в indefinido (dijo, afirmó, declaró, aseguró), придаточное сдвигается в прошедшее. Умение читать такие тексты — маркер уровня B1+. Обрати внимание: в разговорной речи испанцы иногда нарушают concordancia, особенно в неформальном общении, оставляя настоящее или futuro вместо condicional. Это нормально — но на экзаменах и в письменной речи правило соблюдается строго.</p>
+  </div>
+</div>
 
-  <!-- .wrap -->
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 17 карточек по Concordancia de tiempos</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Кликни на карточку для переворота. Скачай все карточки для Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Presente → Subj.</div>
+        <div class="anki-card-back">Quiero que <b>vengas</b><br>Настоящ. гл. → Pres. Subjuntivo</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Pasado → Subj.</div>
+        <div class="anki-card-back">Quería que <b>vinieras</b><br>Прошедш. гл. → Impf. Subjuntivo</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Dijo que...</div>
+        <div class="anki-card-back">Косвенная речь<br>«Vengo» → dijo que <b>venía</b></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Futuro → Condicional</div>
+        <div class="anki-card-back">«Vendré» → Dijo que <b>vendría</b><br>Сдвиг futuro→cond. в косв. речи</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">al día siguiente</div>
+        <div class="anki-card-back">на следующий день<br>«mañana» → al día siguiente (косв. речь)</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL74()">📥 Скачать колоду L74 Anki (.txt)</button>
+</div>
 
-<!-- DONE BAR -->
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L75: Выражение мнения)</h4>
+    <ul>
+      <li><strong>Пересказ упражнение:</strong> Прочитай любую новость на elpais.com. Перескажи её своими словами, используя косвенную речь (3–5 предложений)</li>
+      <li><strong>Dreaming Spanish (intermediate)</strong> — 20–30 минут. Замечай в речи форму «dijo que...» и после идущие времена</li>
+      <li><strong>Anki</strong> — повторяй 17 карточек из этого урока ежедневно</li>
+      <li><strong>Мини-упражнение:</strong> Запиши разговор, который у тебя был сегодня/вчера, в формате косвенной речи на испанском (5–7 предложений)</li>
+      <li><strong>Прочитай вслух</strong> оба диалога из этого урока — обращая внимание на согласование времён</li>
+    </ul>
+  </div>
+  <div class="callout info" style="margin-top:14px">
+    <h4>📰 Рекомендация: читай аутентичные тексты</h4>
+    <p>На уровне B1 регулярное чтение газет — лучший способ усвоить concordancia de tiempos. Журналисты используют её правильно и последовательно. Начни с El País Junior или BBC Mundo — более простой язык.</p>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок L74 завершён!</h4>
+    <p>Ты освоил concordancia de tiempos — полную карту связи времён в испанском языке, правила согласования в придаточных предложениях и технику перевода прямой речи в косвенную. Это фундамент для уровней B1+ и DELE. Следующий урок — Выражение мнения (L75).</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
     <a href="L73.html" class="nav-link-btn">← L73</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L75.html" class="nav-link-btn">L75 →</a>
+    <a href="L75.html" class="nav-link-btn">L75: Мнение →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L74 = [
+  {front:"Concordancia de tiempos",back:"Русский: Согласование времён<br>Ejemplo: Quería que vinieras. (прошлое→impf.subj.)<br>Nota: ключевой принцип испанской грамматики B1"},
+  {front:"Presente → Presente Subjuntivo",back:"Русский: Настоящ. гл.→Pres.Subj.<br>Ejemplo: Espero que todo salga bien.<br>Nota: espero (pres.) → salga (pres.subj.)"},
+  {front:"Pasado → Imperfecto Subjuntivo",back:"Русский: Прошедш. гл.→Impf.Subj.<br>Ejemplo: Le pedí que hablara más despacio.<br>Nota: pedí (indef.) → hablara (impf.subj.)"},
+  {front:"dijo que + imperfecto",back:"Русский: сказал что + несоверш. прош.<br>Ejemplo: Dijo que estaba cansado.<br>Nota: «estoy» → «estaba» в косвенной речи"},
+  {front:"dijo que + condicional",back:"Русский: сказал что + конд.<br>Ejemplo: Dijo que vendría al día siguiente.<br>Nota: «vendré» → «vendría» (futuro→cond.)"},
+  {front:"dijo que + pluscuamperfecto",back:"Русский: сказал что + плюскв.<br>Ejemplo: Dijo que había perdido las llaves.<br>Nota: «he perdido» → «había perdido»"},
+  {front:"me pidió que + impf.subj.",back:"Русский: попросил меня чтобы<br>Ejemplo: Me pidió que fuera allí.<br>Nota: imperativo «ve» → «fuera» (impf.subj.)"},
+  {front:"al día siguiente",back:"Русский: на следующий день<br>Ejemplo: Dijo que vendría al día siguiente.<br>Nota: «mañana»→«al día siguiente» в косв.речи"},
+  {front:"el día anterior",back:"Русский: в предыдущий день<br>Ejemplo: Dijo que había llegado el día anterior.<br>Nota: «ayer»→«el día anterior» в косв.речи"},
+  {front:"era importante que + subj.",back:"Русский: важно было чтобы<br>Ejemplo: Era importante que llegaras puntual.<br>Nota: era (impf.) → llegaras (impf.subj.)"},
+  {front:"según él / ella",back:"Русский: по его / её словам<br>Ejemplo: Según ella, el proyecto estaba listo.<br>Nota: маркер пересказа чужих слов"},
+  {front:"el futuro del pasado",back:"Русский: будущее в прошлом<br>Ejemplo: Dijo que llegaría tarde.<br>Nota: Condicional = futuro когда главное в прошлом"},
+  {front:"discurso indirecto",back:"Русский: косвенная речь<br>Ejemplo: «Vengo» → Dijo que venía.<br>Nota: основной принцип — сдвиг времён назад"},
+  {front:"insistió en que + subj.",back:"Русский: настаивал на том что<br>Ejemplo: Insistió en que fuéramos juntos.<br>Nota: insistir en → imperfecto subjuntivo"},
+  {front:"me preguntó si...",back:"Русский: спросил меня, является ли...<br>Ejemplo: Me preguntó si hablaba ruso.<br>Nota: вопрос в косв.речи без ¿?"},
+  {front:"comentó que...",back:"Русский: прокомментировал что<br>Ejemplo: Comentó que el tiempo estaba cambiando.<br>Nota: глагол-вводитель для нейтральных пересказов"},
+  {front:"la tutora recomendó que...",back:"Русский: классный руководитель рекомендовала чтобы<br>Ejemplo: La tutora recomendó que estudiara más.<br>Nota: recomendó (indef.) → estudiara (impf.subj.)"},
+];
+
+function exportAnkiL74() {
+  const tsv = ANKI_DECK_L74.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L74_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    '¿Qué te dijo el director en la reunión?',
+    'Dijo que el proyecto era muy importante y que necesitaba más recursos.',
+    '¿Y mencionó cuándo habría presupuesto?',
+    'Sí. Prometió que para noviembre ya habría aprobado el presupuesto.',
+    '¿Pidió algo concreto al equipo?',
+    'Nos pidió que entregáramos un informe antes del miércoles.',
+    '¿Y qué más? ¿Dijo si era urgente?',
+    'Sí, insistió en que era muy urgente y que no podíamos retrasarlo más.',
+    'Dijo que las aprobaría en cuanto terminara el proyecto.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 900);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
 const LESSON_ID = 'L74';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizAnswers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a'};
-const quizExpl={
-  q1:'llegaría — главное в прошлом (dijo) → придаточное: condicional. Никогда не "llegará" после dijo.',
-  q2:'está — creo (настоящее) → придаточное в настоящем. Всё просто.',
-  q3:'se había ido — «ya» + действие раньше другого прошлого = pluscuamperfecto.',
-  q4:'era — pensaba (имперфект) → придаточное тоже в имперфекте.',
-  q5:'terminaría — me aseguró (прош.) → будущее становится condicional.',
-  q6:'supiera — negar que требует сослагательного (subjuntivo imperfecto). Это особый случай!'
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'habré terminado — futuro perfecto, завершённость к моменту. «Para las doce» — маркер времени для futuro perfecto.',
+  w2:'habrá — futuro perfecto 3-е лицо, для вероятности о прошлом. Habría — condicional, не для этой функции.',
+  w3:'abierto — неправильный participio от abrir. abrir→abierto.',
+  w4:'empiece — presente subjuntivo. «Cuando» с futuro смыслом требует subjuntivo.',
+  q1:'venga — presente subjuntivo. Espero (presente) → придаточное presente subjuntivo.',
+  q2:'hablara — imperfecto subjuntivo. Pedí (indefinido) → придаточное imperfecto subjuntivo.',
+  q3:'llegaría — condicional. В косвенной речи futuro→condicional. «mañana»→«al día siguiente».',
+  q4:'había comido — pluscuamperfecto. В косвенной речи perfecto→pluscuamperfecto.',
+  q5:'llegues — presente subjuntivo. «Cuando» с будущим смыслом требует subjuntivo (не futuro).',
+  q6:'hablaba — imperfecto. В косвенной речи вопрос presente→imperfecto (после «preguntó»).',
+  q7:'fueran — imperfecto subjuntivo. Era (imperfecto) → придаточное imperfecto subjuntivo.',
 };
-let quizScore=0,quizTotal=0;
+
+let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -571,14 +1057,12 @@ function answerQuiz(el, qId, correctKey) {
     fb.className = 'feedback show no';
     fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
   }
-  if (typeof quizScore !== 'undefined') {
-    if (isCorrect) quizScore++;
-    quizTotal++;
-    const scoreEl = document.getElementById('quiz-score');
-    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
-  }
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
 }
-function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -597,7 +1081,7 @@ function checkText(inputId, answer, fbId) {
     input.className = 'text-input correct';
     fb.className += ' ok';
     if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
-      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
+      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения)</span>';
     } else {
       fb.textContent = '✅ Правильно! ' + answer;
     }
@@ -605,8 +1089,7 @@ function checkText(inputId, answer, fbId) {
   }
   const lev = (a, b) => {
     const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
+    if (!m) return n; if (!n) return m;
     let prev = Array.from({length: n+1}, (_,i) => i);
     let curr = new Array(n+1).fill(0);
     for (let i = 1; i <= m; i++) {
@@ -631,11 +1114,38 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => { el.style.display = showingTrans ? 'block' : 'none'; });
+}
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => { el.style.display = showingTrans2 ? 'block' : 'none'; });
+}
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => { el.style.display = showingTrans3 ? 'block' : 'none'; });
+}
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>
