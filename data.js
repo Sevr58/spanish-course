@@ -992,7 +992,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Высказать мнение по 5 спорным темам, аргументировать",
-      file:"lessons/L75.html", status:"pending"
+      file:"lessons/L75.html", status:"improved"
     },
     {
       id:"L76", num:76, phase:3, block:"B3C", level:"B1", day:162, week:27,
@@ -1004,7 +1004,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Дискуссия: поддержать и оспорить мнение собеседника",
-      file:"lessons/L76.html", status:"pending"
+      file:"lessons/L76.html", status:"improved"
     },
     {
       id:"L77", num:77, phase:3, block:"B3C", level:"B1", day:164, week:28,
