@@ -1016,7 +1016,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Объяснить причины своих решений и их последствия",
-      file:"lessons/L77.html", status:"pending"
+      file:"lessons/L77.html", status:"improved"
     },
     {
       id:"L78", num:78, phase:3, block:"B3C", level:"B1", day:166, week:28,
@@ -1028,7 +1028,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Выражать противоречия и уступки в сложных высказываниях",
-      file:"lessons/L78.html", status:"pending"
+      file:"lessons/L78.html", status:"improved"
     },
     {
       id:"L79", num:79, phase:3, block:"B3C", level:"B1", day:168, week:28,
