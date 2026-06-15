@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L80: Условные предложения I — реальные</title>
+<title>L80: Условные предложения I — реальные условия</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -35,8 +34,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -51,8 +49,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -71,7 +67,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -80,10 +76,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -91,392 +83,966 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
-th{background:var(--bg3);color:var(--gold);padding:8px 12px;text-align:left;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
-td{padding:8px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
-tr:last-child td{border-bottom:none}
-.formula{background:var(--bg3);border-radius:8px;padding:16px 20px;margin:14px 0;border-left:4px solid var(--gold);font-size:1rem;font-weight:600}
-.formula .f-label{font-size:.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.formula .f-pattern{font-size:1.1rem;color:var(--text)}
-.formula .f-ex{font-size:.88rem;color:var(--muted);margin-top:6px}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block;margin:8px}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.formula-box{background:var(--bg3);border:2px solid var(--gold);border-radius:8px;padding:16px 20px;margin:14px 0;text-align:center;font-size:1.05rem;font-weight:700}
+.formula-box .plus{color:var(--muted);margin:0 8px}
+.formula-part{display:inline-block;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px 14px}
+.grammar-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.87rem}
+.grammar-table th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600;border-bottom:2px solid var(--border)}
+.grammar-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.grammar-table tr:last-child td{border-bottom:none}
+.grammar-table .es{color:var(--gold);font-weight:600}
+.authentic-text{background:var(--bg3);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 18px;margin:16px 0;font-size:.92rem}
+.authentic-label{font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.cond-type{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:14px}
+.cond-type-header{font-weight:700;font-size:.95rem;margin-bottom:10px;color:var(--gold)}
+.cond-example{margin-bottom:8px;font-size:.9rem}
+.cond-example .es{color:var(--gold)}
+.cond-example .ru{color:var(--muted);font-size:.83rem}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+</style>
 </head>
 <body>
 <div class="wrap">
 
+<!-- 1. NAV -->
 <div class="nav">
-  <a href="../index.html">← Дашборд</a>
+  <a href="L79.html">← L79: Цель и результат</a>
   <span class="level">B1 · Фаза 3 · День 170</span>
   <a href="L81.html">L81 →</a>
 </div>
 
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">Фаза 3 · Блок B3C · Сложная коммуникация</div>
+  <div class="phase-tag">🎯 Фаза 3 · Прорыв · A2→B1 · Dreaming Spanish: Intermediate</div>
   <h1>Условные I — <span class="hl">реальные</span></h1>
-  <p class="sub">Si estudias, aprenderás — Si + Presente + Futuro. Обещания, планы, предупреждения и реальные условия.</p>
+  <p class="sub">Si estudias, aprenderás — если учишься, выучишь. Реальные условия: Si + presente + futuro</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">📋</div><div><strong>Формула</strong><p>Si + presente → futuro/imperativo/presente</p></div></div>
-    <div class="obj"><div class="ico">🤝</div><div><strong>Обещания</strong><p>Si llegas a tiempo, te espero</p></div></div>
-    <div class="obj"><div class="ico">⚠️</div><div><strong>Предупреждения</strong><p>Si no estudias, reprobarás</p></div></div>
-    <div class="obj"><div class="ico">📜</div><div><strong>Правила</strong><p>Si + presente + presente — законы, факты</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Освоить формулу Si + presente + futuro</p></div></div>
+    <div class="obj"><div class="ico">📐</div><div><strong>Цель 2</strong><p>Различать 4 типа реальных условных</p></div></div>
+    <div class="obj"><div class="ico">⚠️</div><div><strong>Цель 3</strong><p>Не ставить futuro в si-clause!</p></div></div>
+    <div class="obj"><div class="ico">🗣️</div><div><strong>Цель 4</strong><p>Делать обещания, угрозы и прогнозы</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1 -->
+<!-- 3. WARM-UP: повторение L79 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Реальные условия — структура и нюансы</h2>
+    <h2>Повторение L79 — Цель и результат</h2>
   </div>
-
-  <p style="margin-bottom:14px">Условное предложение первого типа описывает <strong>реальные и вероятные ситуации</strong>. Говорящий считает, что условие вполне может выполниться. Это не фантазия, а обычное планирование будущего.</p>
-
-  <div class="formula">
-    <div class="f-label">Основная формула — Тип 1 (Реальное условие)</div>
-    <div class="f-pattern"><span style="color:var(--gold)">Si</span> + Presente Indicativo → <span style="color:var(--blue)">Futuro / Imperativo / Presente</span></div>
-    <div class="f-ex">Si estudias, aprobarás el examen. — Если будешь учиться, сдашь экзамен.</div>
-  </div>
-
-  <div class="callout warning">
-    <h4>⚠️ Железное правило: после SI нельзя использовать Futuro!</h4>
-    <p>По-русски мы говорим «если БУДЕШЬ учиться» — будущее время в условии. По-испански после «si» всегда <strong>presente</strong>: «Si <em>estudias</em>» (не *«si estudiarás»). Это самая частая ошибка русскоговорящих. Futuro идёт только в главной части!</p>
-  </div>
-
-  <p style="margin-bottom:10px"><strong>Три варианта главной части:</strong></p>
-
-  <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;font-size:.88rem;margin-bottom:14px">
-    <p style="margin-bottom:8px"><strong style="color:var(--gold)">+ Futuro</strong> (предсказание): «Si llueve, <em>no saldremos</em>.»</p>
-    <p style="margin-bottom:8px"><strong style="color:var(--blue)">+ Imperativo</strong> (инструкция/просьба): «Si tienes hambre, <em>come algo</em>.»</p>
-    <p><strong style="color:var(--green)">+ Presente</strong> (факт/закон): «Si el agua llega a 100°C, <em>hierve</em>.»</p>
-  </div>
-
-  <div class="callout tip">
-    <h4>💡 Si puede + infinitivo — частый разговорный вариант</h4>
-    <p>«Si puedes, ayúdame.» — Если можешь, помоги мне. Эта конструкция с poder очень распространена в просьбах. «Si tienes tiempo, ¿puedes revisar esto?» — Если есть время, можешь посмотреть это?</p>
-  </div>
-
-  <div class="callout info">
-    <h4>🔍 Вариации структуры</h4>
-    <ul>
-      <li><strong>Siempre que / Cuando + presente</strong> — аналог si для регулярных условий: «Siempre que llueve, me quedo en casa.»</li>
-      <li><strong>En caso de que + subjuntivo</strong> — более формальный вариант: «En caso de que llueva, cancela el evento.»</li>
-      <li><strong>A menos que + subjuntivo</strong> — если только не: «Vendré a menos que surja algo.»</li>
-    </ul>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прошлый урок: para, para que, así que, de modo que, hasta que. Проверь себя!</p>
+  <div class="quiz">
+    <h3>🔄 Быстрая проверка — 4 вопроса</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Te llamo ___ sepas la hora. <em>(два субъекта, цель)</em></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">para que</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">para</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">así que</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Llegó tarde, ___ perdió el vuelo. <em>(resultado)</em></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">para que</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">así que</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">hasta que</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. No salgas ___ te llame. <em>(futuro incierto)</em></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">hasta que</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">para que</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">de modo que</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Vine aquí ___ aprender español. <em>(mismo sujeto, цель)</em></div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">para que</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">para</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">así que</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: Словарь -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — Условия и обещания</h2>
+    <h2>Теория — Тип 1: Реальные условные предложения</h2>
   </div>
 
-  <table>
-    <tr><th>Слово</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
-    <tr><td><strong>prometer</strong></td><td>[промеТЕР]</td><td>обещать</td><td>Si apruebo, te prometo que celebraremos.</td></tr>
-    <tr><td><strong>advertir</strong></td><td>[адверТИР]</td><td>предупреждать</td><td>Te advierto que si no pagas, habrá consecuencias.</td></tr>
-    <tr><td><strong>amenazar</strong></td><td>[аменаСАР]</td><td>угрожать</td><td>Amenazó con irse si no mejoraban las condiciones.</td></tr>
-    <tr><td><strong>en caso de que</strong></td><td>[ка-со де ке]</td><td>в случае если</td><td>En caso de que haya problemas, llámame.</td></tr>
-    <tr><td><strong>a menos que</strong></td><td>[МЕ-нос ке]</td><td>если только не</td><td>Iré a menos que me sienta mal.</td></tr>
-    <tr><td><strong>siempre que</strong></td><td>[СЬЕМ-пре ке]</td><td>всегда когда / при условии что</td><td>Siempre que estudies, aprobarás.</td></tr>
-    <tr><td><strong>con tal de que</strong></td><td>[кон тал де ке]</td><td>при условии что</td><td>Lo haré con tal de que me ayudes.</td></tr>
-    <tr><td><strong>resultar</strong></td><td>[резулТАР]</td><td>оказываться, получаться</td><td>Si resulta bien, repetiremos.</td></tr>
-    <tr><td><strong>depender de</strong></td><td>[депенДЕР де]</td><td>зависеть от</td><td>Depende de si tienes tiempo.</td></tr>
-    <tr><td><strong>asegurarse de</strong></td><td>[асегуРАРсе]</td><td>убедиться в</td><td>Asegúrate de que tienes el pasaporte.</td></tr>
-    <tr><td><strong>por si acaso</strong></td><td>[акАсо]</td><td>на всякий случай</td><td>Lleva paraguas por si acaso llueve.</td></tr>
-    <tr><td><strong>cumplir</strong></td><td>[кумПЛИР]</td><td>выполнять (условие)</td><td>Si cumples los requisitos, te contratamos.</td></tr>
+  <p style="margin-bottom:16px">В испанском три основных типа условных. Сегодня — <strong>Тип 1: реальные (real conditions)</strong>. Это условия, которые возможны или вероятны. В отличие от гипотетических (Тип 2), здесь говорящий считает выполнение условия <em>возможным</em>.</p>
+
+  <div class="formula-box">
+    <span class="formula-part">Si</span>
+    <span class="plus">+</span>
+    <span class="formula-part">Presente de indicativo</span>
+    <span class="plus">+</span>
+    <span class="formula-part">Futuro simple / Imperativo / Presente</span>
+  </div>
+
+  <div class="callout tip">
+    <h4>🔑 Самое важное правило</h4>
+    <p>В придаточном с <strong>si</strong> (если) <strong>НИКОГДА</strong> не ставится futuro simple и subjuntivo. Только presente de indicativo или pretérito imperfecto (Тип 2). Это главная ошибка!</p>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:1rem;font-weight:700">📌 Вариант 1: Si + presente + futuro simple (самый частый)</h3>
+  <p style="margin-bottom:10px;font-size:.9rem;color:var(--muted)">Классическое условие: если случится X, то Y произойдёт.</p>
+
+  <div class="cond-type">
+    <div class="cond-type-header">Si + presente → futuro (обещания, прогнозы, угрозы)</div>
+    <div class="cond-example">
+      <div class="es">Si estudias, <strong>aprobarás</strong> el examen.</div>
+      <div class="ru">Если будешь учиться, сдашь экзамен.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si llueve, <strong>nos quedaremos</strong> en casa.</div>
+      <div class="ru">Если пойдёт дождь, останемся дома.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si llegas tarde, <strong>perderás</strong> el tren.</div>
+      <div class="ru">Если опоздаешь, пропустишь поезд.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si no pagas, <strong>tendrás</strong> problemas.</div>
+      <div class="ru">Если не заплатишь, у тебя будут проблемы.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si me ayudas, <strong>terminaremos</strong> más rápido.</div>
+      <div class="ru">Если поможешь мне, закончим быстрее.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si ahorras dinero, <strong>podrás</strong> viajar el año que viene.</div>
+      <div class="ru">Если будешь копить деньги, сможешь путешествовать в следующем году.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si practicas cada día, <strong>hablarás</strong> con fluidez en seis meses.</div>
+      <div class="ru">Если будешь практиковаться каждый день, заговоришь свободно за полгода.</div>
+    </div>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:1rem;font-weight:700">📌 Вариант 2: Si + presente + imperativo (советы, инструкции)</h3>
+  <p style="margin-bottom:10px;font-size:.9rem;color:var(--muted)">Очень частый вариант в разговорном языке: условие + приказ/совет.</p>
+
+  <div class="cond-type">
+    <div class="cond-type-header">Si + presente → imperativo (советы, рекомендации)</div>
+    <div class="cond-example">
+      <div class="es">Si tienes frío, <strong>cierra</strong> la ventana.</div>
+      <div class="ru">Если тебе холодно, закрой окно.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si no lo entiendes, <strong>pregunta</strong> al profesor.</div>
+      <div class="ru">Если не понимаешь, спроси учителя.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si quieres mejorar, <strong>practica</strong> todos los días.</div>
+      <div class="ru">Если хочешь улучшиться, практикуйся каждый день.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si te duele la cabeza, <strong>toma</strong> una aspirina.</div>
+      <div class="ru">Если болит голова, прими аспирин.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si tienes dudas, <strong>escríbeme</strong> un mensaje.</div>
+      <div class="ru">Если есть сомнения, напиши мне сообщение.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si no encuentras la calle, <strong>usa</strong> Google Maps.</div>
+      <div class="ru">Если не найдёшь улицу, используй Google Maps.</div>
+    </div>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:1rem;font-weight:700">📌 Вариант 3: Si + presente + presente (общие истины, habitual)</h3>
+  <p style="margin-bottom:10px;font-size:.9rem;color:var(--muted)">Когда условие — всегда истинное или привычное действие.</p>
+
+  <div class="cond-type">
+    <div class="cond-type-header">Si + presente → presente (законы, обычаи, общие истины)</div>
+    <div class="cond-example">
+      <div class="es">Si comes demasiado, <strong>engordas</strong>.</div>
+      <div class="ru">Если ешь слишком много, толстеешь. (общая истина)</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si el agua hierve a 100°C, <strong>se convierte</strong> en vapor.</div>
+      <div class="ru">Если вода кипит при 100°C, превращается в пар.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si no duermes bien, <strong>estás</strong> de mal humor.</div>
+      <div class="ru">Если плохо спишь, у тебя плохое настроение.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si no hay tráfico, <strong>llego</strong> en 20 minutos.</div>
+      <div class="ru">Если нет пробок, добираюсь за 20 минут. (обычно)</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si hace calor, <strong>suelo</strong> quedarme en casa.</div>
+      <div class="ru">Если жарко, я обычно остаюсь дома.</div>
+    </div>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:1rem;font-weight:700">📌 Вариант 4: Si + presente + poder/querer + infinitivo</h3>
+  <p style="margin-bottom:10px;font-size:.9rem;color:var(--muted)">Модальные глаголы в главной части — очень распространённый вариант.</p>
+
+  <div class="cond-type">
+    <div class="cond-type-header">Si + presente → modal + inf (предложения, возможности)</div>
+    <div class="cond-example">
+      <div class="es">Si quieres, <strong>puedo ayudarte</strong>.</div>
+      <div class="ru">Если хочешь, могу помочь тебе.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si tienes tiempo, <strong>podemos quedar</strong> para cenar.</div>
+      <div class="ru">Если есть время, можем встретиться на ужин.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si no lo usas, <strong>me lo puedes dar</strong>.</div>
+      <div class="ru">Если не используешь, можешь мне отдать.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si necesitas ayuda, <strong>puedes llamarme</strong> cuando quieras.</div>
+      <div class="ru">Если нужна помощь, можешь звонить мне когда угодно.</div>
+    </div>
+    <div class="cond-example">
+      <div class="es">Si te interesa el tema, <strong>podemos hablar</strong> más.</div>
+      <div class="ru">Если тема интересует, можем поговорить подробнее.</div>
+    </div>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:1rem;font-weight:700">📌 Порядок слов: si-clause первая или вторая?</h3>
+  <table class="grammar-table">
+    <tr><th>Порядок</th><th>Пример</th><th>Знаки препинания</th></tr>
+    <tr>
+      <td>Si + [условие], [результат]</td>
+      <td class="es">Si estudias, aprobarás.</td>
+      <td>Запятая после si-clause</td>
+    </tr>
+    <tr>
+      <td>[Результат] + si + [условие]</td>
+      <td class="es">Aprobarás si estudias.</td>
+      <td>Без запятой</td>
+    </tr>
+    <tr>
+      <td>Si-clause первая (эмфаза на условии)</td>
+      <td class="es">Si no te vas ahora, perderás el bus.</td>
+      <td>Выделяет условие</td>
+    </tr>
+    <tr>
+      <td>Главная первая (эмфаза на результате)</td>
+      <td class="es">Perderás el bus si no te vas ahora.</td>
+      <td>Выделяет результат</td>
+    </tr>
+  </table>
+
+  <h3 style="margin:20px 0 12px;font-size:1rem;font-weight:700">📌 Когда? vs Если?: cuando vs si</h3>
+  <div class="callout info">
+    <h4>🔄 Si vs Cuando — важная разница</h4>
+    <p><strong>si</strong> = если (неизвестно, случится ли) + indicativo<br>
+    <strong>cuando</strong> = когда (говорящий уверен, что случится) + subjuntivo (futuro)<br><br>
+    <strong>Si viene</strong> → если придёт (может не прийти)<br>
+    <strong>Cuando venga</strong> → когда придёт (придёт точно)</p>
+  </div>
+
+  <table class="grammar-table">
+    <tr><th>Союз</th><th>Уверенность</th><th>Наклонение в зависимой</th><th>Пример</th></tr>
+    <tr>
+      <td class="es"><strong>si</strong></td>
+      <td>неизвестно</td>
+      <td>indicativo</td>
+      <td class="es">Si viene, te aviso.</td>
+    </tr>
+    <tr>
+      <td class="es"><strong>cuando</strong></td>
+      <td>уверен, что случится</td>
+      <td>subjuntivo</td>
+      <td class="es">Cuando venga, te avisaré.</td>
+    </tr>
+    <tr>
+      <td class="es"><strong>si</strong></td>
+      <td>сомнение</td>
+      <td>indicativo</td>
+      <td class="es">Si tienes tiempo, llámame.</td>
+    </tr>
+    <tr>
+      <td class="es"><strong>cuando</strong></td>
+      <td>процесс в будущем</td>
+      <td>subjuntivo</td>
+      <td class="es">Cuando termines, avísame.</td>
+    </tr>
+  </table>
+
+  <div class="authentic-text">
+    <div class="authentic-label">📱 Аутентичный текст — WhatsApp между соседями (Барселона)</div>
+    "Oye, si no vas a usar el parking mañana, ¿me lo puedes dejar? Si llueve, no quiero mojarme. Y si necesitas el sitio antes de las 8, me avisas y lo libero antes."
+    <br><br>
+    <em style="color:var(--muted);font-size:.8rem">→ Найди все 3 конструкции с si. Что означает каждая?</em>
+  </div>
+
+  <h3 style="margin:20px 0 12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Правило</th></tr>
+    <tr><td>Futuro в si-clause</td><td class="wrong-ex">Si <em>tendré</em> tiempo</td><td class="right-ex">Si <em>tengo</em> tiempo</td><td>после si — только presente ind.</td></tr>
+    <tr><td>Subjuntivo после si</td><td class="wrong-ex">Si <em>tenga</em> dinero</td><td class="right-ex">Si <em>tengo</em> dinero</td><td>si (Тип 1) + indicativo, не subj!</td></tr>
+    <tr><td>Presente после cuando (futuro)</td><td class="wrong-ex">cuando <em>viene</em></td><td class="right-ex">cuando <em>venga</em></td><td>cuando + futuro → subjuntivo</td></tr>
+    <tr><td>Нет запятой</td><td class="wrong-ex">Si estudias aprobarás</td><td class="right-ex">Si estudias, aprobarás.</td><td>si-clause первая → запятая обязательна</td></tr>
+    <tr><td>Si = sí (да)</td><td class="wrong-ex">Sí llueve, me quedo</td><td class="right-ex">Si llueve, me quedo</td><td>si (без акцента) = если; sí = да</td></tr>
+    <tr><td>Infinitivo вместо futuro</td><td class="wrong-ex">Si estudias, aprobar</td><td class="right-ex">Si estudias, aprobarás</td><td>главная часть — спрягаемый глагол</td></tr>
   </table>
 </div>
 
-<!-- SECTION 3: Тест 1 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Реальные условия</h2>
+    <h2>Словарь — 18 ключевых слов и выражений</h2>
   </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Слова для построения условных предложений. Нажимай 🔊.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">si</div><div class="vocab-ru">если (без акцента!)</div></div><button class="speak-btn" onclick="speak('si')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">sí</div><div class="vocab-ru">да (с акцентом!)</div></div><button class="speak-btn" onclick="speak('sí')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">siempre que</div><div class="vocab-ru">при условии что, всякий раз когда</div></div><button class="speak-btn" onclick="speak('siempre que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">con tal (de) que</div><div class="vocab-ru">при условии что (+ subj)</div></div><button class="speak-btn" onclick="speak('con tal de que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">a menos que</div><div class="vocab-ru">если только не (+ subj)</div></div><button class="speak-btn" onclick="speak('a menos que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">a no ser que</div><div class="vocab-ru">если только не (+ subj)</div></div><button class="speak-btn" onclick="speak('a no ser que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">en caso de (que)</div><div class="vocab-ru">в случае (если)</div></div><button class="speak-btn" onclick="speak('en caso de que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">siempre y cuando</div><div class="vocab-ru">при условии что (formal)</div></div><button class="speak-btn" onclick="speak('siempre y cuando')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la condición</div><div class="vocab-ru">условие</div></div><button class="speak-btn" onclick="speak('la condición')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la consecuencia</div><div class="vocab-ru">последствие</div></div><button class="speak-btn" onclick="speak('la consecuencia')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la hipótesis</div><div class="vocab-ru">гипотеза, предположение</div></div><button class="speak-btn" onclick="speak('la hipótesis')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">cumplir (con)</div><div class="vocab-ru">выполнять, соблюдать</div></div><button class="speak-btn" onclick="speak('cumplir')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">depender de</div><div class="vocab-ru">зависеть от</div></div><button class="speak-btn" onclick="speak('depender de')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">arriesgarse</div><div class="vocab-ru">рисковать</div></div><button class="speak-btn" onclick="speak('arriesgarse')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">atreverse (a)</div><div class="vocab-ru">осмелиться, решиться</div></div><button class="speak-btn" onclick="speak('atreverse')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">aprovechar</div><div class="vocab-ru">воспользоваться, использовать</div></div><button class="speak-btn" onclick="speak('aprovechar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">a tiempo</div><div class="vocab-ru">вовремя</div></div><button class="speak-btn" onclick="speak('a tiempo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">de lo contrario</div><div class="vocab-ru">иначе, в противном случае</div></div><button class="speak-btn" onclick="speak('de lo contrario')">🔊</button></div>
+  </div>
+</div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Si + правильная форма</h3>
-
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Выбери правильную форму</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">6 вопросов про реальные условные предложения.</p>
+  <div class="quiz">
+    <h3>🎯 Si / Cuando / форма глагола — 6 вопросов</h3>
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. «Si _____ (tú, estudiar) más, aprobarás el examen.»</div>
+      <div class="q-text">1. Si ___ (tener) hambre, come algo.</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">estudias</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">estudiarás</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">estudies</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">tienes</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">tendrás</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">tengas</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
-
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. «Si tienes hambre, _____ (comer) algo.» (совет/инструкция)</div>
+      <div class="q-text">2. Si estudias mucho, ___ (aprobar) el examen.</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">comerás</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">come</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">comas</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">apruebas</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">aprobarás</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">apruebes</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
-
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. Что НЕЛЬЗЯ использовать после «si»?</div>
+      <div class="q-text">3. ___ llegues a casa, llámame. <em>(el hablante está seguro que llegará)</em></div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">presente indicativo</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">futuro simple</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">presente de subjuntivo</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Si</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Sí</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Cuando</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
-
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. «_____ que llegues tarde, avísame.» (в случае если)</div>
+      <div class="q-text">4. No te preocupes: ___ necesitas ayuda, te la doy.</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">En caso de</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Si</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Siempre que</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">cuando</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">sí</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">si</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
-
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. «Iré a la fiesta _____ que no llueva.» (если только не)</div>
+      <div class="q-text">5. Si no ___ (llegar) a tiempo, perderemos la cita.</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">siempre</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">a menos</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">en caso</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">llegamos</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">llegaremos</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">lleguemos</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
-
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. «Si el agua llega a 100°, _____ .» (закон природы — какое время?)</div>
+      <div class="q-text">6. Si comes demasiado, ___ (engordar). <em>(ley general)</em></div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">hierve</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">hervirá</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">hierva</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">engordarás</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">engordas siempre</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">engordas</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
     </div>
   </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 4: Тест 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 2 — Построй условие</h2>
-  </div>
-
-  <div class="quiz">
-    <h3>✏️ Заполни правильную форму глагола</h3>
-
-    <div class="text-ex" id="te1">
-      <div class="tex-q">1. «Si _____ (tú, tener) tiempo mañana, llámame.»</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','tienes','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ tienes — si + presente, никогда не futuro</div>
-    </div>
-
-    <div class="text-ex" id="te2">
-      <div class="tex-q">2. «Si apruebas el examen, te _____ (nosotros, celebrar).»</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','celebraremos','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ celebraremos — futuro en la parte principal</div>
-    </div>
-
-    <div class="text-ex" id="te3">
-      <div class="tex-q">3. «En caso de que _____ (haber) problemas, contacta al director.» (subj.)</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','haya','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ haya — en caso de que + subjuntivo presente</div>
-    </div>
-
-    <div class="text-ex" id="te4">
-      <div class="tex-q">4. «Si no _____ (tú, llegar) pronto, perderemos el tren.»</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','llegas','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ llegas — presente siempre después de si</div>
-    </div>
-
-    <div class="text-ex" id="te5">
-      <div class="tex-q">5. «A menos que _____ (él, poder) venir, lo haremos sin él.» (subj.)</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','pueda','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ pueda — a menos que + subjuntivo</div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 5: Аутентичный текст -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Аутентичный текст — Договор аренды</h2>
+    <h2>Тест 2 — Впиши правильную форму глагола</h2>
   </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      Отрывок из договора аренды квартиры в Испании
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-contract')">Показать разбор</button>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи глагол в правильной форме. Вводи в нижнем регистре.</p>
+  <div class="quiz">
+    <h3>✏️ Образуй правильную форму</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. Si no ___ (trabajar, tú) más, no cobrarás este mes.</div>
+      <input type="text" class="text-input" placeholder="форма глагола trabajar..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','trabajas','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ trabajas — Si + presente indicativo (tú)</div>
     </div>
-    <div class="dlg-line">
-      <div>
-        <div class="dlg-es" style="line-height:2;font-size:.9rem">
-          «Si el arrendatario no abona el alquiler en los primeros cinco días del mes, se aplicará un recargo del 5%. En caso de que el retraso supere los 15 días, el arrendador podrá iniciar el proceso de desahucio. Si las partes no llegan a un acuerdo, el conflicto se resolverá según la normativa vigente.»
-        </div>
-        <div id="tr-contract" style="display:none;margin-top:10px;font-size:.85rem;color:var(--muted)">
-          <strong>Перевод и разбор:</strong><br>
-          «Если арендатор не оплатит аренду в первые пять дней месяца, будет применена надбавка 5%. В случае если задержка превысит 15 дней, арендодатель сможет начать процесс выселения. Если стороны не придут к соглашению, конфликт будет решён согласно действующим нормам.»<br><br>
-          <strong>Структуры:</strong> Si + presente → futuro (×2), En caso de que + subjuntivo, Si + presente → futuro
-        </div>
-      </div>
+    <div class="text-ex">
+      <div class="tex-q">2. Si ahorras dinero, ___ (poder, tú) comprarte un coche.</div>
+      <input type="text" class="text-input" placeholder="форма глагола poder..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','podrás','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ podrás — futuro simple (poder irregular: podré, podrás...)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. Si no entiendes algo, ___ (preguntar, imperativo tú) al tutor.</div>
+      <input type="text" class="text-input" placeholder="imperativo de preguntar..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','pregunta','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ pregunta — imperativo afirmativo tú</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. Cuando ___ (llegar, vosotros), avisadme. <em>(cuando + futuro)</em></div>
+      <input type="text" class="text-input" placeholder="forma verbal..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','lleguéis','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ lleguéis — presente de subjuntivo (cuando + futuro → subj)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. Si el niño ___ (tener) fiebre, lleva al médico.</div>
+      <input type="text" class="text-input" placeholder="форма глагола tener..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','tiene','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ tiene — Si + presente indicativo (él/ella)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. Si vais de vacaciones a Barcelona, ___ (visitar, vosotros) el Barrio Gótico.</div>
+      <input type="text" class="text-input" placeholder="imperativo de visitar..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','visitad','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ visitad — imperativo de vosotros (visitar → visitad)</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: Диалоги -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Диалоги — Обещания и предупреждения</h2>
+    <h2>Диалоги — Реальные условия в живой речи</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Два диалога с реальными условными предложениями. Слушай и повторяй вслух.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💼 Диалог 1: Переговоры об аренде (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. Si le interesa el piso, podemos verlo esta tarde. <button class="speak-btn" onclick="speak('Buenos días. Si le interesa el piso, podemos verlo esta tarde.')">🔊</button></div>
+        <div class="dlg-ru translation">Доброе утро. Если вам интересна квартира, можем посмотреть её сегодня вечером.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, me interesa. Si el precio es razonable, me lo quedo. <button class="speak-btn" onclick="speak('Sí, me interesa. Si el precio es razonable, me lo quedo.')">🔊</button></div>
+        <div class="dlg-ru translation">Да, интересует. Если цена разумная, беру.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Son novecientos euros. Si firmas hoy, te doy el primer mes gratis. <button class="speak-btn" onclick="speak('Son novecientos euros. Si firmas hoy, te doy el primer mes gratis.')">🔊</button></div>
+        <div class="dlg-ru translation">Девятьсот евро. Если подпишешь сегодня, дам первый месяц бесплатно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Si el piso tiene parking, lo firmo ahora mismo. ¿Lo tiene? <button class="speak-btn" onclick="speak('Si el piso tiene parking, lo firmo ahora mismo. ¿Lo tiene?')">🔊</button></div>
+        <div class="dlg-ru translation">Если у квартиры есть парковка, подпишу прямо сейчас. Есть?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, no tiene. Pero si lo necesitas, hay garaje cerca por cincuenta euros más. <button class="speak-btn" onclick="speak('No, no tiene. Pero si lo necesitas, hay garaje cerca por cincuenta euros más.')">🔊</button></div>
+        <div class="dlg-ru translation">Нет. Но если нужна, есть гараж рядом за пятьдесят евро дополнительно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Mmm. Si puedo verlo primero, decidiré más fácil. <button class="speak-btn" onclick="speak('Mmm. Si puedo verlo primero, decidiré más fácil.')">🔊</button></div>
+        <div class="dlg-ru translation">Хм. Если смогу сначала посмотреть, решу проще.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro. Si quedamos a las seis, te enseño el piso y el garaje. <button class="speak-btn" onclick="speak('Claro. Si quedamos a las seis, te enseño el piso y el garaje.')">🔊</button></div>
+        <div class="dlg-ru translation">Конечно. Если встретимся в шесть, покажу квартиру и гараж.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. Si me convence el garaje, firmaré el contrato. <button class="speak-btn" onclick="speak('Perfecto. Si me convence el garaje, firmaré el contrato.')">🔊</button></div>
+        <div class="dlg-ru translation">Отлично. Если гараж меня устроит, подпишу договор.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Агент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Si hay algún problema, llámame antes de las seis. <button class="speak-btn" onclick="speak('Si hay algún problema, llámame antes de las seis.')">🔊</button></div>
+        <div class="dlg-ru translation">Если будет какая-то проблема, позвони мне до шести.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Entendido. Si no te llamo, nos vemos a las seis. ¡Hasta luego! <button class="speak-btn" onclick="speak('Entendido. Si no te llamo, nos vemos a las seis. ¡Hasta luego!')">🔊</button></div>
+        <div class="dlg-ru translation">Понял. Если не позвоню, увидимся в шесть. До свидания!</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог</button>
+    </div>
   </div>
 
   <div class="dialogue">
     <div class="dlg-header">
-      💬 Диалог 1: Планирование поездки
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
+      🏫 Диалог 2: Разговор с учителем о ребёнке (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Переводы</button>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">Pablo</div>
-      <div><div class="dlg-es">Si consigo las vacaciones en agosto, iremos a Mallorca. ¿Qué te parece?</div>
-      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Если получу отпуск в августе, поедем на Майорку. Как тебе идея?</div></div>
+      <div class="dlg-speaker">Профе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Si Sergio practica la lectura en casa, mejorará rápidamente. <button class="speak-btn" onclick="speak('Si Sergio practica la lectura en casa, mejorará rápidamente.')">🔊</button></div>
+        <div class="dlg-ru translation">Если Серхио будет читать дома, быстро улучшится.</div>
+      </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">Ana</div>
-      <div><div class="dlg-es">Me encanta. Pero si no reservamos pronto, no encontraremos hotel barato.</div>
-      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Обожаю. Но если не забронируем скоро, не найдём дешёвый отель.</div></div>
+      <div class="dlg-speaker b">Madre</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuánto tiempo necesita si quiere estar al nivel de los demás? <button class="speak-btn" onclick="speak('¿Cuánto tiempo necesita si quiere estar al nivel de los demás?')">🔊</button></div>
+        <div class="dlg-ru translation">Сколько времени ему нужно, если хочет быть на уровне остальных?</div>
+      </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">Pablo</div>
-      <div><div class="dlg-es">Tienes razón. A menos que haya plazas disponibles en julio, lo mejor es reservar ahora mismo.</div>
-      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">Ты права. Если только не будет свободных мест в июле, лучше всего забронировать прямо сейчас.</div></div>
+      <div class="dlg-speaker">Профе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Si lee quince minutos al día, en dos meses habrá un gran cambio. <button class="speak-btn" onclick="speak('Si lee quince minutos al día, en dos meses habrá un gran cambio.')">🔊</button></div>
+        <div class="dlg-ru translation">Если будет читать пятнадцать минут в день, через два месяца будет большой прогресс.</div>
+      </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">Ana</div>
-      <div><div class="dlg-es">Perfecto. Si lo haces hoy, te prometo que preparo las maletas sin protestar.</div>
-      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Отлично. Если сделаешь это сегодня, обещаю, что собью чемоданы без жалоб.</div></div>
-    </div>
-    <div id="tr-dlg1" style="display:none"></div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Родители и ребёнок
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
+      <div class="dlg-speaker b">Madre</div>
+      <div style="flex:1">
+        <div class="dlg-es">Entendido. ¿Y si no mejora con la lectura? ¿Qué hacemos? <button class="speak-btn" onclick="speak('Entendido. ¿Y si no mejora con la lectura? ¿Qué hacemos?')">🔊</button></div>
+        <div class="dlg-ru translation">Понятно. А если не улучшится с чтением? Что делаем?</div>
+      </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">Mamá</div>
-      <div><div class="dlg-es">Si terminas los deberes antes de las ocho, puedes ver la tele.</div>
-      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Если закончишь домашнее задание до восьми, можешь смотреть телевизор.</div></div>
+      <div class="dlg-speaker">Профе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Si en un mes no hay mejora, lo derivamos al logopeda del cole. <button class="speak-btn" onclick="speak('Si en un mes no hay mejora, lo derivamos al logopeda del cole.')">🔊</button></div>
+        <div class="dlg-ru translation">Если через месяц нет улучшения, направим его к школьному логопеду.</div>
+      </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">Niño</div>
-      <div><div class="dlg-es">¡Vale! Y si saco buenas notas, ¿me comprarás la bici?</div>
-      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Хорошо! А если получу хорошие оценки, купишь мне велосипед?</div></div>
+      <div class="dlg-speaker b">Madre</div>
+      <div style="flex:1">
+        <div class="dlg-es">Bien. Si necesito hablar con usted antes, ¿puedo escribirle? <button class="speak-btn" onclick="speak('Bien. Si necesito hablar con usted antes, ¿puedo escribirle?')">🔊</button></div>
+        <div class="dlg-ru translation">Хорошо. Если мне нужно поговорить с вами раньше, могу написать?</div>
+      </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">Mamá</div>
-      <div><div class="dlg-es">Si apruebas todas las asignaturas sin suspensos, te lo prometo.</div>
-      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">Если сдашь все предметы без двоек, обещаю.</div></div>
+      <div class="dlg-speaker">Профе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro. Si me escribe antes de las ocho de la tarde, le respondo ese día. <button class="speak-btn" onclick="speak('Claro. Si me escribe antes de las ocho de la tarde, le respondo ese día.')">🔊</button></div>
+        <div class="dlg-ru translation">Конечно. Если напишете до восьми вечера, отвечу в тот же день.</div>
+      </div>
     </div>
-    <div id="tr-dlg2" style="display:none"></div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Madre</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. Si el próximo mes ve mejoría, ¿me lo hará saber? <button class="speak-btn" onclick="speak('Perfecto. Si el próximo mes ve mejoría, ¿me lo hará saber?')">🔊</button></div>
+        <div class="dlg-ru translation">Отлично. Если в следующем месяце увидите улучшение, дадите знать?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Профе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por supuesto. Si hay avances, le mando una nota positiva. <button class="speak-btn" onclick="speak('Por supuesto. Si hay avances, le mando una nota positiva.')">🔊</button></div>
+        <div class="dlg-ru translation">Конечно. Если будут успехи, пришлю положительную записку.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Madre</div>
+      <div style="flex:1">
+        <div class="dlg-es">Muchas gracias. Si Sergio sabe que usted le apoya, se esforzará más. <button class="speak-btn" onclick="speak('Muchas gracias. Si Sergio sabe que usted le apoya, se esforzará más.')">🔊</button></div>
+        <div class="dlg-ru translation">Большое спасибо. Если Серхио будет знать, что вы его поддерживаете, он будет стараться больше.</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue2()">▶ Воспроизвести диалог</button>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: Говорение -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Говорение — Обещания, планы, условия</h2>
+    <h2>Говорение — Твоя очередь!</h2>
   </div>
-
   <div class="speak-box">
-    <div class="speak-tag">🎙 Сценарий A — Обещания и планы</div>
-    <p>Составь 5 обещаний / планов с «si». Тема: переезд в Барселону, изучение испанского, работа, семья.</p>
-    <div class="es">Si consigo la visa, me mudaré en octubre.<br>Si aprendo bien el español, _____ .<br>Si encuentro trabajo allí, _____ .</div>
-    <div class="hint">Произнеси все 5 вслух. Это реальные планы — говори с убеждённостью!</div>
+    <div class="speak-tag">🎙 Упражнение 1 — 10 условий своей жизни</div>
+    <p>Скажи вслух 10 предложений о своих реальных планах и условиях. Используй все варианты: si...futuro, si...imperativo, si...presente.</p>
+    <div class="es">Si consigo trabajo en Barcelona, alquilaré un piso en Eixample. Si llueve el fin de semana, me quedaré en casa. Si tengo tiempo libre, llamaré a mis amigos...</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Si consigo trabajo en Barcelona, alquilaré un piso en Eixample. Si llueve el fin de semana, me quedaré en casa. Si tengo tiempo libre, llamaré a mis amigos.')">🔊 Пример</button>
+    <div class="hint">Говори 90 секунд. Не останавливайся. Если забыл слово — обойди его!</div>
   </div>
-
   <div class="speak-box">
-    <div class="speak-tag">🎙 Сценарий B — Переговоры по аренде</div>
-    <p>Ты снимаешь квартиру в Барселоне. Договаривайся с хозяином: условия снижения цены, ремонт и пр.</p>
-    <div class="es">Si usted reduce el alquiler un 10%, le prometo que _____ . En caso de que haya problemas, _____ . A menos que incluyan los gastos, no podré _____ .</div>
-    <div class="hint">Реальный B1 сценарий. Практикуй до автоматизма перед переездом!</div>
+    <div class="speak-tag">🎙 Упражнение 2 — Разговор с учителем ребёнка</div>
+    <p>Ты родитель. Учитель написал тебе записку об успехах ребёнка. Ответь ему голосовым сообщением, используя условные предложения:</p>
+    <div class="es">Buenos días, señorita García. Le escribo para decirle que si Miguel termina los deberes esta tarde, mañana los llevará al colegio. Si tiene algún problema esta semana, le avisaré enseguida. Si necesita algo más de nuestra parte, no dude en escribirnos. Muchas gracias por su atención.</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Buenos días, señorita García. Le escribo para decirle que si Miguel termina los deberes esta tarde, mañana los llevará al colegio. Si tiene algún problema esta semana, le avisaré enseguida. Si necesita algo más de nuestra parte, no dude en escribirnos. Muchas gracias por su atención.')">🔊 Пример</button>
+    <div class="hint">Замени «Miguel» на имя своего ребёнка. Это ежедневная ситуация в испанских школах!</div>
   </div>
 </div>
 
-<!-- SECTION 8: Культурная заметка -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Культурная заметка</h2>
+    <h2>🇪🇸 Испания на практике: Запись в школу — escola pública</h2>
   </div>
-
-  <div class="culture">
-    <div class="ctag">Испанские контракты и условия</div>
-    <h4>«Si» в юридических документах Испании</h4>
-    <p>Испанские договоры (contrato de alquiler, contrato de trabajo) переполнены условными предложениями типа 1. Перед подписанием любого договора в Испании — читай разделы с «si» и «en caso de que» особенно внимательно: они описывают санкции, штрафы и права расторжения. Фраза «en caso de incumplimiento» (в случае нарушения) встречается в каждом третьем предложении. Теперь ты её понимаешь.</p>
+  <div class="spain-practice">
+    <div class="spain-tag">🏫 Реальная ситуация — Matrícula escolar, Барселона</div>
+    <p style="margin-bottom:12px">Запись в испанскую школу (matriculación) происходит раз в год. Весь процесс полон условных предложений: «если документы в порядке», «если есть место», «если ребёнок прописан в районе»...</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Si vive en este barrio, tiene preferencia. <button class="speak-btn" onclick="speak('Si vive en este barrio, tiene preferencia.')">🔊</button></div>
+          <div class="phrase-ru">Если живёте в этом районе, у вас приоритет.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Si trae el empadronamiento, podrá matricularse hoy. <button class="speak-btn" onclick="speak('Si trae el empadronamiento, podrá matricularse hoy.')">🔊</button></div>
+          <div class="phrase-ru">Если принесёте свидетельство о прописке, сможете записать сегодня.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Si no hay plaza aquí, le asignarán otra escuela. <button class="speak-btn" onclick="speak('Si no hay plaza aquí, le asignarán otra escuela.')">🔊</button></div>
+          <div class="phrase-ru">Если здесь нет мест, вам назначат другую школу.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Si le interesa la escuela concertada, consulte el baremo. <button class="speak-btn" onclick="speak('Si le interesa la escuela concertada, consulte el baremo.')">🔊</button></div>
+          <div class="phrase-ru">Если вам интересна субсидируемая школа, ознакомьтесь с критериями.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Si su hijo necesita apoyo, dígamelo antes de empezar. <button class="speak-btn" onclick="speak('Si su hijo necesita apoyo, dígamelo antes de empezar.')">🔊</button></div>
+          <div class="phrase-ru">Если вашему ребёнку нужна поддержка, скажите до начала.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Si tienes dudas, llama a la oficina de educación del districte. <button class="speak-btn" onclick="speak('Si tienes dudas, llama a la oficina de educación del districte.')">🔊</button></div>
+          <div class="phrase-ru">Если есть вопросы, позвони в районный отдел образования.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Запись в государственную школу Барселоны работает по системе баллов (baremo): приоритет имеют дети, прописанные в районе школы, братья/сёстры уже учащихся, и дети с особыми потребностями. Если ребёнок не получил место в выбранной школе — вам предложат ближайшую с местами. Подавать документы нужно в març-abril (март-апрель) для начала учёбы в сентябре.
+    </div>
   </div>
 </div>
 
-<!-- SECTION 9: Anki + ДЗ -->
+<!-- 11. CULTURE NOTE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">9</div>
-    <h2>Anki + Домашнее задание</h2>
+    <h2>Культурная заметка</h2>
   </div>
+  <div class="culture">
+    <div class="ctag">🌍 Условные предложения в испанской культуре</div>
+    <h4>«Si» — основа испанской осторожности</h4>
+    <p>Испанцы очень часто используют условные предложения в повседневном общении — это культурный способ быть вежливым и не давать обещаний наверняка. Вместо «¡Vengo mañana!» (Приду завтра!) более типично сказать «Si puedo, vendré mañana» (Если смогу, приду завтра). В деловых переговорах Испании условные предложения — инструмент мягкого торга: «Si me das un descuento, firmo hoy». Особенность испанского менталитета — никогда не говорить «нет» прямо: условное «si...» позволяет оставить дверь открытой. В официальных документах si aparece заменяется формальным en caso de que + subjuntivo.</p>
+  </div>
+</div>
 
-  
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все 18 для Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Si + presente → futuro</div>
+        <div class="anki-card-back">Тип 1: реальное условие<br>Si estudias, aprobarás.<br>Если будешь учиться, сдашь.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Si + presente → imperativo</div>
+        <div class="anki-card-back">Совет/инструкция<br>Si tienes frío, cierra la ventana.<br>Если холодно, закрой окно.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">¡Si tendré → ❌!</div>
+        <div class="anki-card-back">После si — НИКОГДА futuro!<br>❌ Si tendré tiempo<br>✅ Si tengo tiempo</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">si vs cuando</div>
+        <div class="anki-card-back">si + indicativo (неизвестно)<br>cuando + subjuntivo (уверен)<br>Si viene / Cuando venga</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">a menos que</div>
+        <div class="anki-card-back">если только не (+ subjuntivo)<br>Iré, a menos que llueva.<br>Пойду, если только не пойдёт дождь.</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL80()">📥 Скачать колоду L80 (.txt для Anki)</button>
+</div>
 
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L81: Условные II — гипотетические)</h4>
+    <ul>
+      <li><strong>Напиши 15 условных предложений</strong> о своей жизни в Испании. Используй все три варианта главной части: futuro, imperativo, presente.</li>
+      <li><strong>Dreaming Spanish Intermediate</strong> — 15 мин. Каждый раз, когда слышишь «si», запоминай, какое наклонение следует в главной части.</li>
+      <li><strong>Anki</strong> — повторяй 18 карточек из этого урока ежедневно</li>
+      <li><strong>Практика WhatsApp</strong> — напиши 5 сообщений с условными предложениями другу или учителю по-испански</li>
+      <li><strong>Сравни Тип 1 и Тип 2</strong>: Si tengo → если есть (реально), Si tuviera → если бы было (нереально). Следующий урок — Тип 2!</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Урок 80 завершён!</h4>
+    <p>Ты освоил реальные условные предложения — основу испанской повседневной речи. Следующий урок: гипотетические условия (Si tuviera dinero, viajaría...).</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L79.html" class="nav-link-btn">← L79</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L81.html" class="nav-link-btn">L81 →</a>
+    <a href="L79.html" class="nav-link-btn">← L79: Цель и результат</a>
+    <a href="L81.html" class="nav-link-btn">L81: Условные II →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L80 = [
+  {front:"Si + presente → futuro simple",back:"Русский: Тип 1 реальное условие\n\nПример: Si estudias, aprobarás el examen.\nЗаметка: самый частый тип — возможное условие"},
+  {front:"Si + presente → imperativo",back:"Русский: условие + совет/приказ\n\nПример: Si tienes frío, cierra la ventana.\nЗаметка: очень частый в разговорной речи"},
+  {front:"Si + presente → presente",back:"Русский: общая истина / habitual\n\nПример: Si comes mucho, engordas.\nЗаметка: законы природы, привычки"},
+  {front:"После si — НИКОГДА futuro!",back:"❌ Si tendré tiempo → ✅ Si tengo tiempo\n❌ Si iré → ✅ Si voy\n\nЗаметка: это главная ошибка всех иностранцев"},
+  {front:"si vs sí",back:"si (без акцента) = если\nsí (с акцентом) = да\n\nПример: Si quieres, sí, puedo ir.\nЗаметка: разные слова — разные значения!"},
+  {front:"cuando + subjuntivo (futuro)",back:"Русский: когда (говорящий уверен)\n\nПример: Cuando llegues, llámame.\nЗаметка: cuando + futuro → subjuntivo, НЕ indicativo!"},
+  {front:"si + indicativo (неизвестно)",back:"Русский: если (неизвестно, случится ли)\n\nПример: Si viene, te aviso.\nЗаметка: si всегда + indicativo в Tipo 1"},
+  {front:"a menos que + subjuntivo",back:"Русский: если только не...\n\nПример: Iré, a menos que llueva.\nЗаметка: условие-исключение, subj обязателен"},
+  {front:"en caso de que + subjuntivo",back:"Русский: в случае если...\n\nПример: En caso de que haya problema, llama.\nЗаметка: более формальный вариант si"},
+  {front:"con tal (de) que + subjuntivo",back:"Русский: при условии что...\n\nПример: Iré, con tal de que me pagues.\nЗаметка: subj обязателен"},
+  {front:"siempre que + subj/ind",back:"Русский: при условии что / всякий раз когда\n\nПример: Siempre que estudies, aprobarás.\nЗаметка: с futuro → subj; с habitual → ind"},
+  {front:"de lo contrario",back:"Русский: иначе, в противном случае\n\nПример: Estudia; de lo contrario, suspenderás.\nЗаметка: часто стоит после точки с запятой"},
+  {front:"Si me ayudas...",back:"Русский: Если поможешь мне...\n\nПример: Si me ayudas, terminaremos antes.\nЗаметка: шаблон для предложения помощи/обмена"},
+  {front:"Si tienes problemas...",back:"Русский: Если будут проблемы...\n\nПример: Si tienes problemas, llámame.\nЗаметка: шаблон предложения помощи"},
+  {front:"la condición",back:"Русский: условие\n\nПример: Hay una condición: debes llegar puntual.\nЗаметка: condicional = условное (наклонение/предложение)"},
+  {front:"depender de",back:"Русский: зависеть от\n\nПример: Todo depende del tiempo que haga.\nЗаметка: depende de + inf/sustantivo/que + subj"},
+  {front:"Si el niño tiene fiebre...",back:"Русский: Если у ребёнка температура...\n\nПример: Si el niño tiene fiebre, no lo traigas al cole.\nЗаметка: реальная фраза из испанской школы"},
+  {front:"Si firmas hoy...",back:"Русский: Если подпишешь сегодня...\n\nПример: Si firmas hoy, te doy el primer mes gratis.\nЗаметка: условие-стимул в переговорах об аренде"},
+];
+
+function exportAnkiL80() {
+  const tsv = ANKI_DECK_L80.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L80_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Buenos días. Si le interesa el piso, podemos verlo esta tarde.',
+    'Sí, me interesa. Si el precio es razonable, me lo quedo.',
+    'Son novecientos euros. Si firmas hoy, te doy el primer mes gratis.',
+    'Si el piso tiene parking, lo firmo ahora mismo. ¿Lo tiene?',
+    'No, no tiene. Pero si lo necesitas, hay garaje cerca por cincuenta euros más.',
+    'Mmm. Si puedo verlo primero, decidiré más fácil.',
+    'Claro. Si quedamos a las seis, te enseño el piso y el garaje.',
+    'Perfecto. Si me convence el garaje, firmaré el contrato.',
+    'Si hay algún problema, llámame antes de las seis.',
+    'Entendido. Si no te llamo, nos vemos a las seis. ¡Hasta luego!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue2() {
+  const lines = [
+    'Si Sergio practica la lectura en casa, mejorará rápidamente.',
+    '¿Cuánto tiempo necesita si quiere estar al nivel de los demás?',
+    'Si lee quince minutos al día, en dos meses habrá un gran cambio.',
+    'Entendido. ¿Y si no mejora con la lectura? ¿Qué hacemos?',
+    'Si en un mes no hay mejora, lo derivamos al logopeda del cole.',
+    'Bien. Si necesito hablar con usted antes, ¿puedo escribirle?',
+    'Claro. Si me escribe antes de las ocho de la tarde, le respondo ese día.',
+    'Perfecto. Si el próximo mes ve mejoría, ¿me lo hará saber?',
+    'Por supuesto. Si hay avances, le mando una nota positiva.',
+    'Muchas gracias. Si Sergio sabe que usted le apoya, se esforzará más.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
 const LESSON_ID = 'L80';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const quizExpl={
-  q1:'estudias — si + presente indicativo. Никогда не futuro после si!',
-  q2:'come — imperativo для совета/инструкции в главной части.',
-  q3:'futuro simple — после si нельзя *«si estudiarás». Только presente.',
-  q4:'En caso de — en caso de que + subjuntivo. Более формальный вариант si.',
-  q5:'a menos — a menos que + subjuntivo = если только не.',
-  q6:'hierve — presente para ley/hecho. Законы природы: si + presente → presente.'
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'para que + subjuntivo (два субъекта: я говорю — ты знаешь). sepas = subj de saber.',
+  w2:'Результат-факт → así que + indicativo. perdió — прошедшее время ind.',
+  w3:'hasta que + subjuntivo для будущего неопределённого. te llame = subj de llamar.',
+  w4:'Один субъект (я сам приехал — я же и буду учить) → para + infinitivo.',
+  q1:'После si (Тип 1) — ТОЛЬКО presente indicativo. tienes — presente de tener.',
+  q2:'Главная часть условного Тип 1 → futuro simple. aprobarás = futuro de aprobar.',
+  q3:'Когда говорящий уверен, что действие случится → cuando + subjuntivo. Llegues = subj.',
+  q4:'si (без акцента) = если. Неизвестно, случится ли → si + indicativo.',
+  q5:'si-clause всегда presente indicativo: llegamos = presente de llegar (nosotros).',
+  q6:'Общая истина (закон) → si + presente → presente: engordas (всегда так).',
 };
-let quizScore=0,quizTotal=0;
+
+let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -502,14 +1068,12 @@ function answerQuiz(el, qId, correctKey) {
     fb.className = 'feedback show no';
     fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
   }
-  if (typeof quizScore !== 'undefined') {
-    if (isCorrect) quizScore++;
-    quizTotal++;
-    const scoreEl = document.getElementById('quiz-score');
-    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
-  }
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
 }
-function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -562,11 +1126,38 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>

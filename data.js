@@ -1040,7 +1040,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Объяснить цель своих действий и желаемый результат",
-      file:"lessons/L79.html", status:"pending"
+      file:"lessons/L79.html", status:"improved"
     },
     {
       id:"L80", num:80, phase:3, block:"B3C", level:"B1", day:170, week:29,
@@ -1052,7 +1052,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Строить реальные условия: обещания, угрозы, планы",
-      file:"lessons/L80.html", status:"pending"
+      file:"lessons/L80.html", status:"improved"
     },
     {
       id:"L81", num:81, phase:3, block:"B3C", level:"B1", day:172, week:29,
