@@ -51,8 +51,10 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}
+.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}
+.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}
+.opt.picked::before{content:'👉 ';margin-right:2px}
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -68,27 +70,24 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
 .answer-reveal.show{display:block}
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
 .dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.dlg-btns{display:flex;gap:8px;align-items:center}
 .culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
-.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
 .done-btn.marked{background:var(--muted)}
-.nav-links{display:flex;gap:10px}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
 table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
@@ -97,14 +96,24 @@ td{padding:8px 12px;border-bottom:1px solid var(--bg3);vertical-align:top}
 tr:last-child td{border-bottom:none}
 .formula{background:var(--bg3);border-radius:8px;padding:16px 20px;margin:14px 0;border-left:4px solid var(--purple);font-size:1rem;font-weight:600}
 .formula .f-label{font-size:.75rem;color:var(--purple);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.formula .f-ex{font-size:.88rem;color:var(--muted);margin-top:6px}
-.contrast-table{width:100%;border-collapse:collapse;margin:14px 0}
-.contrast-table th{background:var(--bg3);padding:10px 12px;font-size:.82rem}
-.contrast-table td{padding:10px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
-.contrast-table .t1{color:var(--blue)}
-.contrast-table .t2{color:var(--purple)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.formula .f-ex{font-size:.88rem;color:var(--muted);margin-top:6px;font-weight:400}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--bg3)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-size:.95rem;font-weight:600}
+.phrase-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.culture-tip{background:rgba(200,144,0,.08);border:1px solid rgba(200,144,0,.3);border-radius:8px;padding:12px 16px;margin-top:14px;font-size:.86rem}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block;margin:8px}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:150px;height:90px}}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -112,7 +121,7 @@ tr:last-child td{border-bottom:none}
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">B1 · Фаза 3 · День 172</span>
-  <a href="L82.html">L82 →</a>
+  <a href="L82.html">L82: Косвенная речь →</a>
 </div>
 
 <div class="hero">
@@ -120,103 +129,318 @@ tr:last-child td{border-bottom:none}
   <h1>Условные II — <span class="hl">гипотетические</span></h1>
   <p class="sub">Si tuviera dinero, viajaría — Si + Imperfecto Subj + Condicional. Нереальные сценарии, мечты, вежливые просьбы.</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">💭</div><div><strong>Формула типа 2</strong><p>Si + imperfecto subjuntivo → condicional</p></div></div>
-    <div class="obj"><div class="ico">🎭</div><div><strong>Нереальные сценарии</strong><p>Что бы ты сделал, если бы...</p></div></div>
-    <div class="obj"><div class="ico">🎩</div><div><strong>Вежливость</strong><p>¿Podría usted...? — кондиционал как маркер вежливости</p></div></div>
-    <div class="obj"><div class="ico">📊</div><div><strong>Тип 1 vs Тип 2</strong><p>Разница между «если дождь» и «если бы дождь»</p></div></div>
+    <div class="obj"><div class="ico">💭</div><div><strong>Формула типа 2</strong><p>Si + Imperfecto Subj → Condicional</p></div></div>
+    <div class="obj"><div class="ico">🎭</div><div><strong>Мечты и гипотезы</strong><p>Что бы ты сделал, если бы...</p></div></div>
+    <div class="obj"><div class="ico">🎩</div><div><strong>Вежливость</strong><p>Quisiera, ¿podría?, me gustaría</p></div></div>
+    <div class="obj"><div class="ico">📊</div><div><strong>Тип 1 vs Тип 2</strong><p>Реальное vs нереальное условие</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 11 разделов</div>
 
-<!-- SECTION 1 -->
+<!-- SECTION 1: WARM-UP -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Гипотетические условия — структура</h2>
+    <h2>Повторение — Условные I (L80)</h2>
   </div>
 
-  <p style="margin-bottom:14px">Условие второго типа описывает <strong>нереальные или маловероятные ситуации</strong>. Говорящий знает или предполагает, что условие не выполняется. Это мечты, фантазии, советы («на твоём месте я бы...»), вежливые просьбы.</p>
-
-  <div class="formula">
-    <div class="f-label">Формула — Тип 2 (Нереальное/гипотетическое условие)</div>
-    <span style="color:var(--gold)">Si</span> + <strong>Imperfecto de Subjuntivo</strong> → <span style="color:var(--purple)">Condicional Simple</span>
-    <div class="f-ex">Si tuviera dinero, viajaría por el mundo. — Если бы у меня были деньги, я бы путешествовал по миру.</div>
-    <div class="f-ex">Si pudiera elegir, viviría en Barcelona. — Если бы мог выбрать, жил бы в Барселоне.</div>
+  <div class="callout info">
+    <h4>Напоминание: Тип 1 — Реальные условия (L80)</h4>
+    <p>Si + <strong>Presente de Indicativo</strong> → <strong>Futuro Simple</strong><br>
+    «Si estudias mucho, aprenderás.» — Если будешь много учиться, выучишь.<br>
+    Используется когда условие <em>реально может случиться</em>.</p>
   </div>
 
-  <p style="margin-bottom:10px"><strong>Imperfecto de Subjuntivo — две формы (обе правильны):</strong></p>
-  <div style="background:var(--bg3);border-radius:8px;padding:14px;margin-bottom:14px">
-    <table class="contrast-table">
-      <tr><th>Инфинитив</th><th class="t1">-ra форма (чаще)</th><th class="t2">-se форма (книжная)</th></tr>
-      <tr><td>tener</td><td class="t1">tuviera</td><td class="t2">tuviese</td></tr>
-      <tr><td>poder</td><td class="t1">pudiera</td><td class="t2">pudiese</td></tr>
-      <tr><td>ser/ir</td><td class="t1">fuera</td><td class="t2">fuese</td></tr>
-      <tr><td>hacer</td><td class="t1">hiciera</td><td class="t2">hiciese</td></tr>
-      <tr><td>saber</td><td class="t1">supiera</td><td class="t2">supiese</td></tr>
-      <tr><td>querer</td><td class="t1">quisiera</td><td class="t2">quisiese</td></tr>
-      <tr><td>hablar</td><td class="t1">hablara</td><td class="t2">hablase</td></tr>
-    </table>
-  </div>
+  <div class="quiz">
+    <h3>🔄 Проверь себя — вопросы по L80</h3>
 
-  <div class="callout tip">
-    <h4>💡 Quisiera — самое важное слово!</h4>
-    <p><strong>Quisiera</strong> = imperfecto subj. от «querer». Но используется как самостоятельная фраза вежливости: «Quisiera reservar una mesa» (Я бы хотел забронировать столик). Это вежливее чем «quiero» и встречается в ресторанах, отелях, магазинах везде в Испании.</p>
-  </div>
+    <div class="quiz-q">
+      <div class="q-text">1. «Si mañana <strong>___</strong> (hacer) buen tiempo, iremos a la playa.» (тип 1 — реально)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">hace</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">hiciera</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">haría</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
 
-  <div class="callout warning">
-    <h4>⚠️ Тип 1 vs Тип 2 — критическая разница</h4>
-    <p>«Si llueve, no salgo» (тип 1) — реальная вероятность: дождь может пойти.<br>
-    «Si lloviera, no saldría» (тип 2) — нереально или маловероятно: говорящий думает, что дождя не будет.<br>
-    Выбор типа меняет смысл! «Si fuera presidente...» = «Я не президент, но если бы был...»</p>
-  </div>
+    <div class="quiz-q">
+      <div class="q-text">2. «Si tú no <strong>___</strong> (venir) a tiempo, llamaré a otra persona.» (угроза — реально)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">viniera</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">vienes</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">vendrías</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
 
-  <p style="margin-bottom:10px"><strong>Конционал как маркер вежливости (без si):</strong></p>
-  <div style="background:var(--bg3);border-radius:8px;padding:14px;font-size:.88rem;margin-bottom:14px">
-    <p style="margin-bottom:6px">• «<strong>¿Podría</strong> hablar con el director?» — Мог бы я поговорить с директором?</p>
-    <p style="margin-bottom:6px">• «<strong>Querría</strong> / <strong>Quisiera</strong> hacer una reserva.» — Я бы хотел сделать бронь.</p>
-    <p style="margin-bottom:6px">• «<strong>Debería</strong> llamarle.» — Вам следовало бы позвонить ему.</p>
-    <p>• «<strong>Me gustaría</strong> saber más.» — Мне хотелось бы узнать больше.</p>
+    <div class="quiz-q">
+      <div class="q-text">3. Что означает: «Si trabajas duro, conseguirás el trabajo.»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Если будешь работать усердно, получишь работу (реально возможно)</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Если бы работал усердно, получил бы (нереально)</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Работал бы усерднее — уже получил бы</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="q-text">4. Какую форму ставят после «si» в Типе 1?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">Futuro Simple</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">Condicional Simple</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">Presente de Indicativo</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: Словарь -->
+<!-- SECTION 2: THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — Гипотезы и мечты</h2>
+    <h2>Теория — Условные предложения II (гипотетические)</h2>
   </div>
 
+  <p style="margin-bottom:14px">Тип 2 описывает <strong>нереальные или маловероятные ситуации</strong> в настоящем или будущем. Говорящий знает или предполагает, что условие не выполняется. Это мечты, советы («на твоём месте...»), вежливые просьбы, гипотезы.</p>
+
+  <div class="formula">
+    <div class="f-label">Формула — Тип 2 (гипотетическое/нереальное)</div>
+    <span style="color:var(--gold)">Si</span> + <strong>Imperfecto de Subjuntivo</strong> , <span style="color:var(--purple)">Condicional Simple</span>
+    <div class="f-ex">Si tuviera dinero, viajaría por el mundo. — Если бы у меня были деньги, я бы путешествовал по миру.</div>
+    <div class="f-ex">Si pudiera elegir, viviría en Barcelona. — Если бы я мог выбрать, жил бы в Барселоне.</div>
+    <div class="f-ex">Si yo fuera tú, hablaría con el médico. — На твоём месте я бы поговорил с врачом.</div>
+    <div class="f-ex">Si supiera la verdad, te lo diría. — Если бы я знал правду, я бы тебе сказал.</div>
+    <div class="f-ex">Si tuviéramos más tiempo, aprenderíamos chino también. — Если бы у нас было больше времени, мы учили бы и китайский.</div>
+  </div>
+
+  <h3 style="font-size:1rem;margin:20px 0 10px;font-weight:700">Как образуется Imperfecto de Subjuntivo</h3>
+  <p style="font-size:.88rem;color:var(--muted);margin-bottom:8px">Берём 3-е л. мн.ч. Претерита → убираем <strong>-ron</strong> → добавляем окончания -ra/-ras/-ra/-ramos/-rais/-ran</p>
+
   <table>
-    <tr><th>Слово/фраза</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
-    <tr><td><strong>quisiera</strong></td><td>[киСЬЕра]</td><td>я бы хотел (вежливо)</td><td>Quisiera un café con leche, por favor.</td></tr>
-    <tr><td><strong>me gustaría</strong></td><td>[густаРИа]</td><td>мне бы хотелось</td><td>Me gustaría vivir cerca del mar.</td></tr>
-    <tr><td><strong>podría</strong></td><td>[поДРИа]</td><td>мог бы / мог бы ты</td><td>¿Podría repetirlo, por favor?</td></tr>
-    <tr><td><strong>debería</strong></td><td>[дебеРИа]</td><td>следовало бы</td><td>Deberías hablar con él directamente.</td></tr>
-    <tr><td><strong>yo que tú</strong></td><td>[йо ке ту]</td><td>на твоём месте я бы</td><td>Yo que tú, aceptaría la oferta.</td></tr>
-    <tr><td><strong>en tu lugar</strong></td><td>[луГАР]</td><td>на твоём месте</td><td>En tu lugar, no lo haría.</td></tr>
-    <tr><td><strong>soñar con</strong></td><td>[соНЯР кон]</td><td>мечтать о</td><td>Sueño con vivir en Barcelona.</td></tr>
-    <tr><td><strong>imaginar</strong></td><td>[имахиНАР]</td><td>представлять</td><td>Imagina que pudieras volar.</td></tr>
-    <tr><td><strong>si pudiera</strong></td><td>[пуДЬЕра]</td><td>если бы мог</td><td>Si pudiera, cambiaría todo.</td></tr>
-    <tr><td><strong>en el caso de</strong></td><td>[КА-со де]</td><td>в том случае если бы</td><td>En el caso de ganar la lotería, viajaría.</td></tr>
-    <tr><td><strong>el sueño</strong></td><td>[СУЭ-ньо]</td><td>мечта, сон</td><td>Mi sueño sería vivir en el extranjero.</td></tr>
-    <tr><td><strong>plantearse</strong></td><td>[планТЕАРсе]</td><td>задуматься, рассмотреть</td><td>Me plantearía cambiar de carrera.</td></tr>
+    <tr><th>Инфинитив</th><th>3л.мн.ч. Претерита</th><th>yo (форма -ra)</th><th>yo (форма -se)</th></tr>
+    <tr><td><strong>tener</strong></td><td>tuv<strong>ieron</strong></td><td>tuv<strong>iera</strong></td><td>tuviese</td></tr>
+    <tr><td><strong>poder</strong></td><td>pud<strong>ieron</strong></td><td>pud<strong>iera</strong></td><td>pudiese</td></tr>
+    <tr><td><strong>ser / ir</strong></td><td>fu<strong>eron</strong></td><td>fu<strong>era</strong></td><td>fuese</td></tr>
+    <tr><td><strong>hacer</strong></td><td>hic<strong>ieron</strong></td><td>hic<strong>iera</strong></td><td>hiciese</td></tr>
+    <tr><td><strong>saber</strong></td><td>sup<strong>ieron</strong></td><td>sup<strong>iera</strong></td><td>supiese</td></tr>
+    <tr><td><strong>querer</strong></td><td>quis<strong>ieron</strong></td><td>quis<strong>iera</strong></td><td>quisiese</td></tr>
+    <tr><td><strong>decir</strong></td><td>dij<strong>eron</strong></td><td>dij<strong>era</strong></td><td>dijese</td></tr>
+    <tr><td><strong>hablar</strong></td><td>habl<strong>aron</strong></td><td>habl<strong>ara</strong></td><td>hablase</td></tr>
+    <tr><td><strong>comer</strong></td><td>com<strong>ieron</strong></td><td>com<strong>iera</strong></td><td>comiese</td></tr>
+  </table>
+
+  <h3 style="font-size:1rem;margin:20px 0 10px;font-weight:700">Неправильные основы Condicional Simple</h3>
+  <table>
+    <tr><th>Глагол</th><th>Основа</th><th>yo</th><th>Пример</th></tr>
+    <tr><td>tener</td><td>tendr-</td><td>tendría</td><td>Si tuviera suerte, tendría más opciones.</td></tr>
+    <tr><td>poder</td><td>podr-</td><td>podría</td><td>¿Podría ayudarme? (вежл. просьба)</td></tr>
+    <tr><td>querer</td><td>querr-</td><td>querría</td><td>Si me invitaras, querría ir.</td></tr>
+    <tr><td>saber</td><td>sabr-</td><td>sabría</td><td>Si estudiaras más, lo sabrías.</td></tr>
+    <tr><td>hacer</td><td>har-</td><td>haría</td><td>En tu lugar, no lo haría.</td></tr>
+    <tr><td>decir</td><td>dir-</td><td>diría</td><td>Si supiera, te lo diría.</td></tr>
+    <tr><td>venir</td><td>vendr-</td><td>vendría</td><td>Si me llamara, vendría.</td></tr>
+    <tr><td>poner</td><td>pondr-</td><td>pondría</td><td>Si tuviera más, lo pondría en el banco.</td></tr>
+    <tr><td>salir</td><td>saldr-</td><td>saldría</td><td>Si hiciera buen tiempo, saldría.</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <h4>💡 Quisiera — самое важное слово для жизни в Испании</h4>
+    <p><strong>Quisiera</strong> = Imperfecto Subj. de querer → используется как вежливая просьба без «si».<br>
+    «Quisiera un café con leche, por favor.» — Я бы хотел кофе с молоком, пожалуйста.<br>
+    «Quisiera reservar una mesa para dos.» — Я бы хотел забронировать столик на двоих.<br>
+    В ресторанах, отелях, магазинах, Аюнтамьенто — всегда «quisiera», не «quiero»!</p>
+  </div>
+
+  <div class="callout warning">
+    <h4>⚠️ Главная ошибка: Si + Condicional — НЕЛЬЗЯ!</h4>
+    <p>После «si» НИКОГДА не ставится Condicional:<br>
+    ❌ Si <em style="color:var(--red)">tendría</em> dinero... → ✅ Si <em style="color:var(--green)">tuviera</em> dinero...<br>
+    ❌ Si <em style="color:var(--red)">podría</em> ir... → ✅ Si <em style="color:var(--green)">pudiera</em> ir...<br>
+    Condicional — только в главной части (то, что произошло бы).</p>
+  </div>
+
+  <h3 style="font-size:1rem;margin:20px 0 10px;font-weight:700">Таблица типичных ошибок русскоговорящих</h3>
+  <table>
+    <tr><th>Ошибка</th><th>Неверно</th><th>Верно</th><th>Причина</th></tr>
+    <tr>
+      <td>Condicional после si</td>
+      <td style="color:var(--red)">Si tendría dinero, viajaría</td>
+      <td style="color:var(--green)">Si tuviera dinero, viajaría</td>
+      <td>После si — только Subj Imp, Condicional — в главной части</td>
+    </tr>
+    <tr>
+      <td>Presente + Condicional</td>
+      <td style="color:var(--red)">Si tengo dinero, viajaría</td>
+      <td style="color:var(--green)">Si tuviera / Si tengo...viajaré</td>
+      <td>Нельзя смешивать типы 1 и 2</td>
+    </tr>
+    <tr>
+      <td>Futuro после si</td>
+      <td style="color:var(--red)">Si tendré dinero, compraré</td>
+      <td style="color:var(--green)">Si tengo dinero, compraré (T1)</td>
+      <td>После si — никогда Futuro Simple</td>
+    </tr>
+    <tr>
+      <td>Quiero в сервисе</td>
+      <td style="color:var(--red)">Quiero una mesa para dos</td>
+      <td style="color:var(--green)">Quisiera una mesa para dos</td>
+      <td>«Quiero» звучит грубо — нужно «quisiera»</td>
+    </tr>
+    <tr>
+      <td>-se вместо -ra</td>
+      <td style="color:var(--muted)">Si tuviese... (книжн.)</td>
+      <td style="color:var(--green)">Si tuviera... (разг.)</td>
+      <td>Обе верны, но -ra — разговорный стандарт</td>
+    </tr>
+    <tr>
+      <td>Fuera = ser или ir?</td>
+      <td style="color:var(--muted)">«fuera» от ser? от ir?</td>
+      <td style="color:var(--green)">От обоих! Они совпадают</td>
+      <td>ser и ir одинаковы во всём Subj Imperfecto</td>
+    </tr>
   </table>
 </div>
 
-<!-- SECTION 3: Тест 1 -->
+<!-- SECTION 3: VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Тип 1 или Тип 2?</h2>
+    <h2>Словарь — 18 слов и выражений</h2>
   </div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Реальное или нереальное условие?</h3>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">Нажмите 🔊 чтобы прослушать. Повторяйте вслух!</p>
 
-    <div class="quiz-q" id="q1">
-      <div class="q-text">1. «Si _____ (yo, ser) presidente, reformaría la educación.» (нереально, гипотеза)</div>
+  <table>
+    <tr><th>Слово / фраза</th><th>🔊</th><th>Русский</th><th>Пример</th></tr>
+    <tr>
+      <td><strong>quisiera</strong></td>
+      <td><button class="speak-btn" onclick="speak('quisiera')">🔊</button></td>
+      <td>я бы хотел (вежл.)</td>
+      <td>Quisiera un café con leche, por favor.</td>
+    </tr>
+    <tr>
+      <td><strong>me gustaría</strong></td>
+      <td><button class="speak-btn" onclick="speak('me gustaría')">🔊</button></td>
+      <td>мне бы хотелось</td>
+      <td>Me gustaría vivir cerca del mar.</td>
+    </tr>
+    <tr>
+      <td><strong>podría</strong></td>
+      <td><button class="speak-btn" onclick="speak('podría')">🔊</button></td>
+      <td>мог бы (конд. poder)</td>
+      <td>¿Podría repetirlo, por favor?</td>
+    </tr>
+    <tr>
+      <td><strong>debería</strong></td>
+      <td><button class="speak-btn" onclick="speak('debería')">🔊</button></td>
+      <td>следовало бы</td>
+      <td>Deberías llamarle directamente.</td>
+    </tr>
+    <tr>
+      <td><strong>tuviera</strong></td>
+      <td><button class="speak-btn" onclick="speak('tuviera')">🔊</button></td>
+      <td>если бы имел (tener)</td>
+      <td>Si tuviera tiempo, estudiaría más.</td>
+    </tr>
+    <tr>
+      <td><strong>fuera</strong></td>
+      <td><button class="speak-btn" onclick="speak('fuera')">🔊</button></td>
+      <td>если бы был (ser/ir)</td>
+      <td>Si yo fuera tú, no lo haría.</td>
+    </tr>
+    <tr>
+      <td><strong>pudiera</strong></td>
+      <td><button class="speak-btn" onclick="speak('pudiera')">🔊</button></td>
+      <td>если бы мог (poder)</td>
+      <td>Si pudiera, cambiaría de trabajo.</td>
+    </tr>
+    <tr>
+      <td><strong>supiera</strong></td>
+      <td><button class="speak-btn" onclick="speak('supiera')">🔊</button></td>
+      <td>если бы знал (saber)</td>
+      <td>Si supiera la respuesta, te la diría.</td>
+    </tr>
+    <tr>
+      <td><strong>hiciera</strong></td>
+      <td><button class="speak-btn" onclick="speak('hiciera')">🔊</button></td>
+      <td>если бы делал (hacer)</td>
+      <td>Si hiciera ejercicio, me sentiría mejor.</td>
+    </tr>
+    <tr>
+      <td><strong>dijera</strong></td>
+      <td><button class="speak-btn" onclick="speak('dijera')">🔊</button></td>
+      <td>если бы сказал (decir)</td>
+      <td>Si me lo dijera, lo entendería.</td>
+    </tr>
+    <tr>
+      <td><strong>tendría</strong></td>
+      <td><button class="speak-btn" onclick="speak('tendría')">🔊</button></td>
+      <td>имел бы (конд. tener)</td>
+      <td>Con más tiempo, tendría más energía.</td>
+    </tr>
+    <tr>
+      <td><strong>haría</strong></td>
+      <td><button class="speak-btn" onclick="speak('haría')">🔊</button></td>
+      <td>сделал бы (конд. hacer)</td>
+      <td>En tu lugar, no lo haría.</td>
+    </tr>
+    <tr>
+      <td><strong>diría</strong></td>
+      <td><button class="speak-btn" onclick="speak('diría')">🔊</button></td>
+      <td>сказал бы (конд. decir)</td>
+      <td>Yo que tú, se lo diría a ella.</td>
+    </tr>
+    <tr>
+      <td><strong>vendría</strong></td>
+      <td><button class="speak-btn" onclick="speak('vendría')">🔊</button></td>
+      <td>пришёл бы (конд. venir)</td>
+      <td>Si me invitara, vendría sin dudarlo.</td>
+    </tr>
+    <tr>
+      <td><strong>yo que tú</strong></td>
+      <td><button class="speak-btn" onclick="speak('yo que tú')">🔊</button></td>
+      <td>на твоём месте я бы</td>
+      <td>Yo que tú, aceptaría la oferta.</td>
+    </tr>
+    <tr>
+      <td><strong>en tu lugar</strong></td>
+      <td><button class="speak-btn" onclick="speak('en tu lugar')">🔊</button></td>
+      <td>на твоём месте</td>
+      <td>En tu lugar, no lo haría así.</td>
+    </tr>
+    <tr>
+      <td><strong>soñar con</strong></td>
+      <td><button class="speak-btn" onclick="speak('soñar con')">🔊</button></td>
+      <td>мечтать о</td>
+      <td>Sueño con vivir en Barcelona.</td>
+    </tr>
+    <tr>
+      <td><strong>¿qué harías si...?</strong></td>
+      <td><button class="speak-btn" onclick="speak('¿qué harías si...?')">🔊</button></td>
+      <td>что бы ты сделал, если бы</td>
+      <td>¿Qué harías si ganaras la lotería?</td>
+    </tr>
+  </table>
+</div>
+
+<!-- SECTION 4: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Множественный выбор</h2>
+  </div>
+
+  <p id="quiz-score" style="font-size:.85rem;color:var(--muted);margin-bottom:12px">Правильных ответов: 0 из 0</p>
+
+  <div class="quiz">
+    <h3>🎯 Выбери правильную форму</h3>
+
+    <div class="quiz-q">
+      <div class="q-text">1. «Si <strong>___</strong> (yo, ser) presidente, reformaría la educación.» (нереально)</div>
       <div class="options">
         <div class="opt" onclick="answerQuiz(this,'q1','a')">fuera</div>
         <div class="opt" onclick="answerQuiz(this,'q1','b')">soy</div>
@@ -225,8 +449,8 @@ tr:last-child td{border-bottom:none}
       <div class="feedback" id="fb-q1"></div>
     </div>
 
-    <div class="quiz-q" id="q2">
-      <div class="q-text">2. «Si _____ (él, tener) más tiempo, aprendería chino.» (нереально)</div>
+    <div class="quiz-q">
+      <div class="q-text">2. «Si él <strong>___</strong> (tener) más tiempo, aprendería chino.» (гипотеза)</div>
       <div class="options">
         <div class="opt" onclick="answerQuiz(this,'q2','b')">tiene</div>
         <div class="opt" onclick="answerQuiz(this,'q2','a')">tuviera</div>
@@ -235,8 +459,8 @@ tr:last-child td{border-bottom:none}
       <div class="feedback" id="fb-q2"></div>
     </div>
 
-    <div class="quiz-q" id="q3">
-      <div class="q-text">3. Вежливая просьба: «¿_____ usted ayudarme?» (мог бы)</div>
+    <div class="quiz-q">
+      <div class="q-text">3. Вежливая просьба: «¿<strong>___</strong> usted ayudarme con este formulario?»</div>
       <div class="options">
         <div class="opt" onclick="answerQuiz(this,'q3','b')">Puede</div>
         <div class="opt" onclick="answerQuiz(this,'q3','a')">Podría</div>
@@ -245,8 +469,8 @@ tr:last-child td{border-bottom:none}
       <div class="feedback" id="fb-q3"></div>
     </div>
 
-    <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Yo que tú, _____ (hablar) con el jefe directamente.»</div>
+    <div class="quiz-q">
+      <div class="q-text">4. «Yo que tú, <strong>___</strong> (hablar) con el jefe directamente.» (совет)</div>
       <div class="options">
         <div class="opt" onclick="answerQuiz(this,'q4','a')">hablaría</div>
         <div class="opt" onclick="answerQuiz(this,'q4','b')">hablas</div>
@@ -255,8 +479,8 @@ tr:last-child td{border-bottom:none}
       <div class="feedback" id="fb-q4"></div>
     </div>
 
-    <div class="quiz-q" id="q5">
-      <div class="q-text">5. «Me _____ vivir en una isla desierta.» (мне бы хотелось)</div>
+    <div class="quiz-q">
+      <div class="q-text">5. «Me <strong>___</strong> (gustar) vivir en una isla desierta.» (мне бы хотелось)</div>
       <div class="options">
         <div class="opt" onclick="answerQuiz(this,'q5','b')">gusta</div>
         <div class="opt" onclick="answerQuiz(this,'q5','a')">gustaría</div>
@@ -265,8 +489,8 @@ tr:last-child td{border-bottom:none}
       <div class="feedback" id="fb-q5"></div>
     </div>
 
-    <div class="quiz-q" id="q6">
-      <div class="q-text">6. «Si _____ (nosotros, poder) votar, cambiaríamos muchas cosas.»</div>
+    <div class="quiz-q">
+      <div class="q-text">6. «Si nosotros <strong>___</strong> (poder) votar, cambiaríamos muchas cosas.»</div>
       <div class="options">
         <div class="opt" onclick="answerQuiz(this,'q6','a')">pudiéramos</div>
         <div class="opt" onclick="answerQuiz(this,'q6','b')">podemos</div>
@@ -274,161 +498,292 @@ tr:last-child td{border-bottom:none}
       </div>
       <div class="feedback" id="fb-q6"></div>
     </div>
-  </div>
-</div>
 
-<!-- SECTION 4: Тест 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 2 — Построй гипотезу</h2>
-  </div>
-
-  <div class="quiz">
-    <h3>✏️ Заполни правильные формы</h3>
-
-    <div class="text-ex" id="te1">
-      <div class="tex-q">1. «Si _____ (yo, tener) un millón de euros, _____ (comprar) un apartamento en BCN.»</div>
-      <input type="text" class="text-input" placeholder="tuviera + compraría..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','tuviera compraría','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ tuviera compraría — imperfecto subj. + condicional</div>
-    </div>
-
-    <div class="text-ex" id="te2">
-      <div class="tex-q">2. «_____ (yo, quisiera) reservar una habitación para dos noches.» (вежливо)</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','quisiera','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ Quisiera — вежливая форма «quiero» через кондиционал</div>
-    </div>
-
-    <div class="text-ex" id="te3">
-      <div class="tex-q">3. «En tu lugar, yo _____ (aceptar) la oferta sin dudar.» (совет)</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','aceptaría','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ aceptaría — condicional simple para consejo</div>
-    </div>
-
-    <div class="text-ex" id="te4">
-      <div class="tex-q">4. «Si _____ (él, saber) la verdad, _____ (estar) muy enfadado.»</div>
-      <input type="text" class="text-input" placeholder="supiera + estaría..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','supiera estaría','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ supiera estaría — тип 2, нереально</div>
-    </div>
-
-    <div class="text-ex" id="te5">
-      <div class="tex-q">5. «¿_____ (tú, poder) decirme dónde está la farmacia?» (вежливо)</div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','podrías','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ ¿Podrías? — конд. для вежливой просьбы в неформальном общении</div>
+    <div class="quiz-q">
+      <div class="q-text">7. В ресторане: «<strong>___</strong> reservar una mesa para esta noche.» (вежливо)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Quiero</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Necesito</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Quisiera</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 5: Аутентичный текст -->
+<!-- SECTION 5: QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Аутентичный текст — Интервью с мечтателем</h2>
+    <h2>Тест 2 — Заполни пропуск</h2>
+  </div>
+
+  <div class="quiz">
+    <h3>✏️ Введи правильную форму (строчные буквы)</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. «Si yo <strong>___</strong> (tener) un millón de euros, compraría un apartamento en BCN.»</div>
+      <input type="text" class="text-input" placeholder="Imperfecto Subj de tener..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','tuviera','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ tuviera — tener → tuvieron → tuviera</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">2. «En tu lugar, yo <strong>___</strong> (aceptar) la oferta sin dudar.»</div>
+      <input type="text" class="text-input" placeholder="Condicional Simple de aceptar..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','aceptaría','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ aceptaría — aceptar + ía (Condicional regular)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. «Si él <strong>___</strong> (saber) la verdad, estaría muy enfadado.»</div>
+      <input type="text" class="text-input" placeholder="Imperfecto Subj de saber..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','supiera','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ supiera — saber → supieron → supiera</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. «¿<strong>___</strong> (tú, poder) decirme dónde está la ventanilla?» (вежливо)</div>
+      <input type="text" class="text-input" placeholder="Condicional de poder (tú)..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','podrías','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ podrías — poder → podr- + ías</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. «Si yo <strong>___</strong> (poder), me mudaría a San Sebastián.»</div>
+      <input type="text" class="text-input" placeholder="Imperfecto Subj de poder..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','pudiera','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ pudiera — poder → pudieron → pudiera</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">6. В ресторане: «<strong>___</strong> (yo, querer) hacer una reserva.» (вежливо)</div>
+      <input type="text" class="text-input" placeholder="вежливая форма от querer..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','quisiera','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ Quisiera — Imperfecto Subj de querer, стандартная вежливая форма</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Гипотезы и вежливость</h2>
   </div>
 
   <div class="dialogue">
     <div class="dlg-header">
-      Отрывок из интервью — журнал стиля жизни
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-interview')">Показать разбор</button>
+      <span>💬 Диалог 1: Если бы ты был президентом</span>
+      <div class="dlg-btns">
+        <button class="dlg-toggle" onclick="toggleDlg(this, '.dlg1-ru')">Показать перевод</button>
+        <button class="speak-btn" onclick="playDialogue(dlg1Lines)" title="Воспроизвести диалог">▶️</button>
+      </div>
     </div>
     <div class="dlg-line">
+      <span class="dlg-speaker">Raúl</span>
       <div>
-        <div class="dlg-es" style="line-height:2">
-          <strong>Periodista:</strong> «Si pudiera cambiar algo de su vida, ¿qué sería?»<br>
-          <strong>Entrevistado:</strong> «Si tuviera que elegir, diría que el tiempo. Si pudiera, <strong style="color:var(--gold)">dedicaría</strong> más horas a la familia. Y si la vida <strong style="color:var(--blue)">fuera</strong> más sencilla, <strong style="color:var(--gold)">viviría</strong> en un pueblo pequeño cerca del mar. Aunque si <strong style="color:var(--blue)">fuera</strong> honesto, me <strong style="color:var(--gold)">encantaría</strong> volver a empezar desde cero.»
-        </div>
-        <div id="tr-interview" style="display:none;margin-top:10px;font-size:.85rem;color:var(--muted)">
-          <strong>Разбор:</strong><br>
-          Все условия — Тип 2: нереальные, гипотетические.<br>
-          • pudiera (poder, subj. imperfecto), tuviera (tener), fuera (ser)<br>
-          • dedicaría, viviría, encantaría — condicional simple<br>
-          Обрати внимание: «si fuera honesto» = если бы был честен с собой — не потому что он нечестный, а как речевой оборот.
-        </div>
+        <div class="dlg-es">Si fueras presidente de España, ¿qué harías lo primero?</div>
+        <div class="dlg-ru dlg1-ru" style="display:none">Если бы ты был президентом Испании, что бы ты сделал первым делом?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Elena</span>
+      <div>
+        <div class="dlg-es">Si pudiera, invertiría mucho más en educación y sanidad.</div>
+        <div class="dlg-ru dlg1-ru" style="display:none">Если бы я могла, вложила бы гораздо больше в образование и здравоохранение.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Raúl</span>
+      <div>
+        <div class="dlg-es">¿Y si tuvieras que elegir solo una reforma?</div>
+        <div class="dlg-ru dlg1-ru" style="display:none">А если бы пришлось выбрать только одну реформу?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Elena</span>
+      <div>
+        <div class="dlg-es">Reformaría la vivienda. Si los precios fueran razonables, la gente podría vivir mejor.</div>
+        <div class="dlg-ru dlg1-ru" style="display:none">Реформировала бы жильё. Если бы цены были разумными, люди могли бы жить лучше.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Raúl</span>
+      <div>
+        <div class="dlg-es">¿Y si hubiera resistencia del parlamento?</div>
+        <div class="dlg-ru dlg1-ru" style="display:none">А если бы было сопротивление парламента?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Elena</span>
+      <div>
+        <div class="dlg-es">Si me bloquearan, buscaría alianzas con otros partidos. En tu lugar, yo haría lo mismo.</div>
+        <div class="dlg-ru dlg1-ru" style="display:none">Если бы мне мешали, искала бы союзников в других партиях. На твоём месте я сделала бы то же самое.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Raúl</span>
+      <div>
+        <div class="dlg-es">Yo que tú, empezaría por el transporte público gratuito.</div>
+        <div class="dlg-ru dlg1-ru" style="display:none">На твоём месте я бы начал с бесплатного общественного транспорта.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Elena</span>
+      <div>
+        <div class="dlg-es">¡Buena idea! Si el transporte fuera gratuito, mucha menos gente usaría el coche.</div>
+        <div class="dlg-ru dlg1-ru" style="display:none">Хорошая идея! Если бы транспорт был бесплатным, намного меньше людей ездили бы на машине.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>💬 Диалог 2: В отеле — вежливые запросы</span>
+      <div class="dlg-btns">
+        <button class="dlg-toggle" onclick="toggleDlg(this, '.dlg2-ru')">Показать перевод</button>
+        <button class="speak-btn" onclick="playDialogue(dlg2Lines)" title="Воспроизвести диалог">▶️</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Cliente</span>
+      <div>
+        <div class="dlg-es">Buenas tardes. Quisiera hacer una consulta sobre mi reserva.</div>
+        <div class="dlg-ru dlg2-ru" style="display:none">Добрый вечер. Я бы хотел задать вопрос о моём бронировании.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Hotel</span>
+      <div>
+        <div class="dlg-es">Por supuesto. ¿En qué le puedo ayudar?</div>
+        <div class="dlg-ru dlg2-ru" style="display:none">Конечно. Чем могу помочь?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Cliente</span>
+      <div>
+        <div class="dlg-es">¿Podría cambiar mi habitación a una con vistas al mar? Si hubiera disponibilidad, claro.</div>
+        <div class="dlg-ru dlg2-ru" style="display:none">Могли бы вы перевести меня в номер с видом на море? Если есть возможность, конечно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Hotel</span>
+      <div>
+        <div class="dlg-es">Voy a comprobarlo. Si hubiera disponibilidad, le asignaríamos esa habitación sin coste adicional.</div>
+        <div class="dlg-ru dlg2-ru" style="display:none">Сейчас проверю. Если есть наличие, мы переведём вас без доплаты.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Cliente</span>
+      <div>
+        <div class="dlg-es">Se lo agradecería mucho. Y también quisiera saber si el desayuno está incluido.</div>
+        <div class="dlg-ru dlg2-ru" style="display:none">Был бы очень признателен. И я бы также хотел узнать, включён ли завтрак.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Hotel</span>
+      <div>
+        <div class="dlg-es">Sí, de siete a diez. Si llegara después, habría un cargo adicional de cinco euros.</div>
+        <div class="dlg-ru dlg2-ru" style="display:none">Да, с семи до десяти. Если придёте позже, будет доплата в пять евро.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Cliente</span>
+      <div>
+        <div class="dlg-es">Perfecto. ¿Podría indicarme también dónde está el gimnasio?</div>
+        <div class="dlg-ru dlg2-ru" style="display:none">Отлично. Не могли бы вы также сказать, где находится тренажёрный зал?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Hotel</span>
+      <div>
+        <div class="dlg-es">En la segunda planta. Si quisiera usarlo, necesitaría su tarjeta de huésped.</div>
+        <div class="dlg-ru dlg2-ru" style="display:none">На втором этаже. Если захотите воспользоваться, понадобится карта гостя.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>💬 Диалог 3: Мечты об Испании</span>
+      <div class="dlg-btns">
+        <button class="dlg-toggle" onclick="toggleDlg(this, '.dlg3-ru')">Показать перевод</button>
+        <button class="speak-btn" onclick="playDialogue(dlg3Lines)" title="Воспроизвести диалог">▶️</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Irina</span>
+      <div>
+        <div class="dlg-es">Si pudieras vivir en cualquier lugar de España, ¿dónde vivirías?</div>
+        <div class="dlg-ru dlg3-ru" style="display:none">Если бы ты мог жить в любом месте Испании, где бы ты жил?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Carlos</span>
+      <div>
+        <div class="dlg-es">Sin duda, en Barcelona. Si viviera allí, aprendería catalán también.</div>
+        <div class="dlg-ru dlg3-ru" style="display:none">Без сомнения, в Барселоне. Если бы жил там, учил бы и каталанский.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Irina</span>
+      <div>
+        <div class="dlg-es">¿Y si el alquiler fuera demasiado caro? Los pisos en Barcelona están por las nubes.</div>
+        <div class="dlg-ru dlg3-ru" style="display:none">А если бы аренда была слишком дорогой? Квартиры в Барселоне стоят баснословно дорого.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Carlos</span>
+      <div>
+        <div class="dlg-es">Si no pudiera pagar el alquiler solo, buscaría compañeros de piso. ¿Y tú?</div>
+        <div class="dlg-ru dlg3-ru" style="display:none">Если бы не мог платить аренду один, искал бы соседей по квартире. А ты?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Irina</span>
+      <div>
+        <div class="dlg-es">Yo me quedaría en San Sebastián. Si pudiera, abriría un pequeño café cerca de La Concha.</div>
+        <div class="dlg-ru dlg3-ru" style="display:none">Я бы осталась в Сан-Себастьяне. Если бы могла, открыла бы маленькое кафе рядом с Ла Конча.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Carlos</span>
+      <div>
+        <div class="dlg-es">¡Qué idea tan buena! Si tuviéramos el dinero, lo haríamos juntos.</div>
+        <div class="dlg-ru dlg3-ru" style="display:none">Какая отличная идея! Если бы у нас были деньги, сделали бы это вместе.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Irina</span>
+      <div>
+        <div class="dlg-es">Ya estoy practicando: «¿Quisiera usted un pintxo, señor?»</div>
+        <div class="dlg-ru dlg3-ru" style="display:none">Уже тренируюсь: «Не угодно ли вам пинчос, сеньор?»</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Carlos</span>
+      <div>
+        <div class="dlg-es">¡Perfecto! Si hablaras así, los clientes quedarían encantados.</div>
+        <div class="dlg-ru dlg3-ru" style="display:none">Отлично! Если бы ты говорила вот так, клиенты были бы в восторге.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: Диалоги -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <h2>Диалоги — Мечты и вежливость</h2>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Если бы ты был президентом
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg1')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Raúl</div>
-      <div><div class="dlg-es">Si fueras presidente de España, ¿qué harías lo primero?</div>
-      <div class="dlg-ru" id="tr-dlg1-1" style="display:none">Если бы ты был президентом Испании, что бы сделал первым делом?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Elena</div>
-      <div><div class="dlg-es">Uf, buena pregunta. Si pudiera, invertiría mucho más en educación y sanidad. También reduciría los impuestos para las pequeñas empresas.</div>
-      <div class="dlg-ru" id="tr-dlg1-2" style="display:none">Ого, хороший вопрос. Если бы мог, вложил бы гораздо больше в образование и здравоохранение. Также снизил бы налоги для малого бизнеса.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Raúl</div>
-      <div><div class="dlg-es">¿Y si tuvieras que elegir solo una cosa?</div>
-      <div class="dlg-ru" id="tr-dlg1-3" style="display:none">А если бы пришлось выбрать только одно?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Elena</div>
-      <div><div class="dlg-es">Entonces reformaría la vivienda. Si los precios fueran razonables, la gente podría vivir mejor.</div>
-      <div class="dlg-ru" id="tr-dlg1-4" style="display:none">Тогда реформировал бы жильё. Если бы цены были разумными, люди могли бы жить лучше.</div></div>
-    </div>
-    <div id="tr-dlg1" style="display:none"></div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: В отеле — вежливые запросы
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-dlg2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Cliente</div>
-      <div><div class="dlg-es">Buenas tardes. Quisiera hacer una consulta sobre mi reserva.</div>
-      <div class="dlg-ru" id="tr-dlg2-1" style="display:none">Добрый вечер. Я бы хотел задать вопрос о моей бронировании.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Hotel</div>
-      <div><div class="dlg-es">Por supuesto. ¿En qué le puedo ayudar?</div>
-      <div class="dlg-ru" id="tr-dlg2-2" style="display:none">Конечно. Чем могу помочь?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Cliente</div>
-      <div><div class="dlg-es">¿Podría cambiar mi habitación a una con vistas al mar? Si hubiera disponibilidad, por supuesto.</div>
-      <div class="dlg-ru" id="tr-dlg2-3" style="display:none">Могли бы вы перенести мой номер на тот, что с видом на море? Если есть возможность, конечно.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Hotel</div>
-      <div><div class="dlg-es">Voy a comprobarlo. Si hubiera disponibilidad, le asignaríamos esa habitación sin coste adicional.</div>
-      <div class="dlg-ru" id="tr-dlg2-4" style="display:none">Сейчас проверю. Если будет наличие, мы переведём вас в тот номер без доплаты.</div></div>
-    </div>
-    <div id="tr-dlg2" style="display:none"></div>
-  </div>
-</div>
-
-<!-- SECTION 7: Говорение -->
+<!-- SECTION 7: SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
@@ -436,66 +791,298 @@ tr:last-child td{border-bottom:none}
   </div>
 
   <div class="speak-box">
-    <div class="speak-tag">🎙 Сценарий A — Мечты</div>
-    <p>Ответь на вопросы вслух — минимум 3 предложения на каждый:</p>
-    <div class="es">• Si pudieras vivir en cualquier ciudad del mundo, ¿dónde vivirías?<br>• Si tuvieras todo el tiempo libre, ¿qué harías?<br>• Si pudieras aprender cualquier habilidad instantáneamente, ¿cuál sería?</div>
-    <div class="hint">Формула: Si pudiera/tuviera/fuera... + condicional. Как минимум 3 предложения на каждый вопрос.</div>
+    <div class="speak-tag">🎙 Сценарий A — Мечты и гипотезы (абстрактный)</div>
+    <p>Ответь на вопросы вслух. Минимум 3–4 предложения. Используй Тип 2.</p>
+    <div class="es">• ¿Qué harías si ganaras la lotería?<br>• Si pudieras vivir en cualquier ciudad del mundo, ¿dónde vivirías y por qué?<br>• Si pudieras aprender cualquier habilidad instantáneamente, ¿cuál sería?</div>
+    <div class="hint">Начни: «Si ganara la lotería...», «Viviría en... porque si viviera allí...», «Elegiría... porque me gustaría...»</div>
   </div>
 
   <div class="speak-box">
-    <div class="speak-tag">🎙 Сценарий B — Вежливые запросы в отеле/ресторане</div>
-    <p>Позвони в ресторан и сделай заказ, используя только вежливые формы.</p>
-    <div class="es">Quisiera reservar una mesa para cuatro personas para el sábado a las nueve.<br>¿Podría confirmarlo por escrito?<br>Me gustaría saber si tienen menú vegetariano...</div>
-    <div class="hint">Всё — через quisiera, podría, me gustaría. Никаких «quiero» и «necesito» в этом упражнении!</div>
+    <div class="speak-tag">🎙 Сценарий B — Жизнь в Барселоне: вежливые запросы</div>
+    <p>Звонишь в ресторан, рекомендованный соседями. Только вежливые формы — никаких «quiero»!</p>
+    <div class="es">Quisiera hacer una reserva para esta noche, para cuatro personas.<br>¿Podría decirme si tienen mesa disponible sobre las nueve?<br>Me gustaría una mesa tranquila, si fuera posible.<br>¿Podría indicarme también cómo llegar desde el metro Diagonal?</div>
+    <div class="hint">Весь разговор — только quisiera, podría, me gustaría, se lo agradecería. Отработай вслух!
+    </div>
   </div>
 </div>
 
-<!-- SECTION 8: Культурная заметка -->
+<!-- SECTION 8: SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Ayuntamiento — Empadronamiento</h2>
+  </div>
+
+  <p style="margin-bottom:12px">Эмпадронамьенто — регистрация по месту жительства в Барселоне. Обязательная процедура без которой невозможно получить медицинскую карту (tarjeta sanitaria), записать детей в школу и получить NIE. Вежливые формы условных предложений здесь особенно уместны и ценятся чиновниками.</p>
+
+  <div class="phrase-list">
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Quisiera pedir cita para el empadronamiento.')">🔊</button>
+      <div>
+        <div class="phrase-es">Quisiera pedir cita para el empadronamiento.</div>
+        <div class="phrase-ru">Я бы хотел записаться на регистрацию по месту жительства.</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Podría decirme qué documentos necesito traer?')">🔊</button>
+      <div>
+        <div class="phrase-es">¿Podría decirme qué documentos necesito traer?</div>
+        <div class="phrase-ru">Не могли бы вы сказать, какие документы нужно принести?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Si me faltara algún documento, ¿podría enviarlo después?')">🔊</button>
+      <div>
+        <div class="phrase-es">Si me faltara algún documento, ¿podría enviarlo después?</div>
+        <div class="phrase-ru">Если бы мне не хватало какого-то документа, мог бы я прислать его потом?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Podría ayudarme a rellenar este formulario?')">🔊</button>
+      <div>
+        <div class="phrase-es">¿Podría ayudarme a rellenar este formulario?</div>
+        <div class="phrase-ru">Не могли бы вы помочь мне заполнить эту форму?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Me gustaría saber cuándo recibiré el volante de empadronamiento.')">🔊</button>
+      <div>
+        <div class="phrase-es">Me gustaría saber cuándo recibiré el volante de empadronamiento.</div>
+        <div class="phrase-ru">Я бы хотел узнать, когда получу справку о регистрации.</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Si necesitara el volante antes, ¿podría solicitarlo aquí?')">🔊</button>
+      <div>
+        <div class="phrase-es">Si necesitara el volante antes, ¿podría solicitarlo aquí?</div>
+        <div class="phrase-ru">Если бы мне понадобилась справка раньше, мог бы я запросить её здесь?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue" style="margin-top:16px">
+    <div class="dlg-header">
+      <span>📋 Мини-диалог — В окошке Аюнтамьенто</span>
+      <button class="dlg-toggle" onclick="toggleDlg(this, '.dlg4-ru')">Показать перевод</button>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Вы</span>
+      <div>
+        <div class="dlg-es">Buenos días. Quisiera tramitar el empadronamiento. Llegué hace un mes.</div>
+        <div class="dlg-ru dlg4-ru" style="display:none">Доброе утро. Я бы хотел оформить регистрацию по месту жительства. Я приехал месяц назад.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Funcionaria</span>
+      <div>
+        <div class="dlg-es">¿Trae contrato de alquiler y pasaporte?</div>
+        <div class="dlg-ru dlg4-ru" style="display:none">У вас есть договор аренды и паспорт?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Вы</span>
+      <div>
+        <div class="dlg-es">Sí, aquí están. Si me faltara algún otro documento, ¿podría traerlo mañana?</div>
+        <div class="dlg-ru dlg4-ru" style="display:none">Да, вот они. Если бы мне не хватало какого-то другого документа, мог бы я принести его завтра?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Funcionaria</span>
+      <div>
+        <div class="dlg-es">Con estos es suficiente. Si tuviera alguna duda, llame al 010.</div>
+        <div class="dlg-ru dlg4-ru" style="display:none">Этих достаточно. Если бы у вас возник вопрос, позвоните на 010.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Вы</span>
+      <div>
+        <div class="dlg-es">¿Podría explicarme cuándo recibiré el volante de empadronamiento?</div>
+        <div class="dlg-ru dlg4-ru" style="display:none">Не могли бы вы объяснить, когда я получу справку о регистрации?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Funcionaria</span>
+      <div>
+        <div class="dlg-es">En dos semanas por correo. Si lo necesitara antes, podría solicitar un volante provisional aquí mismo.</div>
+        <div class="dlg-ru dlg4-ru" style="display:none">Через две недели почтой. Если бы понадобилось раньше, вы могли бы запросить временную справку прямо здесь.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="culture-tip">
+    <strong>Важно в Испании:</strong> В Аюнтамьенто Барселоны вежливые формы (quisiera, ¿podría?) — не просто этикет, а ожидаемая норма общения. Чиновники — люди, и «quisiera» вместо «quiero» часто определяет тон всей встречи.
+  </div>
+</div>
+
+<!-- SECTION 9: CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
     <h2>Культурная заметка</h2>
   </div>
 
   <div class="culture">
     <div class="ctag">Вежливость и кондиционал</div>
     <h4>«Quisiera» vs «Quiero» — социальный сигнал</h4>
-    <p>В Испании разница между «Quiero un café» и «Quisiera un café» — это буквально разница между грубым и вежливым. В магазинах, ресторанах, учреждениях — носители используют «quisiera», «me gustaría», «¿podría...?». «Quiero» в этих контекстах звучит как приказ и может вызвать удивлённый взгляд официанта. Это самый практичный навык B1 для жизни в Испании: замени все «quiero» в сервисных ситуациях на «quisiera» — и сразу звучишь как местный.</p>
+    <p>В Испании «Quiero un café» в кафе звучит как приказ. Носители говорят «Quisiera un café» или «Me pone un café» — и это разница между грубым и культурным. Замена «quiero» на «quisiera» в сервисных ситуациях — один из самых быстрых способов зазвучать как местный.</p>
+  </div>
+
+  <div class="culture" style="margin-top:12px">
+    <div class="ctag">Региональные различия</div>
+    <h4>Форма -ra vs форма -se</h4>
+    <p>В разговорной Испании форма <strong>-ra</strong> (tuviera, fuera) — абсолютная норма. Форма <strong>-se</strong> (tuviese, fuese) встречается в литературе и у пожилых. В Латинской Америке — тоже -ra. Используй -ra везде, и тебя поймут идеально.</p>
+  </div>
+
+  <div class="culture" style="margin-top:12px">
+    <div class="ctag">Гипотетические разговоры</div>
+    <h4>«¿Qué harías si...?» — любимый испанский жанр</h4>
+    <p>Испанцы обожают гипотетические вопросы. «¿Qué harías si te tocara la lotería?» — классика кафе. «Si fueras un animal, ¿cuál serías?» — типичный вопрос на знакомстве. Умение отвечать с Типом 2 — это полноценное участие в испанской разговорной культуре.</p>
+  </div>
+
+  <div class="callout success" style="margin-top:16px">
+    <h4>Три фразы, которые нужно знать наизусть</h4>
+    <ul>
+      <li><strong>Quisiera...</strong> — вежливый заказ/просьба в любом контексте</li>
+      <li><strong>¿Podría usted...?</strong> — просьба чиновнику, незнакомому человеку</li>
+      <li><strong>En tu lugar / Yo que tú...</strong> — давать советы другу</li>
+    </ul>
   </div>
 </div>
 
-<!-- SECTION 9: Anki + ДЗ -->
+<!-- SECTION 10: ANKI -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">9</div>
-    <h2>Anki + Домашнее задание</h2>
+    <div class="section-num">10</div>
+    <h2>Карточки Anki — Запомни навсегда</h2>
   </div>
 
-  
+  <div class="callout tip">
+    <p>Нажми на карточку, чтобы перевернуть её. Скачай всю колоду для ежедневного повторения в Anki.</p>
+  </div>
+
+  <div style="text-align:center;padding:10px 0">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="font-weight:700">Si tuviera tiempo...</div>
+        <div class="anki-card-back">Если бы у меня было время...<br><em>tener → tuvieron → tuviera</em></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="font-weight:700">Si yo fuera tú...</div>
+        <div class="anki-card-back">На твоём месте...<br><em>ser/ir → fueron → fuera</em></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="font-weight:700">quisiera</div>
+        <div class="anki-card-back">я бы хотел (вежл.)<br><em>querer → quisieron → quisiera</em></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="font-weight:700">haría / diría</div>
+        <div class="anki-card-back">сделал бы / сказал бы<br><em>har- + ía / dir- + ía</em></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="font-weight:700">pudiera / supiera</div>
+        <div class="anki-card-back">если бы мог / если бы знал<br><em>poder/saber → Subj Imp</em></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="export-btn" onclick="exportAnkiL81()">📥 Скачать колоду Anki (.txt) — 18 карточек</button>
+  <p style="font-size:.78rem;color:var(--muted);margin-top:8px">Файл → Импорт в Anki. Колода: «Испанский B1 · L81 Условные II»</p>
+</div>
+
+<!-- SECTION 11: HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>Обязательные задания</h4>
+    <ul>
+      <li>Написать 5 предложений типа 2 о себе (мечты, советы другу, гипотезы)</li>
+      <li>Сформулировать 3 вопроса «¿Qué harías si...?» и ответить на них вслух</li>
+      <li>Выучить все формы Imperfecto Subj: tener, ser/ir, poder, saber, hacer, decir</li>
+      <li>Прочитать все три диалога вслух по ролям — можно записать себя</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>Dreaming Spanish — Intermediate</h4>
+    <ul>
+      <li>Найди видео с темами «si tuviera», «qué harías si» — послушай носителей</li>
+      <li>Запиши 3 примера Типа 2, которые услышишь, и разбери их</li>
+      <li>Потренируй «quisiera» в реальных ситуациях: кафе, магазин, телефонный звонок</li>
+    </ul>
+  </div>
+
+  <div class="callout success">
+    <h4>Следующий урок: L82 — Косвенная речь (Estilo indirecto)</h4>
+    <p>В L82 ты научишься пересказывать чужие слова: «Dijo que...», «Me preguntó si...», «Me pidió que...» — с правилами смещения времён. Это ключевой навык для пересказа разговоров с чиновниками, врачами и соседями.</p>
+  </div>
+</div>
+
+</div><!-- end .wrap -->
 
 <div class="done-bar">
   <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
     <a href="L80.html" class="nav-link-btn">← L80</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L82.html" class="nav-link-btn">L82 →</a>
+    <a href="L82.html" class="nav-link-btn">L82: Косвенная речь →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
 const LESSON_ID = 'L81';
 const LS_KEY = 'esp_course_progress';
 function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+function markDone(){
+  const s=getState();
+  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
+  const today=new Date().toISOString().slice(0,10);
+  if(!s.study_days)s.study_days={};
+  s.study_days[today]=true;
+  localStorage.setItem(LS_KEY,JSON.stringify(s));
+  const btn=document.getElementById('done-btn');
+  btn.textContent='✅ Пройден!';
+  btn.className='done-btn marked';
+}
+const st=getState();
+if(st.completed&&st.completed.includes(LESSON_ID)){
+  const btn=document.getElementById('done-btn');
+  if(btn){btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
+}
+
 const quizExpl={
-  q1:'fuera — imperfecto subjuntivo de «ser». Si fuera presidente = нереально, я не президент.',
-  q2:'tuviera — imperfecto subj. de «tener». Гипотетическое условие.',
-  q3:'Podría — конд. simpl. для вежливой просьбы. Звучит мягче, чем «¿Puede?».',
-  q4:'hablaría — condicional simple después de «yo que tú» (совет).',
-  q5:'gustaría — me gustaría = мне бы хотелось. Кондиционал gustar.',
-  q6:'pudiéramos — imperfecto subj. nosotros. Заметь ударение: pudiéramos.'
+  w1:'hace — Presente de Indicativo. Тип 1: si + Presente → Futuro. «Mañana hace buen tiempo» — реально возможно!',
+  w2:'vienes — Presente. Тип 1: si + Presente = реальное предупреждение/угроза.',
+  w3:'Реальное условие типа 1: trabajas (Presente) + conseguirás (Futuro).',
+  w4:'После si в Типе 1 — Presente de Indicativo. Futuro и Condicional после si — ошибка!',
+  q1:'fuera — Imperfecto Subjuntivo de ser. «Si fuera presidente» = нереально, я не президент.',
+  q2:'tuviera — Imperfecto Subj de tener. Тип 2: гипотетическая ситуация.',
+  q3:'Podría — Condicional de poder. Вежливая просьба: мягче, чем ¿Puede usted?',
+  q4:'hablaría — Condicional Simple. «Yo que tú» + Condicional = стандартный способ давать советы.',
+  q5:'gustaría — me gustaría = мне бы хотелось. Condicional de gustar.',
+  q6:'pudiéramos — Imperfecto Subj, nosotros. Ударение на Е: pudiÉramos!',
+  q7:'Quisiera — Imperfecto Subj de querer. Самая вежливая форма для заказов и запросов.'
 };
+
 let quizScore=0,quizTotal=0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
@@ -504,32 +1091,30 @@ function answerQuiz(el, qId, correctKey) {
   const opts = container.querySelectorAll('.opt');
   opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
   let correctText = '';
-  let pickedText = '';
+  const pickedText = el.textContent.trim();
   opts.forEach(o => {
     const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
     const key = m ? m[1] : null;
     if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
     else { o.classList.add('wrong'); }
-    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
+    if (o === el) o.classList.add('picked');
   });
   const isCorrect = correctKey === 'a';
   const fb = document.getElementById('fb-' + qId);
-  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
+  const expl = quizExpl[qId] || '';
   if (isCorrect) {
     fb.className = 'feedback show ok';
     fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
+    quizScore++;
   } else {
     fb.className = 'feedback show no';
-    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», правильный ответ — <strong>«' + correctText + '»</strong>.<br>💡 ' + expl;
   }
-  if (typeof quizScore !== 'undefined') {
-    if (isCorrect) quizScore++;
-    quizTotal++;
-    const scoreEl = document.getElementById('quiz-score');
-    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
-  }
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
 }
-function updateScore(){const el=document.getElementById('quiz-score');if(el)el.textContent=`Правильных ответов: ${quizScore} из ${quizTotal}`;}
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -548,7 +1133,7 @@ function checkText(inputId, answer, fbId) {
     input.className = 'text-input correct';
     fb.className += ' ok';
     if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
-      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
+      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b>';
     } else {
       fb.textContent = '✅ Правильно! ' + answer;
     }
@@ -556,8 +1141,7 @@ function checkText(inputId, answer, fbId) {
   }
   const lev = (a, b) => {
     const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
+    if (!m) return n; if (!n) return m;
     let prev = Array.from({length: n+1}, (_,i) => i);
     let curr = new Array(n+1).fill(0);
     for (let i = 1; i <= m; i++) {
@@ -575,18 +1159,99 @@ function checkText(inputId, answer, fbId) {
   if (dist > 0 && dist <= tol) {
     input.className = 'text-input correct';
     fb.className += ' ok';
-    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
+    fb.innerHTML = '✅ Засчитано (с опечаткой)! Правильно: <b>' + answer + '</b>';
     return;
   }
   input.className = 'text-input wrong';
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
+
 function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
-function updateProgress(){const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(scrolled/total*100));const sectionsRead=Math.round(pct/100*totalSections);document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;}
-window.addEventListener('scroll',updateProgress);
+
+function toggleDlg(btn, selector) {
+  const dlg = btn.closest('.dialogue');
+  const ruLines = dlg.querySelectorAll(selector);
+  if (!ruLines.length) return;
+  const hidden = ruLines[0].style.display === 'none';
+  ruLines.forEach(e => e.style.display = hidden ? '' : 'none');
+  btn.textContent = hidden ? 'Скрыть перевод' : 'Показать перевод';
+}
+
+const dlg1Lines=[
+  'Si fueras presidente de España, ¿qué harías lo primero?',
+  'Si pudiera, invertiría mucho más en educación y sanidad.',
+  '¿Y si tuvieras que elegir solo una reforma?',
+  'Reformaría la vivienda. Si los precios fueran razonables, la gente podría vivir mejor.',
+  '¿Y si hubiera resistencia del parlamento?',
+  'Si me bloquearan, buscaría alianzas con otros partidos.',
+  'Yo que tú, empezaría por el transporte público gratuito.',
+  'Si el transporte fuera gratuito, mucha menos gente usaría el coche.'
+];
+const dlg2Lines=[
+  'Buenas tardes. Quisiera hacer una consulta sobre mi reserva.',
+  'Por supuesto. ¿En qué le puedo ayudar?',
+  '¿Podría cambiar mi habitación a una con vistas al mar?',
+  'Voy a comprobarlo. Si hubiera disponibilidad, le asignaríamos esa habitación.',
+  'Se lo agradecería mucho. Y también quisiera saber si el desayuno está incluido.',
+  'Sí, de siete a diez.',
+  'Perfecto. ¿Podría indicarme también dónde está el gimnasio?',
+  'En la segunda planta. Si quisiera usarlo, necesitaría su tarjeta de huésped.'
+];
+const dlg3Lines=[
+  'Si pudieras vivir en cualquier lugar de España, ¿dónde vivirías?',
+  'Sin duda, en Barcelona. Si viviera allí, aprendería catalán también.',
+  '¿Y si el alquiler fuera demasiado caro?',
+  'Si no pudiera pagar el alquiler solo, buscaría compañeros de piso.',
+  'Yo me quedaría en San Sebastián. Si pudiera, abriría un pequeño café.',
+  'Si tuviéramos el dinero, lo haríamos juntos.',
+  'Ya estoy practicando: ¿Quisiera usted un pintxo, señor?',
+  'Si hablaras así, los clientes quedarían encantados.'
+];
+function playDialogue(lines) {
+  lines.forEach((line, i) => setTimeout(() => speak(line), i * 3000));
+}
+
+const ANKI_DECK_L81 = [
+  {front:'Si tuviera tiempo...',back:'Перевод: Если бы у меня было время...\n\nПример: Si tuviera tiempo, estudiaría más.\nЗаметка: tener → tuvieron → tuviera'},
+  {front:'Si yo fuera tú...',back:'Перевод: На твоём месте...\n\nПример: Si yo fuera tú, no lo haría.\nЗаметка: ser/ir → fueron → fuera'},
+  {front:'quisiera',back:'Перевод: я бы хотел (вежливо)\n\nПример: Quisiera un café, por favor.\nЗаметка: querer → quisieron → quisiera; используй в кафе/магазинах'},
+  {front:'me gustaría',back:'Перевод: мне бы хотелось\n\nПример: Me gustaría vivir cerca del mar.\nЗаметка: gustar → Condicional gustaría'},
+  {front:'podría',back:'Перевод: мог бы (конд. poder)\n\nПример: ¿Podría repetirlo?\nЗаметка: poder → podr- + ía'},
+  {front:'tuviera',back:'Перевод: если бы имел (tener)\n\nПример: Si tuviera dinero...\nЗаметка: tener → tuvieron → tuviera'},
+  {front:'fuera',back:'Перевод: если бы был (ser/ir)\n\nПример: Si fuera más joven...\nЗаметка: ser и ir — одинаковы в Subj Imperfecto!'},
+  {front:'pudiera',back:'Перевод: если бы мог (poder)\n\nПример: Si pudiera, cambiaría todo.\nЗаметка: poder → pudieron → pudiera'},
+  {front:'supiera',back:'Перевод: если бы знал (saber)\n\nПример: Si supiera la respuesta...\nЗаметка: saber → supieron → supiera'},
+  {front:'hiciera',back:'Перевод: если бы делал (hacer)\n\nПример: Si hiciera más ejercicio...\nЗаметка: hacer → hicieron → hiciera'},
+  {front:'dijera',back:'Перевод: если бы сказал (decir)\n\nПример: Si me lo dijera...\nЗаметка: decir → dijeron → dijera'},
+  {front:'haría',back:'Перевод: сделал бы (конд. hacer)\n\nПример: En tu lugar, no lo haría.\nЗаметка: hacer → har- + ía'},
+  {front:'diría',back:'Перевод: сказал бы (конд. decir)\n\nПример: Yo que tú, se lo diría.\nЗаметка: decir → dir- + ía'},
+  {front:'tendría',back:'Перевод: имел бы (конд. tener)\n\nПример: Sin trabajo, no tendría dinero.\nЗаметка: tener → tendr- + ía'},
+  {front:'vendría',back:'Перевод: пришёл бы (конд. venir)\n\nПример: Si me invitara, vendría.\nЗаметка: venir → vendr- + ía'},
+  {front:'yo que tú',back:'Перевод: на твоём месте я бы\n\nПример: Yo que tú, aceptaría la oferta.\nЗаметка: = En tu lugar. Формула совета друзьям.'},
+  {front:'¿Podría ayudarme?',back:'Перевод: Не могли бы вы помочь?\n\nПример: ¿Podría ayudarme con este formulario?\nЗаметка: Condicional для вежливых просьб'},
+  {front:'Si tuviera que elegir...',back:'Перевод: Если бы мне пришлось выбрать...\n\nПример: Si tuviera que elegir, diría que...\nЗаметка: tener que + inf = нужно/приходится'}
+];
+
+function exportAnkiL81() {
+  const tsv = ANKI_DECK_L81.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿' + tsv], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L81_spanish.txt';
+  a.click();
+}
+
+const totalSections = 11;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? Math.min(100, Math.round(scrolled / total * 100)) : 0;
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>

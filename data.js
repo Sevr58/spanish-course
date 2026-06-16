@@ -1064,7 +1064,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Говорить о нереальных сценариях: если бы ты был президентом...",
-      file:"lessons/L81.html", status:"pending"
+      file:"lessons/L81.html", status:"improved"
     },
     {
       id:"L82", num:82, phase:3, block:"B3C", level:"B1", day:174, week:29,
@@ -1076,7 +1076,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Пересказать разговор или новость от третьего лица",
-      file:"lessons/L82.html", status:"pending"
+      file:"lessons/L82.html", status:"improved"
     },
     {
       id:"L83", num:83, phase:3, block:"B3C", level:"B1", day:176, week:30,
