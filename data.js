@@ -1088,7 +1088,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Говорить о текущих действиях и процессах",
-      file:"lessons/L83.html", status:"pending"
+      file:"lessons/L83.html", status:"improved"
     },
     {
       id:"L84", num:84, phase:3, block:"B3C", level:"B1", day:178, week:30,
@@ -1100,7 +1100,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Описывать последовательность действий элегантно",
-      file:"lessons/L84.html", status:"pending"
+      file:"lessons/L84.html", status:"improved"
     },
     {
       id:"L85", num:85, phase:3, block:"B3C", level:"B1", day:180, week:30,

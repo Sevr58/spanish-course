@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L83: Герундий — -ando/-iendo в действии</title>
+<title>L83: Герундий — -ando/-iendo</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -28,7 +27,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .section-header h2{font-size:1.15rem;font-weight:700}
 .section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.divider{height:1px;background:var(--border);margin:32px 0}
 .callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
 .callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
 .callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
@@ -36,8 +34,16 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -52,9 +58,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
-.opt:disabled,.opt[disabled]{cursor:default}
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -73,7 +76,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -82,10 +85,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -93,442 +92,967 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-/* Formation table */
-.form-table{width:100%;border-collapse:collapse;font-size:.88rem;margin:14px 0}
-.form-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-weight:700;color:var(--gold);border-bottom:1px solid var(--border)}
-.form-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
-.form-table tr:last-child td{border-bottom:none}
-.form-table td:first-child{color:var(--muted);width:35%}
-.form-table .ger{color:var(--green);font-weight:600}
-/* Uses grid */
-.uses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
-.use-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
-.use-card .uc-title{font-weight:700;font-size:.9rem;color:var(--gold);margin-bottom:8px}
-.use-card .uc-formula{font-size:.82rem;color:var(--blue);margin-bottom:6px;font-family:monospace}
-.use-card .uc-ex{font-size:.85rem;margin-bottom:3px}
-.use-card .uc-ru{font-size:.8rem;color:var(--muted)}
-/* Llevar / hacer table */
-.time-table{width:100%;border-collapse:collapse;font-size:.87rem;margin:14px 0}
-.time-table th{background:var(--bg3);padding:9px 12px;text-align:left;font-weight:700;border-bottom:1px solid var(--border);color:var(--muted)}
-.time-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
-.time-table tr:last-child td{border-bottom:none}
-/* Authentic text */
-.authentic{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin:16px 0}
-.authentic .a-source{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--purple);margin-bottom:10px}
-.authentic p{font-size:.9rem;line-height:1.8;margin-bottom:8px}
-.authentic p:last-child{margin-bottom:0}
-.authentic .a-note{font-size:.8rem;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;margin-top:10px}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
-  <a href="L82.html">← L82</a>
+  <a href="../index.html">← Дашборд</a>
   <span class="level">B1 · Фаза 3 · День 176</span>
   <a href="L84.html">L84 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">Фаза 3 · Блок B3C · Сложная коммуникация</div>
-  <h1>Герундий — <span class="hl">-ando/-iendo в действии</span></h1>
-  <p class="sub">Говорить о процессах, одновременных действиях и времени в испанском стиле</p>
+  <div class="phase-tag">🔥 Фаза 3 · Блок 3C: Сложная коммуникация · A2→B1</div>
+  <h1>Герундий — <span class="hl">-ando / -iendo</span></h1>
+  <p class="sub">Estoy comiendo · Llevo tres horas estudiando · Salió corriendo · Sigo aprendiendo</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Уверенно использовать герундий в 5 конструкциях</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + Anki</p></div></div>
-    <div class="obj"><div class="ico">📐</div><div><strong>Формы</strong><p>Образование + 12 неправильных</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Описываем текущие действия и процессы</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Образовать герундий от любого глагола (включая неправильные)</p></div></div>
+    <div class="obj"><div class="ico">⏱️</div><div><strong>Цель 2</strong><p>Использовать estar + герундий для действий в процессе</p></div></div>
+    <div class="obj"><div class="ico">📅</div><div><strong>Цель 3</strong><p>Выражать продолжительность: llevar + gerundio</p></div></div>
+    <div class="obj"><div class="ico">🗣️</div><div><strong>Цель 4</strong><p>Описывать действия и процессы в Аюнтамьенто Барселоны</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 8 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1 -->
+<!-- 3. WARM-UP (L82: косвенная речь) -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Образование герундия</h2>
+    <h2>Повторение — L82: Косвенная речь</h2>
   </div>
-
-  <p style="margin-bottom:14px">Герундий (gerundio) — неизменяемая форма глагола. Окончания зависят от типа спряжения.</p>
-
-  <table class="form-table">
-    <thead>
-      <tr><th>Тип глагола</th><th>Правило</th><th>Примеры</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>-AR глаголы</td><td>основа + <span class="ger">-ando</span></td><td>hablar → <span class="ger">hablando</span> · trabajar → <span class="ger">trabajando</span></td></tr>
-      <tr><td>-ER глаголы</td><td>основа + <span class="ger">-iendo</span></td><td>comer → <span class="ger">comiendo</span> · leer → <span class="ger">leyendo</span>*</td></tr>
-      <tr><td>-IR глаголы</td><td>основа + <span class="ger">-iendo</span></td><td>vivir → <span class="ger">viviendo</span> · escribir → <span class="ger">escribiendo</span></td></tr>
-      <tr><td>-IR с чередованием e→i</td><td>e→i + <span class="ger">-iendo</span></td><td>pedir → <span class="ger">pidiendo</span> · decir → <span class="ger">diciendo</span></td></tr>
-      <tr><td>-IR с чередованием o→u</td><td>o→u + <span class="ger">-iendo</span></td><td>dormir → <span class="ger">durmiendo</span> · poder → <span class="ger">pudiendo</span></td></tr>
-      <tr><td>*-ER/-IR на гласную</td><td>-<span class="ger">yendo</span></td><td>leer → <span class="ger">leyendo</span> · oír → <span class="ger">oyendo</span> · ir → <span class="ger">yendo</span></td></tr>
-    </tbody>
-  </table>
-
-  <div class="callout warning">
-    <h4>Неправильные — выучи наизусть</h4>
-    <ul>
-      <li>ser → <strong>siendo</strong> · ir → <strong>yendo</strong> · venir → <strong>viniendo</strong></li>
-      <li>decir → <strong>diciendo</strong> · traer → <strong>trayendo</strong> · poder → <strong>pudiendo</strong></li>
-      <li>dormir → <strong>durmiendo</strong> · morir → <strong>muriendo</strong> · sentir → <strong>sintiendo</strong></li>
-      <li>seguir → <strong>siguiendo</strong> · conseguir → <strong>consiguiendo</strong> · reír → <strong>riendo</strong></li>
-    </ul>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прежде чем начать урок о герундии — проверим косвенную речь из L82. 3 быстрых вопроса.</p>
+  <div class="quiz">
+    <h3>🔁 Косвенная речь — напомним</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Прямая речь: «Trabajo aquí». В косвенной (dijo que...)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Dijo que trabajaba aquí.</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Dijo que trabaja aquí.</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Dijo que trabajo aquí.</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «¿Dónde vives?» → Me preguntó que…</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">…dónde vivía yo.</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">…dónde vivía.</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">…dónde viviste.</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Как перевести: «Le pedí que viniera»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Я попросил(а) его/её прийти.</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Я сказал(а), что он придёт.</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Он попросил меня прийти.</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Какой глагол используется для пересказа команды?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">decir que + indicativo</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">creer que + subjuntivo</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">pedir / ordenar + que + subjuntivo</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<div class="divider"></div>
-
-<!-- SECTION 2 -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>5 главных употреблений герундия</h2>
+    <h2>Теория — Герундий: образование и употребление</h2>
   </div>
 
-  <div class="uses-grid">
-    <div class="use-card">
-      <div class="uc-title">1. Estar + gerundio</div>
-      <div class="uc-formula">estar + -ando/-iendo</div>
-      <div class="uc-ex">Estoy <strong>trabajando</strong> desde casa.</div>
-      <div class="uc-ru">Я работаю (сейчас, в процессе)</div>
+  <p style="margin-bottom:14px">Герундий (el gerundio) — неизменяемая глагольная форма, соответствующая русскому <strong>деепричастию</strong> («говоря», «делая», «бегая») или английскому <strong>-ing</strong> в составе прогрессивных форм. В испанском он широко используется для описания текущих процессов, длительности и сопутствующих действий.</p>
+
+  <div class="callout info">
+    <h4>💡 Сравнение с русским и английским</h4>
+    <p>По-русски: «Я ем» — простое настоящее. «Я сейчас ем» — тоже. В испанском есть отдельная форма для «прямо сейчас»: <strong>estoy comiendo</strong>. В английском аналог: I am eating. Герундий в испанском похож на -ing, но используется в более узком круге случаев.</p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 1</span>
+      <span class="rule-title">Образование: -AR → -ando</span>
+      <span class="rule-arrow">hablar → hablando</span>
     </div>
-    <div class="use-card">
-      <div class="uc-title">2. Llevar + gerundio</div>
-      <div class="uc-formula">llevar + tiempo + -ando</div>
-      <div class="uc-ex">Llevo tres horas <strong>esperando</strong>.</div>
-      <div class="uc-ru">Я жду уже три часа (и всё ещё жду)</div>
-    </div>
-    <div class="use-card">
-      <div class="uc-title">3. Seguir / continuar</div>
-      <div class="uc-formula">seguir/continuar + -ando</div>
-      <div class="uc-ex">Sigue <strong>lloviendo</strong> en el norte.</div>
-      <div class="uc-ru">На севере всё ещё дождь</div>
-    </div>
-    <div class="use-card">
-      <div class="uc-title">4. Герундий-наречие</div>
-      <div class="uc-formula">[обстоятельство] + -ando</div>
-      <div class="uc-ex"><strong>Estudiando</strong> más, aprobarás.</div>
-      <div class="uc-ru">Занимаясь больше, сдашь экзамен</div>
-    </div>
-    <div class="use-card">
-      <div class="uc-title">5. Перцептивные глаголы</div>
-      <div class="uc-formula">ver/oír/notar + obj + -ando</div>
-      <div class="uc-ex">Te vi <strong>saliendo</strong> del metro.</div>
-      <div class="uc-ru">Я видел, как ты выходил из метро</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Глаголы 1-го спряжения: убираем -ar, добавляем -ando. Без исключений для правильных глаголов.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">hablar</span><span class="sep">→</span><span class="ar">hablando</span></div>
+      <div class="wp"><span class="en">trabajar</span><span class="sep">→</span><span class="ar">trabajando</span></div>
+      <div class="wp"><span class="en">caminar</span><span class="sep">→</span><span class="ar">caminando</span></div>
+      <div class="wp"><span class="en">estudiar</span><span class="sep">→</span><span class="ar">estudiando</span></div>
+      <div class="wp"><span class="en">escuchar</span><span class="sep">→</span><span class="ar">escuchando</span></div>
+      <div class="wp"><span class="en">esperar</span><span class="sep">→</span><span class="ar">esperando</span></div>
+      <div class="wp"><span class="en">buscar</span><span class="sep">→</span><span class="ar">buscando</span></div>
     </div>
   </div>
 
-  <div class="callout warning">
-    <h4>НЕ используй герундий как прилагательное!</h4>
-    <p>В испанском нельзя: «una mujer <del>hablando</del> español» как замену прилагательного. Правильно: «una mujer <strong>que habla</strong> español». Исключения: agua corriente, agua hirviendo, posición sentada — устоявшиеся выражения.</p>
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 2</span>
+      <span class="rule-title">Образование: -ER/-IR → -iendo</span>
+      <span class="rule-arrow">comer → comiendo · vivir → viviendo</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Глаголы 2-го и 3-го спряжения: убираем -er/-ir, добавляем -iendo. Внимание: если основа заканчивается на гласную, -iendo → -yendo.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">comer</span><span class="sep">→</span><span class="ar">comiendo</span></div>
+      <div class="wp"><span class="en">beber</span><span class="sep">→</span><span class="ar">bebiendo</span></div>
+      <div class="wp"><span class="en">correr</span><span class="sep">→</span><span class="ar">corriendo</span></div>
+      <div class="wp"><span class="en">vivir</span><span class="sep">→</span><span class="ar">viviendo</span></div>
+      <div class="wp"><span class="en">escribir</span><span class="sep">→</span><span class="ar">escribiendo</span></div>
+      <div class="wp"><span class="en">leer</span><span class="sep">→</span><span class="ar">le<strong>y</strong>endo</span></div>
+      <div class="wp"><span class="en">ir</span><span class="sep">→</span><span class="ar"><strong>y</strong>endo</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 3</span>
+      <span class="rule-title">Неправильные герундии (чередование e→i, o→u)</span>
+      <span class="rule-arrow">decir → diciendo · dormir → durmiendo</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Глаголы с чередованием гласных в основе сохраняют это чередование и в герундии. Это те же глаголы, что «обувные» в настоящем времени.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">decir</span><span class="sep">→</span><span class="ar">diciendo</span></div>
+      <div class="wp"><span class="en">poder</span><span class="sep">→</span><span class="ar">pudiendo</span></div>
+      <div class="wp"><span class="en">dormir</span><span class="sep">→</span><span class="ar">durmiendo</span></div>
+      <div class="wp"><span class="en">pedir</span><span class="sep">→</span><span class="ar">pidiendo</span></div>
+      <div class="wp"><span class="en">seguir</span><span class="sep">→</span><span class="ar">siguiendo</span></div>
+      <div class="wp"><span class="en">venir</span><span class="sep">→</span><span class="ar">viniendo</span></div>
+      <div class="wp"><span class="en">sentir</span><span class="sep">→</span><span class="ar">sintiendo</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 4</span>
+      <span class="rule-title">Estar + gerundio — действие прямо сейчас</span>
+      <span class="rule-arrow">¿Qué estás haciendo? — Estoy comiendo.</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Самое частое употребление герундия. Глагол estar спрягается по времени, герундий не изменяется. Работает в любом времени.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">сейчас</span><span class="sep">→</span><span class="ar">Estoy trabajando.</span></div>
+      <div class="wp"><span class="en">тогда</span><span class="sep">→</span><span class="ar">Estaba durmiendo.</span></div>
+      <div class="wp"><span class="en">будет</span><span class="sep">→</span><span class="ar">Estaré viajando.</span></div>
+      <div class="wp"><span class="en">вопрос</span><span class="sep">→</span><span class="ar">¿Qué estás haciendo?</span></div>
+      <div class="wp"><span class="en">они</span><span class="sep">→</span><span class="ar">Están esperando.</span></div>
+      <div class="wp"><span class="en">мы</span><span class="sep">→</span><span class="ar">Estamos aprendiendo.</span></div>
+      <div class="wp"><span class="en">она</span><span class="sep">→</span><span class="ar">Estaba llorando.</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 5</span>
+      <span class="rule-title">Llevar + gerundio — сколько времени делаю</span>
+      <span class="rule-arrow">Llevo tres horas estudiando = I've been studying for 3 hours</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Конструкция <strong>llevar + tiempo + gerundio</strong> — очень важна в реальной речи. Указывает, что действие продолжается с определённого момента. Соответствует русскому «уже X часов/дней делаю».</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">час</span><span class="sep">→</span><span class="ar">Llevo una hora esperando.</span></div>
+      <div class="wp"><span class="en">годы</span><span class="sep">→</span><span class="ar">Llevo años viviendo aquí.</span></div>
+      <div class="wp"><span class="en">месяц</span><span class="sep">→</span><span class="ar">Lleva un mes buscando piso.</span></div>
+      <div class="wp"><span class="en">вопрос</span><span class="sep">→</span><span class="ar">¿Cuánto llevas esperando?</span></div>
+      <div class="wp"><span class="en">мы</span><span class="sep">→</span><span class="ar">Llevamos dos horas hablando.</span></div>
+      <div class="wp"><span class="en">неделя</span><span class="sep">→</span><span class="ar">Llevo una semana sin dormir.</span></div>
+      <div class="wp"><span class="en">давно</span><span class="sep">→</span><span class="ar">Llevo mucho tiempo aprendiendo.</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 6</span>
+      <span class="rule-title">Герундий как наречие — как совершается действие</span>
+      <span class="rule-arrow">Salió corriendo. · Llegó llorando.</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Герундий может описывать способ выполнения основного действия (как? каким образом?). Отвечает на вопрос «как?».</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">бегом</span><span class="sep">→</span><span class="ar">Salió corriendo.</span></div>
+      <div class="wp"><span class="en">плача</span><span class="sep">→</span><span class="ar">Llegó llorando.</span></div>
+      <div class="wp"><span class="en">говоря</span><span class="sep">→</span><span class="ar">Entró diciendo «hola».</span></div>
+      <div class="wp"><span class="en">слушая</span><span class="sep">→</span><span class="ar">Estudia escuchando música.</span></div>
+      <div class="wp"><span class="en">учась</span><span class="sep">→</span><span class="ar">Aprendo hablando.</span></div>
+      <div class="wp"><span class="en">улыбаясь</span><span class="sep">→</span><span class="ar">Respondió sonriendo.</span></div>
+      <div class="wp"><span class="en">указывая</span><span class="sep">→</span><span class="ar">Explicó señalando el mapa.</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Правило 7</span>
+      <span class="rule-title">Seguir / continuar + gerundio — продолжать делать</span>
+      <span class="rule-arrow">Sigo aprendiendo. · Continúa lloviendo.</span>
+    </div>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">учиться</span><span class="sep">→</span><span class="ar">Sigo aprendiendo.</span></div>
+      <div class="wp"><span class="en">работать</span><span class="sep">→</span><span class="ar">Sigo trabajando allí.</span></div>
+      <div class="wp"><span class="en">дождь</span><span class="sep">→</span><span class="ar">Continúa lloviendo.</span></div>
+      <div class="wp"><span class="en">искать</span><span class="sep">→</span><span class="ar">Sigue buscando trabajo.</span></div>
+      <div class="wp"><span class="en">говорить</span><span class="sep">→</span><span class="ar">Continúa hablando.</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих с герундием</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Инфинитив после estar</td><td class="wrong-ex">Estoy comer</td><td class="right-ex">Estoy comiendo</td><td>После estar всегда герундий, не инфинитив</td></tr>
+    <tr><td>Ser вместо estar</td><td class="wrong-ex">Soy estudiando</td><td class="right-ex">Estoy estudiando</td><td>Процессы и состояния в моменте — только estar</td></tr>
+    <tr><td>Неверная форма чередования</td><td class="wrong-ex">dormiendo (от dormir)</td><td class="right-ex">durmiendo</td><td>o→u чередование: dormir → durmiendo, poder → pudiendo</td></tr>
+    <tr><td>Герундий после предлога</td><td class="wrong-ex">después de comiendo</td><td class="right-ex">después de comer</td><td>После предлогов в испанском → инфинитив, не герундий!</td></tr>
+    <tr><td>Герундий вместо прилагательного</td><td class="wrong-ex">agua hirviendo (частичная ошибка)</td><td class="right-ex">agua hirviendo ✓ но: una situación <em>preocupante</em></td><td>Некоторые причастия в испанском оформлены иначе</td></tr>
+    <tr><td>Неправильный порядок</td><td class="wrong-ex">Comiendo estoy</td><td class="right-ex">Estoy comiendo</td><td>Вспомогательный глагол estar идёт первым</td></tr>
+  </table>
+
+  <div class="callout success">
+    <h4>✅ Ключевое правило</h4>
+    <p>Герундий после предлога — НЕЛЬЗЯ. Это главное отличие от английского. «After eating» → después de <strong>comer</strong> (инфинитив!). Без исключений.</p>
   </div>
 </div>
 
-<div class="divider"></div>
-
-<!-- SECTION 3 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Llevar / hace que — давность действия</h2>
+    <h2>Словарь — Герундии и связанные выражения</h2>
   </div>
-
-  <p style="margin-bottom:14px">Два способа выразить «сколько времени уже продолжается действие»:</p>
-
-  <table class="time-table">
-    <thead>
-      <tr><th>Конструкция</th><th>Формула</th><th>Пример</th><th>Перевод</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Llevar + gerundio</strong></td>
-        <td>llevar + время + gerundio</td>
-        <td>Llevo dos años <em>viviendo</em> en España.</td>
-        <td>Я живу в Испании уже два года.</td>
-      </tr>
-      <tr>
-        <td><strong>Hacer que + presente</strong></td>
-        <td>hace + tiempo + que + presente</td>
-        <td>Hace dos años que <em>vivo</em> en España.</td>
-        <td>(тот же смысл, другая форма)</td>
-      </tr>
-      <tr>
-        <td><strong>Llevar + sin + infinitivo</strong></td>
-        <td>llevar + tiempo + sin + inf.</td>
-        <td>Llevo una semana sin <em>dormir</em> bien.</td>
-        <td>Я не сплю нормально уже неделю.</td>
-      </tr>
-      <tr>
-        <td><strong>Llevar + gerundio (pasado)</strong></td>
-        <td>llevaba + tiempo + gerundio</td>
-        <td>Llevaba tres horas <em>esperando</em>.</td>
-        <td>Я ждал уже три часа (в прошлом).</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="callout tip">
-    <h4>Llevar vs hace que — в чём разница?</h4>
-    <p>«Hace X que + presente» чуть более книжная форма. В разговорной речи чаще <em>Llevo X + gerundio</em>. Обе формы правильны и взаимозаменяемы в большинстве контекстов.</p>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">18 ключевых форм и выражений. Нажимай 🔊 для прослушивания каждого слова.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">hablando</div><div class="vocab-ru">говоря / разговаривая</div></div><button class="speak-btn" onclick="speak('hablando')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">comiendo</div><div class="vocab-ru">едя / кушая</div></div><button class="speak-btn" onclick="speak('comiendo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">estudiando</div><div class="vocab-ru">учась / занимаясь</div></div><button class="speak-btn" onclick="speak('estudiando')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">trabajando</div><div class="vocab-ru">работая</div></div><button class="speak-btn" onclick="speak('trabajando')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">esperando</div><div class="vocab-ru">ожидая / в ожидании</div></div><button class="speak-btn" onclick="speak('esperando')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">buscando</div><div class="vocab-ru">ища / разыскивая</div></div><button class="speak-btn" onclick="speak('buscando')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">corriendo</div><div class="vocab-ru">бегая / бегом</div></div><button class="speak-btn" onclick="speak('corriendo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">durmiendo</div><div class="vocab-ru">спя (неправильный: dormir)</div></div><button class="speak-btn" onclick="speak('durmiendo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">diciendo</div><div class="vocab-ru">говоря / произнося (decir)</div></div><button class="speak-btn" onclick="speak('diciendo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">yendo</div><div class="vocab-ru">идя / направляясь (ir)</div></div><button class="speak-btn" onclick="speak('yendo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">pudiendo</div><div class="vocab-ru">мочь (poder) — герундий</div></div><button class="speak-btn" onclick="speak('pudiendo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">siguiendo</div><div class="vocab-ru">следуя / продолжая (seguir)</div></div><button class="speak-btn" onclick="speak('siguiendo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">mejorando</div><div class="vocab-ru">улучшаясь / совершенствуясь</div></div><button class="speak-btn" onclick="speak('mejorando')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">llegando</div><div class="vocab-ru">прибывая / подходя</div></div><button class="speak-btn" onclick="speak('llegando')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">haciendo</div><div class="vocab-ru">делая (hacer)</div></div><button class="speak-btn" onclick="speak('haciendo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">leyendo</div><div class="vocab-ru">читая (leer → leyendo)</div></div><button class="speak-btn" onclick="speak('leyendo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">escuchando</div><div class="vocab-ru">слушая</div></div><button class="speak-btn" onclick="speak('escuchando')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">viviendo</div><div class="vocab-ru">живя / проживая</div></div><button class="speak-btn" onclick="speak('viviendo')">🔊</button></div>
   </div>
 </div>
 
-<div class="divider"></div>
-
-<!-- SECTION 4 -->
+<!-- 6. QUIZ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Аутентичный текст — письмо читателя</h2>
+    <h2>Тест 1 — Множественный выбор</h2>
   </div>
-
-  <div class="authentic">
-    <div class="a-source">El Confidencial · Foro de Lectores · Opinión</div>
-    <p>Llevo tres años <strong>trabajando</strong> de forma remota desde una ciudad costera del norte. Llegué aquí sin conocer a nadie, <strong>buscando</strong> simplemente un cambio de aire. Ahora no me imagino volviendo a una oficina.</p>
-    <p>Por las mañanas paso dos horas <strong>contestando</strong> correos y <strong>coordinando</strong> con mi equipo por videollamada. El resto del día lo dedico a proyectos más creativos, <strong>escuchando</strong> música mientras trabajo. Los fines de semana salgo <strong>haciendo</strong> senderismo o me quedo en casa <strong>leyendo</strong>.</p>
-    <p>Lo que más valoro es seguir <strong>aprendiendo</strong>: el año pasado terminé un máster online, <strong>compaginando</strong> estudios y trabajo. Ahora estoy <strong>pensando</strong> en mudarme más al sur. Sigo <strong>buscando</strong> ese equilibrio perfecto entre trabajo y vida.</p>
-    <div class="a-note">Текст насыщен герундиями: estar + gerundio (estoy pensando), llevar + gerundio (llevo trabajando), seguir + gerundio (sigo buscando), герундий-наречие (escuchando música).</div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на вариант — сразу получишь объяснение.</p>
+  <div class="quiz">
+    <h3>🎯 Герундий — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Какой герундий от глагола <strong>hablar</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">hablando</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">habliendo</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">hablendo</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Как правильно сказать «Я сейчас ем»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Estoy comiendo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Soy comiendo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Estoy comer.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Llevo dos horas esperando» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Я жду уже два часа (и продолжаю).</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Я ждал два часа (и закончил).</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Буду ждать два часа.</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Герундий от <strong>dormir</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">durmiendo</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">dormiendo</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">durmando</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Salió corriendo» переводится как:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Он ушёл бегом.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Он побежал на улицу.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Он пошёл бегать.</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Sigo aprendiendo español» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Я продолжаю учить испанский.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Я следую за испанцем.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Я выучил испанский.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Как правильно: «После обеда я работаю»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Después de comer, trabajo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Después de comiendo, trabajo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Después comer, trabajo.</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
   </div>
-
-  <div class="callout success">
-    <h4>Компартисипант или герундий?</h4>
-    <p>Cuando dos acciones ocurren al mismo tiempo: «Salí <strong>corriendo</strong>» (Вышел бегом). «Llegó <strong>cantando</strong>» (Пришёл с пением). Герундий описывает способ или сопутствующее действие — идеально для живой, динамичной речи.</p>
-  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<div class="divider"></div>
-
-<!-- SECTION 5 -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Упражнения — образование и употребление</h2>
+    <h2>Тест 2 — Вставь правильный герундий</h2>
   </div>
-
-  <div class="text-ex">
-    <div class="tex-q">Образуй герундий: <strong>pedir</strong> (e→i чередование)</div>
-    <input class="text-input" id="t1" placeholder="gerundio...">
-    <button class="check-btn" onclick="checkText('t1','pidiendo','fb1')">Проверить</button>
-    <button class="show-ans" onclick="document.getElementById('ar1').classList.add('show')">Показать ответ</button>
-    <div class="feedback" id="fb1"></div>
-    <div class="answer-reveal" id="ar1">pidiendo — e→i: pid- + iendo</div>
-  </div>
-
-  <div class="text-ex">
-    <div class="tex-q">Образуй герундий: <strong>leer</strong> (гласная перед окончанием)</div>
-    <input class="text-input" id="t2" placeholder="gerundio...">
-    <button class="check-btn" onclick="checkText('t2','leyendo','fb2')">Проверить</button>
-    <button class="show-ans" onclick="document.getElementById('ar2').classList.add('show')">Показать ответ</button>
-    <div class="feedback" id="fb2"></div>
-    <div class="answer-reveal" id="ar2">leyendo — lee + iendo → leyendo (i→y между гласными)</div>
-  </div>
-
-  <div class="text-ex">
-    <div class="tex-q">«Я занимаюсь испанским уже шесть месяцев» → Llevo seis meses _______ español.</div>
-    <input class="text-input" id="t3" placeholder="gerundio de estudiar...">
-    <button class="check-btn" onclick="checkText('t3','estudiando','fb3')">Проверить</button>
-    <button class="show-ans" onclick="document.getElementById('ar3').classList.add('show')">Показать ответ</button>
-    <div class="feedback" id="fb3"></div>
-    <div class="answer-reveal" id="ar3">estudiando — llevar + tiempo + gerundio</div>
-  </div>
-
-  <div class="text-ex">
-    <div class="tex-q">«Дождь всё ещё идёт» → _______ lloviendo. (глагол + gerundio)</div>
-    <input class="text-input" id="t4" placeholder="глагол...">
-    <button class="check-btn" onclick="checkText('t4','sigue','fb4')">Проверить</button>
-    <button class="show-ans" onclick="document.getElementById('ar4').classList.add('show')">Показать ответ</button>
-    <div class="feedback" id="fb4"></div>
-    <div class="answer-reveal" id="ar4">Sigue lloviendo — seguir + gerundio = продолжается</div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Напиши герундий от глагола в скобках. Вводи в нижнем регистре.</p>
+  <div class="quiz">
+    <h3>✏️ Заполни пропуски</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. Estoy ___ (hablar) con mi vecino sobre el empadronamiento.</div>
+      <input type="text" class="text-input" placeholder="герундий от hablar..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','hablando','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ hablando (hablar → -ar → -ando)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. Llevo una semana ___ (buscar) los documentos para el trámite.</div>
+      <input type="text" class="text-input" placeholder="герундий от buscar..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','buscando','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ buscando (buscar → -ar → -ando)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. ¿Qué estás ___ (hacer) en el Ayuntamiento?</div>
+      <input type="text" class="text-input" placeholder="герундий от hacer..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','haciendo','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ haciendo (hacer → -er → -iendo)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. El funcionario sigue ___ (revisar) los papeles.</div>
+      <input type="text" class="text-input" placeholder="герундий от revisar..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','revisando','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ revisando (revisar → -ar → -ando)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. El niño se fue ___ (correr) hacia la salida.</div>
+      <input type="text" class="text-input" placeholder="герундий от correr..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','corriendo','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ corriendo (correr → -er → -iendo)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. ¿Cuánto tiempo llevas ___ (vivir) en Barcelona?</div>
+      <input type="text" class="text-input" placeholder="герундий от vivir..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','viviendo','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ viviendo (vivir → -ir → -iendo)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">7. Me fui de la sala ___ (decir) adiós a todos.</div>
+      <input type="text" class="text-input" placeholder="герундий от decir..." id="ti7">
+      <button class="check-btn" onclick="checkText('ti7','diciendo','fb-ti7')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti7')">Показать ответ</button>
+      <div class="feedback" id="fb-ti7"></div>
+      <div class="answer-reveal" id="ans-ti7">✅ diciendo (decir → неправильный: e→i чередование → diciendo)</div>
+    </div>
   </div>
 </div>
 
-<div class="divider"></div>
-
-<!-- SECTION 6 -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Герундий как наречие — одновременность</h2>
+    <h2>Диалоги — Герундий в живой речи</h2>
   </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Кнопка 🔊 — озвучить реплику. Кнопка «Все переводы» — показать русский текст.</p>
 
-  <p style="margin-bottom:14px">Герундий-наречие описывает способ, условие или одновременное действие. Субъект в обоих частях — ОДИН и тот же!</p>
-
-  <div class="callout info">
-    <h4>Примеры в контексте</h4>
-    <ul>
-      <li><em>Salí de casa <strong>corriendo</strong>.</em> — Вышел из дома бегом (= выбежал).</li>
-      <li><em><strong>Escuchando</strong> más, aprenderás más rápido.</em> — Слушая больше, учишься быстрее.</li>
-      <li><em>Llegó <strong>llorando</strong>.</em> — Он/она пришёл/пришла в слезах.</li>
-      <li><em><strong>Trabajando</strong> en equipo, lo conseguiremos.</em> — Работая в команде, мы добьёмся.</li>
-      <li><em>Vi a Juan <strong>hablando</strong> con el jefe.</em> — Я видел Хуана разговаривающим с боссом.</li>
-    </ul>
-  </div>
-
-  <div class="callout warning">
-    <h4>Ловушка: разные субъекты</h4>
-    <p>«<del>Siendo tarde, nos fuimos a casa</del>» — формально возможно, но субъект герундия (tarde) ≠ субъект основного глагола (nosotros). Лучше: <em>Como era tarde, nos fuimos a casa.</em> Герундий с разными субъектами — стилистически слабо.</p>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- SECTION 7 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">7</div>
-    <h2>Диалог — что делаешь прямо сейчас?</h2>
+  <div class="dialogue">
+    <div class="dlg-header">
+      📱 Диалог 1: Телефонный разговор — «Что ты делаешь?» (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">Hola, Carlos. ¿Qué estás haciendo? <button class="speak-btn" onclick="speak('Hola, Carlos. ¿Qué estás haciendo?')">🔊</button></div>
+        <div class="dlg-ru translation">Привет, Карлос. Что ты делаешь?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Estoy esperando en el Ayuntamiento. Llevo casi una hora aquí. <button class="speak-btn" onclick="speak('Estoy esperando en el Ayuntamiento. Llevo casi una hora aquí.')">🔊</button></div>
+        <div class="dlg-ru translation">Жду в Аюнтамьенто. Я здесь уже почти час.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué están haciendo los funcionarios? ¿Están ayudando a la gente? <button class="speak-btn" onclick="speak('¿Qué están haciendo los funcionarios? ¿Están ayudando a la gente?')">🔊</button></div>
+        <div class="dlg-ru translation">А что делают чиновники? Они помогают людям?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, pero hay mucha gente. Siguen procesando documentos uno a uno. <button class="speak-btn" onclick="speak('Sí, pero hay mucha gente. Siguen procesando documentos uno a uno.')">🔊</button></div>
+        <div class="dlg-ru translation">Да, но людей очень много. Они продолжают обрабатывать документы по одному.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y tú qué haces mientras esperas? <button class="speak-btn" onclick="speak('¿Y tú qué haces mientras esperas?')">🔊</button></div>
+        <div class="dlg-ru translation">А ты что делаешь, пока ждёшь?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Estoy leyendo un artículo en el móvil y repasando vocabulario español. <button class="speak-btn" onclick="speak('Estoy leyendo un artículo en el móvil y repasando vocabulario español.')">🔊</button></div>
+        <div class="dlg-ru translation">Читаю статью в телефоне и повторяю испанскую лексику.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Bien! Llevas estudiando español bastante tiempo ya, ¿no? <button class="speak-btn" onclick="speak('¡Bien! Llevas estudiando español bastante tiempo ya, ¿no?')">🔊</button></div>
+        <div class="dlg-ru translation">Отлично! Ты уже довольно долго учишь испанский, не так ли?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, llevo un año aprendiendo. Y sigo mejorando cada día. <button class="speak-btn" onclick="speak('Sí, llevo un año aprendiendo. Y sigo mejorando cada día.')">🔊</button></div>
+        <div class="dlg-ru translation">Да, учу уже год. И продолжаю улучшаться каждый день.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Мария</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Eso es fantástico! Oye, te llamo cuando termines. <button class="speak-btn" onclick="speak('¡Eso es fantástico! Oye, te llamo cuando termines.')">🔊</button></div>
+        <div class="dlg-ru translation">Это фантастика! Слушай, позвоню тебе, когда закончишь.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. Acaban de llamar mi número. ¡Ya voy! <button class="speak-btn" onclick="speak('Perfecto. Acaban de llamar mi número. ¡Ya voy!')">🔊</button></div>
+        <div class="dlg-ru translation">Отлично. Только что вызвали мой номер. Иду!</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
   </div>
 
   <div class="dialogue">
     <div class="dlg-header">
-      <span>Видеозвонок — Ольга и Серхио</span>
-      <button class="dlg-toggle" onclick="toggleTranslation('dlg7')">перевод</button>
+      🏃 Диалог 2: На работе — описываем что происходит (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">Серхио</div>
-      <div>
-        <div class="dlg-es">¡Hola! ¿Qué estás haciendo? Llevas un rato sin contestar los mensajes.</div>
-        <div class="dlg-ru" id="dlg7-1" style="display:none">Привет! Что делаешь? Уже какое-то время не отвечаешь на сообщения.</div>
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. ¿Qué estás haciendo, Ana? <button class="speak-btn" onclick="speak('Buenos días. ¿Qué estás haciendo, Ana?')">🔊</button></div>
+        <div class="dlg-ru translation2">Доброе утро. Что ты делаешь, Ана?</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">Ольга</div>
-      <div>
-        <div class="dlg-es">Estoy <strong>preparando</strong> la presentación para mañana. Llevo tres horas <strong>trabajando</strong> en ella y sigo sin terminar.</div>
-        <div class="dlg-ru" id="dlg7-2" style="display:none">Готовлю презентацию на завтра. Уже три часа работаю над ней и всё ещё не заканчиваю.</div>
+      <div class="dlg-speaker b">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">Estoy preparando el informe para la reunión de las tres. <button class="speak-btn" onclick="speak('Estoy preparando el informe para la reunión de las tres.')">🔊</button></div>
+        <div class="dlg-ru translation2">Готовлю отчёт к трёхчасовой встрече.</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">Серхио</div>
-      <div>
-        <div class="dlg-es">¿Y cómo te va? ¿Sigue <strong>siendo</strong> tan complicado el tema de los datos?</div>
-        <div class="dlg-ru" id="dlg7-3" style="display:none">Как продвигается? Тема данных всё ещё такая сложная?</div>
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuánto tiempo llevas trabajando en eso? <button class="speak-btn" onclick="speak('¿Cuánto tiempo llevas trabajando en eso?')">🔊</button></div>
+        <div class="dlg-ru translation2">Сколько ты уже над этим работаешь?</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">Ольга</div>
-      <div>
-        <div class="dlg-es">Sí, pero voy <strong>avanzando</strong>. Ahora mismo estoy <strong>revisando</strong> los gráficos <strong>escuchando</strong> música para concentrarme.</div>
-        <div class="dlg-ru" id="dlg7-4" style="display:none">Да, но продвигаюсь. Сейчас просматриваю графики, слушая музыку — чтобы сосредоточиться.</div>
+      <div class="dlg-speaker b">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">Llevo toda la mañana analizando los datos. Son bastante complejos. <button class="speak-btn" onclick="speak('Llevo toda la mañana analizando los datos. Son bastante complejos.')">🔊</button></div>
+        <div class="dlg-ru translation2">Всё утро анализирую данные. Они довольно сложные.</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">Серхио</div>
-      <div>
-        <div class="dlg-es"><strong>Siguiendo</strong> así, acabarás pronto. ¡Ánimo!</div>
-        <div class="dlg-ru" id="dlg7-5" style="display:none">Продолжая в том же духе, скоро закончишь. Удачи!</div>
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y Marco? ¿Qué está haciendo él? <button class="speak-btn" onclick="speak('¿Y Marco? ¿Qué está haciendo él?')">🔊</button></div>
+        <div class="dlg-ru translation2">А Марко? Что делает он?</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">Ольга</div>
-      <div>
-        <div class="dlg-es">Ojalá. Llevo semanas <strong>durmiendo</strong> mal por el estrés. Necesito acabar este proyecto.</div>
-        <div class="dlg-ru" id="dlg7-6" style="display:none">Хотелось бы. Уже несколько недель плохо сплю из-за стресса. Надо закончить этот проект.</div>
+      <div class="dlg-speaker b">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">Está hablando con un cliente por teléfono. Lleva media hora hablando. <button class="speak-btn" onclick="speak('Está hablando con un cliente por teléfono. Lleva media hora hablando.')">🔊</button></div>
+        <div class="dlg-ru translation2">Говорит с клиентом по телефону. Говорит уже полчаса.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y Sofia? ¿Sigue revisando el presupuesto? <button class="speak-btn" onclick="speak('¿Y Sofia? ¿Sigue revisando el presupuesto?')">🔊</button></div>
+        <div class="dlg-ru translation2">А Софья? Продолжает проверять бюджет?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, continúa trabajando en eso. Entró corriendo esta mañana y empezó enseguida. <button class="speak-btn" onclick="speak('Sí, continúa trabajando en eso. Entró corriendo esta mañana y empezó enseguida.')">🔊</button></div>
+        <div class="dlg-ru translation2">Да, продолжает работать над этим. Вбежала утром и сразу начала.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Jefa</div>
+      <div style="flex:1">
+        <div class="dlg-es">Bien. Sigo confiando en el equipo. ¡Adelante! <button class="speak-btn" onclick="speak('Bien. Sigo confiando en el equipo. ¡Adelante!')">🔊</button></div>
+        <div class="dlg-ru translation2">Хорошо. Я продолжаю доверять команде. Вперёд!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Ана</div>
+      <div style="flex:1">
+        <div class="dlg-es">Gracias. Seguiremos dando lo mejor de nosotros. <button class="speak-btn" onclick="speak('Gracias. Seguiremos dando lo mejor de nosotros.')">🔊</button></div>
+        <div class="dlg-ru translation2">Спасибо. Продолжим давать всё лучшее.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🌧️ Диалог 3: Погода и планы — герундий в контексте (8 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Иван</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué estás haciendo en casa? ¿No salís? <button class="speak-btn" onclick="speak('¿Qué estás haciendo en casa? ¿No salís?')">🔊</button></div>
+        <div class="dlg-ru translation3">Что делаешь дома? Вы не выходите?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, estamos quedándonos en casa. Continúa lloviendo desde esta mañana. <button class="speak-btn" onclick="speak('No, estamos quedándonos en casa. Continúa lloviendo desde esta mañana.')">🔊</button></div>
+        <div class="dlg-ru translation3">Нет, остаёмся дома. Дождь продолжается с самого утра.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Иван</div>
+      <div style="flex:1">
+        <div class="dlg-es">Lleva lloviendo todo el día, sí. ¿Qué están haciendo los niños? <button class="speak-btn" onclick="speak('Lleva lloviendo todo el día, sí. ¿Qué están haciendo los niños?')">🔊</button></div>
+        <div class="dlg-ru translation3">Дождь идёт весь день, да. Что делают дети?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Están jugando y leyendo. El mayor sigue estudiando para su examen. <button class="speak-btn" onclick="speak('Están jugando y leyendo. El mayor sigue estudiando para su examen.')">🔊</button></div>
+        <div class="dlg-ru translation3">Играют и читают. Старший продолжает готовиться к экзамену.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Иван</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Lleva mucho tiempo estudiando? <button class="speak-btn" onclick="speak('¿Lleva mucho tiempo estudiando?')">🔊</button></div>
+        <div class="dlg-ru translation3">Он давно занимается?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Lleva tres horas estudiando sin parar. Le dije que descansara un poco. <button class="speak-btn" onclick="speak('Lleva tres horas estudiando sin parar. Le dije que descansara un poco.')">🔊</button></div>
+        <div class="dlg-ru translation3">Занимается уже три часа без остановки. Я сказала ему немного отдохнуть.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Иван</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Qué dedicación! Yo llevo toda la tarde viendo series en el sofá. <button class="speak-btn" onclick="speak('¡Qué dedicación! Yo llevo toda la tarde viendo series en el sofá.')">🔊</button></div>
+        <div class="dlg-ru translation3">Какое усердие! А я весь вечер смотрю сериалы на диване.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Jaja, eso también vale. Seguimos hablando luego, ¡cuídate! <button class="speak-btn" onclick="speak('Jaja, eso también vale. Seguimos hablando luego, ¡cuídate!')">🔊</button></div>
+        <div class="dlg-ru translation3">Хаха, это тоже считается. Продолжим разговор потом, береги себя!</div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="divider"></div>
-
-<!-- SECTION 8 -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">8</div>
-    <h2>Квиз и Anki</h2>
-  </div>
-
-  <div class="quiz">
-    <h3>Проверь себя</h3>
-
-    <div class="quiz-q" id="q1">
-      <div class="q-text">Какой герундий у глагола <strong>dormir</strong>?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">durmiendo</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">dormiendo</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">durmiendo / dormiendo — оба верны</div>
-      </div>
-      <div class="feedback" id="q1-fb"></div>
-    </div>
-
-    <div class="quiz-q" id="q2">
-      <div class="q-text">«Я не курю уже год» → Llevo un año sin <strong>_____</strong>.</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">fumar</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">fumando</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">fume</div>
-      </div>
-      <div class="feedback" id="q2-fb"></div>
-    </div>
-
-    <div class="quiz-q" id="q3">
-      <div class="q-text">«Una película <strong>_____</strong> la vida real» — как вставить герундий правильно?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">que refleja</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">reflejando</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">reflejada</div>
-      </div>
-      <div class="feedback" id="q3-fb"></div>
-    </div>
-
-    <div class="quiz-q" id="q4">
-      <div class="q-text">«Vi a María salir del edificio» — что значит «salir» здесь?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Я видел, как Мария выходила из здания</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Я увидел Марию, чтобы выйти</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Я видел Марию, которая вышла раньше</div>
-      </div>
-      <div class="feedback" id="q4-fb"></div>
-    </div>
-
-    <div class="quiz-q" id="q5">
-      <div class="q-text"><strong>Siguiendo</strong> tus consejos, he mejorado mucho. Что выражает этот герундий?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Условие/способ (следуя твоим советам)</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Процесс в данный момент (сейчас следую)</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Приказ (следуй советам!)</div>
-      </div>
-      <div class="feedback" id="q5-fb"></div>
-    </div>
+    <div class="section-num">7</div>
+    <h2>Говорение — Твоя очередь!</h2>
   </div>
 
   <div class="speak-box">
-    <div class="speak-tag">Говорим — описываем день</div>
-    <p>Расскажи о своём типичном дне, используя герундий. Примерные старты:</p>
-    <div class="es">«Por la mañana suelo estar... · Llevo X meses/años... · Mientras trabajo estoy... · Sigo sin... · Ayer vi a alguien...»</div>
-    <div class="hint">Цель: использовать минимум 5 разных конструкций с герундием за 2 минуты. Запиши себя на аудио и прослушай.</div>
+    <div class="speak-tag">🎙 Упражнение 1 — Описывай происходящее вокруг</div>
+    <p>Посмотри вокруг себя или представь офис/кафе. Опиши вслух, что делают разные люди, используя estar + gerundio:</p>
+    <div class="es">El hombre de la mesa de al lado está leyendo el periódico. La camarera está sirviendo café. Dos personas están hablando en voz baja. Un niño está corriendo entre las mesas.</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('El hombre de la mesa de al lado está leyendo el periódico. La camarera está sirviendo café. Dos personas están hablando en voz baja.')">🔊 Пример</button>
+    <div class="hint">Придумай 4-5 своих предложений про людей вокруг тебя. Используй: está + gerundio, están + gerundio.</div>
   </div>
 
-  
+  <div class="speak-box">
+    <div class="speak-tag">🇪🇸 Упражнение 2 — Жизнь в Барселоне: в очереди в Аюнтамьенто</div>
+    <p>Ты сидишь в очереди в Аюнтамьенто на эмпадронамьенто. Позвони другу и расскажи, что происходит. Используй llevар + gerundio и estar + gerundio:</p>
+    <div class="es">Oye, llevo ya cuarenta minutos esperando aquí en el Ayuntamiento. Estoy intentando hacer el empadronamiento. El funcionario está atendiendo a otra persona. La gente sigue esperando pacientemente. Espero terminar pronto.</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Oye, llevo ya cuarenta minutos esperando aquí en el Ayuntamiento. Estoy intentando hacer el empadronamiento. El funcionario está atendiendo a otra persona.')">🔊 Пример</button>
+    <div class="hint">Скажи сколько времени ждёшь, что делают люди вокруг, что делает чиновник. Цель — говорить 1-2 минуты без остановок.</div>
+  </div>
+</div>
 
-</div><!-- /wrap -->
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Аюнтамьенто — эмпадронамьенто</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏛️ Реальная ситуация — Барселона, Ajuntament de Barcelona</div>
+    <p style="margin-bottom:12px">Эмпадронамьенто (empadronamiento) — это регистрация по месту жительства в Испании. Без неё невозможно получить доступ к медицинской карте, записать детей в школу или проголосовать. Ты приходишь в Аюнтамьенто своего района и ждёшь в очереди. Всё происходит прямо сейчас — идеальный контекст для герундия!</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Llevo una hora esperando mi turno. <button class="speak-btn" onclick="speak('Llevo una hora esperando mi turno.')">🔊</button></div>
+          <div class="phrase-ru">Я уже час жду своей очереди.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué está haciendo el funcionario? <button class="speak-btn" onclick="speak('¿Qué está haciendo el funcionario?')">🔊</button></div>
+          <div class="phrase-ru">Что делает чиновник?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Sigo buscando el contrato de alquiler en el bolso. <button class="speak-btn" onclick="speak('Sigo buscando el contrato de alquiler en el bolso.')">🔊</button></div>
+          <div class="phrase-ru">Продолжаю искать договор аренды в сумке.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Estoy tramitando el empadronamiento. <button class="speak-btn" onclick="speak('Estoy tramitando el empadronamiento.')">🔊</button></div>
+          <div class="phrase-ru">Я оформляю регистрацию по месту жительства.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">El funcionario está revisando mis documentos ahora mismo. <button class="speak-btn" onclick="speak('El funcionario está revisando mis documentos ahora mismo.')">🔊</button></div>
+          <div class="phrase-ru">Чиновник прямо сейчас проверяет мои документы.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuánto tiempo lleva procesando mi solicitud? <button class="speak-btn" onclick="speak('¿Cuánto tiempo lleva procesando mi solicitud?')">🔊</button></div>
+          <div class="phrase-ru">Сколько времени он уже обрабатывает мою заявку?</div>
+        </div>
+      </div>
+    </div>
+    <div class="dialogue" style="margin-top:16px">
+      <div class="dlg-header">📋 Мини-диалог: В окошке Аюнтамьенто</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Funcionario</div>
+        <div style="flex:1">
+          <div class="dlg-es">¡Buenos días! ¿Qué está tramitando hoy? <button class="speak-btn" onclick="speak('¡Buenos días! ¿Qué está tramitando hoy?')">🔊</button></div>
+          <div class="dlg-ru" style="display:block">Добрый день! Что вы сегодня оформляете?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Тебя</div>
+        <div style="flex:1">
+          <div class="dlg-es">Estoy solicitando el empadronamiento. Llevo viviendo en Barcelona tres meses. <button class="speak-btn" onclick="speak('Estoy solicitando el empadronamiento. Llevo viviendo en Barcelona tres meses.')">🔊</button></div>
+          <div class="dlg-ru" style="display:block">Я запрашиваю регистрацию. Живу в Барселоне уже три месяца.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Funcionario</div>
+        <div style="flex:1">
+          <div class="dlg-es">Perfecto. ¿Está trayendo el contrato de arrendamiento y el pasaporte? <button class="speak-btn" onclick="speak('Perfecto. ¿Está trayendo el contrato de arrendamiento y el pasaporte?')">🔊</button></div>
+          <div class="dlg-ru" style="display:block">Отлично. У вас с собой договор аренды и паспорт?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Тебя</div>
+        <div style="flex:1">
+          <div class="dlg-es">Sí, los estoy sacando ahora mismo. Un momento, por favor. <button class="speak-btn" onclick="speak('Sí, los estoy sacando ahora mismo. Un momento, por favor.')">🔊</button></div>
+          <div class="dlg-ru" style="display:block">Да, достаю их прямо сейчас. Одну минуту, пожалуйста.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> В Барселоне каждый район (Eixample, Gràcia, Sants...) имеет свой офис Аюнтамьенто. Запись онлайн через barcelona.cat/sacercat сэкономит время ожидания. Без эмпадронамьенто невозможно оформить NIE в полиции и получить tarjeta sanitaria (карточку здоровья).
+    </div>
+  </div>
+</div>
 
-<!-- DONE BAR -->
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🌍 Герундий как ключ к испанской устной речи</div>
+    <h4>Почему испанцы так часто используют estar + gerundio</h4>
+    <p>В разговорном испанском форма <em>estoy haciendo</em> звучит естественно и живо — она передаёт ощущение «прямо сейчас», «в процессе». Интересно, что в латиноамериканском испанском эта форма используется даже там, где испанцы предпочли бы простое настоящее. Например, в Мексике можно услышать «¿Qué estás queriendo?» вместо «¿Qué quieres?». В самой Испании герундий с <em>llevar</em> — незаменимый способ рассказать об опыте: «Llevo diez años viviendo en Madrid» звучит убедительнее и личнее, чем «Vivo en Madrid desde hace diez años». Этот оттенок длительного, живого опыта очень ценится в разговорной речи.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все 18 для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">hablando</div>
+        <div class="anki-card-back">говоря / разговаривая<br>hablar → hablando (-ar→-ando)</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">durmiendo</div>
+        <div class="anki-card-back">спя (неправильный)<br>dormir: o→u → durmiendo</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Llevo X horas + ger.</div>
+        <div class="anki-card-back">Я делаю что-то уже X часов<br>Llevo 3 horas esperando.</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Sigo + gerundio</div>
+        <div class="anki-card-back">продолжать делать<br>Sigo aprendiendo = I keep learning</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">yendo</div>
+        <div class="anki-card-back">идя / направляясь<br>ir → yendo (неправильный)</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL83()">📥 Скачать колоду L83 (.txt для Anki)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L84: Инфинитивные конструкции)</h4>
+    <ul>
+      <li><strong>Dreaming Spanish (Intermediate)</strong> — 15–20 мин. Слушай видео уровня intermediate. Замечай, как носители используют estar + gerundio и llevar + gerundio</li>
+      <li><strong>Практика llevar</strong> — напиши 5 предложений про свою жизнь в Барселоне: «Llevo X [tiempo] + verbo». Например: Llevo 6 meses aprendiendo español.</li>
+      <li><strong>Дневник герундия</strong> — в течение дня опиши 5 вещей вслух, используя estar + gerundio. Что делаешь ты? Что делают другие люди вокруг?</li>
+      <li><strong>Anki</strong> — повтори 18 карточек из этого урока (10 мин)</li>
+      <li><strong>Проверка</strong> — найди в L83 все примеры с «salir + gerundio» и объясни себе что они означают</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Урок L83 завершён!</h4>
+    <p>Ты знаешь как образовывать герундий (включая неправильные формы), как описывать текущие действия (estar + gerundio), как говорить о длительности (llevar + gerundio) и как описывать сопутствующие действия. Следующий шаг — инфинитивные конструкции (al llegar, después de comer, sin pensar).</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a class="nav-link-btn" href="L82.html">← L82</a>
-    <a class="nav-link-btn" href="L84.html">L84 →</a>
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L84.html" class="nav-link-btn">L84: Инфинитивные конструкции →</a>
   </div>
-  <button class="done-btn" id="done-btn" onclick="markDone()">Урок выполнен ✓</button>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L83 = [
+  {front:"hablando",back:"Русский: говоря / разговаривая\n\nПример: Estoy hablando con el funcionario.\nЗаметка: hablar → -ar → -ando"},
+  {front:"comiendo",back:"Русский: едя / кушая\n\nПример: Estoy comiendo en casa.\nЗаметка: comer → -er → -iendo"},
+  {front:"estudiando",back:"Русский: учась / занимаясь\n\nПример: Llevo una hora estudiando.\nЗаметка: estudiar → -ar → -ando"},
+  {front:"durmiendo",back:"Русский: спя\n\nПример: El niño está durmiendo.\nЗаметка: dormir → НЕПРАВИЛЬНЫЙ: o→u → durmiendo"},
+  {front:"diciendo",back:"Русский: говоря / произнося\n\nПример: Entró diciendo hola.\nЗаметка: decir → НЕПРАВИЛЬНЫЙ: e→i → diciendo"},
+  {front:"yendo",back:"Русский: идя / направляясь\n\nПример: Está yendo al trabajo.\nЗаметка: ir → НЕПРАВИЛЬНЫЙ: → yendo"},
+  {front:"pudiendo",back:"Русский: мочь (герундий)\n\nПример: No pudiendo más, me senté.\nЗаметка: poder → НЕПРАВИЛЬНЫЙ: o→u → pudiendo"},
+  {front:"siguiendo",back:"Русский: следуя / продолжая\n\nПример: Sigo siguiendo el camino.\nЗаметка: seguir → НЕПРАВИЛЬНЫЙ: e→i → siguiendo"},
+  {front:"Llevo X horas/días + gerundio",back:"Русский: Я делаю что-то уже X часов/дней\n\nПример: Llevo tres horas esperando.\nЗаметка: Действие продолжается до сих пор!"},
+  {front:"estar + gerundio",back:"Русский: быть в процессе делания\n\nПример: Estoy aprendiendo español.\nЗаметка: Estar спрягается, герундий неизменяем"},
+  {front:"Sigo + gerundio",back:"Русский: продолжать делать\n\nПример: Sigo aprendiendo cada día.\nЗаметка: seguir + gerundio = keep doing"},
+  {front:"Continúa + gerundio",back:"Русский: продолжает делать\n\nПример: Continúa lloviendo.\nЗаметка: continuar + gerundio (синоним seguir)"},
+  {front:"Salió corriendo",back:"Русский: Он ушёл бегом\n\nПример: Salió corriendo de la reunión.\nЗаметка: Герундий как наречие — описывает КАК"},
+  {front:"¿Qué estás haciendo?",back:"Русский: Что ты делаешь (прямо сейчас)?\n\nПример: ¿Qué estás haciendo en el Ayuntamiento?\nЗаметка: Прогрессивное настоящее время"},
+  {front:"buscando",back:"Русский: ища / разыскивая\n\nПример: Llevo una semana buscando piso.\nЗаметка: buscar → -ar → -ando"},
+  {front:"esperando",back:"Русский: ожидая\n\nПример: Estoy esperando mi turno.\nЗаметка: esperar → -ar → -ando"},
+  {front:"leyendo",back:"Русский: читая\n\nПример: Paso el tiempo leyendo.\nЗаметка: leer → основа le- + -yendo (гласная перед окончанием!)"},
+  {front:"empadronamiento",back:"Русский: регистрация по месту жительства в Испании\n\nПример: Estoy tramitando el empadronamiento.\nЗаметка: Обязательна для получения медкарты и других услуг в Испании"}
+];
+
+function exportAnkiL83() {
+  const tsv = ANKI_DECK_L83.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L83_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Hola, Carlos. ¿Qué estás haciendo?',
+    'Estoy esperando en el Ayuntamiento. Llevo casi una hora aquí.',
+    '¿Qué están haciendo los funcionarios? ¿Están ayudando a la gente?',
+    'Sí, pero hay mucha gente. Siguen procesando documentos uno a uno.',
+    '¿Y tú qué haces mientras esperas?',
+    'Estoy leyendo un artículo en el móvil y repasando vocabulario español.',
+    '¡Bien! Llevas estudiando español bastante tiempo ya, ¿no?',
+    'Sí, llevo un año aprendiendo. Y sigo mejorando cada día.',
+    '¡Eso es fantástico! Oye, te llamo cuando termines.',
+    'Perfecto. Acaban de llamar mi número. ¡Ya voy!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
 const LESSON_ID = 'L83';
 const LS_KEY = 'esp_course_progress';
 
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  if(btn){btn.textContent = '✅ Пройден!'; btn.className = 'done-btn marked';}
+}
+
 const quizExpl = {
-  q1: {ok:'✓ durmiendo — o→u чередование (dormir, morir, poder)', no:'Нет. Dormir — глагол с чередованием o→u в герундии: durmiendo, не dormiendo.'},
-  q2: {ok:'✓ fumar — llevar + tiempo + sin + infinitivo (не герундий!)', no:'Нет. После «sin» нужен инфинитив: llevar un año sin fumar. Герундий был бы: llevo un año fumando (курю год).'},
-  q3: {ok:'✓ que refleja — в испанском герундий не заменяет прилагательное. Правильно: una película que refleja...', no:'Нет. Герундий не используется как определение (прилагательное). Правильно: una película que refleja la vida real.'},
-  q4: {ok:'✓ Я видел, как Мария выходила — ver + objeto + infinitivo/gerundio = перцептивная конструкция', no:'Нет. Ver + objeto + infinitivo = видеть, как кто-то делает что-то. Смысл: я был свидетелем того, как Мария выходила.'},
-  q5: {ok:'✓ Условие/способ — герундий-наречие выражает как/при каком условии произошло действие', no:'Нет. «Siguiendo» здесь не описывает текущий процесс, а говорит о способе/условии: «следуя твоим советам» (при условии что следовал).'},
+  w1:'В косвенной речи настоящее время → имперфект: trabaja → trabajaba.',
+  w2:'Оба варианта a) и b) технически верны, но а) лучше — без лишнего pronombre.',
+  w3:'Le pedí que viniera — косвенная просьба через pedír + que + subjuntivo.',
+  w4:'Pedir / ordenar + que + subjuntivo — для косвенных команд и просьб.',
+  q1:'hablar → -ar, убираем -ar, добавляем -ando → hablando. Всегда!',
+  q2:'После estar всегда герундий: estoy comiendo. Не инфинитив, не другой глагол.',
+  q3:'Llevo + tiempo + gerundio — действие началось в прошлом и ПРОДОЛЖАЕТСЯ сейчас.',
+  q4:'dormir — с чередованием o→u: durmiendo, не dormiendo!',
+  q5:'Salió corriendo — ушёл бегом. Герундий как наречие (как? — бегом).',
+  q6:'Sigo + gerundio = «продолжаю делать». Seguir + gerundio, не infinitivo.',
+  q7:'После predлога después de → ИНФИНИТИВ, не герундий! después de comer.',
 };
 
+let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -615,51 +1139,44 @@ function checkText(inputId, answer, fbId) {
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
 
-function toggleTranslation(id) {
-  let i = 1;
-  while (true) {
-    const el = document.getElementById(id + '-' + i);
-    if (!el) break;
-    el.style.display = el.style.display === 'none' ? 'block' : 'none';
-    i++;
-  }
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => {
+    el.style.display = showingTrans3 ? 'block' : 'none';
+  });
 }
 
-function markDone() {
-  const btn = document.getElementById('done-btn');
-  let progress = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-  if (progress[LESSON_ID]) {
-    delete progress[LESSON_ID];
-    btn.textContent = 'Урок выполнен ✓';
-    btn.classList.remove('marked');
-  } else {
-    progress[LESSON_ID] = true;
-    btn.textContent = 'Отмечено ✓';
-    btn.classList.add('marked');
-  }
-  localStorage.setItem(LS_KEY, JSON.stringify(progress));
-}
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(el => { el.style.display='none'; });
 
+const totalSections = 14;
 function updateProgress() {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
-  const fill = document.getElementById('progress-fill');
-  const label = document.getElementById('progress-label');
-  if (fill) fill.style.width = pct + '%';
-  if (label) label.textContent = pct + '% урока';
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
 }
-
 window.addEventListener('scroll', updateProgress);
-
-(function initDone() {
-  const btn = document.getElementById('done-btn');
-  const progress = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-  if (progress[LESSON_ID]) {
-    btn.textContent = 'Отмечено ✓';
-    btn.classList.add('marked');
-  }
-})();
 </script>
 </body>
 </html>
