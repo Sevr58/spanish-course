@@ -1112,7 +1112,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Понимать объявления и говорить о процессах без субъекта",
-      file:"lessons/L85.html", status:"pending"
+      file:"lessons/L85.html", status:"improved"
     },
     {
       id:"L86", num:86, phase:3, block:"B3C", level:"B1", day:182, week:31,
@@ -1124,7 +1124,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Обсудить цифровую жизнь, соцсети, новости",
-      file:"lessons/L86.html", status:"pending"
+      file:"lessons/L86.html", status:"improved"
     },
     {
       id:"L87", num:87, phase:3, block:"B3C", level:"B1", day:184, week:31,
