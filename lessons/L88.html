@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L88: Общество и базовая политика — Gobierno, democracia, igualdad</title>
+<title>L88: Общество и базовая политика</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -128,8 +128,8 @@ table.mistakes tr:last-child td{border-bottom:none}
 
 <!-- 1. NAV -->
 <div class="nav">
-  <a href="../index.html">← Дашборд</a>
-  <span class="level">B1 · Фаза 3 · День 186</span>
+  <a href="L87.html">← L87: Ecología</a>
+  <span class="level">B1</span>
   <a href="L89.html">L89 →</a>
 </div>
 
@@ -144,6 +144,8 @@ table.mistakes tr:last-child td{border-bottom:none}
     <div class="obj"><div class="ico">📜</div><div><strong>Цель 3</strong><p>Использовать субхунтиво в социальных контекстах</p></div></div>
     <div class="obj"><div class="ico">🏛</div><div><strong>Цель 4</strong><p>Пройти эмпадронамьенто в Ayuntamiento de Barcelona</p></div></div>
   </div>
+  <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:88%"></div></div>
+  <div class="progress-label" id="prog-label">Lección 88 de 100</div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
@@ -851,7 +853,7 @@ table.mistakes tr:last-child td{border-bottom:none}
     <a href="../index.html" class="nav-link-btn">Дашборд</a>
     <a href="L89.html" class="nav-link-btn">L89 →</a>
   </div>
-  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+  <button class="done-btn" id="done-btn" onclick="markDone()">Marcar lección 88 como completada</button>
 </div>
 
 <script>
@@ -960,89 +962,46 @@ const quizExpl = {
 
 let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
-  const container = el.closest('.quiz-q');
-  if (container.dataset.answered === '1') return;
-  container.dataset.answered = '1';
-  const opts = container.querySelectorAll('.opt');
-  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
-  let correctText = '';
-  let pickedText = '';
-  opts.forEach(o => {
-    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
-    const key = m ? m[1] : null;
-    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
-    else { o.classList.add('wrong'); }
-    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
+  const wrap = el.closest('.quiz-q');
+  if (wrap.dataset.answered) return;
+  wrap.dataset.answered = '1';
+  const chosen = el.dataset.key;
+  const fb = wrap.querySelector('.feedback');
+  wrap.querySelectorAll('.opt').forEach(o => {
+    if (o.dataset.key === correctKey) o.classList.add('correct');
+    else if (o.dataset.key === chosen && chosen !== correctKey) o.classList.add('wrong');
   });
-  const isCorrect = correctKey === 'a';
-  const fb = document.getElementById('fb-' + qId);
-  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
-  if (isCorrect) {
-    fb.className = 'feedback show ok';
-    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
+  el.classList.add('picked');
+  if (chosen === correctKey) {
+    fb.textContent = '✓ Correcto! ' + (quizExpl[qId] || '');
+    fb.className = 'feedback ok show';
   } else {
-    fb.className = 'feedback show no';
-    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
+    fb.textContent = '✗ Incorrecto. ' + (quizExpl[qId] || '');
+    fb.className = 'feedback no show';
   }
-  if (typeof quizScore !== 'undefined') {
-    if (isCorrect) quizScore++;
-    quizTotal++;
-    const scoreEl = document.getElementById('quiz-score');
-    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
-  }
+  updateProgress();
 }
 
 function checkText(inputId, answer, fbId) {
-  const input = document.getElementById(inputId);
-  const raw = input.value.trim();
+  const inp = document.getElementById(inputId);
   const fb = document.getElementById(fbId);
-  fb.className = 'feedback show';
-  if (!raw) {
-    input.className = 'text-input wrong';
-    fb.className += ' no';
-    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
-    return;
+  const val = inp.value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const ans = answer.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const dist = levenshtein(val, ans);
+  if (dist === 0) {
+    inp.className = 'text-input correct';
+    fb.textContent = '✓ ¡Perfecto!';
+    fb.className = 'feedback ok show';
+  } else if (dist <= 2) {
+    inp.className = 'text-input correct';
+    fb.textContent = '✓ Casi perfecto! («' + answer + '»)';
+    fb.className = 'feedback ok show';
+  } else {
+    inp.className = 'text-input wrong';
+    fb.textContent = '✗ Revisa. Respuesta: «' + answer + '»';
+    fb.className = 'feedback no show';
   }
-  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
-  const userN = norm(raw);
-  const correctN = norm(answer);
-  if (userN === correctN) {
-    input.className = 'text-input correct';
-    fb.className += ' ok';
-    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
-      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
-    } else {
-      fb.textContent = '✅ Правильно! ' + answer;
-    }
-    return;
-  }
-  const lev = (a, b) => {
-    const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
-    let prev = Array.from({length: n+1}, (_,i) => i);
-    let curr = new Array(n+1).fill(0);
-    for (let i = 1; i <= m; i++) {
-      curr[0] = i;
-      for (let j = 1; j <= n; j++) {
-        const cost = a[i-1] === b[j-1] ? 0 : 1;
-        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
-      }
-      [prev, curr] = [curr, prev];
-    }
-    return prev[n];
-  };
-  const dist = lev(userN, correctN);
-  const tol = correctN.length >= 6 ? 2 : 1;
-  if (dist > 0 && dist <= tol) {
-    input.className = 'text-input correct';
-    fb.className += ' ok';
-    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
-    return;
-  }
-  input.className = 'text-input wrong';
-  fb.className += ' no';
-  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
+  updateProgress();
 }
 
 function showAns(id) { document.getElementById(id).classList.add('show'); }
@@ -1053,6 +1012,11 @@ function toggleAll() {
   document.querySelectorAll('.translation').forEach(el => {
     el.style.display = showingTrans ? 'block' : 'none';
   });
+  const blob = new Blob(['﻿'+csv], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'anki_L88_sociedad_politica.csv';
+  a.click();
 }
 
 let showingTrans2 = false;
@@ -1084,7 +1048,43 @@ function updateProgress() {
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
 }
-window.addEventListener('scroll', updateProgress);
+
+function markDone() {
+  const btn = document.getElementById('done-btn');
+  const key = 'done_' + LESSON_ID;
+  if (localStorage.getItem(key)) {
+    localStorage.removeItem(key);
+    btn.textContent = 'Marcar lección 88 como completada';
+    btn.classList.remove('marked');
+  } else {
+    localStorage.setItem(key, '1');
+    btn.textContent = '✓ Lección 88 completada';
+    btn.classList.add('marked');
+  }
+}
+
+window.addEventListener('load', () => {
+  if (localStorage.getItem('done_' + LESSON_ID)) {
+    const btn = document.getElementById('done-btn');
+    if (btn) { btn.textContent = '✓ Lección 88 completada'; btn.classList.add('marked'); }
+  }
+  // render 5 anki flip cards
+  const container = document.getElementById('anki-preview');
+  if (container) {
+    ANKI_DECK_L88.slice(0,5).forEach((card, i) => {
+      const div = document.createElement('div');
+      div.className = 'anki-card';
+      div.innerHTML = `<div class="anki-card-inner"><div class="anki-card-front" style="color:var(--gold);font-weight:700">${card.es}</div><div class="anki-card-back">${card.ru}<br><em style="font-size:.7rem">${card.exampleEs}</em></div></div>`;
+      div.addEventListener('click', () => div.classList.toggle('flipped'));
+      container.appendChild(div);
+    });
+  }
+  // set initial progress bar at lesson percentage
+  const fill = document.getElementById('prog-fill');
+  if (fill) fill.style.width = '88%';
+  const lbl = document.getElementById('prog-label');
+  if (lbl) lbl.textContent = 'Lección 88 de 100';
+});
 </script>
 </body>
 </html>

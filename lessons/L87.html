@@ -131,7 +131,7 @@ table.mistakes tr:last-child td{border-bottom:none}
 
 <!-- 1. NAV -->
 <div class="nav">
-  <a href="../index.html">← Дашборд</a>
+  <a href="L86.html">← L86: Медиа и технологии</a>
   <span class="level">B1 · Фаза 3 · День 184</span>
   <a href="L88.html">L88 →</a>
 </div>
@@ -337,7 +337,7 @@ table.mistakes tr:last-child td{border-bottom:none}
         <div class="opt" onclick="answerQuiz(this,'q1','b')">загрязнение воды</div>
         <div class="opt" onclick="answerQuiz(this,'q1','c')">парниковый эффект</div>
       </div>
-      <div class="feedback" id="fb-q1"></div>
+      <div class="feedback" id="fb-q1_1"></div>
     </div>
     <div class="quiz-q" id="q2">
       <div class="q-text">2. Как по-испански «переработка / утилизация мусора»?</div>
@@ -346,7 +346,7 @@ table.mistakes tr:last-child td{border-bottom:none}
         <div class="opt" onclick="answerQuiz(this,'q2','a')">el reciclaje</div>
         <div class="opt" onclick="answerQuiz(this,'q2','c')">la contaminación</div>
       </div>
-      <div class="feedback" id="fb-q2"></div>
+      <div class="feedback" id="fb-q1_2"></div>
     </div>
     <div class="quiz-q" id="q3">
       <div class="q-text">3. <strong>«Hay que reducir la contaminación»</strong> — правильный перевод?</div>
@@ -355,7 +355,7 @@ table.mistakes tr:last-child td{border-bottom:none}
         <div class="opt" onclick="answerQuiz(this,'q3','b')">Загрязнение снижается само по себе</div>
         <div class="opt" onclick="answerQuiz(this,'q3','c')">Нет смысла бороться с загрязнением</div>
       </div>
-      <div class="feedback" id="fb-q3"></div>
+      <div class="feedback" id="fb-q1_3"></div>
     </div>
     <div class="quiz-q" id="q4">
       <div class="q-text">4. Заполни: «Las energías ___ son el futuro de la humanidad.»</div>
@@ -364,7 +364,7 @@ table.mistakes tr:last-child td{border-bottom:none}
         <div class="opt" onclick="answerQuiz(this,'q4','b')">renovados</div>
         <div class="opt" onclick="answerQuiz(this,'q4','c')">renovación</div>
       </div>
-      <div class="feedback" id="fb-q4"></div>
+      <div class="feedback" id="fb-q1_4"></div>
     </div>
     <div class="quiz-q" id="q5">
       <div class="q-text">5. <strong>«La huella de carbono»</strong> — что это?</div>
@@ -373,7 +373,7 @@ table.mistakes tr:last-child td{border-bottom:none}
         <div class="opt" onclick="answerQuiz(this,'q5','b')">углеродная промышленность</div>
         <div class="opt" onclick="answerQuiz(this,'q5','c')">карбоновый фильтр</div>
       </div>
-      <div class="feedback" id="fb-q5"></div>
+      <div class="feedback" id="fb-q1_5"></div>
     </div>
     <div class="quiz-q" id="q6">
       <div class="q-text">6. Какой глагол означает «защищать»?</div>
@@ -382,7 +382,17 @@ table.mistakes tr:last-child td{border-bottom:none}
         <div class="opt" onclick="answerQuiz(this,'q6','b')">reducir</div>
         <div class="opt" onclick="answerQuiz(this,'q6','c')">contaminar</div>
       </div>
-      <div class="feedback" id="fb-q6"></div>
+      <div class="feedback" id="fb-q1_6"></div>
+    </div>
+
+    <div class="quiz-q" id="q1_7">
+      <div class="q-text">7. ¿Qué hace alguien que <strong>«contamina»</strong>?</div>
+      <div class="options">
+        <div class="opt" data-key="a" onclick="answerQuiz(this,'q1_7','a')">a) produce sustancias dañinas para el ambiente</div>
+        <div class="opt" data-key="b" onclick="answerQuiz(this,'q1_7','b')">b) cuida el planeta</div>
+        <div class="opt" data-key="c" onclick="answerQuiz(this,'q1_7','c')">c) recicla los residuos</div>
+      </div>
+      <div class="feedback" id="fb-q1_7"></div>
     </div>
     <div class="quiz-q" id="q7">
       <div class="q-text">7. <strong>«¿Separas la basura en casa?»</strong> — что это значит?</div>
@@ -394,14 +404,13 @@ table.mistakes tr:last-child td{border-bottom:none}
       <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
-  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
 <!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Тест 2 — Заполни пропуск</h2>
+    <h2>Тест 2 — Вставь пропущенное слово</h2>
   </div>
   <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи в нижнем регистре. Диакритика необязательна, но приветствуется.</p>
   <div class="quiz">
@@ -544,8 +553,10 @@ table.mistakes tr:last-child td{border-bottom:none}
       <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
     </div>
   </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Нажми «Переводы» чтобы показать / скрыть русский текст. Нажимай 🔊 для прослушивания.</p>
 
-  <div class="dialogue">
+  <!-- Dialogue 1 -->
+  <div class="dialogue" id="dlg1">
     <div class="dlg-header">
       ♻️ Диалог 2: В Ayuntamiento — про переработку (10 реплик)
       <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
@@ -846,7 +857,7 @@ table.mistakes tr:last-child td{border-bottom:none}
     <a href="L86.html" class="nav-link-btn">← L86: Медиа</a>
     <a href="L88.html" class="nav-link-btn">L88: Общество →</a>
   </div>
-  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+  <button class="done-btn" id="doneBtn" onclick="markDone()">Marcar como completada</button>
 </div>
 
 <script>
@@ -959,89 +970,45 @@ const quizExpl = {
 
 let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
-  const container = el.closest('.quiz-q');
-  if (container.dataset.answered === '1') return;
-  container.dataset.answered = '1';
-  const opts = container.querySelectorAll('.opt');
-  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
-  let correctText = '';
-  let pickedText = '';
-  opts.forEach(o => {
-    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
-    const key = m ? m[1] : null;
-    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
-    else { o.classList.add('wrong'); }
-    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
-  });
-  const isCorrect = correctKey === 'a';
-  const fb = document.getElementById('fb-' + qId);
-  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
-  if (isCorrect) {
+  const qDiv = el.closest('.quiz-q');
+  if (qDiv.dataset.answered) return;
+  qDiv.dataset.answered = '1';
+  const picked = el.dataset.key;
+  el.classList.add('picked');
+  const fb = qDiv.querySelector('.feedback');
+  if (picked === correctKey) {
+    el.classList.add('correct');
+    fb.textContent = '✓ Correcto! ' + (quizExpl[qId] || '');
     fb.className = 'feedback show ok';
-    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
   } else {
+    el.classList.add('wrong');
+    fb.textContent = '✗ Incorrecto. ' + (quizExpl[qId] || '');
     fb.className = 'feedback show no';
-    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
-  }
-  if (typeof quizScore !== 'undefined') {
-    if (isCorrect) quizScore++;
-    quizTotal++;
-    const scoreEl = document.getElementById('quiz-score');
-    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
+    qDiv.querySelectorAll('.opt').forEach(o => {
+      if (o.dataset.key === correctKey) o.classList.add('correct');
+    });
   }
 }
 
 function checkText(inputId, answer, fbId) {
-  const input = document.getElementById(inputId);
-  const raw = input.value.trim();
+  const inp = document.getElementById(inputId);
   const fb = document.getElementById(fbId);
-  fb.className = 'feedback show';
-  if (!raw) {
-    input.className = 'text-input wrong';
-    fb.className += ' no';
-    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
-    return;
+  const val = inp.value.trim().toLowerCase();
+  const ans = answer.toLowerCase();
+  const dist = levenshtein(val, ans);
+  if (dist === 0) {
+    inp.className = 'text-input correct';
+    fb.textContent = '✓ Correcto!';
+    fb.className = 'feedback show ok';
+  } else if (dist <= 2) {
+    inp.className = 'text-input correct';
+    fb.textContent = '✓ Casi perfecto (aceptado): ' + answer;
+    fb.className = 'feedback show ok';
+  } else {
+    inp.className = 'text-input wrong';
+    fb.textContent = '✗ Incorrecto. Respuesta: ' + answer;
+    fb.className = 'feedback show no';
   }
-  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
-  const userN = norm(raw);
-  const correctN = norm(answer);
-  if (userN === correctN) {
-    input.className = 'text-input correct';
-    fb.className += ' ok';
-    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
-      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
-    } else {
-      fb.textContent = '✅ Правильно! ' + answer;
-    }
-    return;
-  }
-  const lev = (a, b) => {
-    const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
-    let prev = Array.from({length: n+1}, (_,i) => i);
-    let curr = new Array(n+1).fill(0);
-    for (let i = 1; i <= m; i++) {
-      curr[0] = i;
-      for (let j = 1; j <= n; j++) {
-        const cost = a[i-1] === b[j-1] ? 0 : 1;
-        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
-      }
-      [prev, curr] = [curr, prev];
-    }
-    return prev[n];
-  };
-  const dist = lev(userN, correctN);
-  const tol = correctN.length >= 6 ? 2 : 1;
-  if (dist > 0 && dist <= tol) {
-    input.className = 'text-input correct';
-    fb.className += ' ok';
-    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
-    return;
-  }
-  input.className = 'text-input wrong';
-  fb.className += ' no';
-  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
 
 function showAns(id) { document.getElementById(id).classList.add('show'); }
@@ -1084,7 +1051,17 @@ function updateProgress() {
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
 }
-window.addEventListener('scroll', updateProgress);
+
+window.addEventListener('DOMContentLoaded', () => {
+  const done = JSON.parse(localStorage.getItem('doneLessons') || '{}');
+  if (done[LESSON_ID]) {
+    const btn = document.getElementById('doneBtn');
+    if (btn) { btn.textContent = '✓ Completada'; btn.classList.add('marked'); }
+  }
+  updateProgress();
+  // init dlg-ru hidden
+  document.querySelectorAll('.dlg-ru').forEach(e => e.style.display = 'none');
+});
 </script>
 </body>
 </html>
