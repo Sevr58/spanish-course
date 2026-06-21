@@ -1136,7 +1136,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Обсудить экологические проблемы и решения",
-      file:"lessons/L87.html", status:"pending"
+      file:"lessons/L87.html", status:"improved"
     },
     {
       id:"L88", num:88, phase:3, block:"B3C", level:"B1", day:186, week:31,
@@ -1148,7 +1148,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Высказаться на социальную тему на 2–3 минуты",
-      file:"lessons/L88.html", status:"pending"
+      file:"lessons/L88.html", status:"improved"
     },
     {
       id:"L89", num:89, phase:3, block:"B3C", level:"B1", day:188, week:32,
