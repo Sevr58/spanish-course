@@ -1160,7 +1160,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Описать симптомы, понять назначение врача",
-      file:"lessons/L89.html", status:"pending"
+      file:"lessons/L89.html", status:"improved"
     },
     {
       id:"L90", num:90, phase:3, block:"B3C", level:"B1", day:190, week:32,
@@ -1172,7 +1172,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Порекомендовать фильм, книгу, выставку по-испански",
-      file:"lessons/L90.html", status:"pending"
+      file:"lessons/L90.html", status:"improved"
     },
 
     // ─── Block 3D: Skills & Practice ────────────────────────────
@@ -1186,7 +1186,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Сделать формальный звонок: записаться, уточнить, пожаловаться",
-      file:"lessons/L91.html", status:"pending"
+      file:"lessons/L91.html", status:"improved"
     },
     {
       id:"L92", num:92, phase:3, block:"B3D", level:"B1", day:195, week:33,
@@ -1198,7 +1198,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Описать 3 разные фотографии по 90 секунд каждую",
-      file:"lessons/L92.html", status:"pending"
+      file:"lessons/L92.html", status:"improved"
     },
     {
       id:"L93", num:93, phase:3, block:"B3D", level:"B1", day:197, week:33,

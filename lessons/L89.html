@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L89: Здоровье и медицина — Síntomas, medicamentos, hospital</title>
+<title>L89: Здоровье и медицина — Расширенный медицинский словарь</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -35,16 +34,16 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
-.vocab-table{width:100%;border-collapse:collapse;margin:16px 0}
-.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border)}
-.vocab-table td{padding:10px 12px;border-bottom:1px solid var(--bg3);font-size:.88rem;vertical-align:top}
-.vocab-table tr:last-child td{border-bottom:none}
-.vocab-table .es{font-weight:700;color:var(--text)}
-.vocab-table .tr{color:var(--muted);font-size:.8rem}
-.vocab-table .ex{color:var(--muted);font-size:.82rem;font-style:italic}
-.cognate{background:rgba(200,144,0,.15);color:var(--gold);padding:1px 5px;border-radius:4px;font-size:.82rem}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -59,8 +58,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -79,7 +76,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -88,10 +85,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -99,370 +92,877 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+.authentic-text{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:8px;padding:16px 18px;margin:14px 0;font-style:italic}
+.authentic-text .at-label{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:6px;font-style:normal}
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">B1 · Фаза 3 · День 188</span>
   <a href="L90.html">L90 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🔥 Фаза 3 · Прорыв · B1 · Блок 3C — Сложная коммуникация</div>
+  <div class="phase-tag">🏥 Фаза 3 · Block 3C · Сложная коммуникация · Dreaming Spanish: Intermediate</div>
   <h1>Здоровье и <span class="hl">медицина</span></h1>
-  <p class="sub">Síntomas, medicamentos, hospital — расширенный медицинский словарь для реальных ситуаций</p>
+  <p class="sub">Síntomas, medicamentos, hospital — расширенный медицинский словарь</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель урока</strong><p>Описать симптомы, понять назначение врача</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + 10 мин Anki</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Dreaming Spanish: здоровье и медицина</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Разговор с врачом: симптомы и лечение</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Описать симптомы врачу: tengo dolor de..., me duele(n)...</p></div></div>
+    <div class="obj"><div class="ico">💊</div><div><strong>Цель 2</strong><p>Понять назначение и инструкции к лекарствам</p></div></div>
+    <div class="obj"><div class="ico">🏥</div><div><strong>Цель 3</strong><p>Ориентироваться в испанской системе здравоохранения</p></div></div>
+    <div class="obj"><div class="ico">🃏</div><div><strong>Цель 4</strong><p>Добавить 18+ медицинских слов в Anki-колоду</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: THEORY -->
+<!-- 3. WARM-UP — review L88 (Общество и базовая политика) -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Медицинский разговор — конструкции и ключевые формулы</h2>
+    <h2>Повторение урока L88 — Общество и политика</h2>
   </div>
-
-  <p style="margin-bottom:14px">Умение говорить о здоровье — <strong>жизненно необходимо</strong> в Испании. Здесь пригодится как базовая лексика симптомов, так и способность объяснить историю болезни.</p>
-
-  <div class="callout tip">
-    <h4>💡 Ключевые конструкции у врача</h4>
-    <ul>
-      <li><strong>Me duele la cabeza / el estómago.</strong> — У меня болит голова / живот.</li>
-      <li><strong>Tengo fiebre / tos / náuseas.</strong> — У меня температура / кашель / тошнота.</li>
-      <li><strong>Llevo [X días] con estos síntomas.</strong> — У меня эти симптомы уже [X] дней.</li>
-      <li><strong>Me han recetado antibióticos.</strong> — Мне прописали антибиотики.</li>
-      <li><strong>¿Cada cuánto hay que tomarlo?</strong> — Как часто нужно это принимать?</li>
-    </ul>
-  </div>
-
-  <div class="callout info">
-    <h4>🏥 Система здравоохранения Испании — что важно знать</h4>
-    <p>В Испании двухуровневая система: <strong>sanidad pública</strong> (бесплатная государственная) и <strong>sanidad privada</strong> (платная частная). Иммигранты с DNV имеют право на государственную медицину. Первый визит — всегда к <strong>médico de cabecera</strong> (терапевт). Он направляет к специалисту — <strong>especialista</strong>. Скорая помощь — <strong>urgencias</strong>, номер 112.</p>
-  </div>
-
-  <div class="callout warning">
-    <h4>⚠️ Doler — глагол с особой конструкцией</h4>
-    <p><strong>Doler</strong> работает как <strong>gustar</strong>: подлежащее — часть тела, а не человек. «Me duele la cabeza» — буквально «Голова причиняет мне боль» (а не «Я болею голова»). Множественное число: «Me duelen los pies» (ноги болят). Типичная ошибка: ✗ «Yo duele la cabeza» — неправильно!</p>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Быстрая проверка словаря из прошлого урока. Выбери правильный вариант.</p>
+  <div class="quiz">
+    <h3>🔁 Вспомни урок L88</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. <strong>«el gobierno»</strong> — что это значит?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">оппозиция</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">правительство</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">конституция</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Как по-испански «права человека»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">los deberes civiles</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">la democracia</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">los derechos humanos</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Продолжи: <strong>«La igualdad de género es...»</strong> — что подойдёт?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">un derecho fundamental</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">un problema económico menor</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">una tradición antigua</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. <strong>«votar»</strong> — что это?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">протестовать</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">управлять страной</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">голосовать</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: VOCABULARY -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — Здоровье и медицина</h2>
+    <h2>Теория — Медицинский язык в испанском</h2>
   </div>
 
-  <table class="vocab-table">
-    <thead>
-      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="es">el síntoma <span class="cognate">symptom</span></td><td class="tr">[эль СИН-то-ма]</td><td>симптом</td><td class="ex">¿Cuánto tiempo llevas con estos síntomas?</td></tr>
-      <tr><td class="es">la fiebre</td><td class="tr">[ла ФЬЕБ-ре]</td><td>температура / жар</td><td class="ex">Tengo 38 de fiebre desde ayer.</td></tr>
-      <tr><td class="es">el medicamento <span class="cognate">medication</span></td><td class="tr">[эль ме-ди-ка-МЕН-то]</td><td>лекарство</td><td class="ex">¿Toma algún medicamento habitualmente?</td></tr>
-      <tr><td class="es">recetar / la receta</td><td class="tr">[ре-се-ТАР]</td><td>прописывать / рецепт</td><td class="ex">El médico me recetó antiinflamatorios.</td></tr>
-      <tr><td class="es">el antibiótico <span class="cognate">antibiotic</span></td><td class="tr">[эль ан-ти-БЬОТИ-ко]</td><td>антибиотик</td><td class="ex">Solo se toman antibióticos con receta.</td></tr>
-      <tr><td class="es">la alergia <span class="cognate">allergy</span></td><td class="tr">[ла а-ЛЕР-хья]</td><td>аллергия</td><td class="ex">Soy alérgico a la penicilina.</td></tr>
-      <tr><td class="es">la tensión arterial</td><td class="tr">[ла тен-СЬОН]</td><td>кровяное давление</td><td class="ex">Tengo la tensión alta.</td></tr>
-      <tr><td class="es">el análisis de sangre</td><td class="tr">[эль а-НА-ли-сис]</td><td>анализ крови</td><td class="ex">Me han pedido un análisis de sangre.</td></tr>
-      <tr><td class="es">la radiografía <span class="cognate">radiograph</span></td><td class="tr">[ла ра-дьо-гра-ФИ-а]</td><td>рентген / снимок</td><td class="ex">Hay que hacerte una radiografía del pecho.</td></tr>
-      <tr><td class="es">el seguro médico <span class="cognate">medical insurance</span></td><td class="tr">[эль се-ГУ-ро]</td><td>медицинская страховка</td><td class="ex">Para el DNV necesitas seguro médico privado.</td></tr>
-      <tr><td class="es">la consulta</td><td class="tr">[ла кон-СУЛЬ-та]</td><td>приём / кабинет врача</td><td class="ex">La consulta del médico está en el segundo piso.</td></tr>
-      <tr><td class="es">pedir cita</td><td class="tr">[пе-ДИР СИ-та]</td><td>записаться на приём</td><td class="ex">¿Puedo pedir cita para mañana?</td></tr>
-    </tbody>
+  <div class="callout info">
+    <h4>📚 Уровень B1 — краткая теория, максимум практики</h4>
+    <p>На этом уровне теория — только опорные схемы. Медицинские конструкции испанского имеют свою логику, отличную от русского. Главное: в испанском боль выражается через «обратные» глаголы и устойчивые конструкции с tener.</p>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 1</span>
+      <span class="rule-title">Выражение боли: doler (болеть)</span>
+      <span class="rule-arrow">работает как gustar</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Глагол <strong>doler</strong> работает как <em>gustar</em> — субъект это то, что болит, а человек — косвенное дополнение. По-русски «у меня болит голова», по-испански «голова меня-болит» — Me duele la cabeza. Если болит несколько частей тела — используй <strong>duelen</strong> (мн.ч.).</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Me duele la cabeza</span><span class="sep">→</span><span class="ar">у меня болит голова</span></div>
+      <div class="wp"><span class="en">Me duele el estómago</span><span class="sep">→</span><span class="ar">у меня болит живот</span></div>
+      <div class="wp"><span class="en">Me duelen los pies</span><span class="sep">→</span><span class="ar">у меня болят ноги</span></div>
+      <div class="wp"><span class="en">Me duelen las muelas</span><span class="sep">→</span><span class="ar">у меня болят зубы</span></div>
+      <div class="wp"><span class="en">Le duele la espalda</span><span class="sep">→</span><span class="ar">у него/неё болит спина</span></div>
+      <div class="wp"><span class="en">¿Te duele el pecho?</span><span class="sep">→</span><span class="ar">у тебя болит грудь?</span></div>
+      <div class="wp"><span class="en">Nos duelen los ojos</span><span class="sep">→</span><span class="ar">у нас болят глаза</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 2</span>
+      <span class="rule-title">Конструкция: tener + síntoma</span>
+      <span class="rule-arrow">иметь симптом</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Многие симптомы выражаются через глагол <strong>tener</strong>: tengo fiebre (у меня температура), tengo tos (у меня кашель). Это устойчивые сочетания — заучи их блоками.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">tener fiebre</span><span class="sep">→</span><span class="ar">иметь температуру/жар</span></div>
+      <div class="wp"><span class="en">tener tos</span><span class="sep">→</span><span class="ar">кашлять / иметь кашель</span></div>
+      <div class="wp"><span class="en">tener náuseas</span><span class="sep">→</span><span class="ar">тошнить</span></div>
+      <div class="wp"><span class="en">tener mareos</span><span class="sep">→</span><span class="ar">кружиться голове</span></div>
+      <div class="wp"><span class="en">tener alergia a</span><span class="sep">→</span><span class="ar">быть аллергичным на</span></div>
+      <div class="wp"><span class="en">tener diarrea</span><span class="sep">→</span><span class="ar">иметь диарею</span></div>
+      <div class="wp"><span class="en">tener escalofríos</span><span class="sep">→</span><span class="ar">знобить / иметь озноб</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 3</span>
+      <span class="rule-title">Интенсивность боли</span>
+      <span class="rule-arrow">от leve до insoportable</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Врачи в Испании часто спрашивают об интенсивности боли по шкале от 1 до 10. Вот ключевые прилагательные для описания:</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">un dolor leve</span><span class="sep">→</span><span class="ar">лёгкая боль</span></div>
+      <div class="wp"><span class="en">un dolor moderado</span><span class="sep">→</span><span class="ar">умеренная боль</span></div>
+      <div class="wp"><span class="en">un dolor fuerte</span><span class="sep">→</span><span class="ar">сильная боль</span></div>
+      <div class="wp"><span class="en">un dolor agudo</span><span class="sep">→</span><span class="ar">острая боль</span></div>
+      <div class="wp"><span class="en">un dolor sordo</span><span class="sep">→</span><span class="ar">тупая ноющая боль</span></div>
+      <div class="wp"><span class="en">un dolor pulsátil</span><span class="sep">→</span><span class="ar">пульсирующая боль</span></div>
+      <div class="wp"><span class="en">insoportable</span><span class="sep">→</span><span class="ar">невыносимая боль</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 4</span>
+      <span class="rule-title">В аптеке: лекарства и инструкции</span>
+      <span class="rule-arrow">farmacia — ключ к жизни в Испании</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">В испанских аптеках фармацевт (farmacéutico) может консультировать без рецепта. Вот ключевые слова для понимания упаковок и инструкций:</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">tomar una pastilla</span><span class="sep">→</span><span class="ar">принять таблетку</span></div>
+      <div class="wp"><span class="en">cada ocho horas</span><span class="sep">→</span><span class="ar">каждые 8 часов</span></div>
+      <div class="wp"><span class="en">con las comidas</span><span class="sep">→</span><span class="ar">во время еды</span></div>
+      <div class="wp"><span class="en">en ayunas</span><span class="sep">→</span><span class="ar">натощак</span></div>
+      <div class="wp"><span class="en">receta médica</span><span class="sep">→</span><span class="ar">рецепт врача</span></div>
+      <div class="wp"><span class="en">efectos secundarios</span><span class="sep">→</span><span class="ar">побочные эффекты</span></div>
+      <div class="wp"><span class="en">sin receta</span><span class="sep">→</span><span class="ar">без рецепта (OTC)</span></div>
+    </div>
+  </div>
+
+  <div class="authentic-text">
+    <div class="at-label">📰 Аутентичный текст — листок назначения</div>
+    <p><em>Paracetamol 650 mg. Tomar 1 comprimido cada 8 horas. No superar 3 comprimidos al día. Tomar preferentemente con alimentos. En caso de reacciones adversas, consulte a su médico. No administrar a menores de 12 años.</em></p>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:8px">Понял(а) всё? Comprimido = таблетка, superar = превысить, administrar = давать/принимать, menores = несовершеннолетние.</p>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Калька с русского «болеть»</td><td class="wrong-ex">Yo duelo la cabeza</td><td class="right-ex">Me duele la cabeza</td><td>Doler — обратный глагол, как gustar</td></tr>
+    <tr><td>Ед. vs мн. число с doler</td><td class="wrong-ex">Me duele los pies</td><td class="right-ex">Me duelen los pies</td><td>Если болит несколько — duelen</td></tr>
+    <tr><td>Путаница с mareos</td><td class="wrong-ex">Tengo marearse</td><td class="right-ex">Tengo mareos / Me mareo</td><td>Используй существительное или возвратный глагол</td></tr>
+    <tr><td>Неверный предлог аллергии</td><td class="wrong-ex">Soy alérgico de la penicilina</td><td class="right-ex">Soy alérgico a la penicilina</td><td>Alérgico a (не de/con)</td></tr>
+    <tr><td>Temperatura vs. fiebre</td><td class="wrong-ex">Tengo temperatura alta</td><td class="right-ex">Tengo fiebre</td><td>Fiebre = повышенная температура (37.5+)</td></tr>
+    <tr><td>Pastilla vs. comprimido</td><td class="wrong-ex">одно значение</td><td class="right-ex">оба верны; comprimido — официально</td><td>Pastilla = таблетка/пастилка разг., comprimido = официальный термин</td></tr>
   </table>
 </div>
 
-<!-- SECTION 3: QUIZ 1 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Здоровье и медицина</h2>
+    <h2>Словарь — 20 ключевых медицинских слов</h2>
   </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 для прослушивания каждого слова.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">el médico / la médica</div><div class="vocab-ru">врач (м/ж)</div></div><button class="speak-btn" onclick="speak('el médico')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el dolor</div><div class="vocab-ru">боль</div></div><button class="speak-btn" onclick="speak('el dolor')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">los síntomas</div><div class="vocab-ru">симптомы</div></div><button class="speak-btn" onclick="speak('los síntomas')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la fiebre</div><div class="vocab-ru">температура / жар</div></div><button class="speak-btn" onclick="speak('la fiebre')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la tos</div><div class="vocab-ru">кашель</div></div><button class="speak-btn" onclick="speak('la tos')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el mareo</div><div class="vocab-ru">головокружение</div></div><button class="speak-btn" onclick="speak('el mareo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la pastilla / el comprimido</div><div class="vocab-ru">таблетка</div></div><button class="speak-btn" onclick="speak('la pastilla')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la receta</div><div class="vocab-ru">рецепт врача</div></div><button class="speak-btn" onclick="speak('la receta')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la farmacia</div><div class="vocab-ru">аптека</div></div><button class="speak-btn" onclick="speak('la farmacia')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el hospital</div><div class="vocab-ru">больница</div></div><button class="speak-btn" onclick="speak('el hospital')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la ambulancia</div><div class="vocab-ru">скорая помощь</div></div><button class="speak-btn" onclick="speak('la ambulancia')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el análisis de sangre</div><div class="vocab-ru">анализ крови</div></div><button class="speak-btn" onclick="speak('el análisis de sangre')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la alergia</div><div class="vocab-ru">аллергия</div></div><button class="speak-btn" onclick="speak('la alergia')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el antibiótico</div><div class="vocab-ru">антибиотик</div></div><button class="speak-btn" onclick="speak('el antibiótico')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la herida</div><div class="vocab-ru">рана / порез</div></div><button class="speak-btn" onclick="speak('la herida')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el esguince</div><div class="vocab-ru">растяжение связок</div></div><button class="speak-btn" onclick="speak('el esguince')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la tensión arterial</div><div class="vocab-ru">артериальное давление</div></div><button class="speak-btn" onclick="speak('la tensión arterial')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el seguro médico</div><div class="vocab-ru">медицинская страховка</div></div><button class="speak-btn" onclick="speak('el seguro médico')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">pedir cita</div><div class="vocab-ru">записаться на приём</div></div><button class="speak-btn" onclick="speak('pedir cita')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el centro de salud (CAP)</div><div class="vocab-ru">поликлиника / медцентр</div></div><button class="speak-btn" onclick="speak('el centro de salud')">🔊</button></div>
+  </div>
+</div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Выбери правильный вариант</h3>
-
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Медицинская лексика</h2>
+  </div>
+  <div class="quiz">
+    <h3>🩺 Выбери правильный ответ — 7 вопросов</h3>
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. «У меня болит голова» — как правильно?</div>
+      <div class="q-text">1. Как сказать «у меня болит горло»?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Me duele la cabeza</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Yo duele la cabeza</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Tengo doler de cabeza</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Tengo dolor en la garganta yo</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Me duele la garganta</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Mi garganta duele mucho</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
-
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. «Записаться на приём к врачу» — как сказать?</div>
+      <div class="q-text">2. Врач спрашивает: <strong>«¿Tiene alguna alergia?»</strong> — как ответить правильно?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">hacer una reserva médica</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">pedir cita con el médico</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">visitar el médico rápido</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Sí, tengo alergia de los gatos</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Sí, soy alérgico con la penicilina</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Sí, soy alérgico a la penicilina</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
-
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. «У меня эти симптомы уже 3 дня» — как сказать?</div>
+      <div class="q-text">3. На упаковке написано <strong>«en ayunas»</strong> — это значит:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Hace 3 días que siento síntomas</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Tengo 3 días de síntomas</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Llevo 3 días con estos síntomas</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">натощак, перед едой</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">во время еды</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">перед сном</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
-
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. «La tensión arterial alta» означает...</div>
+      <div class="q-text">4. Как записаться к врачу по-испански?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">высокое кровяное давление</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">высокая температура</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">высокий пульс</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Quiero visitar al médico hoy</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Necesito ir al hospital urgente</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Quisiera pedir cita con el médico</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
-
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. У ног болят — как правильно?</div>
+      <div class="q-text">5. <strong>«Tengo fiebre»</strong> — что именно означает?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Me duele los pies</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Me duelen los pies</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Me dueles los pies</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">мне холодно</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">у меня озноб</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">у меня повышенная температура</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
-
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. Первый врач в испанской системе здравоохранения называется...</div>
+      <div class="q-text">6. Что означает <strong>«efectos secundarios»</strong> на упаковке лекарства?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">especialista</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">cirujano</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">médico de cabecera</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">вторичные применения препарата</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">побочные эффекты</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">дозировка</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. У тебя болят обе ноги. Как сказать правильно?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Me duele las piernas</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Mis piernas tienen dolor</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Me duelen las piernas</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
   <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 4: QUIZ 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 2 — Заполни пропуск</h2>
-  </div>
-
-  <div class="quiz">
-    <h3>✏️ Вставь правильное слово</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. El médico me ________ antibióticos para la infección. (прописал)</div>
-      <input type="text" class="text-input" placeholder="Напиши глагол..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','recetó','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ recetó — pretérito indefinido de recetar (preterit: yo receté, él/ella recetó)</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. Soy ________ al ibuprofeno, ¿tiene otra alternativa? (аллергичен)</div>
-      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','alérgico','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ alérgico — ser alérgico a = быть аллергиком на что-то</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. Necesito pedir ________ con el especialista de cardiología. (запись на приём)</div>
-      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','cita','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ cita — pedir cita = записаться. Cita также = свидание! Контекст важен.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. Me han pedido ________ de sangre para ver los valores. (анализ)</div>
-      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','análisis','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ análisis — el análisis de sangre = анализ крови</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. Para vivir en España necesitas un ________ médico privado. (страховка)</div>
-      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','seguro','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ seguro — seguro médico = медицинская страховка. Важно для DNV!</div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 5: DIALOGUES -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Диалоги — У врача</h2>
+    <h2>Тест 2 — Заполни пропуски</h2>
   </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух, играя обе роли. Это практически реальный разговор — будешь к нему готов.</p>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Приём у терапевта
-      <button class="dlg-toggle" onclick="toggleDlg('dlg89-1')">Показать перевод</button>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Напиши слово или фразу. Вводи в нижнем регистре. Диакритика засчитывается и без ударений.</p>
+  <div class="quiz">
+    <h3>✏️ Медицинские конструкции</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «У меня болит голова» = Me _____ la cabeza</div>
+      <input type="text" class="text-input" placeholder="Напиши глагол..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','duele','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ duele — Me duele la cabeza</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">MÉDICO</div>
-      <div><div class="dlg-es">Buenos días. ¿Qué le pasa hoy?</div>
-      <div class="dlg-ru dlg89-1-tr" style="display:none">[Добрый день. Что вас беспокоит сегодня?]</div></div>
+    <div class="text-ex">
+      <div class="tex-q">2. «У меня температура» = Tengo _____</div>
+      <input type="text" class="text-input" placeholder="Напиши симптом..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','fiebre','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ fiebre — Tengo fiebre</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">PACIENTE</div>
-      <div><div class="dlg-es">Llevo tres días con fiebre alta y tos. También me duele mucho la garganta.</div>
-      <div class="dlg-ru dlg89-1-tr" style="display:none">[У меня уже три дня высокая температура и кашель. Ещё очень болит горло.]</div></div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Я аллергичен на пенициллин» = Soy alérgico _____ la penicilina</div>
+      <input type="text" class="text-input" placeholder="Напиши предлог..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','a','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ a — Soy alérgico a la penicilina</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">MÉDICO</div>
-      <div><div class="dlg-es">¿Tiene alergia a algún medicamento?</div>
-      <div class="dlg-ru dlg89-1-tr" style="display:none">[У вас есть аллергия на какие-либо лекарства?]</div></div>
+    <div class="text-ex">
+      <div class="tex-q">4. «Принимайте натощак» = Tomar en _____</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','ayunas','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ ayunas — en ayunas = натощак</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">PACIENTE</div>
-      <div><div class="dlg-es">Sí, soy alérgico a la penicilina. ¿Es grave?</div>
-      <div class="dlg-ru dlg89-1-tr" style="display:none">[Да, у меня аллергия на пенициллин. Это серьёзно?]</div></div>
+    <div class="text-ex">
+      <div class="tex-q">5. «Я хотел бы записаться» = Quisiera pedir _____ con el médico</div>
+      <input type="text" class="text-input" placeholder="Напиши слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','cita','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ cita — pedir cita = записаться на приём</div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">MÉDICO</div>
-      <div><div class="dlg-es">No se preocupe. Parece una infección vírica. Le voy a recetar un antiinflamatorio y jarabe para la tos. Hay que tomar el jarabe tres veces al día.</div>
-      <div class="dlg-ru dlg89-1-tr" style="display:none">[Не беспокойтесь. Похоже на вирусную инфекцию. Я выпишу вам противовоспалительное и сироп от кашля. Сироп нужно принимать три раза в день.]</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">PACIENTE</div>
-      <div><div class="dlg-es">¿Cuántos días tengo que tomarlo?</div>
-      <div class="dlg-ru dlg89-1-tr" style="display:none">[Сколько дней нужно принимать?]</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">MÉDICO</div>
-      <div><div class="dlg-es">Durante cinco días. Si no mejora, vuelva a consultarme.</div>
-      <div class="dlg-ru dlg89-1-tr" style="display:none">[В течение пяти дней. Если не улучшится, снова обратитесь ко мне.]</div></div>
-    </div>
-  </div>
-
-  <div class="dialogue" style="margin-top:20px">
-    <div class="dlg-header">
-      💬 Диалог 2: Запись на приём по телефону
-      <button class="dlg-toggle" onclick="toggleDlg('dlg89-2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">RECEPT.</div>
-      <div><div class="dlg-es">Centro de salud Barceloneta, ¿dígame?</div>
-      <div class="dlg-ru dlg89-2-tr" style="display:none">[Медицинский центр Барселонета, слушаю вас?]</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">PACIENTE</div>
-      <div><div class="dlg-es">Hola, buenos días. Quisiera pedir cita con mi médico de cabecera, el doctor García.</div>
-      <div class="dlg-ru dlg89-2-tr" style="display:none">[Здравствуйте, доброе утро. Я хотел бы записаться к своему терапевту, доктору Гарсиа.]</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">RECEPT.</div>
-      <div><div class="dlg-es">¿Para qué día? ¿Tiene preferencia de horario?</div>
-      <div class="dlg-ru dlg89-2-tr" style="display:none">[На какой день? Есть предпочтения по времени?]</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">PACIENTE</div>
-      <div><div class="dlg-es">Si es posible, para mañana por la mañana. Es bastante urgente.</div>
-      <div class="dlg-ru dlg89-2-tr" style="display:none">[Если возможно, на завтра утром. Это довольно срочно.]</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">RECEPT.</div>
-      <div><div class="dlg-es">Le puedo dar las 9:30 de mañana. ¿Le viene bien?</div>
-      <div class="dlg-ru dlg89-2-tr" style="display:none">[Могу записать на 9:30 завтра. Вам подходит?]</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">PACIENTE</div>
-      <div><div class="dlg-es">Perfecto. Muchas gracias.</div>
-      <div class="dlg-ru dlg89-2-tr" style="display:none">[Отлично. Большое спасибо.]</div></div>
+    <div class="text-ex">
+      <div class="tex-q">6. «Побочные эффекты» = efectos _____</div>
+      <input type="text" class="text-input" placeholder="Напиши прилагательное..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','secundarios','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ secundarios — efectos secundarios</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: SPEAKING -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Говорение — Разговор с врачом</h2>
+    <h2>Диалоги — В кабинете врача и аптеке</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Нажимай 🔊 у каждой реплики. Кнопка «Все переводы» — показать/скрыть русский текст.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏥 Диалог 1: На приёме у врача в CAP Барселоны (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Médico</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. ¿Qué le pasa? ¿Cómo se encuentra? <button class="speak-btn" onclick="speak('Buenos días. ¿Qué le pasa? ¿Cómo se encuentra?')">🔊</button></div>
+        <div class="dlg-ru translation">[Доброе утро. Что с вами? Как вы себя чувствуете?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Paciente</div>
+      <div style="flex:1">
+        <div class="dlg-es">Me duele mucho la garganta desde hace tres días, y tengo fiebre de 38 grados. <button class="speak-btn" onclick="speak('Me duele mucho la garganta desde hace tres días, y tengo fiebre de 38 grados.')">🔊</button></div>
+        <div class="dlg-ru translation">[У меня очень болит горло три дня, и температура 38 градусов.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Médico</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Tiene también tos o dificultad para respirar? <button class="speak-btn" onclick="speak('¿Tiene también tos o dificultad para respirar?')">🔊</button></div>
+        <div class="dlg-ru translation">[Есть ли также кашель или затруднённое дыхание?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Paciente</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, tengo algo de tos seca y me duele un poco el pecho. <button class="speak-btn" onclick="speak('Sí, tengo algo de tos seca y me duele un poco el pecho.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, есть небольшой сухой кашель и немного болит грудь.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Médico</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Es alérgico a algún medicamento? <button class="speak-btn" onclick="speak('¿Es alérgico a algún medicamento?')">🔊</button></div>
+        <div class="dlg-ru translation">[Есть ли аллергия на какие-либо лекарства?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Paciente</div>
+      <div style="flex:1">
+        <div class="dlg-es">Soy alérgico a la penicilina. Por lo demás, no tengo otras alergias conocidas. <button class="speak-btn" onclick="speak('Soy alérgico a la penicilina. Por lo demás, no tengo otras alergias conocidas.')">🔊</button></div>
+        <div class="dlg-ru translation">[Я аллергичен на пенициллин. В остальном других аллергий нет.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Médico</div>
+      <div style="flex:1">
+        <div class="dlg-es">Voy a auscultar los pulmones. Respire hondo, por favor. <button class="speak-btn" onclick="speak('Voy a auscultar los pulmones. Respire hondo, por favor.')">🔊</button></div>
+        <div class="dlg-ru translation">[Послушаю лёгкие. Дышите глубоко, пожалуйста.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Paciente</div>
+      <div style="flex:1">
+        <div class="dlg-es">De acuerdo. ¿Es grave? <button class="speak-btn" onclick="speak('De acuerdo. ¿Es grave?')">🔊</button></div>
+        <div class="dlg-ru translation">[Хорошо. Это серьёзно?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Médico</div>
+      <div style="flex:1">
+        <div class="dlg-es">No es nada grave. Es una faringitis. Le receto un antiinflamatorio y le doy la baja por dos días. <button class="speak-btn" onclick="speak('No es nada grave. Es una faringitis. Le receto un antiinflamatorio y le doy la baja por dos días.')">🔊</button></div>
+        <div class="dlg-ru translation">[Ничего серьёзного. Это фарингит. Выпишу противовоспалительное и дам больничный на два дня.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Paciente</div>
+      <div style="flex:1">
+        <div class="dlg-es">Muchas gracias, doctor. ¿Tengo que volver si no mejoro? <button class="speak-btn" onclick="speak('Muchas gracias, doctor. ¿Tengo que volver si no mejoro?')">🔊</button></div>
+        <div class="dlg-ru translation">[Большое спасибо, доктор. Нужно ли вернуться, если не станет лучше?]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 1 — Базовый уровень</div>
-    <p>Ты пришёл к врачу. Тебе плохо. Опиши симптомы: 2 дня назад началась температура 38.5, болит голова, нет аппетита, небольшой кашель. Нет аллергии на лекарства.</p>
-    <div class="es">«Llevo dos días con fiebre de 38,5. También me duele la cabeza y no tengo apetito. Tengo un poco de tos. No soy alérgico a ningún medicamento.»</div>
-    <div class="hint">Глаголы: tener fiebre, doler, llevar + tiempo, ser alérgico</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      💊 Диалог 2: В аптеке — без рецепта (9 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Cliente</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenas tardes. Tengo dolor de cabeza y también estoy algo congestionado. ¿Qué me recomienda? <button class="speak-btn" onclick="speak('Buenas tardes. Tengo dolor de cabeza y también estoy algo congestionado. ¿Qué me recomienda?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Добрый день. У меня болит голова и заложен нос. Что посоветуете?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Farmac.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Tiene también fiebre o dolor de garganta? <button class="speak-btn" onclick="speak('¿Tiene también fiebre o dolor de garganta?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Есть ли также температура или боль в горле?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Cliente</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, no tengo fiebre. Solo el dolor de cabeza y la nariz tapada. <button class="speak-btn" onclick="speak('No, no tengo fiebre. Solo el dolor de cabeza y la nariz tapada.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Нет, температуры нет. Только головная боль и заложенный нос.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Farmac.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Le recomiendo este medicamento. Tómelo cada ocho horas, con un vaso de agua. <button class="speak-btn" onclick="speak('Le recomiendo este medicamento. Tómelo cada ocho horas, con un vaso de agua.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Рекомендую этот препарат. Принимайте каждые 8 часов со стаканом воды.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Cliente</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Puedo tomarlo en ayunas o mejor con comida? <button class="speak-btn" onclick="speak('¿Puedo tomarlo en ayunas o mejor con comida?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Можно принимать натощак или лучше с едой?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Farmac.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Mejor con las comidas para evitar molestias estomacales. <button class="speak-btn" onclick="speak('Mejor con las comidas para evitar molestias estomacales.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Лучше во время еды, чтобы избежать расстройства желудка.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Cliente</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Tiene algún efecto secundario importante que deba saber? <button class="speak-btn" onclick="speak('¿Tiene algún efecto secundario importante que deba saber?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Есть ли важные побочные эффекты, о которых нужно знать?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Farmac.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Puede causar algo de somnolencia. No conduzca si lo nota. <button class="speak-btn" onclick="speak('Puede causar algo de somnolencia. No conduzca si lo nota.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Может вызывать сонливость. Не водите машину, если это заметите.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Cliente</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto, me lo llevo. ¿Necesito receta para comprarlo? <button class="speak-btn" onclick="speak('Perfecto, me lo llevo. ¿Necesito receta para comprarlo?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Отлично, возьму. Нужен ли рецепт для покупки?]</div>
+      </div>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 2 — Продвинутый уровень</div>
-    <p>Ролевая игра: ты только приехал в Испанию, плохо себя чувствуешь. Позвони в медицинский центр, запишись на приём. Объясни, что срочно, у тебя нет местной карты здоровья (tarjeta sanitaria), но есть частная страховка DNV.</p>
-    <div class="es">«Hola, buenos días. Quisiera pedir cita urgente... Todavía no tengo tarjeta sanitaria española, pero tengo seguro médico privado. ¿Pueden atenderme igual?»</div>
-    <div class="hint">Ключевые слова: urgente, tarjeta sanitaria, seguro privado, médico de guardia (дежурный врач)</div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      📞 Диалог 3: Звонок в экстренную службу 112 (8 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Operador</div>
+      <div style="flex:1">
+        <div class="dlg-es">112, ¿cuál es su emergencia? <button class="speak-btn" onclick="speak('112, ¿cuál es su emergencia?')">🔊</button></div>
+        <div class="dlg-ru translation3">[112, какова ваша экстренная ситуация?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Llamante</div>
+      <div style="flex:1">
+        <div class="dlg-es">Mi marido se ha desmayado en casa. No responde y respira con dificultad. <button class="speak-btn" onclick="speak('Mi marido se ha desmayado en casa. No responde y respira con dificultad.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Мой муж потерял сознание дома. Не реагирует и дышит с трудом.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Operador</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuál es su dirección exacta? <button class="speak-btn" onclick="speak('¿Cuál es su dirección exacta?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Какой ваш точный адрес?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Llamante</div>
+      <div style="flex:1">
+        <div class="dlg-es">Calle de Provença 243, piso 3, puerta 1, Barcelona. <button class="speak-btn" onclick="speak('Calle de Provença 243, piso 3, puerta 1, Barcelona.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Улица Провенса 243, этаж 3, квартира 1, Барселона.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Operador</div>
+      <div style="flex:1">
+        <div class="dlg-es">Enviamos una ambulancia ahora mismo. ¿Sabe hacer la reanimación cardiopulmonar? <button class="speak-btn" onclick="speak('Enviamos una ambulancia ahora mismo. ¿Sabe hacer la reanimación cardiopulmonar?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Отправляем скорую прямо сейчас. Умеете делать сердечно-лёгочную реанимацию?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Llamante</div>
+      <div style="flex:1">
+        <div class="dlg-es">Creo que sí, lo he aprendido. ¿Qué hago exactamente? <button class="speak-btn" onclick="speak('Creo que sí, lo he aprendido. ¿Qué hago exactamente?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Кажется, да, я это учил(а). Что именно делать?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Operador</div>
+      <div style="flex:1">
+        <div class="dlg-es">Le voy a guiar. Coloque las manos en el centro del pecho y presione fuerte y rítmicamente. <button class="speak-btn" onclick="speak('Le voy a guiar. Coloque las manos en el centro del pecho y presione fuerte y rítmicamente.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Я вас проведу. Положите руки на центр грудной клетки и давите сильно и ритмично.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Llamante</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, lo estoy haciendo. Por favor, dense prisa. <button class="speak-btn" onclick="speak('Sí, lo estoy haciendo. Por favor, dense prisa.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Да, делаю. Пожалуйста, поторопитесь.]</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 7: CULTURE -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Культурная заметка</h2>
+    <h2>Говорение — Твоя очередь</h2>
   </div>
-
-  <div class="culture">
-    <div class="ctag">🌍 Культурная заметка</div>
-    <h4>Аптека в Испании: зелёный крест и сильная роль фармацевта</h4>
-    <p>Испанские аптеки — <strong>farmacias</strong> — узнаются по зелёному кресту (cruz verde). Фармацевт в Испании — это почти врач: он может рекомендовать лечение для несложных случаев, измерить давление и провести быстрые тесты. Многие лекарства, которые в России требуют рецепта, в Испании продаются свободно, и наоборот. Антибиотики в Испании — строго по рецепту (con receta). Кстати, в Каталонии аптеки часто имеют дежурство («farmacia de guardia») круглосуточно — адреса ночных аптек вывешены на дверях.</p>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Опиши свои симптомы</div>
+    <p>Представь, что ты пришёл на приём. Расскажи вслух, что тебя беспокоит. Используй конструкции из урока:</p>
+    <div class="es">Me duele la cabeza desde ayer. Tengo fiebre leve de 37 y medio. También tengo algo de tos seca. No tengo alergias conocidas. Quisiera que me recetara algo para el dolor.</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Me duele la cabeza desde ayer. Tengo fiebre leve. También tengo algo de tos seca. No tengo alergias conocidas. Quisiera que me recetara algo para el dolor.')">🔊 Прослушать пример</button>
+    <div class="hint">Замени симптомы на свои реальные или придумай сценарий. Говори не менее 6 предложений.</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Реальная жизнь: в аптеке Барселоны</div>
+    <p>Ты пришёл в аптеку на Rambla de Catalunya. Попроси что-то от простуды без рецепта. Скажи вслух:</p>
+    <div class="es">Buenos días. Tengo un resfriado: me duele la garganta, tengo tos y la nariz tapada. ¿Qué me recomienda sin receta? No soy alérgico a ningún medicamento. ¿Cuánto cuesta?</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Buenos días. Tengo un resfriado: me duele la garganta, tengo tos y la nariz tapada. ¿Qué me recomienda sin receta? No soy alérgico a ningún medicamento. ¿Cuánto cuesta?')">🔊 Прослушать пример</button>
+    <div class="hint">Важно: в Испании фармацевт — настоящий консультант. Не стесняйся подробно описывать симптомы.</div>
   </div>
 </div>
 
-<!-- SECTION 8: ANKI + HOMEWORK -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Anki + Домашнее задание</h2>
+    <h2>🇪🇸 Испания на практике: Получение tarjeta sanitaria через CAP</h2>
   </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏥 Реальная ситуация — Барселона: медицинская карта и Ayuntamiento</div>
+    <p style="margin-bottom:12px">Ты живёшь в Барселоне и хочешь получить бесплатную медицинскую помощь. Для этого нужна <strong>Tarjeta Sanitaria Individual (TSI)</strong> — медицинская карта системы CatSalut. Сначала нужно получить <em>empadronamiento</em> (прописку) в Ayuntamiento, потом — визит в CAP (Centre d'Atenció Primària — районная поликлиника).</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Quisiera tramitar la tarjeta sanitaria. <button class="speak-btn" onclick="speak('Quisiera tramitar la tarjeta sanitaria.')">🔊</button></div>
+          <div class="phrase-ru">Я хотел бы оформить медицинскую карту.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Tengo el certificado de empadronamiento del Ayuntamiento. <button class="speak-btn" onclick="speak('Tengo el certificado de empadronamiento del Ayuntamiento.')">🔊</button></div>
+          <div class="phrase-ru">У меня есть справка о прописке из мэрии.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué documentos necesito para asignarme un médico de cabecera? <button class="speak-btn" onclick="speak('¿Qué documentos necesito para asignarme un médico de cabecera?')">🔊</button></div>
+          <div class="phrase-ru">Какие документы нужны, чтобы прикрепиться к участковому врачу?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuál es mi CAP asignado según mi domicilio? <button class="speak-btn" onclick="speak('¿Cuál es mi CAP asignado según mi domicilio?')">🔊</button></div>
+          <div class="phrase-ru">Какая поликлиника закреплена за моим адресом?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Quisiera pedir cita con el médico de cabecera. <button class="speak-btn" onclick="speak('Quisiera pedir cita con el médico de cabecera.')">🔊</button></div>
+          <div class="phrase-ru">Я хотел бы записаться к участковому врачу.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Puedo pedir cita por internet o solo en persona? <button class="speak-btn" onclick="speak('¿Puedo pedir cita por internet o solo en persona?')">🔊</button></div>
+          <div class="phrase-ru">Можно записаться онлайн или только лично?</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout info" style="margin-top:14px">
+      <h4>📋 Мини-диалог: в регистратуре CAP</h4>
+    </div>
+    <div class="dialogue" style="margin-top:0">
+      <div class="dlg-header">🗂️ Получаем tarjeta sanitaria (6 реплик)</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Tú</div>
+        <div style="flex:1">
+          <div class="dlg-es">Buenos días. Vengo a solicitar la tarjeta sanitaria. Soy residente y tengo el volante de empadronamiento. <button class="speak-btn" onclick="speak('Buenos días. Vengo a solicitar la tarjeta sanitaria. Soy residente y tengo el volante de empadronamiento.')">🔊</button></div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Admin.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Necesitará también el pasaporte o NIE, y un justificante de residencia de menos de tres meses. <button class="speak-btn" onclick="speak('Necesitará también el pasaporte o NIE, y un justificante de residencia de menos de tres meses.')">🔊</button></div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Tú</div>
+        <div style="flex:1">
+          <div class="dlg-es">Aquí tiene mi pasaporte y el certificado de empadronamiento de este mes. <button class="speak-btn" onclick="speak('Aquí tiene mi pasaporte y el certificado de empadronamiento de este mes.')">🔊</button></div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Admin.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Perfecto. Le asignaremos un médico de cabecera. Recibirá la tarjeta por correo en unos 15 días. <button class="speak-btn" onclick="speak('Perfecto. Le asignaremos un médico de cabecera. Recibirá la tarjeta por correo en unos 15 días.')">🔊</button></div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Tú</div>
+        <div style="flex:1">
+          <div class="dlg-es">¿Y mientras tanto puedo acceder a urgencias si lo necesito? <button class="speak-btn" onclick="speak('¿Y mientras tanto puedo acceder a urgencias si lo necesito?')">🔊</button></div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Admin.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Sí, las urgencias están siempre disponibles. Lleve siempre su documentación. <button class="speak-btn" onclick="speak('Sí, las urgencias están siempre disponibles. Lleve siempre su documentación.')">🔊</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Система CatSalut в Каталонии покрывает всех резидентов с empadronamiento. Tarjeta sanitaria (TSI) — ваш главный документ для доступа к бесплатной медицине. CAP — первичный уровень (поликлиника), hospital — для серьёзных случаев. Скорая помощь — 112.
+    </div>
+  </div>
+</div>
 
-  <!-- .wrap -->
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🏥 Система здравоохранения Испании</div>
+    <h4>Почему испанская медицина считается одной из лучших в мире</h4>
+    <p>Испания занимает одно из первых мест в мире по качеству системы здравоохранения (ВОЗ стабильно ставит её в топ-10). Sistema Nacional de Salud (SNS) — государственная система, финансируемая из налогов и доступная всем легальным резидентам. В Каталонии она называется CatSalut. Особенность испанской аптеки: фармацевт (farmacéutico) имеет высшее образование и вправе давать медицинские консультации без необходимости идти к врачу. В Испании принята модель «семейного врача» (médico de cabecera), который ведёт пациента годами. Экстренная служба — единый номер 112, работающий на испанском, английском и каталанском.</p>
+  </div>
+</div>
 
-<!-- DONE BAR -->
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все 18 одним файлом для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Me duele la cabeza</div>
+        <div class="anki-card-back">у меня болит голова<br>doler = обратный глагол<br>Me duelen los pies (мн.ч.)</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">tener fiebre</div>
+        <div class="anki-card-back">иметь температуру<br>Tengo fiebre de 38°<br>≠ temperatura alta</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">en ayunas</div>
+        <div class="anki-card-back">натощак<br>Tomar en ayunas<br>= перед едой</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">pedir cita</div>
+        <div class="anki-card-back">записаться на приём<br>Quisiera pedir cita<br>cita = встреча</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">soy alérgico/a a</div>
+        <div class="anki-card-back">я аллергичен/на на...<br>Soy alérgico a la penicilina<br>предлог: a</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL89()">📥 Скачать колоду L89 (.txt для Anki)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L90: Культура и искусство)</h4>
+    <ul>
+      <li><strong>Dreaming Spanish (Intermediate)</strong> — найди видео на тему здоровья или повседневной жизни. Смотри 15 мин без субтитров</li>
+      <li><strong>Практическое задание</strong> — зайди на сайт CatSalut и попробуй прочитать страницу о получении TSI на испанском</li>
+      <li><strong>Anki</strong> — повторяй 18 карточек из этого урока + карточки предыдущих 5 уроков (10 мин)</li>
+      <li><strong>Ролевая игра</strong> — запиши монолог: опиши свои симптомы воображаемому врачу (1–2 минуты)</li>
+      <li><strong>Бонус</strong> — выучи фразу: «Me duele [часть тела] desde hace [время]. Tengo [симптом] y soy alérgico/a a [лекарство]»</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>✅ Урок 89 завершён!</h4>
+    <p>Ты умеешь описывать симптомы, понимать инструкции к лекарствам и ориентироваться в испанской медицинской системе. Следующий урок — культура и искусство: говорим о кино, музыке, литературе.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L88.html" class="nav-link-btn">← L88</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L90.html" class="nav-link-btn">L90 →</a>
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L90.html" class="nav-link-btn">L90: Культура и искусство →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L89 = [
+  {front:"me duele la cabeza",back:"Русский: у меня болит голова<br>Пример: Me duele la cabeza desde ayer.<br>Заметка: doler работает как gustar"},
+  {front:"me duelen los pies",back:"Русский: у меня болят ноги<br>Пример: Me duelen los pies después de caminar.<br>Заметка: мн.ч. — duelen, не duele"},
+  {front:"tener fiebre",back:"Русский: иметь температуру/жар<br>Пример: Tengo fiebre de 38 grados.<br>Заметка: fiebre = повышенная температура (37.5°C+)"},
+  {front:"tener tos",back:"Русский: кашлять / иметь кашель<br>Пример: Tengo mucha tos esta semana.<br>Заметка: la tos = кашель (ж.р.)"},
+  {front:"tener náuseas",back:"Русский: тошнить<br>Пример: Tengo náuseas después de comer.<br>Заметка: náuseas = тошнота (мн.ч.)"},
+  {front:"soy alérgico/a a",back:"Русский: я аллергичен/на на<br>Пример: Soy alérgico a la penicilina.<br>Заметка: предлог a, не de/con"},
+  {front:"en ayunas",back:"Русский: натощак<br>Пример: Tomar este medicamento en ayunas.<br>Заметка: на пустой желудок, перед едой"},
+  {front:"con las comidas",back:"Русский: во время еды<br>Пример: Tomar una pastilla con las comidas.<br>Заметка: часто = после еды для защиты желудка"},
+  {front:"efectos secundarios",back:"Русский: побочные эффекты<br>Пример: Este medicamento tiene pocos efectos secundarios.<br>Заметка: secundario = побочный/вторичный"},
+  {front:"pedir cita",back:"Русский: записаться на приём<br>Пример: Quisiera pedir cita con el médico.<br>Заметка: cita = встреча, приём"},
+  {front:"el médico de cabecera",back:"Русский: участковый врач / семейный доктор<br>Пример: Mi médico de cabecera está en el CAP.<br>Заметка: cabecera = основной, главный"},
+  {front:"la receta médica",back:"Русский: рецепт врача<br>Пример: Necesito receta para este antibiótico.<br>Заметка: sin receta = без рецепта (OTC)"},
+  {front:"la tarjeta sanitaria",back:"Русский: медицинская карта/полис<br>Пример: Presente su tarjeta sanitaria en el CAP.<br>Заметка: TSI = Tarjeta Sanitaria Individual"},
+  {front:"el esguince",back:"Русский: растяжение связок<br>Пример: Tengo un esguince de tobillo.<br>Заметка: esguince de tobillo = растяжение щиколотки"},
+  {front:"la herida",back:"Русский: рана, порез<br>Пример: Tengo una herida en la mano.<br>Заметка: herida grave = серьёзная рана"},
+  {front:"el análisis de sangre",back:"Русский: анализ крови<br>Пример: El médico me ha pedido un análisis de sangre.<br>Заметка: hacerse un análisis = сдать анализ"},
+  {front:"la tensión arterial",back:"Русский: артериальное давление<br>Пример: Tengo la tensión alta.<br>Заметка: tensión alta = гипертония; tensión baja = гипотония"},
+  {front:"desmayarse",back:"Русский: потерять сознание<br>Пример: Se ha desmayado en la calle.<br>Заметка: возвратный глагол: me desmayo, te desmayas"},
+];
+
+function exportAnkiL89() {
+  const tsv = ANKI_DECK_L89.map(c => c.front + '\t' + c.back).join('\n');
+  const header = '#separator:Tab\n#html:true\n#deck:L89 Spanish Salud\n';
+  const blob = new Blob([header + tsv], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L89_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Buenos días. ¿Qué le pasa? ¿Cómo se encuentra?',
+    'Me duele mucho la garganta desde hace tres días, y tengo fiebre de 38 grados.',
+    '¿Tiene también tos o dificultad para respirar?',
+    'Sí, tengo algo de tos seca y me duele un poco el pecho.',
+    '¿Es alérgico a algún medicamento?',
+    'Soy alérgico a la penicilina. Por lo demás, no tengo otras alergias conocidas.',
+    'Voy a auscultar los pulmones. Respire hondo, por favor.',
+    'De acuerdo. ¿Es grave?',
+    'No es nada grave. Es una faringitis. Le receto un antiinflamatorio.',
+    'Muchas gracias, doctor. ¿Tengo que volver si no mejoro?'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
 const LESSON_ID = 'L89';
 const LS_KEY = 'esp_course_progress';
+
 function getState() {
   try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
   catch(e) { return {completed:[]}; }
@@ -484,15 +984,22 @@ if (st.completed?.includes(LESSON_ID)) {
   btn.textContent = '✅ Пройден!';
   btn.className = 'done-btn marked';
 }
+
 const quizExpl = {
-  q1:'Me duele la cabeza — doler работает как gustar. Подлежащее — la cabeza, а не "я". Местоимение me = мне (дательный падеж).',
-  q2:'Pedir cita = записаться на приём. Cita = запись/встреча/свидание.',
-  q3:'Llevo 3 días con estos síntomas — конструкция «llevar + tiempo + gerundio/con». Самая натуральная форма.',
-  q4:'La tensión arterial alta = высокое кровяное давление (гипертония). Baja = низкое давление.',
-  q5:'Me duelen los pies — множественное число! Doler согласуется с подлежащим (pies = множ.), а не с человеком.',
-  q6:'Médico de cabecera = терапевт / семейный врач. Первый контакт в испанской системе здравоохранения.'
+  w1:'El gobierno = правительство (от gobernar — управлять)',
+  w2:'Los derechos humanos = права человека (derecho = право, humano = человеческий)',
+  w3:'Un derecho fundamental = основное право. Igualdad de género — тема прав человека',
+  w4:'Votar = голосовать (voto = голос/голосование)',
+  q1:'Me duele la garganta — конструкция с doler, как gustar. Субъект — garganta, не yo.',
+  q2:'Soy alérgico a la penicilina — правильный предлог a. Не de, не con.',
+  q3:'En ayunas = натощак, на пустой желудок. Antes de las comidas — тоже вариант.',
+  q4:'Quisiera pedir cita — вежливая форма (imperfecto subjuntivo). Самый естественный вариант.',
+  q5:'Fiebre = жар, повышенная температура (37.5°C и выше).',
+  q6:'Efectos secundarios = побочные эффекты. Secundario = вторичный, побочный.',
+  q7:'Me duelen las piernas — множественное число, поэтому duelen, не duele.',
 };
-let quizScore = 0; let quizTotal = 0;
+
+let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -525,10 +1032,7 @@ function answerQuiz(el, qId, correctKey) {
     if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
   }
 }
-function updateScore() {
-  const el = document.getElementById('quiz-score');
-  if (el) el.textContent = `Правильных ответов: ${quizScore} из ${quizTotal}`;
-}
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -581,19 +1085,44 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
+
 function showAns(id) { document.getElementById(id).classList.add('show'); }
-function toggleDlg(cls) {
-  document.querySelectorAll('.' + cls + '-tr').forEach(function(el){
-    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
   });
 }
-const totalSections = 8;
+
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => {
+    el.style.display = showingTrans3 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
 function updateProgress() {
   const scrolled = window.scrollY;
   const total = document.body.scrollHeight - window.innerHeight;
-  const pct = Math.min(100, Math.round(scrolled/total*100));
-  const sectionsRead = Math.round(pct/100 * totalSections);
-  document.getElementById('progress-fill').style.width = pct+'%';
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
 }
 window.addEventListener('scroll', updateProgress);
