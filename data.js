@@ -1186,7 +1186,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Сделать формальный звонок: записаться, уточнить, пожаловаться",
-      file:"lessons/L91.html", status:"pending"
+      file:"lessons/L91.html", status:"improved"
     },
     {
       id:"L92", num:92, phase:3, block:"B3D", level:"B1", day:195, week:33,
@@ -1198,7 +1198,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Описать 3 разные фотографии по 90 секунд каждую",
-      file:"lessons/L92.html", status:"pending"
+      file:"lessons/L92.html", status:"improved"
     },
     {
       id:"L93", num:93, phase:3, block:"B3D", level:"B1", day:197, week:33,
