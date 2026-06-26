@@ -1210,7 +1210,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Презентация на тему по выбору: 3 мин, с вводом и выводом",
-      file:"lessons/L93.html", status:"pending"
+      file:"lessons/L93.html", status:"improved"
     },
     {
       id:"L94", num:94, phase:3, block:"B3D", level:"B1", day:199, week:34,
@@ -1222,7 +1222,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Написать деловое письмо (запрос информации о визе / жилье / работе)",
-      file:"lessons/L94.html", status:"pending"
+      file:"lessons/L94.html", status:"improved"
     },
     {
       id:"L95", num:95, phase:3, block:"B3D", level:"B1", day:201, week:34,
