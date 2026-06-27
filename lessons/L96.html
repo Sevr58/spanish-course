@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L96: Практика — Обсуждение фильма и сериала</title>
+<style>
+:root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#f1f3f7 0%,#e8ebf1 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.review-block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:14px 0;border-left:4px solid var(--purple)}
+.review-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.review-genre{font-size:.75rem;color:var(--purple);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.review-text{font-size:.88rem;line-height:1.6;color:var(--muted)}
+.phrase-category{font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin:16px 0 8px;letter-spacing:.05em}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1. NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 203</span>
+  <a href="L97.html">L97 →</a>
+</div>
+
+<!-- 2. HERO -->
+<div class="hero">
+  <div class="phase-tag">🎬 Фаза 3 · Навыки B1 · Блок 3D — Практика</div>
+  <h1>Обсуждаем <span class="hl">кино</span> и сериалы</h1>
+  <p class="sub">¿Te gustó? ¿Qué te pareció? — Говорим о фильмах и сериалах по-испански</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎥</div><div><strong>Цель 1</strong><p>Рекомендовать фильм или сериал с обоснованием</p></div></div>
+    <div class="obj"><div class="ico">💬</div><div><strong>Цель 2</strong><p>Давать развёрнутый отзыв: сюжет, персонажи, впечатление</p></div></div>
+    <div class="obj"><div class="ico">🗣️</div><div><strong>Цель 3</strong><p>Выражать мнение и реагировать на чужой отзыв</p></div></div>
+    <div class="obj"><div class="ico">📝</div><div><strong>Цель 4</strong><p>Пересказывать сюжет без спойлеров</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- 3. WARM-UP: вопросы по L95 (понимание новостей) -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Повторение — Урок 95: Понимание новостей</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Проверь, что запомнил(а) из прошлого урока.</p>
+  <div class="quiz">
+    <h3>🔄 Стратегии чтения новостей — быстрая проверка</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Что такое стратегия SKIMMING?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Беглый просмотр заголовка и первого абзаца за 30 секунд</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Поиск конкретной даты или имени в тексте</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Перевод каждого слова со словарём</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «Según fuentes del ministerio, se espera que…» — что значит «según»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">несмотря на</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">согласно / по данным</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">если только</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «La ley fue aprobada» — какая это конструкция?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Activa (активный залог)</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Subjuntivo</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Pasiva (пассивный залог: ser + participio)</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Какие 5 вопросов журналиста помогают понять новость (las 5W)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">Cómo, Cuánto, Cuál, Cuándo, Qué</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">Si, También, Pero, Sin embargo, Porque</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">Quién, Qué, Cuándo, Dónde, Por qué</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — Язык кинокритики и обсуждения культуры</h2>
+  </div>
+
+  <div class="callout info">
+    <h4>🎬 Почему кино — идеальная тема для B1?</h4>
+    <p>Обсуждение фильмов требует всех навыков сразу: пересказа (прошедшие времена), мнения (subjuntivo после «espero que», «me parece que»), сравнения и рекомендаций. Это одна из любимых тем на DELE B1. Испанцы обожают говорить о кино — это открывает путь в любую беседу.</p>
+  </div>
+
+  <h3 style="margin-top:18px;margin-bottom:12px;font-size:1rem;font-weight:700">Правило 1 — Структура отзыва о фильме</h3>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:10px">Хороший отзыв состоит из 4 частей — используй эту структуру:</p>
+  <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;margin-bottom:12px">
+    <p style="font-size:.88rem;margin-bottom:8px"><strong>1. Identificación:</strong> Назови фильм, режиссёра, жанр, год</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Se trata de una película de ciencia ficción del director Pedro Almodóvar, estrenada en 2023.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Es una serie española de Netflix que trata sobre la Segunda República.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «El film fue dirigido por Alejandro González Iñárritu y protagonizado por Antonio Banderas.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Se trata de un documental de TVE sobre la historia del flamenco.»</p>
+    <p style="font-size:.85rem;color:var(--muted)">— «La película fue galardonada con el Goya al mejor guion original.»</p>
+  </div>
+
+  <h3 style="margin-top:18px;margin-bottom:12px;font-size:1rem;font-weight:700">Правило 2 — Краткий пересказ сюжета (без спойлеров)</h3>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:10px">Используй неопределённые конструкции: «la historia trata de», «el protagonista tiene que», «al final descubren que…» (но осторожно!)</p>
+  <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;margin-bottom:12px">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «La trama gira en torno a un detective que investiga una serie de crímenes.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «La historia trata de una familia española que emigra a Argentina en los años 50.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «El protagonista tiene que enfrentarse a su pasado para salvar a su hija.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Sin revelar demasiado, puedo decir que el final me sorprendió completamente.»</p>
+    <p style="font-size:.85rem;color:var(--muted)">— «No voy a contar el final, pero te aseguro que vale la pena verla.»</p>
+  </div>
+
+  <h3 style="margin-top:18px;margin-bottom:12px;font-size:1rem;font-weight:700">Правило 3 — Выражение мнения и оценки</h3>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:10px">B1-уровень требует развёрнутого мнения, а не просто «me gustó mucho». Используй эти конструкции:</p>
+  <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;margin-bottom:12px">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Lo que más me gustó fue la actuación de la actriz principal.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Me pareció una película muy bien dirigida, aunque el guion podría ser mejor.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Lo que menos me convenció fue el ritmo: demasiado lento en el segundo acto.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Reconozco que no es mi tipo de película, pero entiendo por qué gustó tanto.»</p>
+    <p style="font-size:.85rem;color:var(--muted)">— «En mi opinión, es una de las mejores series que he visto en años.»</p>
+  </div>
+
+  <h3 style="margin-top:18px;margin-bottom:12px;font-size:1rem;font-weight:700">Правило 4 — Рекомендация</h3>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:10px">Используй subjuntivo и условные конструкции для рекомендаций:</p>
+  <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;margin-bottom:12px">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Te recomiendo que la veas, sobre todo si te gustan los thrillers.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Si te interesa la historia de España, te encantará esta serie.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «No te la recomiendo si no tienes mucha paciencia — los primeros tres episodios son lentos.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Es perfecta para ver en familia un domingo por la tarde.»</p>
+    <p style="font-size:.85rem;color:var(--muted)">— «Vale la pena verla en versión original subtitulada en español, no doblada.»</p>
+  </div>
+
+  <h3 style="margin-top:18px;margin-bottom:12px;font-size:1rem;font-weight:700">Правило 5 — Говорим о персонажах</h3>
+  <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;margin-bottom:12px">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «El personaje principal es un hombre de mediana edad que trabaja como médico.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «La protagonista me resultó muy creíble: la actriz lo borda.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «El antagonista es complejo: no es malo sin razón, tiene su propia lógica.»</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px">— «Hay un personaje secundario que roba todas las escenas.»</p>
+    <p style="font-size:.85rem;color:var(--muted)">— «La química entre los dos protagonistas es lo que hace que la historia funcione.»</p>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Грамматика в отзывах: «me pareció» vs «me parece»</h4>
+    <p>«Me pareció» (pretérito indefinido) — оцениваешь фильм, который уже посмотрел: «Me pareció aburrida.» // «Me parece» (presente) — говоришь о мнении в целом: «Me parece que Pedro Almodóvar es el mejor director español.» При пересказе — претерит. При оценке в момент разговора — presente.</p>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки при обсуждении кино</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Путать «me gustó» и «lo encontré»</td><td class="wrong-ex">Me gustó muy emotiva</td><td class="right-ex">La encontré muy emotiva / Me pareció muy emotiva</td><td>«Gustar» + прилагательное не работает напрямую</td></tr>
+    <tr><td>Забывать согласование в пассиве</td><td class="wrong-ex">La película fue protagonizado por…</td><td class="right-ex">La película fue protagonizada por…</td><td>Participio согласуется с субъектом в роде и числе</td></tr>
+    <tr><td>Не использовать subjuntivo в рекомендации</td><td class="wrong-ex">Te recomiendo que ver esta serie</td><td class="right-ex">Te recomiendo que veas esta serie</td><td>Рекомендую кому-то → subjuntivo: «que + verbo en subj.»</td></tr>
+    <tr><td>Буквальный перевод «to enjoy»</td><td class="wrong-ex">Yo enjoyé la película mucho</td><td class="right-ex">Disfruté mucho la película / Me encantó la película</td><td>«Enjoy» = disfrutar (de) или encantar</td></tr>
+    <tr><td>Неправильный артикль у жанров</td><td class="wrong-ex">Es una película de el terror</td><td class="right-ex">Es una película de terror</td><td>Жанры без артикля: de terror, de acción, de comedia</td></tr>
+    <tr><td>Путать «doblada» и «subtitulada»</td><td class="wrong-ex">Prefiero la película con subtítulos doblados</td><td class="right-ex">Prefiero verla subtitulada (en español), no doblada</td><td>«Doblada» = дублированная; «subtitulada» = субтитры</td></tr>
+  </table>
+</div>
+
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — Язык кино и критики: 20 слов</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 для произношения. Учи слова в контексте — смотри пример в Anki.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">la película / el filme</div><div class="vocab-ru">фильм / кино</div></div><button class="speak-btn" onclick="speak('la película')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la serie (de televisión)</div><div class="vocab-ru">сериал / телесериал</div></div><button class="speak-btn" onclick="speak('la serie de televisión')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el director / la directora</div><div class="vocab-ru">режиссёр</div></div><button class="speak-btn" onclick="speak('el director')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el/la protagonista</div><div class="vocab-ru">главный герой/героиня</div></div><button class="speak-btn" onclick="speak('el protagonista')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el reparto</div><div class="vocab-ru">актёрский состав / каст</div></div><button class="speak-btn" onclick="speak('el reparto')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la actuación</div><div class="vocab-ru">актёрская игра / исполнение</div></div><button class="speak-btn" onclick="speak('la actuación')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el guion</div><div class="vocab-ru">сценарий</div></div><button class="speak-btn" onclick="speak('el guion')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la trama / el argumento</div><div class="vocab-ru">сюжет / фабула</div></div><button class="speak-btn" onclick="speak('la trama')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el género</div><div class="vocab-ru">жанр</div></div><button class="speak-btn" onclick="speak('el género')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">de terror / de acción / de comedia</div><div class="vocab-ru">ужасы / боевик / комедия</div></div><button class="speak-btn" onclick="speak('de terror, de acción, de comedia')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">me pareció + adj.</div><div class="vocab-ru">мне показалось… / я нашёл(а) [фильм]…</div></div><button class="speak-btn" onclick="speak('me pareció')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">lo que más me gustó</div><div class="vocab-ru">то, что мне понравилось больше всего</div></div><button class="speak-btn" onclick="speak('lo que más me gustó')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">estrenar / el estreno</div><div class="vocab-ru">выпустить в прокат / премьера</div></div><button class="speak-btn" onclick="speak('el estreno')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">doblado/a vs subtitulado/a</div><div class="vocab-ru">дублированный / субтитрованный</div></div><button class="speak-btn" onclick="speak('doblado, subtitulado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el spoiler / el desvelo</div><div class="vocab-ru">спойлер</div></div><button class="speak-btn" onclick="speak('el spoiler')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la banda sonora</div><div class="vocab-ru">саундтрек / музыкальная дорожка</div></div><button class="speak-btn" onclick="speak('la banda sonora')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el giro argumental</div><div class="vocab-ru">сюжетный поворот / twist</div></div><button class="speak-btn" onclick="speak('el giro argumental')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">galardonado/a con</div><div class="vocab-ru">удостоенный / награждённый (премией)</div></div><button class="speak-btn" onclick="speak('galardonado con')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">vale la pena</div><div class="vocab-ru">стоит (того) / оно того стоит</div></div><button class="speak-btn" onclick="speak('vale la pena')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">bordar el papel</div><div class="vocab-ru">блестяще сыграть роль (разг.)</div></div><button class="speak-btn" onclick="speak('bordar el papel')">🔊</button></div>
+  </div>
+</div>
+
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Язык кинокритики</h2>
+  </div>
+
+  <div class="review-block">
+    <div class="review-title">🎬 «La sociedad de la nieve» (2023) — реальный испанский фильм</div>
+    <div class="review-genre">Supervivencia · Drama · España · Netflix</div>
+    <div class="review-text">Dirigida por J. A. Bayona, esta película narra la historia real de los supervivientes del accidente aéreo de los Andes en 1972. Fue nominada al Oscar como mejor película internacional y ganó varios premios Goya. La actuación del reparto fue aclamada por la crítica. El guion, basado en el libro homónimo, logra mantener la tensión durante las dos horas y media de metraje.</div>
+  </div>
+
+  <div class="quiz">
+    <h3>🎯 Тест по тексту и языку кино — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. ¿Qué significa «fue nominada al Oscar»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Была номинирована на Оскар (пассив)</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Номинировала другие фильмы</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Выиграла Оскар</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Как порекомендовать фильм другу с subjuntivo?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Te recomiendo que ver esta película</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Te recomiendo ver esta película</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Te recomiendo que veas esta película</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Lo que más me gustó fue la banda sonora» — ¿qué es «la banda sonora»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">сцена в финале</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">актёрский состав</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">саундтрек / музыкальная дорожка</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Как сказать «мне показалась скучной» про фильм женского рода (la película)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Me gustó muy aburrida</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">La película me aburrió mucho</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Me pareció aburrida</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Vale la pena verla» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Стоит её посмотреть</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Нет смысла её смотреть</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Мне нравится её смотреть</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Как по-испански «сюжетный поворот» (twist)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">el guion dramático</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">la trama sorpresa</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">el giro argumental</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «La película fue protagonizada por Antonio Banderas» — чем обусловлено окончание «-izada»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Это неправильная форма глагола</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Случайное окончание</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Participio согласуется с «la película» (ж.р.)</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуск: пишем отзыв</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Восстанови отзыв о фильме. Вводи в нижнем регистре.</p>
+  <div class="quiz">
+    <h3>✏️ Отзыв о сериале «La Casa de Papel»</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «Se <b>___</b> de una serie española de acción y drama.» — конструкция «речь идёт о»</div>
+      <input type="text" class="text-input" placeholder="Введи слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','trata','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ trata — «Se trata de…» = речь идёт о… / это…</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. «La <b>___</b> gira en torno a un robo masivo.» — слово = «сюжет / история»</div>
+      <input type="text" class="text-input" placeholder="Введи слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','trama','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ trama — «la trama» = сюжет (также «el argumento»)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Lo que más me <b>___</b> fue la tensión constante.» — глагол «понравилось»</div>
+      <input type="text" class="text-input" placeholder="Введи слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','gustó','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ gustó — «Lo que más me gustó fue…» = «Больше всего мне понравилось…»</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. «Te recomiendo que la <b>___</b> en versión original.» — subjuntivo от «ver»</div>
+      <input type="text" class="text-input" placeholder="Введи слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','veas','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ veas — subjuntivo de «ver» (tú). «ver → veas»</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. «<b>___</b> la pena verla.» — «Стоит её посмотреть» (2 слова)</div>
+      <input type="text" class="text-input" placeholder="Введи фразу..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','vale la','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ vale la (pena) — «Vale la pena verla» = «Стоит её посмотреть»</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. «La actriz borda su <b>___</b> de protagonista.» — роль</div>
+      <input type="text" class="text-input" placeholder="Введи слово..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','papel','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ papel — «bordar el papel» = блестяще сыграть роль</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Говорим о кино</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Нажимай 🔊. Кнопка «Все переводы» для подсказки.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🍿 Диалог 1: После кинотеатра — обмениваемся впечатлениями (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лола</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué te pareció la película? A mí me encantó. <button class="speak-btn" onclick="speak('¿Qué te pareció la película? A mí me encantó.')">🔊</button></div>
+        <div class="dlg-ru translation">[Как тебе фильм? Мне он очень понравился.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мигель</div>
+      <div style="flex:1">
+        <div class="dlg-es">Me pareció interesante, aunque un poco larga. El segundo acto fue algo lento. <button class="speak-btn" onclick="speak('Me pareció interesante, aunque un poco larga. El segundo acto fue algo lento.')">🔊</button></div>
+        <div class="dlg-ru translation">[Показалась интересной, хотя немного длинноватой. Второй акт был немного медленным.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лола</div>
+      <div style="flex:1">
+        <div class="dlg-es">Tienes razón con el ritmo. Pero lo que más me gustó fue la actuación de la protagonista. ¡Bordó el papel! <button class="speak-btn" onclick="speak('Tienes razón con el ritmo. Pero lo que más me gustó fue la actuación de la protagonista. ¡Bordó el papel!')">🔊</button></div>
+        <div class="dlg-ru translation">[Насчёт темпа — ты прав. Но больше всего мне понравилась игра главной героини. Она блестяще сыграла!]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мигель</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, el reparto en general era muy bueno. ¿Y el giro al final te lo esperabas? <button class="speak-btn" onclick="speak('Sí, el reparto en general era muy bueno. ¿Y el giro al final te lo esperabas?')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, каст в целом был очень хорош. А сюжетный поворот в конце ты ожидал(а)?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лола</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Para nada! Me dejó boquiabierta. No se lo cuentes a nadie, ¡es un spoiler enorme! <button class="speak-btn" onclick="speak('¡Para nada! Me dejó boquiabierta. No se lo cuentes a nadie, ¡es un spoiler enorme!')">🔊</button></div>
+        <div class="dlg-ru translation">[Совсем нет! Я была потрясена. Не рассказывай никому, это огромный спойлер!]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мигель</div>
+      <div style="flex:1">
+        <div class="dlg-es">Descuida. ¿La verías en versión original? Dicen que el doblaje no hace justicia a los actores. <button class="speak-btn" onclick="speak('Descuida. ¿La verías en versión original? Dicen que el doblaje no hace justicia a los actores.')">🔊</button></div>
+        <div class="dlg-ru translation">[Не беспокойся. Ты бы посмотрела в оригинале? Говорят, дублирование не передаёт игру актёров.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лола</div>
+      <div style="flex:1">
+        <div class="dlg-es">Totalmente de acuerdo. Yo siempre prefiero ver las películas subtituladas. Se aprende mucho más idioma. <button class="speak-btn" onclick="speak('Totalmente de acuerdo. Yo siempre prefiero ver las películas subtituladas. Se aprende mucho más idioma.')">🔊</button></div>
+        <div class="dlg-ru translation">[Полностью согласна. Я всегда предпочитаю смотреть фильмы с субтитрами. Так намного больше учишь язык.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мигель</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué otras películas españolas me recomendarías? Quiero ampliar mi lista. <button class="speak-btn" onclick="speak('¿Qué otras películas españolas me recomendarías? Quiero ampliar mi lista.')">🔊</button></div>
+        <div class="dlg-ru translation">[Какие ещё испанские фильмы ты бы мне порекомендовала? Хочу пополнить свой список.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лола</div>
+      <div style="flex:1">
+        <div class="dlg-es">Te recomiendo que veas «Todo sobre mi madre» de Almodóvar. Es una obra maestra. O «El laberinto del fauno» de Guillermo del Toro. <button class="speak-btn" onclick="speak('Te recomiendo que veas Todo sobre mi madre de Almodóvar. Es una obra maestra. O El laberinto del fauno de Guillermo del Toro.')">🔊</button></div>
+        <div class="dlg-ru translation">[Рекомендую посмотреть «Всё о моей матери» Альмодовара. Это шедевр. Или «Лабиринт фавна» Гильермо дель Торо.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Мигель</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Perfecto! Las apunto para este fin de semana. Gracias por los consejos. <button class="speak-btn" onclick="speak('¡Perfecto! Las apunto para este fin de semana. Gracias por los consejos.')">🔊</button></div>
+        <div class="dlg-ru translation">[Отлично! Записываю на эти выходные. Спасибо за советы.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📱 Диалог 2: По телефону — обсуждаем сериал «La Casa de Papel» (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Бланка</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Acabaste de ver la temporada nueva de La Casa de Papel? <button class="speak-btn" onclick="speak('¿Acabaste de ver la temporada nueva de La Casa de Papel?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Ты уже досмотрел(а) новый сезон «Бумажного дома»?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Диего</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, la terminé anoche. ¡Estaba enganchado desde el primer episodio! <button class="speak-btn" onclick="speak('Sí, la terminé anoche. ¡Estaba enganchado desde el primer episodio!')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, дочмотрел вчера вечером. Я был на крючке с первого эпизода!]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Бланка</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué te pareció el final? Ten cuidado con los spoilers, que aún no he llegado al último capítulo. <button class="speak-btn" onclick="speak('¿Qué te pareció el final? Ten cuidado con los spoilers, que aún no he llegado al último capítulo.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Как тебе финал? Осторожно со спойлерами — я ещё не дошла до последней серии.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Диего</div>
+      <div style="flex:1">
+        <div class="dlg-es">Tranquila, no te voy a contar nada. Solo diré que el giro argumental es impresionante. <button class="speak-btn" onclick="speak('Tranquila, no te voy a contar nada. Solo diré que el giro argumental es impresionante.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Не беспокойся, ничего не расскажу. Только скажу, что сюжетный поворот впечатляющий.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Бланка</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y qué opinas del personaje del Profesor? ¿Te parece creíble? <button class="speak-btn" onclick="speak('¿Y qué opinas del personaje del Profesor? ¿Te parece creíble?')">🔊</button></div>
+        <div class="dlg-ru translation2">[А что думаешь о персонаже Профессора? Он тебе кажется правдоподобным?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Диего</div>
+      <div style="flex:1">
+        <div class="dlg-es">El actor lo borda. Aunque reconozco que algunos diálogos son demasiado artificiales. <button class="speak-btn" onclick="speak('El actor lo borda. Aunque reconozco que algunos diálogos son demasiado artificiales.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Актёр блестяще справляется. Хотя признаю, что некоторые диалоги слишком искусственны.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Бланка</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, a veces el guion es un poco exagerado. Pero la banda sonora es increíble. «Bella ciao» se me quedó en la cabeza semanas. <button class="speak-btn" onclick="speak('Sí, a veces el guion es un poco exagerado. Pero la banda sonora es increíble. Bella ciao se me quedó en la cabeza semanas.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, иногда сценарий немного преувеличен. Но саундтрек невероятный. «Bella ciao» застряла в голове на недели.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Диего</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡A mí también! En definitiva, vale la pena, aunque la última temporada es peor que las anteriores. <button class="speak-btn" onclick="speak('¡A mí también! En definitiva, vale la pena, aunque la última temporada es peor que las anteriores.')">🔊</button></div>
+        <div class="dlg-ru translation2">[У меня тоже! В общем, смотреть стоит, хотя последний сезон хуже предыдущих.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Бланка</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué otra serie española me recomendarías? Algo diferente, más tranquila. <button class="speak-btn" onclick="speak('¿Qué otra serie española me recomendarías? Algo diferente, más tranquila.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Что ещё ты порекомендовал бы из испанских сериалов? Что-нибудь другое, поспокойнее.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Диего</div>
+      <div style="flex:1">
+        <div class="dlg-es">Te recomiendo que veas «Paquita Salas». Es una comedia brillante y además perfecta para mejorar el español coloquial. <button class="speak-btn" onclick="speak('Te recomiendo que veas Paquita Salas. Es una comedia brillante y además perfecta para mejorar el español coloquial.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Рекомендую посмотреть «Пакита Салас». Это блестящая комедия и к тому же идеальная для улучшения разговорного испанского.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🎙️ Диалог 3: Подкаст «Hablamos de cine» — мини-рецензия (8 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ведущий</div>
+      <div style="flex:1">
+        <div class="dlg-es">Hoy vamos a hablar de «Mientras dure la guerra», el film de Alejandro Amenábar sobre Miguel de Unamuno. <button class="speak-btn" onclick="speak('Hoy vamos a hablar de Mientras dure la guerra, el film de Alejandro Amenábar sobre Miguel de Unamuno.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Сегодня поговорим о «Пока длится война» — фильме Алехандро Аменабара про Мигеля де Унамуно.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Кармен</div>
+      <div style="flex:1">
+        <div class="dlg-es">Se trata de un drama histórico ambientado en el inicio de la Guerra Civil Española, en 1936. <button class="speak-btn" onclick="speak('Se trata de un drama histórico ambientado en el inicio de la Guerra Civil Española, en 1936.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Речь идёт об исторической драме, действие которой разворачивается в начале Гражданской войны в Испании, в 1936 году.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ведущий</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y qué te pareció en términos de actuación? <button class="speak-btn" onclick="speak('¿Y qué te pareció en términos de actuación?')">🔊</button></div>
+        <div class="dlg-ru translation3">[А как тебе понравилась игра актёров?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Кармен</div>
+      <div style="flex:1">
+        <div class="dlg-es">El reparto es excelente. Karra Elejalde encarna a Unamuno con una profundidad asombrosa. Borda el papel. <button class="speak-btn" onclick="speak('El reparto es excelente. Karra Elejalde encarna a Unamuno con una profundidad asombrosa. Borda el papel.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Актёрский состав великолепен. Карра Элехальде воплощает Унамуно с поразительной глубиной. Блестяще играет.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ведущий</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿La recomiendas para alguien que quiera aprender sobre la historia española? <button class="speak-btn" onclick="speak('¿La recomiendas para alguien que quiera aprender sobre la historia española?')">🔊</button></div>
+        <div class="dlg-ru translation3">[Рекомендуешь её тем, кто хочет узнать об истории Испании?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Кармен</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sin duda. Te recomiendo que la veas subtitulada en español: el lenguaje de los años 30 es fascinante. <button class="speak-btn" onclick="speak('Sin duda. Te recomiendo que la veas subtitulada en español: el lenguaje de los años 30 es fascinante.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Без сомнения. Рекомендую смотреть с испанскими субтитрами: язык 30-х годов восхитителен.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ведущий</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y qué es lo que menos te convenció? <button class="speak-btn" onclick="speak('¿Y qué es lo que menos te convenció?')">🔊</button></div>
+        <div class="dlg-ru translation3">[А что тебя меньше всего убедило?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Кармен</div>
+      <div style="flex:1">
+        <div class="dlg-es">Lo que menos me convenció fue el ritmo del tercer acto, algo precipitado. Pero en conjunto es una obra imprescindible. <button class="speak-btn" onclick="speak('Lo que menos me convenció fue el ritmo del tercer acto, algo precipitado. Pero en conjunto es una obra imprescindible.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Меньше всего меня убедил темп третьего акта — немного торопливый. Но в целом это незаменимое произведение.]</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Твой отзыв о фильме</h2>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Мини-рецензия (2 минуты)</div>
+    <p>Выбери фильм или сериал, который ты недавно смотрел(а). Расскажи о нём по этому плану — 2 минуты без остановок:</p>
+    <div class="es">1) ¿De qué se trata? (жанр, тема) → 2) ¿Qué es lo que más te gustó? → 3) ¿Hay algo que no te convenció? → 4) ¿Se lo recomendarías a un amigo? ¿A qué tipo de persona?</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('¿De qué se trata? ¿Qué es lo que más te gustó? ¿Hay algo que no te convenció? ¿Se lo recomendarías a un amigo?')">🔊 Прослушать вопросы</button>
+    <div class="hint">Начни с: «Quiero hablaros de…» o «Voy a recomendaros…». Usa «me pareció», «lo que más me gustó fue», «te recomiendo que veas».</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Испании: кино в Барселоне</div>
+    <p>Ты хочешь пойти в кино в Барселоне с испанским другом. Он/она предлагает новый испанский фильм, но ты уже его видел(а). Скажи это и предложи другой вариант:</p>
+    <div class="es">— Amigo: «¿Vemos la nueva de Almodóvar? Dicen que es buenísima.» — Tú: «Ya la he visto, me pareció... Pero ¿qué te parece si vemos...? Te recomiendo que...»</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('¿Vemos la nueva de Almodóvar? Dicen que es buenísima.')">🔊 Прослушать реплику друга</button>
+    <div class="hint">Используй: «Ya la he visto» (уже видел), «me pareció + adj.», «¿qué te parece si…?» (что если…), «te recomiendo que veas…»</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Ayuntamiento — trámites administrativos</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏛️ Реальная ситуация — Барселона, Office of Citizen Services</div>
+    <p style="margin-bottom:12px">Жизнь в Барселоне неизбежно связана с Ayuntamiento (мэрия). Эмпадронамьенто, смена адреса, получение справок, оплата муниципальных налогов — всё это требует знания административного испанского. Этот язык совсем другой, чем разговорный: формальный, с длинными предложениями и пассивными конструкциями.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Necesito renovar mi empadronamiento. <button class="speak-btn" onclick="speak('Necesito renovar mi empadronamiento.')">🔊</button></div>
+          <div class="phrase-ru">Мне нужно обновить прописку. (говоришь сотруднику)</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué documentos debo aportar? <button class="speak-btn" onclick="speak('¿Qué documentos debo aportar?')">🔊</button></div>
+          <div class="phrase-ru">Какие документы мне нужно предоставить?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">He solicitado cita previa por internet. <button class="speak-btn" onclick="speak('He solicitado cita previa por internet.')">🔊</button></div>
+          <div class="phrase-ru">Я записался(ась) на приём через интернет.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Puedo hacer el trámite de forma telemática? <button class="speak-btn" onclick="speak('¿Puedo hacer el trámite de forma telemática?')">🔊</button></div>
+          <div class="phrase-ru">Могу ли я выполнить эту процедуру онлайн?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿En qué plazo recibiré la resolución? <button class="speak-btn" onclick="speak('¿En qué plazo recibiré la resolución?')">🔊</button></div>
+          <div class="phrase-ru">В какой срок я получу решение?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Dónde puedo presentar una reclamación? <button class="speak-btn" onclick="speak('¿Dónde puedo presentar una reclamación?')">🔊</button></div>
+          <div class="phrase-ru">Где я могу подать жалобу?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:16px">
+      <div class="dlg-header">🏛️ Мини-диалог: В окошке Ayuntamiento (5 реплик)</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Ты</div>
+        <div style="flex:1">
+          <div class="dlg-es">Buenos días. Tengo cita para cambiar mi domicilio en el padrón. <button class="speak-btn" onclick="speak('Buenos días. Tengo cita para cambiar mi domicilio en el padrón.')">🔊</button></div>
+          <div class="dlg-ru">[Доброе утро. У меня запись для смены адреса в реестре.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Функц.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Muy bien. ¿Me puede aportar su NIE o pasaporte y el contrato de alquiler del nuevo domicilio? <button class="speak-btn" onclick="speak('Muy bien. ¿Me puede aportar su NIE o pasaporte y el contrato de alquiler del nuevo domicilio?')">🔊</button></div>
+          <div class="dlg-ru">[Хорошо. Вы можете предоставить свой NIE или паспорт и договор аренды по новому адресу?]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Ты</div>
+        <div style="flex:1">
+          <div class="dlg-es">Aquí los tiene. ¿En qué plazo se actualiza el padrón? <button class="speak-btn" onclick="speak('Aquí los tiene. ¿En qué plazo se actualiza el padrón?')">🔊</button></div>
+          <div class="dlg-ru">[Вот они. В какой срок обновляется реестр?]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Функц.</div>
+        <div style="flex:1">
+          <div class="dlg-es">Normalmente en 10 días hábiles. Le enviaremos la confirmación al correo electrónico registrado. <button class="speak-btn" onclick="speak('Normalmente en 10 días hábiles. Le enviaremos la confirmación al correo electrónico registrado.')">🔊</button></div>
+          <div class="dlg-ru">[Обычно в течение 10 рабочих дней. Подтверждение отправим на зарегистрированный email.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Ты</div>
+        <div style="flex:1">
+          <div class="dlg-es">Perfecto. Muchas gracias por su ayuda. <button class="speak-btn" onclick="speak('Perfecto. Muchas gracias por su ayuda.')">🔊</button></div>
+          <div class="dlg-ru">[Отлично. Большое спасибо за помощь.]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> В Барселоне любую запись в Ayuntamiento (cita previa) нужно делать заранее онлайн на barcelona.cat или по телефону 010. Без записи тебя могут не принять. Потеря «cita previa» означает новое ожидание (иногда недели). Всегда приноси больше документов, чем указано: funcionaries любят просить «фотокопию» (фотокопию) каждого документа — лучше принести уже готовые копии.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🎬 Испанское кино: от Бунюэля до Альмодовара</div>
+    <h4>Золотой век испанского кинематографа</h4>
+    <p>Испания имеет богатейшую кинотрадицию. Луис Бунюэль — авангардист родом из Арагона — создал мировые шедевры сюрреализма («Дискретное обаяние буржуазии», «Андалузский пёс»). Педро Альмодовар из Ла-Манчи стал символом постфранкистской Испании: его фильмы («Всё о моей матери», «Поговори с ней») получили «Оскар». Алехандро Аменабар («Другие», «Море внутри») и Гильермо дель Торо (мексиканец, работающий в испанской традиции) продолжают эту линию. Ключевая особенность испанского кино — связь с историей страны: гражданская война, диктатура, переход к демократии постоянно всплывают как темы. Для изучающих испанский язык: смотреть испанское кино с испанскими субтитрами — один из лучших способов освоить разговорный язык и культуру одновременно.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек: язык кино</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку — переверни. Скачай все 18 карточек для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">me pareció + adj.</div>
+        <div class="anki-card-back">мне показалось…<br>«Me pareció aburrida»<br>pretérito para opiniones</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">lo que más me gustó</div>
+        <div class="anki-card-back">то, что мне больше всего понравилось<br>«Lo que más me gustó fue…»<br>Ключ к отзыву на DELE</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">bordar el papel</div>
+        <div class="anki-card-back">блестяще сыграть роль<br>«El actor borda el papel»<br>Разговорное выражение</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">vale la pena</div>
+        <div class="anki-card-back">стоит того<br>«Vale la pena verla»<br>Нейтральная рекомендация</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">te recomiendo que veas</div>
+        <div class="anki-card-back">рекомендую тебе посмотреть<br>recomend. + que + subjuntivo<br>«…que veas esta serie»</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL96()">📥 Скачать колоду Anki L96 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L97: Дебаты)</h4>
+    <ul>
+      <li><strong>Посмотри 1 эпизод любого испанского сериала</strong> с испанскими субтитрами: «Paquita Salas» (комедия), «Vis a vis» (триллер), «Gran Hotel» (драма). Запиши 5 новых фраз.</li>
+      <li><strong>Напиши мини-рецензию (50–80 слов)</strong> на испанском о любом фильме/сериале. Используй структуру: тема → что понравилось → что нет → рекомендация.</li>
+      <li><strong>Расскажи другу или вслух</strong> об этом же фильме за 2 минуты. Запись на телефон — потом прослушай, найди ошибки.</li>
+      <li><strong>Dreaming Spanish (intermediate):</strong> 15 мин. Выбери видео о культуре или кино — это дополнительно к теме урока.</li>
+      <li><strong>Anki:</strong> Повторяй 18 карточек этого урока + карточки из L95 — 15 мин в день.</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎯 Bonus task: Mira y describe</h4>
+    <p>Найди трейлер любого испанского фильма на YouTube (ищи «tráiler oficial español 2024»). Посмотри 2 раза: первый без субтитров — угадай жанр и тему. Второй — с субтитрами. Расскажи вслух что понял(а) из трейлера. Это реальная задача уровня B1+.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="L95.html" class="nav-link-btn">← L95: Новости</a>
+    <a href="L97.html" class="nav-link-btn">L97: Дебаты →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L96 = [
+  {front:"la película / el filme",back:"Русский: фильм / кино<br><br>Пример: Vamos al cine a ver una película.<br>Заметка: «el filme» — более формальное, в критике"},
+  {front:"me pareció + adjetivo",back:"Русский: мне показалось [каким-то]<br><br>Пример: Me pareció una película muy emocionante.<br>Заметка: pretérito indefinido — для оценки уже просмотренного"},
+  {front:"lo que más me gustó fue",back:"Русский: то, что мне больше всего понравилось, это…<br><br>Пример: Lo que más me gustó fue la actuación.<br>Заметка: Ключевая фраза для DELE B1 speaking"},
+  {front:"bordar el papel",back:"Русский: блестяще сыграть роль<br><br>Пример: La actriz bordó su papel de villana.<br>Заметка: разговорное; «bordar» буквально = вышивать"},
+  {front:"vale la pena + infinitivo",back:"Русский: стоит (того) + инфинитив<br><br>Пример: Vale la pena verla en versión original.<br>Заметка: = it's worth [doing sth]. Нейтральная рекомендация"},
+  {front:"te recomiendo que + subjuntivo",back:"Русский: рекомендую тебе [сделать]<br><br>Пример: Te recomiendo que veas esta serie.<br>Заметка: recomend. + que + subj. (не инфинитив!)"},
+  {front:"el reparto",back:"Русский: актёрский состав / каст<br><br>Пример: El reparto de la serie es excepcional.<br>Заметка: = cast. «Reparto» также = дистрибуция, раздача"},
+  {front:"la banda sonora",back:"Русский: саундтрек / музыкальная дорожка<br><br>Пример: La banda sonora ganó un Óscar.<br>Заметка: = soundtrack. BSO = banda sonora oficial"},
+  {front:"el giro argumental",back:"Русский: сюжетный поворот / twist<br><br>Пример: El giro argumental del final me sorprendió.<br>Заметка: = plot twist. «giro» = поворот, «argumental» = сюжетный"},
+  {front:"doblado / subtitulado",back:"Русский: дублированный / субтитрованный<br><br>Пример: Prefiero ver las películas subtituladas.<br>Заметка: «versión original» (VO) = без дубляжа"},
+  {front:"el guion",back:"Русский: сценарий<br><br>Пример: El guion de la película es brillante.<br>Заметка: «el guionista» = сценарист"},
+  {front:"se trata de",back:"Русский: речь идёт о… / это…<br><br>Пример: Se trata de una comedia romántica.<br>Заметка: = it's about. Нейтральное описание жанра/темы"},
+  {front:"la trama / el argumento",back:"Русский: сюжет / фабула<br><br>Пример: La trama gira en torno a un detective.<br>Заметка: «trama» = более разговорное; «argumento» = формальное"},
+  {front:"galardonado/a con",back:"Русский: удостоенный / награждённый (чем-то)<br><br>Пример: Fue galardonada con el Premio Goya.<br>Заметка: «galardón» = награда; passiva con participio согласован"},
+  {front:"el estreno / estrenar",back:"Русский: премьера / выпустить в прокат<br><br>Пример: La película se estrenó el viernes.<br>Заметка: «estreno» также = debut, первое появление"},
+  {front:"en mi opinión / a mi juicio",back:"Русский: по моему мнению<br><br>Пример: En mi opinión, es la mejor película del año.<br>Заметка: «a mi juicio» более формальное; оба без subjuntivo"},
+  {front:"lo que menos me convenció",back:"Русский: то, что меня меньше всего убедило<br><br>Пример: Lo que menos me convenció fue el final.<br>Заметка: Пара к «lo que más me gustó» — для сбалансированного отзыва"},
+  {front:"¿qué te pareció?",back:"Русский: как тебе показалось? / что думаешь?<br><br>Пример: ¿Qué te pareció la actuación?<br>Заметка: Незаменим для начала разговора о культуре"},
+];
+
+function exportAnkiL96() {
+  const tsv = ANKI_DECK_L96.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L96_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    '¿Qué te pareció la película? A mí me encantó.',
+    'Me pareció interesante, aunque un poco larga. El segundo acto fue algo lento.',
+    'Tienes razón con el ritmo. Pero lo que más me gustó fue la actuación de la protagonista. ¡Bordó el papel!',
+    'Sí, el reparto en general era muy bueno. ¿Y el giro al final te lo esperabas?',
+    '¡Para nada! Me dejó boquiabierta. No se lo cuentes a nadie, ¡es un spoiler enorme!',
+    'Descuida. ¿La verías en versión original? Dicen que el doblaje no hace justicia a los actores.',
+    'Totalmente de acuerdo. Yo siempre prefiero ver las películas subtituladas. Se aprende mucho más idioma.',
+    '¿Qué otras películas españolas me recomendarías? Quiero ampliar mi lista.',
+    'Te recomiendo que veas Todo sobre mi madre de Almodóvar. Es una obra maestra.',
+    '¡Perfecto! Las apunto para este fin de semana. Gracias por los consejos.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+const LESSON_ID = 'L96';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'Skimming = беглый просмотр. Читаешь только titular + subtítulo + lead (primer párrafo) за 30 секунд.',
+  w2:'«Según» = according to / согласно. Предлог без «de» после него.',
+  w3:'«fue aprobada» = ser + participio = pasiva (пассивный залог). Participio согласован с «la ley» (ж.р.).',
+  w4:'Las 5W: Quién, Qué, Cuándo, Dónde, Por qué. Классическая формула журналистики.',
+  q1:'«fue nominada» = ser + participio = pasiva. «Fue» (pretérito de ser) + nominada = была номинирована.',
+  q2:'«Te recomiendo que + subjuntivo»: recomend. + que + veas (subjuntivo presente de ver, tú). Не инфинитив!',
+  q3:'«la banda sonora» = саундтрек. Буквально «звуковая полоса» (banda = полоса, sonora = звуковая).',
+  q4:'«me pareció + adj.» = конструкция для субъективной оценки. «Me pareció aburrida» = показалась скучной.',
+  q5:'«Vale la pena» = it\'s worth it / стоит того. «Vale la pena verla» = стоит её посмотреть.',
+  q6:'«el giro argumental» = сюжетный поворот / plot twist. «Argumental» от «argumento» (сюжет).',
+  q7:'Participio в пасивных конструкциях согласуется с субъектом: «la película» (ж.р.) → «protagonizada» (ж.р.).',
+};
+
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  if (container.dataset.answered === '1') return;
+  container.dataset.answered = '1';
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
+  let correctText = '';
+  let pickedText = '';
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
+    const key = m ? m[1] : null;
+    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
+    else { o.classList.add('wrong'); }
+    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
+  });
+  const isCorrect = correctKey === 'a';
+  const fb = document.getElementById('fb-' + qId);
+  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
+  if (isCorrect) {
+    fb.className = 'feedback show ok';
+    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
+  } else {
+    fb.className = 'feedback show no';
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
+  }
+  if (typeof quizScore !== 'undefined') {
+    if (isCorrect) quizScore++;
+    quizTotal++;
+    const scoreEl = document.getElementById('quiz-score');
+    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
+  }
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (!raw) {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
+    return;
+  }
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
+  const userN = norm(raw);
+  const correctN = norm(answer);
+  if (userN === correctN) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
+      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
+    } else {
+      fb.textContent = '✅ Правильно! ' + answer;
+    }
+    return;
+  }
+  const lev = (a, b) => {
+    const m = a.length, n = b.length;
+    if (!m) return n;
+    if (!n) return m;
+    let prev = Array.from({length: n+1}, (_,i) => i);
+    let curr = new Array(n+1).fill(0);
+    for (let i = 1; i <= m; i++) {
+      curr[0] = i;
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i-1] === b[j-1] ? 0 : 1;
+        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
+      }
+      [prev, curr] = [curr, prev];
+    }
+    return prev[n];
+  };
+  const dist = lev(userN, correctN);
+  const tol = correctN.length >= 6 ? 2 : 1;
+  if (dist > 0 && dist <= tol) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
+    return;
+  }
+  input.className = 'text-input wrong';
+  fb.className += ' no';
+  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => {
+    el.style.display = showingTrans3 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>

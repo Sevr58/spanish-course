@@ -1234,7 +1234,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Пересказать новость своими словами",
-      file:"lessons/L95.html", status:"pending"
+      file:"lessons/L95.html", status:"improved"
     },
     {
       id:"L96", num:96, phase:3, block:"B3D", level:"B1", day:203, week:34,
@@ -1246,7 +1246,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Дать развёрнутый отзыв о фильме, сериале, книге",
-      file:"lessons/L96.html", status:"pending"
+      file:"lessons/L96.html", status:"improved"
     },
     {
       id:"L97", num:97, phase:3, block:"B3D", level:"B1", day:205, week:35,
