@@ -1210,7 +1210,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Презентация на тему по выбору: 3 мин, с вводом и выводом",
-      file:"lessons/L93.html", status:"pending"
+      file:"lessons/L93.html", status:"improved"
     },
     {
       id:"L94", num:94, phase:3, block:"B3D", level:"B1", day:199, week:34,
@@ -1222,7 +1222,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Написать деловое письмо (запрос информации о визе / жилье / работе)",
-      file:"lessons/L94.html", status:"pending"
+      file:"lessons/L94.html", status:"improved"
     },
     {
       id:"L95", num:95, phase:3, block:"B3D", level:"B1", day:201, week:34,
@@ -1234,7 +1234,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Пересказать новость своими словами",
-      file:"lessons/L95.html", status:"pending"
+      file:"lessons/L95.html", status:"improved"
     },
     {
       id:"L96", num:96, phase:3, block:"B3D", level:"B1", day:203, week:34,
@@ -1246,7 +1246,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Дать развёрнутый отзыв о фильме, сериале, книге",
-      file:"lessons/L96.html", status:"pending"
+      file:"lessons/L96.html", status:"improved"
     },
     {
       id:"L97", num:97, phase:3, block:"B3D", level:"B1", day:205, week:35,
@@ -1258,7 +1258,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Дебаты: выбрать сторону и отстоять за 5 мин",
-      file:"lessons/L97.html", status:"pending"
+      file:"lessons/L97.html", status:"improved"
     },
     {
       id:"L98", num:98, phase:3, block:"B3D", level:"B1", day:207, week:35,
@@ -1270,7 +1270,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"5-минутный рассказ о реальном или воображаемом путешествии",
-      file:"lessons/L98.html", status:"pending"
+      file:"lessons/L98.html", status:"improved"
     },
     {
       id:"L99", num:99, phase:3, block:"B3D", level:"B1", day:209, week:35,
