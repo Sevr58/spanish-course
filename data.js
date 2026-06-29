@@ -1258,7 +1258,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Дебаты: выбрать сторону и отстоять за 5 мин",
-      file:"lessons/L97.html", status:"pending"
+      file:"lessons/L97.html", status:"improved"
     },
     {
       id:"L98", num:98, phase:3, block:"B3D", level:"B1", day:207, week:35,
@@ -1270,7 +1270,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"5-минутный рассказ о реальном или воображаемом путешествии",
-      file:"lessons/L98.html", status:"pending"
+      file:"lessons/L98.html", status:"improved"
     },
     {
       id:"L99", num:99, phase:3, block:"B3D", level:"B1", day:209, week:35,

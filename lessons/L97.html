@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L97: Практика — дебаты</title>
+<style>
+:root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#f1f3f7 0%,#e8ebf1 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
+.options{display:flex;flex-wrap:wrap;gap:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
+.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
+.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
+.nav-links{display:flex;gap:10px}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.debate-structure{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:14px}
+.debate-structure h4{font-weight:700;font-size:.95rem;margin-bottom:10px;color:var(--blue)}
+.debate-structure ul{margin-left:18px;font-size:.88rem;color:var(--muted)}
+.debate-structure li{margin-bottom:6px}
+.debate-structure li strong{color:var(--text)}
+.auth-text{background:var(--bg3);border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px 18px;margin:14px 0;font-style:italic;font-size:.92rem;color:var(--muted)}
+.auth-text cite{display:block;margin-top:6px;font-size:.78rem;font-style:normal;color:var(--border)}
+.position-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:10px}
+.position-card .pos-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.position-card .pos-label.pro{color:var(--green)}
+.position-card .pos-label.con{color:var(--red)}
+.position-card ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
+.position-card li{margin-bottom:4px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1. NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 3 · День 205</span>
+  <a href="L98.html">L98 →</a>
+</div>
+
+<!-- 2. HERO -->
+<div class="hero">
+  <div class="phase-tag">🗣️ Фаза 3 · Block 3D — Навыки и практика · Dreaming Spanish: intermediate</div>
+  <h1>Практика: <span class="hl">дебаты</span></h1>
+  <p class="sub">Аргументировать, защищать позицию, слушать оппонента — говорить убедительно по-испански</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Освоить структуру дебатов: тезис, аргументы, контраргументы, вывод</p></div></div>
+    <div class="obj"><div class="ico">🗣️</div><div><strong>Цель 2</strong><p>Выучить 20+ фраз для аргументации и опровержения</p></div></div>
+    <div class="obj"><div class="ico">🎧</div><div><strong>Цель 3</strong><p>Провести дебаты 5 мин, не теряя нити и не переходя на русский</p></div></div>
+    <div class="obj"><div class="ico">🃏</div><div><strong>Цель 4</strong><p>Создать Anki-колоду с 18 фразами для уверенной дискуссии</p></div></div>
+  </div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
+
+<!-- 3. WARM-UP: вопросы по L96 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Повторение — Урок L96: Обсуждение фильма</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Быстрая проверка знаний прошлого урока перед началом дебатной практики.</p>
+  <div class="quiz">
+    <h3>🎬 L96: Как обсуждать кино по-испански?</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Как сказать «Что ты об этом думаешь?» (мнение о фильме)</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">¿Qué te pareció?</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">¿Qué quieres?</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">¿Cuánto cuesta?</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Фраза «Me enganchó desde el primer momento» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">Мне надоело с первой минуты</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">Меня захватило с первого момента</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">Я не понял с начала</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Как рекомендовать фильм? «Merece la pena verla» — это значит:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Это слишком долго</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Это очень дорого</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Стоит посмотреть</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. «El protagonista me resultó bastante creíble» — что это значит?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">Главный герой показался мне довольно правдоподобным</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">Герой мне совсем не понравился</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">Главный герой был очень смешным</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — Структура дебатов и язык аргументации</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Умение аргументировать — ключевой навык уровня B1. Испанские дебаты имеют чёткую структуру: <strong>тезис → аргументы → контраргументы → уступка → вывод</strong>. Каждый этап требует своих фраз.</p>
+
+  <div class="callout info">
+    <h4>💡 Зачем это нужно в реальной жизни?</h4>
+    <p>В Испании споры — норма: испанцы активно дискутируют о политике, футболе, ценах на жильё, экологии. Умение выразить и защитить мнение открывает настоящую интеграцию в общество. Это не просто «урок» — это навык для жизни в Барселоне.</p>
+  </div>
+
+  <div class="debate-structure">
+    <h4>🏗️ Структура дебатного выступления (5 минут)</h4>
+    <ul>
+      <li><strong>Introducción (30 сек):</strong> Представить тему и занять позицию — «Estoy a favor de / En contra de...»</li>
+      <li><strong>Argumento 1 (1 мин):</strong> Первый аргумент + пример + данные — «En primer lugar... Según los datos...»</li>
+      <li><strong>Argumento 2 (1 мин):</strong> Второй аргумент — «Además / Por otro lado...»</li>
+      <li><strong>Refutación (1 мин):</strong> Признать аргумент оппонента, но опровергнуть — «Aunque... / Sin embargo...»</li>
+      <li><strong>Conclusión (30 сек):</strong> Вывод и призыв — «En definitiva... / Por todo esto...»</li>
+    </ul>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 1</span>
+      <span class="rule-title">Представление позиции</span>
+      <span class="rule-arrow">Обозначить свою сторону</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">С первых слов надо дать понять, какую позицию вы защищаете. В испанских дебатах ценится прямота.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Я за...</span><span class="sep">→</span><span class="ar">Estoy a favor de...</span></div>
+      <div class="wp"><span class="en">Я против...</span><span class="sep">→</span><span class="ar">Estoy en contra de...</span></div>
+      <div class="wp"><span class="en">Моя позиция такова</span><span class="sep">→</span><span class="ar">Mi posición es que...</span></div>
+      <div class="wp"><span class="en">Я убеждён/а, что</span><span class="sep">→</span><span class="ar">Estoy convencido/a de que...</span></div>
+      <div class="wp"><span class="en">Я считаю, что</span><span class="sep">→</span><span class="ar">Considero que...</span></div>
+      <div class="wp"><span class="en">С моей точки зрения</span><span class="sep">→</span><span class="ar">Desde mi punto de vista...</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 2</span>
+      <span class="rule-title">Аргументация</span>
+      <span class="rule-arrow">Выстраивать доказательства</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Аргументы должны быть конкретными. Используй факты, примеры и личный опыт.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Во-первых...</span><span class="sep">→</span><span class="ar">En primer lugar...</span></div>
+      <div class="wp"><span class="en">Во-вторых...</span><span class="sep">→</span><span class="ar">En segundo lugar...</span></div>
+      <div class="wp"><span class="en">Кроме того...</span><span class="sep">→</span><span class="ar">Además de esto...</span></div>
+      <div class="wp"><span class="en">По данным...</span><span class="sep">→</span><span class="ar">Según los datos...</span></div>
+      <div class="wp"><span class="en">Например...</span><span class="sep">→</span><span class="ar">Por ejemplo...</span></div>
+      <div class="wp"><span class="en">Это доказывает, что</span><span class="sep">→</span><span class="ar">Esto demuestra que...</span></div>
+      <div class="wp"><span class="en">Исследования показывают</span><span class="sep">→</span><span class="ar">Los estudios muestran que...</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 3</span>
+      <span class="rule-title">Контраргументы и опровержение</span>
+      <span class="rule-arrow">Оспаривать без агрессии</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">В испанской культуре важно опровергать вежливо. Сначала признай точку зрения оппонента, затем опровергни.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Хотя верно, что...</span><span class="sep">→</span><span class="ar">Aunque es cierto que...</span></div>
+      <div class="wp"><span class="en">Я понимаю твою точку зрения, но</span><span class="sep">→</span><span class="ar">Entiendo tu punto de vista, pero...</span></div>
+      <div class="wp"><span class="en">С другой стороны...</span><span class="sep">→</span><span class="ar">Por otro lado...</span></div>
+      <div class="wp"><span class="en">Однако...</span><span class="sep">→</span><span class="ar">Sin embargo...</span></div>
+      <div class="wp"><span class="en">Не соглашусь с этим</span><span class="sep">→</span><span class="ar">No estoy de acuerdo con eso</span></div>
+      <div class="wp"><span class="en">Это не так, потому что</span><span class="sep">→</span><span class="ar">Eso no es así porque...</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Блок 4</span>
+      <span class="rule-title">Уступка и вывод</span>
+      <span class="rule-arrow">Завершить убедительно</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Хорошие дебаты заканчиваются чётким выводом. Признай слабые стороны, но подтверди позицию.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">Признаю, что...</span><span class="sep">→</span><span class="ar">Reconozco que...</span></div>
+      <div class="wp"><span class="en">В конечном счёте...</span><span class="sep">→</span><span class="ar">En definitiva...</span></div>
+      <div class="wp"><span class="en">По всем этим причинам</span><span class="sep">→</span><span class="ar">Por todo esto...</span></div>
+      <div class="wp"><span class="en">Таким образом...</span><span class="sep">→</span><span class="ar">Por tanto...</span></div>
+      <div class="wp"><span class="en">Я настаиваю на том, что</span><span class="sep">→</span><span class="ar">Mantengo que...</span></div>
+      <div class="wp"><span class="en">Итак, мы видим, что</span><span class="sep">→</span><span class="ar">Así pues, vemos que...</span></div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>🎯 Сравнение с русским</h4>
+    <p>В русском «но» универсально — в испанском точнее: <strong>pero</strong> (простое противопоставление), <strong>sino</strong> (замена: no X sino Y), <strong>sin embargo</strong> (однако, формально), <strong>aunque</strong> (хотя, с возможным уступительным значением). Выбор меняет тон дебатов.</p>
+  </div>
+
+  <div class="auth-text">
+    «La tecnología no crea desempleo; más bien transforma los empleos existentes. Aunque es cierto que algunos puestos de trabajo desaparecen, los estudios muestran que se crean más empleos nuevos de los que se destruyen. Por todo esto, estoy convencido de que la automatización es una oportunidad, no una amenaza.»
+    <cite>— Аутентичный фрагмент из испанской дискуссии о технологиях (El País, 2023)</cite>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих в дебатах</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>«Но» везде без разбора</td><td class="wrong-ex">No es bueno pero sino es malo</td><td class="right-ex">No es bueno sino malo</td><td>sino заменяет при отрицании первой части, pero просто противопоставляет</td></tr>
+    <tr><td>Прямая агрессия</td><td class="wrong-ex">Estás completamente equivocado</td><td class="right-ex">Entiendo tu punto, pero no estoy de acuerdo</td><td>В испанской дискуссии лобовая атака воспринимается как невежливость</td></tr>
+    <tr><td>Пропуск уступки</td><td class="wrong-ex">Aunque es malo, no es bueno</td><td class="right-ex">Aunque tiene desventajas, en general es positivo</td><td>aunque + subj/indicativo требует смысловой полноты обоих частей</td></tr>
+    <tr><td>Неправильный порядок доводов</td><td class="wrong-ex">En conclusión…En primer lugar…</td><td class="right-ex">En primer lugar… En conclusión…</td><td>Нарушение структуры делает речь непонятной для слушателей</td></tr>
+    <tr><td>Перевод «считаю» дословно</td><td class="wrong-ex">Pienso que tienes razón mal</td><td class="right-ex">Creo que no tienes razón / No estoy de acuerdo</td><td>pienso que / creo que — для мнений; no tienes razón — «ты не прав»</td></tr>
+    <tr><td>Путать según и segun</td><td class="wrong-ex">Segun los estudios</td><td class="right-ex">Según los estudios</td><td>según всегда с ударением (тильда обязательна)</td></tr>
+  </table>
+</div>
+
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — 20 ключевых слов для дебатов</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 у каждого слова для прослушивания. Уровень B1: транскрипции минимальны, фокус на употреблении.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">el argumento</div><div class="vocab-ru">аргумент, довод</div></div><button class="speak-btn" onclick="speak('el argumento')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el debate</div><div class="vocab-ru">дебаты, дискуссия</div></div><button class="speak-btn" onclick="speak('el debate')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la postura</div><div class="vocab-ru">позиция, точка зрения</div></div><button class="speak-btn" onclick="speak('la postura')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el oponente</div><div class="vocab-ru">оппонент, противник</div></div><button class="speak-btn" onclick="speak('el oponente')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">refutar</div><div class="vocab-ru">опровергать</div></div><button class="speak-btn" onclick="speak('refutar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la evidencia</div><div class="vocab-ru">доказательство, свидетельство</div></div><button class="speak-btn" onclick="speak('la evidencia')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">convencer</div><div class="vocab-ru">убеждать</div></div><button class="speak-btn" onclick="speak('convencer')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la ventaja</div><div class="vocab-ru">преимущество, плюс</div></div><button class="speak-btn" onclick="speak('la ventaja')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la desventaja</div><div class="vocab-ru">недостаток, минус</div></div><button class="speak-btn" onclick="speak('la desventaja')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la propuesta</div><div class="vocab-ru">предложение, инициатива</div></div><button class="speak-btn" onclick="speak('la propuesta')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el punto de vista</div><div class="vocab-ru">точка зрения</div></div><button class="speak-btn" onclick="speak('el punto de vista')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">ceder</div><div class="vocab-ru">уступать, идти на компромисс</div></div><button class="speak-btn" onclick="speak('ceder')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la conclusión</div><div class="vocab-ru">вывод, заключение</div></div><button class="speak-btn" onclick="speak('la conclusión')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">matizar</div><div class="vocab-ru">уточнять, нюансировать</div></div><button class="speak-btn" onclick="speak('matizar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la polémica</div><div class="vocab-ru">полемика, спор</div></div><button class="speak-btn" onclick="speak('la polémica')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el consenso</div><div class="vocab-ru">консенсус, согласие</div></div><button class="speak-btn" onclick="speak('el consenso')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">plantear</div><div class="vocab-ru">поставить вопрос, предложить</div></div><button class="speak-btn" onclick="speak('plantear')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el contraargumento</div><div class="vocab-ru">контраргумент</div></div><button class="speak-btn" onclick="speak('el contraargumento')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">objetar</div><div class="vocab-ru">возражать</div></div><button class="speak-btn" onclick="speak('objetar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la tesis</div><div class="vocab-ru">тезис, утверждение</div></div><button class="speak-btn" onclick="speak('la tesis')">🔊</button></div>
+  </div>
+</div>
+
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Язык дебатов</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Выбери правильный вариант. Правильный ответ — всегда вариант «a» по ключу.</p>
+  <div class="quiz">
+    <h3>🎯 Аргументация по-испански — 7 вопросов</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. Как сказать «Во-первых, хочу отметить, что...» в дебатах?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">En primer lugar, quisiera señalar que...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Primero, quiero decir algo...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Número uno, creo...</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. Ты хочешь опровергнуть аргумент оппонента вежливо. Выбери лучшую фразу:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Eso es completamente falso.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Entiendo tu punto de vista, pero no estoy de acuerdo porque...</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">No, eso no.</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Los estudios muestran que...» используется для:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Ссылки на данные и исследования как доказательство</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Личного мнения без доказательств</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Уступки оппоненту</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. Какая фраза правильно завершает дебатное выступление?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Bueno, pues eso es todo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Y para mí esto es...</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">En definitiva, por todo lo expuesto, mantengo que...</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. Разница между <strong>pero</strong> и <strong>sino</strong>: «No es rojo... amarillo» — что стоит в пропуске?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">sino</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">pero</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">aunque</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. Как признать аргумент оппонента, не сдавая свою позицию?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Sí, tienes totalmente razón.</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Reconozco que hay cierta verdad en eso, sin embargo...</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">No, eso no es así.</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «Desde mi punto de vista, la tecnología...» — это пример:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Контраргумент</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Вывод</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Представление своей позиции</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуски</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вставь правильное слово или фразу. Вводи в нижнем регистре.</p>
+  <div class="quiz">
+    <h3>✏️ Дебатные конструкции</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «___ los estudios, el 70% de los españoles apoya esta medida.» (По данным исследований)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','según','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ según (по данным / согласно)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. «No me gusta el fútbol ___ el tenis.» (не футбол, а теннис — замена)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','sino','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ sino (а / а именно — замена при отрицании)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Entiendo tu punto, ___  no comparto tu opinión.» (однако)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','sin embargo','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ sin embargo (однако, тем не менее)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. «___ lo expuesto, concluyo que la medida es necesaria.» (По всему изложенному)</div>
+      <input type="text" class="text-input" placeholder="два слова..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','por todo','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ por todo (por todo lo expuesto — по всему вышесказанному)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. «___ que hay dificultades, creo que vale la pena intentarlo.» (Хотя)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','aunque','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ aunque (хотя / несмотря на то что)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. «___ mi punto de vista, este proyecto es viable.» (С моей точки зрения)</div>
+      <input type="text" class="text-input" placeholder="одно слово..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','desde','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ desde (Desde mi punto de vista... — С моей точки зрения...)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Дебаты в действии</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Используй кнопки 🔊 для прослушивания каждой реплики. Замечай структуру аргументации.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🗣️ Диалог 1: Дебаты — «Должны ли все дети учить второй язык с детства?» (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">Estoy completamente a favor de que los niños aprendan un segundo idioma desde los tres años. <button class="speak-btn" onclick="speak('Estoy completamente a favor de que los niños aprendan un segundo idioma desde los tres años.')">🔊</button></div>
+        <div class="dlg-ru translation">[Я полностью за то, чтобы дети учили второй язык с трёх лет.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Дамиан</div>
+      <div style="flex:1">
+        <div class="dlg-es">Entiendo tu punto de vista, pero no estoy de acuerdo. En primer lugar, los niños necesitan consolidar primero su lengua materna. <button class="speak-btn" onclick="speak('Entiendo tu punto de vista, pero no estoy de acuerdo. En primer lugar, los niños necesitan consolidar primero su lengua materna.')">🔊</button></div>
+        <div class="dlg-ru translation">[Понимаю твою точку зрения, но не согласен. Во-первых, детям нужно сначала закрепить родной язык.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">Según los estudios de lingüística, el cerebro infantil absorbe varios idiomas a la vez sin confundirlos. Esto demuestra que el bilingüismo temprano es posible y beneficioso. <button class="speak-btn" onclick="speak('Según los estudios de lingüística, el cerebro infantil absorbe varios idiomas a la vez sin confundirlos. Esto demuestra que el bilingüismo temprano es posible y beneficioso.')">🔊</button></div>
+        <div class="dlg-ru translation">[По данным лингвистических исследований, мозг ребёнка усваивает несколько языков одновременно, не путая их. Это доказывает, что ранний билингвизм возможен и полезен.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Дамиан</div>
+      <div style="flex:1">
+        <div class="dlg-es">Reconozco que hay evidencias a favor del bilingüismo. Sin embargo, no todos los centros educativos tienen los recursos para impartirlo con calidad. <button class="speak-btn" onclick="speak('Reconozco que hay evidencias a favor del bilingüismo. Sin embargo, no todos los centros educativos tienen los recursos para impartirlo con calidad.')">🔊</button></div>
+        <div class="dlg-ru translation">[Признаю, что есть доказательства в пользу билингвизма. Однако не все учебные центры имеют ресурсы для качественного преподавания.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">Eso no es así en todos los casos. Además, la inversión en educación bilingüe genera beneficios económicos a largo plazo para el país. <button class="speak-btn" onclick="speak('Eso no es así en todos los casos. Además, la inversión en educación bilingüe genera beneficios económicos a largo plazo para el país.')">🔊</button></div>
+        <div class="dlg-ru translation">[Это не так во всех случаях. Кроме того, инвестиции в билингвальное образование дают экономические выгоды стране в долгосрочной перспективе.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Дамиан</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por otro lado, hay familias que prefieren centrarse en la lengua familiar y cultural. Eso también tiene un valor enorme. <button class="speak-btn" onclick="speak('Por otro lado, hay familias que prefieren centrarse en la lengua familiar y cultural. Eso también tiene un valor enorme.')">🔊</button></div>
+        <div class="dlg-ru translation">[С другой стороны, есть семьи, которые предпочитают сосредоточиться на семейном и культурном языке. Это тоже имеет огромную ценность.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">Aunque es cierto que la lengua materna es fundamental, aprender un segundo idioma no la sustituye sino que la complementa. <button class="speak-btn" onclick="speak('Aunque es cierto que la lengua materna es fundamental, aprender un segundo idioma no la sustituye sino que la complementa.')">🔊</button></div>
+        <div class="dlg-ru translation">[Хотя верно, что родной язык является основой, изучение второго языка не заменяет его, а дополняет.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Дамиан</div>
+      <div style="flex:1">
+        <div class="dlg-es">Eso es un buen argumento. Quizás matizaría mi postura: el segundo idioma debería ser opcional, no obligatorio. <button class="speak-btn" onclick="speak('Eso es un buen argumento. Quizás matizaría mi postura: el segundo idioma debería ser opcional, no obligatorio.')">🔊</button></div>
+        <div class="dlg-ru translation">[Это хороший аргумент. Пожалуй, я бы уточнил свою позицию: второй язык должен быть необязательным, а не обязательным.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">En ese punto podríamos llegar a un consenso. Lo importante es que haya recursos y calidad suficiente. <button class="speak-btn" onclick="speak('En ese punto podríamos llegar a un consenso. Lo importante es que haya recursos y calidad suficiente.')">🔊</button></div>
+        <div class="dlg-ru translation">[В этом пункте мы могли бы прийти к консенсусу. Главное, чтобы были достаточные ресурсы и качество.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Дамиан</div>
+      <div style="flex:1">
+        <div class="dlg-es">De acuerdo. En definitiva, el objetivo compartido es el bienestar y el desarrollo de los niños. <button class="speak-btn" onclick="speak('De acuerdo. En definitiva, el objetivo compartido es el bienestar y el desarrollo de los niños.')">🔊</button></div>
+        <div class="dlg-ru translation">[Согласен. В конечном счёте общая цель — благополучие и развитие детей.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🌱 Диалог 2: Дебаты — «¿Es el teletrabajo mejor que la oficina?» (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лора</div>
+      <div style="flex:1">
+        <div class="dlg-es">Desde mi punto de vista, el teletrabajo es superior a la oficina tradicional. La flexibilidad que ofrece mejora la productividad y el bienestar. <button class="speak-btn" onclick="speak('Desde mi punto de vista, el teletrabajo es superior a la oficina tradicional. La flexibilidad que ofrece mejora la productividad y el bienestar.')">🔊</button></div>
+        <div class="dlg-ru translation2">[С моей точки зрения, удалённая работа превосходит традиционный офис. Гибкость, которую она предлагает, улучшает производительность и благополучие.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Рикардо</div>
+      <div style="flex:1">
+        <div class="dlg-es">No comparto esa opinión. En primer lugar, el trabajo presencial fomenta la colaboración espontánea y la creatividad grupal. <button class="speak-btn" onclick="speak('No comparto esa opinión. En primer lugar, el trabajo presencial fomenta la colaboración espontánea y la creatividad grupal.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Не разделяю это мнение. Во-первых, очная работа поощряет стихийное сотрудничество и групповое творчество.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лора</div>
+      <div style="flex:1">
+        <div class="dlg-es">Aunque reconozco que la colaboración cara a cara tiene valor, las herramientas digitales permiten trabajar juntos sin estar en el mismo lugar. <button class="speak-btn" onclick="speak('Aunque reconozco que la colaboración cara a cara tiene valor, las herramientas digitales permiten trabajar juntos sin estar en el mismo lugar.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Хотя признаю, что личное сотрудничество ценно, цифровые инструменты позволяют работать вместе, не находясь в одном месте.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Рикардо</div>
+      <div style="flex:1">
+        <div class="dlg-es">Eso es cierto, pero los estudios muestran que el 40% de los trabajadores en remoto sufren de aislamiento social. Ese es un dato que no podemos ignorar. <button class="speak-btn" onclick="speak('Eso es cierto, pero los estudios muestran que el cuarenta por ciento de los trabajadores en remoto sufren de aislamiento social. Ese es un dato que no podemos ignorar.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Это верно, но исследования показывают, что 40% удалённых работников страдают от социальной изоляции. Это данные, которые нельзя игнорировать.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лора</div>
+      <div style="flex:1">
+        <div class="dlg-es">Eso no es así necesariamente. El modelo híbrido, por ejemplo, combina lo mejor de ambas opciones. <button class="speak-btn" onclick="speak('Eso no es así necesariamente. El modelo híbrido, por ejemplo, combina lo mejor de ambas opciones.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Это не обязательно так. Гибридная модель, например, сочетает лучшее из обоих вариантов.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Рикардо</div>
+      <div style="flex:1">
+        <div class="dlg-es">Matizo: si el modelo híbrido es bien gestionado, puede ser efectivo. Pero requiere una organización impecable. <button class="speak-btn" onclick="speak('Matizo: si el modelo híbrido es bien gestionado, puede ser efectivo. Pero requiere una organización impecable.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Уточняю: если гибридная модель хорошо управляется, она может быть эффективной. Но это требует безупречной организации.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лора</div>
+      <div style="flex:1">
+        <div class="dlg-es">Exactamente. Además, el teletrabajo reduce el tiempo de desplazamiento y las emisiones de CO₂. Es una ventaja para todos. <button class="speak-btn" onclick="speak('Exactamente. Además, el teletrabajo reduce el tiempo de desplazamiento y las emisiones de CO dos. Es una ventaja para todos.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Именно. Кроме того, удалённая работа сокращает время в пути и выбросы CO₂. Это преимущество для всех.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Рикардо</div>
+      <div style="flex:1">
+        <div class="dlg-es">Ese argumento sobre el medio ambiente es sólido. Reconozco que tiene mucho peso. <button class="speak-btn" onclick="speak('Ese argumento sobre el medio ambiente es sólido. Reconozco que tiene mucho peso.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Этот аргумент об экологии убедительный. Признаю, что он весомый.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лора</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por todo esto, considero que el teletrabajo, con las herramientas adecuadas, es el futuro del trabajo. <button class="speak-btn" onclick="speak('Por todo esto, considero que el teletrabajo, con las herramientas adecuadas, es el futuro del trabajo.')">🔊</button></div>
+        <div class="dlg-ru translation2">[По всем этим причинам считаю, что удалённая работа с подходящими инструментами — это будущее труда.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Рикардо</div>
+      <div style="flex:1">
+        <div class="dlg-es">En definitiva, no hay una solución única. Cada empresa y cada trabajador debe encontrar el equilibrio que más le convenga. <button class="speak-btn" onclick="speak('En definitiva, no hay una solución única. Cada empresa y cada trabajador debe encontrar el equilibrio que más le convenga.')">🔊</button></div>
+        <div class="dlg-ru translation2">[В конечном счёте универсального решения нет. Каждая компания и каждый работник должны найти подходящий баланс.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏙️ Диалог 3: Короткие дебатные реплики — техника опровержения (8 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div style="flex:1">
+        <div class="dlg-es">El precio de la vivienda en Barcelona es excesivo. <button class="speak-btn" onclick="speak('El precio de la vivienda en Barcelona es excesivo.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Цены на жильё в Барселоне чрезмерны.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div style="flex:1">
+        <div class="dlg-es">No estoy de acuerdo. Las ciudades globales siempre tienen precios altos. Eso no es un defecto sino una consecuencia del atractivo de la ciudad. <button class="speak-btn" onclick="speak('No estoy de acuerdo. Las ciudades globales siempre tienen precios altos. Eso no es un defecto sino una consecuencia del atractivo de la ciudad.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Не согласен. Глобальные города всегда имеют высокие цены. Это не дефект, а следствие привлекательности города.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div style="flex:1">
+        <div class="dlg-es">Aunque eso sea cierto, los residentes locales no pueden permitirse vivir en su propio barrio. Eso es una injusticia social. <button class="speak-btn" onclick="speak('Aunque eso sea cierto, los residentes locales no pueden permitirse vivir en su propio barrio. Eso es una injusticia social.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Хотя это и верно, местные жители не могут позволить себе жить в собственном районе. Это социальная несправедливость.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div style="flex:1">
+        <div class="dlg-es">Reconozco que existe ese problema. Sin embargo, la solución no es limitar los precios sino aumentar la oferta de vivienda. <button class="speak-btn" onclick="speak('Reconozco que existe ese problema. Sin embargo, la solución no es limitar los precios sino aumentar la oferta de vivienda.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Признаю, что эта проблема существует. Однако решение — не ограничивать цены, а увеличивать предложение жилья.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por otro lado, el turismo masivo ha expulsado a familias enteras de sus viviendas. Eso es un hecho documentado. <button class="speak-btn" onclick="speak('Por otro lado, el turismo masivo ha expulsado a familias enteras de sus viviendas. Eso es un hecho documentado.')">🔊</button></div>
+        <div class="dlg-ru translation3">[С другой стороны, массовый туризм вытеснил целые семьи из их жилищ. Это документально подтверждённый факт.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div style="flex:1">
+        <div class="dlg-es">Eso es cierto, pero el turismo también genera empleo e ingresos para la ciudad. Hay que buscar un equilibrio. <button class="speak-btn" onclick="speak('Eso es cierto, pero el turismo también genera empleo e ingresos para la ciudad. Hay que buscar un equilibrio.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Это верно, но туризм также создаёт рабочие места и доходы для города. Нужно найти баланс.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">А</div>
+      <div style="flex:1">
+        <div class="dlg-es">En ese punto estoy de acuerdo. Por tanto, lo que necesitamos son políticas más equilibradas. <button class="speak-btn" onclick="speak('En ese punto estoy de acuerdo. Por tanto, lo que necesitamos son políticas más equilibradas.')">🔊</button></div>
+        <div class="dlg-ru translation3">[В этом пункте согласен. Следовательно, нам нужна более сбалансированная политика.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Б</div>
+      <div style="flex:1">
+        <div class="dlg-es">Completamente de acuerdo. El consenso es posible si se escuchan todas las partes implicadas. <button class="speak-btn" onclick="speak('Completamente de acuerdo. El consenso es posible si se escuchan todas las partes implicadas.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Полностью согласен. Консенсус возможен, если выслушать все вовлечённые стороны.]</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Твоя очередь дебатировать</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Подготовь позицию по теме</div>
+    <p>Выбери одну из тем. Подготовь 5-минутное выступление: 2 аргумента ЗА, 1 признание аргумента против, вывод. Говори вслух, без записей.</p>
+    <div class="es" style="margin-top:10px">
+      Темы:<br>
+      🔵 «¿Es mejor vivir en la ciudad o en el campo?»<br>
+      🟠 «¿Deben los móviles estar prohibidos en los colegios?»<br>
+      🟢 «¿Es positiva la inmigración para España?»
+    </div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('¿Es mejor vivir en la ciudad o en el campo?')">🔊 Тема 1</button>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('¿Deben los móviles estar prohibidos en los colegios?')">🔊 Тема 2</button>
+    <div class="hint">Используй структуру: Estoy a favor de… / En primer lugar… / Aunque es cierto que… / En definitiva…</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Реальная жизнь в Испании: дискуссия с соседом</div>
+    <p>Реальная ситуация: на собрании жильцов (reunión de vecinos) в Барселоне обсуждают установку велопарковки во дворе. Ты против — займи позицию и защити её вслух.</p>
+    <div class="es" style="margin-top:10px">Твоя реплика: «Estoy en contra de esta propuesta porque el patio ya es pequeño. Además, generará conflictos entre vecinos. Sin embargo, reconozco que hay que fomentar el transporte ecológico. Por eso, propongo instalarla en la entrada del edificio, no en el patio.»</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Estoy en contra de esta propuesta porque el patio ya es pequeño. Además, generará conflictos entre vecinos. Sin embargo, reconozco que hay que fomentar el transporte ecológico. Por eso, propongo instalarla en la entrada del edificio, no en el patio.')">🔊 Послушать пример</button>
+    <div class="hint">Говори медленно, используй паузы. Цель: звучать убедительно, не агрессивно.</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Reunión en el Ayuntamiento</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏛️ Реальная ситуация — Барселона, Ayuntamiento de Barcelona</div>
+    <p style="margin-bottom:12px">В Испании граждане могут участвовать в публичных слушаниях и собраниях в муниципалитете (Ayuntamiento). Умение аргументировать свою позицию — реальный навык для жизни в Испании, особенно если у тебя есть вопросы по empadronamiento, разрешениям или местным проблемам.</p>
+
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Quisiera expresar mi opinión al respecto. <button class="speak-btn" onclick="speak('Quisiera expresar mi opinión al respecto.')">🔊</button></div>
+          <div class="phrase-ru">Я хотел(а) бы высказать своё мнение по этому поводу.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Estoy a favor de esta medida porque beneficia a todos los vecinos. <button class="speak-btn" onclick="speak('Estoy a favor de esta medida porque beneficia a todos los vecinos.')">🔊</button></div>
+          <div class="phrase-ru">Я за эту меру, потому что она выгодна всем жителям.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Sin embargo, me preocupa el impacto en el tráfico del barrio. <button class="speak-btn" onclick="speak('Sin embargo, me preocupa el impacto en el tráfico del barrio.')">🔊</button></div>
+          <div class="phrase-ru">Однако меня беспокоит влияние на движение в районе.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Podría dejarme terminar mi argumento, por favor? <button class="speak-btn" onclick="speak('¿Podría dejarme terminar mi argumento, por favor?')">🔊</button></div>
+          <div class="phrase-ru">Позвольте мне закончить свой аргумент, пожалуйста?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Propongo que se someta esto a votación entre los residentes. <button class="speak-btn" onclick="speak('Propongo que se someta esto a votación entre los residentes.')">🔊</button></div>
+          <div class="phrase-ru">Предлагаю вынести это на голосование среди жителей.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">En definitiva, busquemos una solución que nos beneficie a todos. <button class="speak-btn" onclick="speak('En definitiva, busquemos una solución que nos beneficie a todos.')">🔊</button></div>
+          <div class="phrase-ru">В конечном счёте, давайте найдём решение, которое принесёт пользу всем.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">🏛️ Мини-диалог: Reunión de vecinos (4 реплики)</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Vecino</div>
+        <div style="flex:1">
+          <div class="dlg-es">Quisiera expresar mi opinión sobre la nueva zona de aparcamiento. Estoy en contra porque eliminará los árboles del barrio. <button class="speak-btn" onclick="speak('Quisiera expresar mi opinión sobre la nueva zona de aparcamiento. Estoy en contra porque eliminará los árboles del barrio.')">🔊</button></div>
+          <div class="dlg-ru">[Я хотел бы высказаться о новой парковочной зоне. Я против, потому что она уничтожит деревья в районе.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Concejal</div>
+        <div style="flex:1">
+          <div class="dlg-es">Entiendo su preocupación. Sin embargo, la propuesta incluye plantar nuevos árboles en la calle paralela. <button class="speak-btn" onclick="speak('Entiendo su preocupación. Sin embargo, la propuesta incluye plantar nuevos árboles en la calle paralela.')">🔊</button></div>
+          <div class="dlg-ru">[Понимаю вашу обеспокоенность. Однако предложение включает посадку новых деревьев на параллельной улице.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Vecino</div>
+        <div style="flex:1">
+          <div class="dlg-es">Reconozco que eso es un paso positivo. Aunque me gustaría ver el plan detallado antes de votar a favor. <button class="speak-btn" onclick="speak('Reconozco que eso es un paso positivo. Aunque me gustaría ver el plan detallado antes de votar a favor.')">🔊</button></div>
+          <div class="dlg-ru">[Признаю, что это положительный шаг. Хотя мне хотелось бы увидеть подробный план, прежде чем голосовать за.]</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Concejal</div>
+        <div style="flex:1">
+          <div class="dlg-es">Por supuesto. Haremos pública la documentación completa la próxima semana para que todos puedan revisarla. <button class="speak-btn" onclick="speak('Por supuesto. Haremos pública la documentación completa la próxima semana para que todos puedan revisarla.')">🔊</button></div>
+          <div class="dlg-ru">[Конечно. На следующей неделе мы опубликуем полную документацию, чтобы все могли её просмотреть.]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Участие в reunión de vecinos (собрание жильцов) — реальная гражданская обязанность. В Барселоне каждый район (barrio) имеет ассоциацию жителей, где можно высказываться. Умение вежливо аргументировать открывает двери к реальному влиянию в своём районе.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🌍 Культура дискуссии в Испании</div>
+    <h4>Почему испанцы спорят иначе</h4>
+    <p>В Испании дискуссия — это искусство и удовольствие, а не просто обмен фактами. Испанцы ценят страстность и прямоту: «tener carácter» (иметь характер) — это комплимент. При этом публичные дебаты следуют чёткой этике: перебивать допустимо, но грубость — нет; признание чужого аргумента (conceder) считается признаком интеллектуальной зрелости. Традиция tertulias — неформальных застольных дискуссий о политике, футболе и культуре — жива в испанских барах и кафе. В Барселоне эта культура дополняется каталонской традицией debate parlamentario, где аргументированность ценится выше эмоциональности. Для русскоговорящего, привыкшего к прямолинейным спорам, адаптация к испанскому стилю — признать, уступить частично, настоять на своём — открывает новый уровень общения.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода L97 — 18 карточек дебатных фраз</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все 18 карточек для Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Estoy a favor de...</div>
+        <div class="anki-card-back">Я за... (позиция)<br>Пример: Estoy a favor de la educación bilingüe.<br>Использ: начало дебатов</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Sin embargo...</div>
+        <div class="anki-card-back">Однако...<br>Пример: Sin embargo, hay excepciones.<br>Использ: опровержение, формально</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Reconozco que...</div>
+        <div class="anki-card-back">Признаю, что...<br>Пример: Reconozco que tiene razón.<br>Использ: уступка оппоненту</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">En definitiva...</div>
+        <div class="anki-card-back">В конечном счёте...<br>Пример: En definitiva, es la mejor opción.<br>Использ: вывод в конце</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">Según los estudios...</div>
+        <div class="anki-card-back">По данным исследований...<br>Пример: Según los estudios, mejora la salud.<br>Использ: ссылка на данные</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL97()">📥 Скачать колоду L97 Anki (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L98: История путешествия)</h4>
+    <ul>
+      <li><strong>Dreaming Spanish (Intermediate)</strong> — 15 мин. Найди видео с дискуссией или интервью на испанском. Выпиши 5 дебатных фраз, которые услышал(а).</li>
+      <li><strong>Дебаты с зеркалом</strong> — Выбери тему из списка урока. Произнеси вслух 3-минутное выступление: тезис, 2 аргумента, уступка, вывод.</li>
+      <li><strong>Anki</strong> — Повторяй 18 карточек L97 ежедневно (10 мин).</li>
+      <li><strong>Запись</strong> — Запиши своё выступление на телефон. Прослушай и найди 2 фразы, которые можно сделать более «испанскими».</li>
+      <li><strong>Аутентичный текст</strong> — Прочитай один дебатный текст на El País или ElDiario.es. Отметь все дебатные коннекторы.</li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Урок L97 завершён!</h4>
+    <p>Теперь ты умеешь аргументировать, опровергать и делать выводы по-испански. Следующий урок L98 — рассказ о путешествии с прошедшими временами.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L98.html" class="nav-link-btn">L98: История путешествия →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
+
+<script>
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L97 = [
+  {front:"Estoy a favor de...", back:"Русский: Я за...\n\nПример: Estoy a favor de la educación pública gratuita.\nЗаметка: открывает дебатную позицию"},
+  {front:"Estoy en contra de...", back:"Русский: Я против...\n\nПример: Estoy en contra de esta propuesta.\nЗаметка: противоположная позиция"},
+  {front:"En primer lugar...", back:"Русский: Во-первых...\n\nПример: En primer lugar, hay que considerar el coste.\nЗаметка: первый аргумент в серии"},
+  {front:"Sin embargo...", back:"Русский: Однако...\n\nПример: Sin embargo, no todos están de acuerdo.\nЗаметка: формальное противопоставление"},
+  {front:"Reconozco que...", back:"Русский: Признаю, что...\n\nПример: Reconozco que tu argumento es válido.\nЗаметка: уступка перед контраргументом"},
+  {front:"En definitiva...", back:"Русский: В конечном счёте...\n\nПример: En definitiva, la decisión es tuya.\nЗаметка: вывод в конце выступления"},
+  {front:"Según los estudios...", back:"Русский: По данным исследований...\n\nПример: Según los estudios, mejora la salud mental.\nЗаметка: ссылка на авторитетный источник"},
+  {front:"Desde mi punto de vista...", back:"Русский: С моей точки зрения...\n\nПример: Desde mi punto de vista, es la mejor opción.\nЗаметка: личная позиция"},
+  {front:"Entiendo tu punto, pero...", back:"Русский: Понимаю твою точку, но...\n\nПример: Entiendo tu punto, pero no estoy de acuerdo.\nЗаметка: вежливое опровержение"},
+  {front:"refutar", back:"Русский: опровергать\n\nПример: Quiero refutar ese argumento.\nЗаметка: глагол для активного опровержения"},
+  {front:"el contraargumento", back:"Русский: контраргумент\n\nПример: Tengo un contraargumento importante.\nЗаметка: ключевое слово дебатов"},
+  {front:"Por otro lado...", back:"Русский: С другой стороны...\n\nПример: Por otro lado, hay ventajas claras.\nЗаметка: введение второй перспективы"},
+  {front:"Aunque es cierto que...", back:"Русский: Хотя верно, что...\n\nПример: Aunque es cierto que cuesta dinero, vale la pena.\nЗаметка: уступка + контраргумент"},
+  {front:"convencer", back:"Русский: убеждать\n\nПример: No logras convencerme.\nЗаметка: clave en todo debate"},
+  {front:"matizar", back:"Русский: уточнять, нюансировать\n\nПример: Quisiera matizar mi postura.\nЗаметка: элегантное уточнение без отступления"},
+  {front:"el consenso", back:"Русский: консенсус\n\nПример: Llegamos a un consenso.\nЗаметка: позитивный исход дебатов"},
+  {front:"Por todo esto...", back:"Русский: По всем этим причинам...\n\nПример: Por todo esto, mantengo mi posición.\nЗаметка: начало итогового вывода"},
+  {front:"No estoy de acuerdo porque...", back:"Русский: Я не согласен/а, потому что...\n\nПример: No estoy de acuerdo porque los datos son distintos.\nЗаметка: базовое опровержение с обоснованием"},
+];
+
+function exportAnkiL97() {
+  const tsv = ANKI_DECK_L97.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L97_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    'Estoy completamente a favor de que los niños aprendan un segundo idioma desde los tres años.',
+    'Entiendo tu punto de vista, pero no estoy de acuerdo. En primer lugar, los niños necesitan consolidar primero su lengua materna.',
+    'Según los estudios de lingüística, el cerebro infantil absorbe varios idiomas a la vez sin confundirlos.',
+    'Reconozco que hay evidencias a favor del bilingüismo. Sin embargo, no todos los centros educativos tienen los recursos.',
+    'Eso no es así en todos los casos. Además, la inversión en educación bilingüe genera beneficios económicos a largo plazo.',
+    'Por otro lado, hay familias que prefieren centrarse en la lengua familiar y cultural.',
+    'Aunque es cierto que la lengua materna es fundamental, aprender un segundo idioma no la sustituye sino que la complementa.',
+    'Eso es un buen argumento. Quizás matizaría mi postura: el segundo idioma debería ser opcional, no obligatorio.',
+    'En ese punto podríamos llegar a un consenso.',
+    'De acuerdo. En definitiva, el objetivo compartido es el bienestar y el desarrollo de los niños.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 900);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+const LESSON_ID = 'L97';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'¿Qué te pareció? — стандартный вопрос о мнении по поводу фильма или события.',
+  w2:'enganchar = захватывать, зацеплять. Me enganchó = меня захватило.',
+  w3:'Merece la pena = стоит того. La pena = усилие/труд. Merece = заслуживает.',
+  w4:'El protagonista = главный герой. Me resultó creíble = показался мне правдоподобным.',
+  q1:'En primer lugar, quisiera señalar — формальная и корректная фраза для начала аргумента.',
+  q2:'Вежливое опровержение всегда начинается с признания точки зрения оппонента.',
+  q3:'Ссылка на исследования (según los estudios) — стандартный способ подкрепить аргумент данными.',
+  q4:'En definitiva, por todo lo expuesto, mantengo que — классическое завершение дебатного выступления.',
+  q5:'sino используется при замене: «не X а Y». pero — просто противопоставление без замены.',
+  q6:'Reconozco que hay cierta verdad — это уступка. Sin embargo сигнализирует возврат к своей позиции.',
+  q7:'Desde mi punto de vista — классическое выражение позиции в начале дебатов.',
+};
+
+let quizScore = 0, quizTotal = 0;
+function answerQuiz(el, qId, correctKey) {
+  const container = el.closest('.quiz-q');
+  if (container.dataset.answered === '1') return;
+  container.dataset.answered = '1';
+  const opts = container.querySelectorAll('.opt');
+  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
+  let correctText = '';
+  let pickedText = '';
+  opts.forEach(o => {
+    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
+    const key = m ? m[1] : null;
+    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
+    else { o.classList.add('wrong'); }
+    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
+  });
+  const isCorrect = correctKey === 'a';
+  const fb = document.getElementById('fb-' + qId);
+  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
+  if (isCorrect) {
+    fb.className = 'feedback show ok';
+    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
+  } else {
+    fb.className = 'feedback show no';
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», правильный ответ — <strong>«' + correctText + '»</strong>.<br>💡 ' + expl;
+  }
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
+}
+
+function checkText(inputId, answer, fbId) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+  const fb = document.getElementById(fbId);
+  fb.className = 'feedback show';
+  if (!raw) {
+    input.className = 'text-input wrong';
+    fb.className += ' no';
+    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
+    return;
+  }
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
+  const userN = norm(raw);
+  const correctN = norm(answer);
+  if (userN === correctN) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
+      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения)</span>';
+    } else {
+      fb.textContent = '✅ Правильно! ' + answer;
+    }
+    return;
+  }
+  const lev = (a, b) => {
+    const m = a.length, n = b.length;
+    if (!m) return n; if (!n) return m;
+    let prev = Array.from({length: n+1}, (_,i) => i);
+    let curr = new Array(n+1).fill(0);
+    for (let i = 1; i <= m; i++) {
+      curr[0] = i;
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i-1] === b[j-1] ? 0 : 1;
+        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
+      }
+      [prev, curr] = [curr, prev];
+    }
+    return prev[n];
+  };
+  const dist = lev(userN, correctN);
+  const tol = correctN.length >= 6 ? 2 : 1;
+  if (dist > 0 && dist <= tol) {
+    input.className = 'text-input correct';
+    fb.className += ' ok';
+    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
+    return;
+  }
+  input.className = 'text-input wrong';
+  fb.className += ' no';
+  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
+}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => {
+    el.style.display = showingTrans3 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+}
+window.addEventListener('scroll', updateProgress);
+</script>
+</body>
+</html>
