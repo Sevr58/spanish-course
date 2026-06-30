@@ -1282,7 +1282,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Полное собеседование: представление, вопросы, ответы",
-      file:"lessons/L99.html", status:"pending"
+      file:"lessons/L99.html", status:"improved"
     },
     {
       id:"L100", num:100, phase:3, block:"B3D", level:"B1", day:212, week:36,
@@ -1294,7 +1294,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Самооценка по CEFR B1 — честно зафиксировать уровень",
-      file:"lessons/L100.html", status:"pending"
+      file:"lessons/L100.html", status:"improved"
     },
 
     // ═══════════════════════════════════════════════════════════
