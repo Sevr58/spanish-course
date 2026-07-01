@@ -1310,7 +1310,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Длинный монолог с полной связностью и без слов-паразитов",
-      file:"lessons/L101.html", status:"pending"
+      file:"lessons/L101.html", status:"improved"
     },
     {
       id:"L102", num:102, phase:4, block:"B4A", level:"B1", day:218, week:37,
@@ -1322,7 +1322,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Один сценарий в двух регистрах: с другом и с начальником",
-      file:"lessons/L102.html", status:"pending"
+      file:"lessons/L102.html", status:"improved"
     },
     {
       id:"L103", num:103, phase:4, block:"B4A", level:"B1", day:220, week:38,
