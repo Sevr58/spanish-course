@@ -1334,7 +1334,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Использовать 10 идиом в живом разговоре",
-      file:"lessons/L103.html", status:"pending"
+      file:"lessons/L103.html", status:"improved"
     },
     {
       id:"L104", num:104, phase:4, block:"B4A", level:"B1", day:222, week:38,
@@ -1346,7 +1346,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Тест на ложных друзей и правильное употребление",
-      file:"lessons/L104.html", status:"pending"
+      file:"lessons/L104.html", status:"improved"
     },
     {
       id:"L105", num:105, phase:4, block:"B4A", level:"B1", day:224, week:38,
