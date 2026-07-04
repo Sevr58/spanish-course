@@ -1282,7 +1282,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Полное собеседование: представление, вопросы, ответы",
-      file:"lessons/L99.html", status:"pending"
+      file:"lessons/L99.html", status:"improved"
     },
     {
       id:"L100", num:100, phase:3, block:"B3D", level:"B1", day:212, week:36,
@@ -1294,7 +1294,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Самооценка по CEFR B1 — честно зафиксировать уровень",
-      file:"lessons/L100.html", status:"pending"
+      file:"lessons/L100.html", status:"improved"
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -1310,7 +1310,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Длинный монолог с полной связностью и без слов-паразитов",
-      file:"lessons/L101.html", status:"pending"
+      file:"lessons/L101.html", status:"improved"
     },
     {
       id:"L102", num:102, phase:4, block:"B4A", level:"B1", day:218, week:37,
@@ -1322,7 +1322,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Один сценарий в двух регистрах: с другом и с начальником",
-      file:"lessons/L102.html", status:"pending"
+      file:"lessons/L102.html", status:"improved"
     },
     {
       id:"L103", num:103, phase:4, block:"B4A", level:"B1", day:220, week:38,
@@ -1358,7 +1358,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Понять акцент и лексику разных стран",
-      file:"lessons/L105.html", status:"pending"
+      file:"lessons/L105.html", status:"improved"
     },
     {
       id:"L106", num:106, phase:4, block:"B4A", level:"B1", day:226, week:39,
@@ -1370,7 +1370,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Понять 5 испанских шуток и объяснить почему они смешные",
-      file:"lessons/L106.html", status:"pending"
+      file:"lessons/L106.html", status:"improved"
     },
     {
       id:"L107", num:107, phase:4, block:"B4A", level:"B1", day:228, week:39,
