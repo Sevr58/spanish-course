@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L102: Формальный и неформальный регистры</title>
+<title>L102 · Формальный и неформальный регистры</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -35,8 +34,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -51,8 +49,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -71,7 +67,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -80,10 +76,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -91,393 +83,929 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-.compare-table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:.87rem}
-.compare-table th{padding:10px 12px;text-align:left;font-weight:700;font-size:.8rem;text-transform:uppercase}
-.compare-table th:nth-child(1){background:rgba(69,123,157,.15);color:var(--blue)}
-.compare-table th:nth-child(2){background:rgba(200,144,0,.1);color:var(--gold)}
-.compare-table th:nth-child(3){color:var(--muted);background:var(--bg3)}
-.compare-table td{padding:8px 12px;border-bottom:1px solid var(--border)}
-.compare-table tr:last-child td{border-bottom:none}
-.compare-table .formal{color:var(--blue)}
-.compare-table .informal{color:var(--gold)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
 @media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+.register-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.reg-col{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px}
+.reg-col h4{font-size:.85rem;font-weight:700;margin-bottom:10px}
+.reg-col.formal h4{color:var(--blue)}
+.reg-col.informal h4{color:var(--green)}
+.reg-item{font-size:.85rem;padding:4px 0;border-bottom:1px solid var(--bg3)}
+.reg-item:last-child{border-bottom:none}
+@media(max-width:500px){.register-compare{grid-template-columns:1fr}}
+.hw-list{margin:12px 0;padding-left:0;list-style:none}
+.hw-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:10px;align-items:flex-start}
+.hw-list li:last-child{border-bottom:none}
+.hw-num{background:var(--purple);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;margin-top:3px}
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- SECTION 1: NAV -->
 <div class="nav">
-  <a href="L101.html">← L101</a>
+  <a href="../index.html">← Дашборд</a>
   <span class="level">B1 · Фаза 4 · День 218</span>
   <a href="L103.html">L103 →</a>
 </div>
 
-<!-- HERO -->
+<!-- SECTION 2: HERO -->
 <div class="hero">
-  <div class="phase-tag">👔 Фаза 4 · Блок B4A · Беглость</div>
-  <h1>Регистры <span class="hl">общения</span></h1>
-  <p class="sub">Tío vs. señor — когда что уместно. Формальный и неформальный испанский: разные слова, разные глаголы, разная интонация.</p>
+  <div class="phase-tag">Фаза 4 · Блок B4A · Неделя 37 · Беглость</div>
+  <h1>Tío vs. <span class="hl">señor</span></h1>
+  <p class="sub">Формальный и неформальный регистры: грамматика, лексика, письмо, деловой испанский. Барселона — контракты, переговоры, переписка.</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">👔</div><div><strong>Цель</strong><p>Уверенно переключаться между tú и usted, неформальным и деловым испанским</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 минут + ролевая игра 10 мин</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Обрати внимание: как диктор обращается к зрителям?</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Один сценарий в двух регистрах: с другом и с начальником</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Тутео и устедео</strong><p>Когда и с кем использовать tú vs. usted — грамматика и социальные правила</p></div></div>
+    <div class="obj"><div class="ico">📚</div><div><strong>30+ слов двух регистров</strong><p>От «tío» и «mola» до «estimado señor» и «le agradezco»</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Один сценарий — дважды</strong><p>Одна ситуация с другом и с начальником: почувствуй разницу вживую</p></div></div>
+    <div class="obj"><div class="ico">✍️</div><div><strong>Деловая переписка</strong><p>Написать формальное и неформальное сообщение арендодателю в Барселоне</p></div></div>
   </div>
 </div>
 
-<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: ТЕОРИЯ -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">1</div>
-    <h2>Три уровня регистра в испанском</h2>
-  </div>
-
-  <p style="margin-bottom:14px">Испанский язык, как и русский, имеет чёткую систему регистров. Ошибка в выборе регистра — хуже грамматической ошибки. Можно сказать «viene» вместо «vienen» — и тебя поймут. Но если ты обратишься к боссу как к другу — это создаст неловкость.</p>
-
-  <div class="callout info">
-    <h4>🏗️ Три уровня регистра</h4>
-    <ul>
-      <li><strong>Formal / Culto:</strong> деловая переписка, официальные встречи, незнакомые взрослые → usted, vocabulario culto</li>
-      <li><strong>Estándar / Neutro:</strong> новости, образование, общие разговоры с коллегами → mezcla, tú или usted в зависимости от контекста</li>
-      <li><strong>Coloquial / Informal:</strong> друзья, семья, молодёжь → tú, slang, contracciones</li>
-    </ul>
-  </div>
-
-  <div class="callout tip">
-    <h4>💡 Tuteo vs. Ustedeo</h4>
-    <p><strong>Tuteo</strong> = использование «tú» — неформальное, дружеское, для ровесников и близких. <strong>Ustedeo</strong> = использование «usted» — формальное, уважительное. В современной Испании tuteo распространяется: молодёжные компании, стартапы, некоторые магазины — все говорят «tú». Но в банке, у врача, в официальном контексте — usted. Правило: <em>лучше начать с usted и перейти на tú, если предложат, чем наоборот.</em></p>
-  </div>
-
-  <div class="callout warning">
-    <h4>⚠️ Ошибка иностранцев</h4>
-    <p>Многие студенты выучивают только «tú» и используют его везде — потому что так учат в учебниках. Но если ты придёшь в испанское учреждение и скажешь <em>«Oye, ¿puedes ayudarme?»</em> вместо <em>«¿Podría ayudarme, por favor?»</em> — это прозвучит грубо.</p>
-  </div>
-</div>
-
-<!-- SECTION 2: СЛОВАРЬ РЕГИСТРОВ -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">2</div>
-    <h2>Слова двух регистров — параллельный словарь</h2>
-  </div>
-
-  <table class="compare-table">
-    <tr><th>Формальный (usted)</th><th>Неформальный (tú)</th><th>Русский</th></tr>
-    <tr><td class="formal">¿Podría usted...?</td><td class="informal">¿Puedes...?</td><td>Не могли бы вы... / Можешь...?</td></tr>
-    <tr><td class="formal">Le agradezco su tiempo</td><td class="informal">Gracias, tío</td><td>Благодарю за время / Спасибо, чувак</td></tr>
-    <tr><td class="formal">Disculpe la molestia</td><td class="informal">Perdona, oye</td><td>Прошу прощения / Слушай, прости</td></tr>
-    <tr><td class="formal">Quisiera solicitar...</td><td class="informal">Quiero pedir...</td><td>Я хотел бы попросить... / Хочу попросить...</td></tr>
-    <tr><td class="formal">¿Sería tan amable de...?</td><td class="informal">¿Me haces el favor de...?</td><td>Будьте так любезны... / Сделай одолжение...</td></tr>
-    <tr><td class="formal">Le comunico que...</td><td class="informal">Te cuento que...</td><td>Сообщаю вам, что... / Рассказываю тебе...</td></tr>
-    <tr><td class="formal">En espera de su respuesta</td><td class="informal">Espero tu respuesta</td><td>В ожидании вашего ответа / Жду ответа</td></tr>
-    <tr><td class="formal">Muy señor mío / Estimado señor</td><td class="informal">Hola / Ey / Buenas</td><td>Уважаемый... / Привет / Эй / Добрый день</td></tr>
-    <tr><td class="formal">Me complace informarle...</td><td class="informal">Te digo que...</td><td>С удовольствием сообщаю вам... / Говорю тебе...</td></tr>
-    <tr><td class="formal">Atentamente / Un cordial saludo</td><td class="informal">Un abrazo / Saludos</td><td>С уважением / Обнимашки / Привет</td></tr>
-  </table>
-
-  <div class="callout tip">
-    <h4>💡 «Tío» — слово-индикатор регистра</h4>
-    <p><em>Tío / tía</em> — буквально «дядя/тётя», но в разговорном испанском это просто «чувак/девчонка» или просто обращение типа «слушай». <em>«¡Tío, qué guay!»</em> = «Чувак, как круто!» — абсолютно неформально. В деловом контексте — никогда.</p>
-  </div>
-</div>
-
-<!-- SECTION 3: АУТЕНТИЧНЫЙ ТЕКСТ — ПИСЬМА -->
+<!-- SECTION 3: РАЗМИНКА — дискурсивные маркеры L101 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Один сценарий — два письма</h2>
-  </div>
-
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Тема: нужно попросить об отсрочке. Сравни два письма: формальное (боссу) и неформальное (коллеге).</p>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      📧 Formal — Email начальнику
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-formal')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div>
-        <div class="dlg-es" style="line-height:1.9">
-          Estimado señor García:<br><br>
-          Me dirijo a usted para informarle de que, debido a circunstancias imprevistas, me sería imposible entregar el informe en la fecha acordada. Le agradecería la posibilidad de ampliar el plazo hasta el próximo viernes.<br><br>
-          Lamento los inconvenientes que esto pueda causarle y me comprometo a entregar un trabajo de la máxima calidad.<br><br>
-          Quedando a su disposición para cualquier consulta, le saluda atentamente,<br>
-          [Nombre]
-        </div>
-        <div class="dlg-ru" id="tr-formal" style="display:none;margin-top:10px;font-size:.84rem">
-          Уважаемый господин Гарсиа:<br><br>
-          Обращаюсь к вам, чтобы сообщить, что в связи с непредвиденными обстоятельствами мне было бы невозможно сдать отчёт в согласованный срок. Буду признателен возможности продлить срок до следующей пятницы.<br><br>
-          Сожалею о неудобствах, которые это может вам причинить, и обязуюсь сдать работу максимального качества.<br><br>
-          Оставаясь в вашем распоряжении для любых вопросов, с уважением,
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Informal — WhatsApp коллеге
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-informal')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div>
-        <div class="dlg-es" style="line-height:1.9">
-          Ey, Carlos! Oye, me ha surgido un imprevisto y no voy a poder tener el informe listo para mañana. ¿Puedes cubrirme con el jefe y decirle que lo tengo el viernes? Te lo juro que estará perfecto. ¡Eres un crack! 🙌
-        </div>
-        <div class="dlg-ru" id="tr-informal" style="display:none;margin-top:10px;font-size:.84rem">
-          Эй, Карлос! Слушай, у меня внезапно что-то возникло, и я не успею подготовить отчёт к завтрашнему дню. Можешь прикрыть меня перед боссом и сказать, что будет в пятницу? Клянусь, будет отлично. Ты крутой! 🙌
-        </div>
-      </div>
-    </div>
+    <h2>Разминка — повторение L101: дискурсивные маркеры</h2>
   </div>
 
   <div class="callout info">
-    <h4>🔍 Что изменилось?</h4>
-    <ul>
-      <li>Usted → tú (всё спряжение меняется)</li>
-      <li>Estimado señor → Ey / Oye</li>
-      <li>me sería imposible → no voy a poder</li>
-      <li>Le agradecería → ¿Puedes...?</li>
-      <li>Atentamente → ¡Eres un crack!</li>
-      <li>Эмодзи в формальном письме — никогда!</li>
-    </ul>
+    <h4>Напоминание из L101</h4>
+    <p>На прошлом уроке мы разобрали маркеры связности речи: <em>sin embargo, por lo tanto, además, es decir, en primer lugar, en conclusión</em>. Используй их — в том числе в формальных текстах!</p>
+  </div>
+
+  <div class="quiz" id="quiz-warmup">
+    <h3>Быстрое повторение — 4 вопроса</h3>
+
+    <div class="quiz-q" id="wq1">
+      <div class="q-text">1. Что означает маркер <strong>«sin embargo»</strong>?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'wq1','a')">Тем не менее / однако</div>
+        <div class="opt" onclick="answerQuiz(this,'wq1','b')">Кроме того</div>
+        <div class="opt" onclick="answerQuiz(this,'wq1','c')">В заключение</div>
+      </div>
+      <div class="feedback" id="fb-wq1"></div>
+    </div>
+
+    <div class="quiz-q" id="wq2">
+      <div class="q-text">2. Какой маркер вводит <strong>следствие или вывод</strong> из предыдущей мысли?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'wq2','a')">Por lo tanto</div>
+        <div class="opt" onclick="answerQuiz(this,'wq2','b')">Sin embargo</div>
+        <div class="opt" onclick="answerQuiz(this,'wq2','c')">En primer lugar</div>
+      </div>
+      <div class="feedback" id="fb-wq2"></div>
+    </div>
+
+    <div class="quiz-q" id="wq3">
+      <div class="q-text">3. Ты хочешь добавить ещё один аргумент. Используй:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'wq3','a')">Además</div>
+        <div class="opt" onclick="answerQuiz(this,'wq3','b')">Es decir</div>
+        <div class="opt" onclick="answerQuiz(this,'wq3','c')">Por ejemplo</div>
+      </div>
+      <div class="feedback" id="fb-wq3"></div>
+    </div>
+
+    <div class="quiz-q" id="wq4">
+      <div class="q-text">4. «El proyecto es innovador; <strong>___</strong>, requiere más tiempo.» Выбери подходящий маркер:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'wq4','a')">sin embargo</div>
+        <div class="opt" onclick="answerQuiz(this,'wq4','b')">por lo tanto</div>
+        <div class="opt" onclick="answerQuiz(this,'wq4','c')">en primer lugar</div>
+      </div>
+      <div class="feedback" id="fb-wq4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 4: ТЕСТ 1 -->
+<!-- SECTION 4: ТЕОРИЯ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Тест 1 — Формальный или неформальный?</h2>
+    <h2>Теория — Регистры испанского языка</h2>
+  </div>
+
+  <p style="margin-bottom:14px;font-size:.92rem">В испанском языке регистр — не просто стиль. Это грамматическая система: меняется форма глаголов, местоимения, лексика, структура предложений. Ошибка в регистре заметнее, чем ошибка в спряжении.</p>
+
+  <div class="callout info">
+    <h4>Правило выбора регистра</h4>
+    <p>Начинай с <strong>usted</strong> при незнакомых взрослых, официальных ситуациях и деловом контексте. Переходи на <strong>tú</strong>, только если собеседник сам предложит: <em>«Puedes tutearme»</em> или <em>«Háblame de tú»</em>. Никогда не делай наоборот.</p>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:700;margin:18px 0 10px">1. Тутео (tú) vs. Устедео (usted) — грамматика</h3>
+  <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">Та же фраза — разное спряжение и разный уровень вежливости:</p>
+
+  <div class="register-compare">
+    <div class="reg-col formal">
+      <h4>Formal — usted (3 л. ед.ч.)</h4>
+      <div class="reg-item">¿<em>Podría</em> usted ayudarme?</div>
+      <div class="reg-item">¿<em>Tiene</em> usted un momento?</div>
+      <div class="reg-item">¿<em>Ha visto</em> usted este documento?</div>
+      <div class="reg-item">¿<em>Sabe</em> usted dónde está la sala?</div>
+      <div class="reg-item">Le <em>agradezco</em> su tiempo.</div>
+      <div class="reg-item"><em>Disculpe</em> la molestia.</div>
+      <div class="reg-item">¿<em>Quisiera</em> usted añadir algo?</div>
+    </div>
+    <div class="reg-col informal">
+      <h4>Informal — tú (2 л. ед.ч.)</h4>
+      <div class="reg-item">¿<em>Puedes</em> ayudarme?</div>
+      <div class="reg-item">¿<em>Tienes</em> un momento?</div>
+      <div class="reg-item">¿<em>Has visto</em> este documento?</div>
+      <div class="reg-item">¿<em>Sabes</em> dónde está la sala?</div>
+      <div class="reg-item"><em>Gracias por</em> tu tiempo.</div>
+      <div class="reg-item"><em>Perdona</em>, oye.</div>
+      <div class="reg-item">¿<em>Quieres</em> añadir algo?</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:700;margin:18px 0 10px">2. Неформальный словарь (испанский разговорный)</h3>
+  <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">Слова, которые нельзя использовать в деловом контексте, но которые вы услышите в Испании каждый день:</p>
+
+  <div class="callout tip">
+    <h4>Испанский сленг — примеры в контексте</h4>
+    <ul>
+      <li><strong>Tío / tía</strong> — обращение «чувак / девчонка»: <em>«¡Tío, no me lo puedo creer!»</em> — Чувак, не могу поверить!</li>
+      <li><strong>Mola / mola mogollón</strong> — «круто / очень круто»: <em>«Este sitio mola un montón.»</em> — Это место очень клёвое.</li>
+      <li><strong>Guay</strong> — «классно, здорово»: <em>«¡Qué guay que vengas!»</em> — Как здорово, что ты придёшь!</li>
+      <li><strong>Flipar</strong> — «офигеть, быть потрясённым»: <em>«Flipé cuando vi los precios.»</em> — Я офигел, когда увидел цены.</li>
+      <li><strong>Chungo</strong> — «сложный, подозрительный, отстойный»: <em>«Esta situación está muy chunga.»</em> — Ситуация очень неприятная.</li>
+      <li><strong>Colega</strong> — «приятель, друг»: <em>«¿Qué pasa, colega?»</em> — Что происходит, дружище?</li>
+    </ul>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:700;margin:18px 0 10px">3. Формальный словарь — письма и официальные ситуации</h3>
+  <p style="font-size:.88rem;color:var(--muted);margin-bottom:10px">Формулы, которые испанцы ожидают в официальной переписке:</p>
+
+  <div class="callout info">
+    <h4>Формальные клише — примеры в контексте</h4>
+    <ul>
+      <li><strong>Estimado/a señor/señora + apellido</strong> — <em>«Estimada señora Martínez:»</em> — Уважаемая госпожа Мартинес:</li>
+      <li><strong>Me dirijo a usted para...</strong> — <em>«Me dirijo a usted para informarle de un problema técnico.»</em> — Обращаюсь к вам, чтобы сообщить о технической проблеме.</li>
+      <li><strong>Le agradezco su atención</strong> — <em>«Le agradezco su atención y su rápida respuesta.»</em> — Благодарю за внимание и быстрый ответ.</li>
+      <li><strong>En espera de su respuesta</strong> — финальная фраза перед подписью в деловом письме.</li>
+      <li><strong>Quedo a su disposición</strong> — <em>«Quedo a su disposición para cualquier consulta.»</em> — Остаюсь в вашем распоряжении для любых вопросов.</li>
+      <li><strong>Atentamente / Un cordial saludo</strong> — подпись делового письма, эквивалент «С уважением».</li>
+    </ul>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:700;margin:18px 0 10px">4. Регистр в письме: WhatsApp vs. формальный email</h3>
+
+  <div class="register-compare">
+    <div class="reg-col formal">
+      <h4>Email арендодателю-компании</h4>
+      <div class="reg-item" style="padding:6px 0;line-height:1.6;font-size:.82rem">Estimados señores:<br>Me dirijo a ustedes para comunicarles que el calefactor de mi piso no funciona desde el pasado lunes. Les ruego que envíen a un técnico con la mayor brevedad posible.<br>Atentamente,<br>Dmitri Ivanov</div>
+    </div>
+    <div class="reg-col informal">
+      <h4>WhatsApp другу-арендодателю</h4>
+      <div class="reg-item" style="padding:6px 0;line-height:1.6;font-size:.82rem">Ey, Jordi! Oye, la calefacción no funciona desde el lunes 😅 ¿Cuándo puedes mandar a alguien? Gracias tío!</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:700;margin:18px 0 10px">5. Профессиональные контексты — когда что использовать</h3>
+  <div class="callout warning">
+    <h4>Никогда не используй «tú» в этих ситуациях (если не предложили)</h4>
+    <ul>
+      <li>Собеседование на работу — всегда usted с рекрутером</li>
+      <li>Встреча с арендодателем (dueno del piso) — начинай с usted</li>
+      <li>Банк, нотариус, государственные органы — только usted</li>
+      <li>Деловые переговоры при первой встрече — usted обязательно</li>
+      <li>Официальные документы — форма usted/ustedes всегда</li>
+    </ul>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:700;margin:18px 0 10px">Типичные ошибки иностранцев</h3>
+  <table class="mistakes">
+    <tr><th>Неверно</th><th>Верно</th><th>Ситуация</th></tr>
+    <tr><td class="wrong-ex">Oye, ¿puedes ayudarme?</td><td class="right-ex">Disculpe, ¿podría ayudarme?</td><td>К сотруднику банка</td></tr>
+    <tr><td class="wrong-ex">Hola, quiero saber...</td><td class="right-ex">Buenos días, quisiera informarme sobre...</td><td>Звонок в официальное учреждение</td></tr>
+    <tr><td class="wrong-ex">Estimado tío García</td><td class="right-ex">Estimado señor García</td><td>Начало делового письма</td></tr>
+    <tr><td class="wrong-ex">¿Puedes usted decirme?</td><td class="right-ex">¿Podría usted decirme?</td><td>Смешение регистров (tú+usted)</td></tr>
+    <tr><td class="wrong-ex">Un abrazo [в деловом email]</td><td class="right-ex">Atentamente / Un cordial saludo</td><td>Подпись делового письма</td></tr>
+    <tr><td class="wrong-ex">¡Guay! Nos vemos. [боссу]</td><td class="right-ex">Perfecto. Hasta el próximo martes.</td><td>Конец встречи с руководством</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 5: СЛОВАРЬ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Словарь двух регистров — 20 слов и выражений</h2>
+  </div>
+
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:14px">Нажми 🔊 чтобы услышать произношение. Заметь: одно и то же слово в другом регистре — совсем другое впечатление.</p>
+
+  <h4 style="font-size:.88rem;font-weight:700;color:var(--green);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em">Неформальный регистр</h4>
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <div><div class="vocab-es">tío / tía</div><div class="vocab-ru">чувак / девчонка (обращение)</div><div class="vocab-pron">только в Испании</div></div>
+      <button class="speak-btn" onclick="speak('tío')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">mola</div><div class="vocab-ru">круто, клёво (это нравится)</div><div class="vocab-pron">molar = нравиться</div></div>
+      <button class="speak-btn" onclick="speak('mola')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">guay</div><div class="vocab-ru">классно, отлично</div><div class="vocab-pron">разговорное прилагательное</div></div>
+      <button class="speak-btn" onclick="speak('guay')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">flipar</div><div class="vocab-ru">офигеть, удивиться</div><div class="vocab-pron">flipé = я офигел</div></div>
+      <button class="speak-btn" onclick="speak('flipar')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">mogollón</div><div class="vocab-ru">очень много; масса</div><div class="vocab-pron">mogollón de gente = толпа</div></div>
+      <button class="speak-btn" onclick="speak('mogollón')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">chungo / chunga</div><div class="vocab-ru">отстойный, сложный, подозрительный</div><div class="vocab-pron">está muy chungo = всё плохо</div></div>
+      <button class="speak-btn" onclick="speak('chungo')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">colega</div><div class="vocab-ru">приятель, друг</div><div class="vocab-pron">= amigo, informal</div></div>
+      <button class="speak-btn" onclick="speak('colega')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">¿qué pasa? / ¿qué tal?</div><div class="vocab-ru">что нового? / как дела?</div><div class="vocab-pron">приветствие-вопрос</div></div>
+      <button class="speak-btn" onclick="speak('¿qué pasa?')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">pasta</div><div class="vocab-ru">деньги (сленг)</div><div class="vocab-pron">sin pasta = без денег</div></div>
+      <button class="speak-btn" onclick="speak('pasta')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">crack / eres un crack</div><div class="vocab-ru">ты молодец / ты профи</div><div class="vocab-pron">compl. неформальный</div></div>
+      <button class="speak-btn" onclick="speak('eres un crack')">🔊</button>
+    </div>
+  </div>
+
+  <h4 style="font-size:.88rem;font-weight:700;color:var(--blue);margin:18px 0 10px;text-transform:uppercase;letter-spacing:.06em">Формальный регистр</h4>
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <div><div class="vocab-es">estimado/a señor/señora</div><div class="vocab-ru">уважаемый/ая господин/госпожа</div><div class="vocab-pron">начало письма</div></div>
+      <button class="speak-btn" onclick="speak('estimado señor')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">me dirijo a usted</div><div class="vocab-ru">обращаюсь к вам</div><div class="vocab-pron">начало официального письма</div></div>
+      <button class="speak-btn" onclick="speak('me dirijo a usted')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">le agradezco</div><div class="vocab-ru">благодарю вас</div><div class="vocab-pron">le = usted (объектное)</div></div>
+      <button class="speak-btn" onclick="speak('le agradezco')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">en espera de su respuesta</div><div class="vocab-ru">в ожидании вашего ответа</div><div class="vocab-pron">перед подписью</div></div>
+      <button class="speak-btn" onclick="speak('en espera de su respuesta')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">atentamente</div><div class="vocab-ru">с уважением (подпись)</div><div class="vocab-pron">= sincerely yours</div></div>
+      <button class="speak-btn" onclick="speak('atentamente')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">quisiera</div><div class="vocab-ru">я хотел(а) бы (вежливо)</div><div class="vocab-pron">imper. subj. de querer</div></div>
+      <button class="speak-btn" onclick="speak('quisiera')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">disculpe la molestia</div><div class="vocab-ru">прошу прощения за беспокойство</div><div class="vocab-pron">формальное извинение</div></div>
+      <button class="speak-btn" onclick="speak('disculpe la molestia')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">quedo a su disposición</div><div class="vocab-ru">остаюсь в вашем распоряжении</div><div class="vocab-pron">завершение письма</div></div>
+      <button class="speak-btn" onclick="speak('quedo a su disposición')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">le ruego que + subj.</div><div class="vocab-ru">прошу вас (формально)</div><div class="vocab-pron">Le ruego que envíe...</div></div>
+      <button class="speak-btn" onclick="speak('le ruego que envíe')">🔊</button>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">un cordial saludo</div><div class="vocab-ru">сердечный привет (в конце письма)</div><div class="vocab-pron">чуть теплее «atentamente»</div></div>
+      <button class="speak-btn" onclick="speak('un cordial saludo')">🔊</button>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Тест 1 — Выбери правильный регистр</h2>
   </div>
 
   <div class="quiz" id="quiz1">
-    <h3>🎯 Определи регистр и выбери правильный вариант</h3>
+    <h3>7 вопросов — выбери вариант, подходящий для ситуации</h3>
+    <div id="quiz-score" style="font-size:.8rem;color:var(--muted);margin-bottom:10px"></div>
 
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. Ты пишешь email в испанский банк. Как начать?</div>
+      <div class="q-text">1. Ты впервые пишешь email испанскому арендодателю (незнакомый человек). Как начать?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Estimados señores:</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Estimado señor López:</div>
         <div class="opt" onclick="answerQuiz(this,'q1','b')">Hola, buenas:</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Ey, qué tal:</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Ey tío, soy el inquilino:</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
 
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. Коллега просит объяснить задачу. В дружеской атмосфере стартапа ты скажешь:</div>
+      <div class="q-text">2. Ты на собеседовании. Рекрутер говорит: <em>«Puedes tutearme.»</em> Значит:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">¿Podría usted explicarme la tarea, por favor?</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Oye, ¿me explicas qué hay que hacer?</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Solicito información sobre la tarea asignada.</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Теперь можно использовать tú с этим человеком</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Нужно продолжать говорить usted — это вежливость</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Это значит «подожди минуту»</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
 
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. Как вежливо завершить деловое письмо по-испански?</div>
+      <div class="q-text">3. Какой вариант — <strong>самая вежливая</strong> формальная просьба?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Atentamente / Un cordial saludo</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Un abrazo fuerte</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Hasta luego, chao</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">¿Quisiera usted revisar este contrato?</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">¿Puede revisar este contrato?</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Revise el contrato.</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
 
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. «¡Tío, qué guay!» — это пример регистра:</div>
+      <div class="q-text">4. Какое слово <strong>нельзя</strong> использовать в деловом письме?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Coloquial / Informal</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Estándar</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Formal</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Tío</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Atentamente</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Estimado</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
 
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. Ты встречаешь незнакомого пожилого человека. Правильное обращение в Испании:</div>
+      <div class="q-text">5. Ты встречаешь на улице незнакомого пожилого испанца. Как спросить дорогу?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Disculpe usted / Buenos días</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Oye, tío / hola</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Ey</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Perdone, ¿podría indicarme cómo llegar a...?</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Oye, ¿sabes cómo ir a...?</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">¡Ey, tío! ¿Por dónde se va a...?</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
 
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. Формальный вариант «¿Puedes ayudarme?»:</div>
+      <div class="q-text">6. Неформальное «¿Puedes ayudarme?» → в формальном регистре:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">¿Puedes usted ayudarme?</div>
         <div class="opt" onclick="answerQuiz(this,'q6','a')">¿Podría usted ayudarme?</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">¿Vas a ayudarme?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">¿Puedes usted ayudarme?</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">¿Tiene que ayudarme usted?</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
     </div>
-  </div>
-</div>
 
-<!-- SECTION 5: ТЕСТ 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">5</div>
-    <h2>Тест 2 — Переведи в нужный регистр</h2>
-  </div>
-
-  <div class="quiz">
-    <h3>✏️ Трансформируй фразу</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. Неформальное «¿Tienes tiempo?» → Формальное: <strong>¿_____ usted tiempo?</strong></div>
-      <input type="text" class="text-input" placeholder="глагол tener, usted..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','Tiene','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ Tiene — usted + 3 лицо ед.ч. Или ещё вежливее: ¿Tendría usted un momento?</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. Формальное «Le agradezco su colaboración» → Неформальное: <strong>_____ tu ayuda.</strong></div>
-      <input type="text" class="text-input" placeholder="два слова: gracias + por..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','Gracias por','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ Gracias por — «Gracias por tu ayuda» — простая и тёплая формула</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. Неформальное «Quiero pedir un día libre» → формально (конъюнктив вежливости): <strong>_____ solicitar un día libre.</strong></div>
-      <input type="text" class="text-input" placeholder="вежливая форма querer..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','Quisiera','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ Quisiera — imperfecto de subjuntivo de querer = самый вежливый способ попросить что-то</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. Как неформально сказать «выглядит отлично»: <strong>Está _____, tío.</strong></div>
-      <input type="text" class="text-input" placeholder="разговорное слово..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','guay','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ guay — испанский сленг «круто, отлично». Только неформально!</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. Формальное завершение email: <strong>Quedo a su _____ para cualquier consulta.</strong></div>
-      <input type="text" class="text-input" placeholder="существительное..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','disposición','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ disposición — «Quedo a su disposición» = остаюсь в вашем распоряжении (стандартная формула)</div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Тебе понравился офис компании на собеседовании. Что можно сказать в конце (формально)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Ha sido un placer. Muchas gracias por su tiempo.</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">¡Qué guay vuestras oficinas, tío!</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Mola mogollón esto. Un abrazo.</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: ДИАЛОГИ -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <h2>Диалоги — тот же сценарий, два регистра</h2>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Неформально — с другом (просьба одолжить деньги)
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">А</div>
-      <div><div class="dlg-es">Oye, Marcos, ¿me puedes prestar 50 euros hasta el viernes? Me he quedado sin pasta.</div>
-      <div class="dlg-ru" id="tr-d1" style="display:none">Слушай, Маркос, можешь одолжить 50 евро до пятницы? Я остался без денег.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Б</div>
-      <div><div class="dlg-es">Claro, tío, sin problema. Te los transfiero ahora mismo. ¿Y qué te ha pasado?</div>
-      <div class="dlg-ru" id="tr-d1b" style="display:none">Конечно, чувак, без проблем. Переведу тебе прямо сейчас. И что с тобой случилось?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">А</div>
-      <div><div class="dlg-es">Nada, que el cajero no me dejó sacar hoy. Ya te lo devuelvo el viernes, te lo juro. ¡Eres un crack!</div>
-      <div class="dlg-ru" id="tr-d1c" style="display:none">Да ничего, банкомат не дал снять сегодня. Верну в пятницу, клянусь. Ты отличный!</div></div>
-    </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Формально — у кассы банка
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">А</div>
-      <div><div class="dlg-es">Buenos días. Disculpe, quisiera hacer una transferencia de 50 euros a esta cuenta. ¿Podría indicarme el procedimiento?</div>
-      <div class="dlg-ru" id="tr-d2" style="display:none">Доброе утро. Прошу прощения, я хотел бы сделать перевод 50 евро на этот счёт. Не могли бы вы указать мне процедуру?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Б</div>
-      <div><div class="dlg-es">Por supuesto. Si tiene usted la tarjeta, puede realizarlo directamente desde el cajero automático. En caso contrario, le atenderemos en ventanilla.</div>
-      <div class="dlg-ru" id="tr-d2b" style="display:none">Разумеется. Если у вас есть карта, вы можете сделать это прямо через банкомат. В противном случае, мы обслужим вас у окошка.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">А</div>
-      <div><div class="dlg-es">Muchas gracias por su atención. Procederé desde el cajero entonces.</div>
-      <div class="dlg-ru" id="tr-d2c" style="display:none">Большое спасибо за ваше внимание. Тогда воспользуюсь банкоматом.</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 7: ГОВОРЕНИЕ -->
+<!-- SECTION 7: QUIZ 2 — FILL IN THE BLANK -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Говорение — переключение регистров</h2>
+    <h2>Тест 2 — Трансформируй между регистрами</h2>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание — Один сценарий, два варианта</div>
-    <p>Ситуация: ты хочешь взять выходной день. Произнеси вслух дважды: один раз как будто просишь друга прикрыть тебя, второй — как будто пишешь официальную просьбу боссу.</p>
-    <div class="es">
-      Неформально: «Oye, María, necesito un día libre la semana que viene...»<br>
-      Формально: «Quisiera solicitar un día de permiso para la semana próxima...»
+  <div class="quiz">
+    <h3>Заполни пропуск, переводя фразу в нужный регистр</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">1. Неформально: «¿Tienes tiempo?» → Формально: «¿_____ usted tiempo?» <em>(форма usted)</em></div>
+      <input type="text" class="text-input" id="ti1" placeholder="глагол иметь, форма usted...">
+      <br><button class="check-btn" onclick="checkText('ti1','Tiene','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">Tiene — usted спрягается как 3-е лицо ед.ч. Или ещё вежливее: ¿Tendría usted un momento?</div>
     </div>
-    <div class="hint">Заметь разницу: «necesito» vs. «quisiera solicitar». Тон, скорость речи, интонация — всё разное.</div>
-  </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Продвинутый уровень — Ролевая игра</div>
-    <p>Сыграй две роли подряд: сначала ты — сотрудник в банке (формально), потом ты — тот же человек звонит другу после банка (неформально, рассказывает что произошло). Одна история — два регистра.</p>
-    <div class="es">Банк: «Buenos días, quisiera... / Me gustaría informarme sobre...»<br>Другу: «Oye, estaba en el banco y resulta que...»</div>
-    <div class="hint">Умение переключать регистры моментально — признак настоящего владения языком.</div>
+    <div class="text-ex">
+      <div class="tex-q">2. Формально: «Le agradezco su colaboración» → Неформально: «_____ por tu ayuda.» <em>(два слова)</em></div>
+      <input type="text" class="text-input" id="ti2" placeholder="Gracias...">
+      <br><button class="check-btn" onclick="checkText('ti2','Gracias por','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">Gracias por — «Gracias por tu ayuda» — просто и тепло. Или: «Te agradezco tu ayuda» (полуформально).</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">3. Неформально: «Quiero pedir un día libre» → Формально: «_____ solicitar un día de permiso.» <em>(вежливый конъюнктив)</em></div>
+      <input type="text" class="text-input" id="ti3" placeholder="вежливая форма «хотеть»...">
+      <br><button class="check-btn" onclick="checkText('ti3','Quisiera','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">Quisiera — imperfecto de subjuntivo de «querer». Самая вежливая форма просьбы на испанском.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">4. Формальное завершение письма: «Quedo a su _____ para cualquier consulta.»</div>
+      <input type="text" class="text-input" id="ti4" placeholder="существительное — «распоряжение»...">
+      <br><button class="check-btn" onclick="checkText('ti4','disposición','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">disposición — «Quedo a su disposición» = стандартная формула в испанских деловых письмах.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. Неформально: «Este piso está muy bien» → Сленг: «Este piso _____ un montón.» <em>(один глагол)</em></div>
+      <input type="text" class="text-input" id="ti5" placeholder="глагол-сленг «нравиться/круто»...">
+      <br><button class="check-btn" onclick="checkText('ti5','mola','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">mola — «Este piso mola un montón» = «Эта квартира очень классная». Только неформально!</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">6. Начало формального письма в компанию: «_____ señores, me dirijo a ustedes para...»</div>
+      <input type="text" class="text-input" id="ti6" placeholder="прилагательное-обращение...">
+      <br><button class="check-btn" onclick="checkText('ti6','Estimados','fb-te6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
+      <div class="feedback" id="fb-te6"></div>
+      <div class="answer-reveal" id="ans-te6">Estimados — «Estimados señores:» — стандартное начало письма в организацию, когда не знаешь имя конкретного адресата.</div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 8: КУЛЬТУРА -->
+<!-- SECTION 8: ДИАЛОГИ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Культурная заметка</h2>
+    <h2>Диалоги — три сценария</h2>
   </div>
 
-  <div class="culture">
-    <div class="ctag">🌍 Tuteo в современной Испании</div>
-    <h4>Почему Испания стала страной «tú»?</h4>
-    <p>После диктатуры Франко (закончилась в 1975 году) испанское общество активно демократизировалось. Одним из символов этой демократизации стало распространение tuteo — использования «tú» там, где раньше был только «usted». Сегодня в Испании учитель и ученик могут говорить на «ты», тогда как в Латинской Америке это ещё редкость. Крупные испанские бренды (IKEA, Zara, El Corte Inglés) давно перешли на «tú» в рекламе. Это создаёт ощущение близости с покупателем. Но не обманывайся — в официальных документах, с пожилыми людьми и в формальных ситуациях «usted» по-прежнему норма.</p>
+  <!-- Диалог 1 — Неформальный -->
+  <div class="dialogue" id="dlg1">
+    <div class="dlg-header">
+      <span>Диалог 1 — Неформальный: Пабло и Марта, планируют выходные в Барселоне</span>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="dlg-toggle" onclick="toggleAll('translation')">Все переводы</button>
+        <button class="dlg-toggle" onclick="playDialogue1()">▶ Воспроизвести</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">¡Tío, qué pasa! ¿Tienes planes para el sábado? <button class="speak-btn" onclick="speak('¡Tío, qué pasa! ¿Tienes planes para el sábado?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Эй, чувак, что нового! У тебя есть планы на субботу?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div>
+        <div class="dlg-es">Nada especial, ¿por qué? ¿Tienes algo en mente? <button class="speak-btn" onclick="speak('Nada especial, ¿por qué? ¿Tienes algo en mente?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Ничего особенного, почему? У тебя что-то есть на уме?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">¡Sí! He visto que hay un festival de música en la playa de la Barceloneta. Mola mogollón. <button class="speak-btn" onclick="speak('¡Sí! He visto que hay un festival de música en la playa de la Barceloneta. Mola mogollón.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Да! Я видел, что на пляже Барселонета будет музыкальный фестиваль. Очень клёво звучит.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div>
+        <div class="dlg-es">¡Guay! ¿Y empieza a qué hora? Porque el sábado me levanto tarde, ya sabes... <button class="speak-btn" onclick="speak('¡Guay! ¿Y empieza a qué hora? Porque el sábado me levanto tarde, ya sabes...')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Классно! И во сколько начинается? Потому что в субботу я встаю поздно, ты же знаешь...</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">No te preocupes, tía. Empieza a las cuatro de la tarde. Tiempo de sobra. <button class="speak-btn" onclick="speak('No te preocupes, tía. Empieza a las cuatro de la tarde. Tiempo de sobra.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Не переживай, подруга. Начинается в четыре вечера. Времени более чем достаточно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div>
+        <div class="dlg-es">Perfecto. ¿Y quién viene? ¿Solo nosotros o llamamos a los colegas? <button class="speak-btn" onclick="speak('Perfecto. ¿Y quién viene? ¿Solo nosotros o llamamos a los colegas?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Отлично. И кто идёт? Только мы или позовём ребят?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">Llama a Sergio y a Clara. Cuantos más, mejor. ¡Va a flipar! <button class="speak-btn" onclick="speak('Llama a Sergio y a Clara. Cuantos más, mejor. ¡Va a flipar!')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Позови Серхио и Клару. Чем больше, тем веселее. Будет круто!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div>
+        <div class="dlg-es">Guay. Oye, ¿y hay que comprar entradas o es gratis? <button class="speak-btn" onclick="speak('Guay. Oye, ¿y hay que comprar entradas o es gratis?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Класс. Слушай, и нужно покупать билеты или это бесплатно?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">Gratis total. La entrada es libre. ¡Eres un crack por venirte! <button class="speak-btn" onclick="speak('Gratis total. La entrada es libre. ¡Eres un crack por venirte!')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Абсолютно бесплатно. Вход свободный. Ты молодец, что идёшь!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марта</div>
+      <div>
+        <div class="dlg-es">¡Genial! Entonces quedamos a las tres y media en el metro de Barceloneta. ¡Nos vemos! <button class="speak-btn" onclick="speak('¡Genial! Entonces quedamos a las tres y media en el metro de Barceloneta. ¡Nos vemos!')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">Отлично! Тогда встречаемся в полчетвёртого у метро Барселонета. Увидимся!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Диалог 2 — Формальный -->
+  <div class="dialogue" id="dlg2">
+    <div class="dlg-header">
+      <span>Диалог 2 — Формальный: Пабло (соискатель) и сеньор Гарсиа (HR-директор)</span>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="dlg-toggle" onclick="toggleAll2('translation2')">Все переводы</button>
+        <button class="dlg-toggle" onclick="playDialogue2()">▶ Воспроизвести</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">Buenos días, señor García. Soy Pablo Ruiz. Tengo una entrevista concertada para las diez. <button class="speak-btn" onclick="speak('Buenos días, señor García. Soy Pablo Ruiz. Tengo una entrevista concertada para las diez.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">Доброе утро, сеньор Гарсиа. Я Пабло Руис. У меня назначено интервью на десять часов.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Sr. García</div>
+      <div>
+        <div class="dlg-es">Buenos días, señor Ruiz. Pase usted, por favor. Tome asiento. <button class="speak-btn" onclick="speak('Buenos días, señor Ruiz. Pase usted, por favor. Tome asiento.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">Доброе утро, сеньор Руис. Проходите, пожалуйста. Присаживайтесь.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">Muchas gracias. Le agradezco que me haya recibido. <button class="speak-btn" onclick="speak('Muchas gracias. Le agradezco que me haya recibido.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">Большое спасибо. Я признателен вам за то, что вы меня приняли.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Sr. García</div>
+      <div>
+        <div class="dlg-es">Con mucho gusto. ¿Podría usted presentarse brevemente y explicar por qué le interesa este puesto? <button class="speak-btn" onclick="speak('Con mucho gusto. ¿Podría usted presentarse brevemente y explicar por qué le interesa este puesto?')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">С большим удовольствием. Не могли бы вы кратко представиться и объяснить, почему вас интересует эта должность?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">Por supuesto. Soy diseñador gráfico con cinco años de experiencia. Me interesa incorporarme a su empresa porque valoro mucho su enfoque innovador. <button class="speak-btn" onclick="speak('Por supuesto. Soy diseñador gráfico con cinco años de experiencia. Me interesa incorporarme a su empresa porque valoro mucho su enfoque innovador.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">Конечно. Я графический дизайнер с пятилетним опытом. Меня интересует присоединиться к вашей компании, потому что я очень ценю ваш инновационный подход.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Sr. García</div>
+      <div>
+        <div class="dlg-es">Interesante. ¿Podría usted indicarme cuál ha sido su mayor logro profesional hasta la fecha? <button class="speak-btn" onclick="speak('Interesante. ¿Podría usted indicarme cuál ha sido su mayor logro profesional hasta la fecha?')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">Интересно. Не могли бы вы указать мне, каким было ваше наибольшее профессиональное достижение на сегодняшний день?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">Sin duda, la campaña que dirigí el año pasado para una empresa de moda. Los resultados superaron las expectativas en un cuarenta por ciento. <button class="speak-btn" onclick="speak('Sin duda, la campaña que dirigí el año pasado para una empresa de moda. Los resultados superaron las expectativas en un cuarenta por ciento.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">Несомненно, кампания, которой я руководил в прошлом году для модной компании. Результаты превысили ожидания на сорок процентов.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Sr. García</div>
+      <div>
+        <div class="dlg-es">Muy bien. ¿Tiene usted alguna pregunta sobre el puesto o las condiciones laborales? <button class="speak-btn" onclick="speak('Muy bien. ¿Tiene usted alguna pregunta sobre el puesto o las condiciones laborales?')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">Очень хорошо. У вас есть какие-либо вопросы о должности или условиях труда?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Пабло</div>
+      <div>
+        <div class="dlg-es">Sí, quisiera preguntarle si existe la posibilidad de trabajo en remoto algunos días a la semana. <button class="speak-btn" onclick="speak('Sí, quisiera preguntarle si existe la posibilidad de trabajo en remoto algunos días a la semana.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">Да, я хотел бы спросить вас, существует ли возможность удалённой работы несколько дней в неделю.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Sr. García</div>
+      <div>
+        <div class="dlg-es">Es posible. Lo hablaremos con mayor detalle si usted avanza en el proceso. Ha sido un placer, señor Ruiz. <button class="speak-btn" onclick="speak('Es posible. Lo hablaremos con mayor detalle si usted avanza en el proceso. Ha sido un placer, señor Ruiz.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">Возможно. Мы обсудим это подробнее, если вы продвинетесь в процессе. Было приятно, сеньор Руис.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Диалог 3 — Смешанный -->
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>Диалог 3 — Смешанный: Арендатор и хозяин квартиры (начинают формально, теплеет)</span>
+      <button class="dlg-toggle" onclick="document.querySelectorAll('.translation3').forEach(e=>e.style.display=e.style.display==='none'?'block':'none')">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ты</div>
+      <div>
+        <div class="dlg-es">Buenos días, señor Puig. Le llamo porque hay un problema con la calefacción desde el lunes. <button class="speak-btn" onclick="speak('Buenos días, señor Puig. Le llamo porque hay un problema con la calefacción desde el lunes.')">🔊</button></div>
+        <div class="dlg-ru translation3" style="display:none">Доброе утро, сеньор Пуч. Звоню вам, потому что с понедельника проблема с отоплением.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пуч</div>
+      <div>
+        <div class="dlg-es">Ah, ¿sí? Vaya, lo siento. ¿Y qué ocurre exactamente? ¿No calienta nada? <button class="speak-btn" onclick="speak('Ah, ¿sí? Vaya, lo siento. ¿Y qué ocurre exactamente? ¿No calienta nada?')">🔊</button></div>
+        <div class="dlg-ru translation3" style="display:none">А, правда? Жаль, извините. И что именно происходит? Совсем не греет?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ты</div>
+      <div>
+        <div class="dlg-es">No, nada. He revisado el termostato y parece que la caldera tiene algún problema. <button class="speak-btn" onclick="speak('No, nada. He revisado el termostato y parece que la caldera tiene algún problema.')">🔊</button></div>
+        <div class="dlg-ru translation3" style="display:none">Нет, совсем. Я проверил термостат, и похоже, у котла какая-то проблема.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пуч</div>
+      <div>
+        <div class="dlg-es">Entendido. Oye, mira, te mando al técnico mañana por la mañana, ¿te va bien? <button class="speak-btn" onclick="speak('Entendido. Oye, mira, te mando al técnico mañana por la mañana, ¿te va bien?')">🔊</button></div>
+        <div class="dlg-ru translation3" style="display:none">Понял. Слушай, смотри, я пришлю тебе техника завтра утром, тебе удобно?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ты</div>
+      <div>
+        <div class="dlg-es">Sí, perfecto. ¿A qué hora? Por si tengo que organizarme. <button class="speak-btn" onclick="speak('Sí, perfecto. ¿A qué hora? Por si tengo que organizarme.')">🔊</button></div>
+        <div class="dlg-ru translation3" style="display:none">Да, отлично. В котором часу? На случай, если мне нужно будет организоваться.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пуч</div>
+      <div>
+        <div class="dlg-es">Entre las diez y las doce, más o menos. Te llamo cuando salga. No te preocupes, tío. <button class="speak-btn" onclick="speak('Entre las diez y las doce, más o menos. Te llamo cuando salga. No te preocupes, tío.')">🔊</button></div>
+        <div class="dlg-ru translation3" style="display:none">Между десятью и двенадцатью, примерно. Позвоню, когда выйдет. Не беспокойся, дружище. (уже тутео!)</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ты</div>
+      <div>
+        <div class="dlg-es">Genial. Muchas gracias, señor Puig. <button class="speak-btn" onclick="speak('Genial. Muchas gracias, señor Puig.')">🔊</button></div>
+        <div class="dlg-ru translation3" style="display:none">Отлично. Большое спасибо, сеньор Пуч.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пуч</div>
+      <div>
+        <div class="dlg-es">Llámame Jordi, hombre. Llevamos dos años ya. Hasta mañana. <button class="speak-btn" onclick="speak('Llámame Jordi, hombre. Llevamos dos años ya. Hasta mañana.')">🔊</button></div>
+        <div class="dlg-ru translation3" style="display:none">Зови меня Хорди, ну что ты. Уже два года как. До завтра.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Ты</div>
+      <div>
+        <div class="dlg-es">¡Claro! Hasta mañana, Jordi. Gracias de verdad. <button class="speak-btn" onclick="speak('¡Claro! Hasta mañana, Jordi. Gracias de verdad.')">🔊</button></div>
+        <div class="dlg-ru translation3" style="display:none">Конечно! До завтра, Хорди. Правда спасибо.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>Обрати внимание на Диалог 3</h4>
+    <p>Разговор начался формально (señor Puig, le llamo), но арендодатель сам перешёл на «tú» (te mando, te llamo, tío) и предложил называть его по имени. Это типичная испанская динамика: начинать формально, и пусть хозяин ситуации задаёт тон.</p>
   </div>
 </div>
 
-<!-- SECTION 9: ANKI + ДЗ -->
+<!-- SECTION 9: ГОВОРЕНИЕ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">9</div>
-    <h2>Anki и домашнее задание</h2>
+    <h2>Говорение — практика переключения регистров</h2>
   </div>
 
-  <!-- .wrap -->
+  <div class="speak-box">
+    <div class="speak-tag">Задание 1 — Спросить дорогу в двух регистрах</div>
+    <p>Ты не знаешь, где ближайшее метро. Произнеси вслух сначала неформально (другу), потом формально (незнакомому пожилому человеку).</p>
+    <div class="es">
+      Неформально: «Oye, ¿sabes dónde está el metro más cercano?»<br>
+      Формально: «Perdone, ¿podría indicarme dónde se encuentra la estación de metro más próxima?»
+    </div>
+    <div class="hint">Запиши себя на диктофон. Послушай — звучишь ли ты уверенно в обоих вариантах? Интонация формального регистра обычно более ровная и медленная.</div>
+  </div>
 
-<!-- DONE BAR -->
+  <div class="speak-box">
+    <div class="speak-tag">Задание 2 — Барселона: сообщение арендодателю о проблеме</div>
+    <p>Ты снимаешь квартиру в Барселоне. Интернет не работает уже два дня. Тебе нужно сообщить арендодателю. Произнеси вслух оба варианта:</p>
+    <div class="es">
+      WhatsApp молодому арендодателю-другу:<br>
+      «Ey, Jordi! Oye, el wifi lleva dos días sin funcionar. ¿Puedes llamar a la compañía? Gracias tío!»<br><br>
+      Официальный email в управляющую компанию:<br>
+      «Estimados señores: Me dirijo a ustedes para comunicarles que el servicio de internet del piso en Carrer de Mallorca 123 no funciona desde el martes. Les ruego que procedan a su reparación con la mayor brevedad posible. Atentamente, [Ваше имя]»
+    </div>
+    <div class="hint">Замечаешь разницу? Во втором варианте — полное название улицы, формальная структура, никаких эмодзи, уважительное обращение к компании (устед de ustedes = вы, мн.ч.).</div>
+  </div>
+</div>
+
+<!-- SECTION 10: SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>Испания на практике — Официальный запрос в управляющую компанию</h2>
+  </div>
+
+  <div class="spain-practice">
+    <div class="spain-tag">Барселона — Comunidad de Propietarios</div>
+    <p style="font-size:.88rem;margin-bottom:14px">Сценарий: в вашем подъезде не работает лифт. Нужно написать письменный запрос в управляющую компанию (administración de fincas). Это максимально формальный регистр — официальный документ.</p>
+
+    <div class="callout info">
+      <h4>Структура официального письма в Испании</h4>
+      <ul>
+        <li><strong>Encabezado:</strong> Estimados señores / A quien corresponda:</li>
+        <li><strong>Apertura:</strong> Me dirijo a ustedes para...</li>
+        <li><strong>Cuerpo:</strong> Describir el problema con fechas y detalles</li>
+        <li><strong>Petición:</strong> Les ruego que... / Solicito que...</li>
+        <li><strong>Cierre:</strong> En espera de su respuesta, quedo a su disposición.</li>
+        <li><strong>Firma:</strong> Atentamente, [nombre], [dirección], [fecha]</li>
+      </ul>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:14px 0 10px">6 ключевых фраз для официальной переписки</h4>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">A quien corresponda: <button class="speak-btn" onclick="speak('A quien corresponda')">🔊</button></div>
+          <div class="phrase-ru">Тому, кого это касается: (когда не знаешь имя)</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">Me dirijo a ustedes para comunicarles que... <button class="speak-btn" onclick="speak('Me dirijo a ustedes para comunicarles que')">🔊</button></div>
+          <div class="phrase-ru">Обращаюсь к вам, чтобы сообщить, что...</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">Les ruego que procedan a la reparación con la mayor brevedad posible. <button class="speak-btn" onclick="speak('Les ruego que procedan a la reparación con la mayor brevedad posible.')">🔊</button></div>
+          <div class="phrase-ru">Прошу вас произвести ремонт как можно скорее.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">Adjunto documentación fotográfica del problema. <button class="speak-btn" onclick="speak('Adjunto documentación fotográfica del problema.')">🔊</button></div>
+          <div class="phrase-ru">Прилагаю фотодокументацию проблемы.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">En espera de su pronta respuesta, quedo a su disposición. <button class="speak-btn" onclick="speak('En espera de su pronta respuesta, quedo a su disposición.')">🔊</button></div>
+          <div class="phrase-ru">В ожидании скорого ответа, остаюсь в вашем распоряжении.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">Atentamente, [nombre completo], piso [número], fecha: [fecha] <button class="speak-btn" onclick="speak('Atentamente')">🔊</button></div>
+          <div class="phrase-ru">С уважением, [полное имя], квартира [номер], дата: [дата]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="culture-tip">
+      В Испании официальные письма часто требуют указывать <strong>número de DNI / NIE</strong> (документ удостоверения личности), <strong>dirección completa</strong> (полный адрес) и <strong>número de contrato</strong> (номер договора). Всё это — обязательная часть официального запроса арендатора.
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 11: КУЛЬТУРА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Культурная заметка — Tú и usted в современной Испании</h2>
+  </div>
+
+  <div class="culture">
+    <div class="ctag">Культурный контекст</div>
+    <h4>Как Испания стала страной «tú»</h4>
+    <p>За последние 50 лет Испания пережила серьёзный сдвиг в сторону tuteo. После окончания диктатуры Франко в 1975 году общество активно демократизировалось, и использование «tú» стало символом равенства и открытости. Сегодня в испанском университете профессор нередко сам предлагает студентам говорить ему «tú» — в Латинской Америке такое встретишь редко. Бариста в Барселоне, скорее всего, обратится к тебе на «tú» с первой же фразы — это норма в сфере обслуживания. Но нотариус, судья или чиновник из государственного органа будет использовать «usted» всегда, независимо от возраста собеседника.</p>
+    <p style="margin-top:8px">Важно: в Латинской Америке (особенно в Колумбии, Эквадоре, Боливии) «usted» используется гораздо шире, даже в семье между родителями и детьми — это знак уважения, а не дистанции. В Аргентине и Уругвае вместо «tú» используется «vos» с другим спряжением: <em>vos tenés, vos podés</em>. В Испании «vos» не используется совсем.</p>
+  </div>
+
+  <div class="culture-tip">
+    Практический совет для Барселоны: если продавец, официант или арендодатель использует «tú» с тобой — это не грубость, это норма. Если ты хочешь проявить уважение к пожилому человеку или в официальном контексте — начинай с «usted». Испанцы это оценят.
+  </div>
+</div>
+
+<!-- SECTION 12: ANKI -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h2>Anki-колода — L102: Регистры</h2>
+  </div>
+
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px">Нажми на карточку, чтобы перевернуть. Экспортируй всю колоду в формате TSV для Anki.</p>
+
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">tío / tía</div>
+        <div class="anki-card-back">чувак / подруга (сленг)<br><em>¡Tío, qué guay!</em><br>только неформально, Испания</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">mola mogollón</div>
+        <div class="anki-card-back">очень круто / очень нравится<br><em>Este sitio mola mogollón.</em><br>сленг, неформально</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">estimado/a señor/señora</div>
+        <div class="anki-card-back">уважаемый/ая господин/госпожа<br>начало делового письма<br>Estimada señora García:</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">quisiera + inf.</div>
+        <div class="anki-card-back">я хотел(а) бы...<br>вежливая просьба (formsl)<br><em>Quisiera solicitar...</em></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">atentamente</div>
+        <div class="anki-card-back">с уважением<br>подпись делового письма<br>= sincerely yours</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="export-btn" onclick="exportAnkiL102()">Скачать колоду Anki (18 карточек)</button>
+</div>
+
+<!-- SECTION 13: ДЗ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h2>Домашнее задание</h2>
+  </div>
+
+  <ul class="hw-list">
+    <li>
+      <div class="hw-num">1</div>
+      <div><strong>Два варианта одного email.</strong> Напиши два версии письма о проблеме с интернетом в квартире: одна — неформальная (другу-арендодателю, WhatsApp), вторая — официальная (управляющей компании, email). Используй формулы из Раздела 10.</div>
+    </li>
+    <li>
+      <div class="hw-num">2</div>
+      <div><strong>Испанский сериал или фильм.</strong> Посмотри одну сцену любого испанского сериала (рекомендуем «La Casa de Papel», «Élite» или «Aquí no hay quien viva»). Запиши 5 неформальных или формальных выражений, которые ты услышишь. Определи регистр каждого.</div>
+    </li>
+    <li>
+      <div class="hw-num">3</div>
+      <div><strong>Dreaming Spanish.</strong> Найди интервью на Dreaming Spanish с уровнем Intermediate. Обрати внимание: как интервьюер обращается к гостю — tú или usted? Меняется ли регистр в ходе разговора?</div>
+    </li>
+    <li>
+      <div class="hw-num">4</div>
+      <div><strong>Сравнение текстов.</strong> Найди в интернете настоящее деловое письмо на испанском (carta comercial) и переписку в WhatsApp или комментарии в соцсетях. Выпиши по 5 маркеров каждого регистра. Обрати внимание на структуру предложений.</div>
+    </li>
+  </ul>
+
+  <div class="callout success">
+    <h4>Цель на следующий урок (L103)</h4>
+    <p>L103 — Идиомы и устойчивые выражения. Ты узнаешь, как носители языка говорят образно: <em>«costar un ojo de la cara»</em>, <em>«no hay mal que por bien no venga»</em> и другие. Многие идиомы — только в неформальном регистре!</p>
+  </div>
+</div>
+
+<!-- SECTION 14: DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
     <a href="L101.html" class="nav-link-btn">← L101</a>
@@ -491,29 +1019,50 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 const LESSON_ID = 'L102';
 const LS_KEY = 'esp_course_progress';
 function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){
-  const s=getState();
-  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
-  const today=new Date().toISOString().slice(0,10);
-  if(!s.study_days)s.study_days={};
-  s.study_days[today]=true;
-  localStorage.setItem(LS_KEY,JSON.stringify(s));
-  const btn=document.getElementById('done-btn');
-  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
-}
-const st=getState();
-if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'Estimados señores — стандартное начало делового письма незнакомому адресату.',
-  q2:'Oye, ¿me explicas...? — естественно и дружески в неформальной рабочей атмосфере.',
-  q3:'Atentamente / Un cordial saludo — стандартные подписи в испанских деловых письмах.',
-  q4:'Coloquial / Informal — tío = чувак, guay = круто. Только в разговорном регистре.',
-  q5:'Disculpe usted / Buenos días — начинать с вежливого обращения к незнакомому пожилому человеку.',
-  q6:'¿Podría usted ayudarme? — condicional + usted = максимально вежливая просьба.'
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const st = getState();
+if (st.completed && st.completed.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const quizExpl = {
+  wq1: '«Sin embargo» = «тем не менее / однако» — маркер противопоставления.',
+  wq2: '«Por lo tanto» = «следовательно / поэтому» — маркер вывода или следствия.',
+  wq3: '«Además» = «кроме того / помимо этого» — маркер добавления аргумента.',
+  wq4: '«Sin embargo» указывает на контраст: «проект инновационный, НО требует больше времени».',
+  q1: '«Estimado señor López:» — стандартное начало делового письма незнакомому человеку в Испании.',
+  q2: '«Puedes tutearme» буквально = «можешь обращаться ко мне на ты». Когда так говорят — переходи на tú.',
+  q3: '«Quisiera usted revisar» — imperfecto de subjuntivo + usted = максимальная вежливость в испанском.',
+  q4: '«Tío» — разговорный сленг, абсолютно неформальный. В деловом письме это был бы грубый ляп.',
+  q5: '«Perdone, ¿podría indicarme...?» — voseo de respeto + condicional = вежливый вопрос незнакомому взрослому.',
+  q6: '«¿Podría usted ayudarme?» — condicional + usted = формальная вежливая просьба. «Puedes usted» — грамматически неверно.',
+  q7: '«Ha sido un placer. Muchas gracias por su tiempo.» — стандартная формальная концовка деловой встречи.'
 };
 
-let quizScore=0,quizTotal=0;
+let quizScore = 0, quizTotal = 0;
+
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -573,8 +1122,7 @@ function checkText(inputId, answer, fbId) {
   }
   const lev = (a, b) => {
     const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
+    if (!m) return n; if (!n) return m;
     let prev = Array.from({length: n+1}, (_,i) => i);
     let curr = new Array(n+1).fill(0);
     for (let i = 1; i <= m; i++) {
@@ -599,19 +1147,112 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
 
-const totalSections=9;
-function updateProgress(){
-  const scrolled=window.scrollY;
-  const total=document.body.scrollHeight-window.innerHeight;
-  const pct=Math.min(100,Math.round(scrolled/total*100));
-  const sectionsRead=Math.round(pct/100*totalSections);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+function toggleAll(cls) {
+  document.querySelectorAll('.' + cls).forEach(e => {
+    e.style.display = e.style.display === 'none' ? 'block' : 'none';
+  });
 }
-window.addEventListener('scroll',updateProgress);
+function toggleAll2(cls) {
+  document.querySelectorAll('.' + cls).forEach(e => {
+    e.style.display = e.style.display === 'none' ? 'block' : 'none';
+  });
+}
+
+function playDialogue1() {
+  const lines = [
+    '¡Tío, qué pasa! ¿Tienes planes para el sábado?',
+    'Nada especial, ¿por qué? ¿Tienes algo en mente?',
+    '¡Sí! He visto que hay un festival de música en la playa de la Barceloneta. Mola mogollón.',
+    '¡Guay! ¿Y empieza a qué hora? Porque el sábado me levanto tarde, ya sabes...',
+    'No te preocupes, tía. Empieza a las cuatro de la tarde. Tiempo de sobra.',
+    'Perfecto. ¿Y quién viene? ¿Solo nosotros o llamamos a los colegas?',
+    'Llama a Sergio y a Clara. Cuantos más, mejor. ¡Va a flipar!',
+    'Guay. Oye, ¿y hay que comprar entradas o es gratis?',
+    'Gratis total. La entrada es libre. ¡Eres un crack por venirte!',
+    '¡Genial! Entonces quedamos a las tres y media en el metro de Barceloneta. ¡Nos vemos!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i]);
+    u.lang = 'es-ES';
+    u.rate = 0.85;
+    u.onend = () => { i++; setTimeout(next, 400); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue2() {
+  const lines = [
+    'Buenos días, señor García. Soy Pablo Ruiz. Tengo una entrevista concertada para las diez.',
+    'Buenos días, señor Ruiz. Pase usted, por favor. Tome asiento.',
+    'Muchas gracias. Le agradezco que me haya recibido.',
+    'Con mucho gusto. ¿Podría usted presentarse brevemente y explicar por qué le interesa este puesto?',
+    'Por supuesto. Soy diseñador gráfico con cinco años de experiencia. Me interesa incorporarme a su empresa porque valoro mucho su enfoque innovador.',
+    'Interesante. ¿Podría usted indicarme cuál ha sido su mayor logro profesional hasta la fecha?',
+    'Sin duda, la campaña que dirigí el año pasado para una empresa de moda. Los resultados superaron las expectativas en un cuarenta por ciento.',
+    'Muy bien. ¿Tiene usted alguna pregunta sobre el puesto o las condiciones laborales?',
+    'Sí, quisiera preguntarle si existe la posibilidad de trabajo en remoto algunos días a la semana.',
+    'Es posible. Lo hablaremos con mayor detalle si usted avanza en el proceso. Ha sido un placer, señor Ruiz.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i]);
+    u.lang = 'es-ES';
+    u.rate = 0.85;
+    u.onend = () => { i++; setTimeout(next, 400); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+const ANKI_DECK_L102 = [
+  {front: "tío / tía", back: "Русский: чувак / подруга (неформально)\n\nПример: ¡Tío, qué guay está esto!\nЗаметка: только в неформальном регистре, Испания"},
+  {front: "mola / mola mogollón", back: "Русский: круто / очень круто (нравится)\n\nПример: Este sitio mola un montón.\nЗаметка: разговорный глагол molar, неформально"},
+  {front: "guay", back: "Русский: классно, здорово\n\nПример: ¡Qué guay que vengas!\nЗаметка: прилагательное, только неформально"},
+  {front: "flipar", back: "Русский: офигеть, удивиться\n\nПример: Flipé cuando vi los precios.\nЗаметка: flipé = я офигел, неформально"},
+  {front: "chungo / chunga", back: "Русский: отстойный, сложный, подозрительный\n\nПример: La situación está muy chunga.\nЗаметка: coloquial, Испания"},
+  {front: "colega", back: "Русский: приятель, дружище\n\nПример: ¿Qué pasa, colega?\nЗаметка: неформальное обращение"},
+  {front: "pasta (сленг)", back: "Русский: деньги (сленг)\n\nПример: Me he quedado sin pasta.\nЗаметка: только неформально"},
+  {front: "¿qué pasa? / ¿qué tal?", back: "Русский: что нового? / как дела?\n\nПример: ¡Tío, qué pasa!\nЗаметка: приветствие-вопрос, неформально"},
+  {front: "crack / eres un crack", back: "Русский: молодец, профи\n\nПример: ¡Eres un crack!\nЗаметка: комплимент, неформально"},
+  {front: "estimado/a señor/señora", back: "Русский: уважаемый/ая господин/госпожа\n\nПример: Estimada señora Martínez:\nЗаметка: начало делового письма"},
+  {front: "me dirijo a usted para...", back: "Русский: обращаюсь к вам, чтобы...\n\nПример: Me dirijo a usted para informarle...\nЗаметка: стандартное начало официального письма"},
+  {front: "le agradezco", back: "Русский: благодарю вас\n\nПример: Le agradezco su tiempo.\nЗаметка: le = объектное местоимение usted"},
+  {front: "quisiera + infinitivo", back: "Русский: я хотел(а) бы...\n\nПример: Quisiera solicitar un día libre.\nЗаметка: imperfecto de subjuntivo de querer = max вежливость"},
+  {front: "disculpe la molestia", back: "Русский: прошу прощения за беспокойство\n\nПример: Disculpe la molestia, ¿podría...?\nЗаметка: формальное извинение"},
+  {front: "quedo a su disposición", back: "Русский: остаюсь в вашем распоряжении\n\nПример: Quedo a su disposición para cualquier consulta.\nЗаметка: стандартная концовка письма"},
+  {front: "en espera de su respuesta", back: "Русский: в ожидании вашего ответа\n\nПример: En espera de su pronta respuesta...\nЗаметка: перед подписью в деловом письме"},
+  {front: "atentamente", back: "Русский: с уважением\n\nПример: Atentamente, [nombre]\nЗаметка: подпись делового письма = sincerely yours"},
+  {front: "le ruego que + subjuntivo", back: "Русский: прошу вас (официально)\n\nПример: Le ruego que proceda a la reparación.\nЗаметка: le ruego + subj. = самая формальная просьба"}
+];
+
+function exportAnkiL102() {
+  const tsv = ANKI_DECK_L102.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L102_spanish.txt';
+  a.click();
+}
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? Math.min(100, Math.round(scrolled / total * 100)) : 0;
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>

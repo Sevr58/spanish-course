@@ -45,7 +45,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
 .quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
 .quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
-.quiz-q .q-text strong{color:var(--gold)}
+.quiz-q .q-text strong{color:var(--purple)}
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
@@ -64,10 +64,10 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
 .answer-reveal.show{display:block}
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
 .dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
@@ -87,7 +87,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .speak-btn:hover{opacity:1;transform:scale(1.2)}
 .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
 .vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
-.vocab-es{font-weight:600;font-size:.92rem;color:var(--gold)}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--purple)}
 .vocab-ru{font-size:.82rem;color:var(--muted)}
 .vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
 table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
@@ -96,7 +96,7 @@ table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
 table.mistakes tr:last-child td{border-bottom:none}
 .wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
 .anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
-.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block;margin:4px}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
 .anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
 .anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
 .anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
@@ -111,14 +111,16 @@ table.mistakes tr:last-child td{border-bottom:none}
 .phrase-es{font-weight:600;font-size:.95rem;flex:1}
 .phrase-ru{font-size:.82rem;color:var(--muted)}
 .culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
-.idiom-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;margin-bottom:16px}
-.idiom-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
-.idiom-es{font-size:.95rem;font-weight:700;color:var(--gold);margin-bottom:4px}
-.idiom-lit{font-size:.78rem;color:var(--muted);font-style:italic;margin-bottom:4px}
-.idiom-ru{font-size:.88rem;color:var(--text);margin-bottom:6px}
-.idiom-ex{font-size:.82rem;color:var(--muted);border-left:2px solid var(--border);padding-left:8px}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.idiom-grid{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.idiom-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px}
+.idiom-es{font-size:1rem;font-weight:700;color:var(--purple);margin-bottom:4px}
+.idiom-ru{font-size:.88rem;color:var(--muted);margin-bottom:4px}
+.idiom-ex{font-size:.85rem;font-style:italic;color:var(--text);border-left:2px solid var(--purple);padding-left:10px;margin-top:6px}
+.idiom-tag{font-size:.7rem;background:var(--bg3);color:var(--blue);border-radius:10px;padding:2px 8px;display:inline-block;margin-bottom:4px}
+.idiom-group{margin-bottom:20px}
+.idiom-group-title{font-size:.9rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -132,69 +134,65 @@ table.mistakes tr:last-child td{border-bottom:none}
 
 <!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🎭 Фаза 4 · Блок B4A · Беглость речи</div>
+  <div class="phase-tag">🎓 Фаза 4 · B1 Mastery · Блок 4A — Беглость</div>
   <h1>Идиомы и <span class="hl">устойчивые выражения</span></h1>
-  <p class="sub">No hay mal que por bien no venga — 30 самых частотных испанских идиом. Понять, использовать, звучать как носитель.</p>
+  <p class="sub">No hay mal que por bien no venga — 30 самых частотных испанских идиом для уровня B1</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎭</div><div><strong>Цель 1</strong><p>Выучить 30 идиом и понимать их на слух в разговоре</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Цель 2</strong><p>Использовать 10 идиом в связном монологе без подсказок</p></div></div>
-    <div class="obj"><div class="ico">📝</div><div><strong>Цель 3</strong><p>Пройти оба теста: узнавание и употребление в контексте</p></div></div>
-    <div class="obj"><div class="ico">🇪🇸</div><div><strong>Цель 4</strong><p>Понять, какие идиомы уместны в деловом контексте</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Выучить 30 самых частотных идиом и коллокаций испанского</p></div></div>
+    <div class="obj"><div class="ico">💬</div><div><strong>Цель 2</strong><p>Понимать идиомы в аутентичных текстах без словаря</p></div></div>
+    <div class="obj"><div class="ico">🗣️</div><div><strong>Цель 3</strong><p>Использовать 10 идиом в живом разговоре органично</p></div></div>
+    <div class="obj"><div class="ico">📝</div><div><strong>Цель 4</strong><p>Создать Anki-колоду для долгосрочного запоминания</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 13 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- 3. WARM-UP: повторение L102 — формальные/неформальные регистры -->
+<!-- 3. WARM-UP (предыдущий урок L102: Формальный и неформальный регистры) -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Повторение — L102: Формальный и неформальный регистры</h2>
+    <h2>Повторение — L102: Регистры речи</h2>
   </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Прежде чем начать, быстро проверь материал прошлого урока. 4 вопроса — 2 минуты.</p>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Быстрая проверка материала предыдущего урока про формальный и неформальный регистры.</p>
   <div class="quiz">
-    <h3>🔄 Быстрая проверка</h3>
+    <h3>🔁 Что ты помнишь из L102?</h3>
     <div class="quiz-q" id="w1">
-      <div class="q-text">1. В каком предложении используется <strong>формальный</strong> регистр?</div>
+      <div class="q-text">1. Ты пишешь email начальнику. Какое обращение уместно?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'w1','a')">¿Podría usted indicarme dónde está la salida?</div>
-        <div class="opt" onclick="answerQuiz(this,'w1','b')">Oye, ¿sabes dónde está la salida?</div>
-        <div class="opt" onclick="answerQuiz(this,'w1','c')">Tío, ¿dónde está la salida?</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Oye, jefe</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Estimado señor García</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Hey, qué tal</div>
       </div>
       <div class="feedback" id="fb-w1"></div>
     </div>
     <div class="quiz-q" id="w2">
-      <div class="q-text">2. «Tuteo» означает:</div>
+      <div class="q-text">2. «Tuteo» означает использование...</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'w2','b')">Обращение на «уsted» (формальное)</div>
-        <div class="opt" onclick="answerQuiz(this,'w2','a')">Обращение на «tú» (неформальное)</div>
-        <div class="opt" onclick="answerQuiz(this,'w2','c')">Любой тип обращения</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">формы «usted»</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">множественного числа «vosotros»</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">неформального «tú»</div>
       </div>
       <div class="feedback" id="fb-w2"></div>
     </div>
     <div class="quiz-q" id="w3">
-      <div class="q-text">3. Как неформально сказать «¿Cómo está usted?»:</div>
+      <div class="q-text">3. Как сказать «спасибо» формально в деловом контексте?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'w3','a')">¿Cómo estás?</div>
-        <div class="opt" onclick="answerQuiz(this,'w3','b')">¿Cómo se encuentra?</div>
-        <div class="opt" onclick="answerQuiz(this,'w3','c')">¿Tiene usted algún inconveniente?</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Le agradezco su atención</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Gracias, tío</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Muchas</div>
       </div>
       <div class="feedback" id="fb-w3"></div>
     </div>
     <div class="quiz-q" id="w4">
-      <div class="q-text">4. В Испании в офисе с незнакомым человеком старшего возраста ты используешь:</div>
+      <div class="q-text">4. Слово «tío/tía» в неформальном испанском означает...</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'w4','b')">tú — Испания более неформальна</div>
-        <div class="opt" onclick="answerQuiz(this,'w4','c')">vos — так принято</div>
-        <div class="opt" onclick="answerQuiz(this,'w4','a')">usted — пока не предложат перейти на tú</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">дядя / тётя (буквально)</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">начальник</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">чувак / девчонка (разговорное)</div>
       </div>
       <div class="feedback" id="fb-w4"></div>
     </div>
-  </div>
-  <div class="callout success">
-    <h4>✅ Молодец, если угадал 3+!</h4>
-    <p>Формальный/неформальный регистр важен и при использовании идиом: большинство идиом этого урока — неформальные. В деловом контексте некоторые из них неуместны. Об этом поговорим ниже.</p>
   </div>
 </div>
 
@@ -202,669 +200,801 @@ table.mistakes tr:last-child td{border-bottom:none}
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Теория — почему идиомы это необходимость, а не украшение</h2>
-  </div>
-
-  <p style="margin-bottom:14px">Когда носитель слышит иностранца, он оценивает не только грамматику — он слышит, используешь ли ты «живой» язык. Идиомы — это кровь языка. Без них ты говоришь правильно, но как робот. Даже C2-грамматика с книжным словарём звучит искусственно рядом с одной уместной идиомой.</p>
-
-  <div class="callout tip">
-    <h4>💡 Как правильно учить идиомы</h4>
-    <p>Не заучивай список. Учи по 3–5 за раз с примером использования. Лучший метод: услышал идиому → записал → использовал 3 раза в разных контекстах за неделю. Через месяц она будет «твоей».</p>
+    <h2>Теория — Идиомы, коллокации и устойчивые выражения</h2>
   </div>
 
   <div class="callout info">
-    <h4>🔍 Четыре типа устойчивых выражений</h4>
-    <ul>
-      <li><strong>Идиомы с частями тела:</strong> no tener pelos en la lengua, costar un ojo de la cara, meter la pata</li>
-      <li><strong>Идиомы с едой и природой:</strong> ser pan comido, estar como pez en el agua, ser la leche</li>
-      <li><strong>Поговорки:</strong> no hay mal que por bien no venga, más vale tarde que nunca</li>
-      <li><strong>Устойчивые коллокации:</strong> tomar una decisión, llevar a cabo, tener en cuenta</li>
-    </ul>
+    <h4>🎯 Что такое идиома и зачем она нужна?</h4>
+    <p>Идиома (modismo / expresión idiomática) — устойчивое выражение, значение которого не складывается из значений отдельных слов. «Estar en las nubes» буквально «быть в облаках», но по-русски «витать в облаках» — то же самое! Знание 30 частотных идиом резко повышает понимание живой речи и телесериалов. На B1 без них не обойтись.</p>
   </div>
 
-  <p style="margin-top:14px;margin-bottom:10px"><strong>Типичные ошибки русскоязычных студентов:</strong></p>
+  <div class="idiom-group">
+    <div class="idiom-group-title">📦 Группа 1 — Мудрость и судьба (пословицы)</div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">пословица</div>
+      <div class="idiom-es">No hay mal que por bien no venga <button class="speak-btn" onclick="speak('No hay mal que por bien no venga')">🔊</button></div>
+      <div class="idiom-ru">Нет худа без добра / Всё, что ни делается — к лучшему</div>
+      <div class="idiom-ex">«Perdí el trabajo, pero conocí a mi esposa. No hay mal que por bien no venga.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">пословица</div>
+      <div class="idiom-es">A mal tiempo, buena cara <button class="speak-btn" onclick="speak('A mal tiempo, buena cara')">🔊</button></div>
+      <div class="idiom-ru">В трудный момент — держать лицо / не вешать нос</div>
+      <div class="idiom-ex">«Aunque el proyecto fracasó, hay que echar a mal tiempo, buena cara.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">пословица</div>
+      <div class="idiom-es">Camarón que se duerme, se lo lleva la corriente <button class="speak-btn" onclick="speak('Camarón que se duerme, se lo lleva la corriente')">🔊</button></div>
+      <div class="idiom-ru">Кто не рискует — не пьёт шампанского / Зевакам не везёт</div>
+      <div class="idiom-ex">«Si no mandas el CV hoy, otro conseguirá el trabajo. Camarón que se duerme...»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">пословица</div>
+      <div class="idiom-es">No todo lo que reluce es oro <button class="speak-btn" onclick="speak('No todo lo que reluce es oro')">🔊</button></div>
+      <div class="idiom-ru">Не всё то золото, что блестит</div>
+      <div class="idiom-ex">«El piso parecía perfecto en las fotos, pero al verlo... no todo lo que reluce es oro.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">пословица</div>
+      <div class="idiom-es">Más vale tarde que nunca <button class="speak-btn" onclick="speak('Más vale tarde que nunca')">🔊</button></div>
+      <div class="idiom-ru">Лучше поздно, чем никогда</div>
+      <div class="idiom-ex">«Empezaste a estudiar español a los 40. Más vale tarde que nunca.»</div>
+    </div>
+  </div>
+
+  <div class="idiom-group">
+    <div class="idiom-group-title">😤 Группа 2 — Эмоции и состояния</div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">состояние</div>
+      <div class="idiom-es">Estar en las nubes <button class="speak-btn" onclick="speak('Estar en las nubes')">🔊</button></div>
+      <div class="idiom-ru">Витать в облаках / быть рассеянным</div>
+      <div class="idiom-ex">«No me escucha nada — siempre está en las nubes.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">эмоция</div>
+      <div class="idiom-es">Ponerse los pelos de punta <button class="speak-btn" onclick="speak('Ponerse los pelos de punta')">🔊</button></div>
+      <div class="idiom-ru">Волосы встают дыбом (от страха или восторга)</div>
+      <div class="idiom-ex">«La música de ese concierto me puso los pelos de punta.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">эмоция</div>
+      <div class="idiom-es">Estar hasta las narices <button class="speak-btn" onclick="speak('Estar hasta las narices')">🔊</button></div>
+      <div class="idiom-ru">Быть сыт по горло / достало по самое не хочу</div>
+      <div class="idiom-ex">«Estoy hasta las narices de este tráfico en Barcelona.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">эмоция</div>
+      <div class="idiom-es">Tomar el pelo <button class="speak-btn" onclick="speak('Tomar el pelo')">🔊</button></div>
+      <div class="idiom-ru">Водить за нос / разыгрывать / дурить</div>
+      <div class="idiom-ex">«¿Me estás tomando el pelo? ¡Ese precio es imposible!»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">состояние</div>
+      <div class="idiom-es">Costar un ojo de la cara <button class="speak-btn" onclick="speak('Costar un ojo de la cara')">🔊</button></div>
+      <div class="idiom-ru">Стоить огромных денег / влететь в копеечку</div>
+      <div class="idiom-ex">«El alquiler en el centro de Barcelona cuesta un ojo de la cara.»</div>
+    </div>
+  </div>
+
+  <div class="idiom-group">
+    <div class="idiom-group-title">💪 Группа 3 — Действия и решения</div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">действие</div>
+      <div class="idiom-es">Meter la pata <button class="speak-btn" onclick="speak('Meter la pata')">🔊</button></div>
+      <div class="idiom-ru">Облажаться / сделать ляп / попасть впросак</div>
+      <div class="idiom-ex">«Metí la pata en la reunión — confundí los nombres de los clientes.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">действие</div>
+      <div class="idiom-es">Dar en el clavo <button class="speak-btn" onclick="speak('Dar en el clavo')">🔊</button></div>
+      <div class="idiom-ru">Попасть в точку / угадать / найти верное решение</div>
+      <div class="idiom-ex">«Con esa estrategia diste en el clavo — las ventas subieron un 30%.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">действие</div>
+      <div class="idiom-es">Matar dos pájaros de un tiro <button class="speak-btn" onclick="speak('Matar dos pájaros de un tiro')">🔊</button></div>
+      <div class="idiom-ru">Убить двух зайцев одним выстрелом</div>
+      <div class="idiom-ex">«Aprender español y trabajar en Barcelona — así mato dos pájaros de un tiro.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">действие</div>
+      <div class="idiom-es">Echar leña al fuego <button class="speak-btn" onclick="speak('Echar leña al fuego')">🔊</button></div>
+      <div class="idiom-ru">Подливать масло в огонь / подогревать конфликт</div>
+      <div class="idiom-ex">«No digas eso ahora — solo vas a echar leña al fuego.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">действие</div>
+      <div class="idiom-es">Dar la vuelta a la tortilla <button class="speak-btn" onclick="speak('Dar la vuelta a la tortilla')">🔊</button></div>
+      <div class="idiom-ru">Перевернуть ситуацию / поменять всё с ног на голову</div>
+      <div class="idiom-ex">«Cuando parecía que perdíamos el contrato, él dio la vuelta a la tortilla.»</div>
+    </div>
+  </div>
+
+  <div class="idiom-group">
+    <div class="idiom-group-title">🗣️ Группа 4 — Речь и молчание</div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">речь</div>
+      <div class="idiom-es">Hablar por los codos <button class="speak-btn" onclick="speak('Hablar por los codos')">🔊</button></div>
+      <div class="idiom-ru">Болтать без умолку / трещать без остановки</div>
+      <div class="idiom-ex">«Mi vecina habla por los codos — la reunión duró tres horas.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">речь</div>
+      <div class="idiom-es">No decir ni pío <button class="speak-btn" onclick="speak('No decir ni pío')">🔊</button></div>
+      <div class="idiom-ru">Не сказать ни слова / молчать как рыба</div>
+      <div class="idiom-ex">«En toda la reunión no dijo ni pío — muy raro para él.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">речь</div>
+      <div class="idiom-es">Meter la pata en la boca <button class="speak-btn" onclick="speak('Meter la pata en la boca')">🔊</button></div>
+      <div class="idiom-ru">Сказать что-то неуместное / брякнуть лишнее</div>
+      <div class="idiom-ex">«Metiste la pata en la boca cuando mencionaste el sueldo delante del cliente.»</div>
+    </div>
+  </div>
+
+  <div class="idiom-group">
+    <div class="idiom-group-title">💼 Группа 5 — Работа и деньги</div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">работа</div>
+      <div class="idiom-es">Ponerse las pilas <button class="speak-btn" onclick="speak('Ponerse las pilas')">🔊</button></div>
+      <div class="idiom-ru">Взяться за дело / собраться / включиться</div>
+      <div class="idiom-ex">«Hay que ponerse las pilas si queremos terminar el proyecto a tiempo.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">работа</div>
+      <div class="idiom-es">Estar al pie del cañón <button class="speak-btn" onclick="speak('Estar al pie del cañón')">🔊</button></div>
+      <div class="idiom-ru">Быть на посту / держать позиции / не сдаваться</div>
+      <div class="idiom-ex">«Aunque estaba enfermo, estuvo al pie del cañón durante toda la semana.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">деньги</div>
+      <div class="idiom-es">Hacer la vista gorda <button class="speak-btn" onclick="speak('Hacer la vista gorda')">🔊</button></div>
+      <div class="idiom-ru">Делать вид, что не замечаешь / закрывать глаза на что-то</div>
+      <div class="idiom-ex">«El jefe hizo la vista gorda con las horas extra no pagadas.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">деньги</div>
+      <div class="idiom-es">Rascarse el bolsillo <button class="speak-btn" onclick="speak('Rascarse el bolsillo')">🔊</button></div>
+      <div class="idiom-ru">Раскошелиться / залезть в карман (неохотно)</div>
+      <div class="idiom-ex">«Habrá que rascarse el bolsillo para pagar la fianza del piso.»</div>
+    </div>
+  </div>
+
+  <div class="idiom-group">
+    <div class="idiom-group-title">🌟 Группа 6 — Жизнь и отношения</div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">отношения</div>
+      <div class="idiom-es">Llevarse como el perro y el gato <button class="speak-btn" onclick="speak('Llevarse como el perro y el gato')">🔊</button></div>
+      <div class="idiom-ru">Жить как кошка с собакой / постоянно конфликтовать</div>
+      <div class="idiom-ex">«Mis compañeros de piso se llevan como el perro y el gato.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">жизнь</div>
+      <div class="idiom-es">Estar con el agua al cuello <button class="speak-btn" onclick="speak('Estar con el agua al cuello')">🔊</button></div>
+      <div class="idiom-ru">Быть по горло в делах / по уши в проблемах</div>
+      <div class="idiom-ex">«Este mes estoy con el agua al cuello — tres proyectos a la vez.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">жизнь</div>
+      <div class="idiom-es">Buscarle tres pies al gato <button class="speak-btn" onclick="speak('Buscarle tres pies al gato')">🔊</button></div>
+      <div class="idiom-ru">Искать проблему там, где её нет / усложнять простое</div>
+      <div class="idiom-ex">«No le busques tres pies al gato — la solución es simple.»</div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-tag">жизнь</div>
+      <div class="idiom-es">Estar hecho polvo <button class="speak-btn" onclick="speak('Estar hecho polvo')">🔊</button></div>
+      <div class="idiom-ru">Быть выжатым как лимон / вымотаться до предела</div>
+      <div class="idiom-ex">«Después de la mudanza, estoy hecho polvo.»</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки при использовании идиом</h3>
   <table class="mistakes">
-    <tr><th>❌ Ошибка</th><th>✅ Правильно</th><th>Объяснение</th></tr>
-    <tr><td class="wrong-ex">Doy en el clavo</td><td class="right-ex">Doy en el clavo ✓ / ¡Has dado en el clavo!</td><td>Глагол dar: doy, das, da — форма правильная, но контекст обычно «ты угадал»</td></tr>
-    <tr><td class="wrong-ex">Me pongo las pilas (сейчас)</td><td class="right-ex">¡Ponte las pilas! (команда)</td><td>Обычно используется как призыв, реже в 1-м лице</td></tr>
-    <tr><td class="wrong-ex">Hacer la vista ciega</td><td class="right-ex">Hacer la vista gorda</td><td>Буквально «жирный взгляд», не «слепой»</td></tr>
-    <tr><td class="wrong-ex">Tirar la toalla arriba</td><td class="right-ex">Tirar la toalla</td><td>Без «arriba» — из боксёрской терминологии</td></tr>
-    <tr><td class="wrong-ex">Tener los pelos en la lengua</td><td class="right-ex">No tener pelos en la lengua</td><td>Всегда с отрицанием «no» — значение меняется на противоположное</td></tr>
-    <tr><td class="wrong-ex">Importarme un tomate</td><td class="right-ex">Importarme un pepino / un pimiento / un bledo</td><td>Правильные варианты: pepino, pimiento, bledo, comino, rábano</td></tr>
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Буквальный перевод</td><td class="wrong-ex">«Tomé el cabello» (взял волос)</td><td class="right-ex">Tomar el pelo</td><td>Перевод пословно не работает — только устойчивая форма</td></tr>
+    <tr><td>Замена артикля</td><td class="wrong-ex">Meter una pata</td><td class="right-ex">Meter la pata</td><td>В идиомах артикль фиксирован — «la pata», не «una pata»</td></tr>
+    <tr><td>Неверный глагол</td><td class="wrong-ex">Hacer los pelos de punta</td><td class="right-ex">Ponerse los pelos de punta</td><td>Идиома требует конкретный глагол — ponerse, не hacer</td></tr>
+    <tr><td>Изменение времени неверно</td><td class="wrong-ex">Estoy hasta las nariz</td><td class="right-ex">Estoy hasta las narices</td><td>«Narices» (мн.ч.) — в идиоме всегда множественное число</td></tr>
+    <tr><td>Использование в формальном тексте</td><td class="wrong-ex">En el informe: «estaba hecho polvo»</td><td class="right-ex">Estaba muy agotado</td><td>Идиомы — для разговорной речи, в деловых текстах лучше нейтральные слова</td></tr>
+    <tr><td>Смешивание идиом</td><td class="wrong-ex">Dar en el palo (вместо clavo)</td><td class="right-ex">Dar en el clavo</td><td>Компоненты идиомы нельзя менять произвольно</td></tr>
   </table>
 </div>
 
-<!-- 5. VOCABULARY — 18 идиом со speak-кнопками -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Словарь — 18 ключевых идиом с произношением</h2>
+    <h2>Словарь — 18 ключевых слов из идиом</h2>
   </div>
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 и повторяй вслух. Произношение — ключ к естественному звучанию.</p>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Слова из идиом — понимай их прямое и переносное значение.</p>
   <div class="vocab-grid">
-    <div class="vocab-item">
-      <div><div class="vocab-es">meter la pata</div><div class="vocab-ru">облажаться, сказать лишнее</div></div>
-      <button class="speak-btn" onclick="speak('meter la pata')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">costar un ojo de la cara</div><div class="vocab-ru">стоить целое состояние</div></div>
-      <button class="speak-btn" onclick="speak('costar un ojo de la cara')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">dar en el clavo</div><div class="vocab-ru">попасть в точку</div></div>
-      <button class="speak-btn" onclick="speak('dar en el clavo')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">hacer la vista gorda</div><div class="vocab-ru">смотреть сквозь пальцы</div></div>
-      <button class="speak-btn" onclick="speak('hacer la vista gorda')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">ser pan comido</div><div class="vocab-ru">проще простого</div></div>
-      <button class="speak-btn" onclick="speak('ser pan comido')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">tomar el pelo</div><div class="vocab-ru">разыгрывать, дурачить</div></div>
-      <button class="speak-btn" onclick="speak('tomar el pelo')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">irse por las ramas</div><div class="vocab-ru">уходить от темы</div></div>
-      <button class="speak-btn" onclick="speak('irse por las ramas')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">ponerse las pilas</div><div class="vocab-ru">взяться за дело</div></div>
-      <button class="speak-btn" onclick="speak('ponerse las pilas')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">quedarse de piedra</div><div class="vocab-ru">остолбенеть, застыть</div></div>
-      <button class="speak-btn" onclick="speak('quedarse de piedra')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">llevar la voz cantante</div><div class="vocab-ru">руководить, задавать тон</div></div>
-      <button class="speak-btn" onclick="speak('llevar la voz cantante')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">estar en las nubes</div><div class="vocab-ru">витать в облаках</div></div>
-      <button class="speak-btn" onclick="speak('estar en las nubes')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">no hay mal que por bien no venga</div><div class="vocab-ru">нет худа без добра</div></div>
-      <button class="speak-btn" onclick="speak('no hay mal que por bien no venga')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">matar dos pájaros de un tiro</div><div class="vocab-ru">убить двух зайцев</div></div>
-      <button class="speak-btn" onclick="speak('matar dos pájaros de un tiro')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">tirar la toalla</div><div class="vocab-ru">сдаться, опустить руки</div></div>
-      <button class="speak-btn" onclick="speak('tirar la toalla')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">estar hasta las narices</div><div class="vocab-ru">быть сытым по горло</div></div>
-      <button class="speak-btn" onclick="speak('estar hasta las narices')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">llevar a cabo</div><div class="vocab-ru">осуществить, выполнить</div></div>
-      <button class="speak-btn" onclick="speak('llevar a cabo')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">tener en cuenta</div><div class="vocab-ru">принимать во внимание</div></div>
-      <button class="speak-btn" onclick="speak('tener en cuenta')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">echar de menos</div><div class="vocab-ru">скучать по кому-то</div></div>
-      <button class="speak-btn" onclick="speak('echar de menos')">🔊</button>
-    </div>
+    <div class="vocab-item"><div><div class="vocab-es">el pelo / los pelos</div><div class="vocab-ru">волос / волосы (в идиомах)</div></div><button class="speak-btn" onclick="speak('el pelo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la pata</div><div class="vocab-ru">лапа (животного) / нога (разг.)</div></div><button class="speak-btn" onclick="speak('la pata')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el clavo</div><div class="vocab-ru">гвоздь</div></div><button class="speak-btn" onclick="speak('el clavo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la nariz / las narices</div><div class="vocab-ru">нос / ноздри (мн.ч. в идиомах)</div></div><button class="speak-btn" onclick="speak('la nariz')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el ojo</div><div class="vocab-ru">глаз</div></div><button class="speak-btn" onclick="speak('el ojo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la tortilla</div><div class="vocab-ru">испанский омлет с картофелем</div></div><button class="speak-btn" onclick="speak('la tortilla')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el codo</div><div class="vocab-ru">локоть</div></div><button class="speak-btn" onclick="speak('el codo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la leña</div><div class="vocab-ru">дрова</div></div><button class="speak-btn" onclick="speak('la leña')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el fuego</div><div class="vocab-ru">огонь</div></div><button class="speak-btn" onclick="speak('el fuego')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la pila / ponerse las pilas</div><div class="vocab-ru">батарейка / взяться за дело</div></div><button class="speak-btn" onclick="speak('ponerse las pilas')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el polvo</div><div class="vocab-ru">пыль / прах</div></div><button class="speak-btn" onclick="speak('el polvo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el agua al cuello</div><div class="vocab-ru">вода по горло (перен.)</div></div><button class="speak-btn" onclick="speak('el agua al cuello')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el pájaro / los pájaros</div><div class="vocab-ru">птица / птицы</div></div><button class="speak-btn" onclick="speak('el pájaro')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el tiro</div><div class="vocab-ru">выстрел</div></div><button class="speak-btn" onclick="speak('el tiro')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el camarón</div><div class="vocab-ru">креветка (в пословице)</div></div><button class="speak-btn" onclick="speak('el camarón')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la corriente</div><div class="vocab-ru">течение / ток</div></div><button class="speak-btn" onclick="speak('la corriente')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">relucir</div><div class="vocab-ru">блестеть / сиять</div></div><button class="speak-btn" onclick="speak('relucir')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el bolsillo</div><div class="vocab-ru">карман</div></div><button class="speak-btn" onclick="speak('el bolsillo')">🔊</button></div>
   </div>
 </div>
 
-<!-- 6. 30 ИДИОМ — развёрнутая сетка -->
+<!-- 6. QUIZ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>30 самых частотных идиом — полный разбор</h2>
+    <h2>Тест 1 — Что означает эта идиома?</h2>
   </div>
-  <div class="idiom-grid">
-    <div class="idiom-card">
-      <div class="idiom-es">No hay mal que por bien no venga <button class="speak-btn" onclick="speak('No hay mal que por bien no venga')">🔊</button></div>
-      <div class="idiom-lit">(нет зла без добра)</div>
-      <div class="idiom-ru">Нет худа без добра</div>
-      <div class="idiom-ex">Perdí el trabajo, pero encontré uno mejor. No hay mal que por bien no venga.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Costar un ojo de la cara <button class="speak-btn" onclick="speak('Costar un ojo de la cara')">🔊</button></div>
-      <div class="idiom-lit">(стоить глаз из лица)</div>
-      <div class="idiom-ru">Стоить целое состояние</div>
-      <div class="idiom-ex">El apartamento en Barcelona cuesta un ojo de la cara.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">No tener pelos en la lengua <button class="speak-btn" onclick="speak('No tener pelos en la lengua')">🔊</button></div>
-      <div class="idiom-lit">(не иметь волос на языке)</div>
-      <div class="idiom-ru">Говорить прямо, резать правду-матку</div>
-      <div class="idiom-ex">Mi jefa no tiene pelos en la lengua — siempre dice lo que piensa.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Ser la leche <button class="speak-btn" onclick="speak('Ser la leche')">🔊</button></div>
-      <div class="idiom-lit">(быть молоком)</div>
-      <div class="idiom-ru">Быть крутым / ужасным (зависит от интонации!)</div>
-      <div class="idiom-ex">¡Este tío es la leche, cómo juega! / Este trabajo es la leche (=horrible).</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Me importa un pepino <button class="speak-btn" onclick="speak('Me importa un pepino')">🔊</button></div>
-      <div class="idiom-lit">(мне важен огурец)</div>
-      <div class="idiom-ru">Мне всё равно, мне плевать</div>
-      <div class="idiom-ex">Me importa un pepino lo que digan los demás.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Tomar el pelo <button class="speak-btn" onclick="speak('Tomar el pelo')">🔊</button></div>
-      <div class="idiom-lit">(брать волосы)</div>
-      <div class="idiom-ru">Разыгрывать, дурачить кого-то</div>
-      <div class="idiom-ex">¿Me estás tomando el pelo? ¡Eso no puede ser verdad!</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Estar en las nubes <button class="speak-btn" onclick="speak('Estar en las nubes')">🔊</button></div>
-      <div class="idiom-lit">(быть в облаках)</div>
-      <div class="idiom-ru">Витать в облаках, быть невнимательным</div>
-      <div class="idiom-ex">¿Estás bien? Parece que estás en las nubes hoy.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Hacer la vista gorda <button class="speak-btn" onclick="speak('Hacer la vista gorda')">🔊</button></div>
-      <div class="idiom-lit">(делать жирный взгляд)</div>
-      <div class="idiom-ru">Смотреть сквозь пальцы, не замечать</div>
-      <div class="idiom-ex">El jefe hizo la vista gorda cuando llegué tarde.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Ponerse las pilas <button class="speak-btn" onclick="speak('Ponerse las pilas')">🔊</button></div>
-      <div class="idiom-lit">(зарядить батарейки)</div>
-      <div class="idiom-ru">Взяться за дело, взбодриться</div>
-      <div class="idiom-ex">Venga, ponte las pilas que el examen es mañana.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Meter la pata <button class="speak-btn" onclick="speak('Meter la pata')">🔊</button></div>
-      <div class="idiom-lit">(засунуть лапу)</div>
-      <div class="idiom-ru">Облажаться, сказать лишнее</div>
-      <div class="idiom-ex">Metí la pata al mencionar el ex de mi amiga.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Dar en el clavo <button class="speak-btn" onclick="speak('Dar en el clavo')">🔊</button></div>
-      <div class="idiom-lit">(попасть в гвоздь)</div>
-      <div class="idiom-ru">Попасть в точку, угадать</div>
-      <div class="idiom-ex">¡Has dado en el clavo! Eso es exactamente el problema.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Más vale tarde que nunca <button class="speak-btn" onclick="speak('Más vale tarde que nunca')">🔊</button></div>
-      <div class="idiom-lit">—</div>
-      <div class="idiom-ru">Лучше поздно, чем никогда</div>
-      <div class="idiom-ex">Empecé a aprender español a los 40. Más vale tarde que nunca.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Tirar la toalla <button class="speak-btn" onclick="speak('Tirar la toalla')">🔊</button></div>
-      <div class="idiom-lit">(бросить полотенце)</div>
-      <div class="idiom-ru">Сдаться, опустить руки</div>
-      <div class="idiom-ex">No tires la toalla ahora que estás tan cerca del objetivo.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Estar hasta las narices <button class="speak-btn" onclick="speak('Estar hasta las narices')">🔊</button></div>
-      <div class="idiom-lit">(быть по самые ноздри)</div>
-      <div class="idiom-ru">Быть сытым по горло, надоело до предела</div>
-      <div class="idiom-ex">Estoy hasta las narices de esperar. ¡Llevo dos horas aquí!</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Ser pan comido <button class="speak-btn" onclick="speak('Ser pan comido')">🔊</button></div>
-      <div class="idiom-lit">(быть съеденным хлебом)</div>
-      <div class="idiom-ru">Проще простого, плёвое дело</div>
-      <div class="idiom-ex">El examen fue pan comido — había estudiado mucho.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Estar como pez en el agua <button class="speak-btn" onclick="speak('Estar como pez en el agua')">🔊</button></div>
-      <div class="idiom-lit">(быть как рыба в воде)</div>
-      <div class="idiom-ru">Чувствовать себя в своей стихии</div>
-      <div class="idiom-ex">Desde que vive en España está como pez en el agua.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Matar dos pájaros de un tiro <button class="speak-btn" onclick="speak('Matar dos pájaros de un tiro')">🔊</button></div>
-      <div class="idiom-lit">(убить двух птиц одним выстрелом)</div>
-      <div class="idiom-ru">Убить двух зайцев одним выстрелом</div>
-      <div class="idiom-ex">Con esta reunión matamos dos pájaros de un tiro.</div>
-    </div>
-    <div class="idiom-card">
-      <div class="idiom-es">Quedarse de piedra <button class="speak-btn" onclick="speak('Quedarse de piedra')">🔊</button></div>
-      <div class="idiom-lit">(остаться камнем)</div>
-      <div class="idiom-ru">Остолбенеть, быть в шоке</div>
-      <div class="idiom-ex">Me quedé de piedra cuando vi el precio.</div>
-    </div>
-  </div>
-
-  <div class="callout warning">
-    <h4>⚠️ «Ser la leche» — опасная двусмысленность</h4>
-    <p><em>Ser la leche</em> может означать «быть потрясающим» И «быть ужасным» — всё зависит от интонации. <em>«¡Eres la leche!»</em> с восторгом = «ты крутой!». <em>«Esto es la leche»</em> с раздражением = «это просто ужас». Прислушивайся к контексту и тону.</p>
-  </div>
-
-  <div class="callout info">
-    <h4>🏢 Идиомы в деловом контексте: какие уместны?</h4>
-    <ul>
-      <li><strong>Можно в офисе:</strong> dar en el clavo, tener en cuenta, llevar a cabo, matar dos pájaros de un tiro</li>
-      <li><strong>Осторожно:</strong> ser pan comido (звучит самонадеянно), hacer la vista gorda (намекает на некорректность)</li>
-      <li><strong>Только между друзьями:</strong> ser la leche, estar hasta las narices, me importa un pepino, tomar el pelo</li>
-    </ul>
-  </div>
-</div>
-
-<!-- 7. QUIZ 1 — множественный выбор -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">5</div>
-    <h2>Тест 1 — Значение идиомы</h2>
-  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Выбери правильный перевод идиомы.</p>
   <div class="quiz">
-    <h3>🎯 Что означает эта идиома?</h3>
+    <h3>🎯 Идиомы в контексте — 7 вопросов</h3>
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. «Metió la pata delante de todos» — что произошло?</div>
+      <div class="q-text">1. «<strong>Metí la pata</strong> en la reunión» означает:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Он облажался / сказал что-то неуместное</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Он убежал с собрания</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Он упал на виду у всех</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Я облажался / сделал ляп на встрече</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Я опоздал на встречу</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Я пришёл на встречу пешком</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. «¡Ponte las pilas!» — что имеется в виду?</div>
+      <div class="q-text">2. «El alquiler <strong>cuesta un ojo de la cara</strong>» — это значит:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Купи батарейки в магазине</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Возьмись за дело, перестань лениться</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Успокойся и отдохни</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Квартира находится рядом с глазным врачом</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Аренда стоит нормально</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Аренда стоит огромных денег</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. «El examen fue pan comido» — значит:</div>
+      <div class="q-text">3. Если человек «<strong>habla por los codos</strong>», он:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Экзамен был очень лёгким</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Экзамен был скучным</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">На экзамене давали хлеб</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Болтает без умолку</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Молчит и думает</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Говорит очень тихо</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Estoy hasta las narices de esperar» — говорящий:</div>
+      <div class="q-text">4. «<strong>Matar dos pájaros de un tiro</strong>» соответствует русской поговорке:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Рад ждать столько, сколько нужно</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Сыт по горло ожиданием, очень раздражён</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Немного устал от ожидания</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Тише едешь — дальше будешь</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Убить двух зайцев одним выстрелом</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Не всё то золото, что блестит</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. «¿Me estás tomando el pelo?» — смысл вопроса:</div>
+      <div class="q-text">5. «<strong>Ponerse las pilas</strong>» — что нужно сделать?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Ты меня разыгрываешь / шутишь надо мной?</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Ты стрижёшь меня?</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Ты злишься на меня?</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Взяться за дело / сосредоточиться</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Сходить в магазин</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Позвонить другу</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. «Con esta reunión matamos dos pájaros de un tiro» — говорящий:</div>
+      <div class="q-text">6. «<strong>No hay mal que por bien no venga</strong>» — когда это говорят?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Считает встречу очень длинной</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Решает сразу две задачи одной встречей</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Приглашает двух гостей на встречу</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Когда всё идёт хорошо</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Когда предупреждают об опасности</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Когда плохое обернулось хорошим</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
     </div>
     <div class="quiz-q" id="q7">
-      <div class="q-text">7. «Hizo la vista gorda con el retraso» — значит:</div>
+      <div class="q-text">7. «<strong>Estar hecho polvo</strong>» означает:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q7','a')">Он не заметил / закрыл глаза на опоздание</div>
-        <div class="opt" onclick="answerQuiz(this,'q7','b')">Он сильно рассердился на опоздание</div>
-        <div class="opt" onclick="answerQuiz(this,'q7','c')">Он записал опоздание в журнал</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Быть очень злым</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Быть абсолютно здоровым</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Быть полностью вымотанным</div>
       </div>
       <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- 8. QUIZ 2 — заполнение пропусков -->
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни идиому</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Впиши пропущенное слово. Вводи в нижнем регистре.</p>
+  <div class="quiz">
+    <h3>✏️ Восстанови идиому</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. «Dar en el ___» — попасть в точку</div>
+      <input type="text" class="text-input" placeholder="пропущенное слово..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','clavo','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ clavo — Dar en el clavo = попасть в точку</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. «Hablar por los ___» — болтать без умолку</div>
+      <input type="text" class="text-input" placeholder="пропущенное слово..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','codos','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ codos — Hablar por los codos</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Estar en las ___» — витать в облаках</div>
+      <input type="text" class="text-input" placeholder="пропущенное слово..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','nubes','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ nubes — Estar en las nubes</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. «Ponerse las ___» — взяться за дело</div>
+      <input type="text" class="text-input" placeholder="пропущенное слово..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','pilas','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ pilas — Ponerse las pilas</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. «Echar ___ al fuego» — подливать масло в огонь</div>
+      <input type="text" class="text-input" placeholder="пропущенное слово..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','leña','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ leña — Echar leña al fuego</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. «Tomar el ___» — водить за нос / разыгрывать</div>
+      <input type="text" class="text-input" placeholder="пропущенное слово..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','pelo','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ pelo — Tomar el pelo</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Тест 2 — Вставь идиому в контекст</h2>
+    <h2>Диалоги — Идиомы в живой речи</h2>
   </div>
-  <p style="margin-bottom:10px;color:var(--muted);font-size:.85rem">Вводи в нижнем регистре. Диакритика необязательна, опечатки допустимы.</p>
-  <div class="quiz">
-    <h3>✏️ Какая идиома подходит в ситуацию?</h3>
-    <div class="text-ex">
-      <div class="tex-q">1. Попал в точку, угадал проблему. Скажи: <strong>¡Has _____ en el clavo!</strong></div>
-      <input type="text" class="text-input" placeholder="глагол (participio)..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','dado','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ dado — dar en el clavo (participio: dado). Попасть в точку.</div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Замечай идиомы в контексте. Нажимай 🔊 для каждой реплики.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      💼 Диалог 1: В офисе после сложного проекта (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
     </div>
-    <div class="text-ex">
-      <div class="tex-q">2. Не хочешь сдаваться: <strong>No voy a _____ la toalla.</strong></div>
-      <input type="text" class="text-input" placeholder="глагол в infinitivo..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','tirar','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ tirar — tirar la toalla = сдаться, из боксёрского контекста.</div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Oye, ¿cómo fue la reunión con el cliente? <button class="speak-btn" onclick="speak('Oye, ¿cómo fue la reunión con el cliente?')">🔊</button></div>
+        <div class="dlg-ru translation">[Слушай, как прошла встреча с клиентом?]</div>
+      </div>
     </div>
-    <div class="text-ex">
-      <div class="tex-q">3. Что-то стоит очень дорого: <strong>Cuesta un _____ de la cara.</strong></div>
-      <input type="text" class="text-input" placeholder="часть тела..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','ojo','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ ojo — costar un ojo de la cara = стоить целое состояние.</div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Lucía</div>
+      <div style="flex:1">
+        <div class="dlg-es">Fatal. Metí la pata con los números del presupuesto. <button class="speak-btn" onclick="speak('Fatal. Metí la pata con los números del presupuesto.')">🔊</button></div>
+        <div class="dlg-ru translation">[Ужасно. Я облажалась с цифрами бюджета.]</div>
+      </div>
     </div>
-    <div class="text-ex">
-      <div class="tex-q">4. Говоришь «нет худа без добра»: <strong>No hay _____ que por bien no venga.</strong></div>
-      <input type="text" class="text-input" placeholder="одно слово..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','mal','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ mal — No hay mal que por bien no venga.</div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">Vaya... ¿Y el cliente se enfadó mucho? <button class="speak-btn" onclick="speak('Vaya... ¿Y el cliente se enfadó mucho?')">🔊</button></div>
+        <div class="dlg-ru translation">[Ого... И клиент сильно разозлился?]</div>
+      </div>
     </div>
-    <div class="text-ex">
-      <div class="tex-q">5. Хочешь взяться за дело: <strong>Voy a _____ las pilas.</strong></div>
-      <input type="text" class="text-input" placeholder="глагол (reflexivo)..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','ponerme','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ ponerme — ponerse las pilas. Voy a ponerme las pilas.</div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Lucía</div>
+      <div style="flex:1">
+        <div class="dlg-es">Al principio sí, pero luego conseguí dar la vuelta a la tortilla. <button class="speak-btn" onclick="speak('Al principio sí, pero luego conseguí dar la vuelta a la tortilla.')">🔊</button></div>
+        <div class="dlg-ru translation">[Сначала да, но потом я сумела перевернуть ситуацию.]</div>
+      </div>
     </div>
-    <div class="text-ex">
-      <div class="tex-q">6. Чувствуешь себя в своей стихии: <strong>Estoy como pez en el _____.</strong></div>
-      <input type="text" class="text-input" placeholder="существительное..." id="ti6">
-      <button class="check-btn" onclick="checkText('ti6','agua','fb-te6')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
-      <div class="feedback" id="fb-te6"></div>
-      <div class="answer-reveal" id="ans-te6">✅ agua — estar como pez en el agua = чувствовать себя в своей стихии.</div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Bien hecho! ¿Cómo lo lograste? <button class="speak-btn" onclick="speak('¡Bien hecho! ¿Cómo lo lograste?')">🔊</button></div>
+        <div class="dlg-ru translation">[Молодец! Как ты это сделала?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Lucía</div>
+      <div style="flex:1">
+        <div class="dlg-es">Le ofrecí un descuento extra y di en el clavo. Firmó el contrato. <button class="speak-btn" onclick="speak('Le ofrecí un descuento extra y di en el clavo. Firmó el contrato.')">🔊</button></div>
+        <div class="dlg-ru translation">[Я предложила дополнительную скидку и попала в точку. Он подписал контракт.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡No me tomes el pelo! ¿De verdad? <button class="speak-btn" onclick="speak('¡No me tomes el pelo! ¿De verdad?')">🔊</button></div>
+        <div class="dlg-ru translation">[Не разыгрывай меня! Правда?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Lucía</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, en serio. Ahora estoy hecha polvo, pero feliz. <button class="speak-btn" onclick="speak('Sí, en serio. Ahora estoy hecha polvo, pero feliz.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, серьёзно. Теперь я вымотана, но довольна.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Карлос</div>
+      <div style="flex:1">
+        <div class="dlg-es">No hay mal que por bien no venga, ¿eh? <button class="speak-btn" onclick="speak('No hay mal que por bien no venga, ¿eh?')">🔊</button></div>
+        <div class="dlg-ru translation">[Нет худа без добра, правда?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Lucía</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Exacto! Ahora a ponerse las pilas para el próximo proyecto. <button class="speak-btn" onclick="speak('¡Exacto! Ahora a ponerse las pilas para el próximo proyecto.')">🔊</button></div>
+        <div class="dlg-ru translation">[Именно! Теперь надо взяться за следующий проект.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue1()">▶ Воспроизвести диалог целиком</button>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏠 Диалог 2: Поиск квартиры в Барселоне (10 реплик)
+      <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Encontraste piso al final? <button class="speak-btn" onclick="speak('¿Encontraste piso al final?')">🔊</button></div>
+        <div class="dlg-ru translation2">[Ты в итоге нашёл квартиру?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марина</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, pero me cuesta un ojo de la cara. 1.400 euros al mes por un estudio. <button class="speak-btn" onclick="speak('Sí, pero me cuesta un ojo de la cara. 1.400 euros al mes por un estudio.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Да, но влетает в копеечку. 1400 евро в месяц за студию.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Madre mía! Estás con el agua al cuello con ese alquiler. <button class="speak-btn" onclick="speak('¡Madre mía! Estás con el agua al cuello con ese alquiler.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Боже мой! С такой арендой ты по горло в проблемах.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марина</div>
+      <div style="flex:1">
+        <div class="dlg-es">Ya lo sé. Pero el propietario no quiso bajar el precio. <button class="speak-btn" onclick="speak('Ya lo sé. Pero el propietario no quiso bajar el precio.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Я знаю. Но хозяин не захотел снижать цену.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y habrá que rascarse el bolsillo para la fianza? <button class="speak-btn" onclick="speak('¿Y habrá que rascarse el bolsillo para la fianza?')">🔊</button></div>
+        <div class="dlg-ru translation2">[И придётся раскошелиться на залог?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марина</div>
+      <div style="flex:1">
+        <div class="dlg-es">Dos meses de fianza. Casi tres mil euros. El propietario es de los que no dan nada gratis. <button class="speak-btn" onclick="speak('Dos meses de fianza. Casi tres mil euros. El propietario es de los que no dan nada gratis.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Два месяца залога. Почти три тысячи евро. Хозяин из тех, кто ничего не даёт бесплатно.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y los vecinos? ¿Son buena gente? <button class="speak-btn" onclick="speak('¿Y los vecinos? ¿Son buena gente?')">🔊</button></div>
+        <div class="dlg-ru translation2">[А соседи? Хорошие люди?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марина</div>
+      <div style="flex:1">
+        <div class="dlg-es">Los del primero se llevan como el perro y el gato. Se oyen gritos hasta medianoche. <button class="speak-btn" onclick="speak('Los del primero se llevan como el perro y el gato. Se oyen gritos hasta medianoche.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Те с первого этажа живут как кошка с собакой. Крики слышны до полуночи.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">Vaya panorama. Pero bueno, más vale tarde que nunca tener tu propio espacio. <button class="speak-btn" onclick="speak('Vaya panorama. Pero bueno, más vale tarde que nunca tener tu propio espacio.')">🔊</button></div>
+        <div class="dlg-ru translation2">[Ну и картина. Но ничего, лучше поздно, чем никогда — иметь своё пространство.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Марина</div>
+      <div style="flex:1">
+        <div class="dlg-es">Eso sí. A mal tiempo, buena cara. ¡Invito a cenar cuando me instale! <button class="speak-btn" onclick="speak('Eso sí. A mal tiempo, buena cara. ¡Invito a cenar cuando me instale!')">🔊</button></div>
+        <div class="dlg-ru translation2">[Это точно. Держать лицо в трудный момент. Приглашаю на ужин, когда обустроюсь!]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue2()">▶ Воспроизвести диалог целиком</button>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📋 Диалог 3: Переговоры по контракту — идиомы в деловой речи (8 реплик)
+      <button class="dlg-toggle" onclick="toggleAll3()">Все переводы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Директор</div>
+      <div style="flex:1">
+        <div class="dlg-es">Señor Petrov, llevamos tres semanas negociando. Hay que dar en el clavo hoy. <button class="speak-btn" onclick="speak('Señor Petrov, llevamos tres semanas negociando. Hay que dar en el clavo hoy.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Господин Петров, мы ведём переговоры три недели. Нужно попасть в точку сегодня.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Петров</div>
+      <div style="flex:1">
+        <div class="dlg-es">Entiendo. Pero las condiciones actuales nos cuestan un ojo de la cara. <button class="speak-btn" onclick="speak('Entiendo. Pero las condiciones actuales nos cuestan un ojo de la cara.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Понимаю. Но нынешние условия обходятся нам в огромные деньги.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Директор</div>
+      <div style="flex:1">
+        <div class="dlg-es">No le voy a tomar el pelo: este es nuestro precio final. <button class="speak-btn" onclick="speak('No le voy a tomar el pelo: este es nuestro precio final.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Я не буду вас разыгрывать: это наша окончательная цена.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Петров</div>
+      <div style="flex:1">
+        <div class="dlg-es">Entonces necesito hablar con mi director. No quiero meter la pata. <button class="speak-btn" onclick="speak('Entonces necesito hablar con mi director. No quiero meter la pata.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Тогда мне нужно поговорить с моим директором. Не хочу облажаться.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Директор</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro. Pero camarón que se duerme, se lo lleva la corriente — tenemos otro interesado. <button class="speak-btn" onclick="speak('Claro. Pero camarón que se duerme, se lo lleva la corriente — tenemos otro interesado.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Конечно. Но кто не торопится — упускает шанс. У нас есть другой интересант.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Петров</div>
+      <div style="flex:1">
+        <div class="dlg-es">Entendido. Nos ponemos las pilas y le damos una respuesta mañana a primera hora. <button class="speak-btn" onclick="speak('Entendido. Nos ponemos las pilas y le damos una respuesta mañana a primera hora.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Понято. Мы возьмёмся за дело и дадим ответ завтра первым делом утром.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Директор</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. Y recuerde: no todo lo que reluce es oro — compare bien las ofertas. <button class="speak-btn" onclick="speak('Perfecto. Y recuerde: no todo lo que reluce es oro — compare bien las ofertas.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Отлично. И помните: не всё то золото, что блестит — сравните предложения хорошо.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Петров</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sin duda. Hasta mañana, señor. <button class="speak-btn" onclick="speak('Sin duda. Hasta mañana, señor.')">🔊</button></div>
+        <div class="dlg-ru translation3">[Несомненно. До завтра, сеньор.]</div>
+      </div>
+    </div>
+    <div style="padding:10px 16px">
+      <button class="check-btn" onclick="playDialogue3()">▶ Воспроизвести диалог целиком</button>
     </div>
   </div>
 </div>
 
-<!-- 9. DIALOGUES -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Диалоги — идиомы в живом разговоре</h2>
+    <h2>Говорение — Идиомы в твоей речи</h2>
   </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Друзья обсуждают собеседование
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="dlg-toggle" onclick="toggleAll()">Показать перевод</button>
-        <button class="speak-btn" onclick="playDialogue1()" title="Воспроизвести диалог">▶</button>
-      </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Опиши ситуацию с идиомой</div>
+    <p>Вслух ответь на каждый вопрос, используя предложенную идиому:</p>
+    <div class="es">
+      1. ¿Hay alguien en tu vida que habla por los codos?<br>
+      2. ¿Cuándo fue la última vez que metiste la pata en algo importante?<br>
+      3. ¿Hay algo en tu ciudad que cuesta un ojo de la cara?<br>
+      4. Describe una situación en la que tuviste que ponerte las pilas.
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Алекс</div>
-      <div><div class="dlg-es">Oye, ¿cómo te fue en la entrevista de trabajo? <button class="speak-btn" onclick="speak('Oye, ¿cómo te fue en la entrevista de trabajo?')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Слушай, как прошло собеседование?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Marta</div>
-      <div><div class="dlg-es">Un desastre. Metí la pata al principio — dije que su empresa era pequeña sin saber que son líderes del sector. Me quedé de piedra. <button class="speak-btn" onclick="speak('Un desastre. Metí la pata al principio.')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Катастрофа. Я облажалась в начале — сказала, что их компания маленькая, не зная, что они лидеры отрасли. Я остолбенела.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Алекс</div>
-      <div><div class="dlg-es">¡Ay, no! ¿Y qué pasó después? <button class="speak-btn" onclick="speak('¡Ay, no! ¿Y qué pasó después?')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Ой, нет! И что потом?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Marta</div>
-      <div><div class="dlg-es">Me puse las pilas y lo di todo en la parte técnica. Di en el clavo con las respuestas de programación. Al final me llamaron y... ¡me contrataron! <button class="speak-btn" onclick="speak('Me puse las pilas y lo di todo en la parte técnica.')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Я взялась за дело и выложилась в технической части. Попала в точку с ответами по программированию. В итоге позвонили и наняли!</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Алекс</div>
-      <div><div class="dlg-es">¡No hay mal que por bien no venga! ¡Enhorabuena! <button class="speak-btn" onclick="speak('No hay mal que por bien no venga. Enhorabuena.')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Нет худа без добра! Поздравляю!</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Marta</div>
-      <div><div class="dlg-es">Sí, aunque el sueldo cuesta un ojo de la cara pagarlo en impuestos... En fin, más vale tarde que nunca. <button class="speak-btn" onclick="speak('Sí, aunque el sueldo cuesta un ojo de la cara pagarlo en impuestos.')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Да, хотя платить с этой зарплаты налоги стоит целого состояния... Ну в общем, лучше поздно, чем никогда.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Алекс</div>
-      <div><div class="dlg-es">¿Y no te vas por las ramas con la empresa? ¿Es tu sector? <button class="speak-btn" onclick="speak('¿Y no te vas por las ramas con la empresa?')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">А ты не уходишь от темы с этой компанией? Это твой сектор?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Marta</div>
-      <div><div class="dlg-es">¡Para nada! Estoy como pez en el agua en tecnología. Era pan comido para mí. <button class="speak-btn" onclick="speak('Para nada, estoy como pez en el agua en tecnología.')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Совсем нет! Я в технологиях как рыба в воде. Это было проще простого для меня.</div></div>
-    </div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('¿Hay alguien en tu vida que habla por los codos?')">🔊 Первый вопрос</button>
+    <div class="hint">Мин. 2 предложения на каждый вопрос. Используй идиому органично, не принудительно.</div>
   </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Подруги обсуждают переезд в Испанию
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="dlg-toggle" onclick="toggleAll2()">Показать перевод</button>
-        <button class="speak-btn" onclick="playDialogue2()" title="Воспроизвести диалог">▶</button>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Яна</div>
-      <div><div class="dlg-es">¿En serio te vas a España? ¿No te da miedo empezar desde cero? <button class="speak-btn" onclick="speak('¿En serio te vas a España? ¿No te da miedo empezar desde cero?')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">Правда уезжаешь в Испанию? Не боишься начинать с нуля?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Ольга</div>
-      <div><div class="dlg-es">Me importa un pepino el miedo. Llevo tres años en un trabajo que odio — estoy hasta las narices. Ya no puedo más. <button class="speak-btn" onclick="speak('Me importa un pepino el miedo. Estoy hasta las narices.')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">Мне плевать на страх. Три года на работе, которую ненавижу — сыта по горло. Больше не могу.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Яна</div>
-      <div><div class="dlg-es">Pero vivir en Barcelona cuesta un ojo de la cara, ¿no? <button class="speak-btn" onclick="speak('Pero vivir en Barcelona cuesta un ojo de la cara.')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">Но жить в Барселоне стоит целое состояние, нет?</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Ольга</div>
-      <div><div class="dlg-es">En Barcelona sí, pero me voy a Valencia. Es más asequible. Y ya llevo la voz cantante en las negociaciones del contrato. <button class="speak-btn" onclick="speak('Me voy a Valencia. Llevo la voz cantante en las negociaciones.')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">В Барселоне да, но я еду в Валенсию. Доступнее. И уже задаю тон в переговорах по контракту.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Яна</div>
-      <div><div class="dlg-es">¡No hay mal que por bien no venga! Perder ese trabajo fue lo mejor que te pasó. <button class="speak-btn" onclick="speak('No hay mal que por bien no venga. Perder ese trabajo fue lo mejor que te pasó.')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">Нет худа без добра! Потерять ту работу было лучшим, что с тобой случилось.</div></div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Ольга</div>
-      <div><div class="dlg-es">Exactamente. Y mato dos pájaros de un tiro — aprendo español y empiezo de nuevo. ¡Me niego a tirar la toalla! <button class="speak-btn" onclick="speak('Mato dos pájaros de un tiro. Me niego a tirar la toalla.')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">Именно. И убиваю двух зайцев — учу испанский и начинаю заново. Отказываюсь сдаваться!</div></div>
-    </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Испании: объясни контракт с идиомами</div>
+    <p>Представь, что объясняешь другу-иностранцу условия контракта по-испански. Используй минимум 3 идиомы:</p>
+    <div class="es">El contrato no todo lo que reluce es oro — hay cláusulas que cuestan un ojo de la cara. Hay que ponerse las pilas y leerlo bien antes de firmar. No queremos meter la pata...</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('El contrato no todo lo que reluce es oro — hay cláusulas que cuestan un ojo de la cara. Hay que ponerse las pilas y leerlo bien antes de firmar. No queremos meter la pata.')">🔊 Пример</button>
+    <div class="hint">Продолжи этот монолог ещё на 4-5 предложений. Добавь больше идиом из урока.</div>
   </div>
 </div>
 
-<!-- 10. SPEAKING -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Говорение — используй идиомы</h2>
+    <h2>🇪🇸 Испания на практике: Переговоры по договору аренды</h2>
   </div>
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 1 — Расскажи историю с идиомами</div>
-    <p>Расскажи историю о чём-то, что пошло не так, но закончилось хорошо. Используй минимум 5 идиом из урока. Говори 2–3 минуты.</p>
-    <div class="es">Sugerencia: «Al principio metí la pata cuando... Pero me puse las pilas y... Quedé de piedra cuando... Al final, no hay mal que por bien no venga porque...»</div>
-    <div class="hint">Если сложно — выбери 3 идиомы и построй историю вокруг них. Качество важнее количества.</div>
-  </div>
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 2 — Жизнь в Испании: деловой контекст</div>
-    <p>Ты подписываешь контракт в испанской компании. Объясни коллеге по-испански условия сделки, используя деловые идиомы. Обязательно: llevar a cabo, tener en cuenta, dar en el clavo, matar dos pájaros de un tiro.</p>
-    <div class="es">«Vamos a llevar a cabo este proyecto. Hay que tener en cuenta los plazos... Si damos en el clavo con el presupuesto, matamos dos pájaros de un tiro.»</div>
-    <div class="hint">Эти идиомы уместны в деловом испанском — используй их на следующем рабочем созвоне.</div>
+  <div class="spain-practice">
+    <div class="spain-tag">📋 Реальная ситуация — Барселона, Contrato de arrendamiento</div>
+    <p style="margin-bottom:12px">В Испании при аренде жилья обязательно составляется контракт (contrato de arrendamiento). Арендодатель (arrendador/propietario) и арендатор (arrendatario/inquilino) договариваются об условиях — и в этих переговорах идиомы звучат постоянно.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Las condiciones me cuestan un ojo de la cara. <button class="speak-btn" onclick="speak('Las condiciones me cuestan un ojo de la cara.')">🔊</button></div>
+          <div class="phrase-ru">Условия обходятся мне в огромные деньги.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Hay que ponerse las pilas y revisar el contrato hoy. <button class="speak-btn" onclick="speak('Hay que ponerse las pilas y revisar el contrato hoy.')">🔊</button></div>
+          <div class="phrase-ru">Нужно взяться и проверить контракт сегодня.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">No quiero meter la pata con las cláusulas de rescisión. <button class="speak-btn" onclick="speak('No quiero meter la pata con las cláusulas de rescisión.')">🔊</button></div>
+          <div class="phrase-ru">Не хочу облажаться с пунктами о расторжении.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">El propietario hizo la vista gorda con el depósito de seguridad. <button class="speak-btn" onclick="speak('El propietario hizo la vista gorda con el depósito de seguridad.')">🔊</button></div>
+          <div class="phrase-ru">Хозяин закрыл глаза на страховой депозит.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Camarón que se duerme — si no firmas hoy, pierde el piso. <button class="speak-btn" onclick="speak('Camarón que se duerme — si no firmas hoy, pierde el piso.')">🔊</button></div>
+          <div class="phrase-ru">Зевакам не везёт — если не подпишешь сегодня, потеряешь квартиру.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Habrá que rascarse el bolsillo para la fianza y el primer mes. <button class="speak-btn" onclick="speak('Habrá que rascarse el bolsillo para la fianza y el primer mes.')">🔊</button></div>
+          <div class="phrase-ru">Придётся раскошелиться на залог и первый месяц.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Стандартный контракт аренды в Испании (Ley de Arrendamientos Urbanos, LAU) — на 5-7 лет с правом продления. Фианса (fianza) — обязательный залог минимум в 1 месяц, дополнительный депозит (depósito adicional) не может превышать 2 месяцев. Все изменения в контракте — в письменном виде, иначе не имеют силы. Знание этих идиом поможет при переговорах с propietario.
+    </div>
   </div>
 </div>
 
-<!-- 11. SPAIN PRACTICE -->
+<!-- 11. CULTURE NOTE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">9</div>
-    <h2>🇪🇸 Испания на практике: подписание контракта</h2>
-  </div>
-  <div class="spain-practice">
-    <div class="spain-tag">📋 Реальный сценарий — Барселона, офис компании</div>
-    <p>Ты подписываешь трудовой договор или контракт с испанской компанией. HR-менеджер объясняет условия — ты понимаешь устойчивые выражения, которые он использует.</p>
-    <div class="phrase-list">
-      <div class="phrase-item">
-        <div><div class="phrase-es">Hay que tener en cuenta el periodo de prueba <button class="speak-btn" onclick="speak('Hay que tener en cuenta el periodo de prueba')">🔊</button></div><div class="phrase-ru">Надо принять во внимание испытательный срок</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">Vamos a llevar a cabo la incorporación el lunes <button class="speak-btn" onclick="speak('Vamos a llevar a cabo la incorporación el lunes')">🔊</button></div><div class="phrase-ru">Мы осуществим выход на работу в понедельник</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">Con este contrato matamos dos pájaros de un tiro <button class="speak-btn" onclick="speak('Con este contrato matamos dos pájaros de un tiro')">🔊</button></div><div class="phrase-ru">Этим контрактом убиваем двух зайцев сразу</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">¿Le queda alguna duda? Puede preguntar sin rodeos <button class="speak-btn" onclick="speak('¿Le queda alguna duda? Puede preguntar sin rodeos')">🔊</button></div><div class="phrase-ru">Есть ли вопросы? Можете спрашивать прямо</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">El jefe de equipo no tiene pelos en la lengua — le dirá todo directamente <button class="speak-btn" onclick="speak('El jefe de equipo no tiene pelos en la lengua')">🔊</button></div><div class="phrase-ru">Руководитель команды режет правду-матку — скажет всё прямо</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">Ha dado en el clavo con sus expectativas salariales <button class="speak-btn" onclick="speak('Ha dado en el clavo con sus expectativas salariales')">🔊</button></div><div class="phrase-ru">Вы попали в точку со своими зарплатными ожиданиями</div></div>
-      </div>
-    </div>
-    <div class="dialogue" style="margin-top:14px">
-      <div class="dlg-header">💼 Мини-диалог: подписание контракта <button class="dlg-toggle" onclick="toggleTranslation('tr-spain')">Показать перевод</button></div>
-      <div class="dlg-line">
-        <div class="dlg-speaker">HR</div>
-        <div><div class="dlg-es">Bien, vamos a llevar a cabo la firma hoy. Hay que tener en cuenta que el contrato empieza el 1 de septiembre.</div>
-        <div class="dlg-ru" id="tr-spain" style="display:none">Итак, сегодня осуществляем подписание. Нужно принять во внимание, что контракт начинается 1 сентября.</div></div>
-      </div>
-      <div class="dlg-line">
-        <div class="dlg-speaker b">Вы</div>
-        <div><div class="dlg-es">Perfecto. ¿Puedo preguntar sin rodeos sobre las vacaciones?</div>
-        <div class="dlg-ru" id="tr-spain-2" style="display:none">Отлично. Могу ли я спросить напрямую об отпуске?</div></div>
-      </div>
-      <div class="dlg-line">
-        <div class="dlg-speaker">HR</div>
-        <div><div class="dlg-es">Por supuesto. No tenemos pelos en la lengua aquí. Son 23 días laborables al año.</div>
-        <div class="dlg-ru" id="tr-spain-3" style="display:none">Конечно. Мы здесь режем правду-матку. 23 рабочих дня в год.</div></div>
-      </div>
-      <div class="dlg-line">
-        <div class="dlg-speaker b">Вы</div>
-        <div><div class="dlg-es">Ha dado en el clavo. Es justo lo que esperaba. ¡Firmamos!</div>
-        <div class="dlg-ru" id="tr-spain-4" style="display:none">Попали в точку. Именно этого я и ожидал. Подписываем!</div></div>
-      </div>
-    </div>
-    <div class="culture-tip"><strong>Важно в Испании:</strong> В испанских компаниях принято спрашивать напрямую — «preguntar sin rodeos». Не бойся задавать вопросы о зарплате и условиях. Это ценится как профессионализм, а не наглость.</div>
-  </div>
-</div>
-
-<!-- 12. CULTURE NOTE -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">10</div>
     <h2>Культурная заметка</h2>
   </div>
   <div class="culture">
-    <div class="ctag">🌍 Еда в испанских идиомах</div>
-    <h4>Почему испанцы разговаривают едой?</h4>
-    <p>В испанском языке огромное количество идиом связано с едой — pepino, leche, pan, tortilla, queso, pimiento. Это отражает центральную роль еды в испанской культуре. Трапеза в Испании — не просто питание, а социальный ритуал. Испанцы едят поздно: обед в 14:00–16:00, ужин в 21:00–23:00, и делают это медленно и вместе. Идиома «estar como un queso» (быть как сыр) означает быть очень привлекательным. «Poner a alguien como un trapo» (поставить кого-то как тряпку) — жёстко критиковать. Реже встречаются животные (perro, pez, pájaro) — тоже повседневные образы. Ключ к пониманию: идиомы отражают то, что важно в культуре.</p>
+    <div class="ctag">🌍 Идиомы и испанский характер</div>
+    <h4>Почему испанцы так любят пословицы и идиомы?</h4>
+    <p>Испания — страна с богатейшей устной традицией. Золотой век испанской литературы (Siglo de Oro, XVI-XVII вв.) создал тысячи пословиц и идиом, которые живы до сих пор. Мигель де Сервантес в «Дон Кихоте» вложил в уста Санчо Пансы десятки народных выражений — именно оттуда происходит многие современные идиомы. Испанцы используют пословицы в разговорной речи значительно чаще, чем русские или немцы: по исследованиям, в среднем одна пословица на 4-5 минут живого разговора. Особенно частотны выражения с животными (perro, gato, pájaro, camarón) и частями тела (ojo, nariz, codo) — это отражает народный, приземлённый взгляд на жизнь. В Andalucía и регионах Мексики идиом ещё больше и они ещё красочнее.</p>
   </div>
 </div>
 
-<!-- 13. ANKI DECK -->
+<!-- 12. ANKI DECK -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">11</div>
-    <h2>Анки-колода — 18 карточек для повторения</h2>
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 20 карточек</h2>
   </div>
-  <p style="margin-bottom:12px;font-size:.9rem;color:var(--muted)">Нажми на карточку, чтобы перевернуть. Потом скачай всю колоду для Anki.</p>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай колоду для импорта в Anki.</p>
   <div class="anki-cards-preview">
     <div class="anki-card" onclick="this.classList.toggle('flipped')">
       <div class="anki-card-inner">
-        <div class="anki-card-front">meter la pata</div>
-        <div class="anki-card-back">облажаться, сказать лишнее<br><em>Metí la pata al principio.</em></div>
+        <div class="anki-card-front" style="color:var(--purple);font-weight:700">meter la pata</div>
+        <div class="anki-card-back">облажаться / сделать ляп<br>«Metí la pata en la reunión»</div>
       </div>
     </div>
     <div class="anki-card" onclick="this.classList.toggle('flipped')">
       <div class="anki-card-inner">
-        <div class="anki-card-front">costar un ojo de la cara</div>
-        <div class="anki-card-back">стоить целое состояние<br><em>El piso cuesta un ojo de la cara.</em></div>
+        <div class="anki-card-front" style="color:var(--purple);font-weight:700">costar un ojo de la cara</div>
+        <div class="anki-card-back">влететь в копеечку<br>«El alquiler cuesta un ojo de la cara»</div>
       </div>
     </div>
     <div class="anki-card" onclick="this.classList.toggle('flipped')">
       <div class="anki-card-inner">
-        <div class="anki-card-front">dar en el clavo</div>
-        <div class="anki-card-back">попасть в точку<br><em>¡Has dado en el clavo!</em></div>
+        <div class="anki-card-front" style="color:var(--purple);font-weight:700">ponerse las pilas</div>
+        <div class="anki-card-back">взяться за дело<br>«¡Hay que ponerse las pilas!»</div>
       </div>
     </div>
     <div class="anki-card" onclick="this.classList.toggle('flipped')">
       <div class="anki-card-inner">
-        <div class="anki-card-front">ponerse las pilas</div>
-        <div class="anki-card-back">взяться за дело<br><em>Ponte las pilas, es urgente.</em></div>
+        <div class="anki-card-front" style="color:var(--purple);font-weight:700">no hay mal que por bien no venga</div>
+        <div class="anki-card-back">нет худа без добра<br>«Perdí el trabajo pero conocí a mi esposa»</div>
       </div>
     </div>
     <div class="anki-card" onclick="this.classList.toggle('flipped')">
       <div class="anki-card-inner">
-        <div class="anki-card-front">ser pan comido</div>
-        <div class="anki-card-back">проще простого<br><em>Para ella fue pan comido.</em></div>
+        <div class="anki-card-front" style="color:var(--purple);font-weight:700">hablar por los codos</div>
+        <div class="anki-card-back">болтать без умолку<br>«Mi vecina habla por los codos»</div>
       </div>
     </div>
   </div>
-  <button class="export-btn" onclick="exportAnkiL103()">📥 Скачать колоду Anki (.txt)</button>
+  <button class="export-btn" onclick="exportAnkiL103()">📥 Скачать колоду Anki L103 (.txt)</button>
 </div>
 
-<!-- 14. HOMEWORK -->
+<!-- 13. HOMEWORK -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">12</div>
+    <div class="section-num">11</div>
     <h2>Домашнее задание</h2>
   </div>
   <div class="callout tip">
-    <h4>📝 Задание на сегодня</h4>
+    <h4>📅 До следующего урока (L104: Ложные друзья)</h4>
     <ul>
-      <li>Выбери 5 любимых идиом из урока и составь по одному предложению с каждой</li>
-      <li>Запиши их в заметки на телефоне — потом используй в реальном разговоре</li>
-      <li>Попробуй использовать 2 идиомы в следующем разговоре с испаноязычным другом/коллегой</li>
+      <li><strong>Выучи 10 идиом наизусть</strong> — выбери 10 из урока и выучи с примерами. Провери себя по Anki-карточкам.</li>
+      <li><strong>Найди 3 идиомы в реальных текстах</strong> — в испанских сериалах (La Casa de Papel, Élite) или новостях El País. Выпиши контекст.</li>
+      <li><strong>Используй 3 идиомы сегодня</strong> — в разговоре, в записях, в мыслях по-испански. Meter la pata, ponerse las pilas, estar hecho polvo.</li>
+      <li><strong>Dreaming Spanish (intermediate)</strong> — 15-20 мин видео. Слушай и замечай идиомы — они звучат постоянно в видео этого уровня.</li>
+      <li><strong>Пословица дня</strong> — выбери одну пословицу из урока и запиши её 10 раз, представляя реальную ситуацию.</li>
     </ul>
   </div>
-  <div class="callout info">
-    <h4>📺 Dreaming Spanish — Intermediate</h4>
-    <p>Ищи видео с тегом «expressions» или «modismos» на Dreaming Spanish Intermediate. Каждый раз, когда слышишь знакомую идиому — пауза, повторяй вслух. Цель: слышать идиомы автоматически.</p>
-  </div>
-  <div class="callout success">
-    <h4>⏭ Следующий урок — L104</h4>
-    <p>L104: Ложные друзья переводчика — слова, которые кажутся знакомыми, но значат совсем другое. Embarazada ≠ embarrassed. Не попадись в ловушку!</p>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 Урок 103 завершён!</h4>
+    <p>Ты знаешь 30 самых частотных испанских идиом. Следующий урок — Ложные друзья переводчика: 40 слов, которые звучат по-английски или по-русски, но означают совсем другое.</p>
   </div>
 </div>
 
 </div><!-- .wrap -->
 
-<!-- DONE BAR -->
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L102.html" class="nav-link-btn">← L102</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L104.html" class="nav-link-btn">L104 →</a>
+    <a href="L102.html" class="nav-link-btn">← L102: Регистры</a>
+    <a href="L104.html" class="nav-link-btn">L104: Ложные друзья →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
-const LESSON_ID = 'L103';
-const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){
-  const s=getState();
-  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
-  const today=new Date().toISOString().slice(0,10);
-  if(!s.study_days)s.study_days={};
-  s.study_days[today]=true;
-  localStorage.setItem(LS_KEY,JSON.stringify(s));
-  const btn=document.getElementById('done-btn');
-  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
-}
-const st=getState();
-if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-
 function speak(text, lang) {
   const u = new SpeechSynthesisUtterance(text);
   u.lang = lang || 'es-ES';
@@ -873,53 +1003,151 @@ function speak(text, lang) {
   window.speechSynthesis.speak(u);
 }
 
-const d1Lines = [
-  'Oye, ¿cómo te fue en la entrevista de trabajo?',
-  'Un desastre. Metí la pata al principio.',
-  '¡Ay, no! ¿Y qué pasó después?',
-  'Me puse las pilas y di en el clavo en la parte técnica.',
-  '¡No hay mal que por bien no venga!',
-  'Sí, más vale tarde que nunca.',
-  '¿Y no te vas por las ramas?',
-  'Para nada, estoy como pez en el agua en tecnología.'
+const ANKI_DECK_L103 = [
+  {front:"meter la pata",back:"Русский: облажаться / сделать ляп\n\nПример: Metí la pata en la reunión con los clientes.\nЗаметка: la pata = лапа; figurativo = ошибиться"},
+  {front:"costar un ojo de la cara",back:"Русский: влететь в копеечку / стоить огромных денег\n\nПример: El alquiler en Barcelona cuesta un ojo de la cara.\nЗаметка: un ojo de la cara = буквально 'глаз с лица'"},
+  {front:"no hay mal que por bien no venga",back:"Русский: нет худа без добра\n\nПример: Perdí el trabajo pero encontré uno mejor. No hay mal que por bien no venga.\nЗаметка: пословица — всё к лучшему"},
+  {front:"a mal tiempo, buena cara",back:"Русский: держать лицо в трудный момент / не вешать нос\n\nПример: Aunque fracasó el proyecto, a mal tiempo, buena cara.\nЗаметка: пословица о стойкости"},
+  {front:"ponerse las pilas",back:"Русский: взяться за дело / собраться\n\nПример: ¡Hay que ponerse las pilas si queremos terminar a tiempo!\nЗаметка: pilas = батарейки; 'зарядить батарейки'"},
+  {front:"hablar por los codos",back:"Русский: болтать без умолку\n\nПример: Mi vecino habla por los codos — no me deja trabajar.\nЗаметка: codos = локти; странная, но частая идиома"},
+  {front:"dar en el clavo",back:"Русский: попасть в точку / угадать\n\nПример: Con esa propuesta diste en el clavo — el cliente firmó.\nЗаметка: clavo = гвоздь; 'попасть молотком по гвоздю'"},
+  {front:"estar en las nubes",back:"Русский: витать в облаках / быть рассеянным\n\nПример: No me escuchó nada — siempre está en las nubes.\nЗаметка: nubes = облака"},
+  {front:"ponerse los pelos de punta",back:"Русский: волосы встают дыбом\n\nПример: Esa música me puso los pelos de punta.\nЗаметка: pelos = волосы; de punta = стоять торчком"},
+  {front:"estar hasta las narices",back:"Русский: быть сыт по горло / достало\n\nПример: Estoy hasta las narices de este tráfico.\nЗаметка: narices = ноздри (мн.ч.); очень разговорное"},
+  {front:"tomar el pelo",back:"Русский: водить за нос / разыгрывать\n\nПример: ¿Me estás tomando el pelo? ¡Es imposible!\nЗаметка: pelo = волос; 'тянуть за волосы'"},
+  {front:"matar dos pájaros de un tiro",back:"Русский: убить двух зайцев одним выстрелом\n\nПример: Aprender español trabajando en Madrid — mato dos pájaros de un tiro.\nЗаметка: pájaros = птицы; tiro = выстрел"},
+  {front:"echar leña al fuego",back:"Русский: подливать масло в огонь\n\nПример: No digas eso — solo echas leña al fuego.\nЗаметка: leña = дрова; fuego = огонь"},
+  {front:"dar la vuelta a la tortilla",back:"Русский: перевернуть ситуацию\n\nПример: Parecíamos perder, pero dimos la vuelta a la tortilla.\nЗаметка: tortilla = испанский омлет; переворачивают при готовке"},
+  {front:"estar con el agua al cuello",back:"Русский: быть по горло в проблемах\n\nПример: Este mes estoy con el agua al cuello con las deudas.\nЗаметка: agua al cuello = вода по горло"},
+  {front:"hacer la vista gorda",back:"Русский: делать вид что не замечаешь / закрывать глаза\n\nПример: El jefe hace la vista gorda con los retrasos.\nЗаметка: vista = зрение; gorda = толстая/слепая"},
+  {front:"rascarse el bolsillo",back:"Русский: раскошелиться\n\nПример: Habrá que rascarse el bolsillo para pagar la fianza.\nЗаметка: bolsillo = карман; rascarse = чесать"},
+  {front:"llevarse como el perro y el gato",back:"Русский: жить как кошка с собакой\n\nПример: Mis compañeros de piso se llevan como el perro y el gato.\nЗаметка: perro = собака; gato = кошка"},
+  {front:"estar hecho polvo",back:"Русский: быть полностью вымотанным\n\nПример: Después de la mudanza estoy hecho polvo.\nЗаметка: polvo = пыль; 'быть превращённым в пыль'"},
+  {front:"más vale tarde que nunca",back:"Русский: лучше поздно чем никогда\n\nПример: Empezaste español a los 50. Más vale tarde que nunca.\nЗаметка: пословица — универсальная утешительная"},
 ];
-function playDialogue1(){
-  window.speechSynthesis.cancel();
-  d1Lines.forEach((line,i)=>{
-    setTimeout(()=>speak(line),i*3000);
-  });
+
+function exportAnkiL103() {
+  const tsv = ANKI_DECK_L103.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L103_spanish.txt';
+  a.click();
 }
 
-const d2Lines = [
-  '¿En serio te vas a España?',
-  'Me importa un pepino el miedo. Estoy hasta las narices.',
-  'Pero vivir en Barcelona cuesta un ojo de la cara.',
-  'Me voy a Valencia. Llevo la voz cantante en las negociaciones.',
-  '¡No hay mal que por bien no venga!',
-  'Mato dos pájaros de un tiro. ¡Me niego a tirar la toalla!'
-];
-function playDialogue2(){
-  window.speechSynthesis.cancel();
-  d2Lines.forEach((line,i)=>{
-    setTimeout(()=>speak(line),i*3000);
-  });
+function playDialogue1() {
+  const lines = [
+    'Oye, ¿cómo fue la reunión con el cliente?',
+    'Fatal. Metí la pata con los números del presupuesto.',
+    'Vaya... ¿Y el cliente se enfadó mucho?',
+    'Al principio sí, pero luego conseguí dar la vuelta a la tortilla.',
+    '¡Bien hecho! ¿Cómo lo lograste?',
+    'Le ofrecí un descuento extra y di en el clavo. Firmó el contrato.',
+    '¡No me tomes el pelo! ¿De verdad?',
+    'Sí, en serio. Ahora estoy hecha polvo, pero feliz.',
+    'No hay mal que por bien no venga, ¿eh?',
+    '¡Exacto! Ahora a ponerse las pilas para el próximo proyecto.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
 }
 
-const quizExpl={
-  w1:'«¿Podría usted...?» — формальная конструкция с usted и условным наклонением.',
-  w2:'Tuteo = использование «tú». Ustedeo = использование «usted» (формальное).',
-  w3:'«¿Cómo estás?» — неформальная форма с tú. «¿Cómo está usted?» — формальная.',
-  w4:'В Испании с незнакомцами старшего возраста или в профессиональном контексте начинают с usted.',
-  q1:'Meter la pata = облажаться, сказать или сделать что-то неуместное.',
-  q2:'Ponerse las pilas = взяться за дело. Буквально: «зарядить батарейки».',
-  q3:'Ser pan comido = проще простого. Буквально: «быть съеденным хлебом».',
-  q4:'Estar hasta las narices = быть сытым по горло. Сильное выражение раздражения.',
-  q5:'Tomar el pelo = разыгрывать, дурачить кого-то.',
-  q6:'Matar dos pájaros de un tiro = убить двух зайцев одним выстрелом.',
-  q7:'Hacer la vista gorda = закрыть глаза на что-то, сделать вид что не заметил.'
+function playDialogue2() {
+  const lines = [
+    '¿Encontraste piso al final?',
+    'Sí, pero me cuesta un ojo de la cara. Mil cuatrocientos euros al mes por un estudio.',
+    '¡Madre mía! Estás con el agua al cuello con ese alquiler.',
+    'Ya lo sé. Pero el propietario no quiso bajar el precio.',
+    '¿Y habrá que rascarse el bolsillo para la fianza?',
+    'Dos meses de fianza. Casi tres mil euros.',
+    '¿Y los vecinos? ¿Son buena gente?',
+    'Los del primero se llevan como el perro y el gato.',
+    'Vaya panorama. Pero bueno, más vale tarde que nunca tener tu propio espacio.',
+    'Eso sí. A mal tiempo, buena cara. ¡Invito a cenar cuando me instale!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue3() {
+  const lines = [
+    'Señor Petrov, llevamos tres semanas negociando. Hay que dar en el clavo hoy.',
+    'Entiendo. Pero las condiciones actuales nos cuestan un ojo de la cara.',
+    'No le voy a tomar el pelo: este es nuestro precio final.',
+    'Entonces necesito hablar con mi director. No quiero meter la pata.',
+    'Claro. Pero camarón que se duerme, se lo lleva la corriente — tenemos otro interesado.',
+    'Entendido. Nos ponemos las pilas y le damos una respuesta mañana a primera hora.',
+    'Perfecto. Y recuerde: no todo lo que reluce es oro — compare bien las ofertas.',
+    'Sin duda. Hasta mañana, señor.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+const LESSON_ID = 'L103';
+const LS_KEY = 'esp_course_progress';
+
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'Estimado señor García — единственно верное обращение к руководителю в деловом письме по-испански.',
+  w2:'Tuteo = использование «tú» с кем-то. Ustedeo = использование «usted». Это ключевое различие регистров L102.',
+  w3:'Le agradezco su atención — формальная формула благодарности. «Gracias, tío» — это разговорное.',
+  w4:'«Tío/tía» в разговорной испанской речи = «чувак/девчонка». Буквальное значение «дядя/тётя» тоже есть, но в разговоре — это неформальное обращение.',
+  q1:'Meter la pata = облажаться, сделать что-то не так. «La pata» = лапа — идиома про неуклюжесть.',
+  q2:'Costar un ojo de la cara = стоить огромных денег. Буквально «стоить глаз с лица» — очень высокая цена.',
+  q3:'Hablar por los codos = говорить очень много, болтать без остановки. «Los codos» = локти.',
+  q4:'Matar dos pájaros de un tiro = убить двух зайцев одним выстрелом. Одно действие — два результата.',
+  q5:'Ponerse las pilas = взяться за дело, сосредоточиться. «Pilas» = батарейки — «зарядить батарейки».',
+  q6:'No hay mal que por bien no venga — говорят когда что-то плохое обернулось чем-то хорошим.',
+  q7:'Estar hecho polvo = быть полностью вымотанным. «Polvo» = пыль — «быть превращённым в пыль».',
 };
 
-let quizScore=0,quizTotal=0;
+let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -943,11 +1171,13 @@ function answerQuiz(el, qId, correctKey) {
     fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
   } else {
     fb.className = 'feedback show no';
-    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», правильный ответ — <strong>«' + correctText + '»</strong>.<br>💡 ' + expl;
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
   }
   if (typeof quizScore !== 'undefined') {
     if (isCorrect) quizScore++;
     quizTotal++;
+    const scoreEl = document.getElementById('quiz-score');
+    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
   }
 }
 
@@ -1003,47 +1233,45 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
-function toggleAll(){document.querySelectorAll('.translation').forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
-function toggleAll2(){document.querySelectorAll('.translation2').forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
 
-const ANKI_DECK_L103 = [
-  {front:"meter la pata",back:"Перевод: облажаться, сказать что-то неуместное\n\nПример: Metí la pata al mencionar su ex.\nЗаметка: буквально «засунуть лапу»"},
-  {front:"costar un ojo de la cara",back:"Перевод: стоить целое состояние\n\nПример: El apartamento cuesta un ojo de la cara.\nЗаметка: буквально «стоить глаз из лица»"},
-  {front:"dar en el clavo",back:"Перевод: попасть в точку\n\nПример: ¡Has dado en el clavo!\nЗаметка: dar → dado (participio)"},
-  {front:"hacer la vista gorda",back:"Перевод: смотреть сквозь пальцы\n\nПример: El jefe hizo la vista gorda.\nЗаметка: буквально «делать жирный взгляд»"},
-  {front:"ser pan comido",back:"Перевод: проще простого, плёвое дело\n\nПример: El examen fue pan comido.\nЗаметка: буквально «быть съеденным хлебом»"},
-  {front:"tomar el pelo",back:"Перевод: разыгрывать, дурачить\n\nПример: ¿Me estás tomando el pelo?\nЗаметка: буквально «брать за волосы»"},
-  {front:"ponerse las pilas",back:"Перевод: взяться за дело, взбодриться\n\nПример: Ponte las pilas, que el plazo es mañana.\nЗаметка: «зарядить батарейки»"},
-  {front:"quedarse de piedra",back:"Перевод: остолбенеть, быть в шоке\n\nПример: Me quedé de piedra con la noticia.\nЗаметка: буквально «остаться камнем»"},
-  {front:"llevar la voz cantante",back:"Перевод: руководить, задавать тон\n\nПример: Ella lleva la voz cantante en el equipo.\nЗаметка: буквально «нести певческий голос»"},
-  {front:"estar en las nubes",back:"Перевод: витать в облаках\n\nПример: Hoy estás en las nubes, ¿qué te pasa?\nЗаметка: = быть невнимательным"},
-  {front:"no hay mal que por bien no venga",back:"Перевод: нет худа без добра\n\nПример: Perdí el trabajo pero encontré uno mejor.\nЗаметка: очень частая поговорка"},
-  {front:"matar dos pájaros de un tiro",back:"Перевод: убить двух зайцев одним выстрелом\n\nПример: Con esta reunión matamos dos pájaros de un tiro.\nЗаметка: то же выражение, что в английском"},
-  {front:"tirar la toalla",back:"Перевод: сдаться, опустить руки\n\nПример: No tires la toalla ahora.\nЗаметка: из боксёрской терминологии"},
-  {front:"estar hasta las narices",back:"Перевод: быть сытым по горло\n\nПример: Estoy hasta las narices de esperar.\nЗаметка: очень сильное выражение"},
-  {front:"llevar a cabo",back:"Перевод: осуществить, выполнить\n\nПример: Vamos a llevar a cabo el proyecto.\nЗаметка: деловой оборот, уместен в офисе"},
-  {front:"tener en cuenta",back:"Перевод: принять во внимание, учесть\n\nПример: Hay que tener en cuenta el plazo.\nЗаметка: очень частый деловой оборот"},
-  {front:"echar de menos",back:"Перевод: скучать по кому-то / чему-то\n\nПример: Echo de menos a mi familia en Rusia.\nЗаметка: = añorar"},
-  {front:"irse por las ramas",back:"Перевод: уходить от темы, ходить вокруг да около\n\nПример: No te vayas por las ramas, ve al grano.\nЗаметка: буквально «уходить по веткам»"}
-];
+function showAns(id) { document.getElementById(id).classList.add('show'); }
 
-function exportAnkiL103() {
-  const tsv = ANKI_DECK_L103.map(c => c.front + '\t' + c.back.replace(/\n/g, '<br>')).join('\n');
-  const blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = 'L103_spanish.txt'; a.click();
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
 }
 
-const totalSections = 13;
-function updateProgress(){
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+let showingTrans3 = false;
+function toggleAll3() {
+  showingTrans3 = !showingTrans3;
+  document.querySelectorAll('.translation3').forEach(el => {
+    el.style.display = showingTrans3 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation3').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
   const scrolled = window.scrollY;
   const total = document.body.scrollHeight - window.innerHeight;
-  const pct = total > 0 ? Math.min(100, Math.round(scrolled / total * 100)) : 0;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
   const sectionsRead = Math.round(pct / 100 * totalSections);
   document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
 }
 window.addEventListener('scroll', updateProgress);
 </script>

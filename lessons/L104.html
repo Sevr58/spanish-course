@@ -1,907 +1,1006 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L104: Ложные друзья переводчика</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>L104 · Ложные друзья переводчика</title>
 <style>
-:root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
-.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
-.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
-.nav .level{background:var(--red);color:#fff;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
-.hero{background:linear-gradient(135deg,#f1f3f7 0%,#e8ebf1 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
-.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--red);margin-bottom:8px}
-.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
-.hero h1 .hl{color:var(--red)}
-.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
-.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
-.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
-.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
-.progress-fill{height:100%;background:var(--red);border-radius:4px;transition:width .5s ease}
-.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
-.section{margin-bottom:36px}
-.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.section-header h2{font-size:1.15rem;font-weight:700}
-.section-num{width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
-.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
-.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
-.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
-.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
-.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
-.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
-.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
-.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
-.speak-box p{font-size:.9rem}
-.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
-.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
-.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
-.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
-.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
-.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
-.quiz-q .q-text strong{color:var(--red)}
-.options{display:flex;flex-wrap:wrap;gap:6px}
-.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
-.opt:hover{border-color:var(--muted)}
-.feedback{margin-top:8px;font-size:.82rem;display:none}
-.feedback.show{display:block}
-.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
-.text-ex{margin-bottom:14px}
-.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
-.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
-.text-input:focus{border-color:var(--blue)}
-.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
-.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
-.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
-.check-btn:hover{opacity:.88}
-.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
-.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
-.answer-reveal.show{display:block}
-.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
-.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
-.dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
-.dlg-speaker.b{color:var(--blue)}
-.dlg-es{font-size:.95rem;font-weight:500}
-.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
-.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
-.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
-.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
-.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
-.culture p{font-size:.86rem;color:var(--muted)}
-.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
-.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
-.done-btn:hover{opacity:.88}
-.done-btn.marked{background:var(--muted)}
-.nav-links{display:flex;gap:10px}
-.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
-.nav-link-btn:hover{border-color:var(--muted)}
-.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d0f14;--bg2:#13161e;--bg3:#1c2030;--border:#2a2f42;--text:#e8eaf0;--muted:#7a8099;--gold:#ffd60a;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.65;min-height:100vh}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:4px;background:var(--bg3);z-index:100}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--purple));width:0%;transition:width .2s}
+.progress-label{position:fixed;top:8px;right:12px;font-size:.7rem;color:var(--muted);z-index:101}
+nav.lesson-nav{background:var(--bg2);border-bottom:1px solid var(--border);padding:.6rem 1rem;display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:.3rem .7rem;border-radius:6px;font-size:.8rem;cursor:pointer;transition:.2s}
+.nav-link-btn:hover{border-color:var(--gold);color:var(--gold)}
+.nav-spacer{flex:1}
+.container{max-width:860px;margin:0 auto;padding:1rem 1rem 4rem}
+section.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem}
+h1{font-size:1.9rem;font-weight:700;margin-bottom:.4rem}
+h2{font-size:1.25rem;font-weight:600;margin-bottom:1rem;color:var(--gold)}
+h3{font-size:1rem;font-weight:600;margin:.8rem 0 .4rem;color:var(--muted)}
+p{margin-bottom:.75rem}
+ul,ol{padding-left:1.4rem;margin-bottom:.75rem}
+li{margin-bottom:.3rem}
+.hero{background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--border)}
+.hero-phase{font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.4rem}
+.hero-sub{color:var(--muted);margin:.4rem 0 1rem}
+.goals{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5rem;margin:1rem 0}
+.goal{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.5rem .75rem;font-size:.85rem}
+.goal::before{content:"✦ ";color:var(--gold)}
+.callout{background:var(--bg3);border-left:3px solid var(--gold);padding:.75rem 1rem;border-radius:0 var(--r) var(--r) 0;margin:.75rem 0;font-size:.9rem}
+.callout.blue{border-color:var(--blue)}
+.callout.red{border-color:var(--red)}
+.callout.green{border-color:var(--green)}
+.callout.purple{border-color:var(--purple)}
+table{width:100%;border-collapse:collapse;margin:.75rem 0;font-size:.88rem}
+th{background:var(--bg3);color:var(--gold);padding:.5rem .75rem;text-align:left;border:1px solid var(--border)}
+td{padding:.45rem .75rem;border:1px solid var(--border)}
+tr:nth-child(even) td{background:var(--bg3)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.5rem;margin:.5rem 0}
+.vocab-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.5rem .75rem;display:flex;align-items:center;gap:.5rem;font-size:.88rem}
+.vocab-es{font-weight:600;color:var(--gold)}
+.vocab-ru{color:var(--muted);font-size:.8rem}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s}
 .speak-btn:hover{opacity:1;transform:scale(1.2)}
-.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
-.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
-.vocab-es{font-weight:600;font-size:.92rem;color:var(--red)}
-.vocab-ru{font-size:.82rem;color:var(--muted)}
-table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
-table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
-table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
-table.mistakes tr:last-child td{border-bottom:none}
-.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
-.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
-.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block;margin:4px}
+.quiz-q{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:.75rem 0}
+.quiz-q p{font-weight:600;margin-bottom:.5rem}
+.opt{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.45rem .75rem;margin:.3rem 0;cursor:pointer;width:100%;text-align:left;color:var(--text);font-size:.88rem;transition:.2s}
+.opt:hover{border-color:var(--gold)}
+.opt.correct{background:#0d2b1a;border-color:var(--green);color:var(--green)}
+.opt.wrong{background:#2b0d0d;border-color:var(--red);color:var(--red)}
+.opt.picked.correct{font-weight:700}
+.feedback{display:none;margin-top:.5rem;padding:.5rem .75rem;border-radius:6px;font-size:.85rem}
+.feedback.show{display:block}
+.feedback.ok{background:#0d2b1a;border:1px solid var(--green);color:var(--green)}
+.feedback.no{background:#2b0d0d;border:1px solid var(--red);color:var(--red)}
+#quiz-score{font-size:.85rem;color:var(--muted);margin-top:.5rem}
+.text-input{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:.4rem .75rem;color:var(--text);width:260px;font-size:.9rem}
+.text-input:focus{outline:none;border-color:var(--gold)}
+.text-input.correct{border-color:var(--green);background:#0d2b1a}
+.text-input.wrong{border-color:var(--red);background:#2b0d0d}
+.check-btn{background:var(--blue);border:none;color:#fff;padding:.4rem .9rem;border-radius:6px;cursor:pointer;font-size:.85rem;margin-left:.4rem}
+.check-btn:hover{opacity:.85}
+.dialog-block{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1rem;margin:.75rem 0}
+.dialog-line{display:flex;gap:.5rem;align-items:flex-start;margin:.4rem 0}
+.dialog-who{font-weight:700;color:var(--gold);min-width:70px;font-size:.85rem}
+.dialog-text{font-size:.9rem;flex:1}
+.dialog-tr{font-size:.78rem;color:var(--muted);display:none;font-style:italic}
+.dialog-tr.visible{display:block}
+.btn{background:var(--bg3);border:1px solid var(--border);padding:.35rem .8rem;border-radius:6px;cursor:pointer;font-size:.82rem;color:var(--text);transition:.2s;margin:.2rem}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.speak-box{background:var(--bg3);border:2px dashed var(--border);border-radius:var(--r);padding:1.2rem;text-align:center;margin:.75rem 0}
+.speak-box p{font-size:.9rem;margin-bottom:.75rem}
+.speak-box .prompt{font-size:1.05rem;color:var(--gold);font-weight:600;margin:.5rem 0}
+.phrase-list{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0}
+.phrase-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.6rem 1rem;display:flex;align-items:center;gap:.75rem}
+.phrase-es{font-weight:600;font-size:.95rem}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:var(--bg3);border-left:3px solid var(--purple);padding:.75rem 1rem;border-radius:0 var(--r) var(--r) 0;margin-top:1rem;font-size:.88rem}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block;margin:8px}
 .anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
 .anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
 .anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
 .anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
-.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
-.export-btn:hover{opacity:.88}
-.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
-.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
-.phrase-list{margin:14px 0}
-.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
-.phrase-item:last-child{border-bottom:none}
-.phrase-es{font-weight:600;font-size:.95rem;flex:1}
-.phrase-ru{font-size:.82rem;color:var(--muted)}
-.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
-.ff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;margin-bottom:16px}
-.ff-card{background:var(--bg2);border:1px solid rgba(230,57,70,.25);border-radius:8px;padding:14px 16px}
-.ff-card .ff-word{font-size:1rem;font-weight:700;color:var(--red);margin-bottom:4px}
-.ff-card .ff-wrong{font-size:.82rem;color:var(--red);opacity:.8;margin-bottom:4px}
-.ff-card .ff-right{font-size:.88rem;color:var(--green);font-weight:600;margin-bottom:6px}
-.ff-card .ff-ex{font-size:.82rem;color:var(--muted);border-left:2px solid var(--border);padding-left:8px}
-.ff-card .ff-en{font-size:.78rem;color:var(--blue);margin-top:4px}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.ff-grid{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.export-btn{background:var(--purple);border:none;color:#fff;padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;font-size:.9rem;margin-top:.75rem}
+.export-btn:hover{opacity:.85}
+.done-btn{background:var(--gold);color:#000;border:none;padding:.75rem 2rem;border-radius:var(--r);font-size:1rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.85}
+.done-btn.marked{background:var(--green);color:#fff}
+.error-table th{background:#3a1010;color:var(--red)}
+.ff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.5rem;margin:.75rem 0}
+.false-friend-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.75rem;margin:.4rem 0}
+.false-friend-card .ff-word{font-size:1.05rem;font-weight:700;color:var(--red);margin-bottom:.2rem}
+.false-friend-card .ff-correct{color:var(--green)}
+</style>
 </head>
 <body>
-<div class="wrap">
+<div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- 1. NAV -->
-<div class="nav">
-  <a href="../index.html">← Дашборд</a>
-  <span class="level">B1 · Фаза 4 · День 222</span>
-  <a href="L105.html">L105 →</a>
-</div>
+<!-- 1. НАВИГАЦИЯ -->
+<nav class="lesson-nav">
+  <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+  <span class="nav-link-btn" style="border-color:var(--purple);color:var(--purple)">B1 · Фаза 4 · День 222</span>
+  <span class="nav-spacer"></span>
+  <a href="L103.html" class="nav-link-btn">← L103 Идиомы</a>
+  <a href="L105.html" class="nav-link-btn">L105 →</a>
+</nav>
 
-<!-- 2. HERO -->
-<div class="hero">
-  <div class="phase-tag">⚠️ Фаза 4 · Блок B4A · Ловушки языка</div>
-  <h1>Ложные <span class="hl">друзья</span> переводчика</h1>
-  <p class="sub">Embarazada ≠ embarrassed — 40 слов-ловушек для русских и англоязычных студентов. Знай врага в лицо.</p>
-  <div class="objectives">
-    <div class="obj"><div class="ico">⚠️</div><div><strong>Цель 1</strong><p>Запомнить 40 ложных друзей и никогда не попадать в ловушку</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Цель 2</strong><p>Объяснить разницу между парами слов по-испански</p></div></div>
-    <div class="obj"><div class="ico">📋</div><div><strong>Цель 3</strong><p>Понять официальные документы без ошибок ложных друзей</p></div></div>
-    <div class="obj"><div class="ico">🃏</div><div><strong>Цель 4</strong><p>Создать Anki-колоду и добиться автоматического узнавания</p></div></div>
+<div class="container">
+
+<!-- 2. HERO-БЛОК -->
+<section class="card hero">
+  <div class="hero-phase">Фаза 4 · Блок B4A · Неделя 38</div>
+  <h1>Урок 104: Ложные друзья переводчика</h1>
+  <div class="hero-sub">Embarazada ≠ embarrassed — 40 ловушек для русских и англоязычных</div>
+  <div class="goals">
+    <div class="goal">Узнать 40 самых частотных ложных друзей</div>
+    <div class="goal">Понять разницу между похожими словами</div>
+    <div class="goal">Избежать конфузов в реальных ситуациях</div>
+    <div class="goal">Применить знания в тестах и диалогах</div>
   </div>
-</div>
+</section>
 
-<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 13 разделов</div>
+<!-- 3. ПОВТОРЕНИЕ (L103 — идиомы) -->
+<section class="card">
+  <h2>🔁 Повторение: Урок 103 — Идиомы</h2>
+  <p style="color:var(--muted);font-size:.88rem">Проверь себя перед новым материалом.</p>
 
-<!-- 3. WARM-UP: повторение L103 — идиомы -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">1</div>
-    <h2>Повторение — L103: Идиомы и устойчивые выражения</h2>
-  </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Быстрая проверка материала прошлого урока. 4 вопроса — 2 минуты.</p>
-  <div class="quiz">
-    <h3>🔄 Быстрая проверка идиом</h3>
-    <div class="quiz-q" id="w1">
-      <div class="q-text">1. «Metió la pata» означает:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'w1','a')">Облажался, сказал что-то неуместное</div>
-        <div class="opt" onclick="answerQuiz(this,'w1','b')">Ушёл с собрания</div>
-        <div class="opt" onclick="answerQuiz(this,'w1','c')">Очень устал</div>
-      </div>
-      <div class="feedback" id="fb-w1"></div>
-    </div>
-    <div class="quiz-q" id="w2">
-      <div class="q-text">2. «Dar en el clavo» — это:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'w2','b')">Ошибиться, промахнуться</div>
-        <div class="opt" onclick="answerQuiz(this,'w2','a')">Попасть в точку, угадать</div>
-        <div class="opt" onclick="answerQuiz(this,'w2','c')">Закончить работу</div>
-      </div>
-      <div class="feedback" id="fb-w2"></div>
-    </div>
-    <div class="quiz-q" id="w3">
-      <div class="q-text">3. «No tires la toalla» — говорящий призывает:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'w3','a')">Не сдаваться, продолжать</div>
-        <div class="opt" onclick="answerQuiz(this,'w3','b')">Выбросить полотенце</div>
-        <div class="opt" onclick="answerQuiz(this,'w3','c')">Отдохнуть и расслабиться</div>
-      </div>
-      <div class="feedback" id="fb-w3"></div>
-    </div>
-    <div class="quiz-q" id="w4">
-      <div class="q-text">4. Какая идиома НЕ уместна в официальном деловом письме?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'w4','b')">tener en cuenta</div>
-        <div class="opt" onclick="answerQuiz(this,'w4','c')">llevar a cabo</div>
-        <div class="opt" onclick="answerQuiz(this,'w4','a')">estar hasta las narices</div>
-      </div>
-      <div class="feedback" id="fb-w4"></div>
-    </div>
-  </div>
-  <div class="callout success">
-    <h4>✅ Идиомы — часть живого языка</h4>
-    <p>Если 3+ правильных — отлично. Сегодня изучаем другую ловушку: слова, которые кажутся знакомыми, но значат совсем другое. Это может привести к очень неловким ситуациям.</p>
-  </div>
-</div>
-
-<!-- 4. THEORY -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">2</div>
-    <h2>Что такое ложные друзья и почему они опасны</h2>
+  <div class="quiz-q" id="rq1">
+    <p>1. Что означает идиома «No hay mal que por bien no venga»?</p>
+    <button class="opt" onclick="answerQuiz(this,'rq1','a')">a) Нет худа без добра</button>
+    <button class="opt" onclick="answerQuiz(this,'rq1','b')">b) Всё хорошее когда-нибудь заканчивается</button>
+    <button class="opt" onclick="answerQuiz(this,'rq1','c')">c) Не так страшен чёрт, как его малюют</button>
+    <div class="feedback" id="fb-rq1"></div>
   </div>
 
-  <p style="margin-bottom:14px">Ложные друзья переводчика (falsos amigos / false friends) — слова, которые похожи на английские или русские, но имеют совершенно другое значение в испанском. Они особенно опасны именно потому, что <strong>кажутся знакомыми</strong> — мозг автоматически применяет неверный перевод.</p>
-
-  <div class="callout warning">
-    <h4>⚠️ Классический ужас: embarazada</h4>
-    <p>Представь: хочешь сказать «Я смущён» = «I'm embarrassed». Говоришь: <em>«Estoy embarazada»</em>. Ты только что объявил, что беременен (м.р. — embarazado, ж.р. — embarazada). Правильно: <em>«Estoy avergonzado/a»</em>. Эта ошибка происходит с сотнями тысяч студентов.</p>
+  <div class="quiz-q" id="rq2">
+    <p>2. Переведи идиому: «costar un ojo de la cara»</p>
+    <button class="opt" onclick="answerQuiz(this,'rq2','a')">a) Стоить целое состояние</button>
+    <button class="opt" onclick="answerQuiz(this,'rq2','b')">b) Смотреть сквозь пальцы</button>
+    <button class="opt" onclick="answerQuiz(this,'rq2','c')">c) Делать всё возможное</button>
+    <div class="feedback" id="fb-rq2"></div>
   </div>
 
-  <div class="callout info">
-    <h4>🔍 Три типа ложных друзей</h4>
-    <ul>
-      <li><strong>Англо-испанские:</strong> слово похоже на английское, но значит другое (embarazada ≠ embarrassed, sensible ≠ sensible)</li>
-      <li><strong>Частично ложные:</strong> иногда совпадает, иногда нет (actual = нынешний, но real = настоящий)</li>
-      <li><strong>Русско-испанские:</strong> слово похоже на русское, но значит другое (familia = семья, НЕ фамилия)</li>
-    </ul>
+  <div class="quiz-q" id="rq3">
+    <p>3. Какое слово пропущено? «Meter la ___» = облажаться, совершить ошибку</p>
+    <button class="opt" onclick="answerQuiz(this,'rq3','a')">a) pata</button>
+    <button class="opt" onclick="answerQuiz(this,'rq3','b')">b) cabeza</button>
+    <button class="opt" onclick="answerQuiz(this,'rq3','c')">c) mano</button>
+    <div class="feedback" id="fb-rq3"></div>
   </div>
 
-  <p style="margin-top:14px;margin-bottom:10px"><strong>Самые частые ошибки из-за ложных друзей:</strong></p>
-  <table class="mistakes">
-    <tr><th>Испанское слово</th><th>❌ Ошибочный перевод</th><th>✅ Правильный перевод</th></tr>
-    <tr><td><strong>embarazada</strong></td><td class="wrong-ex">embarrassed (смущённая)</td><td class="right-ex">беременная</td></tr>
-    <tr><td><strong>actual</strong></td><td class="wrong-ex">actual (настоящий, реальный)</td><td class="right-ex">нынешний, текущий</td></tr>
-    <tr><td><strong>sensible</strong></td><td class="wrong-ex">sensible (разумный)</td><td class="right-ex">чувствительный, ранимый</td></tr>
-    <tr><td><strong>realizar</strong></td><td class="wrong-ex">to realize (осознать)</td><td class="right-ex">осуществлять, выполнять</td></tr>
-    <tr><td><strong>molestar</strong></td><td class="wrong-ex">to molest (домогаться)</td><td class="right-ex">беспокоить, мешать</td></tr>
-    <tr><td><strong>constipado</strong></td><td class="wrong-ex">constipated (запор)</td><td class="right-ex">простуженный (насморк)</td></tr>
-    <tr><td><strong>soportar</strong></td><td class="wrong-ex">to support (поддерживать)</td><td class="right-ex">терпеть, выносить</td></tr>
+  <div class="quiz-q" id="rq4">
+    <p>4. «Estar en las nubes» означает:</p>
+    <button class="opt" onclick="answerQuiz(this,'rq4','a')">a) Витать в облаках / мечтать</button>
+    <button class="opt" onclick="answerQuiz(this,'rq4','b')">b) Быть очень счастливым</button>
+    <button class="opt" onclick="answerQuiz(this,'rq4','c')">c) Не понимать ситуацию</button>
+    <div class="feedback" id="fb-rq4"></div>
+  </div>
+</section>
+
+<!-- 4. ТЕОРИЯ -->
+<section class="card">
+  <h2>📖 Теория: Ложные друзья переводчика</h2>
+
+  <p><strong>Ложные друзья переводчика</strong> (фр. <em>faux amis</em>) — слова двух языков, похожие по звучанию или написанию, но различающиеся по значению. Для изучающих испанский они опасны вдвойне: испанский похож и на русский (через латынь), и на английский — а значит, ловушек вдвойне больше.</p>
+
+  <div class="callout red">
+    <strong>Главная опасность:</strong> Вы уверены, что знаете слово — но на самом деле ошибаетесь. Чем увереннее, тем опаснее!
+  </div>
+
+  <h3>Типы ложных друзей</h3>
+  <table>
+    <tr><th>Тип</th><th>Пример</th><th>Объяснение</th></tr>
+    <tr><td>Испанский ≠ Английский</td><td>embarazada ≠ embarrassed</td><td>Беременная ≠ смущённая</td></tr>
+    <tr><td>Испанский ≠ Русский</td><td>confidencia ≠ конфиденциальность</td><td>Секрет/доверие ≠ конфиденциальность</td></tr>
+    <tr><td>Частичные совпадения</td><td>actual = нынешний (не актуальный)</td><td>Значения частично пересекаются</td></tr>
+    <tr><td>Тройная ловушка</td><td>noticia</td><td>По-испански «новость», не «нотиция»</td></tr>
   </table>
-</div>
 
-<!-- 5. VOCABULARY — 16 ложных друзей со speak-кнопками -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">3</div>
-    <h2>Словарь — 16 главных ловушек с произношением</h2>
+  <h3>Группа 1: Ложные друзья исп. ↔ англ. (самые опасные)</h3>
+
+  <div class="ff-grid">
+    <div class="false-friend-card">
+      <div class="ff-word">embarazada <button class="speak-btn" onclick="speak('embarazada')">🔊</button></div>
+      <div>❌ embarrassed (смущённая)</div>
+      <div class="ff-correct">✅ беременная</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">Estoy embarazada — Я беременна</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">sensible <button class="speak-btn" onclick="speak('sensible')">🔊</button></div>
+      <div>❌ sensible (разумный)</div>
+      <div class="ff-correct">✅ чувствительный, ранимый</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">sensato = разумный</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">librería <button class="speak-btn" onclick="speak('librería')">🔊</button></div>
+      <div>❌ library (библиотека)</div>
+      <div class="ff-correct">✅ книжный магазин</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">biblioteca = библиотека</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">pie <button class="speak-btn" onclick="speak('pie')">🔊</button></div>
+      <div>❌ pie (пирог)</div>
+      <div class="ff-correct">✅ нога (ступня)</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">tarta / pastel = пирог</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">actual <button class="speak-btn" onclick="speak('actual')">🔊</button></div>
+      <div>❌ actual (реальный, фактический)</div>
+      <div class="ff-correct">✅ нынешний, текущий</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">real = реальный; actualmente = в настоящее время</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">largo <button class="speak-btn" onclick="speak('largo')">🔊</button></div>
+      <div>❌ large (большой)</div>
+      <div class="ff-correct">✅ длинный</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">grande = большой</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">recordar <button class="speak-btn" onclick="speak('recordar')">🔊</button></div>
+      <div>❌ record (записывать)</div>
+      <div class="ff-correct">✅ помнить, вспоминать</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">grabar = записывать</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">contestar <button class="speak-btn" onclick="speak('contestar')">🔊</button></div>
+      <div>❌ contest (оспаривать)</div>
+      <div class="ff-correct">✅ отвечать</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">contestar al teléfono = ответить на звонок</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">éxito <button class="speak-btn" onclick="speak('éxito')">🔊</button></div>
+      <div>❌ exit (выход)</div>
+      <div class="ff-correct">✅ успех</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">salida = выход</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">simpático <button class="speak-btn" onclick="speak('simpático')">🔊</button></div>
+      <div>❌ sympathetic (сочувствующий)</div>
+      <div class="ff-correct">✅ милый, приятный, дружелюбный</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">comprensivo = сочувствующий</div>
+    </div>
   </div>
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 и произноси слово вслух. Правильное произношение помогает запомнить слово быстрее.</p>
+
+  <h3>Группа 2: Ложные друзья исп. ↔ русск.</h3>
+
+  <div class="ff-grid">
+    <div class="false-friend-card">
+      <div class="ff-word">ánimo <button class="speak-btn" onclick="speak('ánimo')">🔊</button></div>
+      <div>❌ анимо (нет такого значения)</div>
+      <div class="ff-correct">✅ настроение; духовный подъём; ¡Ánimo! = Давай!</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">confidencia <button class="speak-btn" onclick="speak('confidencia')">🔊</button></div>
+      <div>❌ конфиденциальность</div>
+      <div class="ff-correct">✅ тайна, секрет (который поверяют другу)</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">comprometer <button class="speak-btn" onclick="speak('comprometer')">🔊</button></div>
+      <div>❌ компрометировать</div>
+      <div class="ff-correct">✅ брать на себя обязательство; обручить</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">carpeta <button class="speak-btn" onclick="speak('carpeta')">🔊</button></div>
+      <div>❌ ковёр (carpet по-английски)</div>
+      <div class="ff-correct">✅ папка (для документов)</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">lectura <button class="speak-btn" onclick="speak('lectura')">🔊</button></div>
+      <div>❌ лекция</div>
+      <div class="ff-correct">✅ чтение; conferencia = лекция</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">fábrica <button class="speak-btn" onclick="speak('fábrica')">🔊</button></div>
+      <div>❌ фабрика тканей (только)</div>
+      <div class="ff-correct">✅ любой завод, фабрика, производство</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">grosero <button class="speak-btn" onclick="speak('grosero')">🔊</button></div>
+      <div>❌ крупный (grosso)</div>
+      <div class="ff-correct">✅ грубый, невоспитанный</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">noticia <button class="speak-btn" onclick="speak('noticia')">🔊</button></div>
+      <div>❌ нотиция (официальный документ)</div>
+      <div class="ff-correct">✅ новость; noticias = новости</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">molestar <button class="speak-btn" onclick="speak('molestar')">🔊</button></div>
+      <div>❌ молестировать (в плохом смысле)</div>
+      <div class="ff-correct">✅ надоедать, беспокоить; ¿Te molesta? = Тебе мешает?</div>
+    </div>
+    <div class="false-friend-card">
+      <div class="ff-word">pariente <button class="speak-btn" onclick="speak('pariente')">🔊</button></div>
+      <div>❌ пациент (patient по-английски)</div>
+      <div class="ff-correct">✅ родственник; paciente = пациент</div>
+    </div>
+  </div>
+
+  <h3>Группа 3: Ещё 20 ловушек (быстрая таблица)</h3>
+  <table>
+    <tr><th>Испанское слово</th><th>Ложный друг</th><th>Правильный перевод</th><th>Правильный аналог</th></tr>
+    <tr><td>gracioso</td><td>грациозный</td><td>смешной, забавный</td><td>grácil = грациозный</td></tr>
+    <tr><td>asistir</td><td>ассистировать (помогать)</td><td>присутствовать, посещать</td><td>ayudar = помогать</td></tr>
+    <tr><td>campo</td><td>кампо (площадка)</td><td>поле, деревня, сельская местность</td><td>estadio = стадион</td></tr>
+    <tr><td>firma</td><td>фирма (компания)</td><td>подпись</td><td>empresa = компания</td></tr>
+    <tr><td>introducir</td><td>интродуцировать (представлять)</td><td>вставить, ввести (технически)</td><td>presentar = представить человека</td></tr>
+    <tr><td>pretender</td><td>претендовать</td><td>пытаться, намереваться</td><td>aspirar = претендовать</td></tr>
+    <tr><td>soportar</td><td>саппортить (технически)</td><td>терпеть, выносить</td><td>apoyar = поддерживать</td></tr>
+    <tr><td>realizar</td><td>реализовать (продать)</td><td>осознавать; осуществлять проект</td><td>darse cuenta = осознать</td></tr>
+    <tr><td>ropa</td><td>верёвка (rope)</td><td>одежда</td><td>cuerda = верёвка</td></tr>
+    <tr><td>pan</td><td>сковорода (pan)</td><td>хлеб</td><td>sartén = сковорода</td></tr>
+    <tr><td>extrañar</td><td>экстранировать</td><td>скучать по кому-то</td><td>Te extraño = скучаю по тебе</td></tr>
+    <tr><td>disgusto</td><td>дисгустация (отвращение)</td><td>огорчение, неприятность</td><td>asco = отвращение</td></tr>
+    <tr><td>discutir</td><td>обсуждать</td><td>спорить, ругаться</td><td>hablar de = обсуждать</td></tr>
+    <tr><td>quitar</td><td>квитировать</td><td>убирать, снимать, отнимать</td><td>quitar la ropa = снять одежду</td></tr>
+    <tr><td>atender</td><td>аттендить (посещать)</td><td>обслуживать, уделять внимание</td><td>asistir = посещать</td></tr>
+    <tr><td>fondo</td><td>фонд (финансовый)</td><td>дно, глубина, фон</td><td>fundo = сельскохозяйственный фонд</td></tr>
+    <tr><td>lectura</td><td>лекция</td><td>чтение</td><td>conferencia = лекция</td></tr>
+    <tr><td>cabaña</td><td>кабана (кабан)</td><td>домик, хижина</td><td>jabalí = кабан</td></tr>
+    <tr><td>enviar</td><td>завидовать</td><td>отправлять</td><td>envidiar = завидовать</td></tr>
+    <tr><td>grosero</td><td>крупный</td><td>грубый, невоспитанный</td><td>grande / grueso = крупный</td></tr>
+  </table>
+
+  <h3>Таблица типичных ошибок русскоязычных</h3>
+  <table class="error-table">
+    <tr><th>Ошибка</th><th>Что сказал</th><th>Что понял испанец</th><th>Как правильно</th></tr>
+    <tr><td>embarazada ≠ embarrassed</td><td>«Estoy muy embarazada»</td><td>«Я очень беременна»</td><td>«Estoy muy avergonzada»</td></tr>
+    <tr><td>éxito ≠ exit</td><td>«¿Dónde está el éxito?»</td><td>«Где успех?»</td><td>«¿Dónde está la salida?»</td></tr>
+    <tr><td>asistir ≠ помогать</td><td>«Asistí en la cocina»</td><td>«Я присутствовал на кухне»</td><td>«Ayudé en la cocina»</td></tr>
+    <tr><td>sensible ≠ sensible(англ.)</td><td>«Es muy sensible»</td><td>«Он очень чувствительный»</td><td>«Es muy sensato» (разумный)</td></tr>
+    <tr><td>librería ≠ library</td><td>«Voy a la librería»</td><td>«Иду в книжный магазин»</td><td>«Voy a la biblioteca» (библиотека)</td></tr>
+    <tr><td>discutir ≠ обсуждать</td><td>«Discutimos el proyecto»</td><td>«Мы поругались из-за проекта»</td><td>«Hablamos del proyecto»</td></tr>
+    <tr><td>molestar ≠ молестировать</td><td>«No me molestes»</td><td>«Не беспокой меня» (это правильно!)</td><td>Это правильное использование</td></tr>
+  </table>
+
+  <div class="callout blue">
+    <strong>Совет:</strong> Если слово похоже на английское, проверяй вдвойне — особенно суффиксы <em>-tion/-ción, -ly/-mente, -ic/-ico</em>.
+  </div>
+
+  <div class="callout green">
+    <strong>Хорошая новость:</strong> Многие слова — настоящие друзья: hotel, taxi, banco, crisis, animal, hospital. Но будь осторожен с теми, что слишком похожи.
+  </div>
+</section>
+
+<!-- 5. СЛОВАРЬ -->
+<section class="card">
+  <h2>📚 Словарь урока</h2>
+  <p style="color:var(--muted);font-size:.85rem">Ключевые слова и их правильные значения. Нажми 🔊 для произношения.</p>
+
   <div class="vocab-grid">
     <div class="vocab-item">
-      <div><div class="vocab-es">embarazada</div><div class="vocab-ru">беременная (НЕ смущённая!)</div></div>
       <button class="speak-btn" onclick="speak('embarazada')">🔊</button>
+      <div><span class="vocab-es">embarazada</span><br><span class="vocab-ru">беременная (≠ embarrassed)</span></div>
     </div>
     <div class="vocab-item">
-      <div><div class="vocab-es">avergonzado/a</div><div class="vocab-ru">смущённый/смущённая ✅</div></div>
-      <button class="speak-btn" onclick="speak('avergonzado')">🔊</button>
+      <button class="speak-btn" onclick="speak('avergonzada')">🔊</button>
+      <div><span class="vocab-es">avergonzada</span><br><span class="vocab-ru">смущённая (правильный перевод embarrassed)</span></div>
     </div>
     <div class="vocab-item">
-      <div><div class="vocab-es">actual</div><div class="vocab-ru">нынешний, текущий (НЕ actual!)</div></div>
-      <button class="speak-btn" onclick="speak('actual')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">real / verdadero</div><div class="vocab-ru">настоящий, реальный ✅</div></div>
-      <button class="speak-btn" onclick="speak('real, verdadero')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">sensible</div><div class="vocab-ru">чувствительный (НЕ sensible!)</div></div>
-      <button class="speak-btn" onclick="speak('sensible')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">sensato/a</div><div class="vocab-ru">разумный, здравомыслящий ✅</div></div>
       <button class="speak-btn" onclick="speak('sensato')">🔊</button>
+      <div><span class="vocab-es">sensato</span><br><span class="vocab-ru">разумный (≠ sensible англ.)</span></div>
     </div>
     <div class="vocab-item">
-      <div><div class="vocab-es">realizar</div><div class="vocab-ru">осуществлять (НЕ realize!)</div></div>
-      <button class="speak-btn" onclick="speak('realizar')">🔊</button>
+      <button class="speak-btn" onclick="speak('sensible')">🔊</button>
+      <div><span class="vocab-es">sensible</span><br><span class="vocab-ru">чувствительный (≠ sensible = разумный)</span></div>
     </div>
     <div class="vocab-item">
-      <div><div class="vocab-es">darse cuenta de</div><div class="vocab-ru">осознать, понять ✅</div></div>
-      <button class="speak-btn" onclick="speak('darse cuenta de')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">librería</div><div class="vocab-ru">книжный магазин (НЕ library!)</div></div>
-      <button class="speak-btn" onclick="speak('librería')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">biblioteca</div><div class="vocab-ru">библиотека ✅</div></div>
       <button class="speak-btn" onclick="speak('biblioteca')">🔊</button>
+      <div><span class="vocab-es">biblioteca</span><br><span class="vocab-ru">библиотека (≠ librería)</span></div>
     </div>
     <div class="vocab-item">
-      <div><div class="vocab-es">constipado/a</div><div class="vocab-ru">простуженный (НЕ constipated!)</div></div>
-      <button class="speak-btn" onclick="speak('constipado')">🔊</button>
+      <button class="speak-btn" onclick="speak('librería')">🔊</button>
+      <div><span class="vocab-es">librería</span><br><span class="vocab-ru">книжный магазин (≠ library)</span></div>
     </div>
     <div class="vocab-item">
-      <div><div class="vocab-es">estreñido/a</div><div class="vocab-ru">страдающий запором ✅</div></div>
-      <button class="speak-btn" onclick="speak('estreñido')">🔊</button>
+      <button class="speak-btn" onclick="speak('salida')">🔊</button>
+      <div><span class="vocab-es">salida</span><br><span class="vocab-ru">выход (≠ éxito)</span></div>
     </div>
     <div class="vocab-item">
-      <div><div class="vocab-es">molestar</div><div class="vocab-ru">беспокоить, мешать (НЕ to molest!)</div></div>
-      <button class="speak-btn" onclick="speak('molestar')">🔊</button>
+      <button class="speak-btn" onclick="speak('éxito')">🔊</button>
+      <div><span class="vocab-es">éxito</span><br><span class="vocab-ru">успех (≠ exit)</span></div>
     </div>
     <div class="vocab-item">
-      <div><div class="vocab-es">soportar</div><div class="vocab-ru">терпеть, выносить (НЕ to support!)</div></div>
-      <button class="speak-btn" onclick="speak('soportar')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">apoyar</div><div class="vocab-ru">поддерживать (морально) ✅</div></div>
-      <button class="speak-btn" onclick="speak('apoyar')">🔊</button>
-    </div>
-    <div class="vocab-item">
-      <div><div class="vocab-es">largo/a</div><div class="vocab-ru">длинный, долгий (НЕ large!)</div></div>
       <button class="speak-btn" onclick="speak('largo')">🔊</button>
+      <div><span class="vocab-es">largo</span><br><span class="vocab-ru">длинный (≠ large)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('grande')">🔊</button>
+      <div><span class="vocab-es">grande</span><br><span class="vocab-ru">большой (правильный перевод large)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('discutir')">🔊</button>
+      <div><span class="vocab-es">discutir</span><br><span class="vocab-ru">спорить, ругаться (≠ обсуждать)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('hablar de')">🔊</button>
+      <div><span class="vocab-es">hablar de</span><br><span class="vocab-ru">обсуждать (правильный перевод discuss)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('asistir')">🔊</button>
+      <div><span class="vocab-es">asistir a</span><br><span class="vocab-ru">присутствовать на (≠ помогать)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('ayudar')">🔊</button>
+      <div><span class="vocab-es">ayudar</span><br><span class="vocab-ru">помогать (правильный перевод assist)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('gracioso')">🔊</button>
+      <div><span class="vocab-es">gracioso</span><br><span class="vocab-ru">смешной (≠ грациозный)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('recordar')">🔊</button>
+      <div><span class="vocab-es">recordar</span><br><span class="vocab-ru">помнить, вспоминать (≠ record)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('pariente')">🔊</button>
+      <div><span class="vocab-es">pariente</span><br><span class="vocab-ru">родственник (≠ пациент)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('paciente')">🔊</button>
+      <div><span class="vocab-es">paciente</span><br><span class="vocab-ru">пациент; терпеливый</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('extrañar')">🔊</button>
+      <div><span class="vocab-es">extrañar</span><br><span class="vocab-ru">скучать по кому-то</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('firma')">🔊</button>
+      <div><span class="vocab-es">firma</span><br><span class="vocab-ru">подпись (≠ компания)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('carpeta')">🔊</button>
+      <div><span class="vocab-es">carpeta</span><br><span class="vocab-ru">папка для документов (≠ carpet=ковёр)</span></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('simpático')">🔊</button>
+      <div><span class="vocab-es">simpático</span><br><span class="vocab-ru">приятный, милый (≠ sympathetic)</span></div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- 6. FALSE FRIENDS GRID — полный список -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>40 ложных друзей — красные карточки</h2>
-  </div>
-  <div class="ff-grid">
-    <div class="ff-card">
-      <div class="ff-word">embarazada <button class="speak-btn" onclick="speak('embarazada')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: embarrassed (смущённая)</div>
-      <div class="ff-right">✅ беременная</div>
-      <div class="ff-ex">Está embarazada de tres meses.</div>
-      <div class="ff-en">en: embarrassed = avergonzada</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">actual <button class="speak-btn" onclick="speak('actual')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: actual (настоящий, реальный)</div>
-      <div class="ff-right">✅ нынешний, текущий</div>
-      <div class="ff-ex">El presidente actual lleva tres años en el cargo.</div>
-      <div class="ff-en">en: actual = real, verdadero</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">sensible <button class="speak-btn" onclick="speak('sensible')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: sensible (разумный)</div>
-      <div class="ff-right">✅ чувствительный, ранимый</div>
-      <div class="ff-ex">Es muy sensible a las críticas.</div>
-      <div class="ff-en">en: sensible = sensato, razonable</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">realizar <button class="speak-btn" onclick="speak('realizar')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: to realize (понять, осознать)</div>
-      <div class="ff-right">✅ осуществлять, выполнять</div>
-      <div class="ff-ex">Vamos a realizar el proyecto este mes.</div>
-      <div class="ff-en">en: to realize = darse cuenta de</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">exitoso <button class="speak-btn" onclick="speak('exitoso')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: excited (взволнованный)</div>
-      <div class="ff-right">✅ успешный</div>
-      <div class="ff-ex">Es un empresario muy exitoso.</div>
-      <div class="ff-en">en: excited = emocionado, entusiasmado</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">éxito <button class="speak-btn" onclick="speak('éxito')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: exit (выход)</div>
-      <div class="ff-right">✅ успех</div>
-      <div class="ff-ex">La película fue un gran éxito.</div>
-      <div class="ff-en">en: exit = salida</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">librería <button class="speak-btn" onclick="speak('librería')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: library (библиотека)</div>
-      <div class="ff-right">✅ книжный магазин</div>
-      <div class="ff-ex">Compré el libro en esa librería.</div>
-      <div class="ff-en">en: library = biblioteca</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">constipado <button class="speak-btn" onclick="speak('constipado')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: constipated (запор)</div>
-      <div class="ff-right">✅ простуженный (насморк)</div>
-      <div class="ff-ex">Estoy constipado, me duele la garganta.</div>
-      <div class="ff-en">en: constipated = estreñido</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">emocionado <button class="speak-btn" onclick="speak('emocionado')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: emotional (эмоциональный)</div>
-      <div class="ff-right">✅ взволнованный, растроганный</div>
-      <div class="ff-ex">Estaba muy emocionado en su graduación.</div>
-      <div class="ff-en">en: emotional = emotivo</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">molestar <button class="speak-btn" onclick="speak('molestar')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: to molest (домогаться)</div>
-      <div class="ff-right">✅ беспокоить, мешать (нейтрально!)</div>
-      <div class="ff-ex">¿Te molesta si fumo aquí?</div>
-      <div class="ff-en">en: to molest = acosar sexualmente</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">largo <button class="speak-btn" onclick="speak('largo')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: large (большой)</div>
-      <div class="ff-right">✅ длинный, долгий</div>
-      <div class="ff-ex">Es un libro muy largo — tiene 600 páginas.</div>
-      <div class="ff-en">en: large = grande</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">pretender <button class="speak-btn" onclick="speak('pretender')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: to pretend (притворяться)</div>
-      <div class="ff-right">✅ намереваться, стремиться</div>
-      <div class="ff-ex">Pretendo aprender español en un año.</div>
-      <div class="ff-en">en: to pretend = fingir, aparentar</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">soportar <button class="speak-btn" onclick="speak('soportar')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: to support (поддерживать)</div>
-      <div class="ff-right">✅ терпеть, выносить</div>
-      <div class="ff-ex">No soporto el calor extremo.</div>
-      <div class="ff-en">en: to support = apoyar, respaldar</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">ropa <button class="speak-btn" onclick="speak('ropa')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: rope (верёвка)</div>
-      <div class="ff-right">✅ одежда</div>
-      <div class="ff-ex">¿Dónde compras tu ropa?</div>
-      <div class="ff-en">en: rope = cuerda, soga</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">lectura <button class="speak-btn" onclick="speak('lectura')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: lecture (лекция)</div>
-      <div class="ff-right">✅ чтение</div>
-      <div class="ff-ex">La lectura es mi hobby favorito.</div>
-      <div class="ff-en">en: lecture = conferencia, charla</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">firma <button class="speak-btn" onclick="speak('firma')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: firm (твёрдый) / фирма</div>
-      <div class="ff-right">✅ подпись</div>
-      <div class="ff-ex">Pon tu firma aquí, por favor.</div>
-      <div class="ff-en">en: firm = empresa; firma = signature</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">asistir <button class="speak-btn" onclick="speak('asistir')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: to assist (помогать)</div>
-      <div class="ff-right">✅ присутствовать, посещать</div>
-      <div class="ff-ex">Asistí a la reunión de ayer.</div>
-      <div class="ff-en">en: to assist = ayudar</div>
-    </div>
-    <div class="ff-card">
-      <div class="ff-word">eventualmente <button class="speak-btn" onclick="speak('eventualmente')">🔊</button></div>
-      <div class="ff-wrong">❌ НЕ: eventually (в конце концов)</div>
-      <div class="ff-right">✅ возможно, в случае необходимости</div>
-      <div class="ff-ex">Eventualmente, necesitamos un plan B.</div>
-      <div class="ff-en">en: eventually = finalmente, al final</div>
-    </div>
+<!-- 6. ТЕСТ 1 (множественный выбор) -->
+<section class="card">
+  <h2>🧠 Тест 1: Ложные друзья — выбери правильный перевод</h2>
+  <div id="quiz-score" style="margin-bottom:.5rem"></div>
+
+  <div class="quiz-q" id="q1">
+    <p>1. «Mi hermana está embarazada.» — Что это значит?</p>
+    <button class="opt" onclick="answerQuiz(this,'q1','a')">a) Моя сестра беременна</button>
+    <button class="opt" onclick="answerQuiz(this,'q1','b')">b) Моя сестра смущена</button>
+    <button class="opt" onclick="answerQuiz(this,'q1','c')">c) Моей сестре неловко</button>
+    <div class="feedback" id="fb-q1"></div>
   </div>
 
-  <div class="callout warning">
-    <h4>⚠️ Самые опасные: molestar и embarazada</h4>
-    <p><em>Molestar</em> = беспокоить (абсолютно нейтрально). <em>«¿Te molesta si...?»</em> = «Тебе не помешает, если...?» — вежливая фраза. В испанском нет сексуального подтекста. Используй смело! <em>Embarazada</em> = беременная. Для «смущённый» → <em>avergonzado/a</em>.</p>
+  <div class="quiz-q" id="q2">
+    <p>2. Как сказать «Где выход?» по-испански?</p>
+    <button class="opt" onclick="answerQuiz(this,'q2','a')">a) ¿Dónde está la salida?</button>
+    <button class="opt" onclick="answerQuiz(this,'q2','b')">b) ¿Dónde está el éxito?</button>
+    <button class="opt" onclick="answerQuiz(this,'q2','c')">c) ¿Dónde está la salsa?</button>
+    <div class="feedback" id="fb-q2"></div>
   </div>
 
-  <div class="callout tip">
-    <h4>🇷🇺 Русско-испанские ловушки</h4>
-    <ul>
-      <li><strong>familia</strong> = семья (НЕ фамилия → apellido)</li>
-      <li><strong>firma</strong> = подпись (НЕ фирма → empresa)</li>
-      <li><strong>pausa</strong> = пауза ✓ (совпадает!)</li>
-      <li><strong>carpeta</strong> = папка (НЕ карпета-ковёр → alfombra)</li>
-      <li><strong>pasta</strong> = паста, деньги (сленг), макароны — многозначно!</li>
-    </ul>
+  <div class="quiz-q" id="q3">
+    <p>3. «Voy a la librería» означает:</p>
+    <button class="opt" onclick="answerQuiz(this,'q3','a')">a) Иду в книжный магазин</button>
+    <button class="opt" onclick="answerQuiz(this,'q3','b')">b) Иду в библиотеку</button>
+    <button class="opt" onclick="answerQuiz(this,'q3','c')">c) Иду в архив</button>
+    <div class="feedback" id="fb-q3"></div>
   </div>
-</div>
 
-<!-- 7. АУТЕНТИЧНЫЙ ТЕКСТ -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">5</div>
-    <h2>Аутентичный текст — найди ловушки</h2>
+  <div class="quiz-q" id="q4">
+    <p>4. «Es una persona muy sensible.» — Он/она…</p>
+    <button class="opt" onclick="answerQuiz(this,'q4','a')">a) Очень чувствительный человек</button>
+    <button class="opt" onclick="answerQuiz(this,'q4','b')">b) Очень разумный человек</button>
+    <button class="opt" onclick="answerQuiz(this,'q4','c')">c) Очень сочувствующий человек</button>
+    <div class="feedback" id="fb-q4"></div>
   </div>
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай текст. Выдели мысленно все ложные друзья. Проверь себя по ответу.</p>
-  <div class="dialogue">
-    <div class="dlg-header">
-      📖 Объявление о вакансии (настоящий испанский)
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-text1')">Показать перевод с комментариями</button>
+
+  <div class="quiz-q" id="q5">
+    <p>5. Как сказать «мы поспорили»?</p>
+    <button class="opt" onclick="answerQuiz(this,'q5','a')">a) Discutimos</button>
+    <button class="opt" onclick="answerQuiz(this,'q5','b')">b) Hablamos del tema</button>
+    <button class="opt" onclick="answerQuiz(this,'q5','c')">c) Comentamos</button>
+    <div class="feedback" id="fb-q5"></div>
+  </div>
+
+  <div class="quiz-q" id="q6">
+    <p>6. «Largo» по-испански значит:</p>
+    <button class="opt" onclick="answerQuiz(this,'q6','a')">a) Длинный</button>
+    <button class="opt" onclick="answerQuiz(this,'q6','b')">b) Большой</button>
+    <button class="opt" onclick="answerQuiz(this,'q6','c')">c) Широкий</button>
+    <div class="feedback" id="fb-q6"></div>
+  </div>
+
+  <div class="quiz-q" id="q7">
+    <p>7. «Asistí a la reunión» значит:</p>
+    <button class="opt" onclick="answerQuiz(this,'q7','a')">a) Я присутствовал на встрече</button>
+    <button class="opt" onclick="answerQuiz(this,'q7','b')">b) Я помог на встрече</button>
+    <button class="opt" onclick="answerQuiz(this,'q7','c')">c) Я организовал встречу</button>
+    <div class="feedback" id="fb-q7"></div>
+  </div>
+
+  <div class="quiz-q" id="q8">
+    <p>8. «Te extraño» значит:</p>
+    <button class="opt" onclick="answerQuiz(this,'q8','a')">a) Я скучаю по тебе</button>
+    <button class="opt" onclick="answerQuiz(this,'q8','b')">b) Ты меня раздражаешь</button>
+    <button class="opt" onclick="answerQuiz(this,'q8','c')">c) Ты странный</button>
+    <div class="feedback" id="fb-q8"></div>
+  </div>
+</section>
+
+<!-- 7. ТЕСТ 2 (заполнение пропусков) -->
+<section class="card">
+  <h2>✏️ Тест 2: Вставь правильное слово</h2>
+  <p style="font-size:.82rem;color:var(--muted)">Вводи в нижнем регистре. Диакритика засчитывается автоматически.</p>
+
+  <div style="margin:.75rem 0">
+    <p><strong>1.</strong> Моя подруга беременна: «Mi amiga está ___»</p>
+    <input class="text-input" id="t1" placeholder="ответ...">
+    <button class="check-btn" onclick="checkText('t1','embarazada','fb-t1')">Проверить</button>
+    <div class="feedback" id="fb-t1"></div>
+  </div>
+
+  <div style="margin:.75rem 0">
+    <p><strong>2.</strong> «Успех» по-испански: «El ___ del proyecto fue enorme.»</p>
+    <input class="text-input" id="t2" placeholder="ответ...">
+    <button class="check-btn" onclick="checkText('t2','éxito','fb-t2')">Проверить</button>
+    <div class="feedback" id="fb-t2"></div>
+  </div>
+
+  <div style="margin:.75rem 0">
+    <p><strong>3.</strong> Библиотека (не книжный магазин!): «Fui a la ___ a buscar un libro.»</p>
+    <input class="text-input" id="t3" placeholder="ответ...">
+    <button class="check-btn" onclick="checkText('t3','biblioteca','fb-t3')">Проверить</button>
+    <div class="feedback" id="fb-t3"></div>
+  </div>
+
+  <div style="margin:.75rem 0">
+    <p><strong>4.</strong> Помочь соседу: «Voy a ___ a mi vecino.»</p>
+    <input class="text-input" id="t4" placeholder="ответ...">
+    <button class="check-btn" onclick="checkText('t4','ayudar','fb-t4')">Проверить</button>
+    <div class="feedback" id="fb-t4"></div>
+  </div>
+
+  <div style="margin:.75rem 0">
+    <p><strong>5.</strong> Разумный человек: «Es un hombre muy ___»</p>
+    <input class="text-input" id="t5" placeholder="ответ...">
+    <button class="check-btn" onclick="checkText('t5','sensato','fb-t5')">Проверить</button>
+    <div class="feedback" id="fb-t5"></div>
+  </div>
+
+  <div style="margin:.75rem 0">
+    <p><strong>6.</strong> Подпись на документе: «Pon tu ___ aquí, por favor.»</p>
+    <input class="text-input" id="t6" placeholder="ответ...">
+    <button class="check-btn" onclick="checkText('t6','firma','fb-t6')">Проверить</button>
+    <div class="feedback" id="fb-t6"></div>
+  </div>
+</section>
+
+<!-- 8. ДИАЛОГИ -->
+<section class="card">
+  <h2>💬 Диалоги: Ловушки в действии</h2>
+
+  <!-- Диалог 1 -->
+  <div class="dialog-block">
+    <h3>Диалог 1: В офисе (классические ошибки)</h3>
+    <div style="margin-bottom:.5rem">
+      <button class="btn" onclick="toggleAll1()">👁 Показать/скрыть перевод</button>
+      <button class="btn" onclick="playDialogue1()">▶ Воспроизвести целиком</button>
     </div>
-    <div class="dlg-line">
+    <div class="dialog-line">
+      <span class="dialog-who">Кирилл:</span>
       <div>
-        <div class="dlg-es" style="line-height:1.9">
-          La empresa <strong style="color:var(--red)">actual</strong> busca un/a director/a exitoso/a para <strong style="color:var(--red)">realizar</strong> un proyecto de expansión. La persona candidata debe ser <strong style="color:var(--red)">sensible</strong> a las necesidades del equipo y <strong style="color:var(--red)">asistir</strong> a todas las reuniones semanales. Pretendemos incorporar al nuevo talento antes de enero. <strong style="color:var(--red)">Eventualmente</strong>, el contrato puede convertirse en indefinido. Por favor, añada su <strong style="color:var(--red)">firma</strong> al pie de la solicitud.
-        </div>
-        <div id="tr-text1" style="display:none;margin-top:12px;background:var(--bg3);border-radius:8px;padding:14px;font-size:.84rem">
-          <strong>Нынешняя</strong> (actual ≠ настоящая) компания ищет <strong>успешного</strong> (exitoso ≠ взволнованного) директора для <strong>осуществления</strong> (realizar ≠ осознания) проекта расширения. Кандидат должен быть <strong>чувствительным</strong> (sensible ≠ разумным) к потребностям команды и <strong>присутствовать</strong> (asistir ≠ помогать) на всех еженедельных встречах. Мы <strong>намерены</strong> (pretendemos ≠ притворяемся) принять нового сотрудника до января. <strong>Возможно</strong> (eventualmente ≠ в конце концов), контракт может стать бессрочным. Поставьте свою <strong>подпись</strong> (firma ≠ фирму) внизу заявления.
-        </div>
+        <div class="dialog-text">¿Asististe a la reunión de ayer? <button class="speak-btn" onclick="speak('¿Asististe a la reunión de ayer?')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-1">Ты был на вчерашней встрече?</div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- 8. QUIZ 1 — множественный выбор -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <h2>Тест 1 — Не попадись в ловушку!</h2>
-  </div>
-  <div class="quiz">
-    <h3>⚠️ Правильное значение ложного друга</h3>
-    <div class="quiz-q" id="q1">
-      <div class="q-text">1. «Estoy muy <strong>emocionado</strong> con la noticia» — говорящий:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Взволнован, растроган новостью</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Эмоциональный человек по характеру</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Злится на новость</div>
-      </div>
-      <div class="feedback" id="fb-q1"></div>
-    </div>
-    <div class="quiz-q" id="q2">
-      <div class="q-text">2. «No <strong>soporto</strong> el ruido» — говорящий:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Поддерживает шум</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Не выносит, не терпит шума</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Любит шумные места</div>
-      </div>
-      <div class="feedback" id="fb-q2"></div>
-    </div>
-    <div class="quiz-q" id="q3">
-      <div class="q-text">3. «Necesito ir a la <strong>librería</strong>» — он идёт в:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Книжный магазин</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Библиотеку</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Читальный зал</div>
-      </div>
-      <div class="feedback" id="fb-q3"></div>
-    </div>
-    <div class="quiz-q" id="q4">
-      <div class="q-text">4. «El presidente <strong>actual</strong>» означает:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Настоящий, реальный президент</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Нынешний, действующий президент</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Бывший президент</div>
-      </div>
-      <div class="feedback" id="fb-q4"></div>
-    </div>
-    <div class="quiz-q" id="q5">
-      <div class="q-text">5. Хочешь сказать «Я осознал ошибку» — как правильно?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Me di cuenta del error.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Realicé el error.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Realizé el error muy bien.</div>
-      </div>
-      <div class="feedback" id="fb-q5"></div>
-    </div>
-    <div class="quiz-q" id="q6">
-      <div class="q-text">6. «¿Te <strong>molesta</strong> si abro la ventana?» — это:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Грубый вопрос с неприличным подтекстом</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Абсолютно вежливый вопрос «Тебе не помешает?»</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Вопрос о погоде за окном</div>
-      </div>
-      <div class="feedback" id="fb-q6"></div>
-    </div>
-    <div class="quiz-q" id="q7">
-      <div class="q-text">7. «<strong>Asistí</strong> a la reunión» означает:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q7','a')">Я присутствовал на встрече</div>
-        <div class="opt" onclick="answerQuiz(this,'q7','b')">Я помогал на встрече</div>
-        <div class="opt" onclick="answerQuiz(this,'q7','c')">Я организовал встречу</div>
-      </div>
-      <div class="feedback" id="fb-q7"></div>
-    </div>
-  </div>
-</div>
-
-<!-- 9. QUIZ 2 — заполнение пропусков -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">7</div>
-    <h2>Тест 2 — Переведи правильно</h2>
-  </div>
-  <p style="margin-bottom:10px;color:var(--muted);font-size:.85rem">Вводи в нижнем регистре. Ударения и знаки необязательны.</p>
-  <div class="quiz">
-    <h3>✏️ Дай правильный испанский эквивалент</h3>
-    <div class="text-ex">
-      <div class="tex-q">1. Как сказать «Я смущён» (embarrassed): <strong>Estoy _____.</strong></div>
-      <input type="text" class="text-input" placeholder="прилагательное (м.р.)..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','avergonzado','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ avergonzado — от vergüenza (стыд). Embarazado = беременный (мужчина, очень редко).</div>
-    </div>
-    <div class="text-ex">
-      <div class="tex-q">2. Как сказать «библиотека» (library): <strong>_____</strong></div>
-      <input type="text" class="text-input" placeholder="существительное..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','biblioteca','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ biblioteca — librería = книжный магазин! Не путай!</div>
-    </div>
-    <div class="text-ex">
-      <div class="tex-q">3. «Я осознал» (I realized): <strong>Me _____ _____.</strong></div>
-      <input type="text" class="text-input" placeholder="два слова..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','di cuenta','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ di cuenta — darse cuenta = осознать, понять. Realizar = осуществлять.</div>
-    </div>
-    <div class="text-ex">
-      <div class="tex-q">4. «Поддерживать друга» (to support): <strong>_____ a un amigo.</strong></div>
-      <input type="text" class="text-input" placeholder="глагол, not soportar..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','Apoyar','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ Apoyar — поддерживать (морально). Soportar = терпеть, выносить.</div>
-    </div>
-    <div class="text-ex">
-      <div class="tex-q">5. «Большая книга» (large book): <strong>Un libro _____.</strong></div>
-      <input type="text" class="text-input" placeholder="прилагательное..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','grande','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ grande — large/big = grande. Largo = длинный, долгий.</div>
-    </div>
-    <div class="text-ex">
-      <div class="tex-q">6. «Подпись» (signature): <strong>la _____</strong></div>
-      <input type="text" class="text-input" placeholder="существительное..." id="ti6">
-      <button class="check-btn" onclick="checkText('ti6','firma','fb-te6')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
-      <div class="feedback" id="fb-te6"></div>
-      <div class="answer-reveal" id="ans-te6">✅ firma = подпись. Empresa = компания/фирма.</div>
-    </div>
-  </div>
-</div>
-
-<!-- 10. DIALOGUES -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">8</div>
-    <h2>Диалоги — ложные друзья в контексте</h2>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: После конференции
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="dlg-toggle" onclick="toggleAll()">Показать перевод</button>
-        <button class="speak-btn" onclick="playDialogue1()" title="Воспроизвести">▶</button>
+    <div class="dialog-line">
+      <span class="dialog-who">Марта:</span>
+      <div>
+        <div class="dialog-text">Sí, asistí. Pero llegué tarde porque no encontré la salida del metro. <button class="speak-btn" onclick="speak('Sí, asistí. Pero llegué tarde porque no encontré la salida del metro.')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-2">Да, был. Но опоздал, потому что не нашёл выход из метро.</div>
       </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Иван</div>
-      <div><div class="dlg-es">¿Por qué no fuiste a la conferencia de ayer? <button class="speak-btn" onclick="speak('¿Por qué no fuiste a la conferencia de ayer?')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Почему ты не пошёл на вчерашнюю конференцию?</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Кирилл:</span>
+      <div>
+        <div class="dialog-text">¿El proyecto tuvo éxito al final? <button class="speak-btn" onclick="speak('¿El proyecto tuvo éxito al final?')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-3">Проект в итоге удался?</div>
+      </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Карло</div>
-      <div><div class="dlg-es">Estaba constipado y no me encontraba bien. Además, me di cuenta de que no tenía los documentos. <button class="speak-btn" onclick="speak('Estaba constipado y no me encontraba bien.')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Я был простужен и чувствовал себя плохо. К тому же осознал, что у меня нет документов.</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Марта:</span>
+      <div>
+        <div class="dialog-text">¡Sí! Fue un gran éxito. El cliente quedó muy contento. <button class="speak-btn" onclick="speak('¡Sí! Fue un gran éxito. El cliente quedó muy contento.')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-4">Да! Большой успех. Клиент остался очень доволен.</div>
+      </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Иван</div>
-      <div><div class="dlg-es">¡Qué lástima! La conferencia fue muy larga pero muy exitosa. El ponente actual es de los mejores del sector. <button class="speak-btn" onclick="speak('La conferencia fue muy larga pero muy exitosa.')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Жаль! Конференция была долгой, но очень успешной. Нынешний докладчик — один из лучших в отрасли.</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Кирилл:</span>
+      <div>
+        <div class="dialog-text">Me alegra. ¿Discutiste el presupuesto con el jefe? <button class="speak-btn" onclick="speak('Me alegra. ¿Discutiste el presupuesto con el jefe?')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-5">Рад слышать. Ты поспорил с шефом насчёт бюджета?</div>
+      </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Карло</div>
-      <div><div class="dlg-es">Sí, lo sé. Pretendo asistir al próximo evento en junio. <button class="speak-btn" onclick="speak('Pretendo asistir al próximo evento en junio.')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Да, знаю. Намереваюсь присутствовать на следующем мероприятии в июне.</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Марта:</span>
+      <div>
+        <div class="dialog-text">No exactamente «discutir»… Hablamos de ello. Llegamos a un acuerdo. <button class="speak-btn" onclick="speak('No exactamente discutir… Hablamos de ello. Llegamos a un acuerdo.')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-6">Не совсем «поспорили»… Поговорили об этом. Пришли к соглашению.</div>
+      </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Иван</div>
-      <div><div class="dlg-es">¿Te molesta si te mando el resumen por email? <button class="speak-btn" onclick="speak('¿Te molesta si te mando el resumen por email?')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Тебе не помешает, если я пришлю тебе резюме по email?</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Кирилл:</span>
+      <div>
+        <div class="dialog-text">¡Qué bien! «Discutir» en español significa pelear, no hablar, ¿verdad? <button class="speak-btn" onclick="speak('¡Qué bien! Discutir en español significa pelear, no hablar, ¿verdad?')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-7">Здорово! «Discutir» по-испански — это ругаться, а не обсуждать, правда?</div>
+      </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Карло</div>
-      <div><div class="dlg-es">Para nada, te lo agradecería mucho. Eres muy exitoso organizando estos eventos. <button class="speak-btn" onclick="speak('Para nada, eres muy exitoso organizando estos eventos.')">🔊</button></div>
-      <div class="dlg-ru translation" style="display:none">Нисколько, был бы очень благодарен. Ты очень успешен в организации этих мероприятий.</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Марта:</span>
+      <div>
+        <div class="dialog-text">Exacto. Un falso amigo clásico. Como «éxito» que no es «exit». <button class="speak-btn" onclick="speak('Exacto. Un falso amigo clásico. Como éxito que no es exit.')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-8">Именно. Классический ложный друг. Как «éxito», который не «exit».</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Кирилл:</span>
+      <div>
+        <div class="dialog-text">Estos errores son muy graciosos, pero también vergonzosos. <button class="speak-btn" onclick="speak('Estos errores son muy graciosos, pero también vergonzosos.')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-9">Эти ошибки очень смешные, но и постыдные тоже.</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Марта:</span>
+      <div>
+        <div class="dialog-text">Sí, pero aprender de los errores es el mejor método. ¡Ánimo! <button class="speak-btn" onclick="speak('Sí, pero aprender de los errores es el mejor método. ¡Ánimo!')">🔊</button></div>
+        <div class="dialog-tr" id="tr1-10">Да, но учиться на ошибках — лучший метод. Давай!</div>
+      </div>
     </div>
   </div>
 
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: В книжном магазине vs библиотека
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="dlg-toggle" onclick="toggleAll2()">Показать перевод</button>
-        <button class="speak-btn" onclick="playDialogue2()" title="Воспроизвести">▶</button>
+  <!-- Диалог 2 -->
+  <div class="dialog-block">
+    <h3>Диалог 2: В аптеке — ловушка embarazada</h3>
+    <div style="margin-bottom:.5rem">
+      <button class="btn" onclick="toggleAll2()">👁 Показать/скрыть перевод</button>
+      <button class="btn" onclick="playDialogue2()">▶ Воспроизвести целиком</button>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Клиент:</span>
+      <div>
+        <div class="dialog-text">Hola, necesito algo para el dolor de cabeza. <button class="speak-btn" onclick="speak('Hola, necesito algo para el dolor de cabeza.')">🔊</button></div>
+        <div class="dialog-tr" id="tr2-1">Здравствуйте, мне нужно что-то от головной боли.</div>
       </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Клиент</div>
-      <div><div class="dlg-es">Disculpe, ¿esta es la librería «Laie»? <button class="speak-btn" onclick="speak('Disculpe, ¿esta es la librería Laie?')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">Простите, это книжный магазин «Лайе»?</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Farmacéutica:</span>
+      <div>
+        <div class="dialog-text">¿Es para usted? ¿Está embarazada? <button class="speak-btn" onclick="speak('¿Es para usted? ¿Está embarazada?')">🔊</button></div>
+        <div class="dialog-tr" id="tr2-2">Это для вас? Вы беременны?</div>
+      </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Прохожий</div>
-      <div><div class="dlg-es">No, esta es la biblioteca pública. La librería está dos calles más arriba. <button class="speak-btn" onclick="speak('No, esta es la biblioteca pública. La librería está dos calles más arriba.')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">Нет, это публичная библиотека. Книжный магазин — двумя улицами выше.</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Клиент:</span>
+      <div>
+        <div class="dialog-text">No, ¡no estoy embarazada! Soy hombre. ¡Solo tengo dolor de cabeza! <button class="speak-btn" onclick="speak('No, ¡no estoy embarazada! Soy hombre. ¡Solo tengo dolor de cabeza!')">🔊</button></div>
+        <div class="dialog-tr" id="tr2-3">Нет, я не беременна! Я мужчина. Просто голова болит!</div>
+      </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Клиент</div>
-      <div><div class="dlg-es">¡Ah, claro! Son palabras diferentes. Me di cuenta de mi error. <button class="speak-btn" onclick="speak('Me di cuenta de mi error.')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">А, конечно! Это разные слова. Я осознал свою ошибку.</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Farmacéutica:</span>
+      <div>
+        <div class="dialog-text">Perdone, lo pregunto por protocolo. ¿Es sensible a algún medicamento? <button class="speak-btn" onclick="speak('Perdone, lo pregunto por protocolo. ¿Es sensible a algún medicamento?')">🔊</button></div>
+        <div class="dialog-tr" id="tr2-4">Простите, спрашиваю по протоколу. У вас есть чувствительность к лекарствам?</div>
+      </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Прохожий</div>
-      <div><div class="dlg-es">No se preocupe. Es un error muy común entre extranjeros. La librería también tiene un área de lectura muy larga... digo, muy amplia. <button class="speak-btn" onclick="speak('No se preocupe. Es un error muy común.')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">Не беспокойтесь. Это очень частая ошибка среди иностранцев. В книжном есть также очень длинная... то есть очень просторная зона чтения.</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Клиент:</span>
+      <div>
+        <div class="dialog-text">No, que yo sepa. ¿Qué recomienda para el dolor? <button class="speak-btn" onclick="speak('No, que yo sepa. ¿Qué recomienda para el dolor?')">🔊</button></div>
+        <div class="dialog-tr" id="tr2-5">Нет, насколько я знаю. Что рекомендуете от боли?</div>
+      </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Клиент</div>
-      <div><div class="dlg-es">¡Qué amable! Gracias por apoyarme. <button class="speak-btn" onclick="speak('¡Qué amable! Gracias por apoyarme.')">🔊</button></div>
-      <div class="dlg-ru translation2" style="display:none">Какой добрый! Спасибо за поддержку.</div></div>
+    <div class="dialog-line">
+      <span class="dialog-who">Farmacéutica:</span>
+      <div>
+        <div class="dialog-text">Le recomiendo ibuprofeno. Es sensato tomarlo con comida. <button class="speak-btn" onclick="speak('Le recomiendo ibuprofeno. Es sensato tomarlo con comida.')">🔊</button></div>
+        <div class="dialog-tr" id="tr2-6">Рекомендую ибупрофен. Разумно принимать с едой.</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Клиент:</span>
+      <div>
+        <div class="dialog-text">Gracias. ¿Puedo pagar con tarjeta? <button class="speak-btn" onclick="speak('Gracias. ¿Puedo pagar con tarjeta?')">🔊</button></div>
+        <div class="dialog-tr" id="tr2-7">Спасибо. Могу оплатить картой?</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Farmacéutica:</span>
+      <div>
+        <div class="dialog-text">Sí, aceptamos tarjeta. Son cuatro euros con cincuenta. ¡Que se mejore! <button class="speak-btn" onclick="speak('Sí, aceptamos tarjeta. Son cuatro euros con cincuenta. ¡Que se mejore!')">🔊</button></div>
+        <div class="dialog-tr" id="tr2-8">Да, принимаем. Четыре пятьдесят. Скорейшего выздоровления!</div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- 11. SPEAKING -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">9</div>
-    <h2>Говорение — тест на ложных друзей</h2>
+  <!-- Диалог 3 -->
+  <div class="dialog-block">
+    <h3>Диалог 3: Встреча с соседом — ловушки в быту</h3>
+    <div style="margin-bottom:.5rem">
+      <button class="btn" onclick="toggleAll3()">👁 Показать/скрыть перевод</button>
+      <button class="btn" onclick="playDialogue3()">▶ Воспроизвести целиком</button>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Сосед:</span>
+      <div>
+        <div class="dialog-text">¿Recuerdas que el jueves hay reunión de vecinos? <button class="speak-btn" onclick="speak('¿Recuerdas que el jueves hay reunión de vecinos?')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-1">Помнишь, в четверг встреча жильцов?</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Уч-к:</span>
+      <div>
+        <div class="dialog-text">Sí, lo recuerdo. ¿A qué hora empieza? <button class="speak-btn" onclick="speak('Sí, lo recuerdo. ¿A qué hora empieza?')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-2">Да, помню. В котором часу начинается?</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Сосед:</span>
+      <div>
+        <div class="dialog-text">A las siete. Hay que firmar unos documentos. <button class="speak-btn" onclick="speak('A las siete. Hay que firmar unos documentos.')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-3">В семь. Надо подписать кое-какие бумаги.</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Уч-к:</span>
+      <div>
+        <div class="dialog-text">¿Firmar? ¿La firma de quién se necesita? <button class="speak-btn" onclick="speak('¿Firmar? ¿La firma de quién se necesita?')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-4">Подписать? Чья подпись нужна?</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Сосед:</span>
+      <div>
+        <div class="dialog-text">De todos los propietarios. Es un acuerdo largo, de cinco páginas. <button class="speak-btn" onclick="speak('De todos los propietarios. Es un acuerdo largo, de cinco páginas.')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-5">Всех собственников. Длинное соглашение, пять страниц.</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Уч-к:</span>
+      <div>
+        <div class="dialog-text">¿Viene también el pariente del administrador? <button class="speak-btn" onclick="speak('¿Viene también el pariente del administrador?')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-6">Придёт также родственник управляющего?</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Сосед:</span>
+      <div>
+        <div class="dialog-text">No lo sé. El administrador es muy simpático, te va a caer bien. <button class="speak-btn" onclick="speak('No lo sé. El administrador es muy simpático, te va a caer bien.')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-7">Не знаю. Управляющий очень приятный, тебе понравится.</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Уч-к:</span>
+      <div>
+        <div class="dialog-text">Perfecto. Llevaré la carpeta con mis documentos. <button class="speak-btn" onclick="speak('Perfecto. Llevaré la carpeta con mis documentos.')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-8">Отлично. Возьму папку с документами.</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Сосед:</span>
+      <div>
+        <div class="dialog-text">Muy bien. ¡Hasta el jueves! <button class="speak-btn" onclick="speak('Muy bien. ¡Hasta el jueves!')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-9">Отлично. До четверга!</div>
+      </div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Уч-к:</span>
+      <div>
+        <div class="dialog-text">¡Hasta luego! <button class="speak-btn" onclick="speak('¡Hasta luego!')">🔊</button></div>
+        <div class="dialog-tr" id="tr3-10">До свидания!</div>
+      </div>
+    </div>
   </div>
+</section>
+
+<!-- 9. ГОВОРЕНИЕ -->
+<section class="card">
+  <h2>🎤 Говорение</h2>
+
   <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 1 — Скоростной тест</div>
-    <p>Я называю английское слово — ты немедленно говоришь правильный испанский перевод. Без паузы. Тренируй быстроту реакции.</p>
-    <div class="es">
-      embarrassed → ? (avergonzado/a)<br>
-      library → ? (biblioteca)<br>
-      to support (морально) → ? (apoyar)<br>
-      large → ? (grande)<br>
-      to realize → ? (darse cuenta de)<br>
-      sensible (разумный) → ? (sensato/a)<br>
-      exit → ? (salida)<br>
-      rope → ? (cuerda)<br>
-      lecture → ? (conferencia / charla)<br>
-      eventually (в конце концов) → ? (finalmente / al final)
-    </div>
-    <div class="hint">Прикрой ответы и произноси вслух. Если колебался — это слово ещё не закреплено. Повтори 3 раза подряд.</div>
+    <p>Прочитай вслух, избегая ложных друзей:</p>
+    <div class="prompt">«Mi hermana está embarazada. Vamos a la biblioteca a buscar un libro sobre bebés. El médico es muy sensato y simpático.»</div>
+    <button class="btn" onclick="speak('Mi hermana está embarazada. Vamos a la biblioteca a buscar un libro sobre bebés. El médico es muy sensato y simpático.')">🔊 Послушать образец</button>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:.5rem">embarazada (беременная), biblioteca (библиотека), sensato (разумный).</p>
   </div>
+
   <div class="speak-box">
-    <div class="speak-tag">🎙 Задание 2 — Объясни разницу по-испански</div>
-    <p>Для каждой пары объясни разницу по-испански одним предложением. Например: <em>«Embarazada significa 'pregnant', no 'embarrassed'. Para decir 'embarrassed' usamos avergonzada.»</em></p>
-    <div class="es">Explica las diferencias: librería/biblioteca · soportar/apoyar · actual/real · largo/grande · realizar/darse cuenta de</div>
-    <div class="hint">Умение объяснить разницу по-испански — лучший способ запомнить навсегда.</div>
+    <p>Ситуация в Барселоне: ты в gestoría, нужно подписать длинный документ. Что скажешь?</p>
+    <div class="prompt">Используй: firma, largo, carpeta, sensato, éxito</div>
+    <p style="font-size:.82rem;color:var(--muted)">Пример: «Necesito firmar el contrato. Es muy largo, pero tengo toda la carpeta con los papeles. Espero que tenga éxito.»</p>
+    <button class="btn" onclick="speak('Necesito firmar el contrato. Es muy largo, pero tengo toda la carpeta con los papeles. Espero que tenga éxito.')">🔊 Один из возможных ответов</button>
   </div>
-</div>
+</section>
 
-<!-- 12. SPAIN PRACTICE -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">10</div>
-    <h2>🇪🇸 Испания на практике: документы без ошибок</h2>
-  </div>
-  <div class="spain-practice">
-    <div class="spain-tag">📋 Реальный сценарий — Барселона, трамиты (официальные процедуры)</div>
-    <p>Ты получаешь NIE (Número de Identificación de Extranjero) или подписываешь официальный контракт в Барселоне. Чиновники используют формальный язык с рядом слов, похожих на ложных друзей.</p>
-    <div class="phrase-list">
-      <div class="phrase-item">
-        <div><div class="phrase-es">Firme aquí, por favor — donde hay una X <button class="speak-btn" onclick="speak('Firme aquí, por favor, donde hay una X')">🔊</button></div><div class="phrase-ru">Подпишите здесь, пожалуйста — там, где стоит X</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">¿Puede realizarlo antes del viernes? <button class="speak-btn" onclick="speak('¿Puede realizarlo antes del viernes?')">🔊</button></div><div class="phrase-ru">Можете осуществить это до пятницы?</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">El motivo actual de la solicitud es... <button class="speak-btn" onclick="speak('El motivo actual de la solicitud es')">🔊</button></div><div class="phrase-ru">Нынешняя причина заявки — это...</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">Debe asistir en persona a la cita <button class="speak-btn" onclick="speak('Debe asistir en persona a la cita')">🔊</button></div><div class="phrase-ru">Вы должны присутствовать лично на записи</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">Eventualmente, se le notificará por correo <button class="speak-btn" onclick="speak('Eventualmente, se le notificará por correo')">🔊</button></div><div class="phrase-ru">При необходимости, вам сообщат по почте</div></div>
-      </div>
-      <div class="phrase-item">
-        <div><div class="phrase-es">¿Le molesta esperar unos minutos? <button class="speak-btn" onclick="speak('¿Le molesta esperar unos minutos?')">🔊</button></div><div class="phrase-ru">Вам не помешает подождать несколько минут?</div></div>
+<!-- 10. ИСПАНИЯ НА ПРАКТИКЕ -->
+<section class="card">
+  <h2>🇪🇸 Испания на практике: Подписание официального договора</h2>
+  <p>Ты в Барселоне и подписываешь официальный документ — договор аренды, соглашение с gestoría или любая официальная бумага. Ложные друзья здесь особенно опасны — путаница может привести к реальным проблемам.</p>
+
+  <div class="phrase-list">
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Necesito firmar el contrato')">🔊</button>
+      <div>
+        <div class="phrase-es">Necesito firmar el contrato.</div>
+        <div class="phrase-ru">Мне нужно подписать договор. (firma = подпись, НЕ компания)</div>
       </div>
     </div>
-    <div class="dialogue" style="margin-top:14px">
-      <div class="dlg-header">📋 Мини-диалог: Oficina de Extranjería <button class="dlg-toggle" onclick="toggleTranslation('tr-spain')">Показать перевод</button></div>
-      <div class="dlg-line">
-        <div class="dlg-speaker">Чиновник</div>
-        <div><div class="dlg-es">Buenos días. ¿Asiste usted a la cita de las 10:00?</div>
-        <div class="dlg-ru" id="tr-spain" style="display:none">Доброе утро. Вы присутствуете на записи в 10:00?</div></div>
-      </div>
-      <div class="dlg-line">
-        <div class="dlg-speaker b">Вы</div>
-        <div><div class="dlg-es">Sí, vengo a solicitar el NIE. Pretendo quedarme en España más de 90 días.</div>
-        <div class="dlg-ru" id="tr-spain-2" style="display:none">Да, пришёл получить NIE. Намереваюсь остаться в Испании более 90 дней.</div></div>
-      </div>
-      <div class="dlg-line">
-        <div class="dlg-speaker">Чиновник</div>
-        <div><div class="dlg-es">Perfecto. Necesita realizar el pago en el banco primero. Eventualmente, si hay algún problema, le avisamos por teléfono.</div>
-        <div class="dlg-ru" id="tr-spain-3" style="display:none">Отлично. Сначала вам нужно осуществить оплату в банке. При необходимости, если будет проблема, сообщим по телефону.</div></div>
-      </div>
-      <div class="dlg-line">
-        <div class="dlg-speaker b">Вы</div>
-        <div><div class="dlg-es">Entendido. ¿Le molesta si le pregunto: ¿dónde está el banco más cercano?</div>
-        <div class="dlg-ru" id="tr-spain-4" style="display:none">Понял. Вам не помешает, если я спрошу: где ближайший банк?</div></div>
-      </div>
-      <div class="dlg-line">
-        <div class="dlg-speaker">Чиновник</div>
-        <div><div class="dlg-es">Para nada. Está al lado, en la calle actual de la oficina. Y no olvide su firma en todos los documentos.</div>
-        <div class="dlg-ru" id="tr-spain-5" style="display:none">Нисколько. Он рядом, на нынешней улице офиса. И не забудьте свою подпись на всех документах.</div></div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Dónde pongo mi firma?')">🔊</button>
+      <div>
+        <div class="phrase-es">¿Dónde pongo mi firma?</div>
+        <div class="phrase-ru">Где поставить подпись?</div>
       </div>
     </div>
-    <div class="culture-tip"><strong>Важно в Испании:</strong> На официальных процедурах в Испании часто нужна «firma» (подпись). Не перепутай с «empresa» (фирма/компания). На бланках NIE стоит написать своё имя, фамилию (apellido) и поставить подпись (firma) — не называй это «мой firma от фирмы»!</div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('El contrato es muy largo, necesito tiempo para leerlo')">🔊</button>
+      <div>
+        <div class="phrase-es">El contrato es muy largo, necesito tiempo para leerlo.</div>
+        <div class="phrase-ru">Договор очень длинный (largo ≠ large), нужно время прочитать.</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Tengo toda la documentación en mi carpeta')">🔊</button>
+      <div>
+        <div class="phrase-es">Tengo toda la documentación en mi carpeta.</div>
+        <div class="phrase-ru">Все документы у меня в папке. (carpeta = папка, НЕ ковёр)</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Hay algún pariente del gestor aquí?')">🔊</button>
+      <div>
+        <div class="phrase-es">¿Hay algún pariente del gestor aquí?</div>
+        <div class="phrase-ru">Здесь есть родственник гестора? (pariente = родственник, НЕ пациент)</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('El acuerdo fue un éxito')">🔊</button>
+      <div>
+        <div class="phrase-es">El acuerdo fue un éxito.</div>
+        <div class="phrase-ru">Соглашение прошло успешно. (éxito = успех, НЕ выход)</div>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- 13. CULTURE NOTE -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">11</div>
-    <h2>Культурная заметка</h2>
+  <div class="dialog-block" style="margin-top:.75rem">
+    <h3>Мини-диалог: В gestoría</h3>
+    <div class="dialog-line">
+      <span class="dialog-who">Gestor:</span>
+      <div><div class="dialog-text">Buenos días. ¿Viene a firmar el contrato? <button class="speak-btn" onclick="speak('Buenos días. ¿Viene a firmar el contrato?')">🔊</button></div></div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Ты:</span>
+      <div><div class="dialog-text">Sí. Tengo la carpeta con todos los documentos y estoy listo para poner mi firma. <button class="speak-btn" onclick="speak('Sí. Tengo la carpeta con todos los documentos y estoy listo para poner mi firma.')">🔊</button></div></div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Gestor:</span>
+      <div><div class="dialog-text">Perfecto. El contrato es largo — siete páginas. ¿Quiere tiempo para leerlo? <button class="speak-btn" onclick="speak('Perfecto. El contrato es largo — siete páginas. ¿Quiere tiempo para leerlo?')">🔊</button></div></div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Ты:</span>
+      <div><div class="dialog-text">Sí, claro. Y si tengo dudas, ¿puedo hablar de ellas con usted? <button class="speak-btn" onclick="speak('Sí, claro. Y si tengo dudas, ¿puedo hablar de ellas con usted?')">🔊</button></div></div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Gestor:</span>
+      <div><div class="dialog-text">Por supuesto. Decir «hablar de ellas» es mejor que «discutirlas» — ¡discutir suena a pelea! <button class="speak-btn" onclick="speak('Por supuesto. Decir hablar de ellas es mejor que discutirlas — ¡discutir suena a pelea!')">🔊</button></div></div>
+    </div>
+    <div class="dialog-line">
+      <span class="dialog-who">Ты:</span>
+      <div><div class="dialog-text">¡Gracias por la corrección! Falso amigo clásico. <button class="speak-btn" onclick="speak('¡Gracias por la corrección! Falso amigo clásico.')">🔊</button></div></div>
+    </div>
   </div>
-  <div class="culture">
-    <div class="ctag">🌍 Falsos amigos в дипломатии и истории</div>
-    <h4>Цена языковой ошибки — реальные случаи</h4>
-    <p>Ложные друзья — проблема не только студентов. Испанское слово <em>embarazada</em> вошло в хрестоматийные примеры дипломатических конфузов: несколько известных деятелей публично объявляли о «беременности», пытаясь сказать, что «смущены». Лингвисты шутят: «Ложные друзья опаснее прямых врагов — удара не ждёшь от того, кто кажется знакомым». В испанской лингвистике для них есть специальный термин — <em>falsos cognados</em> (ложные когнаты). Примечательно, что <em>molestar</em> (беспокоить) создаёт обратную проблему: английские студенты боятся его использовать, пропуская из речи абсолютно нормальную вежливую фразу. Страх ложного друга становится врагом беглости.</p>
-  </div>
-</div>
 
-<!-- 14. ANKI DECK -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">12</div>
-    <h2>Анки-колода — 18 карточек ложных друзей</h2>
+  <div class="culture-tip">
+    <strong>Важно в Испании:</strong> В официальных документах Барселоны <em>firma</em> — это ваша подпись, а <em>empresa</em> или <em>sociedad</em> — компания. Когда сотрудник gestoría просит «¡Firme aquí!», он просит просто поставить подпись. Не путайте: сказать «mi firma es grande» означает «моя подпись большая», а не «моя компания большая».
   </div>
-  <p style="margin-bottom:12px;font-size:.9rem;color:var(--muted)">Нажми на карточку, чтобы перевернуть и увидеть правильный перевод.</p>
-  <div class="anki-cards-preview">
+</section>
+
+<!-- 11. КУЛЬТУРНАЯ ЗАМЕТКА -->
+<section class="card">
+  <h2>🎭 Культурная заметка: Откуда берутся ложные друзья?</h2>
+  <p>Термин «faux amis» (ложные друзья) ввёл французский лингвист Максим Кёслер в 1928 году. Проблема возникла, когда носители европейских языков стали активно учить друг другу языки — и обнаружили, что латинское общее прошлое стало источником не только помощи, но и опасных ловушек.</p>
+  <p>Самый известный международный конфуз: американский дипломат в Мексике объявил «Estoy muy embarazado», думая сказать «I'm very embarrassed» — но вместо этого заявил, что «очень беременен». Этот пример стал классическим во всех учебниках испанского.</p>
+  <p>Испанский особенно богат ловушками именно потому, что имеет общий латинский корень с английским через нормандское завоевание Англии в 1066 году. Примерно 30–40% английских слов имеют романское происхождение — это создаёт иллюзию понятности, но значения за столетия разошлись.</p>
+  <p>В Испании существуют специальные «diccionarios de falsos amigos» — словари ложных друзей — и они популярны не только у студентов, но и у профессиональных переводчиков. Даже опытные билингвы периодически попадаются на классические пары вроде <em>embarazada/embarrassed</em>.</p>
+  <p>Для русскоязычных особую ловушку представляют слова с латинскими корнями, которые прошли через разные пути заимствования: в русский — через греческий, латынь или немецкий; в испанский — напрямую из народной латыни. Отсюда пары вроде <em>confidencia/конфиденциальность</em> или <em>lectura/лекция</em>.</p>
+</section>
+
+<!-- 12. АНКИ-КОЛОДА -->
+<section class="card">
+  <h2>🎴 Анки-колода: Ложные друзья</h2>
+  <p style="font-size:.85rem;color:var(--muted)">Нажми на карточку, чтобы перевернуть. Скачай полную колоду для Anki.</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:4px;margin:.75rem 0">
     <div class="anki-card" onclick="this.classList.toggle('flipped')">
       <div class="anki-card-inner">
         <div class="anki-card-front">embarazada</div>
-        <div class="anki-card-back">беременная<br>НЕ смущённая!<br><em>avergonzada</em></div>
+        <div class="anki-card-back">беременная<br><small>≠ embarrassed<br>смущённая = avergonzada</small></div>
       </div>
     </div>
     <div class="anki-card" onclick="this.classList.toggle('flipped')">
       <div class="anki-card-inner">
-        <div class="anki-card-front">actual</div>
-        <div class="anki-card-back">нынешний, текущий<br>НЕ настоящий!<br><em>real / verdadero</em></div>
-      </div>
-    </div>
-    <div class="anki-card" onclick="this.classList.toggle('flipped')">
-      <div class="anki-card-inner">
-        <div class="anki-card-front">sensible</div>
-        <div class="anki-card-back">чувствительный<br>НЕ разумный!<br><em>sensato</em></div>
+        <div class="anki-card-front">éxito</div>
+        <div class="anki-card-back">успех<br><small>≠ exit<br>выход = salida</small></div>
       </div>
     </div>
     <div class="anki-card" onclick="this.classList.toggle('flipped')">
       <div class="anki-card-inner">
         <div class="anki-card-front">librería</div>
-        <div class="anki-card-back">книжный магазин<br>НЕ библиотека!<br><em>biblioteca</em></div>
+        <div class="anki-card-back">книжный магазин<br><small>≠ library<br>библиотека = biblioteca</small></div>
       </div>
     </div>
     <div class="anki-card" onclick="this.classList.toggle('flipped')">
       <div class="anki-card-inner">
-        <div class="anki-card-front">realizar</div>
-        <div class="anki-card-back">осуществлять<br>НЕ осознать!<br><em>darse cuenta de</em></div>
+        <div class="anki-card-front">sensible</div>
+        <div class="anki-card-back">чувствительный<br><small>разумный = sensato</small></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">discutir</div>
+        <div class="anki-card-back">спорить/ругаться<br><small>обсуждать = hablar de</small></div>
       </div>
     </div>
   </div>
-  <button class="export-btn" onclick="exportAnkiL104()">📥 Скачать колоду Anki (.txt)</button>
-</div>
 
-<!-- 15. HOMEWORK -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">13</div>
-    <h2>Домашнее задание</h2>
-  </div>
-  <div class="callout tip">
-    <h4>📝 Задание на сегодня</h4>
-    <ul>
-      <li>Составь 8 предложений — по одному на каждую пару ложных друзей (embarazada/avergonzada, librería/biblioteca и т.д.)</li>
-      <li>Попробуй прочитать испанскую статью или объявление и найти там ложных друзей</li>
-      <li>Объясни другу (на русском) разницу между soportar и apoyar, actual и real</li>
-    </ul>
-  </div>
-  <div class="callout info">
-    <h4>📺 Dreaming Spanish — Intermediate</h4>
-    <p>Смотри видео о повседневной жизни в Испании на DS Intermediate. Когда встречаешь слово, похожее на английское или русское — пауза. Проверь себя: это ложный друг или нет? Постепенно выработаешь автоматический «alarm signal» на ловушки.</p>
-  </div>
-  <div class="callout success">
-    <h4>⏭ Следующий урок — L105</h4>
-    <p>L105: Испания vs. Латинская Америка — vosotros vs. ustedes, региональные различия и разные слова для одних понятий. Например, в Испании говорят «coger» свободно, а в Мексике это совсем другое слово!</p>
-  </div>
-</div>
+  <button class="export-btn" onclick="exportAnkiL104()">⬇ Скачать колоду Anki (.txt)</button>
+</section>
 
-</div><!-- .wrap -->
+<!-- 13. ДОМАШНЕЕ ЗАДАНИЕ -->
+<section class="card">
+  <h2>📝 Домашнее задание</h2>
+  <ol>
+    <li>Составь 10 предложений, используя ложных друзей из урока в правильном значении.</li>
+    <li>Найди в интернете 3 реальных примера путаницы из-за ложных друзей — на форумах, в статьях или в личном опыте.</li>
+    <li>Посмотри на Dreaming Spanish видео уровня intermediate — обращай внимание на слова, похожие на английские или русские: насколько они совпадают по значению?</li>
+    <li>Выучи наизусть 5 пар ложных друзей «исп. ↔ англ.» и 5 пар «исп. ↔ русск.» из урока.</li>
+    <li>Составь свой личный список ложных друзей — добавляй новые по мере изучения испанского.</li>
+  </ol>
 
-<!-- DONE BAR -->
-<div class="done-bar">
-  <div class="nav-links">
-    <a href="L103.html" class="nav-link-btn">← L103</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
+  <div class="callout blue" style="margin-top:.75rem">
+    <strong>Dreaming Spanish:</strong> Уровень intermediate+ — смотри без субтитров и отмечай все слова, похожие на английские. Правда ли они значат то, что ты думаешь?
+  </div>
+  <div class="callout purple" style="margin-top:.5rem">
+    <strong>Совет от преподавателя:</strong> Создай карточки Anki именно с парами «слово — ложный друг — правильный перевод». Трёхстороннее сравнение запоминается лучше.
+  </div>
+</section>
+
+<!-- 14. DONE-BAR -->
+<section class="card" style="text-align:center">
+  <h2>🏁 Урок завершён?</h2>
+  <p style="color:var(--muted);margin-bottom:1rem">Отметь урок как пройденный и переходи к следующему.</p>
+  <button class="done-btn" id="done-btn" onclick="markDone()">Отметить пройденным</button>
+  <div style="margin-top:1.5rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
+    <a href="L103.html" class="nav-link-btn">← L103 Идиомы</a>
+    <a href="../index.html" class="nav-link-btn">🏠 Дашборд</a>
     <a href="L105.html" class="nav-link-btn">L105 →</a>
   </div>
-  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
-</div>
+</section>
+
+</div><!-- /container -->
 
 <script>
 const LESSON_ID = 'L104';
-const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){
-  const s=getState();
-  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
-  const today=new Date().toISOString().slice(0,10);
-  if(!s.study_days)s.study_days={};
-  s.study_days[today]=true;
-  localStorage.setItem(LS_KEY,JSON.stringify(s));
-  const btn=document.getElementById('done-btn');
-  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
+const LS_KEY = 'spanish_course_v1';
+let quizScore = 0, quizTotal = 0;
+
+const quizExpl = {
+  q1: 'embarazada = беременная. Смущённая = avergonzada.',
+  q2: 'Éxito = успех. Выход = salida. Ловушка для всех англоязычных!',
+  q3: 'Librería = книжный магазин. Библиотека = biblioteca.',
+  q4: 'Sensible = чувствительный. Разумный = sensato.',
+  q5: 'Discutir = спорить, ругаться. Обсуждать = hablar de.',
+  q6: 'Largo = длинный. Большой = grande.',
+  q7: 'Asistir a = присутствовать на. Помогать = ayudar.',
+  q8: 'Extrañar = скучать по кому-то. Te extraño = скучаю по тебе.',
+  rq1: 'Нет худа без добра — классический перевод этой идиомы.',
+  rq2: 'Costar un ojo de la cara = стоить целое состояние (буквально «стоить глаз с лица»).',
+  rq3: 'Meter la pata = облажаться (буквально «поставить лапу»).',
+  rq4: 'Estar en las nubes = витать в облаках, быть рассеянным.'
+};
+
+function getState(){
+  try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[],study_days:{}};}
+  catch{return{completed:[],study_days:{}};}
 }
-const st=getState();
-if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
 function speak(text, lang) {
   const u = new SpeechSynthesisUtterance(text);
@@ -911,50 +1010,6 @@ function speak(text, lang) {
   window.speechSynthesis.speak(u);
 }
 
-const d1Lines = [
-  '¿Por qué no fuiste a la conferencia de ayer?',
-  'Estaba constipado y no me encontraba bien.',
-  'La conferencia fue muy larga pero muy exitosa.',
-  'Pretendo asistir al próximo evento en junio.',
-  '¿Te molesta si te mando el resumen por email?',
-  'Para nada, te lo agradecería mucho.'
-];
-function playDialogue1(){
-  window.speechSynthesis.cancel();
-  d1Lines.forEach((line,i)=>{
-    setTimeout(()=>speak(line),i*3000);
-  });
-}
-
-const d2Lines = [
-  'Disculpe, ¿esta es la librería Laie?',
-  'No, esta es la biblioteca pública. La librería está dos calles más arriba.',
-  '¡Ah, claro! Me di cuenta de mi error.',
-  'No se preocupe. Es un error muy común entre extranjeros.',
-  '¡Qué amable! Gracias por apoyarme.'
-];
-function playDialogue2(){
-  window.speechSynthesis.cancel();
-  d2Lines.forEach((line,i)=>{
-    setTimeout(()=>speak(line),i*3000);
-  });
-}
-
-const quizExpl={
-  w1:'Meter la pata = облажаться, сказать что-то неуместное.',
-  w2:'Dar en el clavo = попасть в точку, угадать. Буквально: попасть в гвоздь.',
-  w3:'Tirar la toalla = сдаться. No tirar la toalla = не сдаваться.',
-  w4:'«Estar hasta las narices» — сильная разговорная идиома, неуместная в деловом письме.',
-  q1:'Emocionado = взволнованный, растроганный. Emotional (по характеру) = emotivo.',
-  q2:'Soportar = терпеть, выносить. To support (поддерживать) = apoyar.',
-  q3:'Librería = книжный магазин. Library = biblioteca.',
-  q4:'Actual = нынешний, текущий. Actual (настоящий) = real, verdadero.',
-  q5:'Me di cuenta del error — darse cuenta de = осознать. Realizar = осуществлять.',
-  q6:'¿Te molesta? = абсолютно нормальная вежливая фраза «Тебе не помешает?».',
-  q7:'Asistir = присутствовать, посещать. To assist (помогать) = ayudar.'
-};
-
-let quizScore=0,quizTotal=0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -978,11 +1033,13 @@ function answerQuiz(el, qId, correctKey) {
     fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
   } else {
     fb.className = 'feedback show no';
-    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», правильный ответ — <strong>«' + correctText + '»</strong>.<br>💡 ' + expl;
+    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
   }
   if (typeof quizScore !== 'undefined') {
     if (isCorrect) quizScore++;
     quizTotal++;
+    const scoreEl = document.getElementById('quiz-score');
+    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
   }
 }
 
@@ -1038,49 +1095,140 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
-function toggleAll(){document.querySelectorAll('.translation').forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
-function toggleAll2(){document.querySelectorAll('.translation2').forEach(el=>{el.style.display=el.style.display==='none'?'block':'none';});}
 
-const ANKI_DECK_L104 = [
-  {front:"embarazada",back:"Перевод: беременная (НЕ смущённая!)\n\nПример: Está embarazada de tres meses.\nЗаметка: смущённая = avergonzada"},
-  {front:"actual",back:"Перевод: нынешний, текущий (НЕ настоящий/actual!)\n\nПример: El presidente actual.\nЗаметка: настоящий = real, verdadero"},
-  {front:"sensible",back:"Перевод: чувствительный, ранимый (НЕ разумный!)\n\nПример: Es muy sensible a las críticas.\nЗаметка: разумный = sensato"},
-  {front:"realizar",back:"Перевод: осуществлять, выполнять (НЕ осознать!)\n\nПример: Vamos a realizar el proyecto.\nЗаметка: осознать = darse cuenta de"},
-  {front:"librería",back:"Перевод: книжный магазин (НЕ библиотека!)\n\nПример: Compré el libro en la librería.\nЗаметка: библиотека = biblioteca"},
-  {front:"constipado",back:"Перевод: простуженный — насморк (НЕ запор!)\n\nПример: Estoy constipado.\nЗаметка: запор = estreñido"},
-  {front:"molestar",back:"Перевод: беспокоить, мешать (нейтрально!)\n\nПример: ¿Te molesta si fumo?\nЗаметка: НЕ путать с to molest!"},
-  {front:"soportar",back:"Перевод: терпеть, выносить (НЕ поддерживать!)\n\nПример: No soporto el calor.\nЗаметка: поддерживать = apoyar"},
-  {front:"largo",back:"Перевод: длинный, долгий (НЕ large/большой!)\n\nПример: Es un libro muy largo.\nЗаметка: большой = grande"},
-  {front:"pretender",back:"Перевод: намереваться (НЕ притворяться!)\n\nПример: Pretendo aprender español.\nЗаметка: притворяться = fingir"},
-  {front:"asistir",back:"Перевод: присутствовать, посещать (НЕ помогать!)\n\nПример: Asistí a la reunión.\nЗаметка: помогать = ayudar"},
-  {front:"éxito",back:"Перевод: успех (НЕ exit/выход!)\n\nПример: La película fue un gran éxito.\nЗаметка: выход = salida"},
-  {front:"firma",back:"Перевод: подпись (НЕ фирма/компания!)\n\nПример: Pon tu firma aquí.\nЗаметка: компания = empresa"},
-  {front:"lectura",back:"Перевод: чтение (НЕ lecture/лекция!)\n\nПример: La lectura es mi hobby.\nЗаметка: лекция = conferencia, charla"},
-  {front:"eventualmente",back:"Перевод: возможно, при необходимости (НЕ eventually!)\n\nПример: Eventualmente, necesitamos un plan B.\nЗаметка: в конце концов = finalmente, al final"},
-  {front:"emocionado",back:"Перевод: взволнованный, растроганный\n\nПример: Estaba muy emocionado en su graduación.\nЗаметка: emotional (по характеру) = emotivo"},
-  {front:"ropa",back:"Перевод: одежда (НЕ rope/верёвка!)\n\nПример: ¿Dónde compras tu ropa?\nЗаметка: верёвка = cuerda, soga"},
-  {front:"exitoso",back:"Перевод: успешный (НЕ excited/взволнованный!)\n\nПример: Es un empresario muy exitoso.\nЗаметка: взволнованный = emocionado"}
-];
-
-function exportAnkiL104() {
-  const tsv = ANKI_DECK_L104.map(c => c.front + '\t' + c.back.replace(/\n/g, '<br>')).join('\n');
-  const blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = 'L104_spanish.txt'; a.click();
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
 }
 
-const totalSections = 13;
-function updateProgress(){
+const totalSections = 14;
+function updateProgress() {
   const scrolled = window.scrollY;
   const total = document.body.scrollHeight - window.innerHeight;
-  const pct = total > 0 ? Math.min(100, Math.round(scrolled / total * 100)) : 0;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
   const sectionsRead = Math.round(pct / 100 * totalSections);
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
 }
 window.addEventListener('scroll', updateProgress);
+
+function toggleAll1() {
+  for (let i = 1; i <= 10; i++) {
+    const el = document.getElementById('tr1-' + i);
+    if (el) el.classList.toggle('visible');
+  }
+}
+function toggleAll2() {
+  for (let i = 1; i <= 8; i++) {
+    const el = document.getElementById('tr2-' + i);
+    if (el) el.classList.toggle('visible');
+  }
+}
+function toggleAll3() {
+  for (let i = 1; i <= 10; i++) {
+    const el = document.getElementById('tr3-' + i);
+    if (el) el.classList.toggle('visible');
+  }
+}
+
+const d1lines = [
+  '¿Asististe a la reunión de ayer?',
+  'Sí, asistí. Pero llegué tarde porque no encontré la salida del metro.',
+  '¿El proyecto tuvo éxito al final?',
+  '¡Sí! Fue un gran éxito. El cliente quedó muy contento.',
+  'Me alegra. ¿Discutiste el presupuesto con el jefe?',
+  'No exactamente discutir… Hablamos de ello. Llegamos a un acuerdo.',
+  '¡Qué bien! Discutir en español significa pelear, no hablar, ¿verdad?',
+  'Exacto. Un falso amigo clásico. Como éxito que no es exit.',
+  'Estos errores son muy graciosos, pero también vergonzosos.',
+  'Sí, pero aprender de los errores es el mejor método. ¡Ánimo!'
+];
+function playDialogue1() {
+  d1lines.forEach(function(line, i) {
+    setTimeout(function(){ speak(line); }, i * 2200);
+  });
+}
+
+const d2lines = [
+  'Hola, necesito algo para el dolor de cabeza.',
+  '¿Es para usted? ¿Está embarazada?',
+  'No, ¡no estoy embarazada! Soy hombre. ¡Solo tengo dolor de cabeza!',
+  'Perdone, lo pregunto por protocolo. ¿Es sensible a algún medicamento?',
+  'No, que yo sepa. ¿Qué recomienda para el dolor?',
+  'Le recomiendo ibuprofeno. Es sensato tomarlo con comida.',
+  'Gracias. ¿Puedo pagar con tarjeta?',
+  'Sí, aceptamos tarjeta. Son cuatro euros con cincuenta. ¡Que se mejore!'
+];
+function playDialogue2() {
+  d2lines.forEach(function(line, i) {
+    setTimeout(function(){ speak(line); }, i * 2200);
+  });
+}
+
+const d3lines = [
+  '¿Recuerdas que el jueves hay reunión de vecinos?',
+  'Sí, lo recuerdo. ¿A qué hora empieza?',
+  'A las siete. Hay que firmar unos documentos.',
+  '¿Firmar? ¿La firma de quién se necesita?',
+  'De todos los propietarios. Es un acuerdo largo, de cinco páginas.',
+  '¿Viene también el pariente del administrador?',
+  'No lo sé. El administrador es muy simpático, te va a caer bien.',
+  'Perfecto. Llevaré la carpeta con mis documentos.',
+  'Muy bien. ¡Hasta el jueves!',
+  '¡Hasta luego!'
+];
+function playDialogue3() {
+  d3lines.forEach(function(line, i) {
+    setTimeout(function(){ speak(line); }, i * 2200);
+  });
+}
+
+const ANKI_DECK_L104 = [
+  {front: "embarazada", back: "Перевод: беременная\n\nПример: Mi esposa está embarazada — Моя жена беременна.\nЗаметка: НЕ embarrassed! Смущённая = avergonzada"},
+  {front: "avergonzada/o", back: "Перевод: смущённый/смущённая\n\nПример: Estoy muy avergonzado — Мне очень неловко.\nЗаметка: Это правильный перевод «embarrassed»"},
+  {front: "éxito", back: "Перевод: успех\n\nПример: El proyecto fue un gran éxito — Проект был большим успехом.\nЗаметка: НЕ exit! Выход = salida"},
+  {front: "librería", back: "Перевод: книжный магазин\n\nПример: Compré el libro en la librería — Купил книгу в книжном магазине.\nЗаметка: НЕ library! Библиотека = biblioteca"},
+  {front: "sensible", back: "Перевод: чувствительный, ранимый\n\nПример: Es muy sensible a las críticas — Он очень чувствителен к критике.\nЗаметка: НЕ sensible (англ. = разумный)! Разумный = sensato"},
+  {front: "sensato", back: "Перевод: разумный, здравомыслящий\n\nПример: Tomó una decisión sensata — Он принял разумное решение.\nЗаметка: Это «sensible» по-английски"},
+  {front: "largo", back: "Перевод: длинный\n\nПример: El contrato es muy largo — Договор очень длинный.\nЗаметка: НЕ large (большой)! Большой = grande"},
+  {front: "discutir", back: "Перевод: спорить, ругаться\n\nПример: Discutieron toda la noche — Они спорили всю ночь.\nЗаметка: НЕ discuss (обсуждать)! Обсуждать = hablar de"},
+  {front: "asistir a", back: "Перевод: присутствовать на, посещать\n\nПример: Asistí a la reunión — Я был на встрече.\nЗаметка: НЕ assist (помогать)! Помогать = ayudar"},
+  {front: "firma", back: "Перевод: подпись\n\nПример: Pon tu firma aquí — Поставь подпись здесь.\nЗаметка: НЕ firm/firma (компания)! Компания = empresa"},
+  {front: "carpeta", back: "Перевод: папка (для документов)\n\nПример: Tengo los papeles en la carpeta — Документы в папке.\nЗаметка: НЕ carpet (ковёр)! Ковёр = alfombra"},
+  {front: "pariente", back: "Перевод: родственник\n\nПример: Es pariente mío — Он мой родственник.\nЗаметка: НЕ patient (пациент)! Пациент = paciente"},
+  {front: "gracioso", back: "Перевод: смешной, забавный\n\nПример: Es muy gracioso — Он очень смешной.\nЗаметка: НЕ gracious (грациозный)! Грациозный = grácil"},
+  {front: "extrañar", back: "Перевод: скучать по кому-то\n\nПример: Te extraño mucho — Я очень скучаю по тебе.\nЗаметка: Te extraño — буквально «ты для меня странный/отсутствующий»"},
+  {front: "recordar", back: "Перевод: помнить, вспоминать\n\nПример: ¿Recuerdas su nombre? — Помнишь его имя?\nЗаметка: НЕ record (записывать)! Записывать = grabar"},
+  {front: "contestar", back: "Перевод: отвечать (на вопрос/звонок)\n\nПример: Contesta el teléfono — Ответь на телефон.\nЗаметка: НЕ contest (оспаривать)!"},
+  {front: "simpático", back: "Перевод: милый, приятный, дружелюбный\n\nПример: El jefe es muy simpático — Шеф очень приятный.\nЗаметка: НЕ sympathetic (сочувствующий)! Сочувствующий = comprensivo"},
+  {front: "confidencia", back: "Перевод: тайна, секрет (доверяемый другу)\n\nПример: Me contó una confidencia — Он мне рассказал тайну.\nЗаметка: Конфиденциальность = confidencialidad"},
+  {front: "actual", back: "Перевод: нынешний, текущий, современный\n\nПример: El presidente actual — Нынешний президент.\nЗаметка: НЕ actual (реальный)! Реальный = real"},
+  {front: "soportar", back: "Перевод: терпеть, выносить\n\nПример: No puedo soportarlo — Не могу его терпеть.\nЗаметка: НЕ support (поддерживать)! Поддерживать = apoyar"}
+];
+
+function exportAnkiL104() {
+  const tsv = ANKI_DECK_L104.map(function(c){ return c.front + '\t' + c.back.replace(/\n/g, '<br>'); }).join('\n');
+  const blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L104_spanish.txt';
+  a.click();
+}
+
+(function initDone(){
+  const s = getState();
+  if (s.completed && s.completed.includes(LESSON_ID)) {
+    const btn = document.getElementById('done-btn');
+    if (btn) { btn.textContent = '✅ Пройден!'; btn.className = 'done-btn marked'; }
+  }
+})();
 </script>
 </body>
 </html>
