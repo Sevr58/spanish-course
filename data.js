@@ -1358,7 +1358,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Понять акцент и лексику разных стран",
-      file:"lessons/L105.html", status:"pending"
+      file:"lessons/L105.html", status:"improved"
     },
     {
       id:"L106", num:106, phase:4, block:"B4A", level:"B1", day:226, week:39,
@@ -1370,7 +1370,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Понять 5 испанских шуток и объяснить почему они смешные",
-      file:"lessons/L106.html", status:"pending"
+      file:"lessons/L106.html", status:"improved"
     },
     {
       id:"L107", num:107, phase:4, block:"B4A", level:"B1", day:228, week:39,
