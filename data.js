@@ -1382,7 +1382,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Прочитать аутентичную статью и обсудить её",
-      file:"lessons/L107.html", status:"pending"
+      file:"lessons/L107.html", status:"improved"
     },
     {
       id:"L108", num:108, phase:4, block:"B4A", level:"B1", day:230, week:39,
@@ -1394,7 +1394,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Прослушать подкаст на испанском и пересказать содержание",
-      file:"lessons/L108.html", status:"pending"
+      file:"lessons/L108.html", status:"improved"
     },
     {
       id:"L109", num:109, phase:4, block:"B4A", level:"B1", day:232, week:40,
