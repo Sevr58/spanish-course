@@ -1406,7 +1406,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Написать эссе 150 слов на любую тему (время: 20 минут)",
-      file:"lessons/L109.html", status:"pending"
+      file:"lessons/L109.html", status:"improved"
     },
     {
       id:"L110", num:110, phase:4, block:"B4A", level:"B1", day:234, week:40,
@@ -1418,7 +1418,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Говорить 10 минут без подготовки на незнакомую тему",
-      file:"lessons/L110.html", status:"pending"
+      file:"lessons/L110.html", status:"improved"
     },
 
     // ─── Block 4B: DELE B1 Exam Prep ────────────────────────────
