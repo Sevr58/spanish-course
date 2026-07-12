@@ -3,643 +3,1121 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L110: Разговорная беглость — говорить без остановок</title>
+<title>L110 — Разговорная беглость | Испанский курс</title>
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
-.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
-.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
-.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
-.hero{background:linear-gradient(135deg,#f1f3f7 0%,#e8ebf1 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
-.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
-.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
-.hero h1 .hl{color:var(--gold)}
-.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
-.objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
-.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
-.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
-.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
-.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
-.section{margin-bottom:36px}
-.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.section-header h2{font-size:1.15rem;font-weight:700}
-.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.divider{height:1px;background:var(--border);margin:32px 0}
-.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
-.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
-.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
-.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
-.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
-.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
-.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
-.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
-.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.cog-rule .rule-badge{background:var(--gold);color:#000;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
-.cog-rule .rule-title{font-weight:700;font-size:1rem}
-.cog-rule .rule-arrow{font-size:.95rem;color:var(--muted);flex-shrink:0}
-.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
-.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
-.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
-.wp .sep{color:var(--border);font-size:.8rem}
-.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
-.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
-.speak-box p{font-size:.9rem}
-.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
-.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
-.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
-.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
-.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
-.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
-.quiz-q .q-text strong{color:var(--gold)}
-.options{display:flex;flex-wrap:wrap;gap:6px}
-.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
-.opt:hover{border-color:var(--muted)}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7;font-size:16px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:860px;margin:0 auto;padding:0 16px}
 
+/* Navigation */
+.top-nav{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 0;position:sticky;top:0;z-index:100}
+.top-nav .container{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:5px 12px;font-size:.85rem;color:var(--text);white-space:nowrap}
+.nav-link-btn:hover{background:var(--border);text-decoration:none}
+.nav-spacer{flex:1}
+.progress-bar-wrap{height:4px;background:var(--border);position:fixed;top:0;left:0;right:0;z-index:200}
+#progressBar{height:100%;background:var(--gold);width:0;transition:width .2s}
 
-.opt:disabled,.opt[disabled]{cursor:default}
-.feedback{margin-top:8px;font-size:.82rem;display:none}
-.feedback.show{display:block}
-.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
-.text-ex{margin-bottom:14px}
-.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
-.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
-.text-input:focus{border-color:var(--blue)}
-.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
-.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
-.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
-.check-btn:hover{opacity:.88}
-.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
-.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
-.answer-reveal.show{display:block}
-.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
-.dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:50px}
-.dlg-speaker.b{color:var(--blue)}
-.dlg-es{font-size:.95rem;font-weight:500}
-.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
-.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
-.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
-.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
-.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
-.culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
-.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
-.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
-.done-btn:hover{opacity:.88}
-.done-btn.marked{background:var(--muted)}
-.nav-links{display:flex;gap:10px}
-.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
-.nav-link-btn:hover{border-color:var(--muted)}
-.vocab-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.vocab-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
-.vocab-table tr:last-child td{border-bottom:none}
-.vocab-table .es-word{color:var(--gold);font-weight:600}
-.vocab-table .cognate{background:rgba(200,144,0,.15);border-radius:3px;padding:1px 4px}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--bg2) 0%,var(--bg3) 100%);border-bottom:1px solid var(--border);padding:40px 0 32px}
+.hero .phase-badge{display:inline-block;background:var(--purple);color:#fff;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em;margin-bottom:12px}
+.hero h1{font-size:2rem;font-weight:800;margin-bottom:6px;color:var(--text)}
+.hero .subtitle{color:var(--muted);font-size:1.05rem;margin-bottom:20px}
+.goals{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:20px}
+.goal-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;font-size:.9rem}
+.goal-item::before{content:"✓ ";color:var(--green);font-weight:700}
+.meta-row{display:flex;gap:16px;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.meta-row span{display:flex;align-items:center;gap:4px}
+
+/* Cards / sections */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px;margin:24px 0}
+.card h2{font-size:1.3rem;font-weight:700;margin-bottom:18px;color:var(--text)}
+.card h3{font-size:1.05rem;font-weight:600;margin:18px 0 10px}
+
+/* Callouts */
+.callout{border-left:4px solid var(--blue);background:var(--bg3);border-radius:0 var(--r) var(--r) 0;padding:14px 18px;margin:16px 0;font-size:.95rem}
+.callout.warn{border-color:var(--gold)}
+.callout.tip{border-color:var(--green)}
+.callout.err{border-color:var(--red)}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
+th{background:var(--bg3);color:var(--muted);font-weight:600;text-align:left;padding:8px 12px;border:1px solid var(--border)}
+td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+tr:nth-child(even) td{background:var(--bg3)}
+
+/* Vocab */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:14px}
+.vocab-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;display:flex;align-items:flex-start;gap:8px}
+.vocab-es{font-weight:700;color:var(--blue)}
+.vocab-ru{color:var(--muted);font-size:.88rem}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:0 2px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+
+/* Quiz */
+.quiz-question{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.quiz-question p{font-weight:600;margin-bottom:12px}
+.quiz-options{display:flex;flex-direction:column;gap:8px}
+.quiz-option{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;cursor:pointer;transition:.2s;text-align:left;font-size:.95rem;width:100%}
+.quiz-option:hover{border-color:var(--blue);background:var(--bg3)}
+.quiz-option.correct{background:#d4edda;border-color:var(--green);color:#155724}
+.quiz-option.wrong{background:#f8d7da;border-color:var(--red);color:#721c24}
+.quiz-option.picked{opacity:.6}
+.quiz-feedback{margin-top:10px;font-size:.88rem;color:var(--muted);display:none}
+.quiz-feedback.show{display:block}
+
+/* Text quiz */
+.text-quiz-item{margin-bottom:20px}
+.text-quiz-item label{display:block;font-weight:600;margin-bottom:6px}
+.text-quiz-item input{width:100%;border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:.95rem;background:var(--bg3);color:var(--text)}
+.text-quiz-item input:focus{outline:2px solid var(--blue);border-color:var(--blue)}
+.quiz-fb{margin-top:6px;font-size:.88rem;font-style:italic;color:var(--muted)}
+.quiz-fb.ok{color:var(--green)}
+.quiz-fb.bad{color:var(--red)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:9px 20px;cursor:pointer;font-size:.95rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.85}
+
+/* Dialogues */
+.dialogue-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:20px}
+.dialogue-box h3{font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--purple)}
+.dialogue-line{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.dialogue-speaker{font-weight:700;min-width:70px;font-size:.85rem;color:var(--blue)}
+.dialogue-text{flex:1;font-size:.95rem}
+.dialogue-translation{font-size:.83rem;color:var(--muted);margin-top:3px;display:none;font-style:italic}
+.dialogue-translation.show{display:block}
+.dialogue-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn-sm{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:.85rem;cursor:pointer;transition:.2s}
+.btn-sm:hover{border-color:var(--blue);color:var(--blue)}
+
+/* Speaking */
+.speak-box{background:var(--bg3);border:2px dashed var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px;text-align:center}
+.speak-box p{color:var(--muted);font-size:.95rem;margin-bottom:12px}
+.speak-box strong{display:block;font-size:1.05rem;color:var(--text);margin-bottom:8px}
+
+/* Phrase list */
+.phrase-list{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.phrase-item{background:var(--bg3);border-left:3px solid var(--purple);padding:10px 14px;border-radius:0 var(--r) var(--r) 0;display:flex;align-items:center;gap:10px}
+.phrase-es{font-weight:700;color:var(--text);flex:1}
+.phrase-ru{color:var(--muted);font-size:.88rem}
+
+/* Culture tip */
+.culture-tip{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px 18px;margin-top:16px;font-size:.9rem}
+
+/* Anki */
+.anki-preview{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--gold);color:#000;border:none;border-radius:8px;padding:10px 22px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:12px}
+.export-btn:hover{opacity:.85}
+
+/* Homework */
+.hw-list{list-style:none;counter-reset:hw-counter}
+.hw-list li{counter-increment:hw-counter;padding:10px 0 10px 44px;position:relative;border-bottom:1px solid var(--border)}
+.hw-list li:last-child{border-bottom:none}
+.hw-list li::before{content:counter(hw-counter);position:absolute;left:0;top:50%;transform:translateY(-50%);background:var(--gold);color:#000;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+
+/* Done bar */
+.done-bar{background:var(--bg2);border-top:1px solid var(--border);padding:24px 0;margin-top:40px;text-align:center}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:var(--r);padding:14px 32px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.85}
+.done-msg{display:none;color:var(--green);font-size:1rem;font-weight:600;margin-top:12px}
+</style>
 </head>
 <body>
-<div class="wrap">
 
-<!-- NAV -->
-<div class="nav">
-  <a href="../index.html">← Дашборд</a>
-  <span class="level">B1 · Фаза 4 · День 234</span>
-  <a href="L111.html">L111 →</a>
-</div>
+<div class="progress-bar-wrap"><div id="progressBar"></div></div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="phase-tag">🚀 Фаза 4 · Блок 4A · Беглость — финальный урок блока</div>
-  <h1>Разговорная <span class="hl">беглость</span></h1>
-  <p class="sub">Заполнители паузы, перифрастика, circumlocution — говорить без остановок</p>
-  <div class="objectives">
-    <div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Освоить стратегии беглой речи: fillers, repair, описание вместо слова</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~50 минут + Anki</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Dreaming Spanish — любой нарратив от 10+ мин</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Говорение</strong><p>10 минут без подготовки — незнакомая тема</p></div></div>
+<!-- 1. NAVIGATION -->
+<nav class="top-nav">
+  <div class="container">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L109.html" class="nav-link-btn">← L109</a>
+    <span class="nav-spacer"></span>
+    <span style="font-size:.85rem;color:var(--muted)">Фаза 4 · Блок B4A · День 234</span>
+    <span class="nav-spacer"></span>
+    <a href="L111.html" class="nav-link-btn">L111 →</a>
   </div>
-</div>
+</nav>
 
-<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<!-- 2. HERO BLOCK -->
+<section class="hero">
+  <div class="container">
+    <div class="phase-badge">Фаза 4 · B1 · Неделя 40</div>
+    <h1>Урок 110: Разговорная беглость</h1>
+    <p class="subtitle">Заполнители паузы, periphrasis, circumlocution — говорить без остановок</p>
+    <div class="goals">
+      <div class="goal-item">Использовать 8+ муletillas естественно</div>
+      <div class="goal-item">Описать незнакомое слово через circumlocution</div>
+      <div class="goal-item">Применять repair-стратегии в разговоре</div>
+      <div class="goal-item">Говорить плавно без долгих пауз</div>
+    </div>
+    <div class="meta-row">
+      <span>📊 Уровень: B1</span>
+      <span>⏱ ~60 минут</span>
+      <span>🎯 Разговорная практика</span>
+      <span>🇪🇸 Dreaming Spanish: intermediate</span>
+    </div>
+  </div>
+</section>
 
-<!-- SECTION 1: THEORY -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">1</div>
-    <h2>Стратегии беглой речи: почему мы «застреваем»</h2>
+<div class="container">
+
+<!-- 3. WARM-UP (review L109) -->
+<section class="card">
+  <h2>🔄 Повторение — Урок 109: Письменные навыки B1</h2>
+  <p style="color:var(--muted);margin-bottom:18px">Проверь, что усвоил из прошлого урока об эссе, коннекторах и формальном стиле.</p>
+
+  <div class="quiz-question" id="wq1">
+    <p>1. Какой коннектор используется для противопоставления (однако, но)?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'wq1','a')">a) Sin embargo</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'wq1','b')">b) Además</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'wq1','c')">c) Por lo tanto</button>
+    </div>
+    <div class="quiz-feedback" id="wq1-fb">✅ <em>Sin embargo</em> = «однако / тем не менее» — классический коннектор противопоставления в испанском.</div>
   </div>
 
-  <p style="margin-bottom:14px">Беглость — не знание всех слов. Беглость — это <strong>умение не останавливаться</strong>, когда слово не приходит. Носители языка тоже делают паузы, ищут слова, перефразируют. Разница: они используют инструменты, а не просто молчат.</p>
+  <div class="quiz-question" id="wq2">
+    <p>2. Из каких трёх частей состоит структура эссе?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'wq2','a')">a) Introducción, desarrollo, conclusión</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'wq2','b')">b) Problema, solución, ejemplo</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'wq2','c')">c) Inicio, cuerpo, final</button>
+    </div>
+    <div class="quiz-feedback" id="wq2-fb">✅ Стандартная трёхчастная структура: <em>introducción — desarrollo — conclusión</em>. Именно эти термины используются в испанских учебниках и на экзамене DELE.</div>
+  </div>
+
+  <div class="quiz-question" id="wq3">
+    <p>3. Что означает «registro» в контексте письма?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'wq3','a')">a) Стиль и тон общения (формальный/неформальный)</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'wq3','b')">b) Список слов</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'wq3','c')">c) Регистрация документа</button>
+    </div>
+    <div class="quiz-feedback" id="wq3-fb">✅ <em>Registro</em> = регистр общения: формальный (деловое письмо, эссе), неформальный (сообщение другу). Выбор регистра — ключевой навык письма.</div>
+  </div>
+
+  <div class="quiz-question" id="wq4">
+    <p>4. Какую функцию выполняет «en definitiva» в тексте?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'wq4','a')">a) Подводит итог / делает вывод</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'wq4','b')">b) Вводит пример</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'wq4','c')">c) Добавляет новый аргумент</button>
+    </div>
+    <div class="quiz-feedback" id="wq4-fb">✅ <em>En definitiva</em> = «в итоге / в конечном счёте» — коннектор резюмирования, аналог «таким образом» в русском.</div>
+  </div>
+</section>
+
+<!-- 4. THEORY -->
+<section class="card">
+  <h2>📚 Теория: Как говорить плавно по-испански</h2>
+
+  <div class="callout">
+    <strong>Суть урока:</strong> Носители испанского никогда не говорят «идеально». Они используют муletillas (слова-паразиты), описательные замены (circumlocution) и стратегии исправления (repair). Эти инструменты — не слабость, а признак живой речи. Освоив их, ты будешь звучать естественно, а не как словарь.
+  </div>
+
+  <h3>1. Муletillas — заполнители паузы</h3>
+  <p>Муletillas — слова и выражения, которые «заполняют» паузы во время речи, пока ты думаешь. В русском: «ну», «это самое», «как бы», «вот». В испанском их набор другой:</p>
+
+  <table>
+    <tr><th>Муletilla</th><th>Произношение</th><th>Когда используется</th><th>Русский аналог</th></tr>
+    <tr><td><strong>pues</strong></td><td>[pwes]</td><td>Начать ответ, заполнить паузу</td><td>«ну», «ну вот»</td></tr>
+    <tr><td><strong>bueno</strong></td><td>[bwéno]</td><td>Начать, согласиться с оговоркой</td><td>«ну», «хорошо»</td></tr>
+    <tr><td><strong>es que</strong></td><td>[es ke]</td><td>Объяснение, оправдание причины</td><td>«дело в том что», «просто»</td></tr>
+    <tr><td><strong>o sea</strong></td><td>[o séa]</td><td>Перефразировать, уточнить</td><td>«то есть», «иными словами»</td></tr>
+    <tr><td><strong>la verdad es que</strong></td><td>[la βerðáð es ke]</td><td>Подчеркнуть честность</td><td>«честно говоря», «правда в том что»</td></tr>
+    <tr><td><strong>mira</strong></td><td>[míra]</td><td>Привлечь внимание</td><td>«слушай», «смотри»</td></tr>
+    <tr><td><strong>¿sabes?</strong></td><td>[sáβes]</td><td>Проверить понимание собеседника</td><td>«понимаешь?», «ты знаешь?»</td></tr>
+    <tr><td><strong>a ver</strong></td><td>[a βér]</td><td>Подумать, собраться с мыслями</td><td>«посмотрим», «давай подумаю»</td></tr>
+    <tr><td><strong>hombre</strong></td><td>[ómbre]</td><td>Удивление (муж/жен без разницы)</td><td>«да ладно», «ну конечно»</td></tr>
+    <tr><td><strong>vamos</strong></td><td>[bámos]</td><td>Обобщить, усилить высказывание</td><td>«ну», «короче»</td></tr>
+    <tr><td><strong>nada</strong></td><td>[náða]</td><td>Завершить разговор мягко</td><td>«ладно», «ничего»</td></tr>
+  </table>
 
   <div class="callout tip">
-    <h4>💡 Три ключевые стратегии</h4>
-    <ul>
-      <li><strong>Fillers (заполнители паузы)</strong> — слова, которые заполняют паузу, пока ты думаешь: «Pues...», «O sea...», «A ver...»</li>
-      <li><strong>Circumlocution (обход)</strong> — описываешь то, что не знаешь: «Es como una cosa que...», «La persona que hace...»</li>
-      <li><strong>Repair strategies (исправление)</strong> — поправляешь себя: «Quiero decir...», «O mejor dicho...»</li>
+    <strong>Важно:</strong> В испанском — особенно в Испании — «es que» используется очень часто для объяснения причины. «Es que no pude venir» = «Просто я не смог прийти». Это НЕ грубо, это совершенно естественно.
+  </div>
+
+  <p>Примеры муletillas в живой речи:</p>
+  <ul style="padding-left:20px;margin:10px 0">
+    <li>«<em>Pues</em>, no sé... <em>a ver</em>... creo que sí.» = «Ну, не знаю... давай подумаю... думаю, да.»</li>
+    <li>«<em>Bueno</em>, <em>la verdad es que</em> no tengo ganas.» = «Ну, честно говоря, нет никакого желания.»</li>
+    <li>«<em>O sea</em>, <em>es que</em> llegué tarde, <em>¿sabes</em>?» = «То есть, просто я опоздал, понимаешь?»</li>
+    <li>«<em>Mira</em>, <em>hombre</em>, no es para tanto.» = «Слушай, ну не стоит так переживать.»</li>
+    <li>«<em>Vamos</em>, que no me gusta nada eso. <em>Nada</em>.» = «Короче, мне это совсем не нравится. Совсем.»</li>
+  </ul>
+
+  <h3>2. Circumlocution — описать то, что не знаешь</h3>
+  <p>Circumlocution (описательная замена) — стратегия описания незнакомого слова вместо того, чтобы молчать. Это ключевой навык для B1 и выше.</p>
+
+  <div class="callout">
+    <strong>Основные конструкции circumlocution:</strong>
+    <ul style="margin-top:8px;padding-left:20px">
+      <li><strong>Es una cosa que...</strong> — «Это такая штука, которая...»</li>
+      <li><strong>Es como un/una...</strong> — «Это как...»</li>
+      <li><strong>Se usa para...</strong> — «Используется для того, чтобы...»</li>
+      <li><strong>Lo contrario de...</strong> — «Противоположность...»</li>
+      <li><strong>Es parecido a...</strong> — «Похоже на...»</li>
+      <li><strong>No sé cómo se dice, pero...</strong> — «Не знаю, как это называется, но...»</li>
+      <li><strong>Eso que sirve para...</strong> — «Вот то, что служит для...»</li>
     </ul>
   </div>
 
-  <div class="callout info">
-    <h4>🎧 Dreaming Spanish — твой тренажёр беглости</h4>
-    <p>На уровне Intermediate обращай внимание на то, как носители делают паузы и перефразируют. Это живая речь — именно так говорят реальные люди, не как в учебниках. Слушай ежедневно минимум 15–20 минут.</p>
-  </div>
+  <p><strong>Пример 1:</strong> Не знаешь слово «sacacorchos» (штопор):</p>
+  <blockquote style="border-left:3px solid var(--gold);padding-left:14px;margin:12px 0;color:var(--muted)">
+    «Es una cosa que se usa para abrir las botellas de vino, tiene forma de espiral y es de metal.»<br>
+    («Это такая штука для открывания бутылок вина, она имеет форму спирали и сделана из металла.»)
+  </blockquote>
 
-  <h3 style="margin:20px 0 12px;font-size:1rem;color:var(--gold)">Fillers — заполнители паузы</h3>
+  <p><strong>Пример 2:</strong> Не знаешь слово «quitagrapas» (антистеплер):</p>
+  <blockquote style="border-left:3px solid var(--gold);padding-left:14px;margin:12px 0;color:var(--muted)">
+    «Es como una palanca pequeña de metal que tiene dos dientes y sirve para sacar las grapas del papel.»<br>
+    («Это маленький металлический рычажок с двумя зубцами для вытаскивания скрепок из бумаги.»)
+  </blockquote>
 
-  <div class="cog-rule">
-    <div class="rule-header">
-      <span class="rule-badge">Группа 1</span>
-      <span class="rule-title">Думаю, соображаю</span>
-    </div>
-    <div class="word-pairs">
-      <div class="wp"><span class="en">Pues...</span><span class="sep">→</span><span class="ar">Ну... / Итак...</span></div>
-      <div class="wp"><span class="en">Bueno...</span><span class="sep">→</span><span class="ar">Ну... / Хорошо...</span></div>
-      <div class="wp"><span class="en">A ver...</span><span class="sep">→</span><span class="ar">Посмотрим... / Давай...</span></div>
-      <div class="wp"><span class="en">Mmm, déjame pensar...</span><span class="sep">→</span><span class="ar">Дай подумать...</span></div>
-      <div class="wp"><span class="en">Espera un momento...</span><span class="sep">→</span><span class="ar">Подожди секунду...</span></div>
-      <div class="wp"><span class="en">Cómo se dice...</span><span class="sep">→</span><span class="ar">Как это сказать...</span></div>
-    </div>
-  </div>
+  <h3>3. Repair Strategies — исправить себя и понять собеседника</h3>
+  <p>Repair-стратегии — это фразы для исправления себя (self-repair) и просьбы объяснить заново (other-repair).</p>
 
-  <div class="cog-rule">
-    <div class="rule-header">
-      <span class="rule-badge">Группа 2</span>
-      <span class="rule-title">Перефразировка</span>
-    </div>
-    <div class="word-pairs">
-      <div class="wp"><span class="en">O sea...</span><span class="sep">→</span><span class="ar">То есть... / Иными словами...</span></div>
-      <div class="wp"><span class="en">Es decir...</span><span class="sep">→</span><span class="ar">То есть...</span></div>
-      <div class="wp"><span class="en">Quiero decir...</span><span class="sep">→</span><span class="ar">Я имею в виду...</span></div>
-      <div class="wp"><span class="en">O mejor dicho...</span><span class="sep">→</span><span class="ar">Точнее говоря...</span></div>
-      <div class="wp"><span class="en">En otras palabras...</span><span class="sep">→</span><span class="ar">Другими словами...</span></div>
-      <div class="wp"><span class="en">Lo que quiero decir es...</span><span class="sep">→</span><span class="ar">То, что я хочу сказать...</span></div>
-    </div>
-  </div>
-
-  <div class="cog-rule">
-    <div class="rule-header">
-      <span class="rule-badge">Группа 3</span>
-      <span class="rule-title">Circumlocution — описание незнакомого слова</span>
-    </div>
-    <div class="word-pairs">
-      <div class="wp"><span class="en">Es como...</span><span class="sep">→</span><span class="ar">Это как...</span></div>
-      <div class="wp"><span class="en">Es una cosa que...</span><span class="sep">→</span><span class="ar">Это штука, которая...</span></div>
-      <div class="wp"><span class="en">Es la persona que...</span><span class="sep">→</span><span class="ar">Это человек, который...</span></div>
-      <div class="wp"><span class="en">Se usa para...</span><span class="sep">→</span><span class="ar">Используется для...</span></div>
-      <div class="wp"><span class="en">Es lo opuesto de...</span><span class="sep">→</span><span class="ar">Это противоположность...</span></div>
-      <div class="wp"><span class="en">No recuerdo la palabra, pero...</span><span class="sep">→</span><span class="ar">Не помню слово, но...</span></div>
-    </div>
-  </div>
-
-  <div class="callout warning">
-    <h4>⚠️ Ловушка для русскоговорящих</h4>
-    <p>Мы привыкли замолчать, когда не знаем слово, или переключиться на английский. В испанском — описывай! «No sé la palabra en español, pero es algo que se usa para cortar el pan» (не знаю слово, но это штука для нарезки хлеба). Экзаменатор DELE оценивает именно эту стратегию.</p>
-  </div>
-</div>
-
-<!-- SECTION 2: VOCABULARY -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">2</div>
-    <h2>Словарь — выражения коммуникационных стратегий</h2>
-  </div>
-
-  <table class="vocab-table">
-    <thead>
-      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="es-word">pues bien</td><td>[пуэс бьен]</td><td>итак, ну что ж</td><td>Pues bien, te explico lo que pasó.</td></tr>
-      <tr><td class="es-word">a ver si me explico</td><td>[а бер]</td><td>посмотрим, объясню ли я</td><td>A ver si me explico correctamente...</td></tr>
-      <tr><td class="es-word">por así decirlo</td><td>[пор аси десирло]</td><td>так сказать</td><td>Es mi segunda casa, por así decirlo.</td></tr>
-      <tr><td class="es-word">en fin</td><td>[эн фин]</td><td>в общем, ну ладно</td><td>En fin, ya veremos qué pasa.</td></tr>
-      <tr><td class="es-word">sin embargo</td><td>[син эмбарго]</td><td>однако, тем не менее</td><td>Es difícil; sin embargo, es posible.</td></tr>
-      <tr><td class="es-word">de hecho</td><td>[де эчо]</td><td>на самом деле, фактически</td><td>De hecho, no estoy de acuerdo.</td></tr>
-      <tr><td class="es-word">por supuesto</td><td>[пор супуэсто]</td><td>конечно, разумеется</td><td>—¿Puedo ayudarte? —Por supuesto.</td></tr>
-      <tr><td class="es-word">desde luego</td><td>[десде луэго]</td><td>безусловно, конечно</td><td>Desde luego que tienes razón.</td></tr>
-      <tr><td class="es-word">en todo caso</td><td>[эн тодо касо]</td><td>в любом случае</td><td>En todo caso, hay que intentarlo.</td></tr>
-      <tr><td class="es-word">la verdad es que</td><td>[ла вердад эс ке]</td><td>правда в том, что</td><td>La verdad es que no lo sé.</td></tr>
-      <tr><td class="es-word">resulta que</td><td>[ресульта ке]</td><td>оказывается, что</td><td>Resulta que tenía razón.</td></tr>
-      <tr><td class="es-word">al fin y al cabo</td><td>[аль фин и аль кабо]</td><td>в конце концов</td><td>Al fin y al cabo, somos humanos.</td></tr>
-    </tbody>
+  <table>
+    <tr><th>Ситуация</th><th>Фраза</th><th>Перевод</th></tr>
+    <tr>
+      <td>Исправить себя</td>
+      <td><em>Quiero decir... / O sea... / Perdona, quería decir que...</em></td>
+      <td>«То есть... / Я имею в виду... / Прости, я хотел сказать...»</td>
+    </tr>
+    <tr>
+      <td>Не понял — повторить</td>
+      <td><em>¿Puedes repetir? / ¿Cómo? / No te he entendido bien.</em></td>
+      <td>«Можешь повторить? / Как? / Я не очень понял.»</td>
+    </tr>
+    <tr>
+      <td>Попросить объяснить</td>
+      <td><em>¿Qué significa...? / ¿A qué te refieres con...?</em></td>
+      <td>«Что значит...? / Что ты имеешь в виду под...?»</td>
+    </tr>
+    <tr>
+      <td>Подтвердить понимание</td>
+      <td><em>O sea que... / Si no me equivoco, quieres decir que...</em></td>
+      <td>«Значит... / Если я правильно понимаю, ты говоришь что...»</td>
+    </tr>
+    <tr>
+      <td>Выиграть время</td>
+      <td><em>Déjame pensar... / A ver... / Eso es buena pregunta.</em></td>
+      <td>«Дай подумать... / Посмотрим... / Хороший вопрос.»</td>
+    </tr>
+    <tr>
+      <td>Не знаешь слово по-испански</td>
+      <td><em>¿Cómo se dice...? / No sé la palabra exacta, pero...</em></td>
+      <td>«Как по-испански...? / Не знаю точного слова, но...»</td>
+    </tr>
   </table>
-</div>
 
-<!-- SECTION 3: QUIZ 1 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">3</div>
-    <h2>Тест 1 — Стратегии беглости</h2>
+  <h3>4. Hesitation expressions — выиграть время</h3>
+  <p>Когда нужно время подумать, носители используют не тишину, а специальные фразы:</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0">
+    <div class="callout" style="margin:0"><strong>A ver...</strong><br>«Посмотрим, дай подумать»</div>
+    <div class="callout" style="margin:0"><strong>Pues mira...</strong><br>«Ну смотри... / Видишь ли...»</div>
+    <div class="callout" style="margin:0"><strong>Depende...</strong><br>«Зависит... / По-разному»</div>
+    <div class="callout" style="margin:0"><strong>No sé cómo explicarlo...</strong><br>«Не знаю, как объяснить»</div>
+    <div class="callout" style="margin:0"><strong>Eso es difícil de decir...</strong><br>«Это сложно сказать»</div>
+    <div class="callout" style="margin:0"><strong>En realidad...</strong><br>«На самом деле...»</div>
   </div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Выбери правильную стратегию</h3>
+  <h3>5. Periphrasis — глагольные обороты для выразительности</h3>
+  <p>Perífrasis — сочетания вспомогательный глагол + инфинитив/герундий, которые делают речь живой и точной:</p>
 
-    <div class="quiz-q" id="q1">
-      <div class="q-text">1. Ты забыл слово «консервный нож». Используй circumlocution:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Es una cosa que se usa para abrir latas de comida.</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">No lo sé.</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">El abridor... knife...</div>
-      </div>
-      <div class="feedback" id="fb-q1"></div>
-    </div>
+  <table>
+    <tr><th>Перифраз</th><th>Значение</th><th>Пример</th></tr>
+    <tr><td><em>seguir + gerundio</em></td><td>продолжать делать</td><td><em>Sigo aprendiendo español.</em> — Продолжаю учить испанский.</td></tr>
+    <tr><td><em>llevar + gerundio</em></td><td>делать в течение времени (и сейчас)</td><td><em>Llevo tres años viviendo en Barcelona.</em></td></tr>
+    <tr><td><em>acabar de + inf.</em></td><td>только что сделал</td><td><em>Acabo de firmar el contrato.</em> — Только что подписал контракт.</td></tr>
+    <tr><td><em>ir a + inf.</em></td><td>собираюсь сделать</td><td><em>Voy a hablar con el jefe mañana.</em></td></tr>
+    <tr><td><em>tener que + inf.</em></td><td>должен сделать</td><td><em>Tengo que revisar los documentos.</em></td></tr>
+    <tr><td><em>ponerse a + inf.</em></td><td>начать делать (внезапно)</td><td><em>Me puse a llorar de la emoción.</em></td></tr>
+    <tr><td><em>dejar de + inf.</em></td><td>перестать делать</td><td><em>Dejé de fumar hace dos años.</em></td></tr>
+  </table>
 
-    <div class="quiz-q" id="q2">
-      <div class="q-text">2. Какой filler используют, чтобы выиграть время для размышления?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Por supuesto</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">A ver, déjame pensar...</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Sin embargo</div>
-      </div>
-      <div class="feedback" id="fb-q2"></div>
-    </div>
-
-    <div class="quiz-q" id="q3">
-      <div class="q-text">3. Ты сказал что-то неточно и хочешь исправить. Что скажешь?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">O mejor dicho, lo que quiero decir es...</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">A ver si me explico... no, me equivoqué.</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">En fin, da igual.</div>
-      </div>
-      <div class="feedback" id="fb-q3"></div>
-    </div>
-
-    <div class="quiz-q" id="q4">
-      <div class="q-text">4. «De hecho» переводится как:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Однако</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">В конце концов</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">На самом деле / фактически</div>
-      </div>
-      <div class="feedback" id="fb-q4"></div>
-    </div>
-
-    <div class="quiz-q" id="q5">
-      <div class="q-text">5. Что значит «O sea, no estoy seguro»?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">То есть, я не уверен</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Безусловно, я не уверен</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">В общем, я не уверен</div>
-      </div>
-      <div class="feedback" id="fb-q5"></div>
-    </div>
-
-    <div class="quiz-q" id="q6">
-      <div class="q-text">6. Ты описываешь профессию врача, не зная слова «хирург». Что скажешь?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Es un médico muy bueno.</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Es el médico que opera a los pacientes en el hospital.</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">No sé cómo se llama en español.</div>
-      </div>
-      <div class="feedback" id="fb-q6"></div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 4: QUIZ 2 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 2 — Завершить фразу</h2>
+  <div class="callout warn">
+    <strong>Сравнение с русским и английским:</strong><br>
+    Русские учащиеся часто замолкают при незнании слова — в испанском это воспринимается как незнание языка. В английском: "you know", "I mean", "like". В испанском: <em>o sea, ¿sabes?, es que</em>. Используй их активно — они звучат профессионально, а не небрежно.
   </div>
 
-  <div class="quiz">
-    <h3>✏️ Вставь правильный filler или выражение</h3>
+  <h3>6. Типичные ошибки русскоговорящих</h3>
+  <table>
+    <tr><th>Ошибка</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>❌ Долгие паузы в тишине</td><td>✅ «A ver... pues...»</td><td>В испанском тишина = незнание. Используй вербальные заполнители.</td></tr>
+    <tr><td>❌ «No sé» и остановиться</td><td>✅ «No sé la palabra exacta, pero es como...»</td><td>После «не знаю» всегда продолжай — это и есть circumlocution.</td></tr>
+    <tr><td>❌ «¿Cómo?» резко и одиночно</td><td>✅ «¿Puedes repetir, por favor?»</td><td>Одиночное «¿Cómo?» звучит грубовато в формальном контексте.</td></tr>
+    <tr><td>❌ «Es que» только для оправданий</td><td>✅ «Es que mañana tengo que trabajar.»</td><td><em>Es que</em> — нейтральный объяснительный маркер, не оправдание.</td></tr>
+    <tr><td>❌ Переводить «ну» как «bueno» всегда</td><td>✅ <em>Pues, bueno, a ver</em> — разный контекст</td><td>«Ну» передаётся разными муletillas в зависимости от функции.</td></tr>
+    <tr><td>❌ Говорить слишком быстро для маскировки</td><td>✅ Темп + паузы + муletillas</td><td>Скорость без пауз звучит неестественно. Паузы — часть ритма.</td></tr>
+    <tr><td>❌ «Hombre» только к мужчинам</td><td>✅ <em>Hombre</em> — к любому собеседнику</td><td>Это восклицание, не обращение по полу: <em>¡Hombre, qué sorpresa!</em></td></tr>
+  </table>
+</section>
 
-    <div class="text-ex">
-      <div class="tex-q">1. Тебе нужна пауза чтобы подумать: «_____, déjame pensar un momento.»</div>
-      <input type="text" class="text-input" placeholder="Filler для паузы..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','bueno','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ Bueno — или также «Pues» / «A ver». Все три варианты приняты как паузы-заполнители.</div>
+<!-- 5. VOCABULARY -->
+<section class="card">
+  <h2>📖 Словарь — Разговорная беглость</h2>
+  <p style="color:var(--muted);margin-bottom:14px">Нажми 🔊 для произношения. Эти выражения войдут в анки-колоду.</p>
+
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('muletilla')">🔊</button>
+      <div><div class="vocab-es">muletilla</div><div class="vocab-ru">слово-паразит, заполнитель паузы</div></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">2. Ты хочешь перефразировать: «No me gusta la lluvia. _____, prefiero el sol.»</div>
-      <input type="text" class="text-input" placeholder="Соединитель..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','o sea','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ O sea — то есть. Вариант: «Es decir» тоже правильно.</div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('pues')">🔊</button>
+      <div><div class="vocab-es">pues</div><div class="vocab-ru">ну, ну вот (начало фразы)</div></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">3. Хочешь сказать «на самом деле»: «_____, no es tan difícil como parece.»</div>
-      <input type="text" class="text-input" placeholder="На самом деле..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','de hecho','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ De hecho — на самом деле, фактически.</div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('bueno')">🔊</button>
+      <div><div class="vocab-es">bueno</div><div class="vocab-ru">ну, хорошо (начало), ладно</div></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">4. Описываешь «холодильник» через circumlocution: «Es _____ que se usa para conservar la comida fría.»</div>
-      <input type="text" class="text-input" placeholder="Es una cosa/máquina..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','una máquina','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ una máquina / una cosa / un aparato — любое общее слово + описание функции.</div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('es que')">🔊</button>
+      <div><div class="vocab-es">es que</div><div class="vocab-ru">дело в том что, просто</div></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">5. «_____, hay que intentarlo aunque sea difícil.» (В любом случае...)</div>
-      <input type="text" class="text-input" placeholder="В любом случае..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','en todo caso','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ En todo caso — в любом случае. Вариант: «De todas formas».</div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('o sea')">🔊</button>
+      <div><div class="vocab-es">o sea</div><div class="vocab-ru">то есть, иными словами</div></div>
     </div>
-
-    <div class="text-ex">
-      <div class="tex-q">6. Ты ошибся и хочешь поправиться: «Nací en 1990, _____, en 1991.»</div>
-      <input type="text" class="text-input" placeholder="Точнее говоря..." id="ti6">
-      <button class="check-btn" onclick="checkText('ti6','o mejor dicho','fb-te6')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
-      <div class="feedback" id="fb-te6"></div>
-      <div class="answer-reveal" id="ans-te6">✅ O mejor dicho — точнее говоря. Вариант: «Quiero decir».</div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('a ver')">🔊</button>
+      <div><div class="vocab-es">a ver</div><div class="vocab-ru">посмотрим, давай подумаю</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('mira')">🔊</button>
+      <div><div class="vocab-es">mira</div><div class="vocab-ru">слушай, смотри</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('vamos')">🔊</button>
+      <div><div class="vocab-es">vamos</div><div class="vocab-ru">ну, короче, давай</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('la circunlocución')">🔊</button>
+      <div><div class="vocab-es">circunlocución</div><div class="vocab-ru">описательная замена слова</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('la perífrasis')">🔊</button>
+      <div><div class="vocab-es">perífrasis</div><div class="vocab-ru">перифраз, глагольный оборот</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('la reparación')">🔊</button>
+      <div><div class="vocab-es">reparación</div><div class="vocab-ru">исправление (в разговоре)</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('la fluidez')">🔊</button>
+      <div><div class="vocab-es">fluidez</div><div class="vocab-ru">беглость (речи)</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('quiero decir')">🔊</button>
+      <div><div class="vocab-es">quiero decir</div><div class="vocab-ru">я имею в виду</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('depende')">🔊</button>
+      <div><div class="vocab-es">depende</div><div class="vocab-ru">зависит, по-разному</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('en realidad')">🔊</button>
+      <div><div class="vocab-es">en realidad</div><div class="vocab-ru">на самом деле</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('la verdad es que')">🔊</button>
+      <div><div class="vocab-es">la verdad es que</div><div class="vocab-ru">честно говоря, правда в том что</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('¿sabes?')">🔊</button>
+      <div><div class="vocab-es">¿sabes?</div><div class="vocab-ru">понимаешь? ты знаешь?</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('hombre')">🔊</button>
+      <div><div class="vocab-es">hombre</div><div class="vocab-ru">ну (восклицание удивления)</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('llevar viviendo')">🔊</button>
+      <div><div class="vocab-es">llevar + gerundio</div><div class="vocab-ru">делать что-то в течение времени</div></div>
+    </div>
+    <div class="vocab-item">
+      <button class="speak-btn" onclick="speak('acabo de firmar')">🔊</button>
+      <div><div class="vocab-es">acabar de + inf.</div><div class="vocab-ru">только что сделать</div></div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- SECTION 5: DIALOGUES -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">5</div>
-    <h2>Диалоги — беглость в действии</h2>
-  </div>
-  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух, играя обе роли. Обращай внимание на выделенные стратегии беглости.</p>
+<!-- 6. QUIZ 1 -->
+<section class="card">
+  <h2>🧠 Тест 1: Множественный выбор</h2>
+  <p style="color:var(--muted);margin-bottom:18px">Выбери правильный ответ. При ошибке увидишь объяснение.</p>
 
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Описание незнакомого предмета
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+  <div class="quiz-question" id="q1">
+    <p>1. Ты забыл слово «llave inglesa» (гаечный ключ). Как лучше описать его?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'q1','a')">a) «Es una herramienta de metal que se usa para apretar tornillos.»</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q1','b')">b) Молчать и ждать, пока вспомнишь</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q1','c')">c) Сказать «no sé» и остановиться</button>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">¿Sabes cómo se llama esa herramienta... <span style="color:var(--gold)">a ver</span>... esa cosa que usas para apretar tornillos?</div>
-        <div class="dlg-ru" id="tr-d1" style="display:none">Знаешь, как называется этот инструмент... давай подумаю... эта штука, которой закручивают винты?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es">¡Ah! <span style="color:var(--gold)">O sea</span>, te refieres a un destornillador, ¿verdad?</div>
-        <div class="dlg-ru" id="tr-d1b" style="display:none">А! То есть, ты имеешь в виду отвёртку, правда?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">¡Exacto! <span style="color:var(--gold)">De hecho</span>, necesito uno pero no sé dónde comprarlo aquí.</div>
-        <div class="dlg-ru" id="tr-d1c" style="display:none">Точно! Фактически, мне нужна одна, но я не знаю, где её купить здесь.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es"><span style="color:var(--gold)">Pues</span>, hay una ferretería a dos calles de aquí. <span style="color:var(--gold)">En todo caso</span>, también puedes pedirlo online.</div>
-        <div class="dlg-ru" id="tr-d1d" style="display:none">Ну, есть магазин инструментов в двух кварталах отсюда. В любом случае, можешь заказать онлайн.</div>
-      </div>
-    </div>
+    <div class="quiz-feedback" id="q1-fb">✅ Правильно — это и есть circumlocution! Описание «металлический инструмент для закручивания болтов» полностью заменяет незнакомое слово и поддерживает разговор.</div>
   </div>
 
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Объяснение идеи с перефразировкой
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
+  <div class="quiz-question" id="q2">
+    <p>2. Что означает «es que» в: «Es que tenía mucho trabajo ayer»?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'q2','a')">a) «Дело в том, что у меня вчера было много работы»</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q2','b')">b) «Потому что» — союз причины, аналог porque</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q2','c')">c) «Это то, что» — относительное местоимение</button>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es"><span style="color:var(--gold)">Bueno</span>, quiero decirte que... <span style="color:var(--gold)">cómo te explico</span>... el proyecto no va bien.</div>
-        <div class="dlg-ru" id="tr-d2" style="display:none">Ну, хочу сказать тебе, что... как тебе объяснить... проект идёт не очень хорошо.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es">¿<span style="color:var(--gold)">O sea</span> que hay problemas serios?</div>
-        <div class="dlg-ru" id="tr-d2b" style="display:none">То есть, есть серьёзные проблемы?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">Sí, <span style="color:var(--gold)">o mejor dicho</span>, hay dificultades técnicas. <span style="color:var(--gold)">La verdad es que</span> necesitamos más tiempo.</div>
-        <div class="dlg-ru" id="tr-d2c" style="display:none">Да, точнее говоря, есть технические трудности. Правда в том, что нам нужно больше времени.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es"><span style="color:var(--gold)">Al fin y al cabo</span>, lo importante es hacerlo bien. <span style="color:var(--gold)">Por supuesto</span> que tienes más tiempo.</div>
-        <div class="dlg-ru" id="tr-d2d" style="display:none">В конце концов, важно сделать это хорошо. Конечно, у тебя есть больше времени.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 6: SPEAKING -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <h2>Говорение — 10 минут без подготовки</h2>
+    <div class="quiz-feedback" id="q2-fb">✅ <em>Es que</em> как муletilla вводит объяснение — «дело в том что / просто». Это не союз «porque», хотя по функции близко.</div>
   </div>
 
-  <div class="callout tip">
-    <h4>🗣 Задание уровня DELE B1</h4>
-    <p>Выбери ОДНУ тему ниже. Говори 4–5 минут без подготовки. Если не знаешь слово — опиши через circumlocution. Делай паузы с fillers, не молчи. Экзаменатор смотрит именно на стратегии, а не на идеальный испанский.</p>
+  <div class="quiz-question" id="q3">
+    <p>3. Какую перифразу используют, чтобы сказать «я только что позвонил»?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'q3','a')">a) Acabo de llamar</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q3','b')">b) Llevo llamando</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q3','c')">c) Sigo llamando</button>
+    </div>
+    <div class="quiz-feedback" id="q3-fb">✅ <em>Acabar de + infinitivo</em> = «только что сделать». «Acabo de llamar» = «Я только что позвонил». <em>Llevar + gerundio</em> = «делать в течение времени».</div>
+  </div>
+
+  <div class="quiz-question" id="q4">
+    <p>4. Твой собеседник говорит слишком быстро. Как ВЕЖЛИВО попросить повторить?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'q4','b')">b) «¿Cómo?»</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q4','a')">a) «¿Puedes hablar más despacio, por favor?»</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q4','c')">c) Замолчать и надеяться</button>
+    </div>
+    <div class="quiz-feedback" id="q4-fb">✅ Полная вежливая просьба звучит профессионально. «¿Cómo?» — технически правильно, но может звучать резковато в формальной ситуации.</div>
+  </div>
+
+  <div class="quiz-question" id="q5">
+    <p>5. Что значит «llevar tres años viviendo en Madrid»?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'q5','a')">a) Жить в Мадриде уже три года (и продолжаешь)</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q5','b')">b) Прожить в Мадриде три года и уехать</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q5','c')">c) Три года назад жил в Мадриде</button>
+    </div>
+    <div class="quiz-feedback" id="q5-fb">✅ <em>Llevar + tiempo + gerundio</em> = действие длится с прошлого момента и продолжается сейчас. «Llevo tres años viviendo aquí» = «Я живу здесь уже три года (и сейчас тоже)».</div>
+  </div>
+
+  <div class="quiz-question" id="q6">
+    <p>6. Какую муletilla используют в Испании, чтобы выиграть время перед ответом?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'q6','a')">a) A ver...</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q6','b')">b) Nada</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q6','c')">c) Vamos</button>
+    </div>
+    <div class="quiz-feedback" id="q6-fb">✅ «A ver...» — классический способ выиграть время: «посмотрим... дай подумаю». <em>Nada</em> чаще завершает разговор. <em>Vamos</em> обобщает.</div>
+  </div>
+
+  <div class="quiz-question" id="q7">
+    <p>7. Ты хочешь поправить себя после оговорки. Какую фразу используешь?</p>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answerQuiz(this,'q7','a')">a) «Perdona, quería decir que...»</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q7','b')">b) «Es que...» и повторить то же самое</button>
+      <button class="quiz-option" onclick="answerQuiz(this,'q7','c')">c) Замолчать и не исправляться</button>
+    </div>
+    <div class="quiz-feedback" id="q7-fb">✅ Self-repair в испанском: «Perdona, quería decir...» / «O sea, lo que quiero decir es...» — мягко и естественно исправляет оговорку.</div>
+  </div>
+</section>
+
+<!-- 7. QUIZ 2 -->
+<section class="card">
+  <h2>✏️ Тест 2: Заполни пропуски</h2>
+  <p style="color:var(--muted);margin-bottom:6px">Введи подходящее слово или фразу. Вводи в нижнем регистре.</p>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:18px">Небольшие опечатки и отсутствие ударений засчитываются.</p>
+
+  <div class="text-quiz-item">
+    <label>1. Ты не знаешь слово. Начни с: «___ cómo se llama, pero es una cosa que...»</label>
+    <input type="text" id="tq1" placeholder="одно слово">
+    <button class="check-btn" onclick="checkText('tq1','no sé','tq1-fb')">Проверить</button>
+    <div class="quiz-fb" id="tq1-fb"></div>
+  </div>
+
+  <div class="text-quiz-item">
+    <label>2. Продолжи перифраз: «___ tres meses estudiando español.» (Я учу испанский уже три месяца)</label>
+    <input type="text" id="tq2" placeholder="глагол">
+    <button class="check-btn" onclick="checkText('tq2','llevo','tq2-fb')">Проверить</button>
+    <div class="quiz-fb" id="tq2-fb"></div>
+  </div>
+
+  <div class="text-quiz-item">
+    <label>3. Ты только что подписал контракт: «___ de firmar el contrato.»</label>
+    <input type="text" id="tq3" placeholder="глагол">
+    <button class="check-btn" onclick="checkText('tq3','acabo','tq3-fb')">Проверить</button>
+    <div class="quiz-fb" id="tq3-fb"></div>
+  </div>
+
+  <div class="text-quiz-item">
+    <label>4. Перефразируй: «То есть, я устал». Начни с: «___ sea, estoy cansado.»</label>
+    <input type="text" id="tq4" placeholder="слово">
+    <button class="check-btn" onclick="checkText('tq4','o','tq4-fb')">Проверить</button>
+    <div class="quiz-fb" id="tq4-fb"></div>
+  </div>
+
+  <div class="text-quiz-item">
+    <label>5. Выиграй время перед ответом: «___ ver, eso es difícil de explicar...»</label>
+    <input type="text" id="tq5" placeholder="слово">
+    <button class="check-btn" onclick="checkText('tq5','a','tq5-fb')">Проверить</button>
+    <div class="quiz-fb" id="tq5-fb"></div>
+  </div>
+
+  <div class="text-quiz-item">
+    <label>6. Объяснение: «___ que mañana tengo una reunión importante.» (Просто завтра у меня важная встреча)</label>
+    <input type="text" id="tq6" placeholder="2 слова">
+    <button class="check-btn" onclick="checkText('tq6','es que','tq6-fb')">Проверить</button>
+    <div class="quiz-fb" id="tq6-fb"></div>
+  </div>
+</section>
+
+<!-- 8. DIALOGUES -->
+<section class="card">
+  <h2>💬 Диалоги — Живая речь с муletillas</h2>
+
+  <!-- Dialogue 1 -->
+  <div class="dialogue-box" id="d1">
+    <h3>Диалог 1: Разговор у кофемашины в офисе</h3>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Андрей:</span>
+      <div>
+        <div class="dialogue-text">Oye, ¿has visto el correo del jefe? Pues... no sé, me parece un poco raro.</div>
+        <button class="speak-btn" onclick="speak('Oye, ¿has visto el correo del jefe? Pues... no sé, me parece un poco raro.')">🔊</button>
+        <div class="dialogue-translation">Слушай, ты видел письмо от босса? Ну... не знаю, мне кажется немного странным.</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Marta:</span>
+      <div>
+        <div class="dialogue-text">A ver... pues sí, la verdad es que yo también lo encontré un poco confuso. O sea, ¿qué quiere decir exactamente?</div>
+        <button class="speak-btn" onclick="speak('A ver... pues sí, la verdad es que yo también lo encontré un poco confuso. O sea, ¿qué quiere decir exactamente?')">🔊</button>
+        <div class="dialogue-translation">Посмотрим... ну да, честно говоря, я тоже нашла его немного непонятным. То есть, что он имеет в виду точно?</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Андрей:</span>
+      <div>
+        <div class="dialogue-text">Bueno, creo que quiere decir que tenemos que... ¿cómo se dice? Eso de hacer más horas. Vamos, que hay que trabajar más.</div>
+        <button class="speak-btn" onclick="speak('Bueno, creo que quiere decir que tenemos que... ¿cómo se dice? Eso de hacer más horas. Vamos, que hay que trabajar más.')">🔊</button>
+        <div class="dialogue-translation">Ну, думаю, он имеет в виду, что нам нужно... как это называется? Вот это — делать больше часов. Короче, надо работать больше.</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Marta:</span>
+      <div>
+        <div class="dialogue-text">¡Hombre! Es que llevamos meses trabajando extra ya. No me parece justo, ¿sabes?</div>
+        <button class="speak-btn" onclick="speak('¡Hombre! Es que llevamos meses trabajando extra ya. No me parece justo, ¿sabes?')">🔊</button>
+        <div class="dialogue-translation">Да ладно! Просто мы уже месяцами работаем дополнительно. Мне кажется, это несправедливо, понимаешь?</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Андрей:</span>
+      <div>
+        <div class="dialogue-text">Depende... mira, yo voy a hablar con él esta tarde. A ver qué dice.</div>
+        <button class="speak-btn" onclick="speak('Depende... mira, yo voy a hablar con él esta tarde. A ver qué dice.')">🔊</button>
+        <div class="dialogue-translation">По-разному... слушай, я собираюсь поговорить с ним сегодня вечером. Посмотрим, что он скажет.</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Marta:</span>
+      <div>
+        <div class="dialogue-text">Pues suerte. Y si hay algo nuevo, me dices, ¿eh? Nada, que para eso somos compañeros.</div>
+        <button class="speak-btn" onclick="speak('Pues suerte. Y si hay algo nuevo, me dices, ¿eh? Nada, que para eso somos compañeros.')">🔊</button>
+        <div class="dialogue-translation">Ну удачи. И если будет что-то новое, скажи мне, ладно? Ничего, для этого же мы и коллеги.</div>
+      </div>
+    </div>
+    <div class="dialogue-controls">
+      <button class="btn-sm" onclick="toggleAll()">👁 Показать/скрыть переводы</button>
+      <button class="btn-sm" onclick="playDialogue1()">▶ Воспроизвести целиком</button>
+    </div>
+  </div>
+
+  <!-- Dialogue 2 -->
+  <div class="dialogue-box" id="d2">
+    <h3>Диалог 2: Объяснение незнакомого предмета (circumlocution)</h3>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Катя:</span>
+      <div>
+        <div class="dialogue-text">Oye, ¿tienes esa cosa que... no sé cómo se llama en español, pero sirve para sacar las grapas del papel?</div>
+        <button class="speak-btn" onclick="speak('Oye, ¿tienes esa cosa que... no sé cómo se llama en español, pero sirve para sacar las grapas del papel?')">🔊</button>
+        <div class="dialogue-translation">Слушай, у тебя есть эта штука, которая... не знаю, как называется по-испански, но она нужна, чтобы вытаскивать скрепки из бумаги?</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Carlos:</span>
+      <div>
+        <div class="dialogue-text">A ver... ¿es como una palanca pequeña de metal? ¿Que tiene como dos dientes?</div>
+        <button class="speak-btn" onclick="speak('A ver... ¿es como una palanca pequeña de metal? ¿Que tiene como dos dientes?')">🔊</button>
+        <div class="dialogue-translation">Посмотрим... это как маленький металлический рычажок? У которого как два зубца?</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Катя:</span>
+      <div>
+        <div class="dialogue-text">¡Sí, exacto! Eso es. O sea, que se mete debajo de la grapa y la levanta.</div>
+        <button class="speak-btn" onclick="speak('¡Sí, exacto! Eso es. O sea, que se mete debajo de la grapa y la levanta.')">🔊</button>
+        <div class="dialogue-translation">Да, точно! Вот именно. То есть, она вставляется под скрепку и поднимает её.</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Carlos:</span>
+      <div>
+        <div class="dialogue-text">Ah, se llama quitagrapas. Mira, tengo uno aquí. ¡Toma!</div>
+        <button class="speak-btn" onclick="speak('Ah, se llama quitagrapas. Mira, tengo uno aquí. ¡Toma!')">🔊</button>
+        <div class="dialogue-translation">А, это называется «quitagrapas» (антистеплер). Смотри, у меня есть один. На!</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Катя:</span>
+      <div>
+        <div class="dialogue-text">¡Perfecto! Muchas gracias. Pues ya sé la palabra para la próxima vez.</div>
+        <button class="speak-btn" onclick="speak('¡Perfecto! Muchas gracias. Pues ya sé la palabra para la próxima vez.')">🔊</button>
+        <div class="dialogue-translation">Отлично! Большое спасибо. Ну вот, теперь знаю слово на следующий раз.</div>
+      </div>
+    </div>
+    <div class="dialogue-controls">
+      <button class="btn-sm" onclick="toggleAll2()">👁 Показать/скрыть переводы</button>
+      <button class="btn-sm" onclick="playDialogue2()">▶ Воспроизвести целиком</button>
+    </div>
+  </div>
+
+  <!-- Dialogue 3 -->
+  <div class="dialogue-box" id="d3">
+    <h3>Диалог 3: Телефонный разговор с сантехником</h3>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Иван:</span>
+      <div>
+        <div class="dialogue-text">Hola, buenas tardes. Es que... tengo un problema con la calefacción. O sea, no funciona bien.</div>
+        <button class="speak-btn" onclick="speak('Hola, buenas tardes. Es que... tengo un problema con la calefacción. O sea, no funciona bien.')">🔊</button>
+        <div class="dialogue-translation">Здравствуйте, добрый вечер. Просто... у меня проблема с отоплением. То есть, оно работает плохо.</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Técnico:</span>
+      <div>
+        <div class="dialogue-text">Bueno, ¿puede describir el problema? A ver, ¿hace ruido, no calienta, o qué?</div>
+        <button class="speak-btn" onclick="speak('Bueno, ¿puede describir el problema? A ver, ¿hace ruido, no calienta, o qué?')">🔊</button>
+        <div class="dialogue-translation">Хорошо, можете описать проблему? Посмотрим, оно шумит, не греет, или что?</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Иван:</span>
+      <div>
+        <div class="dialogue-text">Pues... hace ese ruido que es como... como cuando el agua golpea las tuberías, ¿sabe? Y además no calienta bien el salón.</div>
+        <button class="speak-btn" onclick="speak('Pues... hace ese ruido que es como... como cuando el agua golpea las tuberías, ¿sabe? Y además no calienta bien el salón.')">🔊</button>
+        <div class="dialogue-translation">Ну... издаёт такой шум, который как... как когда вода бьёт по трубам, знаете? И к тому же плохо греет гостиную.</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Técnico:</span>
+      <div>
+        <div class="dialogue-text">Entendido. O sea que necesita purgar los radiadores. Eso es fácil de arreglar. ¿Cuándo le viene bien que pase?</div>
+        <button class="speak-btn" onclick="speak('Entendido. O sea que necesita purgar los radiadores. Eso es fácil de arreglar. ¿Cuándo le viene bien que pase?')">🔊</button>
+        <div class="dialogue-translation">Понял. Значит, нужно стравить воздух из радиаторов. Это легко починить. Когда вам удобно, чтобы я зашёл?</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Иван:</span>
+      <div>
+        <div class="dialogue-text">A ver... mañana por la tarde, si es posible. ¿Puede venir entre las cinco y las siete?</div>
+        <button class="speak-btn" onclick="speak('A ver... mañana por la tarde, si es posible. ¿Puede venir entre las cinco y las siete?')">🔊</button>
+        <div class="dialogue-translation">Посмотрим... завтра вечером, если возможно. Можете прийти между пятью и семью?</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Técnico:</span>
+      <div>
+        <div class="dialogue-text">Pues sí, lo apunto. Mire, le mando un mensaje con los datos. Nada más por ahora, hasta mañana.</div>
+        <button class="speak-btn" onclick="speak('Pues sí, lo apunto. Mire, le mando un mensaje con los datos. Nada más por ahora, hasta mañana.')">🔊</button>
+        <div class="dialogue-translation">Ну да, записываю. Смотрите, пришлю вам сообщение с данными. Больше ничего на сейчас, до завтра.</div>
+      </div>
+    </div>
+    <div class="dialogue-controls">
+      <button class="btn-sm" onclick="document.querySelectorAll('#d3 .dialogue-translation').forEach(function(el){el.classList.toggle('show')})">👁 Переводы</button>
+      <button class="btn-sm" onclick="playDialogue3()">▶ Воспроизвести целиком</button>
+    </div>
+  </div>
+</section>
+
+<!-- 9. SPEAKING -->
+<section class="card">
+  <h2>🎤 Говорение — Практика беглости</h2>
+
+  <div class="speak-box">
+    <strong>Упражнение 1: Опиши предмет (circumlocution)</strong>
+    <p>Вслух опиши на испанском один из следующих предметов, не называя его:<br>
+    🖊️ ручка / ✂️ ножницы / 🔑 ключ / 📎 скрепка<br>
+    Используй: «Es una cosa que...», «Se usa para...», «Es parecido a...»</p>
+    <button class="speak-btn" style="font-size:1.5rem" onclick="speak('Es una cosa que se usa para escribir. Tiene tinta dentro y generalmente es de plástico.')">▶ Пример: ручка</button>
   </div>
 
   <div class="speak-box">
-    <div class="speak-tag">🎙 Уровень 1 — Базовый</div>
-    <p>Расскажи о своём обычном дне. Если забудешь слово — опиши его!</p>
-    <div class="es">«Pues, un día normal para mí empieza cuando... A ver... me levanto a las... O sea, mi rutina es...»</div>
-    <div class="hint">Используй: pues, bueno, a ver, o sea, de hecho — минимум 5 раз за монолог.</div>
+    <strong>Упражнение 2: Монолог с муletillas о жизни в Барселоне</strong>
+    <p>Расскажи 60-секундный монолог о своём районе, используя минимум 5 муletillas (<em>pues, bueno, o sea, a ver, es que, mira, ¿sabes?</em>).<br>
+    Тема: «Мой район — что хорошо, что сложно»</p>
+    <button class="speak-btn" style="font-size:1.5rem" onclick="speak('Pues, mira, vivo en el Eixample. Bueno, es que la zona es muy bonita, ¿sabes? O sea, hay muchas tiendas y restaurantes. La verdad es que a veces hay demasiados turistas, vamos.')">▶ Пример</button>
+  </div>
+</section>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<section class="card">
+  <h2>🇪🇸 Испания на практике: Переговоры по контракту</h2>
+  <p>Ты на встрече с работодателем или HR — обсуждаете условия контракта или продления. Нужно уточнять, переспрашивать и чётко выражать свою позицию.</p>
+
+  <div class="phrase-list">
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Podría aclarar el punto sobre las vacaciones?')">🔊</button>
+      <div>
+        <div class="phrase-es">¿Podría aclarar el punto sobre las vacaciones?</div>
+        <div class="phrase-ru">Могли бы вы уточнить пункт об отпуске?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Si no me equivoco, en el contrato pone que...')">🔊</button>
+      <div>
+        <div class="phrase-es">Si no me equivoco, en el contrato pone que...</div>
+        <div class="phrase-ru">Если я не ошибаюсь, в контракте написано, что...</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Perdone, ¿a qué se refiere exactamente con jornada flexible?')">🔊</button>
+      <div>
+        <div class="phrase-es">Perdone, ¿a qué se refiere exactamente con «jornada flexible»?</div>
+        <div class="phrase-ru">Извините, что вы имеете в виду под «гибким графиком»?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('La verdad es que necesito pensarlo un poco más. ¿Puedo darle una respuesta mañana?')">🔊</button>
+      <div>
+        <div class="phrase-es">La verdad es que necesito pensarlo un poco más. ¿Puedo darle una respuesta mañana?</div>
+        <div class="phrase-ru">Честно говоря, мне нужно немного подумать. Могу дать ответ завтра?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('O sea, si entiendo bien, el salario incluye las pagas extra, ¿verdad?')">🔊</button>
+      <div>
+        <div class="phrase-es">O sea, si entiendo bien, el salario incluye las pagas extra, ¿verdad?</div>
+        <div class="phrase-ru">То есть, если я правильно понимаю, зарплата включает дополнительные выплаты, верно?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('A ver... eso de las horas extra, ¿cómo funciona exactamente?')">🔊</button>
+      <div>
+        <div class="phrase-es">A ver... eso de las horas extra, ¿cómo funciona exactamente?</div>
+        <div class="phrase-ru">Посмотрим... вот это про сверхурочные — как это точно работает?</div>
+      </div>
+    </div>
   </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Уровень 2 — Продвинутый</div>
-    <p>Объясни понятие «ностальгия» на испанском, не используя само это слово.</p>
-    <div class="es">«Es como un sentimiento... O sea, es cuando recuerdas algo del pasado y... Bueno, es la persona que... De hecho, es una emoción muy...»</div>
-    <div class="hint">Задание DELE: circumlocution + fillers + 4 минуты непрерывной речи. Запишись на видео!</div>
+  <h3 style="margin-top:20px">Мини-диалог: Уточнение условий контракта</h3>
+  <div class="dialogue-box">
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">HR:</span>
+      <div>
+        <div class="dialogue-text">Bueno, como hablamos, el contrato es de un año con posibilidad de renovación.</div>
+        <button class="speak-btn" onclick="speak('Bueno, como hablamos, el contrato es de un año con posibilidad de renovación.')">🔊</button>
+        <div class="dialogue-translation" style="display:block;font-style:italic;color:var(--muted)">Ну, как мы говорили, контракт на один год с возможностью продления.</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Andrei:</span>
+      <div>
+        <div class="dialogue-text">A ver... perdona, ¿eso significa que después del año se renueva automáticamente, o hay que negociarlo de nuevo?</div>
+        <button class="speak-btn" onclick="speak('A ver... perdona, ¿eso significa que después del año se renueva automáticamente, o hay que negociarlo de nuevo?')">🔊</button>
+        <div class="dialogue-translation" style="display:block;font-style:italic;color:var(--muted)">Посмотрим... прости, это значит, что после года он продлевается автоматически, или нужно заново договариваться?</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">HR:</span>
+      <div>
+        <div class="dialogue-text">Pues... hay que renovarlo. O sea, nos reunimos antes de que acabe el año y lo discutimos.</div>
+        <button class="speak-btn" onclick="speak('Pues... hay que renovarlo. O sea, nos reunimos antes de que acabe el año y lo discutimos.')">🔊</button>
+        <div class="dialogue-translation" style="display:block;font-style:italic;color:var(--muted)">Ну... нужно продлевать. То есть, встречаемся до конца года и обсуждаем.</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">Andrei:</span>
+      <div>
+        <div class="dialogue-text">Entendido. Y si no me equivoco, las vacaciones son de 22 días laborables, ¿verdad?</div>
+        <button class="speak-btn" onclick="speak('Entendido. Y si no me equivoco, las vacaciones son de 22 días laborables, ¿verdad?')">🔊</button>
+        <div class="dialogue-translation" style="display:block;font-style:italic;color:var(--muted)">Понял. И если я не ошибаюсь, отпуск — 22 рабочих дня, верно?</div>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">HR:</span>
+      <div>
+        <div class="dialogue-text">Exacto. La verdad es que somos bastante flexibles con las fechas. Mira, aquí en España en agosto para todo el mundo.</div>
+        <button class="speak-btn" onclick="speak('Exacto. La verdad es que somos bastante flexibles con las fechas. Mira, aquí en España en agosto para todo el mundo.')">🔊</button>
+        <div class="dialogue-translation" style="display:block;font-style:italic;color:var(--muted)">Именно. Честно говоря, мы довольно гибкие с датами. Слушай, здесь в Испании август — это когда все останавливаются.</div>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- SECTION 7: CULTURE -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">7</div>
-    <h2>Культурная заметка</h2>
+  <div class="culture-tip">
+    <strong>Важно в Испании:</strong> В испанских переговорах переспрашивать несколько раз — норма и признак серьёзности, а не незнание языка. Фраза «si no me equivoco» («если я не ошибаюсь») перед уточнением звучит профессионально. Всегда уточняй «pagas extra» — в Испании стандартно 14 зарплат в год (12 месячных + июньская + декабрьская), и это часто не очевидно из контракта.
   </div>
+</section>
 
-  <div class="culture">
-    <div class="ctag">🌍 Культура языка</div>
-    <h4>«Pues» — самое испанское слово</h4>
-    <p>Слово «pues» — рекордсмен по количеству значений и частоте использования в разговорном испанском. Оно может означать «ну», «итак», «потому что», «но», «тогда» — в зависимости от интонации и контекста. В Испании «pues» можно услышать в начале почти каждого второго предложения. В Латинской Америке его аналог — «pues» в конце фразы (особенно в Колумбии и Мексике): «¿Vamos? — Vamos, pues.» Знание этого маленького слова и умение его использовать — сигнал носителям языка, что ты «свой». Начни специально использовать «pues» в каждом монологе — и через неделю это станет автоматическим.</p>
-  </div>
-</div>
+<!-- 11. CULTURE NOTE -->
+<section class="card">
+  <h2>🎭 Культурная заметка: Муletillas как стиль общения</h2>
+  <p>В испанской культуре разговорная речь — живая, эмоциональная и совсем не «правильная» с точки зрения учебника. Муletillas — <em>pues, o sea, es que, vamos</em> — встречаются настолько часто, что лингвисты описывают их как маркеры «испанскости» речи. Исследование Корпуса разговорного испанского (CREA) показало, что средний носитель использует муletilla каждые 15–20 слов.</p>
+  <p>Интересно, что <em>o sea</em> начало активно распространяться в 1980-х с «movida madrileña» — культурным движением после Франко, когда молодёжь искала свой язык. Сегодня это одна из самых частых муletillas во всей Испании, особенно у людей до 40 лет.</p>
+  <p>В Латинской Америке набор другой: в Мексике популярны <em>órale, ándale</em>; в Аргентине — <em>che, boludo, dale</em>; в Колумбии — <em>pues, ¿cierto?</em>. Если ты живёшь в Испании, сосредоточься на испанском варианте — латиноамериканские муletillas там звучат немного экзотично.</p>
+  <p>Для русскоговорящих главный вызов — преодолеть желание говорить «правильно». Помни: беглость важнее грамматики на уровне B1. Носители прощают ошибки в субхунктиве, но замечают неестественные паузы и заминки.</p>
+</section>
 
-<!-- SECTION 8: ANKI + HOMEWORK -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">8</div>
-    <h2>Anki и домашнее задание</h2>
-  </div>
+<!-- 12. ANKI DECK -->
+<section class="card">
+  <h2>🎴 Анки-колода: Разговорная беглость</h2>
+  <p style="color:var(--muted);margin-bottom:16px">Нажми на карточку, чтобы перевернуть. Скачай колоду для Anki.</p>
 
-  <!-- .wrap -->
+  <div class="anki-preview" id="ankiPreview110"></div>
 
-<!-- DONE BAR -->
+  <button class="export-btn" onclick="exportAnkiL110()">⬇ Скачать колоду Anki (.txt) — 20 карточек</button>
+</section>
+
+<!-- 13. HOMEWORK -->
+<section class="card">
+  <h2>📝 Домашнее задание</h2>
+  <ul class="hw-list">
+    <li><strong>Muletilla-дневник:</strong> Запиши 3-минутный монолог на телефон о своём дне. Цель: использовать минимум 8 разных муletillas. Не останавливайся — используй <em>a ver, pues, o sea</em> вместо пауз.</li>
+    <li><strong>Circumlocution-игра:</strong> Возьми 5 случайных предметов дома. Для каждого — опиши по-испански, не называя его прямо. Запиши описания и сравни с настоящим словом.</li>
+    <li><strong>Repair-практика:</strong> В следующем разговоре по-испански при каждой ошибке исправь себя вслух: «Perdona, quería decir que... / O sea, lo que quise decir es...». Не замалчивай.</li>
+    <li><strong>Dreaming Spanish intermediate:</strong> Найди интервью или разговорное видео на испанском. Отметь все муletillas, которые слышишь — запиши 5 новых.</li>
+    <li><strong>Контрактная практика:</strong> Если у тебя есть испанский трудовой или арендный договор, прочитай его и составь 5 вопросов с repair-фразами: «Si no me equivoco...», «¿A qué se refiere con...?»</li>
+  </ul>
+</section>
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
-  <div class="nav-links">
-    <a href="L109.html" class="nav-link-btn">← L109</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L111.html" class="nav-link-btn">L111: DELE Говорение →</a>
+  <div class="container">
+    <button class="done-btn" onclick="markDone()">✅ Отметить урок пройденным</button>
+    <div class="done-msg" id="doneMsg">🎉 Урок L110 завершён! Говори без остановок.</div>
+    <div style="margin-top:16px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="L109.html" class="nav-link-btn">← L109: Письменные навыки</a>
+      <a href="../index.html" class="nav-link-btn">Дашборд</a>
+      <a href="L111.html" class="nav-link-btn">L111 →</a>
+    </div>
   </div>
-  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
+
+</div><!-- /container -->
 
 <script>
 const LESSON_ID = 'L110';
-const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){
-  const s=getState();
-  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
-  const today=new Date().toISOString().slice(0,10);
-  if(!s.study_days)s.study_days={};
-  s.study_days[today]=true;
-  localStorage.setItem(LS_KEY,JSON.stringify(s));
-  const btn=document.getElementById('done-btn');
-  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
-}
-const st=getState();
-if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizAnswers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a'};
-const quizExpl={
-  q1:'Circumlocution — описываешь функцию предмета. Это лучшая стратегия на DELE, когда не знаешь слово (abrelatas).',
-  q2:'«A ver, déjame pensar» — классический filler для выигрыша времени. «Por supuesto» — это утверждение, не пауза.',
-  q3:'«O mejor dicho» = точнее говоря — идеальная repair strategy для самоисправления.',
-  q4:'De hecho = на самом деле, фактически. Не путай с «sin embargo» (однако).',
-  q5:'«O sea» = то есть. Это перефразировка, не усиление.',
-  q6:'Circumlocution: называешь профессию через описание действия — «médico que opera pacientes». Это именно то, что нужно на DELE.'
-};
-let quizScore=0,quizTotal=0;
+/* ── Progress bar ─────────────────────────────── */
+function updateProgress() {
+  var el = document.getElementById('progressBar');
+  if (!el) return;
+  var h = document.documentElement;
+  var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  el.style.width = Math.min(pct, 100) + '%';
+}
+document.addEventListener('scroll', updateProgress);
+
+/* ── Speech ───────────────────────────────────── */
+function speak(text, lang) {
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+/* ── Quiz (multiple choice) ──────────────────── */
 function answerQuiz(el, qId, correctKey) {
-  const container = el.closest('.quiz-q');
-  if (container.dataset.answered === '1') return;
-  container.dataset.answered = '1';
-  const opts = container.querySelectorAll('.opt');
-  opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
-  let correctText = '';
-  let pickedText = '';
-  opts.forEach(o => {
-    const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
-    const key = m ? m[1] : null;
-    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
-    else { o.classList.add('wrong'); }
-    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
+  var block = document.getElementById(qId);
+  if (!block || block.dataset.answered) return;
+  block.dataset.answered = '1';
+  var opts = block.querySelectorAll('.quiz-option');
+  var myKey = (el.getAttribute('onclick').match(/'([a-z])'\)$/) || [])[1];
+  opts.forEach(function(btn) {
+    var k = (btn.getAttribute('onclick').match(/'([a-z])'\)$/) || [])[1];
+    if (k === correctKey) btn.classList.add('correct');
+    else btn.classList.add('picked');
+    btn.disabled = true;
   });
-  const isCorrect = correctKey === 'a';
-  const fb = document.getElementById('fb-' + qId);
-  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
-  if (isCorrect) {
-    fb.className = 'feedback show ok';
-    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
-  } else {
-    fb.className = 'feedback show no';
-    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
-  }
-  if (typeof quizScore !== 'undefined') {
-    if (isCorrect) quizScore++;
-    quizTotal++;
-    const scoreEl = document.getElementById('quiz-score');
-    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
-  }
+  if (myKey !== correctKey) el.classList.add('wrong');
+  var fb = document.getElementById(qId + '-fb');
+  if (fb) fb.classList.add('show');
 }
+
+/* ── Text quiz ────────────────────────────────── */
+function levenshtein(a, b) {
+  var m = a.length, n = b.length;
+  var dp = [];
+  for (var i = 0; i <= m; i++) {
+    dp[i] = [];
+    for (var j = 0; j <= n; j++) {
+      dp[i][j] = i === 0 ? j : j === 0 ? i : 0;
+    }
+  }
+  for (var i = 1; i <= m; i++)
+    for (var j = 1; j <= n; j++)
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+  return dp[m][n];
+}
+
+function normalize(s) {
+  return s.toLowerCase()
+    .replace(/[áàä]/g,'a').replace(/[éèë]/g,'e').replace(/[íìï]/g,'i')
+    .replace(/[óòö]/g,'o').replace(/[úùü]/g,'u').replace(/ñ/g,'n')
+    .replace(/[¿¡?!.,;:]/g,'').trim();
+}
+
 function checkText(inputId, answer, fbId) {
-  const input = document.getElementById(inputId);
-  const raw = input.value.trim();
-  const fb = document.getElementById(fbId);
-  fb.className = 'feedback show';
-  if (!raw) {
-    input.className = 'text-input wrong';
-    fb.className += ' no';
-    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
-    return;
+  var inp = document.getElementById(inputId);
+  var fb = document.getElementById(fbId);
+  if (!inp || !fb) return;
+  var userRaw = inp.value.trim();
+  var userNorm = normalize(userRaw);
+  var ansNorm = normalize(answer);
+  var tol = ansNorm.length < 6 ? 1 : 2;
+  var dist = levenshtein(userNorm, ansNorm);
+  fb.className = 'quiz-fb';
+  if (userNorm === ansNorm) {
+    fb.className = 'quiz-fb ok';
+    fb.textContent = '✅ Верно!';
+  } else if (dist <= tol) {
+    fb.className = 'quiz-fb ok';
+    fb.textContent = '✅ Почти верно! Правильно: ' + answer;
+  } else {
+    fb.className = 'quiz-fb bad';
+    fb.textContent = '❌ Неверно. Правильный ответ: ' + answer;
   }
-  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
-  const userN = norm(raw);
-  const correctN = norm(answer);
-  if (userN === correctN) {
-    input.className = 'text-input correct';
-    fb.className += ' ok';
-    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
-      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
-    } else {
-      fb.textContent = '✅ Правильно! ' + answer;
-    }
-    return;
-  }
-  const lev = (a, b) => {
-    const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
-    let prev = Array.from({length: n+1}, (_,i) => i);
-    let curr = new Array(n+1).fill(0);
-    for (let i = 1; i <= m; i++) {
-      curr[0] = i;
-      for (let j = 1; j <= n; j++) {
-        const cost = a[i-1] === b[j-1] ? 0 : 1;
-        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
-      }
-      [prev, curr] = [curr, prev];
-    }
-    return prev[n];
-  };
-  const dist = lev(userN, correctN);
-  const tol = correctN.length >= 6 ? 2 : 1;
-  if (dist > 0 && dist <= tol) {
-    input.className = 'text-input correct';
-    fb.className += ' ok';
-    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
-    return;
-  }
-  input.className = 'text-input wrong';
-  fb.className += ' no';
-  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
-function updateProgress(){
-  const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
-  const pct=Math.min(100,Math.round(scrolled/total*100));
-  const sectionsRead=Math.round(pct/100*totalSections);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+
+/* ── Toggle translations ──────────────────────── */
+function toggleAll() {
+  var els = document.querySelectorAll('#d1 .dialogue-translation');
+  var anyHidden = false;
+  els.forEach(function(e) { if (!e.classList.contains('show')) anyHidden = true; });
+  els.forEach(function(e) { anyHidden ? e.classList.add('show') : e.classList.remove('show'); });
 }
-window.addEventListener('scroll',updateProgress);
+function toggleAll2() {
+  var els = document.querySelectorAll('#d2 .dialogue-translation');
+  var anyHidden = false;
+  els.forEach(function(e) { if (!e.classList.contains('show')) anyHidden = true; });
+  els.forEach(function(e) { anyHidden ? e.classList.add('show') : e.classList.remove('show'); });
+}
+
+/* ── Mark done ────────────────────────────────── */
+function markDone() {
+  var prog = JSON.parse(localStorage.getItem('esp_course_progress') || '{}');
+  prog[LESSON_ID] = { done: true, date: new Date().toISOString() };
+  localStorage.setItem('esp_course_progress', JSON.stringify(prog));
+  var msg = document.getElementById('doneMsg');
+  if (msg) msg.style.display = 'block';
+}
+
+/* ── Play dialogues ───────────────────────────── */
+function playDialogue1() {
+  var lines = [
+    'Oye, ¿has visto el correo del jefe? Pues... no sé, me parece un poco raro.',
+    'A ver... pues sí, la verdad es que yo también lo encontré un poco confuso. O sea, ¿qué quiere decir exactamente?',
+    'Bueno, creo que quiere decir que tenemos que... ¿cómo se dice? Eso de hacer más horas. Vamos, que hay que trabajar más.',
+    '¡Hombre! Es que llevamos meses trabajando extra ya. No me parece justo, ¿sabes?',
+    'Depende... mira, yo voy a hablar con él esta tarde. A ver qué dice.',
+    'Pues suerte. Y si hay algo nuevo, me dices, ¿eh? Nada, que para eso somos compañeros.'
+  ];
+  var i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    speak(lines[i++]);
+    setTimeout(next, 3500);
+  }
+  next();
+}
+
+function playDialogue2() {
+  var lines = [
+    'Oye, ¿tienes esa cosa que... no sé cómo se llama en español, pero sirve para sacar las grapas del papel?',
+    'A ver... ¿es como una palanca pequeña de metal? ¿Que tiene como dos dientes?',
+    '¡Sí, exacto! Eso es. O sea, que se mete debajo de la grapa y la levanta.',
+    'Ah, se llama quitagrapas. Mira, tengo uno aquí. ¡Toma!',
+    '¡Perfecto! Muchas gracias. Pues ya sé la palabra para la próxima vez.'
+  ];
+  var i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    speak(lines[i++]);
+    setTimeout(next, 3500);
+  }
+  next();
+}
+
+function playDialogue3() {
+  var lines = [
+    'Hola, buenas tardes. Es que... tengo un problema con la calefacción. O sea, no funciona bien.',
+    'Bueno, ¿puede describir el problema? A ver, ¿hace ruido, no calienta, o qué?',
+    'Pues... hace ese ruido que es como... como cuando el agua golpea las tuberías, ¿sabe? Y además no calienta bien el salón.',
+    'Entendido. O sea que necesita purgar los radiadores. Eso es fácil de arreglar. ¿Cuándo le viene bien que pase?',
+    'A ver... mañana por la tarde, si es posible. ¿Puede venir entre las cinco y las siete?',
+    'Pues sí, lo apunto. Mire, le mando un mensaje con los datos. Nada más por ahora, hasta mañana.'
+  ];
+  var i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    speak(lines[i++]);
+    setTimeout(next, 3500);
+  }
+  next();
+}
+
+/* ── Anki Deck ────────────────────────────────── */
+var ANKI_DECK_L110 = [
+  {front: "pues", back: "Перевод: ну, ну вот (начало фразы)\n\nПример: Pues, no sé qué decirte. — Ну, не знаю, что тебе сказать.\nЗаметка: самая частая муletilla в Испании"},
+  {front: "bueno", back: "Перевод: ну, хорошо, ладно\n\nПример: Bueno, vamos a empezar. — Ну, давайте начнём.\nЗаметка: часто начинает ответ с небольшой оговоркой"},
+  {front: "es que", back: "Перевод: дело в том что, просто\n\nПример: Es que tengo mucho trabajo. — Просто у меня много работы.\nЗаметка: нейтральное объяснение причины"},
+  {front: "o sea", back: "Перевод: то есть, иными словами\n\nПример: O sea, no puedo venir. — То есть, я не могу прийти.\nЗаметка: перефразирует или уточняет"},
+  {front: "a ver", back: "Перевод: посмотрим, давай подумаю\n\nПример: A ver... eso es difícil. — Посмотрим... это сложно.\nЗаметка: выигрывает время для ответа"},
+  {front: "mira", back: "Перевод: слушай, смотри\n\nПример: Mira, yo te ayudo. — Слушай, я тебе помогу.\nЗаметка: привлекает внимание собеседника"},
+  {front: "la verdad es que", back: "Перевод: честно говоря, правда в том что\n\nПример: La verdad es que no me gusta. — Честно говоря, мне не нравится.\nЗаметка: подчёркивает искренность"},
+  {front: "¿sabes?", back: "Перевод: понимаешь? ты знаешь?\n\nПример: Es complicado, ¿sabes? — Это сложно, понимаешь?\nЗаметка: ищет подтверждение от собеседника"},
+  {front: "hombre", back: "Перевод: ну (восклицание удивления/согласия)\n\nПример: ¡Hombre, qué sorpresa! — Надо же, какой сюрприз!\nЗаметка: употребляется независимо от пола собеседника"},
+  {front: "vamos", back: "Перевод: ну, короче, давай\n\nПример: Vamos, que no es tan difícil. — Ну, короче, это не так сложно.\nЗаметка: обобщает или подталкивает к действию"},
+  {front: "circunlocución", back: "Перевод: описательная замена слова\n\nПример: Es una cosa que se usa para abrir botellas. — Это штука для открывания бутылок.\nЗаметка: ключевая стратегия при незнании слова"},
+  {front: "Es una cosa que...", back: "Перевод: Это такая штука, которая...\n\nПример: Es una cosa que se usa para cortar. — Это штука, которой режут.\nЗаметка: начало circumlocution"},
+  {front: "¿Cómo se dice...?", back: "Перевод: Как по-испански...?\n\nПример: ¿Cómo se dice stapler en español? — Как по-испански stapler?\nЗаметка: repair-стратегия при незнании слова"},
+  {front: "llevar + gerundio", back: "Перевод: делать что-то в течение времени\n\nПример: Llevo tres años viviendo aquí. — Я живу здесь уже три года.\nЗаметка: действие началось в прошлом и продолжается"},
+  {front: "acabar de + infinitivo", back: "Перевод: только что сделать\n\nПример: Acabo de firmar el contrato. — Я только что подписал контракт.\nЗаметка: недавно завершённое действие"},
+  {front: "seguir + gerundio", back: "Перевод: продолжать делать\n\nПример: Sigo aprendiendo español. — Продолжаю учить испанский.\nЗаметка: действие не прерывалось"},
+  {front: "Perdona, quería decir que...", back: "Перевод: Прости, я хотел сказать, что...\n\nПример: Perdona, quería decir que llego tarde. — Прости, я хотел сказать, что опоздаю.\nЗаметка: self-repair, исправление себя"},
+  {front: "Si no me equivoco...", back: "Перевод: Если я не ошибаюсь...\n\nПример: Si no me equivoco, la reunión es a las tres. — Если я не ошибаюсь, встреча в три.\nЗаметка: вежливое уточнение"},
+  {front: "la fluidez", back: "Перевод: беглость (речи)\n\nПример: Quiero mejorar mi fluidez en español. — Хочу улучшить свою беглость в испанском.\nЗаметка: fluidez — это темп без пауз, не перфекция"},
+  {front: "depende", back: "Перевод: зависит, по-разному\n\nПример: ¿Te gusta el trabajo? Depende... — Тебе нравится работа? По-разному...\nЗаметка: универсальный ответ, аналог «смотря как»"}
+];
+
+function exportAnkiL110() {
+  var tsv = ANKI_DECK_L110.map(function(c) {
+    return c.front + '\t' + c.back.replace(/\n/g, '<br>');
+  }).join('\n');
+  var blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L110_spanish.txt';
+  a.click();
+}
+
+/* ── Render Anki preview ─────────────────────── */
+(function renderAnkiPreview() {
+  var container = document.getElementById('ankiPreview110');
+  if (!container) return;
+  ANKI_DECK_L110.slice(0, 5).forEach(function(card) {
+    var div = document.createElement('div');
+    div.className = 'anki-card';
+    div.innerHTML = '<div class="anki-card-inner"><div class="anki-card-front">' + card.front + '</div><div class="anki-card-back">' + card.back.split('\n')[0] + '</div></div>';
+    div.addEventListener('click', function() { div.classList.toggle('flipped'); });
+    container.appendChild(div);
+  });
+})();
 </script>
 </body>
 </html>
