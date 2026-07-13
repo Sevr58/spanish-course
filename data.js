@@ -1432,7 +1432,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Mock speaking task: 4 минуты на личную тему с интерактивом",
-      file:"lessons/L111.html", status:"pending"
+      file:"lessons/L111.html", status:"improved"
     },
     {
       id:"L112", num:112, phase:4, block:"B4B", level:"B1", day:240, week:41,
@@ -1444,7 +1444,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Mock: ситуационный диалог + описание фото",
-      file:"lessons/L112.html", status:"pending"
+      file:"lessons/L112.html", status:"improved"
     },
     {
       id:"L113", num:113, phase:4, block:"B4B", level:"B1", day:243, week:42,

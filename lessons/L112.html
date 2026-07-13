@@ -11,9 +11,9 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
 .nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
-.nav .level{background:var(--purple);color:#fff;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
-.hero{background:linear-gradient(135deg,#f1f3f7 0%,#e8ebf1 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
-.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:8px}
+.nav .level{background:var(--gold);color:#1a1d24;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#fef9ea 0%,#f5f0d8 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
 .hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
 .hero h1 .hl{color:var(--gold)}
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
@@ -22,12 +22,12 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
 .obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
-.progress-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .5s ease}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
 .section{margin-bottom:36px}
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .section-header h2{font-size:1.15rem;font-weight:700}
-.section-num{width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#1a1d24;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
 .callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
 .callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
@@ -38,8 +38,8 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
 .callout ul{margin-left:16px}
 .callout li{margin-bottom:3px}
-.speak-box{background:var(--bg3);border:1px solid rgba(157,78,221,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
-.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.speak-box{background:var(--bg3);border:1px solid rgba(200,144,0,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
 .speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
 .speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
@@ -52,24 +52,27 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}
+.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}
+.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}
+.opt.picked::before{content:'👉 ';margin-right:2px}
+.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
 .text-ex{margin-bottom:14px}
 .text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
 .text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
-.text-input:focus{border-color:var(--purple)}
+.text-input:focus{border-color:var(--gold)}
 .text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
 .text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
-.check-btn{background:var(--purple);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn{background:var(--gold);color:#1a1d24;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;font-weight:700;margin-top:6px;transition:.2s}
 .check-btn:hover{opacity:.88}
 .show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
 .answer-reveal.show{display:block}
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
 .dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
@@ -77,14 +80,12 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
 .dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
-.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
-.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture{background:linear-gradient(135deg,rgba(200,144,0,.08),rgba(69,123,157,.06));border:1px solid rgba(200,144,0,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
 .anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
 .anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -97,117 +98,208 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
 .vocab-table tr:last-child td{border-bottom:none}
 .vocab-table .es-word{color:var(--gold);font-weight:600}
-.photo-box{background:var(--bg3);border:2px dashed var(--border);border-radius:8px;padding:20px;text-align:center;margin:14px 0;color:var(--muted);font-size:.85rem}
-.photo-box .photo-icon{font-size:2.5rem;margin-bottom:8px}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.exam-box{background:rgba(200,144,0,.06);border:2px solid rgba(200,144,0,.4);border-radius:10px;padding:20px 22px;margin:16px 0}
+.exam-box .exam-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:10px}
+.exam-box h4{font-weight:700;margin-bottom:8px}
+.exam-box p{font-size:.9rem;color:var(--muted)}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.phrase-item{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;font-size:.9rem}
+.phrase-item .ph-es{font-weight:600;color:var(--text);flex:1}
+.phrase-item .ph-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(200,144,0,.08);border-left:3px solid var(--gold);border-radius:6px;padding:12px 14px;margin-top:14px;font-size:.86rem}
+.errors-table{width:100%;border-collapse:collapse;font-size:.85rem;margin:14px 0}
+.errors-table th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.errors-table td{padding:8px 10px;border-bottom:1px solid var(--bg3);vertical-align:top}
+.errors-table tr:last-child td{border-bottom:none}
+.errors-table .wrong-col{color:var(--red)}
+.errors-table .right-col{color:var(--green)}
+.anki-previews{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:10px 20px;cursor:pointer;font-size:.88rem;font-weight:700;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.warmup-q{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px}
+.warmup-q .wq-text{font-size:.9rem;margin-bottom:8px;font-weight:600}
+.photo-scene{background:var(--bg3);border:2px dashed var(--border);border-radius:8px;padding:20px;text-align:center;margin:14px 0}
+.photo-scene-icon{font-size:2.5rem;margin-bottom:8px}
+.photo-frame{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;margin:14px 0}
+.photo-frame .pf-title{font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 @media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. НАВИГАЦИЯ -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">B1 · DELE Prep · День 240</span>
   <a href="L113.html">L113 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
+  <div class="phase-tag">💼 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
   <h1>DELE B1: Говорение — <span class="hl">работа и жизнь</span></h1>
-  <p class="sub">Trabajo, transporte, vivienda, compras — типичные темы устного DELE</p>
+  <p class="sub">Trabajo, transporte, vivienda, vida cotidiana — устная часть DELE в реальных ситуациях</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">💼</div><div><strong>Тема</strong><p>Работа, транспорт, жильё, покупки</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут + Anki</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Видео о жизни в городе, работе</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Mock</strong><p>Ситуационный диалог + описание фото</p></div></div>
+    <div class="obj"><div class="ico">🖼</div><div><strong>Tarea 2</strong><p>Описание фото + ответы на вопросы экзаменатора</p></div></div>
+    <div class="obj"><div class="ico">🎭</div><div><strong>Tarea 3</strong><p>Ролевая игра: собеседование, переговоры, жильё</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate+</strong><p>Видео о рабочей жизни в Испании</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Mock</strong><p>2 полных mock-task по формату экзамена</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: THEORY -->
+<!-- 3. ПОВТОРЕНИЕ -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">1</div>
-    <h2>Tarea 2: Описание фото + диалог</h2>
+    <div class="section-num">3</div>
+    <h2>Повторение — L111: личные темы</h2>
+  </div>
+  <p style="margin-bottom:12px;font-size:.9rem;color:var(--muted)">В L111 мы готовились к монологу о себе и семье. Проверь себя без подсказок:</p>
+
+  <div class="warmup-q" id="wq1">
+    <div class="wq-text">1. Как по-испански «воспоминания» (личные, а не мемуары)?</div>
+    <div class="options">
+      <div class="opt" onclick="answerQuiz(this,'wq1','b')">las memorias</div>
+      <div class="opt" onclick="answerQuiz(this,'wq1','a')">los recuerdos</div>
+      <div class="opt" onclick="answerQuiz(this,'wq1','c')">los valores</div>
+    </div>
+    <div class="feedback" id="fb-wq1"></div>
   </div>
 
-  
+  <div class="warmup-q" id="wq2">
+    <div class="wq-text">2. Вставь правильный коннектор: «_____, creo que la familia es lo más importante.» (вывод)</div>
+    <div class="options">
+      <div class="opt" onclick="answerQuiz(this,'wq2','a')">En conclusión</div>
+      <div class="opt" onclick="answerQuiz(this,'wq2','b')">Sin embargo</div>
+      <div class="opt" onclick="answerQuiz(this,'wq2','c')">A partir de</div>
+    </div>
+    <div class="feedback" id="fb-wq2"></div>
+  </div>
 
-<!-- SECTION 2: VOCABULARY -->
+  <div class="warmup-q" id="wq3">
+    <div class="wq-text">3. Какая структура правильная для гипотетического условия?</div>
+    <div class="options">
+      <div class="opt" onclick="answerQuiz(this,'wq3','c')">Si puedo + futuro</div>
+      <div class="opt" onclick="answerQuiz(this,'wq3','b')">Si podría + condicional</div>
+      <div class="opt" onclick="answerQuiz(this,'wq3','a')">Si pudiera + condicional</div>
+    </div>
+    <div class="feedback" id="fb-wq3"></div>
+  </div>
+</div>
+
+<!-- 4. ТЕОРИЯ -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">2</div>
+    <div class="section-num">4</div>
+    <h2>Теория — Tarea 2 и Tarea 3: фото и ролевая игра</h2>
+  </div>
+
+  <div class="callout dele">
+    <h4>🖼 Tarea 2: Описание фотографии (3–4 минуты)</h4>
+    <ul>
+      <li><strong>Шаг 1 — Описание:</strong> «En la imagen se puede ver...» / «En el primer plano...» / «Al fondo...»</li>
+      <li><strong>Шаг 2 — Интерпретация:</strong> «La persona parece estar...» / «Esto sugiere que...» / «Me da la impresión de que...»</li>
+      <li><strong>Шаг 3 — Личный опыт:</strong> «Esto me recuerda a...» / «En mi caso...» / «Personalmente...»</li>
+      <li><strong>Шаг 4 — Мнение:</strong> «En mi opinión...» / «Creo que...» / «A mi modo de ver...»</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>🎭 Tarea 3: Situación simulada (3–4 минуты)</h4>
+    <ul>
+      <li>Экзаменатор играет роль (клиент, сосед, начальник, продавец). Ты — другая сторона.</li>
+      <li>Нужно <strong>выполнить задачу</strong>: договориться, объяснить, решить проблему.</li>
+      <li>Используй vosotros/usted в зависимости от формальности ситуации.</li>
+      <li>Если не понял вопрос: «¿Podría repetirlo, por favor?» / «No estoy seguro de haber entendido bien...»</li>
+    </ul>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 10px">Структуры для описания фото</h3>
+
+  <div class="callout info">
+    <h4>📷 Формулы описания изображения (обязательно знать)</h4>
+    <ul>
+      <li><strong>Начало:</strong> En la imagen se puede ver... / En esta fotografía aparece... / Lo primero que me llama la atención es...</li>
+      <li><strong>Первый план:</strong> En primer plano hay... / En el centro de la imagen... / A la izquierda/derecha...</li>
+      <li><strong>Задний план:</strong> Al fondo se pueden ver... / En el fondo de la imagen... / En la parte superior...</li>
+      <li><strong>Описание действия:</strong> La persona parece estar + gerundio / Parece que están + gerundio</li>
+      <li><strong>Атмосфера:</strong> La atmósfera parece ser... / El ambiente es... / Todo sugiere que...</li>
+      <li><strong>Личная связь:</strong> Esto me recuerda a cuando... / En mi experiencia... / Comparando con mi situación...</li>
+    </ul>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 10px">Типичные ошибки при описании фото и ролевой игре</h3>
+  <table class="errors-table">
+    <thead><tr><th>❌ Типичная ошибка</th><th>✅ Правильно</th><th>Объяснение</th></tr></thead>
+    <tbody>
+      <tr><td class="wrong-col">*En la foto hay un hombre que trabaja</td><td class="right-col">En la imagen se puede ver un hombre que parece estar trabajando</td><td>Нейтральнее, показывает B1 уровень («parece» = интерпретация)</td></tr>
+      <tr><td class="wrong-col">*Pienso que esta foto es sobre el trabajo</td><td class="right-col">En mi opinión, esta imagen refleja el mundo laboral moderno</td><td>«En mi opinión» + более развёрнутое суждение</td></tr>
+      <tr><td class="wrong-col">*El hombre está trabajando muy</td><td class="right-col">El hombre parece estar muy concentrado en su tarea</td><td>Adverbio (muy) нужен прилагательное или наречие: muy concentrado</td></tr>
+      <tr><td class="wrong-col">*Trabajo en oficina desde 5 años</td><td class="right-col">Trabajo en una oficina desde hace cinco años</td><td>«desde hace + tiempo» = в течение (с какого момента)</td></tr>
+      <tr><td class="wrong-col">*¿Puede repetir?</td><td class="right-col">¿Podría repetirlo, por favor?</td><td>Condicional вместо presente = вежливее, уместнее на экзамене</td></tr>
+      <tr><td class="wrong-col">*Yo tengo muchas ganas trabajar</td><td class="right-col">Tengo muchas ganas de trabajar aquí</td><td>ganas de + infinitivo. Союз «de» обязателен!</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 5. СЛОВАРЬ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
     <h2>Словарь — работа, транспорт, жильё</h2>
   </div>
 
   <table class="vocab-table">
     <thead>
-      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
+      <tr><th>🔊</th><th>Испанский</th><th>Русский</th><th>Пример</th></tr>
     </thead>
     <tbody>
-      <tr><td class="es-word">el puesto de trabajo</td><td>[пуэсто]</td><td>рабочее место, должность</td><td>Busco un puesto de trabajo en Barcelona.</td></tr>
-      <tr><td class="es-word">el horario laboral</td><td>[орарьо лаборал]</td><td>рабочий график</td><td>Tengo un horario laboral flexible.</td></tr>
-      <tr><td class="es-word">el teletrabajo</td><td>[телетрабахо]</td><td>удалённая работа</td><td>Desde la pandemia, muchos hacen teletrabajo.</td></tr>
-      <tr><td class="es-word">el transporte público</td><td>[транспорте]</td><td>общественный транспорт</td><td>Voy al trabajo en transporte público.</td></tr>
-      <tr><td class="es-word">el alquiler</td><td>[алкилер]</td><td>аренда (квартиры)</td><td>El alquiler en Madrid es muy caro.</td></tr>
-      <tr><td class="es-word">los gastos</td><td>[гастос]</td><td>расходы</td><td>Mis gastos mensuales son bastante altos.</td></tr>
-      <tr><td class="es-word">las compras</td><td>[компрас]</td><td>покупки, шопинг</td><td>Hago las compras en el supermercado.</td></tr>
-      <tr><td class="es-word">el presupuesto</td><td>[пресупуэсто]</td><td>бюджет</td><td>Tengo que ajustarme al presupuesto.</td></tr>
-      <tr><td class="es-word">la jornada completa</td><td>[хорнада]</td><td>полный рабочий день</td><td>Trabajo a jornada completa.</td></tr>
-      <tr><td class="es-word">el desplazamiento</td><td>[десплaсамьенто]</td><td>поездка/перемещение (на работу)</td><td>El desplazamiento al trabajo me toma 40 minutos.</td></tr>
-      <tr><td class="es-word">solicitar</td><td>[солиситар]</td><td>подавать заявку, просить</td><td>Voy a solicitar ese trabajo.</td></tr>
-      <tr><td class="es-word">el barrio</td><td>[барьо]</td><td>район (города)</td><td>Vivo en un barrio tranquilo.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el puesto de trabajo')">🔊</button></td><td class="es-word">el puesto de trabajo</td><td>должность, рабочее место</td><td>Busco un puesto de trabajo en el sector tecnológico.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el horario laboral')">🔊</button></td><td class="es-word">el horario laboral</td><td>рабочий график</td><td>Tengo un horario laboral de nueve a seis.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el teletrabajo')">🔊</button></td><td class="es-word">el teletrabajo</td><td>удалённая работа</td><td>Desde la pandemia, el teletrabajo se ha normalizado.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el transporte público')">🔊</button></td><td class="es-word">el transporte público</td><td>общественный транспорт</td><td>Voy al trabajo en transporte público para ahorrar dinero.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el alquiler')">🔊</button></td><td class="es-word">el alquiler</td><td>аренда квартиры</td><td>El alquiler en Barcelona ha subido mucho este año.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('los gastos')">🔊</button></td><td class="es-word">los gastos</td><td>расходы, затраты</td><td>Mis gastos mensuales incluyen alquiler, comida y transporte.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('la jornada completa')">🔊</button></td><td class="es-word">la jornada completa</td><td>полный рабочий день</td><td>Trabajo a jornada completa, ocho horas diarias.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el desplazamiento')">🔊</button></td><td class="es-word">el desplazamiento</td><td>поездка (на работу)</td><td>El desplazamiento al trabajo me lleva cuarenta minutos.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('solicitar')">🔊</button></td><td class="es-word">solicitar</td><td>подать заявку, запросить</td><td>Voy a solicitar ese puesto de trabajo mañana.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el presupuesto')">🔊</button></td><td class="es-word">el presupuesto</td><td>бюджет</td><td>Tengo que ajustar mis gastos al presupuesto mensual.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('la vida cotidiana')">🔊</button></td><td class="es-word">la vida cotidiana</td><td>повседневная жизнь</td><td>En la vida cotidiana usamos el español constantemente.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('compaginar')">🔊</button></td><td class="es-word">compaginar</td><td>совмещать (работу и жизнь)</td><td>Es difícil compaginar el trabajo con la vida familiar.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el ambiente laboral')">🔊</button></td><td class="es-word">el ambiente laboral</td><td>рабочая атмосфера</td><td>El ambiente laboral en esta empresa es muy positivo.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('desarrollarse profesionalmente')">🔊</button></td><td class="es-word">desarrollarse profesionalmente</td><td>профессионально расти</td><td>Quiero desarrollarme profesionalmente en este sector.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el contrato indefinido')">🔊</button></td><td class="es-word">el contrato indefinido</td><td>бессрочный контракт</td><td>Conseguí un contrato indefinido después de seis meses.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('las horas extras')">🔊</button></td><td class="es-word">las horas extras</td><td>сверхурочные часы</td><td>No me pagan las horas extras que trabajo.</td></tr>
     </tbody>
   </table>
 </div>
 
-<!-- SECTION 3: PHOTO DESCRIPTION PRACTICE -->
+<!-- 6. ТЕСТ 1 -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">3</div>
-    <h2>Практика описания фото</h2>
-  </div>
-
-  <div class="photo-box">
-    <div class="photo-icon">🖼</div>
-    <p>ВООБРАЖАЕМОЕ ФОТО: Офис. Женщина в деловом костюме работает за ноутбуком, рядом стакан кофе. На заднем плане — коллеги за столами, большие окна с видом на город.</p>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      🎓 Образец описания этого фото
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-photo')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Tú</div>
-      <div>
-        <div class="dlg-es">En la imagen se puede ver una oficina moderna. En el primer plano, hay una mujer joven que parece estar trabajando con su ordenador portátil. La persona parece estar muy concentrada en su trabajo, lo que sugiere que tiene una tarea importante. Al fondo se pueden ver otros compañeros de trabajo y unas ventanas grandes con vistas a la ciudad. La atmósfera parece ser la de una empresa internacional. Esto me recuerda a mi propio lugar de trabajo, donde también tenemos un espacio abierto. En mi opinión, esta imagen refleja el mundo laboral moderno, donde el trabajo en equipo y la tecnología son fundamentales.</div>
-        <div class="dlg-ru" id="tr-photo" style="display:none">На изображении можно увидеть современный офис. На переднем плане — молодая женщина, которая, кажется, работает с ноутбуком. Человек выглядит очень сосредоточенным, что предполагает важное задание. На заднем плане видны другие сотрудники и большие окна с видом на город. Атмосфера похожа на международную компанию. Это напоминает мне моё собственное рабочее место, где у нас тоже открытое пространство. На мой взгляд, это изображение отражает современный рабочий мир, где командная работа и технологии фундаментальны.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 4: QUIZ 1 -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Тест 1 — Лексика и описание</h2>
+    <div class="section-num">6</div>
+    <h2>Тест 1 — Описание фото и работа</h2>
   </div>
 
   <div class="quiz" id="quiz1">
-    <h3>🎯 Работа и повседневная жизнь</h3>
+    <h3>🎯 Работа и повседневная жизнь — проверка</h3>
 
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. Как начать описание фото на DELE?</div>
+      <div class="q-text">1. Как лучше начать описание фото на DELE B1?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">En la imagen se puede ver...</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Hay una foto de...</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">La foto muestra que...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">En la imagen se puede ver una oficina moderna con...</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">La foto tiene un hombre que trabaja.</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Yo veo aquí una persona trabajando.</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
@@ -215,15 +307,15 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <div class="quiz-q" id="q2">
       <div class="q-text">2. «El teletrabajo» — это:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Работа по телефону</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Работа на телевидении</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Удалённая работа из дома</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Работа по телефону из офиса</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Удалённая работа из дома или другого места</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Телевизионная журналистика</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
 
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. «La persona parece estar _____ (занята)» — правильная форма:</div>
+      <div class="q-text">3. «La persona parece estar muy _____» — правильная форма: «занята» (feminine)</div>
       <div class="options">
         <div class="opt" onclick="answerQuiz(this,'q3','a')">ocupada</div>
         <div class="opt" onclick="answerQuiz(this,'q3','b')">ocupar</div>
@@ -233,21 +325,21 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     </div>
 
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Al fondo» означает:</div>
+      <div class="q-text">4. «Al fondo» в описании фото означает:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">На переднем плане</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">На переднем плане, вблизи</div>
         <div class="opt" onclick="answerQuiz(this,'q4','a')">На заднем плане, вдали</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">В центре</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">В центре изображения</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
 
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. Как спросить о рабочем времени: «¿Cuál es tu _____?»</div>
+      <div class="q-text">5. Как сказать «Я работаю в компании уже 3 года» (с «desde hace»)?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">horario laboral</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">desplazamiento</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">presupuesto</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Trabajo en esta empresa desde hace tres años.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Trabajo en esta empresa desde tres años.</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Trabajo en esta empresa por tres años.</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
@@ -255,194 +347,371 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <div class="quiz-q" id="q6">
       <div class="q-text">6. «Trabajo a jornada completa» означает:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Работаю неполный день</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Работаю неполный рабочий день</div>
         <div class="opt" onclick="answerQuiz(this,'q6','b')">Работаю из дома</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Работаю полный рабочий день</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Работаю полный рабочий день (обычно 8 часов)</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
+    </div>
+
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Вежливый способ попросить повторить вопрос на экзамене:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">¿Podría repetirlo, por favor?</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">¿Puede repetir?</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">No entiendo.</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 5: QUIZ 2 -->
+<!-- 7. ТЕСТ 2 -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">5</div>
+    <div class="section-num">7</div>
     <h2>Тест 2 — Заполни пропуски</h2>
   </div>
 
   <div class="quiz">
-    <h3>✏️ Лексика о работе и жизни</h3>
+    <h3>✏️ Лексика и структуры (вводи в нижнем регистре)</h3>
 
     <div class="text-ex">
-      <div class="tex-q">1. «Voy al trabajo en _____ _____ porque no tengo coche.» (общественный транспорт)</div>
+      <div class="tex-q">1. «Voy al trabajo en _____ _____ porque el metro es rápido.» (общественный транспорт, 2 слова)</div>
       <input type="text" class="text-input" placeholder="transporte..." id="ti1">
       <button class="check-btn" onclick="checkText('ti1','transporte público','fb-te1')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
       <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ transporte público — общественный транспорт.</div>
+      <div class="answer-reveal" id="ans-te1">✅ transporte público — общественный транспорт. Артикль «el» часто опускается после «en».</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">2. «El _____ en esta ciudad es muy caro, especialmente para jóvenes.» (аренда жилья)</div>
+      <div class="tex-q">2. «El _____ en Barcelona es muy caro para los jóvenes.» (аренда квартиры)</div>
       <input type="text" class="text-input" placeholder="alquiler / precio..." id="ti2">
       <button class="check-btn" onclick="checkText('ti2','alquiler','fb-te2')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
       <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ alquiler — аренда квартиры/дома.</div>
+      <div class="answer-reveal" id="ans-te2">✅ alquiler — аренда жилья. Pagas el alquiler = платишь аренду. Pagar un alquiler de 1200 euros.</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">3. «Voy a _____ ese puesto de trabajo mañana.» (подать заявку)</div>
+      <div class="tex-q">3. «Voy a _____ ese puesto de trabajo mañana por la mañana.» (официально подать заявку)</div>
       <input type="text" class="text-input" placeholder="solicitar / pedir..." id="ti3">
       <button class="check-btn" onclick="checkText('ti3','solicitar','fb-te3')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
       <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ solicitar — официально подать заявку. «Pedir» тоже возможно, но менее формально.</div>
+      <div class="answer-reveal" id="ans-te3">✅ solicitar — подать официальную заявку. «Pedir» тоже можно, но менее формально для работы.</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">4. «Tengo un _____ (рабочий график) muy flexible.»</div>
-      <input type="text" class="text-input" placeholder="horario..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','horario laboral','fb-te4')">Проверить</button>
+      <div class="tex-q">4. «Trabajo en esta empresa _____ hace cinco años.» (предлог для «с какого момента»)</div>
+      <input type="text" class="text-input" placeholder="desde / por / hace..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','desde','fb-te4')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
       <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ horario laboral — рабочий график. Или просто «horario».</div>
+      <div class="answer-reveal" id="ans-te4">✅ desde — «desde hace + tiempo» = в течение (начиная с). «Hace 5 años» без «desde» = 5 лет назад (прошлое).</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">5. «Mis _____ (расходы) mensuales incluyen el alquiler y la comida.»</div>
-      <input type="text" class="text-input" placeholder="gastos / pagos..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','gastos','fb-te5')">Проверить</button>
+      <div class="tex-q">5. «Es difícil _____ el trabajo con la vida familiar.» (совмещать)</div>
+      <input type="text" class="text-input" placeholder="compaginar / combinar..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','compaginar','fb-te5')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
       <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ gastos — расходы, затраты.</div>
+      <div class="answer-reveal" id="ans-te5">✅ compaginar — совмещать. «Compaginar trabajo y familia» — ключевая тема DELE. «Combinar» тоже допустимо.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">6. «Quiero _____ _____ profesionalmente en este sector.» (профессионально расти, 2 слова)</div>
+      <input type="text" class="text-input" placeholder="desarrollarme / crecer..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','desarrollarme profesionalmente','fb-te6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
+      <div class="feedback" id="fb-te6"></div>
+      <div class="answer-reveal" id="ans-te6">✅ desarrollarme profesionalmente — профессионально расти. Отличная фраза для собеседования!</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: DIALOGUES -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <h2>Диалоги — ситуационные сцены</h2>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 1: Переговоры о работе (Tarea 3 DELE)
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Exam.</div>
-      <div>
-        <div class="dlg-es">Eres candidato para un trabajo. Cuéntame sobre tu experiencia laboral y por qué quieres este puesto.</div>
-        <div class="dlg-ru" id="tr-d1" style="display:none">Ты кандидат на работу. Расскажи о своём рабочем опыте и почему хочешь это место.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Tú</div>
-      <div>
-        <div class="dlg-es">Pues, llevo cinco años trabajando en el sector de comunicación. Actualmente trabajo a jornada completa en una agencia, pero me gustaría cambiar porque busco un puesto con más posibilidades de desarrollo profesional. Además, este trabajo me permite hacer teletrabajo algunos días, lo cual es muy importante para mí.</div>
-        <div class="dlg-ru" id="tr-d1b" style="display:none">Ну, я работаю в сфере коммуникаций пять лет. Сейчас работаю полный день в агентстве, но хотел бы сменить место, потому что ищу должность с большими возможностями профессионального роста. Кроме того, эта работа позволяет работать удалённо некоторые дни, что очень важно для меня.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Exam.</div>
-      <div>
-        <div class="dlg-es">¿Y cuáles son tus puntos fuertes y débiles?</div>
-        <div class="dlg-ru" id="tr-d1c" style="display:none">А каковы твои сильные и слабые стороны?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Tú</div>
-      <div>
-        <div class="dlg-es">Creo que mi punto fuerte es la creatividad y la capacidad de trabajar bajo presión. En cuanto a mis puntos débiles, a veces me cuesta delegar tareas porque soy muy perfeccionista. Sin embargo, estoy trabajando en ello.</div>
-        <div class="dlg-ru" id="tr-d1d" style="display:none">Думаю, моя сильная сторона — креативность и умение работать под давлением. Что касается слабых сторон, иногда мне сложно делегировать задачи, потому что я перфекционист. Однако я работаю над этим.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Жильё и транспорт в Барселоне
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">¿Has buscado piso en Barcelona? He oído que el alquiler está por las nubes.</div>
-        <div class="dlg-ru" id="tr-d2" style="display:none">Ты искал квартиру в Барселоне? Я слышал, что аренда там баснословная.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es">Sí, es verdad. Los gastos de alquiler son altísimos, especialmente en el centro. Por eso busco un barrio un poco más alejado, donde el transporte público es bueno y los precios son más razonables.</div>
-        <div class="dlg-ru" id="tr-d2b" style="display:none">Да, правда. Расходы на аренду очень высокие, особенно в центре. Поэтому ищу район немного дальше, где общественный транспорт хороший и цены более разумные.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">¿Y cómo vas a llegar al trabajo? ¿En metro o en bici?</div>
-        <div class="dlg-ru" id="tr-d2c" style="display:none">А как будешь добираться на работу? На метро или на велосипеде?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es">Probablemente en metro. El desplazamiento será de unos 30 minutos, que me parece razonable. Además, puedo hacer teletrabajo dos días a la semana, así que no tendré que ir todos los días.</div>
-        <div class="dlg-ru" id="tr-d2d" style="display:none">Наверное, на метро. Поездка займёт около 30 минут — мне кажется, это разумно. К тому же могу работать удалённо два дня в неделю, так что не надо ездить каждый день.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 7: SPEAKING MOCK -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">7</div>
-    <h2>Mock Speaking — описание фото</h2>
-  </div>
-
-  <div class="photo-box">
-    <div class="photo-icon">🚌</div>
-    <p>ВООБРАЖАЕМОЕ ФОТО: Утро в метро. Много людей с рюкзаками и сумками. Кто-то смотрит в телефон, кто-то читает. На табло — информация о следующих поездах.</p>
-  </div>
-
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание DELE Tarea 2</div>
-    <p>Опиши это фото за 2–3 минуты, затем ответь: «¿Usas el transporte público habitualmente? ¿Por qué?»</p>
-    <div class="es">«En la imagen se puede ver... En el primer plano... Al fondo... La atmósfera parece ser... Esto me recuerda a... En mi opinión...»</div>
-    <div class="hint">Используй: parecer + infinitivo, lo cual sugiere que..., a diferencia de..., comparando con mi ciudad...</div>
-  </div>
-</div>
-
-<!-- SECTION 8: CULTURE -->
+<!-- 8. ДИАЛОГИ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
+    <h2>Диалоги — Tarea 2 и Tarea 3</h2>
+  </div>
+
+  <div class="photo-frame">
+    <div class="pf-title">🖼 Описание воображаемого фото (Tarea 2)</div>
+    <p style="font-size:.88rem;color:var(--muted);font-style:italic">Открытый офис. Женщина в деловом костюме работает за ноутбуком, рядом — кофе. На заднем плане — коллеги, большие окна с видом на город. На доске — Post-it заметки.</p>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>🖼 Образец описания фото (Tarea 2)</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="dlg-toggle" onclick="toggleAll()">Перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue1()">▶ Прослушать</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">En la imagen se puede ver una oficina moderna con un ambiente de trabajo abierto. En el primer plano, hay una mujer joven vestida de manera formal que parece estar muy concentrada trabajando con su ordenador portátil. <button class="speak-btn" onclick="speak('En la imagen se puede ver una oficina moderna con un ambiente de trabajo abierto.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>На изображении виден современный офис с открытым рабочим пространством. На переднем плане — молодая женщина в деловой одежде, которая, кажется, очень сосредоточенно работает за ноутбуком.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Al fondo se pueden ver otros compañeros de trabajo y unas ventanas grandes que dan a la ciudad. La atmósfera parece ser la de una empresa internacional o de tecnología. Todo sugiere que se trata de un entorno laboral moderno y dinámico. <button class="speak-btn" onclick="speak('Al fondo se pueden ver otros compañeros de trabajo y unas ventanas grandes que dan a la ciudad.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>На заднем плане видны другие сотрудники и большие окна с видом на город. Атмосфера напоминает международную или технологическую компанию. Всё говорит о современной и динамичной рабочей среде.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Esto me recuerda a mi propio lugar de trabajo, donde también tenemos un espacio abierto. En mi opinión, esta imagen refleja muy bien el mundo laboral actual, en el que el trabajo en equipo, la tecnología y la flexibilidad son fundamentales. <button class="speak-btn" onclick="speak('Esto me recuerda a mi propio lugar de trabajo. En mi opinión, esta imagen refleja muy bien el mundo laboral actual.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Это напоминает моё рабочее место, где у нас тоже открытое пространство. На мой взгляд, это изображение хорошо отражает современный мир труда, где командная работа, технологии и гибкость фундаментальны.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Prefieres trabajar en una oficina o desde casa? ¿Por qué? <button class="speak-btn" onclick="speak('¿Prefieres trabajar en una oficina o desde casa? ¿Por qué?')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Ты предпочитаешь работать в офисе или из дома? Почему?</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Personalmente, prefiero un modelo híbrido: trabajar en la oficina tres días a la semana y hacer teletrabajo los otros dos. En la oficina se trabaja mejor en equipo y hay más dinamismo, pero el teletrabajo me permite concentrarme mejor en tareas individuales y ahorrar tiempo de desplazamiento. <button class="speak-btn" onclick="speak('Personalmente, prefiero un modelo híbrido: trabajar en la oficina tres días a la semana y hacer teletrabajo los otros dos.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Лично я предпочитаю гибридную модель: три дня в неделю в офисе и два дня удалённо. В офисе лучше работается в команде и больше динамизма, но удалённая работа позволяет лучше сосредоточиться на индивидуальных задачах и сэкономить время на поездках.</em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>🎭 Tarea 3: Ролевая игра — поиск квартиры</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="dlg-toggle" onclick="toggleAll2()">Перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue2()">▶ Прослушать</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Eres un inquilino interesado en un piso de alquiler. Yo soy el propietario. El piso tiene dos habitaciones y está en el barrio de Gràcia, Barcelona. El alquiler es de 1.400 euros al mes. <button class="speak-btn" onclick="speak('Eres un inquilino interesado en un piso de alquiler. El alquiler es de mil cuatrocientos euros al mes.')">🔊</button></div>
+        <div class="translation2" style="display:none"><em>Ты — потенциальный жилец. Я — владелец. Квартира двухкомнатная в районе Гранса, Барселона. Аренда — 1400 евро в месяц.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. He visto el anuncio del piso y me gustaría saber más detalles. ¿Está incluido el agua y la luz en el alquiler? <button class="speak-btn" onclick="speak('Buenos días. He visto el anuncio del piso y me gustaría saber más detalles.')">🔊</button></div>
+        <div class="translation2" style="display:none"><em>Добрый день. Я видел объявление о квартире и хотел бы узнать подробности. Вода и свет включены в аренду?</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, los suministros van aparte. Son unos 80 euros al mes adicionales. Y necesito dos meses de fianza. <button class="speak-btn" onclick="speak('No, los suministros van aparte. Son unos ochenta euros al mes adicionales.')">🔊</button></div>
+        <div class="translation2" style="display:none"><em>Нет, коммунальные услуги отдельно. Примерно 80 евро в месяц дополнительно. И нужно два месяца залога.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Entiendo. ¿Sería posible negociar el precio? Estoy buscando algo por debajo de los 1.300 euros, incluyendo los gastos de comunidad. Puedo ofrecer un contrato de un año y referencias de mis anteriores propietarios. <button class="speak-btn" onclick="speak('¿Sería posible negociar el precio? Estoy buscando algo por debajo de los mil trescientos euros.')">🔊</button></div>
+        <div class="translation2" style="display:none"><em>Понимаю. Можно ли обсудить цену? Я ищу жильё до 1300 евро включая коммунальные расходы. Могу предложить годовой контракт и рекомендации от предыдущих арендодателей.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Podría considerar 1.350 si firma por dos años. ¿Le parece bien? <button class="speak-btn" onclick="speak('Podría considerar mil trescientos cincuenta si firma por dos años.')">🔊</button></div>
+        <div class="translation2" style="display:none"><em>Могу рассмотреть 1350, если подпишете на два года. Устраивает?</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Me parece razonable. ¿Podría visitarlo esta semana para verlo en persona antes de tomar una decisión? <button class="speak-btn" onclick="speak('Me parece razonable. ¿Podría visitarlo esta semana para verlo en persona?')">🔊</button></div>
+        <div class="translation2" style="display:none"><em>Мне кажется, это разумно. Можно посмотреть квартиру на этой неделе перед тем, как принять решение?</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Говорение — Mock DELE задания</h2>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-tag">🎓 DELE B1 Mock — Tarea 2 (описание фото)</div>
+    <h4>Воображаемое фото: утренний час пик в метро</h4>
+    <p style="margin:8px 0;font-style:italic;font-size:.9rem;padding:10px;background:var(--bg);border-radius:6px">
+      Много людей с рюкзаками и сумками спешат по платформе. Кто-то смотрит в телефон, кто-то читает газету. Лица усталые, все торопятся. На табло — время следующего поезда.
+    </p>
+    <p>Usa la estructura: primer plano → fondo → atmósfera → reflexión personal → opinión. 3 minutos mínimo.</p>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Шаблон — описание транспортного фото</div>
+    <div class="es">«En la imagen se puede ver una escena típica del transporte público en una ciudad grande... En el primer plano... Al fondo... Lo que más me llama la atención es... Esto me recuerda a mi propia experiencia cuando... En mi opinión, el transporte público en España...»</div>
+    <div class="hint">Используй: parecer + adj, lo cual sugiere, a diferencia de, en comparación con mi ciudad. Запишись!</div>
+  </div>
+
+  <div class="speak-box" style="margin-top:14px">
+    <div class="speak-tag">🎙 Говорение — Жизнь в Испании: баланс работа/жизнь</div>
+    <p>Examinador спрашивает: «En España se trabaja hasta tarde, ¿cómo te has adaptado a ese ritmo?»</p>
+    <div class="es">«Al principio me costó adaptarme porque en mi país... Sin embargo, poco a poco me di cuenta de que... Lo que más me gusta del ritmo español es... Aunque a veces... En definitiva, creo que...»</div>
+    <div class="hint">Contraste al principio / ahora; mi país / España. Imperfecto + pretérito indefinido + presente.</div>
+  </div>
+</div>
+
+<!-- 10. ИСПАНИЯ НА ПРАКТИКЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🇪🇸 Испания на практике: аренда квартиры в Барселоне</h2>
+  </div>
+
+  <p style="margin-bottom:12px;font-size:.9rem">Ты переехал в Барселону и ищешь квартиру. Это одна из самых стрессовых бюрократических задач: конкуренция огромная, цены высокие, требования — тоже. Эти фразы нужны в реальной жизни.</p>
+
+  <div class="phrase-list">
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Están incluidos los suministros en el precio?')">🔊</button>
+      <div>
+        <div class="ph-es">¿Están incluidos los suministros en el precio?</div>
+        <div class="ph-ru">Коммунальные услуги включены в цену?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Cuántos meses de fianza piden?')">🔊</button>
+      <div>
+        <div class="ph-es">¿Cuántos meses de fianza piden?</div>
+        <div class="ph-ru">Сколько месяцев залога требуется?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Se admiten mascotas en el piso?')">🔊</button>
+      <div>
+        <div class="ph-es">¿Se admiten mascotas en el piso?</div>
+        <div class="ph-ru">Разрешены ли домашние животные?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Cuál es la duración mínima del contrato?')">🔊</button>
+      <div>
+        <div class="ph-es">¿Cuál es la duración mínima del contrato?</div>
+        <div class="ph-ru">Какой минимальный срок договора?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Necesito el contrato de arrendamiento para empadronarme')">🔊</button>
+      <div>
+        <div class="ph-es">Necesito el contrato de arrendamiento para empadronarme.</div>
+        <div class="ph-ru">Мне нужен договор аренды для регистрации (empadronamiento).</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Está bien comunicado con el transporte público?')">🔊</button>
+      <div>
+        <div class="ph-es">¿Está bien comunicado con el transporte público?</div>
+        <div class="ph-ru">Хорошее ли транспортное сообщение?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="culture-tip">
+    <strong>Важно в Испании:</strong> По закону (Ley de Arrendamientos Urbanos 2019) минимальный срок аренды — 5 лет (7, если арендодатель — юрлицо). Залог = 1 месяц (жильё) + до 2 дополнительных месяцев по договорённости. Обязательно: <em>contrato de arrendamiento</em> нужен для <em>empadronamiento</em> — регистрации в муниципалитете, без которой не получить tarjeta sanitaria и запись в школу.
+  </div>
+</div>
+
+<!-- 11. КУЛЬТУРНАЯ ЗАМЕТКА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
     <h2>Культурная заметка</h2>
   </div>
 
   <div class="culture">
     <div class="ctag">🌍 Vida laboral en España</div>
-    <h4>Испанский рабочий ритм: сиеста — миф или реальность?</h4>
-    <p>Вопреки стереотипам, большинство испанцев в городах не спит после обеда. Однако традиционный испанский рабочий день действительно отличается от северноевропейского: обеденный перерыв длиннее (14:00–16:00), и рабочий день часто заканчивается в 19:00–20:00. Это означает, что ужинают испанцы поздно — в 21:00–22:00. Для иностранца, переехавшего в Барселону, это первый культурный шок. Понимание этого ритма важно на DELE: тема «жизнь и работа в Испании» встречается постоянно.</p>
+    <h4>Испанский рабочий ритм: правда о «сиесте»</h4>
+    <p>Вопреки стереотипу, большинство испанцев в крупных городах не практикует сиесту в рабочие дни. Однако традиционный испанский рабочий день действительно отличается: обеденный перерыв длиннее (14:00–16:00), а рабочий день нередко заканчивается в 19:00–20:00 вместо привычных 17:00. Это означает, что ужинают испанцы в 21:00–22:00, что шокирует многих иностранцев. Для экзамена DELE знание этого культурного контекста очень важно: тема «ритм жизни в Испании vs. другие страны» — одна из самых популярных в Tarea 1 (valoración de encuesta). Подготовь мнение заранее.</p>
   </div>
 </div>
 
-<!-- SECTION 9: ANKI + HOMEWORK -->
+<!-- 12. АНКИ -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">9</div>
-    <h2>Anki и домашнее задание</h2>
+    <div class="section-num">12</div>
+    <h2>Anki-колода — работа и жизнь B1</h2>
   </div>
 
-  <!-- .wrap -->
+  <div class="anki">
+    <div class="atag">📇 16 карточек · нажми для переворота</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:14px">Preview 5 карточек. Нажми на карточку — увидишь обратную сторону.</p>
 
-<!-- DONE BAR -->
+    <div class="anki-previews">
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">el teletrabajo</div>
+          <div class="anki-card-back">удалённая работа<br><small>Desde la pandemia se ha normalizado.</small></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">desde hace<br>tres años</div>
+          <div class="anki-card-back">в течение трёх лет<br><small>Trabajo aquí desde hace 3 años.</small></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">compaginar</div>
+          <div class="anki-card-back">совмещать<br><small>Compaginar trabajo y familia.</small></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">En la imagen<br>se puede ver...</div>
+          <div class="anki-card-back">На изображении видно...<br><small>Начало описания фото на DELE</small></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">Al fondo</div>
+          <div class="anki-card-back">На заднем плане<br><small>Al fondo se pueden ver...</small></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="export-btn" onclick="exportAnkiL112()">⬇ Скачать колоду Anki (.txt)</button>
+  </div>
+</div>
+
+<!-- 13. ДОМАШНЕЕ ЗАДАНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h2>Домашнее задание</h2>
+  </div>
+
+  <div class="callout success">
+    <h4>📋 Задание на сегодня</h4>
+    <ul>
+      <li><strong>1. Запись описания фото:</strong> Найди любое фото рабочей сцены (офис, магазин, кафе) и запишись описывающим его 3 минуты по схеме: primer plano → fondo → atmósfera → experiencia personal → opinión.</li>
+      <li><strong>2. Анки:</strong> Прогони все 16 карточек этого урока. Добавь свои 3 карточки из ситуации с жильём.</li>
+      <li><strong>3. Dreaming Spanish (DS Intermediate+):</strong> Найди видео с интервью или репортажем о рабочей жизни в Испании. Смотри с испанскими субтитрами, выпиши 5 новых слов.</li>
+      <li><strong>4. Подготовка к Tarea 3:</strong> Попроси кого-нибудь сыграть роль propietario/jefe — проведи 5-минутный диалог с переговорами. Или запишись самому за обе стороны.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 14. DONE-BAR -->
 <div class="done-bar">
   <div class="nav-links">
     <a href="L111.html" class="nav-link-btn">← L111</a>
@@ -451,6 +720,8 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
+
+</div><!-- .wrap -->
 
 <script>
 const LESSON_ID = 'L112';
@@ -469,14 +740,63 @@ function markDone(){
 const st=getState();
 if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'«En la imagen se puede ver» — стандартное начало описания фото на DELE. Формально, нейтрально, правильно.',
-  q2:'Teletrabajo = trabajo a distancia = удалённая работа из дома. Пандемия сделала это слово очень популярным.',
-  q3:'«Parece estar + adjective»: «ocupada» — краткое прилагательное (participo). Не gerundio после estar в этой конструкции.',
-  q4:'Al fondo = на заднем плане, вдали. En el primer plano = на переднем плане.',
-  q5:'Horario laboral = рабочий график. Desplazamiento = поездка на работу. Presupuesto = бюджет.',
-  q6:'Jornada completa = полный рабочий день (обычно 8 часов). Media jornada = неполный день.'
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+function playDialogue1() {
+  const lines = [
+    'En la imagen se puede ver una oficina moderna con un ambiente de trabajo abierto.',
+    'Al fondo se pueden ver otros compañeros de trabajo y unas ventanas grandes que dan a la ciudad.',
+    'Esto me recuerda a mi propio lugar de trabajo. En mi opinión, esta imagen refleja muy bien el mundo laboral actual.',
+    '¿Prefieres trabajar en una oficina o desde casa?',
+    'Personalmente, prefiero un modelo híbrido: trabajar en la oficina tres días a la semana y hacer teletrabajo los otros dos.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    speak(lines[i]);
+    i++;
+    setTimeout(next, 5000);
+  }
+  next();
+}
+
+function playDialogue2() {
+  const lines = [
+    'Buenos días. He visto el anuncio del piso y me gustaría saber más detalles.',
+    'No, los suministros van aparte. Son unos ochenta euros al mes adicionales.',
+    'Entiendo. ¿Sería posible negociar el precio? Estoy buscando algo por debajo de los mil trescientos euros.',
+    'Podría considerar mil trescientos cincuenta si firma por dos años.',
+    'Me parece razonable. ¿Podría visitarlo esta semana para verlo en persona?'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    speak(lines[i]);
+    i++;
+    setTimeout(next, 5000);
+  }
+  next();
+}
+
+const quizExpl = {
+  wq1: 'los recuerdos = личные воспоминания. Las memorias = мемуары (жанр книги). Las aficiones = хобби.',
+  wq2: 'En conclusión — коннектор для финального вывода. Sin embargo — контраст. A partir de — предлог.',
+  wq3: 'Si + imperfecto de subjuntivo (pudiera) + condicional (elegiría) = гипотетическое условие. «Si podría» — НИКОГДА не используется после «si»!',
+  q1: '«En la imagen se puede ver» — стандартная нейтральная формула. «Se puede ver» показывает B1 уровень (безличная конструкция).',
+  q2: 'Teletrabajo = trabajo a distancia = удалённая работа из дома или другого места. Не из офиса.',
+  q3: '«Parece estar + adjective»: ocupada — прилагательное (participo). После «estar» в этой конструкции — adj, не gerundio.',
+  q4: 'Al fondo = на заднем плане, вдали. En el primer plano = на переднем плане. En el centro = в центре.',
+  q5: '«Desde hace + tiempo» = в течение (прошлое → настоящее). «Desde tres años» без «hace» — неправильно!',
+  q6: 'Jornada completa = полный рабочий день (обычно 8 часов). Media jornada = неполный. Jornada intensiva = непрерывный рабочий день.',
+  q7: '¿Podría repetirlo? — condicional вместо presente = вежливость. «¿Puede repetir?» грамматически правильно, но менее вежливо на экзамене.'
 };
+
 let quizScore=0,quizTotal=0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
@@ -510,6 +830,7 @@ function answerQuiz(el, qId, correctKey) {
     if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
   }
 }
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -562,17 +883,63 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
+
 function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
-function updateProgress(){
-  const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
-  const pct=Math.min(100,Math.round(scrolled/total*100));
-  const sectionsRead=Math.round(pct/100*totalSections);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+
+function toggleAll() {
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
 }
-window.addEventListener('scroll',updateProgress);
+
+function toggleAll2() {
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display = 'none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display = 'none'; });
+
+const ANKI_DECK_L112 = [
+  {front:'el puesto de trabajo',back:'Перевод: должность, рабочее место\n\nПример: Busco un puesto de trabajo en Barcelona.\nЗаметка: puesto = место/позиция'},
+  {front:'el horario laboral',back:'Перевод: рабочий график\n\nПример: Tengo un horario laboral flexible.\nЗаметка: horario de trabajo = то же самое'},
+  {front:'el teletrabajo',back:'Перевод: удалённая работа\n\nПример: Desde la pandemia el teletrabajo es normal.\nЗаметка: hacer teletrabajo = работать удалённо'},
+  {front:'el transporte público',back:'Перевод: общественный транспорт\n\nПример: Voy al trabajo en transporte público.\nЗаметка: metro + autobús + tren'},
+  {front:'el alquiler',back:'Перевод: аренда квартиры\n\nПример: El alquiler en Barcelona es muy alto.\nЗаметка: pagar el alquiler = платить аренду'},
+  {front:'los gastos',back:'Перевод: расходы\n\nПример: Mis gastos mensuales son 1500 euros.\nЗаметка: gastos de comunidad = коммунальные'},
+  {front:'la jornada completa',back:'Перевод: полный рабочий день\n\nПример: Trabajo a jornada completa (8 часов).\nЗаметка: media jornada = неполный'},
+  {front:'el desplazamiento',back:'Перевод: поездка на работу\n\nПример: El desplazamiento me lleva 40 minutos.\nЗаметка: desplazarse = передвигаться'},
+  {front:'solicitar',back:'Перевод: подать заявку, запросить\n\nПример: Voy a solicitar ese trabajo.\nЗаметка: solicitar + sustantivo (официально)'},
+  {front:'compaginar',back:'Перевод: совмещать\n\nПример: Compagino trabajo y estudios.\nЗаметка: compaginar X con Y'},
+  {front:'el ambiente laboral',back:'Перевод: рабочая атмосфera\n\nПример: El ambiente laboral es muy positivo.\nЗаметка: ambiente = обстановка, среда'},
+  {front:'desarrollarse profesionalmente',back:'Перевод: профессионально расти\n\nПример: Quiero desarrollarme profesionalmente.\nЗаметка: = crecer profesionalmente'},
+  {front:'el contrato indefinido',back:'Перевод: бессрочный контракт\n\nПример: Conseguí un contrato indefinido.\nЗаметка: contrato temporal = срочный'},
+  {front:'En la imagen se puede ver',back:'Перевод: На изображении видно...\n\nИспользование: начало описания фото DELE\nЗаметка: безличная конструкция = B1'},
+  {front:'Al fondo',back:'Перевод: На заднем плане\n\nПример: Al fondo se pueden ver las montañas.\nЗаметка: ↔ En el primer plano'},
+  {front:'desde hace + tiempo',back:'Перевод: в течение (с такого-то момента)\n\nПример: Trabajo aquí desde hace 3 años.\nЗаметка: НЕ «desde 3 años» — нужно «hace»!'}
+];
+
+function exportAnkiL112() {
+  const header = '#separator:Tab\n#html:true\n#deck:L112 Spanish - Work and Daily Life\n';
+  const tsv = ANKI_DECK_L112.map(c => c.front + '\t' + c.back.replace(/\n/g, '<br>')).join('\n');
+  const blob = new Blob(['﻿' + header + tsv], {type: 'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L112_spanish.txt';
+  a.click();
+}
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? Math.min(100, Math.round(scrolled / total * 100)) : 0;
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>

@@ -52,8 +52,11 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}
+.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}
+.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}
+.opt.picked::before{content:'👉 ';margin-right:2px}
+.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -69,7 +72,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
 .answer-reveal.show{display:block}
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
 .dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
@@ -83,8 +86,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture p{font-size:.86rem;color:var(--muted)}
 .anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
 .anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -97,161 +98,225 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
 .vocab-table tr:last-child td{border-bottom:none}
 .vocab-table .es-word{color:var(--gold);font-weight:600}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
 .exam-box{background:rgba(157,78,221,.06);border:2px solid rgba(157,78,221,.4);border-radius:10px;padding:20px 22px;margin:16px 0}
 .exam-box .exam-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:10px}
 .exam-box h4{font-weight:700;margin-bottom:8px}
 .exam-box p{font-size:.9rem;color:var(--muted)}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.phrase-item{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px;font-size:.9rem}
+.phrase-item .ph-es{font-weight:600;color:var(--text);flex:1}
+.phrase-item .ph-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(200,144,0,.08);border-left:3px solid var(--gold);border-radius:6px;padding:12px 14px;margin-top:14px;font-size:.86rem}
+.errors-table{width:100%;border-collapse:collapse;font-size:.85rem;margin:14px 0}
+.errors-table th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.errors-table td{padding:8px 10px;border-bottom:1px solid var(--bg3);vertical-align:top}
+.errors-table tr:last-child td{border-bottom:none}
+.errors-table .wrong-col{color:var(--red)}
+.errors-table .right-col{color:var(--green)}
+.anki-previews{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:10px 20px;cursor:pointer;font-size:.88rem;font-weight:700;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.warmup-q{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px}
+.warmup-q .wq-text{font-size:.9rem;margin-bottom:8px;font-weight:600}
 @media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. НАВИГАЦИЯ -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
   <span class="level">B1 · DELE Prep · День 237</span>
   <a href="L112.html">L112 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
   <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
   <h1>DELE B1: Говорение — <span class="hl">личные темы</span></h1>
-  <p class="sub">Себя, семья, привычки, воспоминания — готовимся к устной части экзамена</p>
+  <p class="sub">Я, семья, привычки, воспоминания — готовимся к устной части экзамена</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎓</div><div><strong>DELE формат</strong><p>Tarea 1–2 устной части: монолог + интерактив</p></div></div>
+    <div class="obj"><div class="ico">🎓</div><div><strong>DELE формат</strong><p>Tarea 1–3 устной части: монолог + диалог с экзаменатором</p></div></div>
     <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут + Anki</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Истории о жизни, автобиографии</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Mock task</strong><p>4 минуты монолог на личную тему</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate+</strong><p>Истории о жизни, автобиографические нарративы</p></div></div>
+    <div class="obj"><div class="ico">🗣</div><div><strong>Mock task</strong><p>4 минуты монолог + интерактив с экзаменатором</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: DELE FORMAT -->
+<!-- 3. ПОВТОРЕНИЕ -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">1</div>
-    <h2>Формат DELE B1 — устная часть</h2>
+    <div class="section-num">3</div>
+    <h2>Повторение — L110: стратегии беглости</h2>
+  </div>
+  <p style="margin-bottom:12px;font-size:.9rem;color:var(--muted)">В L110 мы изучали fillers и circumlocution — способы говорить без пауз. Проверь себя без подсказок:</p>
+
+  <div class="warmup-q" id="wq1">
+    <div class="wq-text">1. Как выиграть время, пока думаешь? (назови 2 испанских filler-слова)</div>
+    <div class="options">
+      <div class="opt" onclick="answerQuiz(this,'wq1','a')">Pues... / O sea... / Bueno...</div>
+      <div class="opt" onclick="answerQuiz(this,'wq1','b')">Ya / Sí / No</div>
+      <div class="opt" onclick="answerQuiz(this,'wq1','c')">Quizás / Tal vez</div>
+    </div>
+    <div class="feedback" id="fb-wq1"></div>
+  </div>
+
+  <div class="warmup-q" id="wq2">
+    <div class="wq-text">2. Как объяснить слово, которое не знаешь? Например, вместо «cortacésped» (газонокосилка):</div>
+    <div class="options">
+      <div class="opt" onclick="answerQuiz(this,'wq2','b')">Я не знаю это слово</div>
+      <div class="opt" onclick="answerQuiz(this,'wq2','a')">Es una cosa que se usa para cortar la hierba del jardín</div>
+      <div class="opt" onclick="answerQuiz(this,'wq2','c')">Cortacésped, yes</div>
+    </div>
+    <div class="feedback" id="fb-wq2"></div>
+  </div>
+
+  <div class="warmup-q" id="wq3">
+    <div class="wq-text">3. «Cometí un error, quiero decir, me equivoqué al decir eso» — это пример:</div>
+    <div class="options">
+      <div class="opt" onclick="answerQuiz(this,'wq3','c')">Circumlocución</div>
+      <div class="opt" onclick="answerQuiz(this,'wq3','b')">Filler</div>
+      <div class="opt" onclick="answerQuiz(this,'wq3','a')">Reparación (самоисправление)</div>
+    </div>
+    <div class="feedback" id="fb-wq3"></div>
+  </div>
+</div>
+
+<!-- 4. ТЕОРИЯ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Теория — DELE B1: устная часть и личные темы</h2>
   </div>
 
   <div class="callout dele">
-    <h4>📋 Структура Prueba oral DELE B1</h4>
+    <h4>📋 Структура Prueba oral DELE B1 (Instituto Cervantes)</h4>
     <ul>
-      <li><strong>Tarea 1 (3–4 мин)</strong> — Valoración de una encuesta: ты смотришь на опрос/статистику и рассказываешь своё мнение о теме</li>
-      <li><strong>Tarea 2 (3–4 мин)</strong> — Descripción de una imagen + диалог с экзаменатором о личном опыте</li>
-      <li><strong>Tarea 3 (3–4 мин)</strong> — Simulación: ролевая игра/переговоры с экзаменатором</li>
-      <li><strong>Подготовка</strong> — 10–15 минут до начала (записываешь заметки, но не читаешь по бумаге)</li>
+      <li><strong>Tarea 1 (3–4 мин)</strong> — Valoración de una encuesta: ты видишь статистику/опрос и строишь развёрнутый монолог со своим мнением</li>
+      <li><strong>Tarea 2 (3–4 мин)</strong> — Descripción de una imagen + диалог с экзаменатором о личном опыте, связанном с темой фото</li>
+      <li><strong>Tarea 3 (3–4 мин)</strong> — Situación simulada: ролевая игра, экзаменатор задаёт роль и сценарий</li>
+      <li><strong>Подготовка</strong> — 12–15 минут изучаешь материалы, делаешь заметки (не полный текст!)</li>
     </ul>
   </div>
 
   <div class="callout tip">
-    <h4>💡 Что оценивается</h4>
+    <h4>💡 5 критериев оценки (Instituto Cervantes)</h4>
     <ul>
-      <li><strong>Coherencia y cohesión</strong> — логичность и связность</li>
-      <li><strong>Alcance léxico y gramatical</strong> — разнообразие словаря и грамматики</li>
-      <li><strong>Corrección</strong> — грамматическая точность</li>
-      <li><strong>Pronunciación e entonación</strong> — произношение</li>
-      <li><strong>Fluidez</strong> — беглость (используй fillers из L110!)</li>
+      <li><strong>Coherencia y cohesión</strong> — логичность, связность, правильное использование коннекторов</li>
+      <li><strong>Alcance léxico y gramatical</strong> — разнообразие словаря и грамматических структур</li>
+      <li><strong>Corrección</strong> — грамматическая точность (допускаются редкие ошибки)</li>
+      <li><strong>Pronunciación e entonación</strong> — произношение, интонация</li>
+      <li><strong>Fluidez</strong> — беглость (fillers из L110 — твой лучший инструмент)</li>
     </ul>
   </div>
 
-  <div class="callout warning">
-    <h4>⚠️ Частые ошибки на устной части</h4>
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 10px">Грамматические структуры для монолога о себе</h3>
+
+  <div class="callout info">
+    <h4>📝 Структуры для описания личности и прошлого (B1)</h4>
     <ul>
-      <li>Слишком короткие ответы — нужно говорить 3–4 минуты, не 30 секунд</li>
-      <li>Читать заготовленный текст — экзаменатор это заметит</li>
-      <li>Не реагировать на вопросы экзаменатора — это интерактив, не монолог</li>
-      <li>Использовать только presente — разнообразь временами: pretérito, futuro, condicional</li>
+      <li><strong>Soy una persona que + indicativo:</strong> Soy una persona que valora mucho la familia.</li>
+      <li><strong>Soy una persona que + subjuntivo:</strong> Busco un trabajo que me permita viajar. (цель)</li>
+      <li><strong>Desde pequeño/a + imperfecto:</strong> Desde pequeña me gustaba leer novelas de aventuras.</li>
+      <li><strong>Lo que más me importa es + infinitivo:</strong> Lo que más me importa es tener buenas relaciones.</li>
+      <li><strong>Aunque + indicativo (факт):</strong> Aunque soy introvertido, me relaciono bien con la gente.</li>
+      <li><strong>Si pudiera + condicional (гипотеза):</strong> Si pudiera elegir, viviría cerca del mar.</li>
+      <li><strong>Gracias a + sustantivo:</strong> Gracias a mi familia, soy quien soy hoy.</li>
     </ul>
   </div>
-</div>
 
-<!-- SECTION 2: VOCABULARY -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">2</div>
-    <h2>Словарь — личные темы на B1</h2>
+  <div class="callout tip">
+    <h4>💡 Коннекторы для монолога — учи наизусть</h4>
+    <ul>
+      <li><strong>Начать:</strong> Para empezar, En primer lugar, Lo primero que quiero mencionar es...</li>
+      <li><strong>Добавить:</strong> Además, También, Asimismo, Por otra parte, Cabe añadir que...</li>
+      <li><strong>Контраст:</strong> Sin embargo, No obstante, A pesar de que, Aunque, Por el contrario...</li>
+      <li><strong>Пример:</strong> Por ejemplo, Como es el caso de..., Tal es el caso cuando...</li>
+      <li><strong>Вывод:</strong> En conclusión, En definitiva, En resumen, Para terminar...</li>
+    </ul>
   </div>
 
-  <table class="vocab-table">
-    <thead>
-      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример (в монологе)</th></tr>
-    </thead>
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 10px">Типичные ошибки русскоговорящих</h3>
+  <table class="errors-table">
+    <thead><tr><th>❌ Типичная ошибка</th><th>✅ Правильно</th><th>Объяснение</th></tr></thead>
     <tbody>
-      <tr><td class="es-word">la infancia</td><td>[инфан-сья]</td><td>детство</td><td>Durante mi infancia vivía en una ciudad pequeña.</td></tr>
-      <tr><td class="es-word">crecer</td><td>[кресер]</td><td>расти (взрослеть)</td><td>Crecí en una familia numerosa.</td></tr>
-      <tr><td class="es-word">los recuerdos</td><td>[рекуэрдос]</td><td>воспоминания</td><td>Tengo muy buenos recuerdos de esa época.</td></tr>
-      <tr><td class="es-word">el entorno familiar</td><td>[энторно]</td><td>семейная обстановка</td><td>Mi entorno familiar era muy unido.</td></tr>
-      <tr><td class="es-word">las aficiones</td><td>[афисьонэс]</td><td>увлечения, хобби</td><td>Mis aficiones son la música y el deporte.</td></tr>
-      <tr><td class="es-word">los hábitos</td><td>[абитос]</td><td>привычки</td><td>Tengo el hábito de levantarme temprano.</td></tr>
-      <tr><td class="es-word">el carácter</td><td>[каракtер]</td><td>характер, личность</td><td>Soy una persona de carácter reservado.</td></tr>
-      <tr><td class="es-word">los valores</td><td>[балорэс]</td><td>ценности</td><td>Los valores que más me importan son la honestidad y la lealtad.</td></tr>
-      <tr><td class="es-word">la etapa</td><td>[этапа]</td><td>этап, период жизни</td><td>Esa fue la etapa más difícil de mi vida.</td></tr>
-      <tr><td class="es-word">superarse</td><td>[суперарсэ]</td><td>совершенствоваться, превосходить себя</td><td>Siempre intento superarme cada día.</td></tr>
-      <tr><td class="es-word">relacionarse con</td><td>[рэласьонарсэ]</td><td>общаться с, строить отношения</td><td>Me cuesta relacionarme con desconocidos.</td></tr>
-      <tr><td class="es-word">a partir de</td><td>[а партир дэ]</td><td>начиная с</td><td>A partir de los 18 años viví solo.</td></tr>
+      <tr><td class="wrong-col">*Soy introvertido persona</td><td class="right-col">Soy una persona introvertida</td><td>Порядок: сущ. + прилаг. Артикль обязателен</td></tr>
+      <tr><td class="wrong-col">*Tengo 30 años de edad</td><td class="right-col">Tengo 30 años</td><td>«de edad» — лишнее в разговорной речи</td></tr>
+      <tr><td class="wrong-col">*Desde niño pequeño gusté leer</td><td class="right-col">Desde pequeño me gustaba leer</td><td>gustar — обратный глагол: me/te/le + gustaba</td></tr>
+      <tr><td class="wrong-col">*Mi familia tiene mucha importancia para mí</td><td class="right-col">Mi familia es muy importante para mí</td><td>Прямой перевод с русского. Используй ser + adj.</td></tr>
+      <tr><td class="wrong-col">*Recuerdo muy bien mis memorias de infancia</td><td class="right-col">Tengo muy buenos recuerdos de mi infancia</td><td>memorias = мемуары (книга), recuerdos = воспоминания</td></tr>
+      <tr><td class="wrong-col">*Hablo bien español, no?</td><td class="right-col">¿Hablo bien el español, ¿no? / ¿verdad?</td><td>Question tag: ¿no? / ¿verdad? — стандартные варианты</td></tr>
     </tbody>
   </table>
 </div>
 
-<!-- SECTION 3: STRUCTURES -->
+<!-- 5. СЛОВАРЬ -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">3</div>
-    <h2>Грамматика для монолога — структуры B1</h2>
+    <div class="section-num">5</div>
+    <h2>Словарь — личные темы B1</h2>
   </div>
 
-  <p style="margin-bottom:14px">На DELE B1 нужно показать <strong>разнообразие</strong> грамматики. Вот конструкции, которые работают на личных темах:</p>
-
-  <div class="callout info">
-    <h4>📝 Структуры для описания себя и прошлого</h4>
-    <ul>
-      <li><strong>Soy una persona que + indicativo:</strong> Soy una persona que valora mucho la familia.</li>
-      <li><strong>Desde pequeño/a + imperfecto:</strong> Desde pequeño me gustaba leer libros de aventuras.</li>
-      <li><strong>Lo que más me gusta es + infinitivo:</strong> Lo que más me gusta es pasar tiempo con mi familia.</li>
-      <li><strong>Aunque + subjuntivo/indicativo:</strong> Aunque soy introvertido, me relaciono bien con la gente.</li>
-      <li><strong>Si pudiera + condicional:</strong> Si pudiera volver atrás, estudiaría más idiomas.</li>
-    </ul>
-  </div>
-
-  <div class="callout tip">
-    <h4>💡 Conectores para el monólogo</h4>
-    <ul>
-      <li><strong>Introducir:</strong> En primer lugar, Para empezar, Lo primero que quiero decir es...</li>
-      <li><strong>Añadir:</strong> Además, También, Por otra parte, Asimismo...</li>
-      <li><strong>Concluir:</strong> En conclusión, Para terminar, En definitiva, En resumen...</li>
-      <li><strong>Contraste:</strong> Sin embargo, Aunque, A pesar de que, No obstante...</li>
-    </ul>
-  </div>
+  <table class="vocab-table">
+    <thead>
+      <tr><th>🔊</th><th>Испанский</th><th>Русский</th><th>Пример в монологе</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><button class="speak-btn" onclick="speak('la infancia')">🔊</button></td><td class="es-word">la infancia</td><td>детство</td><td>Durante mi infancia vivía en el campo.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('crecer')">🔊</button></td><td class="es-word">crecer</td><td>расти, взрослеть</td><td>Crecí en una familia numerosa de cinco personas.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('los recuerdos')">🔊</button></td><td class="es-word">los recuerdos</td><td>воспоминания</td><td>Tengo muy buenos recuerdos de esa época.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el entorno familiar')">🔊</button></td><td class="es-word">el entorno familiar</td><td>семейная обстановка</td><td>Mi entorno familiar siempre fue muy cálido y unido.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('las aficiones')">🔊</button></td><td class="es-word">las aficiones</td><td>увлечения, хобби</td><td>Mis aficiones principales son la música y los viajes.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('los hábitos')">🔊</button></td><td class="es-word">los hábitos</td><td>привычки</td><td>Tengo el hábito de levantarme temprano cada día.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el carácter')">🔊</button></td><td class="es-word">el carácter</td><td>характер, личность</td><td>Soy una persona de carácter reservado pero empático.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('los valores')">🔊</button></td><td class="es-word">los valores</td><td>ценности</td><td>Los valores que más me importan son la honestidad y la familia.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('la etapa')">🔊</button></td><td class="es-word">la etapa</td><td>этап, период жизни</td><td>Esa fue la etapa más difícil y formativa de mi vida.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('superarse')">🔊</button></td><td class="es-word">superarse</td><td>совершенствоваться</td><td>Siempre intento superarme y aprender algo nuevo cada día.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('relacionarse con')">🔊</button></td><td class="es-word">relacionarse con</td><td>общаться, строить отношения</td><td>Me cuesta relacionarme con personas muy extrovertidas.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('a partir de')">🔊</button></td><td class="es-word">a partir de</td><td>начиная с</td><td>A partir de los 18 años aprendí a valerme por mí mismo.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('la adolescencia')">🔊</button></td><td class="es-word">la adolescencia</td><td>подростковый возраст</td><td>Durante la adolescencia me interesé mucho por la música.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('la convivencia')">🔊</button></td><td class="es-word">la convivencia</td><td>совместная жизнь, сосуществование</td><td>La convivencia con mis compañeros de piso fue genial.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('la independencia')">🔊</button></td><td class="es-word">la independencia</td><td>независимость, самостоятельность</td><td>Conseguí mi independencia cuando empecé a trabajar.</td></tr>
+      <tr><td><button class="speak-btn" onclick="speak('el equilibrio')">🔊</button></td><td class="es-word">el equilibrio</td><td>баланс, равновесие</td><td>Es fundamental encontrar el equilibrio entre trabajo y vida personal.</td></tr>
+    </tbody>
+  </table>
 </div>
 
-<!-- SECTION 4: QUIZ 1 -->
+<!-- 6. ТЕСТ 1 -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">4</div>
+    <div class="section-num">6</div>
     <h2>Тест 1 — DELE формат и лексика</h2>
   </div>
 
   <div class="quiz" id="quiz1">
-    <h3>🎯 Личные темы — проверка</h3>
+    <h3>🎯 Личные темы — проверка знаний</h3>
 
     <div class="quiz-q" id="q1">
       <div class="q-text">1. В Tarea 1 устной части DELE B1 тебе нужно:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Прокомментировать опрос/статистику, выразить своё мнение</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Прочитать текст и перевести его</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Написать сочинение за 10 минут</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Прокомментировать статистику/опрос и высказать своё мнение</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Перевести текст на русский язык</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Написать эссе по данной теме</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
 
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. Как по-испански «воспоминания»?</div>
+      <div class="q-text">2. Как по-испански «воспоминания» (в смысле personal memories)?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">los valores</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">las memorias</div>
         <div class="opt" onclick="answerQuiz(this,'q2','a')">los recuerdos</div>
         <div class="opt" onclick="answerQuiz(this,'q2','c')">las aficiones</div>
       </div>
@@ -259,11 +324,11 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     </div>
 
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. Выбери правильный коннектор для вывода: «_____, mi experiencia fue muy positiva.»</div>
+      <div class="q-text">3. Выбери правильный вывод для монолога: «_____, puedo decir que mi infancia fue muy feliz.»</div>
       <div class="options">
         <div class="opt" onclick="answerQuiz(this,'q3','a')">En conclusión</div>
         <div class="opt" onclick="answerQuiz(this,'q3','b')">Sin embargo</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Aunque</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Por otra parte</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
@@ -281,9 +346,9 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <div class="quiz-q" id="q5">
       <div class="q-text">5. Что значит «superarse»?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Совершенствоваться, превосходить себя</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Сдаваться, отказываться</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Переезжать</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Совершенствоваться, превосходить самого себя</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Сдаваться, отказываться от борьбы</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Переезжать в другой город</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
@@ -291,41 +356,51 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
     <div class="quiz-q" id="q6">
       <div class="q-text">6. «Aunque soy introvertido, me relaciono bien» — «aunque» здесь означает:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Потому что</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Несмотря на то, что / хотя</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">После того, как</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Потому что / так как</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Несмотря на то что / хотя</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">После того как / когда</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
+    </div>
+
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Структура «Si pudiera elegir, viviría cerca del mar» — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Гипотетическое условие: imperfecto de subjuntivo + condicional simple</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Реальное условие настоящего: si + presente + futuro</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Условие прошлого: si + pluscuamperfecto + condicional compuesto</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 5: QUIZ 2 -->
+<!-- 7. ТЕСТ 2 -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">5</div>
+    <div class="section-num">7</div>
     <h2>Тест 2 — Заполни монолог</h2>
   </div>
 
   <div class="quiz">
-    <h3>✏️ Вставь правильное слово</h3>
+    <h3>✏️ Вставь правильное слово (вводи в нижнем регистре)</h3>
 
     <div class="text-ex">
-      <div class="tex-q">1. «Soy una persona que _____ (ценит) mucho la amistad.» (present indicativo)</div>
-      <input type="text" class="text-input" placeholder="глагол valora / valoro..." id="ti1">
+      <div class="tex-q">1. «Soy una persona que _____ (ценит) mucho la amistad.» (3-е лицо ед.ч.)</div>
+      <input type="text" class="text-input" placeholder="valora / valoro..." id="ti1">
       <button class="check-btn" onclick="checkText('ti1','valora','fb-te1')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
       <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ valora — «soy una persona que + 3л. ед.ч.» Не «valoro» — потому что подлежащее «que» (=persona).</div>
+      <div class="answer-reveal" id="ans-te1">✅ valora — подлежащее «que» (= persona), поэтому 3-е лицо ед.ч. Не «valoro»!</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">2. «Durante mi _____ (детство) vivía en el campo.»</div>
-      <input type="text" class="text-input" placeholder="детство по-испански..." id="ti2">
+      <div class="tex-q">2. «Durante mi _____ (детство) vivía en un barrio muy tranquilo.»</div>
+      <input type="text" class="text-input" placeholder="infancia / niñez..." id="ti2">
       <button class="check-btn" onclick="checkText('ti2','infancia','fb-te2')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
       <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ infancia — детство. «Durante mi infancia» = в детстве.</div>
+      <div class="answer-reveal" id="ans-te2">✅ infancia — детство (0–12 лет). «Niñez» тоже правильно, но менее употребительно.</div>
     </div>
 
     <div class="text-ex">
@@ -334,7 +409,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
       <button class="check-btn" onclick="checkText('ti3','gusta','fb-te3')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
       <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ gusta — «lo que más me gusta es» + infinitivo. Подлежащее — «lo que» (единственное число).</div>
+      <div class="answer-reveal" id="ans-te3">✅ gusta — «lo que más me gusta es + infinitivo». Подлежащее «lo que» = ед.ч.</div>
     </div>
 
     <div class="text-ex">
@@ -343,132 +418,334 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
       <button class="check-btn" onclick="checkText('ti4','recuerdos','fb-te4')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
       <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ recuerdos — воспоминания. «Memorias» тоже возможно, но менее разговорно.</div>
+      <div class="answer-reveal" id="ans-te4">✅ recuerdos — личные воспоминания. «Memorias» = мемуары, книга. Разные слова!</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">5. «Si _____ (мог бы) elegir, viviría cerca del mar.» (condicional)</div>
+      <div class="tex-q">5. «Si _____ (мог бы), elegiría vivir en una ciudad con mar.» (condicional/subjuntivo)</div>
       <input type="text" class="text-input" placeholder="pudiera / podría..." id="ti5">
       <button class="check-btn" onclick="checkText('ti5','pudiera','fb-te5')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
       <div class="feedback" id="fb-te5"></div>
       <div class="answer-reveal" id="ans-te5">✅ pudiera — imperfecto de subjuntivo. «Si pudiera + condicional» = гипотетическое условие.</div>
     </div>
-  </div>
-</div>
 
-<!-- SECTION 6: DIALOGUES -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">6</div>
-    <h2>Диалоги — устная часть DELE</h2>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      🎓 Tarea 2: Экзаменатор задаёт вопросы о личном опыте
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Exam.</div>
-      <div>
-        <div class="dlg-es">¿Puedes hablarme un poco sobre tu infancia? ¿Dónde creciste?</div>
-        <div class="dlg-ru" id="tr-d1" style="display:none">Можешь рассказать мне немного о своём детстве? Где ты вырос?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Tú</div>
-      <div>
-        <div class="dlg-es">Pues, crecí en una ciudad bastante pequeña. Durante mi infancia, vivíamos en un barrio tranquilo y tengo muy buenos recuerdos de esa época. Lo que más me gustaba era jugar al fútbol con mis amigos en la calle.</div>
-        <div class="dlg-ru" id="tr-d1b" style="display:none">Ну, я вырос в небольшом городе. В детстве мы жили в тихом районе, и у меня очень хорошие воспоминания о том времени. Больше всего мне нравилось играть в футбол с друзьями на улице.</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Exam.</div>
-      <div>
-        <div class="dlg-es">¿Y cómo era tu familia? ¿Eras el mayor o el menor?</div>
-        <div class="dlg-ru" id="tr-d1c" style="display:none">А какой была твоя семья? Ты был старшим или младшим?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Tú</div>
-      <div>
-        <div class="dlg-es">Soy hijo único, así que crecí sin hermanos. Aunque a veces me sentía solo, de hecho eso me hizo más independiente. Mi entorno familiar era muy unido y mis padres siempre me apoyaron en todo.</div>
-        <div class="dlg-ru" id="tr-d1d" style="display:none">Я единственный ребёнок, поэтому рос без братьев и сестёр. Хотя иногда чувствовал себя одиноким, фактически это сделало меня более самостоятельным. Семейная обстановка была очень дружной, и родители всегда меня поддерживали.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="dialogue">
-    <div class="dlg-header">
-      🎓 Tarea 1: Монолог об опросе (самостоятельно)
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Tema</div>
-      <div>
-        <div class="dlg-es">Según una encuesta, el 65% de los jóvenes prefiere vivir lejos de su familia para tener más independencia. ¿Qué opinas sobre esto?</div>
-        <div class="dlg-ru" id="tr-d2" style="display:none">По данным опроса, 65% молодёжи предпочитает жить вдали от семьи ради большей независимости. Что ты думаешь об этом?</div>
-      </div>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Tú</div>
-      <div>
-        <div class="dlg-es">En mi opinión, es comprensible que los jóvenes quieran independencia. Sin embargo, creo que los lazos familiares son muy importantes. Desde mi punto de vista, se puede ser independiente sin alejarse completamente de la familia. Además, en muchos países, como España, es tradición vivir cerca de los padres. Al fin y al cabo, la familia es una red de apoyo fundamental.</div>
-        <div class="dlg-ru" id="tr-d2b" style="display:none">На мой взгляд, понятно, что молодёжь хочет независимости. Однако я считаю, что семейные связи очень важны. С моей точки зрения, можно быть независимым, не отдаляясь полностью от семьи. Кроме того, во многих странах, например в Испании, традиционно жить рядом с родителями. В конце концов, семья — это фундаментальная сеть поддержки.</div>
-      </div>
+    <div class="text-ex">
+      <div class="tex-q">6. «Gracias a mi familia, _____ (являюсь) quien soy hoy.» (1-е лицо ед.ч.)</div>
+      <input type="text" class="text-input" placeholder="soy / estoy..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','soy','fb-te6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
+      <div class="feedback" id="fb-te6"></div>
+      <div class="answer-reveal" id="ans-te6">✅ soy — ser (постоянная идентичность). «Soy quien soy» = я тот, кто я есть.</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 7: SPEAKING MOCK -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">7</div>
-    <h2>Mock Speaking — 4 минуты</h2>
-  </div>
-
-  <div class="exam-box">
-    <div class="exam-tag">🎓 DELE B1 Mock Task — Tarea 1</div>
-    <h4>Задание: прокомментируй эти данные</h4>
-    <p style="margin:10px 0;padding:12px;background:var(--bg);border-radius:6px;font-style:italic">
-      «Según un estudio reciente, el 72% de los españoles considera que las relaciones familiares son lo más importante en la vida, frente al 18% que prioriza el trabajo y el 10% que prefiere las amistades.»
-    </p>
-    <p>Говори 4 минуты: опиши данные → выскажи своё мнение → приведи 2 аргумента → расскажи о личном опыте → сделай вывод.</p>
-  </div>
-
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Шаблон ответа</div>
-    <p>Используй эту структуру:</p>
-    <div class="es">«Según estos datos, la mayoría de los españoles... En mi opinión, esto se debe a que... Personalmente, en mi familia... Aunque también es verdad que... En conclusión, creo que...»</div>
-    <div class="hint">Минимум 3–4 разных времени: presente, imperfecto, futuro, condicional. Запишись на видео!</div>
-  </div>
-</div>
-
-<!-- SECTION 8: CULTURE -->
+<!-- 8. ДИАЛОГИ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
+    <h2>Диалоги — устная часть DELE B1</h2>
+  </div>
+
+  <p style="margin-bottom:12px;font-size:.88rem;color:var(--muted)">Нажми кнопку 🔊 у каждой реплики или воспроизведи диалог целиком. Нажми «Перевод» для перевода всего диалога.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>🎓 Tarea 2: Вопросы о личном опыте</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="dlg-toggle" onclick="toggleAll()">Перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue1()">▶ Весь диалог</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Puedes hablarme un poco sobre tu infancia? ¿Dónde y cómo creciste? <button class="speak-btn" onclick="speak('¿Puedes hablarme un poco sobre tu infancia? ¿Dónde y cómo creciste?')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Можешь рассказать немного о своём детстве? Где и как ты рос?</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Pues, crecí en una ciudad bastante pequeña, en el norte del país. Durante mi infancia, vivíamos en un barrio tranquilo y tengo muy buenos recuerdos de esa época. Lo que más me gustaba era jugar con mis amigos en la calle después del colegio. Era una infancia sin muchas preocupaciones, lo cual creo que me hizo una persona positiva. <button class="speak-btn" onclick="speak('Pues, crecí en una ciudad bastante pequeña, en el norte del país. Durante mi infancia, vivíamos en un barrio tranquilo y tengo muy buenos recuerdos de esa época.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Ну, я вырос в небольшом городке на севере страны. В детстве мы жили в тихом районе, и у меня очень хорошие воспоминания о том времени. Больше всего мне нравилось играть с друзьями на улице после школы. Это было беззаботное детство, что сделало меня позитивным человеком.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y cómo era tu familia? ¿Eras el mayor o el menor de los hermanos? <button class="speak-btn" onclick="speak('¿Y cómo era tu familia? ¿Eras el mayor o el menor de los hermanos?')">🔊</button></div>
+        <div class="translation" style="display:none"><em>А какой была твоя семья? Ты был старшим или младшим среди братьев и сестёр?</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Soy hijo único, así que crecí sin hermanos. Aunque a veces me sentía solo, de hecho eso me hizo más independiente desde pequeño. Mi entorno familiar era muy unido: mis padres siempre me apoyaron en todo, y mis abuelos vivían cerca, lo cual era fantástico. <button class="speak-btn" onclick="speak('Soy hijo único, así que crecí sin hermanos. Aunque a veces me sentía solo, de hecho eso me hizo más independiente desde pequeño.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Я единственный ребёнок, поэтому рос без братьев и сестёр. Хотя иногда чувствовал себя одиноким, это сделало меня самостоятельным с раннего детства. Семейная обстановка была очень дружной: родители всегда поддерживали меня, а дедушки с бабушками жили рядом.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Exam.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cómo dirías que esa experiencia ha influido en tu manera de ser ahora? <button class="speak-btn" onclick="speak('¿Cómo dirías que esa experiencia ha influido en tu manera de ser ahora?')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Как бы ты сказал, что этот опыт повлиял на то, каким ты являешься сейчас?</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Creo que gracias a ese entorno familiar tan cálido, soy una persona que valora mucho las relaciones. También me volví bastante autosuficiente, ya que de pequeño tenía que organizarme sin hermanos mayores que me guiaran. En definitiva, esa etapa de mi vida formó gran parte de mi carácter actual. <button class="speak-btn" onclick="speak('Creo que gracias a ese entorno familiar tan cálido, soy una persona que valora mucho las relaciones.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Думаю, благодаря такой тёплой семейной обстановке я ценю отношения с людьми. Также стал довольно самодостаточным, потому что в детстве приходилось организовываться самому, без старших братьев-сестёр. В итоге тот период сформировал большую часть моего нынешнего характера.</em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>🎓 Tarea 1: Монолог по статистике</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="dlg-toggle" onclick="toggleAll2()">Перевод</button>
+        <button class="dlg-toggle" onclick="playDialogue2()">▶ Весь монолог</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Данные</div>
+      <div style="flex:1">
+        <div class="dlg-es" style="font-style:italic;color:var(--muted)">«Según una encuesta, el 72% de los españoles considera que las relaciones familiares son lo más importante en la vida, frente al 18% que prioriza el trabajo y el 10% que prefiere las amistades.» — Elabora tu opinión.</div>
+        <div class="translation2" style="display:none"><em>«Согласно опросу, 72% испанцев считает, что семейные отношения — самое важное в жизни, по сравнению с 18%, которые ставят на первое место работу, и 10%, предпочитающих дружбу.»</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Para empezar, me gustaría destacar que estos datos no me sorprenden en absoluto. En España, y en muchas culturas mediterráneas, la familia ocupa un lugar central en la vida de las personas. Sin embargo, hay que tener en cuenta que el concepto de familia ha evolucionado mucho en las últimas décadas. <button class="speak-btn" onclick="speak('Para empezar, me gustaría destacar que estos datos no me sorprenden en absoluto.')">🔊</button></div>
+        <div class="translation2" style="display:none"><em>Для начала хочу подчеркнуть, что эти данные меня совсем не удивляют. В Испании, как и во многих средиземноморских культурах, семья занимает центральное место в жизни людей. Однако надо учитывать, что концепция семьи сильно эволюционировала за последние десятилетия.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por otra parte, entiendo que el 18% que prioriza el trabajo también tiene razón: al fin y al cabo, el trabajo nos da identidad, independencia y la posibilidad de contribuir a la sociedad. Personalmente, creo que el equilibrio entre familia, trabajo y amistades es lo ideal. <button class="speak-btn" onclick="speak('Por otra parte, entiendo que el 18% que prioriza el trabajo también tiene razón.')">🔊</button></div>
+        <div class="translation2" style="display:none"><em>С другой стороны, понимаю, что 18%, ставящие работу на первое место, тоже правы: в конце концов, работа даёт нам идентичность, независимость и возможность вносить вклад в общество. Лично я считаю, что баланс между семьёй, работой и дружбой — это идеал.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">En conclusión, aunque los datos reflejan la importancia de la familia en España, creo que cada persona tiene sus propias prioridades, y todas ellas son válidas siempre que se mantenga el equilibrio. Lo fundamental es no descuidar ninguno de estos pilares. <button class="speak-btn" onclick="speak('En conclusión, aunque los datos reflejan la importancia de la familia en España, creo que cada persona tiene sus propias prioridades.')">🔊</button></div>
+        <div class="translation2" style="display:none"><em>В заключение: хотя данные отражают важность семьи в Испании, каждый человек имеет свои приоритеты, и все они действительны при условии сохранения баланса. Главное — не пренебрегать ни одним из этих столпов.</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. ГОВОРЕНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Говорение — Mock DELE задания</h2>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-tag">🎓 DELE B1 Mock — Tarea 1 (4 минуты)</div>
+    <h4>Задание: прокомментируй данные опроса</h4>
+    <p style="margin:10px 0;padding:12px;background:var(--bg);border-radius:6px;font-style:italic;font-size:.9rem">
+      «Un estudio reveló que el 60% de los jóvenes de 18–30 años prefiere vivir con sus padres hasta los 30 años por razones económicas, mientras que el 40% prefiere independizarse cuanto antes, aunque esto suponga un mayor esfuerzo financiero.»
+    </p>
+    <p>Habla 4 minutos: describe los datos → da tu opinión con 2 argumentos → habla sobre tu experiencia personal → concluye con una frase de resumen.</p>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Шаблон монолога — используй эту структуру</div>
+    <div class="es">«Para empezar, estos datos muestran que... En mi opinión, esto se debe a que... Personalmente, en mi caso... Sin embargo, también creo que... En definitiva, pienso que...»</div>
+    <div class="hint">Используй минимум 3 разных времени: presente, imperfecto, condicional. Запишись на видео и прослушай!</div>
+  </div>
+
+  <div class="speak-box" style="margin-top:14px">
+    <div class="speak-tag">🇪🇸 Говорение — Жизнь в Испании</div>
+    <p>Examinador спрашивает: «¿Cómo es tu relación con tu familia desde que vives en España? ¿Ha cambiado algo?»</p>
+    <div class="es">«Desde que vivo en Barcelona, mi relación con la familia ha cambiado porque... Antes, solía... Ahora, en cambio... Lo que más echo de menos es... Pero al mismo tiempo, esta experiencia me ha ayudado a...»</div>
+    <div class="hint">B1 уровень: говори развёрнуто, используй contraste (antes/ahora, aquí/allí). 3–4 минуты.</div>
+  </div>
+</div>
+
+<!-- 10. ИСПАНИЯ НА ПРАКТИКЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🇪🇸 Испания на практике: обсуждение трудового контракта</h2>
+  </div>
+
+  <p style="margin-bottom:12px;font-size:.9rem">Ты нашёл работу в Барселоне и пришёл на встречу с HR-менеджером, чтобы обсудить условия контракта. Это реальная ситуация для уровня B1+ — нужно уметь говорить о себе профессионально и задавать вопросы об условиях.</p>
+
+  <div class="phrase-list">
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Tengo experiencia en este sector desde hace tres años')">🔊</button>
+      <div>
+        <div class="ph-es">Tengo experiencia en este sector desde hace tres años.</div>
+        <div class="ph-ru">У меня есть опыт в этой сфере три года.</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Podría explicarme las condiciones del contrato?')">🔊</button>
+      <div>
+        <div class="ph-es">¿Podría explicarme las condiciones del contrato?</div>
+        <div class="ph-ru">Не могли бы вы объяснить мне условия контракта?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Me gustaría negociar el salario si es posible')">🔊</button>
+      <div>
+        <div class="ph-es">Me gustaría negociar el salario si es posible.</div>
+        <div class="ph-ru">Я хотел бы обсудить зарплату, если возможно.</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿El contrato es indefinido o temporal?')">🔊</button>
+      <div>
+        <div class="ph-es">¿El contrato es indefinido o temporal?</div>
+        <div class="ph-ru">Контракт бессрочный или временный?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('¿Hay posibilidad de teletrabajo algunos días?')">🔊</button>
+      <div>
+        <div class="ph-es">¿Hay posibilidad de teletrabajo algunos días?</div>
+        <div class="ph-ru">Есть ли возможность удалённой работы несколько дней?</div>
+      </div>
+    </div>
+    <div class="phrase-item">
+      <button class="speak-btn" onclick="speak('Estoy muy motivado para incorporarme a su equipo')">🔊</button>
+      <div>
+        <div class="ph-es">Estoy muy motivado para incorporarme a su equipo.</div>
+        <div class="ph-ru">Я очень мотивирован влиться в вашу команду.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue" style="margin-top:14px">
+    <div class="dlg-header">
+      <span>💼 Мини-диалог: встреча с HR в Барселоне</span>
+      <button class="dlg-toggle" onclick="toggleAll()">Перевод</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">HR</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. Hemos revisado su perfil y estamos interesados en ofrecerle el puesto. ¿Podría hablarnos un poco de su experiencia? <button class="speak-btn" onclick="speak('Buenos días. Hemos revisado su perfil y estamos interesados en ofrecerle el puesto.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Добрый день. Мы рассмотрели ваш профиль и хотим предложить вам эту должность. Не могли бы вы рассказать о своём опыте?</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Claro, con mucho gusto. Llevo tres años trabajando en comunicación digital. Me he especializado en gestión de redes sociales y creación de contenidos. Además, tengo experiencia trabajando con equipos internacionales. <button class="speak-btn" onclick="speak('Claro, con mucho gusto. Llevo tres años trabajando en comunicación digital.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Конечно, с удовольствием. Три года работаю в digital-коммуникациях. Специализируюсь на управлении соцсетями и создании контента. Также есть опыт работы с международными командами.</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">HR</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. Le ofrecemos un contrato indefinido con un salario de 28.000 euros brutos anuales. ¿Le parece bien? <button class="speak-btn" onclick="speak('Le ofrecemos un contrato indefinido con un salario de veintiocho mil euros brutos anuales.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Отлично. Мы предлагаем бессрочный контракт с зарплатой 28 000 евро брутто в год. Вас устраивает?</em></div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Tú</div>
+      <div style="flex:1">
+        <div class="dlg-es">Me gustaría negociar un poco ese salario si es posible. Teniendo en cuenta mi experiencia, esperaba algo alrededor de los 31.000. ¿Sería factible? <button class="speak-btn" onclick="speak('Me gustaría negociar un poco ese salario si es posible.')">🔊</button></div>
+        <div class="translation" style="display:none"><em>Хотел бы немного обсудить зарплату. С учётом моего опыта я рассчитывал примерно на 31 000. Это реально?</em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="culture-tip">
+    <strong>Важно в Испании:</strong> В испанских контрактах зарплата обычно указывается <em>bruto anual</em> (до налогов). С «nómina» удерживают IRPF (подоходный налог) и Seguridad Social (~6%). Рабочий год = 12 pagas или 14 pagas (с двумя дополнительными выплатами — летом и на Рождество). Обязательно уточняй количество pagas!
+  </div>
+</div>
+
+<!-- 11. КУЛЬТУРНАЯ ЗАМЕТКА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
     <h2>Культурная заметка</h2>
   </div>
 
   <div class="culture">
-    <div class="ctag">🌍 Cultura española</div>
-    <h4>La familia en España — больше, чем просто «семья»</h4>
-    <p>В Испании концепция «familia» гораздо шире, чем принято в Северной Европе или России. Испанцы нередко живут с родителями до 30 лет — и это не считается неудачей, а нормой (тем более, что цены на жильё в Барселоне и Мадриде запредельные). Воскресный обед «comida del domingo» — почти священный ритуал, когда вся семья собирается за столом. На DELE эта тема всплывает регулярно: экзаменаторы ценят кандидатов, которые знают культурный контекст, а не только грамматику.</p>
+    <div class="ctag">🌍 Instituto Cervantes y el DELE</div>
+    <h4>DELE — экзамен на всю жизнь</h4>
+    <p>Сертификат DELE (Diplomas de Español como Lengua Extranjera) — это официальный документ, выдаваемый Instituto Cervantes от имени Министерства образования Испании. Его уникальность в том, что сертификат бессрочный: раз сдав DELE B1, ты официально подтверждён на уровне B1 навсегда — никакого пересмотра через 2 года, как у IELTS или TOEFL. Именно поэтому DELE так ценится работодателями и иммиграционными службами. Экзамен принимается в 100+ странах. В Барселоне ближайший экзаменационный центр — школа официальных языков (EOI) или центры Instituto Cervantes. Регистрируются обычно за 2–3 месяца до даты.</p>
   </div>
 </div>
 
-<!-- SECTION 9: ANKI + HOMEWORK -->
+<!-- 12. АНКИ -->
 <div class="section">
   <div class="section-header">
-    <div class="section-num">9</div>
-    <h2>Anki и домашнее задание</h2>
+    <div class="section-num">12</div>
+    <h2>Anki-колода — личные темы B1</h2>
   </div>
 
-  <!-- .wrap -->
+  <div class="anki">
+    <div class="atag">📇 16 карточек · нажми для переворота</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:14px">Preview 5 карточек. Нажми на карточку — увидишь обратную сторону.</p>
 
-<!-- DONE BAR -->
+    <div class="anki-previews">
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">la infancia</div>
+          <div class="anki-card-back">детство<br><small>Durante mi infancia vivía en el campo.</small></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">los recuerdos</div>
+          <div class="anki-card-back">воспоминания<br><small>Tengo buenos recuerdos de esa época.</small></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">Si pudiera,<br>viviría cerca del mar</div>
+          <div class="anki-card-back">Гипотеза<br><small>si + imperfecto subj. + condicional</small></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">superarse</div>
+          <div class="anki-card-back">совершенствоваться<br><small>Intento superarme cada día.</small></div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">el equilibrio</div>
+          <div class="anki-card-back">баланс, равновесие<br><small>Busco el equilibrio entre trabajo y vida.</small></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="export-btn" onclick="exportAnkiL111()">⬇ Скачать колоду Anki (.txt)</button>
+  </div>
+</div>
+
+<!-- 13. ДОМАШНЕЕ ЗАДАНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h2>Домашнее задание</h2>
+  </div>
+
+  <div class="callout success">
+    <h4>📋 Задание на сегодня</h4>
+    <ul>
+      <li><strong>1. Запись монолога:</strong> Запишись на телефон — 4 минуты на тему «Mi infancia y cómo me ha formado como persona». Используй структуру: para empezar → además → sin embargo → en conclusión.</li>
+      <li><strong>2. Anki:</strong> Прогони все 16 карточек этого урока + повтори карточки из L110 (fillers)</li>
+      <li><strong>3. Dreaming Spanish (DS Intermediate+):</strong> Найди видео с автобиографическим нарративом — испанец рассказывает о своём детстве или семье. Смотри без субтитров, потом с испанскими субтитрами.</li>
+      <li><strong>4. Самопроверка:</strong> Прослушай свою запись монолога. Подсчитай, сколько раз использовал: diferentes tiempos verbales, conectores, vocabulario nuevo из этого урока.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 14. DONE-BAR -->
 <div class="done-bar">
   <div class="nav-links">
     <a href="L110.html" class="nav-link-btn">← L110</a>
@@ -477,6 +754,8 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
+
+</div><!-- .wrap -->
 
 <script>
 const LESSON_ID = 'L111';
@@ -495,14 +774,62 @@ function markDone(){
 const st=getState();
 if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'Tarea 1 = valoración de una encuesta. Ты смотришь на статистику и даёшь развёрнутый комментарий.',
-  q2:'los recuerdos = воспоминания. Los valores = ценности, las aficiones = увлечения.',
-  q3:'En conclusión — для выводов. Sin embargo — контраст. Aunque — уступка.',
-  q4:'Pretérito imperfecto — для habitual actions in the past: «desde pequeño me gustaba» = с детства мне нравилось.',
-  q5:'Superarse = совершенствоваться, превосходить себя. Важное слово для описания личностных качеств.',
-  q6:'Aunque = хотя, несмотря на то, что. Это уступительный союз.'
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+function playDialogue1() {
+  const lines = [
+    '¿Puedes hablarme un poco sobre tu infancia? ¿Dónde y cómo creciste?',
+    'Pues, crecí en una ciudad bastante pequeña, en el norte del país. Durante mi infancia, vivíamos en un barrio tranquilo y tengo muy buenos recuerdos de esa época.',
+    '¿Y cómo era tu familia? ¿Eras el mayor o el menor de los hermanos?',
+    'Soy hijo único, así que crecí sin hermanos. Aunque a veces me sentía solo, eso me hizo más independiente desde pequeño.',
+    '¿Cómo dirías que esa experiencia ha influido en tu manera de ser ahora?',
+    'Creo que gracias a ese entorno familiar tan cálido, soy una persona que valora mucho las relaciones.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    speak(lines[i]);
+    i++;
+    setTimeout(next, 4000);
+  }
+  next();
+}
+
+function playDialogue2() {
+  const lines = [
+    'Para empezar, me gustaría destacar que estos datos no me sorprenden en absoluto.',
+    'Por otra parte, entiendo que el dieciocho por ciento que prioriza el trabajo también tiene razón.',
+    'En conclusión, aunque los datos reflejan la importancia de la familia en España, creo que cada persona tiene sus propias prioridades.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    speak(lines[i]);
+    i++;
+    setTimeout(next, 5000);
+  }
+  next();
+}
+
+const quizExpl = {
+  wq1: 'Pues, o sea, bueno, mira — классические испанские fillers для выигрыша времени. «Ya/sí/no» — не fillers, а короткие ответы.',
+  wq2: 'Circumlocución: описываем предмет через его функцию. «Es una cosa que se usa para...» — стандартная формула.',
+  wq3: 'Reparación = самоисправление в речи. «Quiero decir» / «es decir» — маркеры исправления.',
+  q1: 'Tarea 1 = valoración de una encuesta. Ты строишь монолог-мнение по статистическим данным. Никакого перевода и письма!',
+  q2: 'los recuerdos = личные воспоминания. Las memorias = мемуары (жанр). Las aficiones = хобби. Не путай!',
+  q3: '«En conclusión» — финальный коннектор. Sin embargo — контраст. Por otra parte — добавление нового аспекта.',
+  q4: 'Pretérito imperfecto = описание habitual actions in the past. «Desde pequeño me gustaba» = с детства мне нравилось (регулярное действие).',
+  q5: 'Superarse = превосходить самого себя, совершенствоваться. Образовано от «superar» + reflexive «se».',
+  q6: 'Aunque = хотя, несмотря на то что. Это conector de concesión (уступительный).',
+  q7: 'Si + imperfecto de subjuntivo + condicional simple = гипотетическое/нереальное условие в настоящем/будущем. Классическая структура B1.'
 };
+
 let quizScore=0,quizTotal=0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
@@ -536,6 +863,7 @@ function answerQuiz(el, qId, correctKey) {
     if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
   }
 }
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -588,17 +916,63 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
+
 function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
-function updateProgress(){
-  const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
-  const pct=Math.min(100,Math.round(scrolled/total*100));
-  const sectionsRead=Math.round(pct/100*totalSections);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+
+function toggleAll() {
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
 }
-window.addEventListener('scroll',updateProgress);
+
+function toggleAll2() {
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display = 'none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display = 'none'; });
+
+const ANKI_DECK_L111 = [
+  {front:'la infancia',back:'Перевод: детство\n\nПример: Durante mi infancia vivía en el campo.\nЗаметка: 0–12 лет'},
+  {front:'crecer',back:'Перевод: расти, взрослеть\n\nПример: Crecí en una familia numerosa.\nЗаметка: глагол неправильный — crezco'},
+  {front:'los recuerdos',back:'Перевод: воспоминания (личные)\n\nПример: Tengo buenos recuerdos de esa época.\nЗаметка: НЕ «memorias» — это мемуары'},
+  {front:'el entorno familiar',back:'Перевод: семейная обстановка\n\nПример: Mi entorno familiar era muy cálido.\nЗаметка: entorno = окружение, среда'},
+  {front:'las aficiones',back:'Перевод: хобби, увлечения\n\nПример: Mis aficiones son la música y los viajes.\nЗаметка: afición a + inf = увлечение чем-то'},
+  {front:'los hábitos',back:'Перевод: привычки\n\nПример: Tengo el hábito de levantarme temprano.\nЗаметка: tener + el hábito de + infinitivo'},
+  {front:'el carácter',back:'Перевод: характер, личность\n\nПример: Soy una persona de carácter reservado.\nЗаметка: ударение на первый слог: CÁ-rac-ter'},
+  {front:'los valores',back:'Перевод: ценности\n\nПример: Los valores que más me importan son la familia.\nЗаметка: НЕ путать с los recuerdos'},
+  {front:'la etapa',back:'Перевод: этап, период жизни\n\nПример: Esa fue la etapa más difícil de mi vida.\nЗаметка: etapa vital = жизненный этап'},
+  {front:'superarse',back:'Перевод: совершенствоваться, превосходить себя\n\nПример: Siempre intento superarme cada día.\nЗаметка: reflexive: me supero, te superas...'},
+  {front:'relacionarse con',back:'Перевод: общаться с, строить отношения\n\nПример: Me cuesta relacionarme con desconocidos.\nЗаметка: costar + infinitivo = быть трудно'},
+  {front:'a partir de',back:'Перевод: начиная с (момента)\n\nПример: A partir de los 18 años viví solo.\nЗаметка: a partir de + fecha/evento'},
+  {front:'la adolescencia',back:'Перевод: подростковый возраст\n\nПример: Durante la adolescencia me interesé por la música.\nЗаметка: 13–18 лет'},
+  {front:'la convivencia',back:'Перевод: совместная жизнь\n\nПример: La convivencia con mis compañeros fue genial.\nЗаметка: convivir = жить вместе'},
+  {front:'el equilibrio',back:'Перевод: баланс, равновесие\n\nПример: Busco el equilibrio entre trabajo y familia.\nЗаметка: encontrar/mantener el equilibrio'},
+  {front:'Si pudiera, viviría cerca del mar',back:'Перевод: Если бы мог, жил бы у моря\n\nГрамматика: si + imperfecto subj. + condicional simple\nЗаметка: гипотетическое условие B1'}
+];
+
+function exportAnkiL111() {
+  const header = '#separator:Tab\n#html:true\n#deck:L111 Spanish - Personal Topics\n';
+  const tsv = ANKI_DECK_L111.map(c => c.front + '\t' + c.back.replace(/\n/g, '<br>')).join('\n');
+  const blob = new Blob(['﻿' + header + tsv], {type: 'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L111_spanish.txt';
+  a.click();
+}
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? Math.min(100, Math.round(scrolled / total * 100)) : 0;
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>
