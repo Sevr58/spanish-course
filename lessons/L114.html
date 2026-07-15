@@ -28,565 +28,1141 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .section-header h2{font-size:1.15rem;font-weight:700}
 .section-num{width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
-.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
-.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
-.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
-.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
-.callout.dele{background:rgba(157,78,221,.1);border-color:var(--purple)}
-.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
-.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
-.speak-box{background:var(--bg3);border:1px solid rgba(157,78,221,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
-.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
-.speak-box p{font-size:.9rem}
-.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
-.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
-.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
-.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
-.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
-.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
-.quiz-q .q-text strong{color:var(--gold)}
-.options{display:flex;flex-wrap:wrap;gap:6px}
-.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
-.opt:hover{border-color:var(--muted)}
-
-
-.feedback{margin-top:8px;font-size:.82rem;display:none}
-.feedback.show{display:block}
-.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
-.text-ex{margin-bottom:14px}
-.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
-.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
-.text-input:focus{border-color:var(--purple)}
-.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
-.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
-.check-btn{background:var(--purple);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
-.check-btn:hover{opacity:.88}
-.show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
-.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
-.answer-reveal.show{display:block}
-.dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
-.dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
-.dlg-speaker.b{color:var(--purple)}
-.dlg-es{font-size:.95rem;font-weight:500}
-.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
-.dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
-.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
-.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
-.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
-.culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
-.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
-.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
-.done-btn:hover{opacity:.88}
-.done-btn.marked{background:var(--muted)}
-.nav-links{display:flex;gap:10px}
-.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
-.nav-link-btn:hover{border-color:var(--muted)}
-.vocab-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.vocab-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
-.vocab-table tr:last-child td{border-bottom:none}
-.vocab-table .es-word{color:var(--gold);font-weight:600}
-.debate-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px;margin:14px 0}
-.debate-box .side{margin-bottom:12px}
-.debate-box .side-tag{font-size:.75rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:6px;display:inline-block}
-.side-tag.pro{background:rgba(45,198,83,.2);color:var(--green)}
-.side-tag.con{background:rgba(230,57,70,.15);color:var(--red)}
-.debate-box ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:16px}
+.theory-block{margin-bottom:24px}
+.theory-block h3{font-size:1rem;font-weight:700;margin-bottom:10px;color:var(--blue)}
+.example-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.example-list li{background:var(--bg3);border-left:3px solid var(--purple);padding:8px 12px;border-radius:0 8px 8px 0;font-size:.9rem}
+.example-list li em{color:var(--muted);font-style:normal;display:block;font-size:.82rem}
+.callout{border-radius:var(--r);padding:12px 16px;margin:12px 0;font-size:.88rem}
+.callout.tip{background:#f0fdf4;border:1px solid #86efac;color:#166534}
+.callout.warn{background:#fff7ed;border:1px solid #fdba74;color:#9a3412}
+.callout.info{background:#eff6ff;border:1px solid #93c5fd;color:#1e40af}
+.callout strong{display:block;margin-bottom:4px}
+table.err-table{width:100%;border-collapse:collapse;font-size:.88rem;margin:12px 0}
+.err-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-weight:600;border-bottom:2px solid var(--border)}
+.err-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.err-table tr:last-child td{border-bottom:none}
+.err-table .wrong{color:var(--red)}.err-table .right{color:var(--green)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.vocab-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.vocab-item .word{font-weight:700;font-size:.95rem;flex:1}
+.vocab-item .tr{color:var(--muted);font-size:.82rem;display:block}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.quiz-q{margin-bottom:18px}
+.quiz-q .q-text{font-weight:600;margin-bottom:10px;font-size:.95rem}
+.opt{display:block;width:100%;text-align:left;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 14px;margin-bottom:6px;cursor:pointer;font-size:.9rem;transition:.15s}
+.opt:hover{background:var(--bg2);border-color:var(--purple)}
+.opt.correct{background:#f0fdf4;border-color:var(--green);color:#166534;font-weight:600}
+.opt.wrong{background:#fff1f2;border-color:var(--red);color:#9f1239}
+.opt.picked.wrong{font-weight:600}
+.quiz-feedback{margin-top:8px;font-size:.85rem;padding:8px 12px;border-radius:8px;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#f0fdf4;color:#166534}
+.quiz-feedback.bad{background:#fff1f2;color:#9f1239}
+.fill-q{margin-bottom:18px}
+.fill-q .q-text{font-size:.9rem;margin-bottom:6px}
+.fill-q input{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:.9rem;background:var(--bg3);color:var(--text);margin-bottom:6px}
+.fill-q input:focus{outline:none;border-color:var(--purple)}
+.fill-q button{background:var(--purple);color:#fff;border:none;border-radius:8px;padding:7px 18px;cursor:pointer;font-size:.85rem}
+.fill-feedback{font-size:.85rem;margin-top:5px;min-height:20px}
+.dlg-bubble{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
+.dlg-bubble.right{flex-direction:row-reverse}
+.dlg-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--bg3);border:2px solid var(--border)}
+.dlg-content{flex:1}
+.dlg-speaker{font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:3px}
+.dlg-speaker.a{color:var(--blue)}.dlg-speaker.b{color:var(--purple)}.dlg-speaker.c{color:var(--green)}
+.dlg-text{background:var(--bg3);border-radius:0 10px 10px 10px;padding:10px 14px;font-size:.9rem}
+.dlg-bubble.right .dlg-text{border-radius:10px 0 10px 10px;background:var(--bg2)}
+.dlg-actions{display:flex;gap:6px;margin-top:6px}
+.translation{display:none;font-size:.8rem;color:var(--muted);font-style:italic;margin-top:4px;padding:4px 8px;background:var(--bg2);border-radius:6px}
+.translation2{display:none;font-size:.8rem;color:var(--muted);font-style:italic;margin-top:4px;padding:4px 8px;background:var(--bg2);border-radius:6px}
+.translation3{display:none;font-size:.8rem;color:var(--muted);font-style:italic;margin-top:4px;padding:4px 8px;background:var(--bg2);border-radius:6px}
+.btn-sm{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:.78rem;cursor:pointer;transition:.15s}
+.btn-sm:hover{background:var(--bg3)}
+.dlg-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.speak-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;margin-bottom:12px}
+.speak-box h4{font-weight:700;margin-bottom:8px;font-size:.95rem}
+.speak-box .task{font-size:.9rem;color:var(--muted);margin-bottom:10px}
+.speak-box .hints{list-style:none;display:flex;flex-direction:column;gap:4px}
+.speak-box .hints li{font-size:.85rem;padding-left:12px;position:relative}
+.speak-box .hints li::before{content:"→";position:absolute;left:0;color:var(--purple)}
+.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.phrase-item{background:var(--bg3);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;font-size:.9rem}
+.phrase-item .es{font-weight:600;flex:1}
+.phrase-item .ru{color:var(--muted);font-size:.82rem}
+.culture-tip{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;font-size:.88rem;color:#92400e;margin-top:12px}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block;margin:8px}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;z-index:100}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:9px 22px;font-size:.9rem;font-weight:600;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.9}.done-btn.marked{background:var(--muted);cursor:default}
+.done-nav{display:flex;gap:12px}
+.done-nav a{color:var(--muted);font-size:.85rem;text-decoration:none;padding:6px 14px;border:1px solid var(--border);border-radius:8px}
+.done-nav a:hover{background:var(--bg3)}
+.hw-item{background:var(--bg3);border-radius:8px;padding:12px 16px;margin-bottom:10px;font-size:.9rem}
+.hw-item strong{display:block;margin-bottom:4px}
+.dele-task{background:var(--bg2);border:2px solid var(--purple);border-radius:var(--r);padding:16px 20px;margin:12px 0}
+.dele-task .task-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.dele-task .task-body{font-size:.92rem}
+.expr-block{margin-bottom:18px}
+.expr-block h4{font-size:.9rem;font-weight:700;color:var(--blue);margin-bottom:8px}
+.expr-item{background:var(--bg3);border-left:3px solid var(--gold);padding:8px 12px;border-radius:0 8px 8px 0;margin-bottom:6px;font-size:.88rem}
+.authentic-text{background:#f8f7ff;border:1px solid #c4b5fd;border-radius:var(--r);padding:16px 20px;font-family:'Georgia',serif;font-size:.92rem;line-height:1.8;color:#1a1d24;margin:12px 0}
+.auth-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:8px}
+</style>
 </head>
 <body>
-<div class="wrap">
-
-<!-- NAV -->
-<div class="nav">
-  <a href="../index.html">← Дашборд</a>
-  <span class="level">B1 · DELE Prep · День 246</span>
-  <a href="L115.html">L115 →</a>
+<!-- PROGRESS BAR -->
+<div style="position:fixed;top:0;left:0;right:0;height:3px;z-index:200;background:var(--bg3)">
+  <div id="scroll-bar" style="height:100%;background:var(--purple);width:0%;transition:width .1s"></div>
 </div>
 
-<!-- HERO -->
+<div class="wrap">
+
+<!-- 1. НАВИГАЦИЯ -->
+<nav class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">B1 · Фаза 4 · День 246</span>
+  <a href="L115.html">L115 →</a>
+</nav>
+
+<!-- 2. HERO-БЛОК -->
 <div class="hero">
-  <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
-  <h1>DELE B1: Говорение — <span class="hl">социальные темы</span></h1>
-  <p class="sub">Medio ambiente, tecnología, trabajo — обсуждать проблемы с аргументами «за» и «против»</p>
+  <div class="phase-tag">Фаза 4 — DELE B1 · Блок B4B</div>
+  <h1>DELE B1: Говорение —<br><span class="hl">Социальные темы</span></h1>
+  <p class="sub">Medio ambiente, trabajo, tecnología — обсуждение актуальных социальных проблем</p>
+  <div class="progress-bar"><div class="progress-fill" style="width:94%"></div></div>
+  <div class="progress-label">Урок 114 из 121</div>
   <div class="objectives">
-    <div class="obj"><div class="ico">🌍</div><div><strong>Темы</strong><p>Экология, технологии, неравенство</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут + Anki</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Документалки о среде и технологиях</p></div></div>
-    <div class="obj"><div class="ico">🗣</div><div><strong>Mock</strong><p>Дебаты: аргументы за и против соц. проблемы</p></div></div>
+    <div class="obj"><span class="ico">🌍</span><div><strong>Аргументация</strong><p>«за» и «против» по социальным вопросам</p></div></div>
+    <div class="obj"><span class="ico">📊</span><div><strong>Факты и данные</strong><p>ссылаться на статистику и примеры</p></div></div>
+    <div class="obj"><span class="ico">🎤</span><div><strong>DELE Tarea 3</strong><p>2–3-минутный монолог на социальную тему</p></div></div>
+    <div class="obj"><span class="ico">🤝</span><div><strong>Дискуссия</strong><p>соглашаться, не соглашаться, задавать вопросы</p></div></div>
   </div>
 </div>
 
-<div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
-
-<!-- SECTION 1: THEORY -->
+<!-- 3. ПОВТОРЕНИЕ ПРЕДЫДУЩЕГО УРОКА -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Аргументация по социальным темам</h2>
+    <h2>Повторение — L113: Путешествия и туризм</h2>
   </div>
+  <div class="card">
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:16px">Быстрая проверка перед новым материалом:</p>
 
-  <p style="margin-bottom:14px">Социальные темы — самые частые в DELE B1. Тебе нужно не просто иметь мнение, но и <strong>аргументировать с обеих сторон</strong>, демонстрируя критическое мышление на испанском.</p>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Как по-испански «рекомендую попробовать местную еду»?</div>
+      <button class="opt" onclick="answerQuiz(this,'w1','a')">Te recomiendo que pruebes la comida local</button>
+      <button class="opt" onclick="answerQuiz(this,'w1','b')">Te recomiendo a probar la comida local</button>
+      <button class="opt" onclick="answerQuiz(this,'w1','c')">Te recomiendo prueba la comida local</button>
+      <div class="quiz-feedback" id="fb-w1"></div>
+    </div>
 
-  <div class="callout dele">
-    <h4>📋 Формула аргументации DELE B1</h4>
-    <ul>
-      <li><strong>Tesis:</strong> En mi opinión / Desde mi punto de vista / Creo que...</li>
-      <li><strong>Argumento a favor:</strong> Por un lado... / En primer lugar... / Es cierto que...</li>
-      <li><strong>Argumento en contra:</strong> Por otro lado... / Sin embargo... / No obstante...</li>
-      <li><strong>Ejemplo:</strong> Por ejemplo... / Como muestra... / Un caso concreto es...</li>
-      <li><strong>Conclusión:</strong> En definitiva... / En resumen... / Teniendo en cuenta todo esto...</li>
-    </ul>
-  </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «El viaje fue increíble» — какое время используется?</div>
+      <button class="opt" onclick="answerQuiz(this,'w2','a')">Pretérito indefinido (завершённое прошлое)</button>
+      <button class="opt" onclick="answerQuiz(this,'w2','b')">Pretérito imperfecto (описание прошлого)</button>
+      <button class="opt" onclick="answerQuiz(this,'w2','c')">Presente de indicativo (настоящее)</button>
+      <div class="quiz-feedback" id="fb-w2"></div>
+    </div>
 
-  <div class="callout tip">
-    <h4>💡 Выражение мнения — разные уровни формальности</h4>
-    <ul>
-      <li><strong>Нейтрально:</strong> Creo que... / Pienso que... / Me parece que...</li>
-      <li><strong>Уверенно:</strong> Estoy convencido/a de que... / Es evidente que...</li>
-      <li><strong>Осторожно:</strong> Podría decirse que... / Hasta cierto punto... / En cierta medida...</li>
-      <li><strong>Соглашение/несогласие:</strong> Estoy de acuerdo con... / No comparto la opinión de que...</li>
-    </ul>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Как выразить удивление от путешествия?</div>
+      <button class="opt" onclick="answerQuiz(this,'w3','a')">¡No me lo podía creer! / Me sorprendió que...</button>
+      <button class="opt" onclick="answerQuiz(this,'w3','b')">El viaje es muy bien</button>
+      <button class="opt" onclick="answerQuiz(this,'w3','c')">Fui con sorpresa</button>
+      <div class="quiz-feedback" id="fb-w3"></div>
+    </div>
+
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. «El turismo masivo daña el medio ambiente» — что означает «daña»?</div>
+      <button class="opt" onclick="answerQuiz(this,'w4','a')">Наносит вред, портит</button>
+      <button class="opt" onclick="answerQuiz(this,'w4','b')">Помогает, поддерживает</button>
+      <button class="opt" onclick="answerQuiz(this,'w4','c')">Улучшает, развивает</button>
+      <div class="quiz-feedback" id="fb-w4"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 2: VOCABULARY -->
+<!-- 4. ТЕОРИЯ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — социальные темы B1</h2>
+    <h2>Теория: Говорение о социальных темах на B1</h2>
   </div>
 
-  <table class="vocab-table">
-    <thead>
-      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Пример</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="es-word">el medioambiente</td><td>[медьоамбьентэ]</td><td>окружающая среда</td><td>El medioambiente está en peligro.</td></tr>
-      <tr><td class="es-word">el cambio climático</td><td>[камбьо]</td><td>изменение климата</td><td>El cambio climático afecta a todos.</td></tr>
-      <tr><td class="es-word">la desigualdad</td><td>[дэсигуальдад]</td><td>неравенство</td><td>La desigualdad social es un problema grave.</td></tr>
-      <tr><td class="es-word">la inteligencia artificial</td><td>[интэлихэнсья]</td><td>искусственный интеллект</td><td>La inteligencia artificial cambiará el empleo.</td></tr>
-      <tr><td class="es-word">el desempleo</td><td>[дэсэмплэо]</td><td>безработица</td><td>El desempleo juvenil es muy alto en España.</td></tr>
-      <tr><td class="es-word">la sostenibilidad</td><td>[состэнибилидад]</td><td>устойчивое развитие</td><td>La sostenibilidad es clave para el futuro.</td></tr>
-      <tr><td class="es-word">concienciar</td><td>[консьенсьяр]</td><td>повышать осознанность</td><td>Hay que concienciar a la gente sobre el reciclaje.</td></tr>
-      <tr><td class="es-word">el impacto</td><td>[импакто]</td><td>влияние, воздействие</td><td>El impacto de las redes sociales es enorme.</td></tr>
-      <tr><td class="es-word">la brecha digital</td><td>[брэча дихиталь]</td><td>цифровой разрыв</td><td>La brecha digital afecta a los mayores.</td></tr>
-      <tr><td class="es-word">fomentar</td><td>[фомэнтар]</td><td>содействовать, поощрять</td><td>Hay que fomentar el uso de energías renovables.</td></tr>
-      <tr><td class="es-word">el bienestar</td><td>[бьенэстар]</td><td>благополучие</td><td>El bienestar social depende de muchos factores.</td></tr>
-      <tr><td class="es-word">abordar</td><td>[абордар]</td><td>рассматривать, подходить к</td><td>Es necesario abordar estos problemas urgentemente.</td></tr>
-    </tbody>
-  </table>
+  <div class="card">
+    <div class="theory-block">
+      <h3>§1. Структура монолога на социальную тему (DELE Tarea 3)</h3>
+      <p style="font-size:.9rem;margin-bottom:10px">На экзамене DELE B1 вам дают карточку с социальной темой и 15 минут на подготовку. Монолог длится 2–3 минуты. Идеальная структура:</p>
+      <div class="callout info">
+        <strong>Формула «5П»:</strong>
+        1. <b>Проблема</b> — Hoy quiero hablar sobre el problema de... / El tema que me han propuesto es...<br>
+        2. <b>Пример</b> — Por ejemplo, en España... / Según los datos...<br>
+        3. <b>Плюсы</b> — Por un lado, hay que destacar que... / Una ventaja es que...<br>
+        4. <b>Противоречие</b> — Sin embargo, también es cierto que... / Por otro lado...<br>
+        5. <b>Позиция</b> — En mi opinión... / Creo que la solución sería...
+      </div>
+      <ul class="example-list">
+        <li>El tema que me han propuesto es el cambio climático.
+          <em>Тема, которую мне предложили — изменение климата.</em></li>
+        <li>Por un lado, las energías renovables crean puestos de trabajo.
+          <em>С одной стороны, возобновляемые источники энергии создают рабочие места.</em></li>
+        <li>Por otro lado, la transición energética tiene un coste elevado.
+          <em>С другой стороны, энергетический переход имеет высокую стоимость.</em></li>
+        <li>Sin embargo, creo que a largo plazo es la mejor opción.
+          <em>Тем не менее, я считаю, что в долгосрочной перспективе — это лучший вариант.</em></li>
+        <li>Según los expertos, si no actuamos ahora, las consecuencias serán graves.
+          <em>По мнению экспертов, если мы не действуем сейчас, последствия будут серьёзными.</em></li>
+        <li>En conclusión, es necesario que todos tomemos medidas.
+          <em>В заключение, необходимо, чтобы все мы принимали меры.</em></li>
+        <li>Lo que más me preocupa es la desigualdad social.
+          <em>Больше всего меня беспокоит социальное неравенство.</em></li>
+      </ul>
+    </div>
+
+    <div class="theory-block">
+      <h3>§2. Выражение мнения — от простого к сложному</h3>
+      <p style="font-size:.9rem;margin-bottom:10px">В русском и английском мнение выражается просто: «Я думаю» / «I think». В испанском B1 ожидают разнообразия структур:</p>
+      <div class="callout tip">
+        <strong>После «creer/pensar/opinar» используй indicativo, после «dudar/esperar» — subjuntivo</strong>
+        Creo que <b>es</b> importante (indicativo) — Espero que <b>sea</b> posible (subjuntivo)
+      </div>
+      <ul class="example-list">
+        <li>Creo que el desempleo juvenil es uno de los mayores problemas actuales.
+          <em>Я считаю, что безработица среди молодёжи — одна из главных проблем.</em></li>
+        <li>En mi opinión, la educación pública debería recibir más financiación.
+          <em>По моему мнению, государственное образование должно получать больше финансирования.</em></li>
+        <li>Desde mi punto de vista, la tecnología tiene más ventajas que desventajas.
+          <em>С моей точки зрения, у технологий больше преимуществ, чем недостатков.</em></li>
+        <li>Me parece que la gente no es consciente del impacto ambiental.
+          <em>Мне кажется, что люди не осознают влияние на окружающую среду.</em></li>
+        <li>Estoy convencido/a de que necesitamos cambios urgentes.
+          <em>Я убеждён/а, что нам нужны срочные изменения.</em></li>
+        <li>No estoy de acuerdo con quienes dicen que la inmigración es un problema.
+          <em>Я не согласен/на с теми, кто говорит, что иммиграция — проблема.</em></li>
+        <li>Hay que reconocer que la situación ha mejorado en los últimos años.
+          <em>Нужно признать, что ситуация улучшилась в последние годы.</em></li>
+      </ul>
+    </div>
+
+    <div class="theory-block">
+      <h3>§3. Ссылка на данные и примеры</h3>
+      <p style="font-size:.9rem;margin-bottom:10px">Ключевое отличие B1 от A2 — умение подкреплять слова фактами и структурировать речь:</p>
+      <ul class="example-list">
+        <li>Según los datos del INE, el desempleo en España supera el 12%.
+          <em>По данным НСИ, безработица в Испании превышает 12%.</em></li>
+        <li>Un ejemplo claro es lo que pasó durante la pandemia.
+          <em>Наглядный пример — то, что произошло во время пандемии.</em></li>
+        <li>Como podemos ver en países como Suecia, la conciliación laboral funciona.
+          <em>Как мы видим в таких странах, как Швеция, баланс работы и жизни работает.</em></li>
+        <li>Los estudios demuestran que las energías renovables son cada vez más baratas.
+          <em>Исследования показывают, что возобновляемые источники энергии становятся всё дешевле.</em></li>
+        <li>Es un hecho que el calentamiento global afecta a todos los países.
+          <em>Это факт, что глобальное потепление затрагивает все страны.</em></li>
+        <li>El caso de Barcelona muestra cómo una ciudad puede ser más sostenible.
+          <em>Пример Барселоны показывает, как город может стать более устойчивым.</em></li>
+        <li>Hay estudios que indican que la brecha digital afecta más a personas mayores.
+          <em>Есть исследования, указывающие, что цифровое неравенство больше затрагивает пожилых людей.</em></li>
+      </ul>
+    </div>
+
+    <div class="theory-block">
+      <h3>Типичные ошибки русскоговорящих при обсуждении социальных тем</h3>
+      <table class="err-table">
+        <thead><tr><th>Ошибка (калька с русского)</th><th>Правильно</th><th>Почему</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="wrong">Yo pienso que hay muchos problemas <strong>sociales en el mundo de hoy</strong></td>
+            <td class="right">Actualmente, existen numerosos problemas sociales</td>
+            <td>«мире сегодня» — буквальный перевод; в испанском «actualmente» / «hoy en día»</td>
+          </tr>
+          <tr>
+            <td class="wrong">Es un <strong>grande</strong> problema</td>
+            <td class="right">Es un <strong>gran</strong> problema</td>
+            <td>Grande → gran перед существительным мужского рода</td>
+          </tr>
+          <tr>
+            <td class="wrong">Yo <strong>soy convencida</strong> de que...</td>
+            <td class="right">Estoy convencida de que...</td>
+            <td>Убеждение — состояние → estar, не ser</td>
+          </tr>
+          <tr>
+            <td class="wrong">Por <strong>mi</strong> opinión</td>
+            <td class="right">En mi opinión</td>
+            <td>Устойчивый оборот: EN mi opinión, не «por»</td>
+          </tr>
+          <tr>
+            <td class="wrong">La tecnología <strong>tiene</strong> muchas <strong>problemas</strong></td>
+            <td class="right">La tecnología <strong>tiene</strong> muchos <strong>problemas</strong></td>
+            <td>Problema — существительное мужского рода: el problema, muchos problemas</td>
+          </tr>
+          <tr>
+            <td class="wrong">Sin embargo, <strong>por</strong> otro lado...</td>
+            <td class="right">Sin embargo... <b>Por</b> otro lado... (не одновременно)</td>
+            <td>«Sin embargo» и «por otro lado» — одинаковые коннекторы, не удваивай</td>
+          </tr>
+          <tr>
+            <td class="wrong">Yo <strong>acuerdo</strong> contigo</td>
+            <td class="right">Estoy de acuerdo contigo</td>
+            <td>Согласие: estar de acuerdo (глагол estar + предлог de + существительное)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
-<!-- SECTION 3: DEBATE PREP -->
+<!-- 5. СЛОВАРЬ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Подготовка к дебатам — три горячие темы</h2>
+    <h2>Словарь — Социальные темы</h2>
   </div>
-
-  <div class="debate-box">
-    <h4 style="margin-bottom:10px;color:var(--gold)">Тема 1: ¿Es la inteligencia artificial una amenaza para el empleo?</h4>
-    <div class="side">
-      <span class="side-tag pro">Аргументы ЗА (угроза)</span>
-      <ul>
-        <li>Muchos trabajos repetitivos serán automatizados</li>
-        <li>Las empresas reducirán costes despidiendo trabajadores</li>
-        <li>La transición será difícil para personas mayores</li>
-      </ul>
-    </div>
-    <div class="side">
-      <span class="side-tag con">Аргументы ПРОТИВ (не угроза)</span>
-      <ul>
-        <li>La IA crea nuevos tipos de empleos</li>
-        <li>La historia demuestra que la tecnología genera más trabajo</li>
-        <li>La IA libera a los humanos para trabajo creativo</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="debate-box">
-    <h4 style="margin-bottom:10px;color:var(--gold)">Тема 2: ¿Son las redes sociales beneficiosas para la sociedad?</h4>
-    <div class="side">
-      <span class="side-tag pro">Аргументы ЗА (полезны)</span>
-      <ul>
-        <li>Permiten conectar con personas de todo el mundo</li>
-        <li>Son una herramienta de información y activismo</li>
-        <li>Ayudan a negocios pequeños a crecer</li>
-      </ul>
-    </div>
-    <div class="side">
-      <span class="side-tag con">Аргументы ПРОТИВ (вредны)</span>
-      <ul>
-        <li>Generan adicción y ansiedad, especialmente en jóvenes</li>
-        <li>Difunden desinformación y noticias falsas</li>
-        <li>Reducen las relaciones personales auténticas</li>
-      </ul>
+  <div class="card">
+    <div class="vocab-grid">
+      <div class="vocab-item"><span class="word">el medio ambiente<span class="tr">окружающая среда</span></span><button class="speak-btn" onclick="speak('el medio ambiente')">🔊</button></div>
+      <div class="vocab-item"><span class="word">el cambio climático<span class="tr">изменение климата</span></span><button class="speak-btn" onclick="speak('el cambio climático')">🔊</button></div>
+      <div class="vocab-item"><span class="word">la desigualdad social<span class="tr">социальное неравенство</span></span><button class="speak-btn" onclick="speak('la desigualdad social')">🔊</button></div>
+      <div class="vocab-item"><span class="word">el desempleo<span class="tr">безработица</span></span><button class="speak-btn" onclick="speak('el desempleo')">🔊</button></div>
+      <div class="vocab-item"><span class="word">el sistema sanitario<span class="tr">система здравоохранения</span></span><button class="speak-btn" onclick="speak('el sistema sanitario')">🔊</button></div>
+      <div class="vocab-item"><span class="word">la inmigración<span class="tr">иммиграция</span></span><button class="speak-btn" onclick="speak('la inmigración')">🔊</button></div>
+      <div class="vocab-item"><span class="word">la integración<span class="tr">интеграция</span></span><button class="speak-btn" onclick="speak('la integración')">🔊</button></div>
+      <div class="vocab-item"><span class="word">la brecha digital<span class="tr">цифровое неравенство</span></span><button class="speak-btn" onclick="speak('la brecha digital')">🔊</button></div>
+      <div class="vocab-item"><span class="word">la energía renovable<span class="tr">возобновляемая энергия</span></span><button class="speak-btn" onclick="speak('la energía renovable')">🔊</button></div>
+      <div class="vocab-item"><span class="word">sostenible<span class="tr">устойчивый, экологичный</span></span><button class="speak-btn" onclick="speak('sostenible')">🔊</button></div>
+      <div class="vocab-item"><span class="word">la conciliación laboral<span class="tr">баланс работы и жизни</span></span><button class="speak-btn" onclick="speak('la conciliación laboral')">🔊</button></div>
+      <div class="vocab-item"><span class="word">el envejecimiento<span class="tr">старение (населения)</span></span><button class="speak-btn" onclick="speak('el envejecimiento')">🔊</button></div>
+      <div class="vocab-item"><span class="word">la pobreza<span class="tr">бедность</span></span><button class="speak-btn" onclick="speak('la pobreza')">🔊</button></div>
+      <div class="vocab-item"><span class="word">los derechos humanos<span class="tr">права человека</span></span><button class="speak-btn" onclick="speak('los derechos humanos')">🔊</button></div>
+      <div class="vocab-item"><span class="word">el reciclaje<span class="tr">переработка отходов</span></span><button class="speak-btn" onclick="speak('el reciclaje')">🔊</button></div>
+      <div class="vocab-item"><span class="word">la contaminación<span class="tr">загрязнение</span></span><button class="speak-btn" onclick="speak('la contaminación')">🔊</button></div>
+      <div class="vocab-item"><span class="word">la educación pública<span class="tr">государственное образование</span></span><button class="speak-btn" onclick="speak('la educación pública')">🔊</button></div>
+      <div class="vocab-item"><span class="word">actuar / tomar medidas<span class="tr">действовать / принять меры</span></span><button class="speak-btn" onclick="speak('tomar medidas')">🔊</button></div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 4: QUIZ 1 -->
+<!-- 6. ТЕСТ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Тест 1 — Социальные темы</h2>
+    <h2>Тест 1 — Знание лексики и структур</h2>
   </div>
-
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Лексика и аргументация</h3>
+  <div class="card">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Выбери правильный вариант:</p>
 
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. «El cambio climático» — это:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Изменение климата</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Смена правительства</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Изменение привычек</div>
-      </div>
-      <div class="feedback" id="fb-q1"></div>
+      <div class="q-text">1. Как правильно выразить мнение?</div>
+      <button class="opt" onclick="answerQuiz(this,'q1','a')">En mi opinión, el reciclaje es fundamental</button>
+      <button class="opt" onclick="answerQuiz(this,'q1','b')">Por mi opinión, el reciclaje es fundamental</button>
+      <button class="opt" onclick="answerQuiz(this,'q1','c')">De mi opinión, el reciclaje es fundamental</button>
+      <div class="quiz-feedback" id="fb-q1"></div>
     </div>
 
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. Как добавить аргумент в пользу? «_____, la tecnología crea nuevos empleos.»</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Sin embargo</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">No obstante</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Por otro lado</div>
-      </div>
-      <div class="feedback" id="fb-q2"></div>
+      <div class="q-text">2. «La desigualdad social _____ muchas personas.»</div>
+      <button class="opt" onclick="answerQuiz(this,'q2','a')">afecta a</button>
+      <button class="opt" onclick="answerQuiz(this,'q2','b')">afecta</button>
+      <button class="opt" onclick="answerQuiz(this,'q2','c')">afecta de</button>
+      <div class="quiz-feedback" id="fb-q2"></div>
     </div>
 
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. «La brecha digital» означает:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Цифровой разрыв между теми, кто имеет/не имеет доступ к технологиям</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Цифровая реклама</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Цифровой паспорт</div>
-      </div>
-      <div class="feedback" id="fb-q3"></div>
+      <div class="q-text">3. Что из этого — противопоставление?</div>
+      <button class="opt" onclick="answerQuiz(this,'q3','a')">Sin embargo, también hay aspectos positivos</button>
+      <button class="opt" onclick="answerQuiz(this,'q3','b')">Además, es importante destacar que...</button>
+      <button class="opt" onclick="answerQuiz(this,'q3','c')">Asimismo, los datos confirman que...</button>
+      <div class="quiz-feedback" id="fb-q3"></div>
     </div>
 
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Estoy convencido/a de que» — это выражение:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Осторожного мнения</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Несогласия</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Уверенного мнения</div>
-      </div>
-      <div class="feedback" id="fb-q4"></div>
+      <div class="q-text">4. «Espero que el gobierno _____ medidas urgentes.»</div>
+      <button class="opt" onclick="answerQuiz(this,'q4','a')">tome (subjuntivo)</button>
+      <button class="opt" onclick="answerQuiz(this,'q4','b')">toma (indicativo)</button>
+      <button class="opt" onclick="answerQuiz(this,'q4','c')">tomará (futuro)</button>
+      <div class="quiz-feedback" id="fb-q4"></div>
     </div>
 
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. Как закончить аргументацию с выводом?</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">En definitiva, creo que los beneficios superan los riesgos.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">En primer lugar, hay muchos problemas.</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Por ejemplo, en mi ciudad...</div>
-      </div>
-      <div class="feedback" id="fb-q5"></div>
+      <div class="q-text">5. Как сказать «цифровое неравенство»?</div>
+      <button class="opt" onclick="answerQuiz(this,'q5','a')">la brecha digital</button>
+      <button class="opt" onclick="answerQuiz(this,'q5','b')">el problema digital</button>
+      <button class="opt" onclick="answerQuiz(this,'q5','c')">la diferencia de internet</button>
+      <div class="quiz-feedback" id="fb-q5"></div>
     </div>
 
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. «Fomentar» означает:</div>
-      <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Запрещать</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Обсуждать</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Содействовать, поощрять</div>
-      </div>
-      <div class="feedback" id="fb-q6"></div>
+      <div class="q-text">6. «Estoy de acuerdo _____ que necesitamos más inversión en educación.»</div>
+      <button class="opt" onclick="answerQuiz(this,'q6','a')">en que</button>
+      <button class="opt" onclick="answerQuiz(this,'q6','b')">con que</button>
+      <button class="opt" onclick="answerQuiz(this,'q6','c')">que</button>
+      <div class="quiz-feedback" id="fb-q6"></div>
+    </div>
+
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Как ввести пример в монологе?</div>
+      <button class="opt" onclick="answerQuiz(this,'q7','a')">Un ejemplo claro es lo que ocurrió en...</button>
+      <button class="opt" onclick="answerQuiz(this,'q7','b')">Un ejemplo es que pienso...</button>
+      <button class="opt" onclick="answerQuiz(this,'q7','c')">Ejemplo: hay un problema</button>
+      <div class="quiz-feedback" id="fb-q7"></div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 5: QUIZ 2 -->
+<!-- 7. ТЕСТ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Тест 2 — Заполни пропуски</h2>
+    <h2>Тест 2 — Заполни пропуск</h2>
   </div>
+  <div class="card">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Введите ответ в нижнем регистре. Диакритика необязательна.</p>
 
-  <div class="quiz">
-    <h3>✏️ Лексика социальных тем</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">1. «Es necesario _____ (рассматривать) el problema del desempleo con urgencia.»</div>
-      <input type="text" class="text-input" placeholder="abordar / solucionar..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','abordar','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ abordar — подходить к теме, рассматривать проблему. Формальное слово для дискуссий.</div>
+    <div class="fill-q">
+      <div class="q-text">1. «С одной стороны...» — <em>___ un lado...</em></div>
+      <input id="t1" type="text" placeholder="введите слово">
+      <button onclick="checkText('t1','por','fb-t1')">Проверить</button>
+      <div class="fill-feedback" id="fb-t1"></div>
     </div>
 
-    <div class="text-ex">
-      <div class="tex-q">2. «El _____ _____ (изменение климата) es el mayor desafío del siglo XXI.»</div>
-      <input type="text" class="text-input" placeholder="cambio climático..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','cambio climático','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ cambio climático — изменение климата. Ключевое понятие экологической тематики.</div>
+    <div class="fill-q">
+      <div class="q-text">2. «Устойчивое развитие» — <em>el desarrollo ___</em></div>
+      <input id="t2" type="text" placeholder="введите слово">
+      <button onclick="checkText('t2','sostenible','fb-t2')">Проверить</button>
+      <div class="fill-feedback" id="fb-t2"></div>
     </div>
 
-    <div class="text-ex">
-      <div class="tex-q">3. «_____ (уверен), la educación es la clave del progreso.» (Estoy...)</div>
-      <input type="text" class="text-input" placeholder="Estoy convencido de que..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','estoy convencido','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ Estoy convencido (de que) — я убеждён в том, что. Сильное выражение мнения.</div>
+    <div class="fill-q">
+      <div class="q-text">3. «По данным исследований...» — <em>___ los estudios...</em></div>
+      <input id="t3" type="text" placeholder="введите слово">
+      <button onclick="checkText('t3','según','fb-t3')">Проверить</button>
+      <div class="fill-feedback" id="fb-t3"></div>
     </div>
 
-    <div class="text-ex">
-      <div class="tex-q">4. «Hay que _____ (повышать осведомлённость) a la gente sobre el reciclaje.»</div>
-      <input type="text" class="text-input" placeholder="concienciar / informar..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','concienciar','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ concienciar — повышать осознанность, делать людей осведомлёнными.</div>
+    <div class="fill-q">
+      <div class="q-text">4. «Безработица» — <em>el ___</em></div>
+      <input id="t4" type="text" placeholder="введите слово">
+      <button onclick="checkText('t4','desempleo','fb-t4')">Проверить</button>
+      <div class="fill-feedback" id="fb-t4"></div>
     </div>
 
-    <div class="text-ex">
-      <div class="tex-q">5. «_____ (с другой стороны), la tecnología también tiene efectos negativos.»</div>
-      <input type="text" class="text-input" placeholder="Por otro lado / Sin embargo..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','por otro lado','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ Por otro lado — с другой стороны. Вариант: «Sin embargo», «No obstante».</div>
+    <div class="fill-q">
+      <div class="q-text">5. «Необходимо, чтобы мы действовали» — <em>Es necesario que ___</em></div>
+      <input id="t5" type="text" placeholder="actuemos / tomemos medidas">
+      <button onclick="checkText('t5','actuemos','fb-t5')">Проверить</button>
+      <div class="fill-feedback" id="fb-t5"></div>
+    </div>
+
+    <div class="fill-q">
+      <div class="q-text">6. «Права человека» — <em>los derechos ___</em></div>
+      <input id="t6" type="text" placeholder="введите слово">
+      <button onclick="checkText('t6','humanos','fb-t6')">Проверить</button>
+      <div class="fill-feedback" id="fb-t6"></div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: DIALOGUES -->
+<!-- 8. ДИАЛОГИ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Диалоги — обсуждение социальных проблем</h2>
+    <h2>Диалоги — Обсуждение социальных тем</h2>
   </div>
 
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 DELE Tarea 1: Монолог о социальной теме
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать перевод</button>
+  <!-- Диалог 1: Друзья обсуждают климат -->
+  <div class="card">
+    <h3 style="font-weight:700;margin-bottom:12px">Диалог 1: Разговор о климатических изменениях</h3>
+    <div class="dlg-controls">
+      <button class="btn-sm" onclick="toggleAll()">👁 Все переводы</button>
+      <button class="btn-sm" onclick="playDialogue1()">▶ Воспроизвести</button>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Tema</div>
-      <div>
-        <div class="dlg-es">«Según un estudio, el 78% de los jóvenes españoles está preocupado por el cambio climático y considera que los gobiernos no hacen suficiente. ¿Cuál es tu opinión sobre este tema?»</div>
-        <div class="dlg-ru" id="tr-d1" style="display:none">«По данным исследования, 78% испанской молодёжи обеспокоена изменением климата и считает, что правительства делают недостаточно. Какого вы мнения об этой теме?»</div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">👩</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker a">LUCÍA</div>
+        <div class="dlg-text">¿Has visto el reportaje sobre el cambio climático? Me dejó muy preocupada. <button class="speak-btn" onclick="speak('¿Has visto el reportaje sobre el cambio climático? Me dejó muy preocupada.')">🔊</button></div>
+        <div class="translation">Ты видел репортаж об изменении климата? Он меня очень обеспокоил.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[0].style.display='block'">Перевод</button></div>
       </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Tú</div>
-      <div>
-        <div class="dlg-es">Estoy convencido de que el cambio climático es el problema más urgente de nuestro tiempo. Por un lado, los datos científicos son inequívocos: las temperaturas globales están subiendo y los fenómenos meteorológicos extremos son cada vez más frecuentes. Por otro lado, entiendo la frustración de los jóvenes: a veces parece que los gobiernos priorizan la economía sobre el medioambiente. Sin embargo, creo que también los ciudadanos tenemos responsabilidad — hay que fomentar hábitos sostenibles en la vida cotidiana. En definitiva, necesitamos un esfuerzo colectivo: gobiernos, empresas y ciudadanos.</div>
-        <div class="dlg-ru" id="tr-d1b" style="display:none">Я убеждён, что изменение климата — самая неотложная проблема нашего времени. С одной стороны, научные данные однозначны: глобальные температуры растут, экстремальные погодные явления становятся всё более частыми. С другой стороны, понимаю разочарование молодёжи: иногда кажется, что правительства ставят экономику выше окружающей среды. Однако считаю, что и у граждан есть ответственность — нужно поощрять устойчивые привычки в повседневной жизни. В итоге нам нужны коллективные усилия: правительства, компании и граждане.</div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">👨</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">MARCOS</div>
+        <div class="dlg-text">Sí, lo vi. Es un problema enorme. En mi opinión, los gobiernos no actúan con suficiente rapidez. <button class="speak-btn" onclick="speak('Sí, lo vi. Es un problema enorme. En mi opinión, los gobiernos no actúan con suficiente rapidez.')">🔊</button></div>
+        <div class="translation">Да, видел. Это огромная проблема. По-моему, правительства действуют недостаточно быстро.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[1].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">👩</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker a">LUCÍA</div>
+        <div class="dlg-text">Estoy totalmente de acuerdo. Aunque hay que reconocer que algunos países han hecho avances con las energías renovables. <button class="speak-btn" onclick="speak('Estoy totalmente de acuerdo. Aunque hay que reconocer que algunos países han hecho avances con las energías renovables.')">🔊</button></div>
+        <div class="translation">Полностью согласна. Хотя надо признать, что некоторые страны достигли прогресса в области возобновляемой энергии.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[2].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">👨</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">MARCOS</div>
+        <div class="dlg-text">Sí, por ejemplo, España ya produce más del 50% de su electricidad con fuentes renovables. Es un logro importante. <button class="speak-btn" onclick="speak('Sí, por ejemplo, España ya produce más del 50% de su electricidad con fuentes renovables. Es un logro importante.')">🔊</button></div>
+        <div class="translation">Да, например, Испания уже производит более 50% электроэнергии из возобновляемых источников. Это важное достижение.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[3].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">👩</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker a">LUCÍA</div>
+        <div class="dlg-text">Sin embargo, el problema de la contaminación en las ciudades grandes sigue siendo muy serio. ¿Qué piensas tú? <button class="speak-btn" onclick="speak('Sin embargo, el problema de la contaminación en las ciudades grandes sigue siendo muy serio. ¿Qué piensas tú?')">🔊</button></div>
+        <div class="translation">Тем не менее, проблема загрязнения в крупных городах по-прежнему очень серьёзна. Что думаешь ты?</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[4].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">👨</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">MARCOS</div>
+        <div class="dlg-text">Creo que cada persona puede contribuir: usar el transporte público, reciclar, consumir menos. Son cambios pequeños pero con impacto real. <button class="speak-btn" onclick="speak('Creo que cada persona puede contribuir: usar el transporte público, reciclar, consumir menos. Son cambios pequeños pero con impacto real.')">🔊</button></div>
+        <div class="translation">Считаю, что каждый может внести вклад: пользоваться общественным транспортом, перерабатывать отходы, потреблять меньше. Это небольшие изменения, но с реальным эффектом.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[5].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">👩</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker a">LUCÍA</div>
+        <div class="dlg-text">Tienes razón. Aunque lo que más me preocupa es que las generaciones futuras tendrán que vivir con las consecuencias de nuestras decisiones. <button class="speak-btn" onclick="speak('Tienes razón. Aunque lo que más me preocupa es que las generaciones futuras tendrán que vivir con las consecuencias de nuestras decisiones.')">🔊</button></div>
+        <div class="translation">Ты прав. Хотя больше всего меня беспокоит то, что будущим поколениям придётся жить с последствиями наших решений.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[6].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">👨</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">MARCOS</div>
+        <div class="dlg-text">Exactamente. Por eso es fundamental que actuemos ahora. Espero que la próxima cumbre climática tenga resultados concretos. <button class="speak-btn" onclick="speak('Exactamente. Por eso es fundamental que actuemos ahora. Espero que la próxima cumbre climática tenga resultados concretos.')">🔊</button></div>
+        <div class="translation">Именно. Поэтому крайне важно действовать сейчас. Надеюсь, что следующий климатический саммит даст конкретные результаты.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[7].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">👩</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker a">LUCÍA</div>
+        <div class="dlg-text">Yo también lo espero. Oye, ¿tú reciclas en casa? <button class="speak-btn" onclick="speak('Yo también lo espero. Oye, ¿tú reciclas en casa?')">🔊</button></div>
+        <div class="translation">Я тоже. Слушай, а ты дома перерабатываешь отходы?</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[8].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">👨</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">MARCOS</div>
+        <div class="dlg-text">Sí, separamos todo. Es un hábito que ya no me cuesta nada. Al principio era un lío, pero ahora es automático. <button class="speak-btn" onclick="speak('Sí, separamos todo. Es un hábito que ya no me cuesta nada. Al principio era un lío, pero ahora es automático.')">🔊</button></div>
+        <div class="translation">Да, мы всё разделяем. Это привычка, которая мне уже ничего не стоит. Сначала было запутанно, но теперь автоматически.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation')[9].style.display='block'">Перевод</button></div>
       </div>
     </div>
   </div>
 
-  <div class="dialogue">
-    <div class="dlg-header">
-      💬 Диалог 2: Дебаты о социальных сетях
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
+  <!-- Диалог 2: Десempleo y tecnología -->
+  <div class="card" style="margin-top:20px">
+    <h3 style="font-weight:700;margin-bottom:12px">Диалог 2: Технологии и рынок труда</h3>
+    <div class="dlg-controls">
+      <button class="btn-sm" onclick="toggleAll2()">👁 Все переводы</button>
+      <button class="btn-sm" onclick="playDialogue2()">▶ Воспроизвести</button>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker b">Exam.</div>
-      <div>
-        <div class="dlg-es">¿Crees que las redes sociales tienen más ventajas o más desventajas?</div>
-        <div class="dlg-ru" id="tr-d2" style="display:none">Считаешь, что у социальных сетей больше преимуществ или недостатков?</div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">👩</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker a">ANA</div>
+        <div class="dlg-text">Leí que la inteligencia artificial va a eliminar millones de empleos. ¿Crees que es un riesgo real? <button class="speak-btn" onclick="speak('Leí que la inteligencia artificial va a eliminar millones de empleos. ¿Crees que es un riesgo real?')">🔊</button></div>
+        <div class="translation2">Я читала, что искусственный интеллект уничтожит миллионы рабочих мест. Ты считаешь, это реальный риск?</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation2')[0].style.display='block'">Перевод</button></div>
       </div>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Tú</div>
-      <div>
-        <div class="dlg-es">Es una pregunta difícil. Por un lado, las redes sociales permiten conectar con personas de todo el mundo y son una herramienta poderosa de información. Por otro lado, generan adicción y problemas de salud mental, especialmente entre los adolescentes. Hasta cierto punto, el impacto depende del uso que hace cada persona. En mi opinión, la clave está en la educación digital desde una edad temprana.</div>
-        <div class="dlg-ru" id="tr-d2b" style="display:none">Это сложный вопрос. С одной стороны, социальные сети позволяют общаться с людьми со всего мира и являются мощным инструментом информации. С другой стороны, они вызывают зависимость и проблемы с психическим здоровьем, особенно у подростков. До определённой степени влияние зависит от того, как каждый человек их использует. На мой взгляд, ключ — в цифровом образовании с раннего возраста.</div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">👨</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">PEDRO</div>
+        <div class="dlg-text">Es un tema muy debatido. Por un lado, es cierto que algunos trabajos repetitivos desaparecerán. Por otro lado, la tecnología también crea nuevos empleos. <button class="speak-btn" onclick="speak('Es un tema muy debatido. Por un lado, es cierto que algunos trabajos repetitivos desaparecerán. Por otro lado, la tecnología también crea nuevos empleos.')">🔊</button></div>
+        <div class="translation2">Это очень дискуссионная тема. С одной стороны, правда, что некоторые повторяющиеся работы исчезнут. С другой стороны, технологии также создают новые рабочие места.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation2')[1].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">👩</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker a">ANA</div>
+        <div class="dlg-text">Desde mi punto de vista, el problema es que los empleos nuevos requieren formación especializada, y no todo el mundo puede acceder a ella. <button class="speak-btn" onclick="speak('Desde mi punto de vista, el problema es que los empleos nuevos requieren formación especializada, y no todo el mundo puede acceder a ella.')">🔊</button></div>
+        <div class="translation2">С моей точки зрения, проблема в том, что новые рабочие места требуют специализированной подготовки, и не каждый может её получить.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation2')[2].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">👨</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">PEDRO</div>
+        <div class="dlg-text">Tienes un punto. La brecha digital afecta especialmente a personas mayores y a quienes viven en zonas rurales. Hay que invertir en formación continua. <button class="speak-btn" onclick="speak('Tienes un punto. La brecha digital afecta especialmente a personas mayores y a quienes viven en zonas rurales. Hay que invertir en formación continua.')">🔊</button></div>
+        <div class="translation2">У тебя есть точка зрения. Цифровое неравенство особенно затрагивает пожилых людей и тех, кто живёт в сельских районах. Нужно инвестировать в непрерывное образование.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation2')[3].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">👩</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker a">ANA</div>
+        <div class="dlg-text">Exacto. Y también creo que el teletrabajo puede ser una solución para muchos. ¿Lo has probado? <button class="speak-btn" onclick="speak('Exacto. Y también creo que el teletrabajo puede ser una solución para muchos. ¿Lo has probado?')">🔊</button></div>
+        <div class="translation2">Именно. И я также считаю, что удалённая работа может стать решением для многих. Ты пробовал(а)?</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation2')[4].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">👨</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">PEDRO</div>
+        <div class="dlg-text">Sí, trabajé desde casa durante la pandemia. Tiene ventajas, como la conciliación familiar, pero también desventajas: es fácil perder la motivación. <button class="speak-btn" onclick="speak('Sí, trabajé desde casa durante la pandemia. Tiene ventajas, como la conciliación familiar, pero también desventajas: es fácil perder la motivación.')">🔊</button></div>
+        <div class="translation2">Да, я работал из дома во время пандемии. Есть преимущества, такие как баланс с семьёй, но и недостатки: легко потерять мотивацию.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation2')[5].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">👩</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker a">ANA</div>
+        <div class="dlg-text">Me parece que lo ideal sería un modelo híbrido. Unos días en la oficina y otros en casa. ¿Estás de acuerdo? <button class="speak-btn" onclick="speak('Me parece que lo ideal sería un modelo híbrido. Unos días en la oficina y otros en casa. ¿Estás de acuerdo?')">🔊</button></div>
+        <div class="translation2">Мне кажется, идеальной была бы гибридная модель. Несколько дней в офисе и несколько дома. Ты согласен?</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation2')[6].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">👨</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">PEDRO</div>
+        <div class="dlg-text">Totalmente. Es la mejor opción si queremos mejorar la conciliación laboral sin perder el contacto con el equipo. <button class="speak-btn" onclick="speak('Totalmente. Es la mejor opción si queremos mejorar la conciliación laboral sin perder el contacto con el equipo.')">🔊</button></div>
+        <div class="translation2">Полностью согласен. Это лучший вариант, если мы хотим улучшить баланс работы без потери контакта с командой.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation2')[7].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Диалог 3: DELE mock -->
+  <div class="card" style="margin-top:20px">
+    <h3 style="font-weight:700;margin-bottom:12px">Диалог 3: Симуляция экзамена DELE — Tarea 4 (дискуссия)</h3>
+    <div class="dlg-controls">
+      <button class="btn-sm" onclick="toggleAll3()">👁 Все переводы</button>
+      <button class="btn-sm" onclick="playDialogue3()">▶ Воспроизвести</button>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">🎓</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker c">EXAMINADOR/A</div>
+        <div class="dlg-text">Vamos a hablar sobre la inmigración. ¿Crees que la inmigración es positiva para el país receptor? <button class="speak-btn" onclick="speak('Vamos a hablar sobre la inmigración. ¿Crees que la inmigración es positiva para el país receptor?')">🔊</button></div>
+        <div class="translation3">Давайте поговорим об иммиграции. Вы считаете, что иммиграция положительна для принимающей страны?</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation3')[0].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">🎤</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">CANDIDATO/A</div>
+        <div class="dlg-text">En mi opinión, la inmigración tiene aspectos muy positivos. Por un lado, aporta diversidad cultural y contribuye al mercado laboral, especialmente en sectores donde hay escasez de trabajadores. <button class="speak-btn" onclick="speak('En mi opinión, la inmigración tiene aspectos muy positivos. Por un lado, aporta diversidad cultural y contribuye al mercado laboral, especialmente en sectores donde hay escasez de trabajadores.')">🔊</button></div>
+        <div class="translation3">По-моему, иммиграция имеет очень положительные аспекты. С одной стороны, она привносит культурное разнообразие и способствует рынку труда, особенно в секторах с нехваткой работников.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation3')[1].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">🎓</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker c">EXAMINADOR/A</div>
+        <div class="dlg-text">Y ¿cuáles serían los posibles problemas? <button class="speak-btn" onclick="speak('Y ¿cuáles serían los posibles problemas?')">🔊</button></div>
+        <div class="translation3">А каковы были бы возможные проблемы?</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation3')[2].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">🎤</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">CANDIDATO/A</div>
+        <div class="dlg-text">Sin embargo, también es cierto que una llegada masiva puede generar presión sobre los servicios públicos si no hay políticas de integración adecuadas. El problema no es la inmigración en sí, sino la falta de recursos para gestionarla bien. <button class="speak-btn" onclick="speak('Sin embargo, también es cierto que una llegada masiva puede generar presión sobre los servicios públicos si no hay políticas de integración adecuadas. El problema no es la inmigración en sí, sino la falta de recursos para gestionarla bien.')">🔊</button></div>
+        <div class="translation3">Тем не менее, правда и то, что массовый приезд может создавать давление на государственные службы, если нет надлежащей политики интеграции. Проблема не в самой иммиграции, а в нехватке ресурсов для её надлежащего управления.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation3')[3].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">🎓</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker c">EXAMINADOR/A</div>
+        <div class="dlg-text">¿Qué medidas tomarías tú para facilitar la integración? <button class="speak-btn" onclick="speak('¿Qué medidas tomarías tú para facilitar la integración?')">🔊</button></div>
+        <div class="translation3">Какие меры вы бы приняли для облегчения интеграции?</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation3')[4].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">🎤</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">CANDIDATO/A</div>
+        <div class="dlg-text">Primero, invertiría en cursos de idiomas gratuitos. Segundo, facilitaría el reconocimiento de títulos extranjeros. Y tercero, fomentaría programas de intercambio cultural entre comunidades. Es fundamental que las personas inmigrantes sientan que son bienvenidas. <button class="speak-btn" onclick="speak('Primero, invertiría en cursos de idiomas gratuitos. Segundo, facilitaría el reconocimiento de títulos extranjeros. Y tercero, fomentaría programas de intercambio cultural entre comunidades.')">🔊</button></div>
+        <div class="translation3">Во-первых, я бы инвестировал(а) в бесплатные языковые курсы. Во-вторых, облегчил(а) бы признание иностранных дипломов. В-третьих, поощрял(а) бы программы культурного обмена между общинами.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation3')[5].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble">
+      <div class="dlg-avatar">🎓</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker c">EXAMINADOR/A</div>
+        <div class="dlg-text">Muy bien. ¿Y cómo crees que afecta la inmigración a la identidad cultural del país? <button class="speak-btn" onclick="speak('Muy bien. ¿Y cómo crees que afecta la inmigración a la identidad cultural del país?')">🔊</button></div>
+        <div class="translation3">Очень хорошо. А как, по-вашему, иммиграция влияет на культурную идентичность страны?</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation3')[6].style.display='block'">Перевод</button></div>
+      </div>
+    </div>
+
+    <div class="dlg-bubble right">
+      <div class="dlg-avatar">🎤</div>
+      <div class="dlg-content">
+        <div class="dlg-speaker b">CANDIDATO/A</div>
+        <div class="dlg-text">Creo que la enriquece. La cultura española, por ejemplo, ya es el resultado de siglos de mezcla: árabe, romana, judía... La diversidad no debilita la identidad, la hace más rica. <button class="speak-btn" onclick="speak('Creo que la enriquece. La cultura española, por ejemplo, ya es el resultado de siglos de mezcla: árabe, romana, judía... La diversidad no debilita la identidad, la hace más rica.')">🔊</button></div>
+        <div class="translation3">Считаю, что обогащает. Испанская культура, например, уже является результатом веков смешения: арабского, римского, еврейского... Разнообразие не ослабляет идентичность, а делает её богаче.</div>
+        <div class="dlg-actions"><button class="btn-sm" onclick="document.querySelectorAll('.translation3')[7].style.display='block'">Перевод</button></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 7: SPEAKING MOCK -->
+<!-- 9. ГОВОРЕНИЕ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Mock Speaking — дебаты</h2>
+    <h2>Говорение — Практика монолога</h2>
   </div>
+  <div class="card">
+    <div class="speak-box">
+      <h4>🎤 DELE Tarea 3 — Монолог (2–3 минуты)</h4>
+      <div class="dele-task">
+        <div class="task-label">Карточка кандидата</div>
+        <div class="task-body">
+          <strong>Тема: «El impacto de las redes sociales en la sociedad»</strong><br>
+          Подготовьтесь к 2–3-минутному выступлению. Включите:<br>
+          • Определение проблемы / описание ситуации<br>
+          • Аргументы «за» и «против»<br>
+          • Ваше личное мнение с обоснованием<br>
+          • Возможные решения или выводы
+        </div>
+      </div>
+      <p class="task" style="margin-top:10px">Используйте структуру «5П» и следующие коннекторы:</p>
+      <ul class="hints">
+        <li>Introducción: «El tema que voy a abordar es...»</li>
+        <li>Argumento 1: «Por un lado, hay que tener en cuenta que...»</li>
+        <li>Argumento 2: «Por otro lado, también es cierto que...»</li>
+        <li>Opinión: «Personalmente, creo que...»</li>
+        <li>Conclusión: «En resumen, podemos decir que...»</li>
+      </ul>
+    </div>
 
-  <div class="speak-box">
-    <div class="speak-tag">🎙 DELE B1 Mock — Аргументация (4 мин)</div>
-    <p>Выскажи мнение по теме: «¿Debería el gobierno prohibir el uso de plásticos de un solo uso?»</p>
-    <div class="es">«En mi opinión, esta medida es necesaria porque... Por un lado... Por otro lado... Sin embargo, hay que tener en cuenta que... En definitiva...»</div>
-    <div class="hint">Обязательно: тезис → 2 аргумента → контраргумент → вывод. Минимум 4 минуты. Запишись!</div>
+    <div class="speak-box" style="margin-top:12px">
+      <h4>🏙️ Говорение о жизни в Испании</h4>
+      <p class="task">Тема: Вы живёте в Барселоне. Коллега-испанец спрашивает ваше мнение о системе здравоохранения в стране — сравните с тем, что знаете из России. Говорите 1–2 минуты.</p>
+      <ul class="hints">
+        <li>Начните с: «Desde mi experiencia en Rusia, puedo decir que...»</li>
+        <li>Отметьте плюсы: «Lo que más me sorprendió es que la atención primaria...»</li>
+        <li>Отметьте различия: «A diferencia de Rusia, aquí...»</li>
+        <li>Завершите: «En general, creo que el sistema sanitario español...»</li>
+        <li>Используйте: el médico de cabecera / la tarjeta sanitaria / la cita previa / las listas de espera</li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 8: CULTURE -->
+<!-- 10. ИСПАНИЯ НА ПРАКТИКЕ -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Культурная заметка</h2>
+    <h2>🇪🇸 Испания на практике: Рабочий контракт</h2>
   </div>
+  <div class="card">
+    <p style="margin-bottom:12px">Вы нашли работу в Барселоне. Перед подписанием <em>contrato de trabajo</em> нужно понять основные пункты. Вот фрагмент типичного испанского трудового договора:</p>
 
-  <div class="culture">
-    <div class="ctag">🌍 España y el medioambiente</div>
-    <h4>Испания и экологический активизм</h4>
-    <p>Испания — одна из стран ЕС, наиболее уязвимых к изменению климата: засухи на юге, лесные пожары каждое лето, подъём уровня моря на Балеарских островах. Молодёжное движение Fridays for Future активно в Барселоне и Мадриде. Примечательно, что слово «sostenibilidad» (устойчивость) в 2020-х годах стало buzzword испанской политики — его можно услышать на каждом втором политическом выступлении. Для DELE это — гарантированная тема с богатым словарём.</p>
+    <div class="authentic-text">
+      <div class="auth-label">Documento auténtico — Contrato de Trabajo (fragmento)</div>
+      <p><strong>CONTRATO DE TRABAJO POR TIEMPO INDEFINIDO</strong></p>
+      <p style="margin-top:8px">De una parte, la empresa <strong>Soluciones Digitales BCN S.L.</strong>, con CIF B-12345678, representada por Dña. María García Roig, en calidad de Directora de Recursos Humanos.</p>
+      <p style="margin-top:8px">De otra parte, D./Dña. _____________, con NIE/NIF __________, en adelante "el trabajador/la trabajadora".</p>
+      <p style="margin-top:8px"><strong>CLÁUSULAS:</strong></p>
+      <p><strong>Primera.</strong> El presente contrato se celebra por <em>tiempo indefinido</em> con un <em>período de prueba</em> de 6 meses.</p>
+      <p><strong>Segunda.</strong> El trabajador/la trabajadora prestará sus servicios en el <em>puesto de trabajo</em> de Desarrollador/a Web, con categoría profesional según el Convenio Colectivo aplicable.</p>
+      <p><strong>Tercera.</strong> La <em>jornada laboral</em> será de 40 horas semanales, de lunes a viernes, con derecho a 23 días de <em>vacaciones anuales</em> retribuidas.</p>
+      <p><strong>Cuarta.</strong> El <em>salario bruto anual</em> se fija en 28.000 euros, abonado en 12 pagas mensuales, más dos pagas extraordinarias.</p>
+    </div>
+
+    <div class="phrase-list">
+      <div class="phrase-item"><span class="es">el contrato indefinido</span><span class="ru">бессрочный контракт</span><button class="speak-btn" onclick="speak('el contrato indefinido')">🔊</button></div>
+      <div class="phrase-item"><span class="es">el período de prueba</span><span class="ru">испытательный срок</span><button class="speak-btn" onclick="speak('el período de prueba')">🔊</button></div>
+      <div class="phrase-item"><span class="es">el salario bruto / neto</span><span class="ru">зарплата брутто / нетто</span><button class="speak-btn" onclick="speak('el salario bruto')">🔊</button></div>
+      <div class="phrase-item"><span class="es">las vacaciones retribuidas</span><span class="ru">оплачиваемый отпуск</span><button class="speak-btn" onclick="speak('las vacaciones retribuidas')">🔊</button></div>
+      <div class="phrase-item"><span class="es">la jornada laboral</span><span class="ru">рабочий день / рабочее время</span><button class="speak-btn" onclick="speak('la jornada laboral')">🔊</button></div>
+      <div class="phrase-item"><span class="es">el convenio colectivo</span><span class="ru">коллективный договор (отраслевой)</span><button class="speak-btn" onclick="speak('el convenio colectivo')">🔊</button></div>
+    </div>
+
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Испанский трудовой договор регулируется <em>Estatuto de los Trabajadores</em>. В отличие от России, здесь широко применяются <em>convenios colectivos</em> — отраслевые соглашения, которые могут давать права сверх минимума закона. Обязательно уточните, какой convenio применяется к вашей компании. Минимальный отпуск — 22 рабочих дня (≈23 календарных), но во многих отраслях больше. Зарплата указывается <em>bruta</em> (до налогов), а на руки получите примерно на 20–25% меньше.
+    </div>
   </div>
 </div>
 
-<!-- SECTION 9: ANKI + HOMEWORK -->
+<!-- 11. КУЛЬТУРНАЯ ЗАМЕТКА -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">9</div>
-    <h2>Anki и домашнее задание</h2>
+    <h2>Культурная заметка — Социальные ценности испанцев</h2>
   </div>
+  <div class="card">
+    <p>Испания занимает одно из первых мест в мире по продолжительности жизни (84 года) — во многом благодаря <em>dieta mediterránea</em> и системе здравоохранения. При этом страна активно обсуждает социальные проблемы: <em>el feminismo</em>, права ЛГБТ, рост цен на аренду жилья (<em>el precio del alquiler</em>) и интеграцию иммигрантов. Особенность испанской дискуссионной культуры — горячие споры в семье за столом (<em>la sobremesa</em>): испанцы не избегают острых тем. С 2021 года в Испании действует закон о <em>eutanasia</em> — один из самых прогрессивных в Европе. Молодые испанцы активно участвуют в экологических движениях: движение <em>«Fridays for Future»</em> имеет сильное присутствие в Мадриде и Барселоне.</p>
+  </div>
+</div>
 
-  <!-- .wrap -->
+<!-- 12. АНКИ-КОЛОДА -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>Анки-колода — L114</h2>
+  </div>
+  <div class="card">
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:16px">Нажмите на карточку, чтобы перевернуть. Скачайте полную колоду для Anki:</p>
 
-<!-- DONE BAR -->
+    <div id="anki-preview">
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">el medio ambiente</div>
+          <div class="anki-card-back">Перевод: окружающая среда<br><br>Пример: El medio ambiente está en peligro.</div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">sostenible</div>
+          <div class="anki-card-back">Перевод: устойчивый, экологичный<br><br>Пример: Necesitamos un desarrollo sostenible.</div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">la brecha digital</div>
+          <div class="anki-card-back">Перевод: цифровое неравенство<br><br>Пример: La brecha digital afecta a personas mayores.</div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">En mi opinión...</div>
+          <div class="anki-card-back">По моему мнению...<br><br>Устойчивый оборот: EN mi opinión (не «por»)</div>
+        </div>
+      </div>
+      <div class="anki-card" onclick="this.classList.toggle('flipped')">
+        <div class="anki-card-inner">
+          <div class="anki-card-front">Por un lado... por otro lado...</div>
+          <div class="anki-card-back">С одной стороны... с другой...<br><br>Коннектор противопоставления на B1</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <button onclick="exportAnkiL114()" style="background:var(--purple);color:#fff;border:none;border-radius:8px;padding:9px 20px;cursor:pointer;font-size:.9rem;font-weight:600">📥 Скачать колоду Anki (.txt)</button>
+    </div>
+  </div>
+</div>
+
+<!-- 13. ДОМАШНЕЕ ЗАДАНИЕ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="card">
+    <div class="hw-item">
+      <strong>🎤 Запись монолога (обязательно)</strong>
+      Запишите 2-минутный монолог на тему «¿Es la tecnología una amenaza o una oportunidad para el empleo?». Используйте структуру «5П» и минимум 5 коннекторов из урока.
+    </div>
+    <div class="hw-item">
+      <strong>📺 Dreaming Spanish (Intermediate)</strong>
+      Найдите видео о социальных проблемах в Испании (например, о жилищном кризисе или иммиграции). Смотрите 20 минут без субтитров, затем 10 минут с субтитрами.
+    </div>
+    <div class="hw-item">
+      <strong>🗞️ Аутентичный текст</strong>
+      Прочитайте одну статью на испанском о климатических изменениях или социальном неравенстве. Выпишите 5 новых слов и 2 примера коннекторов из текста.
+    </div>
+    <div class="hw-item">
+      <strong>🃏 Анки</strong>
+      Выучите 15 карточек из колоды L114. Добавьте 3 собственных карточки с примерами, которые важны именно вам.
+    </div>
+    <div class="hw-item">
+      <strong>✍️ Письмо</strong>
+      Напишите 150–200 слов о проблеме, которая вас больше всего беспокоит в современном обществе. Используйте минимум 4 структуры выражения мнения из урока.
+    </div>
+  </div>
+</div>
+
+<!-- 14. DONE-BAR -->
 <div class="done-bar">
-  <div class="nav-links">
-    <a href="L113.html" class="nav-link-btn">← L113</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L115.html" class="nav-link-btn">L115 →</a>
+  <div class="done-nav">
+    <a href="../index.html">← Дашборд</a>
+    <a href="L113.html">← L113</a>
+    <a href="L115.html">L115 →</a>
   </div>
-  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+  <button class="done-btn" id="done-btn" onclick="markDone()">Отметить пройденным</button>
 </div>
 
 <script>
 const LESSON_ID = 'L114';
-const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){
-  const s=getState();
-  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
-  const today=new Date().toISOString().slice(0,10);
-  if(!s.study_days)s.study_days={};
-  s.study_days[today]=true;
-  localStorage.setItem(LS_KEY,JSON.stringify(s));
-  const btn=document.getElementById('done-btn');
-  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
-}
-const st=getState();
-if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'Cambio climático = изменение климата. Ключевое понятие темы medioambiente на DELE.',
-  q2:'«Por otro lado» = с другой стороны — добавляет альтернативный аргумент. Sin embargo/No obstante — контраст.',
-  q3:'Brecha digital = цифровой разрыв между теми, у кого есть/нет доступа к технологиям. Социальная проблема.',
-  q4:'Estoy convencido/a de que = я убеждён в том, что. Это сильное, уверенное выражение мнения.',
-  q5:'«En definitiva» — для выводов. «En primer lugar» — для первого аргумента. «Por ejemplo» — для примера.',
-  q6:'Fomentar = содействовать, поощрять, стимулировать. Активное слово для дискуссий о социальных изменениях.'
+// Scroll progress bar
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('scroll-bar');
+  if (!el) return;
+  const d = document.documentElement;
+  const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
+  el.style.width = Math.min(pct, 100) + '%';
+});
+
+// Web Speech API
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+// Quiz explanations
+const quizExpl = {
+  w1: 'После recomiendo используется subjuntivo: recomiendo que pruebes (не infinitivo).',
+  w2: 'Pretérito indefinido — завершённое действие в прошлом: «fue» = была (однократно, закончилась).',
+  w3: '¡No me lo podía creer! и «Me sorprendió que...» — классические конструкции для выражения удивления на B1.',
+  w4: 'Dañar = наносить вред. El turismo masivo daña = массовый туризм наносит вред.',
+  q1: 'Правильный предлог: EN mi opinión. «Por mi opinión» и «de mi opinión» — ошибки.',
+  q2: 'Глагол «afectar» требует предлога «a» перед дополнением-лицом/группой людей.',
+  q3: 'Sin embargo — противительный союз (однако, тем не менее). «Además» и «asimismo» — добавление.',
+  q4: 'После esperar que — subjuntivo: tome (не indicativo toma).',
+  q5: 'La brecha digital — устойчивое выражение. Brecha = щель, разрыв.',
+  q6: 'Estar de acuerdo EN que + proposición. Сравни: estar de acuerdo CON alguien (с кем-то).',
+  q7: '«Un ejemplo claro es...» — стандартная формула введения примера в монологе.',
 };
-let quizScore=0,quizTotal=0;
+
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
   container.dataset.answered = '1';
   const opts = container.querySelectorAll('.opt');
   opts.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
-  let correctText = '';
-  let pickedText = '';
   opts.forEach(o => {
     const m = o.getAttribute('onclick') && o.getAttribute('onclick').match(/'([abc])'\)/);
     const key = m ? m[1] : null;
-    if (key === 'a') { o.classList.add('correct'); correctText = o.textContent.trim(); }
-    else { o.classList.add('wrong'); }
-    if (o === el) { o.classList.add('picked'); pickedText = o.textContent.trim(); }
+    if (key === 'a') o.classList.add('correct');
+    else o.classList.add('wrong');
+    if (o === el) o.classList.add('picked');
   });
   const isCorrect = correctKey === 'a';
   const fb = document.getElementById('fb-' + qId);
-  const expl = (typeof quizExpl !== 'undefined' && quizExpl[qId]) ? quizExpl[qId] : '';
-  if (isCorrect) {
-    fb.className = 'feedback show ok';
-    fb.innerHTML = '✅ <strong>Правильно!</strong> ' + expl;
-  } else {
-    fb.className = 'feedback show no';
-    fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
+  if (fb) {
+    fb.textContent = (isCorrect ? '✅ Верно! ' : '❌ Неверно. ') + (quizExpl[qId] || '');
+    fb.className = 'quiz-feedback show ' + (isCorrect ? 'ok' : 'bad');
   }
-  if (typeof quizScore !== 'undefined') {
-    if (isCorrect) quizScore++;
-    quizTotal++;
-    const scoreEl = document.getElementById('quiz-score');
-    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
-  }
+}
+
+// checkText — Levenshtein with diacritic normalization
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  const dp = Array.from({length: m + 1}, (_, i) => Array.from({length: n + 1}, (_, j) => i === 0 ? j : j === 0 ? i : 0));
+  for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++)
+    dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+  return dp[m][n];
+}
+function normStr(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').trim();
 }
 function checkText(inputId, answer, fbId) {
-  const input = document.getElementById(inputId);
-  const raw = input.value.trim();
+  const val = document.getElementById(inputId).value;
   const fb = document.getElementById(fbId);
-  fb.className = 'feedback show';
-  if (!raw) {
-    input.className = 'text-input wrong';
-    fb.className += ' no';
-    fb.textContent = '❌ Введите ответ. Подсказка: начинается на "' + answer[0] + '"';
-    return;
-  }
-  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[¿¡?!.,;:]/g,'').replace(/\s+/g,' ').trim();
-  const userN = norm(raw);
-  const correctN = norm(answer);
-  if (userN === correctN) {
-    input.className = 'text-input correct';
-    fb.className += ' ok';
-    if (raw.toLowerCase().trim() !== answer.toLowerCase().trim()) {
-      fb.innerHTML = '✅ Засчитано! Точное написание: <b>' + answer + '</b> <span style="opacity:.7">(не забывай про ударения и ñ)</span>';
-    } else {
-      fb.textContent = '✅ Правильно! ' + answer;
-    }
-    return;
-  }
-  const lev = (a, b) => {
-    const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
-    let prev = Array.from({length: n+1}, (_,i) => i);
-    let curr = new Array(n+1).fill(0);
-    for (let i = 1; i <= m; i++) {
-      curr[0] = i;
-      for (let j = 1; j <= n; j++) {
-        const cost = a[i-1] === b[j-1] ? 0 : 1;
-        curr[j] = Math.min(prev[j]+1, curr[j-1]+1, prev[j-1]+cost);
-      }
-      [prev, curr] = [curr, prev];
-    }
-    return prev[n];
-  };
-  const dist = lev(userN, correctN);
+  const correctN = normStr(answer);
+  const userN = normStr(val);
   const tol = correctN.length >= 6 ? 2 : 1;
-  if (dist > 0 && dist <= tol) {
-    input.className = 'text-input correct';
-    fb.className += ' ok';
-    fb.innerHTML = '✅ Засчитано (с опечаткой)! Ты написал(а) «' + raw + '», правильно: <b>' + answer + '</b>';
-    return;
+  const dist = levenshtein(userN, correctN);
+  if (userN === correctN) {
+    fb.innerHTML = '✅ Верно!';
+    fb.style.color = 'var(--green)';
+  } else if (dist <= tol) {
+    fb.innerHTML = `⚠️ Почти! Правильно: <strong>${answer}</strong>`;
+    fb.style.color = 'var(--gold)';
+  } else {
+    fb.innerHTML = `❌ Неверно. Правильно: <strong>${answer}</strong>`;
+    fb.style.color = 'var(--red)';
   }
-  input.className = 'text-input wrong';
-  fb.className += ' no';
-  fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
-function updateProgress(){
-  const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
-  const pct=Math.min(100,Math.round(scrolled/total*100));
-  const sectionsRead=Math.round(pct/100*totalSections);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+
+// Translation toggles
+function toggleAll() {
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  });
 }
-window.addEventListener('scroll',updateProgress);
+function toggleAll2() {
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  });
+}
+function toggleAll3() {
+  document.querySelectorAll('.translation3').forEach(el => {
+    el.style.display = el.style.display === 'block' ? 'none' : 'block';
+  });
+}
+
+// Dialogue playback
+const dlg1Lines = [
+  '¿Has visto el reportaje sobre el cambio climático? Me dejó muy preocupada.',
+  'Sí, lo vi. Es un problema enorme. En mi opinión, los gobiernos no actúan con suficiente rapidez.',
+  'Estoy totalmente de acuerdo. Aunque hay que reconocer que algunos países han hecho avances con las energías renovables.',
+  'Sí, por ejemplo, España ya produce más del 50% de su electricidad con fuentes renovables.',
+  'Sin embargo, el problema de la contaminación en las ciudades grandes sigue siendo muy serio.',
+  'Creo que cada persona puede contribuir: usar el transporte público, reciclar, consumir menos.',
+  'Tienes razón. Aunque lo que más me preocupa es que las generaciones futuras tendrán que vivir con las consecuencias.',
+  'Exactamente. Por eso es fundamental que actuemos ahora.',
+  'Yo también lo espero. Oye, ¿tú reciclas en casa?',
+  'Sí, separamos todo. Es un hábito que ya no me cuesta nada.',
+];
+function playDialogue1() {
+  window.speechSynthesis.cancel();
+  dlg1Lines.forEach((line, i) => {
+    setTimeout(() => speak(line), i * 3500);
+  });
+}
+
+const dlg2Lines = [
+  'Leí que la inteligencia artificial va a eliminar millones de empleos. ¿Crees que es un riesgo real?',
+  'Es un tema muy debatido. Por un lado, es cierto que algunos trabajos repetitivos desaparecerán. Por otro lado, la tecnología también crea nuevos empleos.',
+  'Desde mi punto de vista, el problema es que los empleos nuevos requieren formación especializada.',
+  'Tienes un punto. La brecha digital afecta especialmente a personas mayores y a quienes viven en zonas rurales.',
+  'Exacto. Y también creo que el teletrabajo puede ser una solución para muchos. ¿Lo has probado?',
+  'Sí, trabajé desde casa durante la pandemia. Tiene ventajas, como la conciliación familiar, pero también desventajas.',
+  'Me parece que lo ideal sería un modelo híbrido. Unos días en la oficina y otros en casa. ¿Estás de acuerdo?',
+  'Totalmente. Es la mejor opción si queremos mejorar la conciliación laboral.',
+];
+function playDialogue2() {
+  window.speechSynthesis.cancel();
+  dlg2Lines.forEach((line, i) => {
+    setTimeout(() => speak(line), i * 4000);
+  });
+}
+
+const dlg3Lines = [
+  'Vamos a hablar sobre la inmigración. ¿Crees que la inmigración es positiva para el país receptor?',
+  'En mi opinión, la inmigración tiene aspectos muy positivos. Por un lado, aporta diversidad cultural y contribuye al mercado laboral.',
+  '¿Y cuáles serían los posibles problemas?',
+  'Sin embargo, también es cierto que una llegada masiva puede generar presión sobre los servicios públicos.',
+  '¿Qué medidas tomarías tú para facilitar la integración?',
+  'Primero, invertiría en cursos de idiomas gratuitos. Segundo, facilitaría el reconocimiento de títulos extranjeros.',
+  '¿Y cómo crees que afecta la inmigración a la identidad cultural del país?',
+  'Creo que la enriquece. La cultura española ya es el resultado de siglos de mezcla.',
+];
+function playDialogue3() {
+  window.speechSynthesis.cancel();
+  dlg3Lines.forEach((line, i) => {
+    setTimeout(() => speak(line), i * 4500);
+  });
+}
+
+// Mark done
+function markDone() {
+  const btn = document.getElementById('done-btn');
+  if (btn.classList.contains('marked')) return;
+  try {
+    const raw = localStorage.getItem('esp_course_progress');
+    const data = raw ? JSON.parse(raw) : {completed: [], study_days: {}};
+    if (!Array.isArray(data.completed)) data.completed = [];
+    if (!data.completed.includes(LESSON_ID)) data.completed.push(LESSON_ID);
+    const today = new Date().toISOString().slice(0, 10);
+    if (!data.study_days) data.study_days = {};
+    data.study_days[today] = (data.study_days[today] || 0) + 1;
+    localStorage.setItem('esp_course_progress', JSON.stringify(data));
+  } catch(e) {}
+  btn.textContent = '✅ Пройден!';
+  btn.classList.add('marked');
+}
+
+// Check if already done
+(function() {
+  try {
+    const raw = localStorage.getItem('esp_course_progress');
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (Array.isArray(data.completed) && data.completed.includes(LESSON_ID)) {
+      const btn = document.getElementById('done-btn');
+      if (btn) { btn.textContent = '✅ Пройден!'; btn.classList.add('marked'); }
+    }
+  } catch(e) {}
+})();
+
+// Anki Deck
+const ANKI_DECK_L114 = [
+  {front:'el medio ambiente', back:'Перевод: окружающая среда\n\nПример: El medio ambiente está en peligro.\nЗаметка: всегда с артиклем el'},
+  {front:'el cambio climático', back:'Перевод: изменение климата\n\nПример: El cambio climático afecta a todo el planeta.\nЗаметка: тема DELE B1'},
+  {front:'la desigualdad social', back:'Перевод: социальное неравенство\n\nПример: La desigualdad social ha aumentado.\nЗаметка: desigualdad = не-равенство'},
+  {front:'el desempleo', back:'Перевод: безработица\n\nПример: El desempleo juvenil es muy alto.\nЗаметка: = el paro (разг.)'},
+  {front:'sostenible', back:'Перевод: устойчивый, экологичный\n\nПример: Necesitamos un desarrollo sostenible.\nЗаметка: energía renovable también'},
+  {front:'la brecha digital', back:'Перевод: цифровое неравенство\n\nПример: La brecha digital afecta a mayores.\nЗаметка: brecha = щель, разрыв'},
+  {front:'la conciliación laboral', back:'Перевод: баланс работы и личной жизни\n\nПример: La conciliación laboral es clave.\nЗаметка: = work-life balance'},
+  {front:'los derechos humanos', back:'Перевод: права человека\n\nПример: Hay que defender los derechos humanos.\nЗаметка: derechos = права'},
+  {front:'la energía renovable', back:'Перевод: возобновляемая энергия\n\nПример: España invierte en energía renovable.\nЗаметка: solar, eólica, hidráulica'},
+  {front:'la inmigración', back:'Перевод: иммиграция\n\nПример: La inmigración enriquece la cultura.\nЗаметка: inmigrante — иммигрант'},
+  {front:'En mi opinión...', back:'По моему мнению...\n\nПравило: EN mi opinión (не por/de)\nУровень: B1 DELE'},
+  {front:'Por un lado... por otro...', back:'С одной стороны... с другой...\n\nФункция: противопоставление\nУровень: B1 DELE коннектор'},
+  {front:'Sin embargo', back:'Тем не менее / однако\n\nПример: Es difícil. Sin embargo, es posible.\nФункция: противопоставление'},
+  {front:'Según los datos / estudios', back:'По данным / исследованиям\n\nПример: Según los datos, el 30% recicla.\nФункция: ссылка на источник'},
+  {front:'Estoy convencido/a de que...', back:'Я убеждён/а в том, что...\n\nПример: Estoy convencido de que podemos mejorar.\nЗаметка: estar (не ser)'},
+  {front:'tomar medidas', back:'Перевод: принять меры\n\nПример: Hay que tomar medidas urgentes.\nЗаметка: tomar = принять (о мерах)'},
+  {front:'el contrato indefinido', back:'Перевод: бессрочный контракт\n\nПример: Me ofrecieron un contrato indefinido.\nЗаметка: ≠ contrato temporal'},
+  {front:'la jornada laboral', back:'Перевод: рабочий день / рабочее время\n\nПример: La jornada es de 40 horas semanales.\nЗаметка: важно для Испании на практике'},
+  {front:'el período de prueba', back:'Перевод: испытательный срок\n\nПример: Hay un período de prueba de 3 meses.\nЗаметка: типично 3–6 месяцев'},
+  {front:'el convenio colectivo', back:'Перевод: коллективный договор (отраслевой)\n\nПример: El sueldo depende del convenio colectivo.\nЗаметка: ключевой документ в Испании'},
+];
+
+function exportAnkiL114() {
+  const tsv = ANKI_DECK_L114.map(c => c.front + '\t' + c.back.replace(/\n/g, '<br>')).join('\n');
+  const blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L114_spanish.txt';
+  a.click();
+}
 </script>
 </body>
 </html>

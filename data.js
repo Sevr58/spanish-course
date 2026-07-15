@@ -1456,7 +1456,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Mock: планировать поездку в Испанию с аргументами",
-      file:"lessons/L113.html", status:"pending"
+      file:"lessons/L113.html", status:"improved"
     },
     {
       id:"L114", num:114, phase:4, block:"B4B", level:"B1", day:246, week:42,
@@ -1468,7 +1468,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Mock: обсудить социальную проблему с аргументами за и против",
-      file:"lessons/L114.html", status:"pending"
+      file:"lessons/L114.html", status:"improved"
     },
     {
       id:"L115", num:115, phase:4, block:"B4B", level:"B1", day:249, week:43,
