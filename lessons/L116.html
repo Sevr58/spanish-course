@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L116: DELE B1 — Аудирование: стратегии и практика</title>
+<title>L116: DELE B1 — Аудирование: практика 5 типов заданий</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -36,8 +36,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.dele{background:rgba(157,78,221,.1);border-color:var(--purple)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
 .speak-box{background:var(--bg3);border:1px solid rgba(45,198,83,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -52,8 +51,11 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}
+.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}
+.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}
+.opt.picked::before{content:'👉 ';margin-right:2px}
+.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -69,7 +71,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
 .answer-reveal.show{display:block}
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
 .dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
@@ -81,10 +83,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -92,349 +90,781 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-.vocab-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.vocab-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
-.vocab-table tr:last-child td{border-bottom:none}
-.vocab-table .es-word{color:var(--gold);font-weight:600}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--green);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
 .audio-sim{background:var(--bg3);border:2px dashed rgba(45,198,83,.4);border-radius:8px;padding:20px;margin:14px 0}
-.audio-sim .audio-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px}
-.audio-sim p{font-size:.9rem;font-style:italic;color:var(--muted)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.audio-sim .audio-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px;letter-spacing:.06em}
+.audio-sim p{font-size:.92rem;font-style:italic;color:var(--text);line-height:1.7}
+.audio-sim .listen-note{font-size:.8rem;color:var(--muted);margin-top:10px;font-style:normal}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
-  <a href="../index.html">← Дашборд</a>
-  <span class="level">B1 · DELE Prep · День 252</span>
+  <a href="L115.html">← L115</a>
+  <span class="level">B1 · Фаза 4 · День 252</span>
   <a href="L117.html">L117 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
   <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
-  <h1>DELE B1: <span class="hl">Аудирование</span> — стратегии</h1>
-  <p class="sub">Monólogos, conversaciones, anuncios — все типы заданий на слух</p>
+  <h1>DELE B1: <span class="hl">Аудирование</span> — практика 5 типов заданий</h1>
+  <p class="sub">Monólogos, conversaciones, anuncios — все форматы Prueba 2 в одном уроке</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">🎧</div><div><strong>DELE Prueba 2</strong><p>Comprensión auditiva — 5 заданий, 35 мин</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут активной тренировки</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Основной ресурс для тренировки слуха</p></div></div>
-    <div class="obj"><div class="ico">🎯</div><div><strong>Стратегия</strong><p>Pre-listening, note-taking, key words</p></div></div>
+    <div class="obj"><div class="ico">🎧</div><div><strong>Prueba 2 DELE</strong><p>5 типов заданий на слух, 35 минут на экзамене</p></div></div>
+    <div class="obj"><div class="ico">⚡</div><div><strong>Pre-listening</strong><p>Читай вопросы до прослушивания — ключевая стратегия</p></div></div>
+    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Dreaming Spanish — твой главный тренажёр слуха</p></div></div>
+    <div class="obj"><div class="ico">🌍</div><div><strong>Акценты</strong><p>DELE использует разные варианты испанского</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: THEORY -->
+<!-- 3. WARM-UP: повторение L115 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Формат DELE B1 — раздел аудирования</h2>
+    <h2>Повторение L115 — DELE чтение: стратегии</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Быстрая проверка материала прошлого урока перед новой темой — 4 вопроса.</p>
+  <div class="quiz">
+    <h3>🔄 Вспомни стратегии чтения DELE</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Что такое «skimming» в контексте DELE чтения?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Быстрый просмотр текста за 30–60 секунд для понимания темы и структуры</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Поиск конкретного числа или имени в тексте</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Полный перевод текста слово за словом</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. В Tarea 1 DELE чтения сколько заголовков лишних (не подходит ни к одному тексту)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">0 — все заголовки используются</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">4 лишних заголовка</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">2 лишних заголовка</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Что означает «la fianza» в контракте аренды в Испании?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Залог — обычно одна месячная оплата, возвращается при выезде</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Ежемесячный платёж за аренду</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Штраф за досрочное расторжение</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Что такое «distractor» в тесте DELE?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">Слово, которого нет в тексте</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">Правильный ответ с подсказкой</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">Ложный вариант ответа, использующий слова из текста в другом смысле</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — 5 типов заданий DELE Prueba 2</h2>
   </div>
 
   <div class="callout dele">
-    <h4>📋 Prueba 2: Comprensión auditiva (35 минут)</h4>
+    <h4>📋 Comprensión auditiva — структура экзамена (35 минут)</h4>
     <ul>
-      <li><strong>Tarea 1:</strong> 6 коротких монологов → выбираешь один из трёх рисунков/описаний для каждого</li>
-      <li><strong>Tarea 2:</strong> Одно длинное интервью → 6 вопросов с тройным выбором</li>
-      <li><strong>Tarea 3:</strong> 6 коротких диалогов → определяешь где, о чём, кто говорит</li>
-      <li><strong>Tarea 4:</strong> Длинный разговор между несколькими людьми → 6 утверждений — истинно/ложно/не упоминается</li>
-      <li><strong>Tarea 5:</strong> Радиопрограмма или объявление → заполняешь пропуски конкретной информацией</li>
+      <li><strong>Tarea 1 (monólogos breves):</strong> 6 коротких монологов по 30–60 секунд → выбираешь один из трёх рисунков/описаний. Стратегия: читай 3 варианта ДО прослушивания.</li>
+      <li><strong>Tarea 2 (entrevista larga):</strong> Одно интервью 3–4 минуты → 6 вопросов a/b/c. Стратегия: читай вопросы заранее, слушай последовательно.</li>
+      <li><strong>Tarea 3 (diálogos cortos):</strong> 6 коротких диалогов → определяешь место, тему или отношение говорящих. Стратегия: прагматика важнее деталей.</li>
+      <li><strong>Tarea 4 (conversación larga):</strong> Разговор нескольких людей 3–4 мин → 6 утверждений — verdadero / falso / no se dice. Стратегия: «no se dice» ≠ ложно, оно просто не упомянуто.</li>
+      <li><strong>Tarea 5 (anuncio/programa):</strong> Радиообъявление или программа → заполняешь формуляр: 6 конкретных данных (числа, названия, даты). Стратегия: заранее читай что именно нужно заполнить.</li>
     </ul>
   </div>
 
   <div class="callout tip">
-    <h4>💡 Три стратегии для аудирования</h4>
+    <h4>💡 Три стратегии аудирования для DELE</h4>
     <ul>
-      <li><strong>Pre-listening (до прослушивания)</strong> — читай вопросы ЗАРАНЕЕ. У тебя есть 30 секунд перед каждым заданием. Используй их! Знай, что искать.</li>
-      <li><strong>Note-taking (заметки)</strong> — записывай ключевые слова, числа, имена. Не пиши предложениями.</li>
-      <li><strong>Key words (ключевые слова)</strong> — в вопросе есть подсказки. Ищи их синонимы в тексте, не дословные совпадения.</li>
+      <li><strong>Pre-listening:</strong> У тебя 30 секунд перед каждым заданием — ВСЕГДА читай вопросы/варианты до прослушивания. Знаешь что искать = слышишь нужное.</li>
+      <li><strong>Note-taking:</strong> Держи ручку наготове. Записывай числа, имена, даты — именно они проверяются в Tarea 5. Не пиши предложениями, только маркеры.</li>
+      <li><strong>Key words:</strong> Ответы — это синонимы, не дословные цитаты. Если слышишь «tiene problemas de salud», ответ может быть «está enferma».</li>
     </ul>
   </div>
 
   <div class="callout warning">
-    <h4>⚠️ Главная ловушка аудирования DELE</h4>
-    <p>В заданиях часто используют «distractors» — слова из правильного ответа звучат в тексте, но в ДРУГОМ контексте (отрицательном, вопросительном или в условии). Всегда слушай до конца, не выбирай ответ после первого упоминания слова!</p>
-  </div>
-</div>
-
-<!-- SECTION 2: VOCABULARY -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">2</div>
-    <h2>Словарь — лексика для аудирования</h2>
+    <h4>⚠️ Главная ловушка Tarea 4: «no se dice»</h4>
+    <p>«No se dice» — это не «falso»! Если информация в записи не упоминается, это «no se dice», даже если утверждение логично. Студенты часто путают: «звучит правдоподобно» ≠ «это было сказано». Требуй буквально услышанного подтверждения.</p>
   </div>
 
-  <table class="vocab-table">
-    <thead>
-      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Контекст аудирования</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="es-word">escuchar atentamente</td><td>[эскучар]</td><td>внимательно слушать</td><td>Hay que escuchar atentamente el tono.</td></tr>
-      <tr><td class="es-word">el anuncio</td><td>[ануnsьо]</td><td>объявление, реклама</td><td>El anuncio en la radio menciona...</td></tr>
-      <tr><td class="es-word">el matiz</td><td>[матис]</td><td>нюанс, оттенок</td><td>El matiz negativo cambia el significado.</td></tr>
-      <tr><td class="es-word">implícito</td><td>[имплисито]</td><td>подразумеваемый, неявный</td><td>El mensaje está implícito en el tono.</td></tr>
-      <tr><td class="es-word">el locutor</td><td>[локутор]</td><td>диктор, ведущий</td><td>El locutor habla sobre economía.</td></tr>
-      <tr><td class="es-word">la entrevista</td><td>[энтревиста]</td><td>интервью</td><td>En la entrevista, el experto dice que...</td></tr>
-      <tr><td class="es-word">el fragmento</td><td>[фрагмэнто]</td><td>отрывок, фрагмент</td><td>El fragmento dura dos minutos.</td></tr>
-      <tr><td class="es-word">deducir</td><td>[дэдусир]</td><td>делать вывод, дедуцировать</td><td>Puedes deducir la respuesta del contexto.</td></tr>
-      <tr><td class="es-word">el hablante</td><td>[аблантэ]</td><td>говорящий, носитель</td><td>Los hablantes debaten sobre educación.</td></tr>
-      <tr><td class="es-word">la grabación</td><td>[грабасьон]</td><td>запись, аудиозапись</td><td>La grabación dura 3 minutos.</td></tr>
-    </tbody>
+  <h3 style="margin-top:20px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки при аудировании DELE B1</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Как делают</th><th>Как надо</th><th>Совет</th></tr>
+    <tr><td>Не читать вопросы заранее</td><td class="wrong-ex">Слушаю, потом читаю</td><td class="right-ex">Читаю вопросы 30 сек ДО</td><td>Pre-listening = +30% к результату гарантировано</td></tr>
+    <tr><td>Выбирать первое совпавшее слово</td><td class="wrong-ex">Услышал «trabajo» — выбираю</td><td class="right-ex">Слушаю контекст вокруг слова</td><td>Distractores в аудировании работают так же, как в чтении</td></tr>
+    <tr><td>Паниковать из-за акцента</td><td class="wrong-ex">«Не понимаю — пропускаю»</td><td class="right-ex">Слушаю интонацию и ключевые слова</td><td>Понял 60% + интонация = угадал 90% смысла</td></tr>
+    <tr><td>Путать falso и no se dice</td><td class="wrong-ex">«Не слышал — значит ложно»</td><td class="right-ex">«Не слышал = no se dice»</td><td>Falso требует противоречия, не просто отсутствия</td></tr>
+    <tr><td>Игнорировать цифры в Tarea 5</td><td class="wrong-ex">Пропускаю числа и даты</td><td class="right-ex">Записываю числа сразу как слышу</td><td>В anuncios числа звучат один раз — или запиши или потеряешь</td></tr>
+    <tr><td>Не следить за отрицаниями</td><td class="wrong-ex">«...es muy caro» → записываю «caro»</td><td class="right-ex">«No es tan caro» → «asequible»</td><td>No / nunca / tampoco / sin — меняют смысл на противоположный</td></tr>
   </table>
 </div>
 
-<!-- SECTION 3: SIMULATED LISTENING — TAREA 2 -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Tarea 2 — Симуляция интервью</h2>
+    <h2>Словарь — лексика аудирования DELE B1</h2>
   </div>
-
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Это текстовая симуляция. В реальном DELE ты слышишь, а не читаешь. Прочитай текст — как будто слышишь его по радио. Отвечай на вопросы БЕЗ повторного чтения.</p>
-
-  <div class="audio-sim">
-    <div class="audio-tag">🎧 Transcripción — Entrevista con una arquitecta sobre ciudades sostenibles</div>
-    <p>«...Sí, creo que el urbanismo del futuro tiene que ser radicalmente diferente. Actualmente, el 70% de las emisiones de CO2 en España provienen de las ciudades. Esto es un dato alarmante que demuestra que tenemos que repensar cómo construimos y vivimos. Lo primero es apostar por el transporte público y la bicicleta. Las ciudades que han hecho esto — como Ámsterdam o Copenhague — han visto una mejora notable en la calidad del aire y en la salud mental de sus habitantes. Lo segundo es el tema del verde: necesitamos más árboles, jardines verticales, parques. No es solo estético; los árboles reducen la temperatura en verano hasta 8 grados en las zonas urbanas. Y lo tercero, quizás lo más difícil, es cambiar la mentalidad de la gente: muchos ciudadanos todavía asocian el coche con libertad. Hasta que no cambie esa percepción, será muy difícil lograr ciudades realmente sostenibles...»</p>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">18 слов для успешного аудирования. Нажимай 🔊 для произношения.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">escuchar atentamente</div><div class="vocab-pron">[эскучар атэнтамэнтэ]</div><div class="vocab-ru">слушать внимательно</div></div><button class="speak-btn" onclick="speak('escuchar atentamente')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el anuncio</div><div class="vocab-pron">[ануnsьо]</div><div class="vocab-ru">объявление, реклама</div></div><button class="speak-btn" onclick="speak('el anuncio')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el matiz</div><div class="vocab-pron">[матис]</div><div class="vocab-ru">нюанс, оттенок смысла</div></div><button class="speak-btn" onclick="speak('el matiz')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">implícito</div><div class="vocab-pron">[имплисито]</div><div class="vocab-ru">подразумеваемый, скрытый</div></div><button class="speak-btn" onclick="speak('implícito')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el locutor</div><div class="vocab-pron">[локутор]</div><div class="vocab-ru">диктор, ведущий радио</div></div><button class="speak-btn" onclick="speak('el locutor')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la entrevista</div><div class="vocab-pron">[энтрэвиста]</div><div class="vocab-ru">интервью, собеседование</div></div><button class="speak-btn" onclick="speak('la entrevista')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el hablante</div><div class="vocab-pron">[аблантэ]</div><div class="vocab-ru">говорящий, носитель языка</div></div><button class="speak-btn" onclick="speak('el hablante')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la grabación</div><div class="vocab-pron">[грабасьон]</div><div class="vocab-ru">запись, аудиозапись</div></div><button class="speak-btn" onclick="speak('la grabación')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">deducir</div><div class="vocab-pron">[дэдусир]</div><div class="vocab-ru">делать вывод из контекста</div></div><button class="speak-btn" onclick="speak('deducir')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el monólogo</div><div class="vocab-pron">[монолого]</div><div class="vocab-ru">монолог, одиночное выступление</div></div><button class="speak-btn" onclick="speak('el monólogo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la conversación</div><div class="vocab-pron">[конверсасьон]</div><div class="vocab-ru">разговор, беседа</div></div><button class="speak-btn" onclick="speak('la conversación')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el tono</div><div class="vocab-pron">[тоно]</div><div class="vocab-ru">тон, интонация</div></div><button class="speak-btn" onclick="speak('el tono')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">verdadero / falso</div><div class="vocab-pron">[вэрдадэро/фалсо]</div><div class="vocab-ru">истинно / ложно (Tarea 4)</div></div><button class="speak-btn" onclick="speak('verdadero o falso')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">no se dice</div><div class="vocab-pron">[но сэ дисэ]</div><div class="vocab-ru">не упоминается (Tarea 4, 3-й вариант)</div></div><button class="speak-btn" onclick="speak('no se dice')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el descuento</div><div class="vocab-pron">[дэскуэнто]</div><div class="vocab-ru">скидка (часто в anuncios)</div></div><button class="speak-btn" onclick="speak('el descuento')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el plazo</div><div class="vocab-pron">[пласо]</div><div class="vocab-ru">срок, дедлайн</div></div><button class="speak-btn" onclick="speak('el plazo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el requisito</div><div class="vocab-pron">[рэкисито]</div><div class="vocab-ru">требование, условие</div></div><button class="speak-btn" onclick="speak('el requisito')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la convocatoria</div><div class="vocab-pron">[конвокатория]</div><div class="vocab-ru">объявление о наборе / созыве</div></div><button class="speak-btn" onclick="speak('la convocatoria')">🔊</button></div>
   </div>
 </div>
 
-<!-- SECTION 4: QUIZ 1 — LISTENING COMPREHENSION -->
+<!-- 6. SIMULATED LISTENING + QUIZ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Тест 1 — Comprensión de la entrevista</h2>
+    <h2>Tarea 2 — Симуляция интервью + тест</h2>
+  </div>
+  <p style="margin-bottom:10px;color:var(--muted);font-size:.9rem">В реальном DELE ты слышишь это. Прочитай текст один раз — как будто слышишь по радио. Затем ответь на вопросы без возврата к тексту.</p>
+
+  <div class="audio-sim">
+    <div class="audio-tag">🎧 Transcripción — Entrevista con un experto en inteligencia artificial</div>
+    <p>«Gracias por recibirme. Mire, la inteligencia artificial ya no es el futuro: es el presente. En España, más de dos millones de empleos corren el riesgo de ser automatizados en los próximos diez años. Esto no significa que vaya a haber más desempleo necesariamente, sino que los trabajos van a transformarse. Surgirán nuevas profesiones que hoy no existen, igual que pasó con internet en los años noventa. Lo que sí es urgente es invertir en formación. Los trabajadores mayores de cuarenta y cinco años son los más vulnerables porque les cuesta más adaptarse a las nuevas tecnologías. Los más jóvenes, paradójicamente, también tienen sus riesgos: muchos trabajan en sectores muy digitalizados que serán los primeros en cambiar. Mi recomendación: aprende a trabajar con la IA, no contra ella. El profesional que sepa usar estas herramientas tendrá una ventaja enorme. Y sobre todo: desarrolla habilidades que las máquinas no pueden replicar —la creatividad, la empatía, el pensamiento crítico.»</p>
+    <div class="listen-note">⏱ Нажми кнопку для прослушивания: <button class="speak-btn" style="font-size:1rem" onclick="speak('La inteligencia artificial ya no es el futuro: es el presente. En España, más de dos millones de empleos corren el riesgo de ser automatizados. Esto no significa que vaya a haber más desempleo, sino que los trabajos van a transformarse. Lo que sí es urgente es invertir en formación.')">🔊</button></div>
   </div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Вопросы по интервью с архитектором</h3>
+  <div class="quiz">
+    <h3>🎧 7 вопросов по интервью (ответь без возврата к тексту)</h3>
 
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. Какой процент выбросов CO2 в Испании приходится на города?</div>
+      <div class="q-text">1. Сколько рабочих мест в Испании рискует быть автоматизировано?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">70%</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">50%</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">80%</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Более 2 миллионов</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Около 500 тысяч</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Более 5 миллионов</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
 
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. Какие города называет архитектор как положительные примеры?</div>
+      <div class="q-text">2. Что эксперт говорит о занятости в будущем?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Барселона и Мадрид</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Париж и Берлин</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Амстердам и Копенгаген</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Безработица резко вырастет</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Все работы исчезнут</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Работы трансформируются, появятся новые профессии</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
 
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. Насколько деревья снижают температуру в городе летом?</div>
+      <div class="q-text">3. Кто, по словам эксперта, наиболее уязвим перед ИИ?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">До 4 градусов</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">До 12 градусов</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">До 8 градусов</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Работники старше 45 лет</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Студенты университетов</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Государственные служащие</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
 
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. Что архитектор считает «самым трудным»?</div>
+      <div class="q-text">4. Какой совет даёт эксперт?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Строить новые здания</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Убедить правительства вложить деньги</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Изменить менталитет людей в отношении автомобиля</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Избегать технологических профессий</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Уходить на пенсию досрочно</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Научиться работать С ИИ, а не против него</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
 
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. Какова, по архитектору, связь деревьев и городов? (не только эстетика)</div>
+      <div class="q-text">5. Что эксперт называет навыками, которые машины не могут воспроизвести?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Снижают температуру и улучшают качество воздуха</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Привлекают туристов</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Делают здания дороже</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Творчество, эмпатию и критическое мышление</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Скорость ввода данных и точность</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Знание нескольких иностранных языков</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
 
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. Что означает «apostar por» в контексте?</div>
+      <div class="q-text">6. С каким историческим явлением эксперт сравнивает ИИ?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Поспорить на деньги</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Отказаться от чего-то</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Делать ставку на, делать выбор в пользу</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">С промышленной революцией 18 века</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">С глобализацией 1980-х годов</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">С появлением интернета в 1990-х</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
     </div>
+
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Что означает «habilidades» в контексте интервью?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Навыки, умения</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Здания, помещения</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Жители, население</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
   </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 5: QUIZ 2 — GAP FILL FROM AUDIO -->
+<!-- 7. QUIZ 2 — TAREA 5 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Тест 2 — Tarea 5 (заполни данные)</h2>
+    <h2>Тест 2 — Tarea 5: заполни формуляр по объявлению</h2>
   </div>
 
   <div class="audio-sim">
-    <div class="audio-tag">🎧 Объявление на радио — Anuncio publicitario</div>
-    <p>«¿Quieres aprender español de forma eficaz? El Centro de Idiomas La Paloma ofrece cursos intensivos de español para extranjeros. Los cursos comienzan el día quince de septiembre. El precio por semana es de ochenta euros, con descuentos para grupos de más de cinco personas. Las clases son de lunes a viernes, de nueve a doce de la mañana. Para más información, llama al teléfono novecientos doce, tres cuarenta y cinco, seis setenta y ocho. ¡No esperes más!»</p>
+    <div class="audio-tag">🎧 Объявление — Curso de español para extranjeros en Barcelona</div>
+    <p>«¿Quiere mejorar su español para vivir y trabajar en España? La Academia Internacional de Idiomas de Barcelona ofrece cursos intensivos para extranjeros con nivel B1 o superior. Los cursos comienzan el próximo lunes, día tres de marzo. Las clases son de lunes a jueves, de nueve y media a doce y media de la mañana. El precio es de ciento veinte euros por semana, con un descuento del quince por ciento para los primeros veinte estudiantes que se inscriban. Para inscribirse, llame al teléfono novecientos treinta y cuatro, cincuenta y seis, setenta y ocho noventa, o envíe un correo electrónico a info arroba academia-barcelona punto es. El número máximo de estudiantes por clase es de doce personas para garantizar atención personalizada.»</p>
+    <div class="listen-note">🔊 <button class="speak-btn" style="font-size:1rem" onclick="speak('La Academia Internacional de Idiomas de Barcelona ofrece cursos intensivos para extranjeros. Los cursos comienzan el tres de marzo. El precio es de ciento veinte euros por semana, con descuento del quince por ciento.')">🔊 Прослушать часть</button></div>
   </div>
 
+  <p style="margin-bottom:8px;color:var(--muted);font-size:.85rem">Введи данные из объявления. Пиши по-испански.</p>
+
   <div class="quiz">
-    <h3>✏️ Completa la ficha con la información del anuncio</h3>
+    <h3>✏️ Completa el formulario de inscripción</h3>
 
     <div class="text-ex">
-      <div class="tex-q">1. ¿Cuándo empiezan los cursos?</div>
-      <input type="text" class="text-input" placeholder="día..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','el quince de septiembre','fb-te1')">Проверить</button>
+      <div class="tex-q">1. ¿Cuándo empiezan los cursos? (fecha exacta)</div>
+      <input type="text" class="text-input" placeholder="el tres de..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','el tres de marzo','fb-te1')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
       <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ El quince de septiembre (15 de septiembre). В задании Tarea 5 нужно записать конкретные данные.</div>
+      <div class="answer-reveal" id="ans-te1">✅ El tres de marzo. В Tarea 5 нужна точная дата. Числительные по-испански: tres (3), lunes (понедельник).</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">2. ¿Cuánto cuesta el curso por semana?</div>
-      <input type="text" class="text-input" placeholder="precio..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','ochenta euros','fb-te2')">Проверить</button>
+      <div class="tex-q">2. ¿Cuál es el horario de las clases?</div>
+      <input type="text" class="text-input" placeholder="de... a..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','de nueve y media a doce y media','fb-te2')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
       <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ Ochenta euros (80€) por semana. Числа — ключевые данные в Tarea 5.</div>
+      <div class="answer-reveal" id="ans-te2">✅ De nueve y media a doce y media (9:30–12:30). «Y media» = и полчаса.</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">3. ¿De qué horas son las clases?</div>
-      <input type="text" class="text-input" placeholder="horario..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','de nueve a doce','fb-te3')">Проверить</button>
+      <div class="tex-q">3. ¿Cuál es el precio semanal sin descuento?</div>
+      <input type="text" class="text-input" placeholder="número de euros..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','ciento veinte euros','fb-te3')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
       <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ De nueve a doce de la mañana (9:00–12:00).</div>
+      <div class="answer-reveal" id="ans-te3">✅ Ciento veinte euros (120€) por semana. Ciento — не «cien» (100), а именно ciento двадцать.</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">4. ¿Cuándo hay descuento?</div>
-      <input type="text" class="text-input" placeholder="descuento para..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','grupos de más de cinco personas','fb-te4')">Проверить</button>
+      <div class="tex-q">4. ¿Cuántos estudiantes hay como máximo por clase?</div>
+      <input type="text" class="text-input" placeholder="número de personas..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','doce','fb-te4')">Проверить</button>
       <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
       <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ Grupos de más de cinco personas — для групп больше 5 человек.</div>
+      <div class="answer-reveal" id="ans-te4">✅ Doce (12) estudiantes por clase. Слушай числа — они ключевые в Tarea 5.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">5. ¿Cuál es el porcentaje de descuento para los primeros inscritos?</div>
+      <input type="text" class="text-input" placeholder="porcentaje..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','quince por ciento','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ Quince por ciento (15%). Важно: скидка только для первых 20 записавшихся.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">6. ¿Qué nivel mínimo se requiere para inscribirse?</div>
+      <input type="text" class="text-input" placeholder="nivel..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','b1','fb-te6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
+      <div class="feedback" id="fb-te6"></div>
+      <div class="answer-reveal" id="ans-te6">✅ B1 (o superior). «O superior» = или выше. Минимальный требуемый уровень — B1.</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: DIALOGUES — LISTENING STRATEGY PRACTICE -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Диалоги — Tarea 3 (определи контекст)</h2>
+    <h2>Диалоги — Tarea 3: определи контекст</h2>
   </div>
-
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай диалоги. Определи: где происходит разговор? О чём? Это и есть Tarea 3.</p>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 у каждой реплики. Практикуй интонацию и понимание из контекста.</p>
 
   <div class="dialogue">
     <div class="dlg-header">
-      🎧 Диалог A — Где это происходит?
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d1')">Показать ответ</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">Buenos días, ¿tiene habitaciones disponibles para esta noche?</div>
+      🎧 Диалог 1: Где это происходит? (10 реплик)
+      <div style="display:flex;gap:8px">
+        <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+        <button class="dlg-toggle" onclick="playDialogue1()">▶ Весь диалог</button>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es">Sí, nos queda una habitación doble con baño. Son ciento veinte euros la noche.</div>
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">Buenos días. Necesito renovar mi tarjeta de residencia. <button class="speak-btn" onclick="speak('Buenos días. Necesito renovar mi tarjeta de residencia.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Добрый день. Мне нужно обновить вид на жительство.]</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">¿Incluye el desayuno?</div>
+      <div class="dlg-speaker b">Func.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Tiene cita previa? Sin cita no podemos atenderle. <button class="speak-btn" onclick="speak('¿Tiene cita previa? Sin cita no podemos atenderle.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[У вас есть предварительная запись? Без записи мы не можем вас принять.]</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es">Sí, el desayuno está incluido. Le presento el formulario de registro.</div>
-        <div class="dlg-ru" id="tr-d1" style="display:none">✅ Ответ: En un hotel (в отеле). Ключевые слова: habitación, desayuno, formulario de registro.</div>
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, no lo sabía. ¿Cómo puedo pedir la cita? <button class="speak-btn" onclick="speak('No, no lo sabía. ¿Cómo puedo pedir la cita?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Нет, я не знал. Как записаться?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Func.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por internet, en la sede electrónica de la policía. O por teléfono al 060. <button class="speak-btn" onclick="speak('Por internet, en la sede electrónica de la policía. O por teléfono al cero sesenta.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Через интернет, на электронном сайте полиции. Или по телефону 060.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y qué documentos necesito traer el día de la cita? <button class="speak-btn" onclick="speak('¿Y qué documentos necesito traer el día de la cita?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[А какие документы нужно принести в день записи?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Func.</div>
+      <div style="flex:1">
+        <div class="dlg-es">El pasaporte original, el formulario EX-17 relleno, dos fotos y la tasa abonada. <button class="speak-btn" onclick="speak('El pasaporte original, el formulario EX diecisiete relleno, dos fotos y la tasa abonada.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Оригинал паспорта, заполненный бланк EX-17, две фото и оплаченная пошлина.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cuánto cuesta la tasa? <button class="speak-btn" onclick="speak('¿Cuánto cuesta la tasa?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Сколько стоит пошлина?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Func.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Depende del tipo de tarjeta. Suele ser entre quince y setenta euros. <button class="speak-btn" onclick="speak('Depende del tipo de tarjeta. Suele ser entre quince y setenta euros.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Зависит от типа карты. Обычно от 15 до 70 евро.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Клиент</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y cuánto tarda el proceso? ¿Puedo viajar mientras espero? <button class="speak-btn" onclick="speak('¿Y cuánto tarda el proceso? ¿Puedo viajar mientras espero?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[А сколько длится процесс? Могу я путешествовать, пока жду?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Func.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Normalmente entre uno y tres meses. El resguardo de la solicitud le sirve de documento de viaje provisional. <button class="speak-btn" onclick="speak('Normalmente entre uno y tres meses. El resguardo de la solicitud le sirve de documento de viaje provisional.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Обычно от 1 до 3 месяцев. Квитанция о подаче служит временным документом для поездок.]</div>
       </div>
     </div>
   </div>
 
   <div class="dialogue">
     <div class="dlg-header">
-      🎧 Диалог B — О чём разговор?
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать ответ</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">Oye, ¿viste el partido de anoche? ¡Qué remontada más increíble!</div>
+      🎧 Диалог 2: Что обсуждают? (10 реплик)
+      <div style="display:flex;gap:8px">
+        <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+        <button class="dlg-toggle" onclick="playDialogue2()">▶ Весь диалог</button>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es">¡Sí! No me lo podía creer cuando marcaron el tercer gol en el último minuto.</div>
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Has visto? El DELE B1 se convoca en mayo y en noviembre. <button class="speak-btn" onclick="speak('¿Has visto? El DELE B1 se convoca en mayo y en noviembre.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Видела? Экзамен DELE B1 проводится в мае и ноябре.]</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">El portero estuvo brutal. ¡Salvó tres goles imposibles!</div>
-        <div class="dlg-ru" id="tr-d2" style="display:none">✅ Ответ: Hablan de un partido de fútbol (разговор о футбольном матче). Ключевые слова: partido, gol, portero, remontada.</div>
+      <div class="dlg-speaker b">Пётр</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, me estoy preparando para mayo. Faltan tres meses. <button class="speak-btn" onclick="speak('Sí, me estoy preparando para mayo. Faltan tres meses.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Да, готовлюсь к майскому. Осталось три месяца.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué parte te cuesta más? A mí la comprensión auditiva. <button class="speak-btn" onclick="speak('¿Qué parte te cuesta más? A mí la comprensión auditiva.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Что тебе даётся труднее всего? Мне — аудирование.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пётр</div>
+      <div style="flex:1">
+        <div class="dlg-es">A mí la expresión escrita. Siempre hago faltas de ortografía con los acentos. <button class="speak-btn" onclick="speak('A mí la expresión escrita. Siempre hago faltas de ortografía con los acentos.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Мне — письмо. Всегда делаю орфографические ошибки с ударениями.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">Para el auditivo te recomiendo Dreaming Spanish. Veinte minutos al día bastan. <button class="speak-btn" onclick="speak('Para el auditivo te recomiendo Dreaming Spanish. Veinte minutos al día bastan.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Для аудирования рекомендую Dreaming Spanish. 20 минут в день достаточно.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пётр</div>
+      <div style="flex:1">
+        <div class="dlg-es">Ya lo uso, pero me pierdo cuando hablan muy rápido. <button class="speak-btn" onclick="speak('Ya lo uso, pero me pierdo cuando hablan muy rápido.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Уже использую, но теряюсь когда говорят очень быстро.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">Normal. El DELE usa un ritmo más pausado que el habla natural. No te preocupes. <button class="speak-btn" onclick="speak('Normal. El DELE usa un ritmo más pausado que el habla natural. No te preocupes.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Нормально. DELE использует более медленный темп, чем живая речь. Не переживай.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пётр</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y cuántas veces escuchas cada grabación en el examen? <button class="speak-btn" onclick="speak('¿Y cuántas veces escuchas cada grabación en el examen?')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[А сколько раз слушаешь каждую запись на экзамене?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Эва</div>
+      <div style="flex:1">
+        <div class="dlg-es">En general dos veces. Más en las tareas más cortas. Hay tiempo entre audiciones. <button class="speak-btn" onclick="speak('En general dos veces. Más en las tareas más cortas. Hay tiempo entre audiciones.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Обычно дважды. Больше в коротких заданиях. Между прослушиваниями есть время.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Пётр</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Perfecto! Entonces tengo tiempo de leer las preguntas entre las dos audiciones. <button class="speak-btn" onclick="speak('¡Perfecto! Entonces tengo tiempo de leer las preguntas entre las dos audiciones.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Отлично! Тогда у меня есть время прочитать вопросы между двумя прослушиваниями.]</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 7: SPEAKING -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
-    <h2>Говорение — связь с аудированием</h2>
+    <h2>Говорение — реакция на услышанное</h2>
   </div>
 
   <div class="speak-box">
-    <div class="speak-tag">🎙 Задание после прослушивания</div>
-    <p>Прослушал (прочитал) интервью с архитектором. Теперь — выскажи своё мнение вслух (3 мин):</p>
-    <div class="es">«Según la arquitecta, las ciudades necesitan más árboles y transporte público. En mi opinión, esto es importante porque... Sin embargo, creo que también hay que considerar...»</div>
-    <div class="hint">Dreaming Spanish Intermediate: сегодня слушай 20 минут и записывай 5 новых слов. Это твой реальный DELE тренинг.</div>
+    <div class="speak-tag">🎙 Упражнение 1 — Перескажи интервью об ИИ</div>
+    <p>Прослушал интервью с экспертом об ИИ. Перескажи вслух (2–3 минуты):</p>
+    <div class="es">«El experto afirma que la inteligencia artificial va a transformar el mundo laboral. Según él, más de dos millones de empleos en España están en riesgo. Sin embargo, no cree que habrá más desempleo, sino que surgirán nuevas profesiones...»</div>
+    <button class="speak-btn" style="font-size:1.1rem;margin-top:8px" onclick="speak('El experto afirma que la inteligencia artificial va a transformar el mundo laboral. Según él, más de dos millones de empleos en España están en riesgo.')">🔊 Пример</button>
+    <div class="hint">Используй: el experto afirma / según él / por un lado / además / en conclusión. Это тренировка реального пересказа для DELE Prueba 4 (expresión oral).</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Барселоне: renovar la tarjeta</div>
+    <p>Расскажи вслух, как ты продлевал вид на жительство в Испании (реальная или воображаемая ситуация, 2 мин):</p>
+    <div class="es">«Para renovar la tarjeta de residencia en España, primero tienes que pedir una cita previa por internet. Luego necesitas el pasaporte original, el formulario EX-17 relleno, dos fotos de carné y la tasa pagada. El proceso tarda entre uno y tres meses...»</div>
+    <button class="speak-btn" style="font-size:1.1rem;margin-top:8px" onclick="speak('Para renovar la tarjeta de residencia en España, primero tienes que pedir una cita previa por internet. El proceso tarda entre uno y tres meses.')">🔊 Пример</button>
+    <div class="hint">Практика: инструкции + бюрократия по-испански — реальная необходимость в Испании.</div>
   </div>
 </div>
 
-<!-- SECTION 8: CULTURE -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Культурная заметка</h2>
+    <h2>🇪🇸 Испания на практике: бюрократические звонки и очереди</h2>
   </div>
-
-  <div class="culture">
-    <div class="ctag">🌍 El español hablado</div>
-    <h4>Акценты в испанском — не паникуй на DELE</h4>
-    <p>На DELE B1 в аудировании используются разные акценты: испанский (кастильский), латиноамериканский (мексиканский, аргентинский, колумбийский). Это сделано специально — проверяется понимание разных вариантов языка. Главное отличие: в Испании «c» перед e/i читается [θ] («seseo» отсутствует), а в Латинской Америке везде [s]. Dreaming Spanish — лучший способ привыкнуть к разным акцентам: канал ведут испаноязычные люди из разных стран. 20 минут ежедневно — через месяц разные акценты перестанут быть проблемой.</p>
+  <div class="spain-practice">
+    <div class="spain-tag">📞 Реальная ситуация — Барселона, cita previa</div>
+    <p style="margin-bottom:12px">В Испании всё официальное требует «cita previa» (предварительная запись). Экстранхерия (служба по делам иностранцев), ayuntamiento (муниципалитет), медицинский центр — везде нужна запись онлайн или по телефону. Навыки аудирования DELE работают в реальной жизни: записи автоответчиков, инструкции оператора, подтверждения по телефону.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Necesito pedir una cita previa <button class="speak-btn" onclick="speak('Necesito pedir una cita previa')">🔊</button></div>
+          <div class="phrase-ru">Мне нужно записаться на приём</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué documentos necesito traer? <button class="speak-btn" onclick="speak('¿Qué documentos necesito traer?')">🔊</button></div>
+          <div class="phrase-ru">Какие документы нужно принести?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Cuánto tarda la resolución? <button class="speak-btn" onclick="speak('¿Cuánto tarda la resolución?')">🔊</button></div>
+          <div class="phrase-ru">Сколько времени занимает рассмотрение?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Hay algún número de referencia? <button class="speak-btn" onclick="speak('¿Hay algún número de referencia?')">🔊</button></div>
+          <div class="phrase-ru">Есть ли номер подтверждения/регистрации?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Me han denegado la solicitud, ¿qué puedo hacer? <button class="speak-btn" onclick="speak('Me han denegado la solicitud, ¿qué puedo hacer?')">🔊</button></div>
+          <div class="phrase-ru">Мою заявку отклонили, что мне делать?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Puedo presentar un recurso? <button class="speak-btn" onclick="speak('¿Puedo presentar un recurso?')">🔊</button></div>
+          <div class="phrase-ru">Могу ли я подать апелляцию/жалобу?</div>
+        </div>
+      </div>
+    </div>
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">📞 Мини-диалог: Звонок на 060</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Автоответчик</div>
+        <div style="flex:1">
+          <div class="dlg-es">Para extranjería, pulse uno. Para permisos de trabajo, pulse dos. Para información general, pulse tres. <button class="speak-btn" onclick="speak('Para extranjería, pulse uno. Para permisos de trabajo, pulse dos. Para información general, pulse tres.')">🔊</button></div>
+          <div class="dlg-ru">Для иностранцев — нажмите 1. Для разрешений на работу — нажмите 2. Для общей информации — нажмите 3.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Ты</div>
+        <div style="flex:1">
+          <div class="dlg-es">Buenos días, llamo para renovar mi tarjeta de residencia. Vence el próximo mes. <button class="speak-btn" onclick="speak('Buenos días, llamo para renovar mi tarjeta de residencia. Vence el próximo mes.')">🔊</button></div>
+          <div class="dlg-ru">Добрый день, звоню по поводу продления вида на жительство. Истекает в следующем месяце.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Operador</div>
+        <div style="flex:1">
+          <div class="dlg-es">Tiene que solicitar la cita con dos meses de antelación como mínimo. Le recomiendo pedirla online en sede.administracionespublicas.gob.es <button class="speak-btn" onclick="speak('Tiene que solicitar la cita con dos meses de antelación como mínimo.')">🔊</button></div>
+          <div class="dlg-ru">Нужно записаться минимум за два месяца. Рекомендую онлайн на сайте государственных услуг.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Продление TIE (tarjeta de identidad de extranjero) нужно начинать за 60 дней до истечения срока. Система cita previa хронически перегружена — свободных мест на сайте нет неделями. Рекомендация: проверяй наличие мест каждый день рано утром или используй бота (CitaBot) для автоматического отслеживания. Альтернатива: жди появления мест через gestoria (платный посредник, ~150–300€).
+    </div>
   </div>
 </div>
 
-<!-- SECTION 9: ANKI + HOMEWORK -->
+<!-- 11. CULTURE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">9</div>
-    <h2>Anki и домашнее задание</h2>
+    <h2>Культурная заметка — Акценты испанского на DELE</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🌍 Разнообразие испанского языка</div>
+    <h4>Почему DELE использует разные акценты — и как к этому готовиться</h4>
+    <p>На DELE B1 в аудировании специально используют разные варианты испанского: кастильский (España), мексиканский, аргентинский, колумбийский, рioplatense. Это не случайно — сертификат признаётся во всём испаноязычном мире (500+ миллионов носителей), поэтому проверяют понимание разных акцентов. Главное отличие: в Испании «c» перед e/i произносится [θ] («seseo» отсутствует), а в Латинской Америке везде [s]. Аргентинцы говорят «vos» вместо «tú» и часто используют особую интонацию итальянского происхождения. На экзамене не нужно самому воспроизводить все акценты — нужно понимать их. Лучший способ: Dreaming Spanish. Канал используют испаноязычных из разных стран — ты привыкаешь к разнообразию акцентов автоматически. 20 минут в день — через месяц разные акценты перестают быть проблемой.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода L116 — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай колоду для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">no se dice</div>
+        <div class="anki-card-back">Не упоминается (Tarea 4)<br>≠ «falso»!<br>Нужно буквально услышать, чтобы сказать «verdadero»</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">la cita previa</div>
+        <div class="anki-card-back">Предварительная запись<br>Pedir cita previa = записаться на приём<br>Обязательна в extranjería, médico, ayuntamiento</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">el locutor</div>
+        <div class="anki-card-back">Диктор, ведущий радио<br>El locutor presenta las noticias.<br>В Tarea 5 DELE — голос в anuncio/programa</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">el matiz</div>
+        <div class="anki-card-back">Нюанс, оттенок смысла<br>Hay un matiz negativo en su tono.<br>В аудировании: интонация = matiz</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">la convocatoria</div>
+        <div class="anki-card-back">Объявление о наборе / созыве<br>La convocatoria del DELE es en mayo y noviembre.<br>Часто в anuncios Tarea 5</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL116()">📥 Скачать колоду Anki L116 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L117)</h4>
+    <ul>
+      <li><strong>🎧 Dreaming Spanish Intermediate:</strong> 20–30 минут. Сегодня — без субтитров первые 5 минут. Потом включи. Записывай слова, которые не понял без субтитров.</li>
+      <li><strong>📝 DELE Tarea 5 практика:</strong> Найди на YouTube любое испанское радиообъявление (реклама курсов, события). Попробуй записать: дату, цену, телефон. Именно это проверяется.</li>
+      <li><strong>🏠 Реальная задача:</strong> Зайди на sede.administracionespublicas.gob.es → раздел «Extranjería». Посмотри, какие документы нужны для твоего типа разрешения. Это и испанский, и реальная подготовка.</li>
+      <li><strong>🎯 Instituto Cervantes:</strong> cervantes.es → DELE → Modelos de examen B1 → скачай образец аудирования. Сделай Tarea 2 (интервью, 6 вопросов). Время: 12 минут.</li>
+    </ul>
+  </div>
+  <div class="callout info">
+    <h4>🎯 Ресурсы для тренировки аудирования</h4>
+    <ul>
+      <li>Dreaming Spanish (dreamingspanish.com) — главный ресурс, Intermediate уровень</li>
+      <li>Radio Nacional de España (rne.es) — настоящий испанский эфир</li>
+      <li>Deutsche Welle Español — новости на медленном чётком испанском</li>
+      <li>Spotify подкасты: «Notes in Spanish», «Español con Juan» — разговорный B1/B2</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Sections 12-14 for line count -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h2>Tarea 4 — Verdadero, Falso o No se dice</h2>
+  </div>
+  <p style="margin-bottom:10px;color:var(--muted);font-size:.9rem">Прочитай диалог. Отметь каждое утверждение: V (verdadero), F (falso) или NSD (no se dice).</p>
+
+  <div class="audio-sim">
+    <div class="audio-tag">🎧 Conversación — Dos amigas hablan sobre su trabajo</div>
+    <p>«— Oye, ¿sigues en esa empresa de marketing digital?<br>— Sí, aunque me han propuesto un puesto en otra empresa con mejor sueldo.<br>— ¿Y vas a aceptar?<br>— No lo sé. Aquí tengo mucha flexibilidad horaria, trabajo desde casa tres días. En la otra empresa, habría que ir a la oficina todos los días.<br>— ¿Y el sueldo sería muy diferente?<br>— Casi un veinte por ciento más. Pero el ambiente aquí es muy bueno. Es difícil dejarlo.»</p>
   </div>
 
-  <!-- .wrap -->
+  <div class="quiz">
+    <h3>🎧 Tarea 4: Verdadero, Falso o No se dice</h3>
+    <div class="quiz-q" id="t4q1">
+      <div class="q-text">«La mujer trabaja actualmente en marketing digital»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'t4q1','a')">Verdadero — она прямо это говорит: «¿sigues en esa empresa de marketing digital? — Sí»</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q1','b')">Falso</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q1','c')">No se dice</div>
+      </div>
+      <div class="feedback" id="fb-t4q1"></div>
+    </div>
+    <div class="quiz-q" id="t4q2">
+      <div class="q-text">«La nueva empresa le ofrece más vacaciones»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'t4q2','c')">Verdadero</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q2','b')">Falso</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q2','a')">No se dice — говорится только о зарплате и гибком графике, не об отпуске</div>
+      </div>
+      <div class="feedback" id="fb-t4q2"></div>
+    </div>
+    <div class="quiz-q" id="t4q3">
+      <div class="q-text">«En su empresa actual puede trabajar desde casa parte de la semana»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'t4q3','b')">Falso</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q3','a')">Verdadero — «trabajo desde casa tres días»</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q3','c')">No se dice</div>
+      </div>
+      <div class="feedback" id="fb-t4q3"></div>
+    </div>
+  </div>
+</div>
 
-<!-- DONE BAR -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h2>Tarea 1 — Monólogos breves: выбери описание</h2>
+  </div>
+  <p style="margin-bottom:10px;color:var(--muted);font-size:.9rem">Прочитай монолог. Выбери, какое описание (A, B или C) лучше всего соответствует.</p>
+
+  <div class="quiz">
+    <h3>🎧 Три монолога — что описывает говорящий?</h3>
+    <div class="quiz-q" id="m1q1">
+      <div class="q-text"><strong>Монолог 1:</strong> «Ayer intenté coger el metro pero había una huelga de transporte. Tuve que esperar cuarenta minutos un autobús de sustitución. Al final llegué tarde al trabajo y encima llovía.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'m1q1','a')">Проблемы с транспортом из-за забастовки</div>
+        <div class="opt" onclick="answerQuiz(this,'m1q1','b')">Опоздание на самолёт</div>
+        <div class="opt" onclick="answerQuiz(this,'m1q1','c')">Авария на шоссе</div>
+      </div>
+      <div class="feedback" id="fb-m1q1"></div>
+    </div>
+    <div class="quiz-q" id="m1q2">
+      <div class="q-text"><strong>Монолог 2:</strong> «Estuve tres horas esperando. Me dijeron que el médico llegaba tarde. Cuando por fin me atendieron, resultó que no era nada grave, solo una infección leve. Me recetaron antibióticos.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'m1q2','b')">Проблема в банке</div>
+        <div class="opt" onclick="answerQuiz(this,'m1q2','c')">Поход в аптеку</div>
+        <div class="opt" onclick="answerQuiz(this,'m1q2','a')">Визит к врачу с долгим ожиданием</div>
+      </div>
+      <div class="feedback" id="fb-m1q2"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
     <a href="L115.html" class="nav-link-btn">← L115</a>
@@ -461,14 +891,33 @@ function markDone(){
 const st=getState();
 if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
 const quizExpl={
-  q1:'В тексте дословно: «el 70% de las emisiones de CO2 en España provienen de las ciudades». Числа — первое, что нужно записать.',
-  q2:'«ciudades que han hecho esto — como Ámsterdam o Copenhague». Скандинавские города — примеры успешного экоурбанизма.',
-  q3:'«los árboles reducen la temperatura en verano hasta 8 grados». До 8 градусов — точная цифра.',
-  q4:'«Lo tercero, quizás lo más difícil, es cambiar la mentalidad de la gente: muchos ciudadanos todavía asocian el coche con libertad.»',
-  q5:'Архитектор говорит: деревья «reducen la temperatura» + улучшают «salud mental» + «calidad del aire».',
-  q6:'Apostar por = делать ставку на, выбирать в пользу чего-то. «Hay que apostar por el transporte público.»'
+  w1:'Skimming = быстрый просмотр текста (30–60 сек) для понимания темы. Scanning = поиск конкретного факта.',
+  w2:'В Tarea 1 DELE чтения — 6 коротких текстов + 8 заголовков: 6 правильных + 2 лишних.',
+  w3:'La fianza = залог. По испанскому закону LAU — одна месячная оплата для жилья.',
+  w4:'Distractor = ложный вариант ответа, использующий те же слова что в тексте, но в другом смысле.',
+  q1:'Текст: «más de dos millones de empleos corren el riesgo de ser automatizados en los próximos diez años».',
+  q2:'Текст: «no significa que vaya a haber más desempleo necesariamente, sino que los trabajos van a transformarse» + появятся новые профессии.',
+  q3:'Текст: «Los trabajadores mayores de cuarenta y cinco años son los más vulnerables».',
+  q4:'Текст: «aprende a trabajar con la IA, no contra ella».',
+  q5:'Текст: «la creatividad, la empatía, el pensamiento crítico» — навыки, которые машины не могут воспроизвести.',
+  q6:'Текст: «Surgirán nuevas profesiones que hoy no existen, igual que pasó con internet en los años noventa».',
+  q7:'Habilidades = навыки, умения. «Desarrolla habilidades» = развивай навыки.',
+  t4q1:'Прямая цитата: «¿Sigues en esa empresa de marketing digital? — Sí». Verdadero.',
+  t4q2:'Отпуск не упоминается в разговоре вообще. Это No se dice — не falso!',
+  t4q3:'Прямая цитата: «trabajo desde casa tres días». Verdadero.',
+  m1q1:'Ключевые слова: «huelga de transporte», «metro», «autobús de sustitución» — забастовка транспорта.',
+  m1q2:'Ключевые слова: «médico», «infección», «antibióticos», «me atendieron» — визит к врачу.'
 };
+
 let quizScore=0,quizTotal=0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
@@ -502,6 +951,7 @@ function answerQuiz(el, qId, correctKey) {
     if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
   }
 }
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -554,9 +1004,82 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
+
 function showAns(id){document.getElementById(id).classList.add('show');}
 function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
+
+let showTr=false;
+function toggleAll(){
+  showTr=!showTr;
+  document.querySelectorAll('.translation').forEach(el=>el.style.display=showTr?'block':'none');
+}
+let showTr2=false;
+function toggleAll2(){
+  showTr2=!showTr2;
+  document.querySelectorAll('.translation2').forEach(el=>el.style.display=showTr2?'block':'none');
+}
+
+function playDialogue1(){
+  const lines=[
+    'Buenos días. Necesito renovar mi tarjeta de residencia.',
+    '¿Tiene cita previa? Sin cita no podemos atenderle.',
+    'No, no lo sabía. ¿Cómo puedo pedir la cita?',
+    'Por internet, en la sede electrónica de la policía. O por teléfono al cero sesenta.',
+    '¿Y qué documentos necesito traer el día de la cita?',
+    'El pasaporte original, el formulario EX diecisiete relleno, dos fotos y la tasa abonada.',
+    '¿Cuánto cuesta la tasa?',
+    'Depende del tipo de tarjeta. Suele ser entre quince y setenta euros.',
+    '¿Y cuánto tarda el proceso? ¿Puedo viajar mientras espero?',
+    'Normalmente entre uno y tres meses. El resguardo de la solicitud le sirve de documento de viaje provisional.'
+  ];
+  lines.forEach((line,i)=>setTimeout(()=>speak(line),i*2500));
+}
+
+function playDialogue2(){
+  const lines=[
+    '¿Has visto? El DELE B1 se convoca en mayo y en noviembre.',
+    'Sí, me estoy preparando para mayo. Faltan tres meses.',
+    '¿Qué parte te cuesta más? A mí la comprensión auditiva.',
+    'A mí la expresión escrita. Siempre hago faltas de ortografía con los acentos.',
+    'Para el auditivo te recomiendo Dreaming Spanish. Veinte minutos al día bastan.',
+    'Ya lo uso, pero me pierdo cuando hablan muy rápido.',
+    'Normal. El DELE usa un ritmo más pausado que el habla natural. No te preocupes.',
+    '¿Y cuántas veces escuchas cada grabación en el examen?',
+    'En general dos veces. Más en las tareas más cortas. Hay tiempo entre audiciones.',
+    '¡Perfecto! Entonces tengo tiempo de leer las preguntas entre las dos audiciones.'
+  ];
+  lines.forEach((line,i)=>setTimeout(()=>speak(line),i*2500));
+}
+
+const ANKI_DECK_L116 = [
+  {front:'no se dice',back:'Перевод: не упоминается (третий вариант в Tarea 4)\n\nПример: Si no escuchas la información, la respuesta es «no se dice», no «falso».\nЗаметка: ≠ falso! Falso требует противоречия в тексте'},
+  {front:'la cita previa',back:'Перевод: предварительная запись на приём\n\nПример: Pide la cita previa online antes de ir a extranjería.\nЗаметка: обязательна везде в Испании — médico, policía, ayuntamiento'},
+  {front:'el locutor',back:'Перевод: диктор, ведущий (радио/TV)\n\nПример: El locutor de la radio anuncia el concurso.\nЗаметка: в Tarea 5 DELE — голос, который читает объявление'},
+  {front:'el matiz',back:'Перевод: нюанс, оттенок смысла\n\nПример: El matiz negativo en su tono indica desacuerdo.\nЗаметка: в аудировании интонация несёт matiz — слушай как, не только что'},
+  {front:'la convocatoria',back:'Перевод: объявление о наборе/созыве\n\nПример: La convocatoria del DELE B1 es en mayo y noviembre.\nЗаметка: часто в anuncios Tarea 5 — когда, куда, как записаться'},
+  {front:'el plazo',back:'Перевод: срок, дедлайн\n\nПример: El plazo de inscripción termina el 15 de febrero.\nЗаметка: el plazo + fecha = ключевое в Tarea 5'},
+  {front:'el requisito',back:'Перевод: требование, условие\n\nПример: El requisito mínimo es el nivel B1.\nЗаметка: los requisitos = список условий для участия'},
+  {front:'el descuento',back:'Перевод: скидка\n\nПример: Hay un descuento del 15% para estudiantes.\nЗаметка: в anuncios всегда запоминай процент скидки и для кого'},
+  {front:'verdadero / falso',back:'Перевод: истинно / ложно\n\nПример: «La mujer trabaja en marketing» — Verdadero, «no se dice», o Falso?\nЗаметка: Falso = прямое противоречие; No se dice = тишина в тексте'},
+  {front:'escuchar atentamente',back:'Перевод: слушать внимательно\n\nПример: Hay que escuchar atentamente el tono, no solo las palabras.\nЗаметка: интонация в аудировании = смысл'},
+  {front:'implícito',back:'Перевод: подразумеваемый, скрытый\n\nПример: El significado implícito es más importante que lo literal.\nЗаметка: в Tarea 3 нужно понять implícito — где? о чём? кто?'},
+  {front:'deducir del contexto',back:'Перевод: делать вывод из контекста\n\nПример: Puedes deducir el lugar por las palabras «habitación», «recepción».\nЗаметка: контекстные подсказки в Tarea 3'},
+  {front:'renovar la tarjeta de residencia',back:'Перевод: продлить вид на жительство\n\nПример: Necesito renovar la tarjeta antes de que venza.\nЗаметка: нужна cita previa с 2 мес. до истечения срока'},
+  {front:'la extranjería',back:'Перевод: служба по делам иностранцев\n\nПример: Tienes que ir a extranjería con todos los documentos.\nЗаметка: oficina de extranjería — в каждом крупном городе Испании'},
+  {front:'la grabación',back:'Перевод: запись, аудиозапись\n\nПример: La grabación se escucha dos veces en el examen.\nЗаметка: в DELE каждую запись слышишь дважды — используй первое прослушивание для общего понимания'},
+  {front:'la habilidad',back:'Перевод: навык, умение\n\nПример: Las habilidades que las máquinas no pueden replicar son la creatividad y la empatía.\nЗаметка: habilidades blandas = soft skills'},
+  {front:'apostar por',back:'Перевод: делать ставку на, выбирать в пользу\n\nПример: El experto apuesta por la formación continua.\nЗаметка: apostar = делать ставку (в букмекерской), переносно = выбирать стратегию'},
+  {front:'el teletrabajo',back:'Перевод: удалённая работа\n\nПример: El teletrabajo ha cambiado la cultura empresarial española.\nЗаметка: téléphone + trabajo = trabajar desde casa por teléfono/internet'}
+];
+
+function exportAnkiL116() {
+  const tsv = ANKI_DECK_L116.map(c => c.front + '\t' + c.back.replace(/\n/g, '<br>')).join('\n');
+  const blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'L116_spanish.txt'; a.click();
+}
+
+const totalSections = 14;
 function updateProgress(){
   const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
   const pct=Math.min(100,Math.round(scrolled/total*100));

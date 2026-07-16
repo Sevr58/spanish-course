@@ -1480,7 +1480,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Полный DELE B1 reading section (45 мин)",
-      file:"lessons/L115.html", status:"pending"
+      file:"lessons/L115.html", status:"improved"
     },
     {
       id:"L116", num:116, phase:4, block:"B4B", level:"B1", day:252, week:43,
@@ -1492,7 +1492,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Полный DELE B1 listening section (35 мин)",
-      file:"lessons/L116.html", status:"pending"
+      file:"lessons/L116.html", status:"improved"
     },
     {
       id:"L117", num:117, phase:4, block:"B4B", level:"B1", day:255, week:44,

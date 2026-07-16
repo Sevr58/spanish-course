@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L115: DELE B1 — Чтение: стратегии и практика</title>
+<title>L115: DELE B1 — Чтение: практика 4 типов заданий</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -36,8 +36,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.dele{background:rgba(157,78,221,.1);border-color:var(--purple)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
 .speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
@@ -52,8 +51,11 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}
+.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}
+.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}
+.opt.picked::before{content:'👉 ';margin-right:2px}
+.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
@@ -69,7 +71,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
 .answer-reveal.show{display:block}
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
 .dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
@@ -81,296 +83,527 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
-.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
 .done-btn.marked{background:var(--muted)}
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-.vocab-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.vocab-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
-.vocab-table tr:last-child td{border-bottom:none}
-.vocab-table .es-word{color:var(--gold);font-weight:600}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
 .reading-text{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px 22px;margin:14px 0;font-size:.92rem;line-height:1.8}
 .reading-text h4{color:var(--gold);font-size:.95rem;margin-bottom:10px}
 .reading-text p{margin-bottom:10px;color:var(--text)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
-  <span class="level">B1 · DELE Prep · День 249</span>
+  <span class="level">B1 · Фаза 4 · День 249</span>
   <a href="L116.html">L116 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
   <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
-  <h1>DELE B1: <span class="hl">Чтение</span> — стратегии и практика</h1>
-  <p class="sub">4 типа заданий: множественный выбор, соответствие, пропуски — полная тренировка</p>
+  <h1>DELE B1: <span class="hl">Чтение</span> — практика 4 типов заданий</h1>
+  <p class="sub">Comprensión de lectura: тренировка Tarea 1–4 с аутентичными текстами</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">📖</div><div><strong>DELE Prueba 1</strong><p>Comprensión de lectura — 4 задания, 45 мин</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~60 минут (имитация реального экзамена)</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Читай субтитры во время просмотра</p></div></div>
-    <div class="obj"><div class="ico">🎯</div><div><strong>Стратегия</strong><p>Skimming, scanning, contextual guessing</p></div></div>
+    <div class="obj"><div class="ico">📖</div><div><strong>Prueba 1 DELE</strong><p>4 типа заданий чтения, 45 минут на экзамене</p></div></div>
+    <div class="obj"><div class="ico">⚡</div><div><strong>Skimming/Scanning</strong><p>Стратегии быстрого поиска информации в тексте</p></div></div>
+    <div class="obj"><div class="ico">📝</div><div><strong>Тренировка</strong><p>Аутентичные испанские тексты уровня B1</p></div></div>
+    <div class="obj"><div class="ico">🎯</div><div><strong>Результат</strong><p>Навык находить ответ без перевода всего текста</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: THEORY — DELE READING FORMAT -->
+<!-- 3. WARM-UP: повторение L114 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Формат DELE B1 — раздел чтения</h2>
+    <h2>Повторение L114 — коннекторы и аргументация</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Быстрая проверка материала прошлого урока — 4 вопроса.</p>
+  <div class="quiz">
+    <h3>🔄 Проверь себя перед новым материалом</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Какой коннектор выражает КОНТРАСТ (однако, тем не менее)?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Sin embargo</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Además</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Por lo tanto</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «En consecuencia» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">Например</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">С другой стороны</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">Следовательно, в результате</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. Как по-испански «с одной стороны... с другой стороны»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Por un lado... por otro lado</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Antes... después</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Primero... luego</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Коннектор «es decir» служит для:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">Добавления нового аргумента</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">Введения примера</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">Пояснения/перефразирования сказанного</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — 4 типа заданий DELE Prueba 1</h2>
   </div>
 
   <div class="callout dele">
-    <h4>📋 Prueba 1: Comprensión de lectura (45 минут)</h4>
+    <h4>📋 Comprensión de lectura — структура экзамена (45 минут)</h4>
     <ul>
-      <li><strong>Tarea 1:</strong> Читаешь 6 коротких текстов → соединяешь с 8 заголовками (6 правильных + 2 лишних)</li>
-      <li><strong>Tarea 2:</strong> Читаешь один длинный текст → отвечаешь на 6 вопросов с тройным выбором (a/b/c)</li>
-      <li><strong>Tarea 3:</strong> Текст с 6 пропусками → выбираешь из 12 вариантов (словосочетания/фразы)</li>
-      <li><strong>Tarea 4:</strong> Читаешь 4 коротких текста на одну тему → соединяешь 6 утверждений с нужным автором</li>
+      <li><strong>Tarea 1 (эмпаreхаmiénто):</strong> 6 коротких текстов → нужно подобрать заголовок из 8 вариантов (6 правильных + 2 лишних). Стратегия: читай заголовки сначала, потом быстро skim по каждому тексту.</li>
+      <li><strong>Tarea 2 (selección múltiple):</strong> Длинный текст ~400 слов → 6 вопросов с вариантами a/b/c. Стратегия: читай вопрос → ищи в тексте ключевое слово → читай вокруг него.</li>
+      <li><strong>Tarea 3 (texto con huecos):</strong> Текст с 6 пропусками → вставляешь слова/фразы из 12 вариантов. Стратегия: читай предложение целиком, опирайся на грамматику и логику.</li>
+      <li><strong>Tarea 4 (emparejamiento múltiple):</strong> 4 коротких текста одной темы → 6 утверждений → нужно определить, кто из 4 авторов это говорит. Стратегия: читай утверждение → ищи его парафраз в текстах.</li>
     </ul>
   </div>
 
   <div class="callout tip">
-    <h4>💡 Три ключевые стратегии чтения</h4>
+    <h4>💡 Три техники чтения для DELE</h4>
     <ul>
-      <li><strong>Skimming</strong> — быстро просматривай весь текст за 30–60 секунд, чтобы понять тему и структуру. Читай первое и последнее предложение каждого абзаца.</li>
-      <li><strong>Scanning</strong> — ищи конкретную информацию (имена, числа, даты). Не читай всё — ищи целевую деталь.</li>
-      <li><strong>Contextual guessing</strong> — незнакомое слово? Определи по контексту: часть речи + смысл соседних слов.</li>
+      <li><strong>Skimming (просмотровое чтение):</strong> 30–60 секунд на весь текст. Цель — понять тему и структуру. Читай первое предложение каждого абзаца + последний абзац.</li>
+      <li><strong>Scanning (поисковое чтение):</strong> Ищи конкретное слово, число, имя. Глаза движутся зигзагом по странице. Не читай всё — ищи маркер.</li>
+      <li><strong>Contextual guessing (вывод из контекста):</strong> Незнакомое слово? Определи: это существительное или глагол? Что логично по смыслу? Ответ часто понятен из соседних слов.</li>
     </ul>
   </div>
 
   <div class="callout warning">
-    <h4>⚠️ Главная ошибка: переводить всё подряд</h4>
-    <p>Никогда не переводи весь текст — на это нет времени. Читай с задачей: «Что спрашивается?» → «Где в тексте это может быть?» → «Найди доказательство». Ответ всегда можно найти дословно или перефразировано в тексте.</p>
+    <h4>⚠️ Главные ловушки DELE чтения</h4>
+    <p>Варианты ответов специально написаны с теми же словами, что в тексте, но в ДРУГОМ контексте. Это «distractores». Всегда возвращайся к тексту и проверяй контекст, не выбирай ответ только по наличию нужного слова.</p>
   </div>
+
+  <h3 style="margin-top:20px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки при чтении DELE B1</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Как делают</th><th>Как надо</th><th>Совет</th></tr>
+    <tr><td>Переводить весь текст</td><td class="wrong-ex">Читаю слово за словом</td><td class="right-ex">Skim + scan по заданию</td><td>У тебя 45 мин на 4 задания — нет времени переводить</td></tr>
+    <tr><td>Выбирать ответ по одному слову</td><td class="wrong-ex">Вижу слово — выбираю</td><td class="right-ex">Читаю контекст вокруг слова</td><td>Distractores содержат те же слова, но смысл другой</td></tr>
+    <tr><td>Игнорировать заголовки в Tarea 2</td><td class="wrong-ex">Начинаю с текста</td><td class="right-ex">Читаю вопросы перед текстом</td><td>Вопросы — твоя карта: знаешь, что искать</td></tr>
+    <tr><td>Пропускать Tarea 3 грамматику</td><td class="wrong-ex">Выбираю «на слух»</td><td class="right-ex">Проверяю согласование, время, предлог</td><td>В huecos часто стоит выбор между двумя предлогами</td></tr>
+    <tr><td>В Tarea 4 — читать все 4 текста</td><td class="wrong-ex">Читаю всё подряд</td><td class="right-ex">Читаю утверждение, потом ищу его парафраз</td><td>Каждое утверждение = одна охота в 4 текстах</td></tr>
+    <tr><td>Не замечать отрицания</td><td class="wrong-ex">«El autor dice que el teletrabajo es bueno» ✓</td><td class="right-ex">Текст: «no considera positivo el teletrabajo»</td><td>No, nunca, jamás, sin — меняют смысл на противоположный</td></tr>
+  </table>
 </div>
 
-<!-- SECTION 2: READING TEXT 1 — TAREA 2 STYLE -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">2</div>
-    <h2>Tarea 2 — Comprensión lectora (аутентичный текст)</h2>
-  </div>
-
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай текст полностью. Затем ответь на вопросы. Время: 8 минут.</p>
-
-  <div class="reading-text">
-    <h4>El auge del turismo digital en España</h4>
-    <p>En los últimos años, España ha experimentado una transformación radical en la forma en que los turistas planifican y viven sus viajes. La pandemia aceleró un proceso que ya estaba en marcha: la digitalización del sector turístico. Hoy, más del 85% de los viajeros que visitan España reservan su alojamiento a través de plataformas digitales, y casi el 70% utiliza aplicaciones móviles para organizar sus rutas y encontrar restaurantes.</p>
-    <p>Sin embargo, este cambio no ha sido igualmente positivo para todos. Los pequeños negocios tradicionales —hostales familiares, tiendas de artesanía, restaurantes de barrio— se han visto obligados a adaptarse rápidamente o perder clientes. Muchos propietarios mayores han tenido dificultades para entender las plataformas digitales, lo que ha aumentado la brecha entre los negocios que prosperan y los que luchan por sobrevivir.</p>
-    <p>Por otro lado, el turismo digital ha democratizado el acceso a destinos menos conocidos. Gracias a los blogs de viaje y las redes sociales, regiones como la Ribeira Sacra en Galicia o Las Médulas en León han ganado visibilidad internacional, atrayendo a un turismo más sostenible y culturalmente interesado, a diferencia del turismo masivo que satura ciudades como Barcelona o Sevilla.</p>
-    <p>Los expertos señalan que el futuro del turismo español dependerá de su capacidad para equilibrar la digitalización con la preservación de la experiencia auténtica. Como afirma la investigadora María Sánchez: «El turista del siglo XXI no quiere solo fotografías para Instagram; quiere conexión genuina con la cultura local.» Este reto —combinar tecnología con autenticidad— será el gran desafío del sector en los próximos años.</p>
-  </div>
-</div>
-
-<!-- SECTION 3: QUIZ 1 — READING COMPREHENSION -->
+<!-- 5. VOCABULARY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">3</div>
-    <h2>Тест 1 — Comprensión del texto (Tarea 2)</h2>
+    <h2>Словарь — лексика экзаменационного чтения</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">18 ключевых слов для DELE B1 чтения. Нажимай 🔊 для произношения.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">la comprensión lectora</div><div class="vocab-pron">[компренсьон лэктора]</div><div class="vocab-ru">навык чтения / понимание текста</div></div><button class="speak-btn" onclick="speak('la comprensión lectora')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el enunciado</div><div class="vocab-pron">[энунсьадо]</div><div class="vocab-ru">формулировка, условие задания</div></div><button class="speak-btn" onclick="speak('el enunciado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el fragmento</div><div class="vocab-pron">[фрагмэнто]</div><div class="vocab-ru">отрывок, фрагмент текста</div></div><button class="speak-btn" onclick="speak('el fragmento')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el encabezamiento</div><div class="vocab-pron">[энкабэсамьенто]</div><div class="vocab-ru">заголовок, шапка</div></div><button class="speak-btn" onclick="speak('el encabezamiento')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el párrafo</div><div class="vocab-pron">[парафо]</div><div class="vocab-ru">абзац</div></div><button class="speak-btn" onclick="speak('el párrafo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el sinónimo</div><div class="vocab-pron">[синонимо]</div><div class="vocab-ru">синоним</div></div><button class="speak-btn" onclick="speak('el sinónimo')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">deducir</div><div class="vocab-pron">[дэдусир]</div><div class="vocab-ru">делать вывод, дедуцировать</div></div><button class="speak-btn" onclick="speak('deducir')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la idea principal</div><div class="vocab-pron">[идеа принсипал]</div><div class="vocab-ru">главная мысль, основная идея</div></div><button class="speak-btn" onclick="speak('la idea principal')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el detalle</div><div class="vocab-pron">[дэталье]</div><div class="vocab-ru">деталь, подробность</div></div><button class="speak-btn" onclick="speak('el detalle')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el registro</div><div class="vocab-pron">[рэхистро]</div><div class="vocab-ru">стиль речи (формальный/неформальный)</div></div><button class="speak-btn" onclick="speak('el registro')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la coherencia</div><div class="vocab-pron">[коэрэнсья]</div><div class="vocab-ru">связность, логика текста</div></div><button class="speak-btn" onclick="speak('la coherencia')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el hueco</div><div class="vocab-pron">[уэко]</div><div class="vocab-ru">пропуск, пробел в тексте</div></div><button class="speak-btn" onclick="speak('el hueco')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el distractor</div><div class="vocab-pron">[дистрактор]</div><div class="vocab-ru">ложный ответ, отвлекающий вариант</div></div><button class="speak-btn" onclick="speak('el distractor')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">parafrasear</div><div class="vocab-pron">[парафразэар]</div><div class="vocab-ru">перефразировать, пересказать иначе</div></div><button class="speak-btn" onclick="speak('parafrasear')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">destacar</div><div class="vocab-pron">[дэстакар]</div><div class="vocab-ru">выделять, подчёркивать, акцентировать</div></div><button class="speak-btn" onclick="speak('destacar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el léxico</div><div class="vocab-pron">[лексико]</div><div class="vocab-ru">лексика, словарный запас</div></div><button class="speak-btn" onclick="speak('el léxico')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el emparejamiento</div><div class="vocab-pron">[эмпарэхамьенто]</div><div class="vocab-ru">сопоставление, matching-задание</div></div><button class="speak-btn" onclick="speak('el emparejamiento')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el auge</div><div class="vocab-pron">[аухэ]</div><div class="vocab-ru">расцвет, подъём, пик</div></div><button class="speak-btn" onclick="speak('el auge')">🔊</button></div>
+  </div>
+</div>
+
+<!-- 6. QUIZ 1 — Множественный выбор -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Comprensión lectora: выбери правильный ответ</h2>
   </div>
 
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Вопросы по тексту о туризме</h3>
+  <div class="reading-text">
+    <h4>El teletrabajo y el futuro del empleo</h4>
+    <p>La pandemia de 2020 aceleró una transformación que ya estaba en marcha: la adopción masiva del teletrabajo. En España, el porcentaje de trabajadores que trabajan desde casa aumentó del 4,8% en 2019 al 34% en abril de 2020. Sin embargo, un año después, la cifra cayó hasta el 11%, lo que refleja la resistencia de muchas empresas españolas a mantener este modelo.</p>
+    <p>Los trabajadores que siguen teletrabajando valoran especialmente la flexibilidad horaria y el ahorro en transporte. No obstante, la mayoría señala que echa de menos la interacción con los compañeros y que la frontera entre trabajo y vida personal se ha vuelto difusa. Los psicólogos denominan este fenómeno «hiperconexión laboral»: la dificultad de desconectarse fuera del horario oficial.</p>
+    <p>Desde el punto de vista económico, las ciudades pequeñas y los pueblos han resultado beneficiados. Muchos trabajadores han aprovechado el teletrabajo para mudarse fuera de las grandes urbes, lo que ha generado un fenómeno conocido como «éxodo urbano». Regiones como Galicia, Aragón y Castilla y León han visto aumentar su población por primera vez en décadas.</p>
+    <p>Los expertos debaten si el modelo híbrido —combinar presencia en oficina con días en casa— será el estándar definitivo. Para muchos empleadores, perder el control visual de sus empleados sigue siendo un problema cultural difícil de superar. Como señala el sociólogo Luis Merino: «España sigue teniendo una cultura del presentismo muy arraigada. Ver a alguien trabajar equivale psicológicamente a confiar en que trabaja.»</p>
+  </div>
+
+  <div class="quiz">
+    <h3>🎯 7 вопросов по тексту о телеработе</h3>
 
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. Согласно тексту, какой процент туристов в Испании бронирует жильё через цифровые платформы?</div>
+      <div class="q-text">1. Какой процент испанских работников работал из дома в апреле 2020?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">Более 85%</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Около 70%</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','c')">Примерно 50%</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">34%</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">11%</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">4,8%</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
 
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. Кто больше всего пострадал от цифровизации, по тексту?</div>
+      <div class="q-text">2. Что означает «hiperconexión laboral», по тексту?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Крупные отели и авиакомпании</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Молодые туристы</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Малый бизнес: семейные хостелы и магазины ремесел</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Слишком быстрый интернет на работе</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Постоянные встречи по видеосвязи</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Трудность отключиться от работы вне рабочего времени</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
 
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. Что из перечисленного является ПОЛОЖИТЕЛЬНЫМ следствием цифрового туризма?</div>
+      <div class="q-text">3. Какие регионы выиграли от телеработы, по тексту?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">Малоизвестные регионы получили международную видимость</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Барселона и Севилья стали менее переполнены</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">Все туристы научились пользоваться технологиями</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Галисия, Арагон и Кастилия и Леон</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Мадрид, Барселона и Валенсия</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Андалусия, Каталония и Страна Басков</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
 
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. Что утверждает исследователь Мария Санчес?</div>
+      <div class="q-text">4. Что, согласно социологу Луису Мерино, является проблемой для испанских работодателей?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Что туристы хотят только дешёвых цен</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Что Инстаграм разрушает туризм</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Что современный турист ищет не только фото, но и настоящую связь с культурой</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Слишком высокие расходы на технологии</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Нехватка интернета в малых городах</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Культура «присутствия»: видеть сотрудника = доверять, что он работает</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
 
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. Какова главная тема текста?</div>
+      <div class="q-text">5. Что означает «éxodo urbano» в контексте текста?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Трансформация испанского туризма под влиянием цифровых технологий</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">История туризма в Испании с 1950-х годов</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Сравнение туристических платформ</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Переезд работников из больших городов в небольшие населённые пункты</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">Массовая эмиграция испанцев за границу</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Рост безработицы в малых городах</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
 
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. Слово «democratizar» в тексте означает:</div>
+      <div class="q-text">6. Чего больше всего не хватает телеработникам, по тексту?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Уничтожать</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Управлять</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Делать доступным для всех</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Стабильного интернет-соединения</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Хорошей зарплаты</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Взаимодействия с коллегами</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
     </div>
+
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Слово «arraigada» (cultura del presentismo muy arraigada) означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">Укоренившаяся, глубоко укоренённая</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">Современная, недавно появившаяся</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">Противоречивая, спорная</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
   </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<!-- SECTION 4: READING TEXT 2 — TAREA 3 (gap fill) -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">4</div>
-    <h2>Tarea 3 — Заполни пропуски (gap-fill)</h2>
-  </div>
-
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Вставь подходящее слово/выражение в каждый пропуск.</p>
-
-  <div class="reading-text">
-    <h4>El teletrabajo y la calidad de vida</h4>
-    <p>Desde que se generalizó el teletrabajo, muchas personas han descubierto que trabajar desde casa puede mejorar significativamente su calidad de vida. <strong>[1]</strong>, los desplazamientos diarios al trabajo pueden ser muy estresantes, especialmente en las grandes ciudades. Trabajar desde casa elimina este problema completamente.</p>
-    <p><strong>[2]</strong>, no todo son ventajas. Muchos trabajadores se sienten aislados y echan de menos la interacción social con sus compañeros. Además, la frontera entre el trabajo y la vida personal puede volverse borrosa, lo que dificulta desconectarse al final del día.</p>
-    <p>Los expertos sugieren que el modelo híbrido —trabajar algunos días en la oficina y otros desde casa— podría ser la solución ideal. <strong>[3]</strong>, combina lo mejor de ambos mundos: la flexibilidad del teletrabajo y la interacción humana de la oficina.</p>
-  </div>
-
-  <div class="quiz">
-    <h3>✏️ Заполни пропуски [1], [2], [3]</h3>
-
-    <div class="text-ex">
-      <div class="tex-q">Пропуск [1]: «___, los desplazamientos diarios...» — нужен коннектор, добавляющий аргумент ЗА</div>
-      <input type="text" class="text-input" placeholder="Por un lado / En primer lugar..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','por un lado','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ Por un lado — с одной стороны. «En primer lugar» тоже подходит.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">Пропуск [2]: «___, no todo son ventajas.» — нужен коннектор-контраст</div>
-      <input type="text" class="text-input" placeholder="Sin embargo / Por otro lado..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','sin embargo','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ Sin embargo — однако. «Por otro lado» тоже правильно.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">Пропуск [3]: «___, combina lo mejor...» — нужен пояснительный коннектор «то есть»</div>
-      <input type="text" class="text-input" placeholder="Es decir / O sea..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','es decir','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ Es decir — то есть, иными словами. «O sea» тоже правильно.</div>
-    </div>
-
-    <div class="text-ex">
-      <div class="tex-q">Доп. вопрос: Что значит «borrosa» (la frontera puede volverse borrosa)?</div>
-      <input type="text" class="text-input" placeholder="размытой / нечёткой..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','размытой','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ Borrosa = размытой, нечёткой. Контекст: граница между работой и личной жизнью становится нечёткой.</div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 5: VOCABULARY -->
+<!-- 7. QUIZ 2 — Заполнение пропусков -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Словарь — лексика чтения DELE B1</h2>
+    <h2>Тест 2 — Tarea 3: заполни пропуски в тексте</h2>
   </div>
 
-  <table class="vocab-table">
-    <thead>
-      <tr><th>Испанский</th><th>Произношение</th><th>Русский</th><th>Контекст</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="es-word">el auge</td><td>[аухэ]</td><td>подъём, расцвет</td><td>El auge del teletrabajo tras la pandemia.</td></tr>
-      <tr><td class="es-word">prosperar</td><td>[проспэрар]</td><td>процветать</td><td>Los negocios digitales prosperan.</td></tr>
-      <tr><td class="es-word">señalar</td><td>[сэнялар]</td><td>указывать, отмечать</td><td>Los expertos señalan que...</td></tr>
-      <tr><td class="es-word">saturar</td><td>[сатурар]</td><td>перегружать, насыщать</td><td>El turismo masivo satura las ciudades.</td></tr>
-      <tr><td class="es-word">la autenticidad</td><td>[аутэнтисидад]</td><td>подлинность, аутентичность</td><td>Los turistas buscan autenticidad.</td></tr>
-      <tr><td class="es-word">equilibrar</td><td>[экилибрар]</td><td>балансировать, уравновешивать</td><td>Hay que equilibrar tecnología y tradición.</td></tr>
-      <tr><td class="es-word">acelerado</td><td>[асэлэрадо]</td><td>ускоренный</td><td>Un cambio acelerado en el sector.</td></tr>
-      <tr><td class="es-word">la visibilidad</td><td>[висибилидад]</td><td>видимость, известность</td><td>La región ganó visibilidad internacional.</td></tr>
-    </tbody>
-  </table>
+  <div class="reading-text">
+    <h4>La economía circular en España</h4>
+    <p>España ha adoptado el modelo de <strong>[1]</strong> circular como una de sus prioridades medioambientales para 2030. <strong>[2]</strong>, la cantidad de residuos que generamos sigue siendo uno de los más altos de Europa. Las empresas españolas se han comprometido a reducir sus emisiones, <strong>[3]</strong> muchas todavía no han tomado medidas concretas. Según los expertos, el cambio real requiere no solo voluntad política <strong>[4]</strong> también una transformación cultural en los hábitos de consumo. <strong>[5]</strong>, reciclar es necesario pero insuficiente: hay que reducir primero.</p>
+  </div>
+
+  <p style="margin-bottom:8px;color:var(--muted);font-size:.85rem">Введи ответ в нижнем регистре. Система принимает синонимы и опечатки.</p>
+
+  <div class="quiz">
+    <h3>✏️ Подбери слово для каждого пропуска</h3>
+
+    <div class="text-ex">
+      <div class="tex-q">Пропуск [1]: «modelo de ___ circular» — тип экономики (círculo, цикл)</div>
+      <input type="text" class="text-input" placeholder="economía / ..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','economía','fb-te1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
+      <div class="feedback" id="fb-te1"></div>
+      <div class="answer-reveal" id="ans-te1">✅ economía — экономика. Economía circular = циклическая экономика (перерабатывать, а не выбрасывать).</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">Пропуск [2]: «___, la cantidad de residuos...» — коннектор КОНТРАСТА с предыдущим</div>
+      <input type="text" class="text-input" placeholder="sin embargo / no obstante / ..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','sin embargo','fb-te2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
+      <div class="feedback" id="fb-te2"></div>
+      <div class="answer-reveal" id="ans-te2">✅ Sin embargo — однако. No obstante тоже правильно. Это контраст: «приняли модель», НО «мусора всё равно много».</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">Пропуск [3]: «se han comprometido a reducir, ___ muchas no han tomado medidas» — уступительный</div>
+      <input type="text" class="text-input" placeholder="aunque / pero / ..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','aunque','fb-te3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
+      <div class="feedback" id="fb-te3"></div>
+      <div class="answer-reveal" id="ans-te3">✅ Aunque — хотя, несмотря на то что. «Aunque» + indicativo = хотя (факт). После aunque часто идёт subjuntivo если неопределённость.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">Пропуск [4]: «no solo voluntad política ___ también...» — парная конструкция</div>
+      <input type="text" class="text-input" placeholder="sino / ..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','sino','fb-te4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
+      <div class="feedback" id="fb-te4"></div>
+      <div class="answer-reveal" id="ans-te4">✅ Sino — «не только... но и» = no solo... sino también. Sino используется после отрицания, pero — без него.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">Пропуск [5]: «___, reciclar es necesario pero insuficiente» — подводя итог</div>
+      <input type="text" class="text-input" placeholder="en definitiva / por lo tanto / ..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','en definitiva','fb-te5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
+      <div class="feedback" id="fb-te5"></div>
+      <div class="answer-reveal" id="ans-te5">✅ En definitiva — в конечном счёте, подводя итог. «En resumen» тоже подойдёт. Это вывод из всего сказанного.</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">Доп.: Что означает «residuos» в контексте об экологии?</div>
+      <input type="text" class="text-input" placeholder="отходы / мусор / ..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','отходы','fb-te6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-te6')">Показать ответ</button>
+      <div class="feedback" id="fb-te6"></div>
+      <div class="answer-reveal" id="ans-te6">✅ Residuos = отходы, мусор. Los residuos sólidos urbanos = твёрдые бытовые отходы. Часто встречается в экологических текстах DELE.</div>
+    </div>
+  </div>
 </div>
 
-<!-- SECTION 6: TAREA 1 MATCHING PRACTICE -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Tarea 1 — Práctica de correspondencias</h2>
+    <h2>Диалоги — Подготовка к DELE: обсуждение текстов</h2>
   </div>
-
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай 4 коротких текста. Сопоставь каждый с подходящим заголовком.</p>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажимай 🔊 у каждой реплики. Кнопка «Все переводы» — показать/скрыть русский. Читай вслух вместе с персонажами.</p>
 
   <div class="dialogue">
     <div class="dlg-header">
-      📖 Четыре коротких текста — прочитай и определи тему
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-tarea1')">Показать ответы</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Texto A</div>
-      <div>
-        <div class="dlg-es">«Desde hace tres años, Ana trabaja desde casa tres días a la semana. Al principio le costó adaptarse, pero ahora asegura que su productividad ha aumentado un 30% y que tiene más tiempo para su familia.»</div>
-        <div class="dlg-ru" id="tr-tarea1" style="display:none">Текст A → Заголовок: «Los beneficios del teletrabajo» (Преимущества удалённой работы)</div>
+      💬 Диалог 1: Двое готовятся к DELE (10 реплик)
+      <div style="display:flex;gap:8px">
+        <button class="dlg-toggle" onclick="toggleAll()">Все переводы</button>
+        <button class="dlg-toggle" onclick="playDialogue1()">▶ Весь диалог</button>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">Texto B</div>
-      <div>
-        <div class="dlg-es">«La ciudad de Cáceres ha visto incrementar su número de visitantes en un 45% en los últimos dos años gracias a la presencia de varios influencers de viajes que han publicado contenido sobre su casco histórico medieval.»</div>
-        <div class="dlg-ru" id="tr-tarea1b" style="display:none">Текст B → Заголовок: «El poder de las redes sociales para el turismo» (Сила соцсетей для туризма)</div>
+      <div class="dlg-speaker">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">Oye, ¿has practicado la Tarea 2 del DELE? <button class="speak-btn" onclick="speak('¿Has practicado la Tarea 2 del DELE?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Слушай, ты тренировался на Tarea 2 DELE?]</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">Texto C</div>
-      <div>
-        <div class="dlg-es">«Un nuevo estudio señala que el 62% de los adolescentes españoles preferiría tener un teléfono que una bicicleta como regalo. Esto refleja cómo la tecnología ha redefinido las prioridades de las nuevas generaciones.»</div>
-        <div class="dlg-ru" id="tr-tarea1c" style="display:none">Texto C → Заголовок: «La tecnología en la vida de los jóvenes» (Технологии в жизни молодёжи)</div>
+      <div class="dlg-speaker b">Рамон</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, pero me cuesta encontrar la información rápido. Leo demasiado despacio. <button class="speak-btn" onclick="speak('Sí, pero me cuesta encontrar la información rápido. Leo demasiado despacio.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Да, но мне трудно быстро находить информацию. Я читаю слишком медленно.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">El truco es leer las preguntas antes del texto. Así sabes qué buscar. <button class="speak-btn" onclick="speak('El truco es leer las preguntas antes del texto. Así sabes qué buscar.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Трюк — читать вопросы до текста. Так знаешь, что искать.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Рамон</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Claro! Y subrayar las palabras clave en el texto, ¿verdad? <button class="speak-btn" onclick="speak('¡Claro! Y subrayar las palabras clave en el texto, ¿verdad?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Конечно! И подчёркивать ключевые слова в тексте, правда?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">Exacto. Y cuidado con los distractores: usan las mismas palabras del texto, pero el sentido es diferente. <button class="speak-btn" onclick="speak('Exacto. Y cuidado con los distractores: usan las mismas palabras del texto, pero el sentido es diferente.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Точно. И осторожно с дистракторами: они используют те же слова из текста, но смысл другой.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Рамон</div>
+      <div style="flex:1">
+        <div class="dlg-es">Eso es lo más difícil para mí. A veces elijo una opción porque vi la palabra en el texto. <button class="speak-btn" onclick="speak('Eso es lo más difícil para mí. A veces elijo una opción porque vi la palabra en el texto.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Это для меня самое трудное. Иногда выбираю вариант, потому что увидел слово в тексте.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">Tienes que volver siempre al contexto. La respuesta correcta parafrasea lo del texto, no lo copia. <button class="speak-btn" onclick="speak('Tienes que volver siempre al contexto. La respuesta correcta parafrasea lo del texto, no lo copia.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Нужно всегда возвращаться к контексту. Правильный ответ перефразирует текст, а не копирует его.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Рамон</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y cuánto tiempo debería dedicar a cada tarea? <button class="speak-btn" onclick="speak('¿Y cuánto tiempo debería dedicar a cada tarea?')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[А сколько времени нужно уделять каждому заданию?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Марта</div>
+      <div style="flex:1">
+        <div class="dlg-es">Yo calculo: diez minutos para la Tarea 1, doce para la 2, diez para la 3 y trece para la 4. Y cinco de margen. <button class="speak-btn" onclick="speak('Yo calculo: diez minutos para la Tarea 1, doce para la 2, diez para la 3 y trece para la 4. Y cinco de margen.')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Я рассчитываю: 10 минут на Tarea 1, 12 на 2-ю, 10 на 3-ю и 13 на 4-ю. И 5 минут запаса.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Рамон</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. ¡Hacemos un simulacro juntos esta tarde! <button class="speak-btn" onclick="speak('Perfecto. ¡Hacemos un simulacro juntos esta tarde!')">🔊</button></div>
+        <div class="dlg-ru translation" style="display:none">[Отлично. Сегодня вечером делаем пробный экзамен вместе!]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📋 Диалог 2: Разбор контракта аренды (10 реплик)
+      <div style="display:flex;gap:8px">
+        <button class="dlg-toggle" onclick="toggleAll2()">Все переводы</button>
+        <button class="dlg-toggle" onclick="playDialogue2()">▶ Весь диалог</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Нина</div>
+      <div style="flex:1">
+        <div class="dlg-es">Mira, me han enviado el contrato de arrendamiento. Hay palabras que no entiendo. <button class="speak-btn" onclick="speak('Mira, me han enviado el contrato de arrendamiento. Hay palabras que no entiendo.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Смотри, мне прислали договор аренды. Есть слова, которые не понимаю.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué dice exactamente? Léeme la parte que no entiendes. <button class="speak-btn" onclick="speak('¿Qué dice exactamente? Léeme la parte que no entiendes.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Что там написано конкретно? Прочитай мне часть, которую не понимаешь.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Нина</div>
+      <div style="flex:1">
+        <div class="dlg-es">«El arrendatario se compromete a no subarrendar el inmueble sin consentimiento expreso del arrendador.» <button class="speak-btn" onclick="speak('El arrendatario se compromete a no subarrendar el inmueble sin consentimiento expreso del arrendador.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[«Арендатор обязуется не субарендовать недвижимость без явного согласия арендодателя.»]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Eso significa que no puedes alquilar la habitación a otra persona sin permiso del dueño. <button class="speak-btn" onclick="speak('Eso significa que no puedes alquilar la habitación a otra persona sin permiso del dueño.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Это означает, что ты не можешь сдавать комнату другому человеку без разрешения хозяина.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Нина</div>
+      <div style="flex:1">
+        <div class="dlg-es">Ah, claro. ¿Y qué es «la fianza»? ¿Cuánto suele ser? <button class="speak-btn" onclick="speak('Ah, claro. ¿Y qué es la fianza? ¿Cuánto suele ser?')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Ясно. А что такое «залог»? Сколько обычно?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">La fianza equivale a una mensualidad. Te la devuelven al final del contrato si el piso está bien. <button class="speak-btn" onclick="speak('La fianza equivale a una mensualidad. Te la devuelven al final del contrato si el piso está bien.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Залог равен одной месячной оплате. Его возвращают по окончании договора, если квартира в порядке.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Нина</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y si hay desperfectos cuando me vaya? ¿Me descuentan del depósito? <button class="speak-btn" onclick="speak('¿Y si hay desperfectos cuando me vaya? ¿Me descuentan del depósito?')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[А если будут повреждения, когда я съеду? Вычтут из залога?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, exactamente. Por eso hay que hacer fotos del estado del piso antes de entrar. <button class="speak-btn" onclick="speak('Sí, exactamente. Por eso hay que hacer fotos del estado del piso antes de entrar.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Да, именно. Поэтому нужно сфотографировать состояние квартиры перед заездом.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Нина</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Buena idea! ¿Y el contrato es de un año? ¿Se puede romper antes? <button class="speak-btn" onclick="speak('¡Buena idea! ¿Y el contrato es de un año? ¿Se puede romper antes?')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Хорошая идея! И договор на год? Можно расторгнуть раньше?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Андрей</div>
+      <div style="flex:1">
+        <div class="dlg-es">Normalmente son de un año. Si lo rompes antes, puedes perder la fianza. Léete bien las cláusulas. <button class="speak-btn" onclick="speak('Normalmente son de un año. Si lo rompes antes, puedes perder la fianza. Léete bien las cláusulas.')">🔊</button></div>
+        <div class="dlg-ru translation2" style="display:none">[Обычно на год. Если расторгнешь раньше, можешь потерять залог. Внимательно прочитай пункты.]</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 7: SPEAKING -->
+<!-- 9. SPEAKING -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">7</div>
@@ -378,37 +611,298 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
   </div>
 
   <div class="speak-box">
-    <div class="speak-tag">🎙 После чтения: выскажи мнение</div>
-    <p>Прочитал текст о цифровом туризме. Теперь — скажи вслух (2–3 мин):</p>
-    <div class="es">«En mi opinión, el turismo digital tiene ventajas e inconvenientes. Por un lado... Sin embargo... En mi propia experiencia... En definitiva...»</div>
-    <div class="hint">Практика: читать + сразу реагировать устно = тренировка DELE Tarea 1+3 одновременно.</div>
+    <div class="speak-tag">🎙 Упражнение 1 — Суммируй прочитанный текст</div>
+    <p>Прочитал текст о телеработе. Теперь — скажи вслух 2–3 минуты без подглядывания:</p>
+    <div class="es">«El texto habla de... Según el autor,... Por un lado... Sin embargo,... En mi opinión,...»</div>
+    <button class="speak-btn" style="font-size:1.1rem;margin-top:8px" onclick="speak('El texto habla del teletrabajo en España. Según el autor, la pandemia aceleró esta tendencia. Sin embargo, muchas empresas siguen prefiriendo el trabajo presencial.')">🔊 Пример</button>
+    <div class="hint">Используй: según el texto / el autor afirma que / en mi opinión / aunque / sin embargo — покажи, что умеешь пересказывать и реагировать.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Жизнь в Барселоне: арендуешь квартиру</div>
+    <p>Ты только получил контракт аренды. Расскажи вслух о ситуации (2 мин):</p>
+    <div class="es">«He encontrado un piso en el Eixample. El alquiler es de 900 euros al mes. La fianza equivale a una mensualidad. El contrato es de un año. Hay una cláusula que dice que no puedo subarrendar sin permiso del propietario.»</div>
+    <button class="speak-btn" style="font-size:1.1rem;margin-top:8px" onclick="speak('He encontrado un piso en el Eixample. El alquiler es de novecientos euros al mes. La fianza equivale a una mensualidad. El contrato es de un año.')">🔊 Пример</button>
+    <div class="hint">Говори в preterito perfecto (he encontrado, he firmado) и presente (el contrato es, el piso tiene). Это реальная речевая практика B1.</div>
   </div>
 </div>
 
-<!-- SECTION 8: CULTURE -->
+<!-- 10. SPAIN IN PRACTICE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">8</div>
-    <h2>Культурная заметка</h2>
+    <h2>🇪🇸 Испания на практике: чтение официальных документов</h2>
   </div>
-
-  <div class="culture">
-    <div class="ctag">🌍 La prensa en español</div>
-    <h4>Читай испанскую прессу — лучшая подготовка к DELE</h4>
-    <p>Тексты на DELE чтения берутся из реальных испанских газет и журналов: El País, El Mundo, La Vanguardia, Muy Interesante. Стиль — журналистский, академический, с коннекторами и сложными синтаксическими конструкциями. Лучшая подготовка: читай одну статью из El País ежедневно. Начни с разделов «Sociedad» или «Ciencia» — там тексты объективного стиля, идеальные для тренировки. Ресурс: elpais.com (бесплатно). Инвестиция 15 минут в день = +30% к результату на DELE.</p>
+  <div class="spain-practice">
+    <div class="spain-tag">📄 Реальная ситуация — Барселона, контракт аренды</div>
+    <p style="margin-bottom:12px">Ты нашёл квартиру через Idealista. Арендодатель присылает PDF с контрактом на 8 страниц. Навыки чтения DELE здесь работают в реальной жизни: нужно найти ключевые условия без перевода всего документа.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">El arrendatario <button class="speak-btn" onclick="speak('El arrendatario')">🔊</button></div>
+          <div class="phrase-ru">Арендатор (тот, кто снимает) — это ты</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">El arrendador / el propietario <button class="speak-btn" onclick="speak('El arrendador, el propietario')">🔊</button></div>
+          <div class="phrase-ru">Арендодатель / хозяин — владелец квартиры</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">La fianza / el depósito <button class="speak-btn" onclick="speak('La fianza, el depósito')">🔊</button></div>
+          <div class="phrase-ru">Залог — обычно 1 месячная оплата, возвращается при выезде</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">La duración del contrato <button class="speak-btn" onclick="speak('La duración del contrato')">🔊</button></div>
+          <div class="phrase-ru">Срок договора — обычно 1 год с возможностью продления</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Las cláusulas de rescisión <button class="speak-btn" onclick="speak('Las cláusulas de rescisión')">🔊</button></div>
+          <div class="phrase-ru">Условия расторжения — важнейший раздел договора</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Los suministros incluidos <button class="speak-btn" onclick="speak('Los suministros incluidos')">🔊</button></div>
+          <div class="phrase-ru">Включённые коммунальные услуги (вода, электричество, газ)</div>
+        </div>
+      </div>
+    </div>
+    <div class="dialogue" style="margin-top:14px">
+      <div class="dlg-header">📋 Мини-диалог: Уточняем условия контракта по телефону</div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Ты</div>
+        <div style="flex:1">
+          <div class="dlg-es">Hola, llamo por el piso de la calle Balmes. ¿Los suministros están incluidos en el alquiler? <button class="speak-btn" onclick="speak('Hola, llamo por el piso de la calle Balmes. ¿Los suministros están incluidos en el alquiler?')">🔊</button></div>
+          <div class="dlg-ru">Привет, звоню по поводу квартиры на улице Бальмес. Коммуналка включена в аренду?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Propietario</div>
+        <div style="flex:1">
+          <div class="dlg-es">El agua sí, pero la luz y el gas van aparte. Normalmente son unos ochenta euros al mes. <button class="speak-btn" onclick="speak('El agua sí, pero la luz y el gas van aparte. Normalmente son unos ochenta euros al mes.')">🔊</button></div>
+          <div class="dlg-ru">Вода — да, а свет и газ отдельно. Обычно около 80 евро в месяц.</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker">Ты</div>
+        <div style="flex:1">
+          <div class="dlg-es">¿Y la fianza? ¿Es de una mensualidad o más? <button class="speak-btn" onclick="speak('¿Y la fianza? ¿Es de una mensualidad o más?')">🔊</button></div>
+          <div class="dlg-ru">А залог? Одна месячная оплата или больше?</div>
+        </div>
+      </div>
+      <div class="dlg-line">
+        <div class="dlg-speaker b">Propietario</div>
+        <div style="flex:1">
+          <div class="dlg-es">Una mensualidad, como marca la ley. Se devuelve al final si no hay desperfectos. <button class="speak-btn" onclick="speak('Una mensualidad, como marca la ley. Se devuelve al final si no hay desperfectos.')">🔊</button></div>
+          <div class="dlg-ru">Одна месячная, как предписывает закон. Возвращается в конце, если нет повреждений.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> Контракт аренды в Испании регулируется Ley de Arrendamientos Urbanos (LAU). По закону минимальный срок — 5 лет (если хозяин — физлицо). Залог (fianza) — строго 1 месяц для жилья. Если хозяин требует 3–4 месяца «garantía adicional» — это легально, но можно торговаться. Всегда требуй подписанный контракт — устные договорённости в Испании практически невозможно доказать.
+    </div>
   </div>
 </div>
 
-<!-- SECTION 9: ANKI + HOMEWORK -->
+<!-- 11. CULTURE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">9</div>
-    <h2>Anki и домашнее задание</h2>
+    <h2>Культурная заметка — DELE и Instituto Cervantes</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🏛️ История экзамена DELE</div>
+    <h4>Откуда взялся DELE и почему он важен</h4>
+    <p>DELE (Diplomas de Español como Lengua Extranjera) выдаёт Instituto Cervantes — государственная организация, созданная Испанией в 1991 году для продвижения испанского языка в мире. Название — в честь Мигеля де Сервантеса, автора «Дон Кихота». Instituto Cervantes работает в 90 странах и является для испанского примерно тем, чем British Council — для английского. Диплом DELE не имеет срока действия — в отличие от IELTS или TOEFL, он действует пожизненно. В Испании сертификат B1 нужен для получения постоянного вида на жительство (residencia permanente) и гражданства. Экзамен проводится 5–6 раз в год в аккредитованных центрах по всему миру.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода L115 — 18 карточек</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай колоду для Anki одним кликом.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">el distractor</div>
+        <div class="anki-card-back">Ложный ответ<br>Пример: Los distractores usan las mismas palabras pero con otro sentido.<br>Ключ DELE: всегда проверяй контекст!</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">parafrasear</div>
+        <div class="anki-card-back">Перефразировать<br>El texto parafrasea la idea original.<br>В DELE: ответ = парафраз текста</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">la fianza</div>
+        <div class="anki-card-back">Залог (аренда)<br>La fianza es de una mensualidad.<br>Возвращается при выезде без повреждений</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">sin embargo</div>
+        <div class="anki-card-back">Однако, тем не менее<br>Es caro; sin embargo, la calidad es buena.<br>Коннектор контраста DELE B1</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">el emparejamiento</div>
+        <div class="anki-card-back">Сопоставление, matching<br>Tarea 1 DELE = emparejamiento de textos y títulos<br>Стратегия: skim + ключевые слова</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL115()">📥 Скачать колоду Anki L115 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L116: Аудирование)</h4>
+    <ul>
+      <li><strong>🗞️ El País (elpais.com):</strong> Прочитай одну статью из раздела «Sociedad» или «Tecnología». Применяй skimming: сначала прочитай только первый абзац и заголовки подразделов.</li>
+      <li><strong>🎧 Dreaming Spanish Intermediate:</strong> 20 минут просмотра. Сегодня фокус на чтение субтитров — замечай незнакомые слова и пробуй угадать из контекста.</li>
+      <li><strong>📝 Практика DELE Tarea 4:</strong> На сайте Instituto Cervantes есть бесплатные образцы экзаменов. Скачай Modelo B1 и сделай Tarea 4 (emparejamiento múltiple). Время: 13 минут.</li>
+      <li><strong>🏠 Реальная задача:</strong> Если у тебя есть или планируется контракт аренды — прочитай его, применяя scanning. Найди: сумму fianza, срок договора, условия расторжения.</li>
+    </ul>
+  </div>
+  <div class="callout info">
+    <h4>🎯 Ресурсы для DELE B1 чтения</h4>
+    <ul>
+      <li>Instituto Cervantes: cervantes.es — официальные образцы экзаменов</li>
+      <li>EDELSA DELE B1 — книга с 6 полными пробными экзаменами</li>
+      <li>El País Semanal — сложность текстов идеальна для B1/B2 тренировки</li>
+      <li>BBC Mundo и Deutsche Welle Español — новости на понятном испанском</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 12-14 additional sections for completeness -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h2>Tarea 4 — Практика эмпаreхаmiénто múltiple</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай 3 коротких мнения. Определи, кто (A, B, C) высказывает каждое утверждение.</p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      📖 Три мнения о дистанционном образовании
+      <button class="dlg-toggle" onclick="toggleTranslation('tr-tarea4')">Показать ответы</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Автор A</div>
+      <div style="flex:1">
+        <div class="dlg-es">«La educación online ha democratizado el acceso al conocimiento. Estudiantes de zonas rurales pueden acceder a cursos universitarios sin moverse de casa. Esto es una revolución positiva que no tiene marcha atrás.»</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Автор B</div>
+      <div style="flex:1">
+        <div class="dlg-es">«El aprendizaje en línea tiene ventajas, pero no puede sustituir el contacto humano. Los estudiantes necesitan interactuar con sus compañeros y profesores en persona. La pantalla crea una barrera emocional insuperable.»</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Автор C</div>
+      <div style="flex:1">
+        <div class="dlg-es">«El modelo híbrido es el futuro inevitable. Las universidades que no combinen lo presencial con lo virtual quedará obsoletas. La clave está en usar la tecnología como herramienta, no como sustituto del profesor.»</div>
+        <div class="dlg-ru" id="tr-tarea4" style="display:none">
+          <strong>Ответы:</strong><br>
+          1. «Позволяет учиться из удалённых районов» → Автор A<br>
+          2. «Экран создаёт эмоциональный барьер» → Автор B<br>
+          3. «Университеты, не смешавшие форматы, устареют» → Автор C<br>
+          4. «Технология не должна заменять преподавателя» → Автор C<br>
+          5. «Это революция без обратного пути» → Автор A<br>
+          6. «Студентам нужно личное взаимодействие» → Автор B
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- .wrap -->
+  <div class="quiz">
+    <h3>🎯 Tarea 4 — Чьё это утверждение?</h3>
+    <div class="quiz-q" id="t4q1">
+      <div class="q-text">«Говорит, что онлайн-образование дало доступ к знаниям для всех»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'t4q1','a')">Автор A — он говорит о democratización доступа</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q1','b')">Автор B — он говорит о барьерах</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q1','c')">Автор C — он говорит о гибридной модели</div>
+      </div>
+      <div class="feedback" id="fb-t4q1"></div>
+    </div>
+    <div class="quiz-q" id="t4q2">
+      <div class="q-text">«Предлагает смешанную модель как оптимальное решение»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'t4q2','b')">Автор A — он называет это «революцией»</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q2','c')">Автор B — он против онлайн</div>
+        <div class="opt" onclick="answerQuiz(this,'t4q2','a')">Автор C — «modelo híbrido es el futuro»</div>
+      </div>
+      <div class="feedback" id="fb-t4q2"></div>
+    </div>
+  </div>
+</div>
 
-<!-- DONE BAR -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h2>Tarea 1 — Сопоставление текстов и заголовков</h2>
+  </div>
+  <p style="margin-bottom:10px;color:var(--muted);font-size:.9rem">Стратегия Tarea 1: сначала читай все заголовки, потом skim по каждому тексту — 30 секунд максимум на текст.</p>
+  <div class="callout info">
+    <h4>📋 Заголовки (8 штук, 6 правильных + 2 лишних)</h4>
+    <ul>
+      <li>A. La digitalización beneficia a regiones poco conocidas</li>
+      <li>B. Problemas de salud relacionados con el trabajo remoto</li>
+      <li>C. Una revolución en el acceso a la educación</li>
+      <li>D. El impacto negativo del turismo en las ciudades</li>
+      <li>E. Ventajas económicas del teletrabajo para los empleados</li>
+      <li>F. La resistencia cultural al cambio en las empresas</li>
+      <li>G. El declive del comercio tradicional ante lo digital</li>
+      <li>H. Nuevas formas de colaboración en equipos remotos</li>
+    </ul>
+  </div>
+
+  <div class="quiz">
+    <h3>🔗 Сопоставь текст с заголовком</h3>
+    <div class="quiz-q" id="ta1q1">
+      <div class="q-text">Текст 1: «Muchos trabajadores han podido mudarse de Madrid a pueblos de Castilla con menor coste de vida, ahorrando en alquiler y transporte más de 600 euros mensuales.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'ta1q1','a')">E. Ventajas económicas del teletrabajo para los empleados</div>
+        <div class="opt" onclick="answerQuiz(this,'ta1q1','b')">B. Problemas de salud relacionados con el trabajo remoto</div>
+        <div class="opt" onclick="answerQuiz(this,'ta1q1','c')">F. La resistencia cultural al cambio en las empresas</div>
+      </div>
+      <div class="feedback" id="fb-ta1q1"></div>
+    </div>
+    <div class="quiz-q" id="ta1q2">
+      <div class="q-text">Текст 2: «La Ribeira Sacra, hasta hace poco desconocida fuera de Galicia, ha visto triplicar sus visitas desde que varios influencers publicaron vídeos sobre sus paisajes.»</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'ta1q2','b')">G. El declive del comercio tradicional ante lo digital</div>
+        <div class="opt" onclick="answerQuiz(this,'ta1q2','a')">A. La digitalización beneficia a regiones poco conocidas</div>
+        <div class="opt" onclick="answerQuiz(this,'ta1q2','c')">D. El impacto negativo del turismo en las ciudades</div>
+      </div>
+      <div class="feedback" id="fb-ta1q2"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
     <a href="L114.html" class="nav-link-btn">← L114</a>
@@ -435,14 +929,32 @@ function markDone(){
 const st=getState();
 if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
 const quizExpl={
-  q1:'В тексте: «más del 85% de los viajeros...reservan su alojamiento a través de plataformas digitales». 85%.',
-  q2:'В тексте: «Los pequeños negocios tradicionales —hostales familiares, tiendas de artesanía...— se han visto obligados a adaptarse».',
-  q3:'В тексте: «el turismo digital ha democratizado el acceso a destinos menos conocidos... regiones como la Ribeira Sacra...han ganado visibilidad internacional».',
-  q4:'Мария Санчес: «El turista del siglo XXI no quiere solo fotografías para Instagram; quiere conexión genuina con la cultura local.»',
-  q5:'Главная тема: трансформация испанского туризма под влиянием цифровизации. Текст рассматривает и плюсы, и минусы.',
-  q6:'Democratizar = делать доступным для всех. Контекст: «el turismo digital ha democratizado el acceso a destinos menos conocidos».'
+  w1:'Sin embargo = однако, тем не менее. Кроме него: no obstante, a pesar de eso.',
+  w2:'En consecuencia = следовательно, в результате. Синонимы: por lo tanto, por eso.',
+  w3:'Por un lado... por otro (lado) — классическая конструкция для аргументации B1.',
+  w4:'Es decir = то есть, иными словами. Служит для пояснения/перефразирования.',
+  q1:'Текст: «el porcentaje de trabajadores que trabajan desde casa aumentó del 4,8% en 2019 al 34% en abril de 2020». Правильный ответ — 34%.',
+  q2:'Текст: «La dificultad de desconectarse fuera del horario oficial» — это и есть hiperconexión laboral.',
+  q3:'Текст: «Regiones como Galicia, Aragón y Castilla y León han visto aumentar su población».',
+  q4:'Текст: «Ver a alguien trabajar equivale psicológicamente a confiar en que trabaja» — это культура присутствия (presentismo).',
+  q5:'Текст: «muchos trabajadores han aprovechado el teletrabajo para mudarse fuera de las grandes urbes» — это éxodo urbano.',
+  q6:'Текст: «la mayoría señala que echa de menos la interacción con los compañeros» — скучают по коллегам.',
+  q7:'Arraigada — от arraigarse (укореняться). Cultura muy arraigada = глубоко укоренившаяся культура.',
+  t4q1:'Автор A говорит об «acceso al conocimiento» и «revolución positiva». Ключ: democratizar + доступность.',
+  t4q2:'Автор C: «El modelo híbrido es el futuro inevitable». Это прямое указание на смешанную модель.',
+  ta1q1:'«Ahorrando en alquiler y transporte» = экономические преимущества для работников. Заголовок E.',
+  ta1q2:'«hasta hace poco desconocida» → стала известной благодаря цифровым инструментам. Заголовок A.'
 };
+
 let quizScore=0,quizTotal=0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
@@ -476,6 +988,7 @@ function answerQuiz(el, qId, correctKey) {
     if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
   }
 }
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -528,9 +1041,82 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
+
 function showAns(id){document.getElementById(id).classList.add('show');}
 function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
+
+let showTr=false;
+function toggleAll(){
+  showTr=!showTr;
+  document.querySelectorAll('.translation').forEach(el=>el.style.display=showTr?'block':'none');
+}
+let showTr2=false;
+function toggleAll2(){
+  showTr2=!showTr2;
+  document.querySelectorAll('.translation2').forEach(el=>el.style.display=showTr2?'block':'none');
+}
+
+function playDialogue1(){
+  const lines=[
+    '¿Has practicado la Tarea 2 del DELE?',
+    'Sí, pero me cuesta encontrar la información rápido. Leo demasiado despacio.',
+    'El truco es leer las preguntas antes del texto. Así sabes qué buscar.',
+    '¡Claro! Y subrayar las palabras clave en el texto, ¿verdad?',
+    'Exacto. Y cuidado con los distractores: usan las mismas palabras del texto, pero el sentido es diferente.',
+    'Eso es lo más difícil para mí. A veces elijo una opción porque vi la palabra en el texto.',
+    'Tienes que volver siempre al contexto. La respuesta correcta parafrasea lo del texto, no lo copia.',
+    '¿Y cuánto tiempo debería dedicar a cada tarea?',
+    'Yo calculo: diez minutos para la Tarea 1, doce para la 2, diez para la 3 y trece para la 4. Y cinco de margen.',
+    '¡Hacemos un simulacro juntos esta tarde!'
+  ];
+  lines.forEach((line,i)=>setTimeout(()=>speak(line),i*2500));
+}
+
+function playDialogue2(){
+  const lines=[
+    'Mira, me han enviado el contrato de arrendamiento. Hay palabras que no entiendo.',
+    '¿Qué dice exactamente? Léeme la parte que no entiendes.',
+    'El arrendatario se compromete a no subarrendar el inmueble sin consentimiento expreso del arrendador.',
+    'Eso significa que no puedes alquilar la habitación a otra persona sin permiso del dueño.',
+    'Ah, claro. ¿Y qué es la fianza? ¿Cuánto suele ser?',
+    'La fianza equivale a una mensualidad. Te la devuelven al final del contrato si el piso está bien.',
+    '¿Y si hay desperfectos cuando me vaya? ¿Me descuentan del depósito?',
+    'Sí, exactamente. Por eso hay que hacer fotos del estado del piso antes de entrar.',
+    '¡Buena idea! ¿Y el contrato es de un año? ¿Se puede romper antes?',
+    'Normalmente son de un año. Si lo rompes antes, puedes perder la fianza. Léete bien las cláusulas.'
+  ];
+  lines.forEach((line,i)=>setTimeout(()=>speak(line),i*2500));
+}
+
+const ANKI_DECK_L115 = [
+  {front:'el distractor',back:'Перевод: ложный ответ, отвлекающий вариант\n\nПример: Los distractores del DELE usan palabras del texto pero con otro sentido.\nЗаметка: всегда проверяй контекст, не только наличие слова'},
+  {front:'parafrasear',back:'Перевод: перефразировать\n\nПример: La respuesta correcta parafrasea el texto, no lo copia.\nЗаметка: ключевой навык для Tarea 2 и 4'},
+  {front:'el emparejamiento',back:'Перевод: сопоставление, matching\n\nПример: La Tarea 1 es un emparejamiento de textos y encabezamientos.\nЗаметка: 6 текстов + 8 заголовков, 2 лишних'},
+  {front:'el encabezamiento',back:'Перевод: заголовок, шапка\n\nПример: Elige el encabezamiento más apropiado para cada texto.\nЗаметка: Tarea 1 DELE — подбор заголовков'},
+  {front:'el hueco',back:'Перевод: пропуск, пробел\n\nПример: Completa los huecos con la palabra adecuada.\nЗаметка: Tarea 3 DELE — texto con huecos'},
+  {front:'sin embargo',back:'Перевод: однако, тем не менее\n\nПример: Es caro; sin embargo, la calidad justifica el precio.\nЗаметка: коннектор контраста B1, очень частый в DELE'},
+  {front:'no obstante',back:'Перевод: тем не менее, несмотря на это\n\nПример: El proyecto es difícil; no obstante, lo intentaremos.\nЗаметка: синоним sin embargo, более формальный'},
+  {front:'en definitiva',back:'Перевод: в конечном счёте, подводя итог\n\nПример: En definitiva, el teletrabajo ha cambiado nuestra forma de vivir.\nЗаметка: финальный коннектор-вывод'},
+  {front:'la fianza',back:'Перевод: залог (аренда)\n\nПример: La fianza equivale a una mensualidad y se devuelve al salir.\nЗаметка: обязательный термин для жизни в Испании'},
+  {front:'el arrendatario',back:'Перевод: арендатор (тот, кто снимает)\n\nПример: El arrendatario no puede subarrendar sin permiso.\nЗаметка: пара — el arrendador (хозяин)'},
+  {front:'el arrendador',back:'Перевод: арендодатель, хозяин квартиры\n\nПример: El arrendador tiene que devolver la fianza en 30 días.\nЗаметка: в разговоре чаще — el propietario, el dueño'},
+  {front:'las cláusulas',back:'Перевод: пункты, статьи договора\n\nПример: Léete bien todas las cláusulas antes de firmar.\nЗаметка: cláusula de rescisión = условие расторжения'},
+  {front:'skimming',back:'Перевод: просмотровое чтение\n\nПример: Haz skimming del texto en 30 segundos antes de leer las preguntas.\nЗаметка: читай первые предложения абзацев + последний абзац'},
+  {front:'scanning',back:'Перевод: поисковое чтение\n\nПример: Usa el scanning para encontrar nombres, fechas y números.\nЗаметка: глаза двигаются зигзагом, ищешь маркер'},
+  {front:'deducir del contexto',back:'Перевод: сделать вывод из контекста\n\nПример: Puedes deducir el significado del contexto sin usar el diccionario.\nЗаметка: ключевой навык для работы с незнакомыми словами'},
+  {front:'el presentismo',back:'Перевод: культура присутствия (на работе)\n\nПример: En España hay una cultura del presentismo: ver = confiar.\nЗаметка: явление, которое тормозит развитие тeletrabajo в Испании'},
+  {front:'subarrendar',back:'Перевод: субаренда, сдать в субаренду\n\nПример: Está prohibido subarrendar sin consentimiento del propietario.\nЗаметка: глагол, часто в контрактах аренды'},
+  {front:'los suministros',back:'Перевод: коммунальные услуги\n\nПример: ¿Los suministros están incluidos en el precio del alquiler?\nЗаметка: luz (свет), agua (вода), gas — основные suministros'}
+];
+
+function exportAnkiL115() {
+  const tsv = ANKI_DECK_L115.map(c => c.front + '\t' + c.back.replace(/\n/g, '<br>')).join('\n');
+  const blob = new Blob(['﻿' + tsv], {type: 'text/plain;charset=utf-8'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'L115_spanish.txt'; a.click();
+}
+
+const totalSections = 14;
 function updateProgress(){
   const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
   const pct=Math.min(100,Math.round(scrolled/total*100));
