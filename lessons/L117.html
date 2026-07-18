@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L117: DELE B1 — Письмо: неформальное письмо</title>
+<title>L117: DELE B1 — Неформальное письмо другу</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,8 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
 .obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}
-.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
 .progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
 .progress-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .5s ease}
 .progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
@@ -33,13 +32,19 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
 .callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
 .callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
-.callout.dele{background:rgba(157,78,221,.1);border-color:var(--purple)}
 .callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
 .callout p,.callout ul{font-size:.88rem;color:var(--muted)}
-.callout ul{margin-left:16px}
-.callout li{margin-bottom:3px}
-.speak-box{background:var(--bg3);border:1px solid rgba(157,78,221,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
-.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
+.cog-rule{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.cog-rule .rule-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.cog-rule .rule-badge{background:var(--purple);color:#fff;font-weight:700;font-size:.8rem;padding:3px 10px;border-radius:12px;flex-shrink:0}
+.cog-rule .rule-title{font-weight:700;font-size:1rem}
+.word-pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.wp{background:var(--bg3);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.wp .en{color:var(--muted);font-size:.85rem;flex:1}.wp .ar{color:var(--gold)!important;font-weight:600;font-size:.9rem;flex:1}
+.wp .sep{color:var(--border);font-size:.8rem}
+.speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
 .speak-box p{font-size:.9rem}
 .speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
 .speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
@@ -52,18 +57,16 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .options{display:flex;flex-wrap:wrap;gap:6px}
 .opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
 .opt:hover{border-color:var(--muted)}
-
-
 .feedback{margin-top:8px;font-size:.82rem;display:none}
 .feedback.show{display:block}
 .feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
 .text-ex{margin-bottom:14px}
 .text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
 .text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
-.text-input:focus{border-color:var(--purple)}
+.text-input:focus{border-color:var(--blue)}
 .text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
 .text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
-.check-btn{background:var(--purple);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
 .check-btn:hover{opacity:.88}
 .show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
 .answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
@@ -72,8 +75,8 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
 .dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:60px}
-.dlg-speaker.b{color:var(--purple)}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
 .dlg-es{font-size:.95rem;font-weight:500}
 .dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
 .dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
@@ -81,10 +84,6 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
 .culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
 .culture p{font-size:.86rem;color:var(--muted)}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:8px}
-.anki ul{margin-left:16px;font-size:.86rem;color:var(--muted)}
-.anki li{margin-bottom:4px}
 .done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50}
 .done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
 .done-btn:hover{opacity:.88}
@@ -92,384 +91,981 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .nav-links{display:flex;gap:10px}
 .nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
 .nav-link-btn:hover{border-color:var(--muted)}
-.vocab-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.vocab-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-.vocab-table td{padding:9px 12px;border-bottom:1px solid var(--bg3)}
-.vocab-table tr:last-child td{border-bottom:none}
-.vocab-table .es-word{color:var(--gold);font-weight:600}
-.letter-template{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:22px;margin:14px 0;font-size:.92rem;line-height:2}
-.letter-template .lt-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.letter-template .lt-part{color:var(--muted);font-style:italic}
-.letter-template .lt-example{color:var(--text)}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style>
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.word-pairs{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+.letter-template{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin:16px 0;font-family:'Courier New',monospace;font-size:.9rem;line-height:1.9}
+.letter-template .lt-label{font-family:'Segoe UI',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:4px}
+.letter-template .lt-part{border-left:3px solid var(--border);padding-left:12px;margin:8px 0}
+.letter-template .lt-part.saludo{border-color:var(--gold)}
+.letter-template .lt-part.apertura{border-color:var(--green)}
+.letter-template .lt-part.desarrollo{border-color:var(--blue)}
+.letter-template .lt-part.cierre{border-color:var(--purple)}
+.letter-template .lt-part.firma{border-color:var(--red)}
+.register-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+.register-table th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600;border-bottom:2px solid var(--border)}
+.register-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.register-table tr:last-child td{border-bottom:none}
+.informal-col{color:var(--green)}.formal-col{color:var(--blue)}
+.writing-sample{background:var(--bg3);border-radius:8px;padding:18px 20px;margin:16px 0;font-size:.9rem;line-height:1.8;border-left:4px solid var(--purple)}
+</style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- NAV -->
+<!-- 1. NAV -->
 <div class="nav">
   <a href="../index.html">← Дашборд</a>
-  <span class="level">B1 · DELE Prep · День 255</span>
+  <span class="level">B1 · Фаза 4 · День 255</span>
   <a href="L118.html">L118 →</a>
 </div>
 
-<!-- HERO -->
+<!-- 2. HERO -->
 <div class="hero">
-  <div class="phase-tag">🎓 Фаза 4 · Блок 4B · DELE B1 Подготовка</div>
-  <h1>DELE B1: Письмо — <span class="hl">carta informal</span></h1>
-  <p class="sub">Структура, клише и фразы неформального письма другу — Tarea 1 escritura</p>
+  <div class="phase-tag">✉️ Фаза 4 · DELE B1 Подготовка · Письменные навыки</div>
+  <h1>Неформальное письмо — <span class="hl">carta informal</span></h1>
+  <p class="sub">Как написать другу по-испански, чтобы получить максимальный балл на DELE B1. Структура, клише, регистр, типичные ошибки.</p>
   <div class="objectives">
-    <div class="obj"><div class="ico">✉️</div><div><strong>DELE Tarea 1</strong><p>Carta informal — 150–180 слов, 30 мин</p></div></div>
-    <div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~55 минут + написать письмо</p></div></div>
-    <div class="obj"><div class="ico">📺</div><div><strong>DS Intermediate</strong><p>Неформальная речь, разговорный стиль</p></div></div>
-    <div class="obj"><div class="ico">✍️</div><div><strong>Практика</strong><p>Написать неформальное письмо за 30 минут</p></div></div>
+    <div class="obj"><div class="ico">📝</div><div><strong>Цель 1</strong><p>Освоить структуру неформального письма из 5 частей</p></div></div>
+    <div class="obj"><div class="ico">🗣️</div><div><strong>Цель 2</strong><p>Выучить 20+ клише неформального регистра</p></div></div>
+    <div class="obj"><div class="ico">⏱️</div><div><strong>Цель 3</strong><p>Написать письмо 150–180 слов за 30 минут</p></div></div>
+    <div class="obj"><div class="ico">🏆</div><div><strong>Цель 4</strong><p>Избежать 7 типичных ошибок на экзамене</p></div></div>
   </div>
 </div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 9 разделов</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<!-- SECTION 1: THEORY — STRUCTURE -->
+<!-- 3. WARM-UP REVIEW (предыдущий урок L116: аудирование) -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">1</div>
-    <h2>Структура неформального письма DELE B1</h2>
+    <h2>Повторение — L116: Аудирование DELE B1</h2>
   </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Проверь, что усвоил из предыдущего урока (аудирование). 4 вопроса без подсказок.</p>
+  <div class="quiz">
+    <h3>🎧 Стратегии аудирования DELE B1</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. На задании «selección múltiple» в аудировании DELE B1 нужно:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">дословно записывать всё услышанное</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">прочитать варианты ДО прослушивания, чтобы знать, чего ждать</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">слушать только первое предложение каждого фрагмента</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. Техника «shadowing» в аудировании — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">слушать и сразу переводить на русский</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">делать паузу после каждого предложения</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">повторять вслух одновременно с носителем, имитируя ритм и интонацию</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. В аудировании DELE B1 запись обычно воспроизводится:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">два раза</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">один раз</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">три раза</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Если незнакомое слово встретилось в аудировании, правильная стратегия:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">остановиться и попытаться вспомнить слово</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">пропустить этот вопрос полностью</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">продолжать слушать контекст — значение часто понятно из общего смысла</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
+</div>
 
-  
-
-<!-- SECTION 2: VOCABULARY -->
+<!-- 4. THEORY -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">2</div>
-    <h2>Словарь — неформальный регистр</h2>
-  </div>
-
-  <table class="vocab-table">
-    <thead>
-      <tr><th>Испанский (неформально)</th><th>Произношение</th><th>Русский</th><th>Пример в письме</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="es-word">¡Qué bien que...!</td><td></td><td>Как здорово, что...!</td><td>¡Qué bien que vayas a visitarme!</td></tr>
-      <tr><td class="es-word">¡No me lo creo!</td><td></td><td>Не верю! Быть не может!</td><td>¡No me lo creo! ¿De verdad te casas?</td></tr>
-      <tr><td class="es-word">mola mucho</td><td>[мола]</td><td>очень круто (Испания)</td><td>Tu idea mola mucho, tío.</td></tr>
-      <tr><td class="es-word">qué rollo</td><td>[роло]</td><td>какая скукота/проблема</td><td>Qué rollo lo del examen.</td></tr>
-      <tr><td class="es-word">te echo de menos</td><td></td><td>скучаю по тебе</td><td>Te echo mucho de menos desde que te fuiste.</td></tr>
-      <tr><td class="es-word">la pena</td><td>[пэна]</td><td>жаль, обидно</td><td>Es una pena que no puedas venir.</td></tr>
-      <tr><td class="es-word">me muero de ganas de</td><td></td><td>не терпится, умираю от желания</td><td>Me muero de ganas de verte.</td></tr>
-      <tr><td class="es-word">ya que</td><td></td><td>раз уж, поскольку</td><td>Ya que mencionas el trabajo, te cuento...</td></tr>
-      <tr><td class="es-word">aparte de eso</td><td></td><td>кроме того</td><td>Aparte de eso, todo va bien.</td></tr>
-      <tr><td class="es-word">oye</td><td>[ойэ]</td><td>слушай, эй (для смены темы)</td><td>Oye, ¿cuándo vienes por aquí?</td></tr>
-      <tr><td class="es-word">un abrazo enorme</td><td></td><td>огромный обнимашка</td><td>Un abrazo enorme, hasta pronto.</td></tr>
-      <tr><td class="es-word">escríbeme pronto</td><td></td><td>пиши скорее</td><td>Escríbeme pronto, que me tienes en suspenso.</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- SECTION 3: MODEL LETTER -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">3</div>
-    <h2>Образец письма DELE B1</h2>
+    <h2>Теория — Структура и правила неформального письма</h2>
   </div>
 
   <div class="callout info">
-    <h4>📌 Задание (como en el examen)</h4>
-    <p>Tu amiga española Elena te ha escrito una carta. En ella te cuenta que ha empezado un nuevo trabajo y que está muy contenta. También te pregunta si has hecho algún viaje últimamente y qué planes tienes para el verano. Escríbele una carta de entre 150 y 180 palabras respondiendo a sus preguntas.</p>
+    <h4>📋 Что требует DELE B1</h4>
+    <p>В письменной части DELE B1 (Tarea 2) нужно написать <strong>carta informal</strong> или <strong>correo electrónico informal</strong> другу. Объём: <strong>150–180 слов</strong> (не меньше!). Время: 30 минут. Оценивается: содержание, лексика, грамматика, регистр и структура.</p>
   </div>
 
-  <div class="dialogue">
-    <div class="dlg-header">
-      ✉️ Образец ответного письма (162 слова)
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-letter')">Показать перевод</button>
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Часть 1</span>
+      <span class="rule-title">Saludo — Приветствие</span>
     </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">Carta</div>
-      <div>
-        <div class="dlg-es" style="white-space:pre-line">Penza, 20 de mayo de 2026
-
-¡Hola, Elena!
-
-¡Me alegró muchísimo recibir tu carta! ¡No me lo creo que por fin hayas encontrado el trabajo que querías! Cuéntame más: ¿cómo son tus compañeros? ¿Y el jefe?
-
-Te cuento que sí, he hecho un viaje corto este mes: fui a San Petersburgo con mi familia durante cinco días. Fue fantástico, aunque el tiempo no acompañó demasiado. Visitamos el Hermitage y paseamos por los canales. ¡Me muero de ganas de volver!
-
-En cuanto a mis planes para el verano, todavía no tengo nada fijo. Ya que mencionas tus vacaciones, ¿tienes previsto visitar algún sitio? Llevo tiempo pensando en ir a España, ¿quizás podríamos vernos por fin?
-
-Aparte de eso, todo sigue igual aquí. Es una pena que no podamos vernos más a menudo.
-
-¡Escríbeme pronto!
-Un abrazo enorme,
-Evgeny</div>
-        <div class="dlg-ru" id="tr-letter" style="display:none">Пенза, 20 мая 2026
-
-Привет, Елена!
-
-Очень обрадовался получить твоё письмо! Не верю, что ты наконец нашла работу, которую хотела! Расскажи подробнее: какие коллеги? А начальник?
-
-Расскажу тебе: да, я совершил небольшое путешествие в этом месяце — ездил в Санкт-Петербург с семьёй на пять дней. Было фантастически, хотя погода немного подвела. Посетили Эрмитаж и погуляли по каналам. Очень хочется вернуться!
-
-Что касается планов на лето, пока ничего конкретного. Раз уж ты упоминаешь свои каникулы, собираешься куда-нибудь поехать? Давно думаю поехать в Испанию — может, наконец увидимся?
-
-Кроме того, всё остаётся по-прежнему. Жаль, что мы так редко видимся.
-
-Пиши скорее!
-Огромный обнимашка,
-Евгений</div>
-      </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Первая строка письма. НИКОГДА не начинай с «Hola» без обращения — это слишком резко. Используй «Querido/a» или «¡Hola,» с именем.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">к другу (м.р.)</span><span class="sep">→</span><span class="ar">Querido Carlos,</span></div>
+      <div class="wp"><span class="en">к подруге</span><span class="sep">→</span><span class="ar">Querida Ana,</span></div>
+      <div class="wp"><span class="en">неформально</span><span class="sep">→</span><span class="ar">¡Hola, Marcos!</span></div>
+      <div class="wp"><span class="en">к нескольким</span><span class="sep">→</span><span class="ar">Queridos amigos,</span></div>
+      <div class="wp"><span class="en">очень близко</span><span class="sep">→</span><span class="ar">¡Hola, mi amor!</span></div>
+      <div class="wp"><span class="en">с восклицанием</span><span class="sep">→</span><span class="ar">¡Hola, campeón!</span></div>
     </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Часть 2</span>
+      <span class="rule-title">Apertura — Вступление (как поживаешь?)</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Первый абзац: спроси как дела, извинись за долгое молчание или сошлись на причину письма. Это «смазка» — устанавливает тон.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">как дела?</span><span class="sep">→</span><span class="ar">¿Cómo estás?</span></div>
+      <div class="wp"><span class="en">надеюсь всё ок</span><span class="sep">→</span><span class="ar">Espero que todo te vaya bien.</span></div>
+      <div class="wp"><span class="en">давно не писал</span><span class="sep">→</span><span class="ar">¡Cuánto tiempo sin saber de ti!</span></div>
+      <div class="wp"><span class="en">получил письмо</span><span class="sep">→</span><span class="ar">Acabo de recibir tu mensaje.</span></div>
+      <div class="wp"><span class="en">пишу потому что</span><span class="sep">→</span><span class="ar">Te escribo porque...</span></div>
+      <div class="wp"><span class="en">рад слышать</span><span class="sep">→</span><span class="ar">Me alegra mucho saber de ti.</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Часть 3</span>
+      <span class="rule-title">Desarrollo — Основное содержание</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Главная часть письма — отвечай на вопросы задания. Используй переходы между абзацами и разнообразную лексику. Обычно 2–3 абзаца.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">кстати</span><span class="sep">→</span><span class="ar">Por cierto, ...</span></div>
+      <div class="wp"><span class="en">что касается</span><span class="sep">→</span><span class="ar">En cuanto a...</span></div>
+      <div class="wp"><span class="en">также хотел сказать</span><span class="sep">→</span><span class="ar">También quería contarte que...</span></div>
+      <div class="wp"><span class="en">представляешь!</span><span class="sep">→</span><span class="ar">¿Puedes creerlo?</span></div>
+      <div class="wp"><span class="en">и ещё</span><span class="sep">→</span><span class="ar">Además, ...</span></div>
+      <div class="wp"><span class="en">с другой стороны</span><span class="sep">→</span><span class="ar">Por otro lado, ...</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Часть 4</span>
+      <span class="rule-title">Cierre — Завершение</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Перед подписью: пожелание, просьба ответить, ссылка на будущую встречу. Это показывает владение форматом.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">жду ответа</span><span class="sep">→</span><span class="ar">Espero tu respuesta pronto.</span></div>
+      <div class="wp"><span class="en">напиши мне</span><span class="sep">→</span><span class="ar">Escríbeme cuando puedas.</span></div>
+      <div class="wp"><span class="en">ну ладно, пока</span><span class="sep">→</span><span class="ar">Bueno, te dejo por ahora.</span></div>
+      <div class="wp"><span class="en">увидимся скоро</span><span class="sep">→</span><span class="ar">¡Hasta pronto!</span></div>
+      <div class="wp"><span class="en">береги себя</span><span class="sep">→</span><span class="ar">Cuídate mucho.</span></div>
+      <div class="wp"><span class="en">обнимаю</span><span class="sep">→</span><span class="ar">Un abrazo muy fuerte.</span></div>
+    </div>
+  </div>
+
+  <div class="cog-rule">
+    <div class="rule-header">
+      <span class="rule-badge">Часть 5</span>
+      <span class="rule-title">Firma — Подпись</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px">Подпись всегда отдельно, после cierre. Только имя (не фамилию) в неформальном письме.</p>
+    <div class="word-pairs">
+      <div class="wp"><span class="en">с любовью</span><span class="sep">→</span><span class="ar">Con cariño, [Nombre]</span></div>
+      <div class="wp"><span class="en">поцелуй</span><span class="sep">→</span><span class="ar">Un beso, [Nombre]</span></div>
+      <div class="wp"><span class="en">твой друг</span><span class="sep">→</span><span class="ar">Tu amigo/a, [Nombre]</span></div>
+      <div class="wp"><span class="en">просто имя</span><span class="sep">→</span><span class="ar">[Nombre]</span></div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <h4>📐 Шаблон письма для DELE B1</h4>
+  </div>
+  <div class="letter-template">
+    <div class="lt-label">SALUDO</div>
+    <div class="lt-part saludo">Querida Ana,</div>
+    <br>
+    <div class="lt-label">APERTURA</div>
+    <div class="lt-part apertura">¿Cómo estás? Espero que todo te vaya bien. ¡Cuánto tiempo sin saber de ti! Te escribo porque tengo noticias que contarte.</div>
+    <br>
+    <div class="lt-label">DESARROLLO (2–3 párrafos)</div>
+    <div class="lt-part desarrollo">Por fin me he mudado a Barcelona. ¿Puedes creerlo? El piso es pequeño pero muy acogedor, justo en el barrio de Gràcia. Por cierto, el alquiler aquí es bastante caro, pero merece la pena porque la zona es preciosa.<br><br>En cuanto al trabajo, acabo de empezar en una empresa nueva. Es muy diferente de lo que hacía antes, pero me encanta el ambiente. Además, estoy aprendiendo catalán poco a poco.</div>
+    <br>
+    <div class="lt-label">CIERRE</div>
+    <div class="lt-part cierre">Bueno, te dejo por ahora. Espero tu respuesta pronto. ¿Cuándo vas a venir a visitarme? ¡Tenemos mucho que hablar!</div>
+    <br>
+    <div class="lt-label">FIRMA</div>
+    <div class="lt-part firma">Un abrazo muy fuerte,<br>Masha</div>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">📊 Неформальный vs. Формальный регистр</h3>
+  <table class="register-table">
+    <tr><th>Ситуация</th><th class="informal-col">Неформально (carta informal)</th><th class="formal-col">Формально (carta formal)</th></tr>
+    <tr><td>Приветствие</td><td class="informal-col">Querida Ana, / ¡Hola!</td><td class="formal-col">Estimada señora García,</td></tr>
+    <tr><td>Как дела?</td><td class="informal-col">¿Cómo te va? / ¿Qué tal?</td><td class="formal-col">Espero que se encuentre bien.</td></tr>
+    <tr><td>Просьба</td><td class="informal-col">¿Me puedes ayudar?</td><td class="formal-col">Le agradecería que me informara...</td></tr>
+    <tr><td>Сообщить</td><td class="informal-col">Quería contarte que...</td><td class="formal-col">Me dirijo a usted para informarle de que...</td></tr>
+    <tr><td>Прощание</td><td class="informal-col">¡Hasta pronto! Un abrazo,</td><td class="formal-col">En espera de su respuesta, le saluda atentamente,</td></tr>
+    <tr><td>Подпись</td><td class="informal-col">Tu amiga, Masha</td><td class="formal-col">María Ivanova</td></tr>
+  </table>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих в письме</h3>
+  <table class="mistakes">
+    <tr><th>Ошибка</th><th>Неправильно</th><th>Правильно</th><th>Объяснение</th></tr>
+    <tr><td>Слишком формальное приветствие</td><td class="wrong-ex">Estimado Carlos,</td><td class="right-ex">Querido Carlos,</td><td>Estimado — только для официальных писем</td></tr>
+    <tr><td>Письмо без структуры</td><td class="wrong-ex">Hola. Cómo estás. Te cuento... Adiós.</td><td class="right-ex">Структура: saludo + apertura + desarrollo + cierre + firma</td><td>Экзаменаторы проверяют наличие каждой части</td></tr>
+    <tr><td>Слишком короткое письмо</td><td class="wrong-ex">120 слов</td><td class="right-ex">150–180 слов</td><td>Менее 140 слов — штраф за объём</td></tr>
+    <tr><td>Один и тот же глагол</td><td class="wrong-ex">tener, tener, tener...</td><td class="right-ex">tener / poseer / contar con / disponer de</td><td>Разнообразие лексики — ключевой критерий</td></tr>
+    <tr><td>Смешение регистров</td><td class="wrong-ex">Querida Ana, Le envío esta carta para...</td><td class="right-ex">Querida Ana, Te escribo porque...</td><td>«Le» и «usted» — формальный регистр, не для друга</td></tr>
+    <tr><td>Нет вопросов к другу</td><td class="wrong-ex">Письмо только о себе</td><td class="right-ex">Задай 1–2 вопроса: ¿Y tú? ¿Cómo te va?</td><td>Диалогичность — признак живого письма</td></tr>
+    <tr><td>Калька с русского</td><td class="wrong-ex">Я хочу сказать тебе... → Yo quiero decirte...</td><td class="right-ex">Quería contarte que... / Te cuento que...</td><td>Condicional quería — более вежливо, естественно</td></tr>
+  </table>
+</div>
+
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — 18 ключевых выражений для неформального письма</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Клише неформального письма на уровне B1. Нажми 🔊 чтобы услышать произношение.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">¿Cómo estás?</div><div class="vocab-ru">Как дела? (базовое открытие)</div></div><button class="speak-btn" onclick="speak('¿Cómo estás?')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¡Cuánto tiempo sin saber de ti!</div><div class="vocab-ru">Давно не было вестей от тебя!</div></div><button class="speak-btn" onclick="speak('¡Cuánto tiempo sin saber de ti!')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Te escribo porque...</div><div class="vocab-ru">Пишу тебе, потому что...</div></div><button class="speak-btn" onclick="speak('Te escribo porque')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Quería contarte que...</div><div class="vocab-ru">Хотел(а) рассказать тебе, что...</div></div><button class="speak-btn" onclick="speak('Quería contarte que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Por cierto, ...</div><div class="vocab-ru">Кстати, ...</div></div><button class="speak-btn" onclick="speak('Por cierto')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¿Puedes creerlo?</div><div class="vocab-ru">Ты можешь в это поверить?</div></div><button class="speak-btn" onclick="speak('¿Puedes creerlo?')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">En cuanto a...</div><div class="vocab-ru">Что касается... / По поводу...</div></div><button class="speak-btn" onclick="speak('En cuanto a')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Además, ...</div><div class="vocab-ru">Кроме того, ... / Также ...</div></div><button class="speak-btn" onclick="speak('Además')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Por fin...</div><div class="vocab-ru">Наконец-то... / В конце концов...</div></div><button class="speak-btn" onclick="speak('Por fin')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">La verdad es que...</div><div class="vocab-ru">Честно говоря... / Правда в том, что...</div></div><button class="speak-btn" onclick="speak('La verdad es que')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Bueno, te dejo por ahora.</div><div class="vocab-ru">Ну ладно, пока оставлю тебя.</div></div><button class="speak-btn" onclick="speak('Bueno, te dejo por ahora.')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Espero tu respuesta pronto.</div><div class="vocab-ru">Жду твоего ответа скоро.</div></div><button class="speak-btn" onclick="speak('Espero tu respuesta pronto.')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Un abrazo muy fuerte.</div><div class="vocab-ru">Крепко обнимаю тебя.</div></div><button class="speak-btn" onclick="speak('Un abrazo muy fuerte.')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Con cariño, ...</div><div class="vocab-ru">С любовью / С теплом, ...</div></div><button class="speak-btn" onclick="speak('Con cariño')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Cuídate mucho.</div><div class="vocab-ru">Береги себя. (хорошее завершение)</div></div><button class="speak-btn" onclick="speak('Cuídate mucho.')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Me alegra mucho saber de ti.</div><div class="vocab-ru">Очень рад(а) узнать о тебе.</div></div><button class="speak-btn" onclick="speak('Me alegra mucho saber de ti.')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¡Hasta pronto!</div><div class="vocab-ru">До скорого! / Увидимся скоро!</div></div><button class="speak-btn" onclick="speak('¡Hasta pronto!')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">Escríbeme cuando puedas.</div><div class="vocab-ru">Напиши мне, когда сможешь.</div></div><button class="speak-btn" onclick="speak('Escríbeme cuando puedas.')">🔊</button></div>
   </div>
 </div>
 
-<!-- SECTION 4: QUIZ 1 -->
+<!-- 6. QUIZ 1 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">4</div>
-    <h2>Тест 1 — Структура неформального письма</h2>
+    <h2>Тест 1 — Структура и регистр письма</h2>
   </div>
-
-  <div class="quiz" id="quiz1">
-    <h3>🎯 Carta informal DELE</h3>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Выбери правильный вариант — получишь объяснение сразу.</p>
+  <div class="quiz">
+    <h3>✉️ 7 вопросов о письменном испанском B1</h3>
 
     <div class="quiz-q" id="q1">
-      <div class="q-text">1. Как правильно начать неформальное письмо другу?</div>
+      <div class="q-text">1. Как правильно начать неформальное письмо другу Карлосу?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q1','a')">¡Hola, Carlos! / Querido Carlos,</div>
-        <div class="opt" onclick="answerQuiz(this,'q1','b')">Estimado Sr. García,</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Estimado Carlos,</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Querido Carlos,</div>
         <div class="opt" onclick="answerQuiz(this,'q1','c')">A quien corresponda,</div>
       </div>
       <div class="feedback" id="fb-q1"></div>
     </div>
 
     <div class="quiz-q" id="q2">
-      <div class="q-text">2. Как сказать «скучаю по тебе» в неформальном письме?</div>
+      <div class="q-text">2. Какое выражение уместно в apertura (вступлении) неформального письма?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q2','c')">Le extraño mucho</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','b')">Me falta tu compañía</div>
-        <div class="opt" onclick="answerQuiz(this,'q2','a')">Te echo de menos</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Me dirijo a usted para informarle...</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">En respuesta a su carta del día 15...</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">¡Cuánto tiempo sin saber de ti!</div>
       </div>
       <div class="feedback" id="fb-q2"></div>
     </div>
 
     <div class="quiz-q" id="q3">
-      <div class="q-text">3. Сколько слов должно быть в Tarea 1 carta informal DELE B1?</div>
+      <div class="q-text">3. Фраза «Por cierto, ...» используется в письме для:</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q3','a')">150–180 слов</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','b')">Около 100 слов</div>
-        <div class="opt" onclick="answerQuiz(this,'q3','c')">200–250 слов</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">плавного перехода к новой теме / добавления информации</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">завершения письма</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">формального представления</div>
       </div>
       <div class="feedback" id="fb-q3"></div>
     </div>
 
     <div class="quiz-q" id="q4">
-      <div class="q-text">4. «Me muero de ganas de verte» означает:</div>
+      <div class="q-text">4. Каким должен быть минимальный объём письма на DELE B1?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q4','b')">Я умираю и не увижу тебя</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','c')">Я хочу тебя видеть редко</div>
-        <div class="opt" onclick="answerQuiz(this,'q4','a')">Мне не терпится тебя увидеть</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">100 слов</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">200 слов</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">150 слов</div>
       </div>
       <div class="feedback" id="fb-q4"></div>
     </div>
 
     <div class="quiz-q" id="q5">
-      <div class="q-text">5. Как закончить неформальное письмо?</div>
+      <div class="q-text">5. Какая подпись правильная для неформального письма?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q5','a')">Un abrazo, / Besos, / Hasta pronto,</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','b')">Atentamente, / En espera de su respuesta,</div>
-        <div class="opt" onclick="answerQuiz(this,'q5','c')">Con mis mejores saludos profesionales,</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">Le saluda atentamente, María Ivanova</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">En espera de su respuesta,</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">Un beso, Masha</div>
       </div>
       <div class="feedback" id="fb-q5"></div>
     </div>
 
     <div class="quiz-q" id="q6">
-      <div class="q-text">6. «Oye, ¿cuándo vienes por aquí?» — «oye» используется для:</div>
+      <div class="q-text">6. Как сказать по-испански «кстати» в письме другу?</div>
       <div class="options">
-        <div class="opt" onclick="answerQuiz(this,'q6','b')">Выражения недовольства</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','c')">Официального обращения</div>
-        <div class="opt" onclick="answerQuiz(this,'q6','a')">Смены темы или привлечения внимания</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">No obstante,</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Por cierto,</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">En conclusión,</div>
       </div>
       <div class="feedback" id="fb-q6"></div>
     </div>
+
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. Фраза «Bueno, te dejo por ahora» — это:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">ошибка — не используется в письме</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">часть приветствия (saludo)</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">типичная фраза закрытия (cierre) перед подписью</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
   </div>
 </div>
 
-<!-- SECTION 5: QUIZ 2 -->
+<!-- 7. QUIZ 2 -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">5</div>
-    <h2>Тест 2 — Заполни пропуски</h2>
+    <h2>Тест 2 — Впиши правильное выражение</h2>
   </div>
-
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вставь пропущенные слова. Пиши строчными буквами с ударениями (é, ó и т.д.).</p>
   <div class="quiz">
-    <h3>✏️ Дополни неформальное письмо</h3>
+    <h3>✍️ 6 упражнений на заполнение пропусков</h3>
 
     <div class="text-ex">
-      <div class="tex-q">1. «¡_____ (как здорово!) que tengas vacaciones en agosto!»</div>
-      <input type="text" class="text-input" placeholder="¡Qué bien que..." id="ti1">
-      <button class="check-btn" onclick="checkText('ti1','qué bien que','fb-te1')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te1')">Показать ответ</button>
-      <div class="feedback" id="fb-te1"></div>
-      <div class="answer-reveal" id="ans-te1">✅ ¡Qué bien que...! — восклицание радости. + subjuntivo.</div>
+      <div class="tex-q">1. Письмо начинается: «<strong>_______</strong> Ana, ¿Cómo estás?» — вставь правильное обращение.</div>
+      <input class="text-input" id="t1" placeholder="слово для обращения к подруге...">
+      <br><button class="check-btn" onclick="checkText('t1','Querida','fb-t1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t1')">Показать ответ</button>
+      <div class="feedback" id="fb-t1"></div>
+      <div class="answer-reveal" id="ans-t1">✅ Querida (обращение к подруге в неформальном письме)</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">2. «Te _____ (рассказываю) que acabo de empezar a estudiar español.»</div>
-      <input type="text" class="text-input" placeholder="cuento / digo..." id="ti2">
-      <button class="check-btn" onclick="checkText('ti2','cuento','fb-te2')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te2')">Показать ответ</button>
-      <div class="feedback" id="fb-te2"></div>
-      <div class="answer-reveal" id="ans-te2">✅ Te cuento que... — рассказываю тебе, что... Типичный оборот для введения новостей.</div>
+      <div class="tex-q">2. «¡<strong>_______</strong> tiempo sin saber de ti!» — фраза «давно не было вестей».</div>
+      <input class="text-input" id="t2" placeholder="восклицательное слово...">
+      <br><button class="check-btn" onclick="checkText('t2','Cuánto','fb-t2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t2')">Показать ответ</button>
+      <div class="feedback" id="fb-t2"></div>
+      <div class="answer-reveal" id="ans-t2">✅ Cuánto (с ударением — восклицательное местоимение)</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">3. «_____ (кроме того), tengo buenas noticias sobre mi trabajo.»</div>
-      <input type="text" class="text-input" placeholder="Aparte de eso / Además..." id="ti3">
-      <button class="check-btn" onclick="checkText('ti3','aparte de eso','fb-te3')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te3')">Показать ответ</button>
-      <div class="feedback" id="fb-te3"></div>
-      <div class="answer-reveal" id="ans-te3">✅ Aparte de eso — кроме того. «Además» тоже правильно, но менее разговорно.</div>
+      <div class="tex-q">3. «Te <strong>_______</strong> porque tengo noticias importantes» — «пишу тебе, потому что...»</div>
+      <input class="text-input" id="t3" placeholder="глагол в настоящем времени...">
+      <br><button class="check-btn" onclick="checkText('t3','escribo','fb-t3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t3')">Показать ответ</button>
+      <div class="feedback" id="fb-t3"></div>
+      <div class="answer-reveal" id="ans-t3">✅ escribo (escribir — yo escribo)</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">4. Заключительная фраза «Espero tu _____» (ответа)</div>
-      <input type="text" class="text-input" placeholder="respuesta / carta..." id="ti4">
-      <button class="check-btn" onclick="checkText('ti4','respuesta','fb-te4')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te4')">Показать ответ</button>
-      <div class="feedback" id="fb-te4"></div>
-      <div class="answer-reveal" id="ans-te4">✅ respuesta — ответ. «Espero tu respuesta» или «Espero que me contestes pronto».</div>
+      <div class="tex-q">4. «Por <strong>_______</strong>, acabo de empezar un trabajo nuevo» — «кстати, я только что начал новую работу»</div>
+      <input class="text-input" id="t4" placeholder="связка для смены темы...">
+      <br><button class="check-btn" onclick="checkText('t4','cierto','fb-t4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t4')">Показать ответ</button>
+      <div class="feedback" id="fb-t4"></div>
+      <div class="answer-reveal" id="ans-t4">✅ cierto (por cierto = кстати)</div>
     </div>
 
     <div class="text-ex">
-      <div class="tex-q">5. «Es una _____ (жаль) que no puedas venir a mi fiesta.»</div>
-      <input type="text" class="text-input" placeholder="pena / lástima..." id="ti5">
-      <button class="check-btn" onclick="checkText('ti5','pena','fb-te5')">Проверить</button>
-      <button class="show-ans" onclick="showAns('ans-te5')">Показать ответ</button>
-      <div class="feedback" id="fb-te5"></div>
-      <div class="answer-reveal" id="ans-te5">✅ pena — жаль. «Es una pena / lástima que + subjuntivo». Оба слова правильны.</div>
+      <div class="tex-q">5. «Bueno, te <strong>_______</strong> por ahora. Espero tu respuesta» — «ну ладно, оставлю тебя»</div>
+      <input class="text-input" id="t5" placeholder="глагол — «оставляю»...">
+      <br><button class="check-btn" onclick="checkText('t5','dejo','fb-t5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t5')">Показать ответ</button>
+      <div class="feedback" id="fb-t5"></div>
+      <div class="answer-reveal" id="ans-t5">✅ dejo (dejar — yo dejo)</div>
+    </div>
+
+    <div class="text-ex">
+      <div class="tex-q">6. «Un <strong>_______</strong> muy fuerte» — неформальное прощание «крепко обнимаю»</div>
+      <input class="text-input" id="t6" placeholder="слово — «объятие»...">
+      <br><button class="check-btn" onclick="checkText('t6','abrazo','fb-t6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t6')">Показать ответ</button>
+      <div class="feedback" id="fb-t6"></div>
+      <div class="answer-reveal" id="ans-t6">✅ abrazo (un abrazo = объятие)</div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: SPEAKING PRACTICE -->
+<!-- 8. DIALOGUES -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">6</div>
-    <h2>Практика говорения — читай вслух</h2>
-  </div>
-
-  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">Прочитай образец письма из Раздела 3 вслух — дважды. Сначала медленно, затем в нормальном темпе. Это тренирует неформальную интонацию и лексику одновременно.</p>
-
-  <div class="speak-box">
-    <div class="speak-tag">🎙 Задание: диктовка себе</div>
-    <p>Закрой образец. Запиши неформальное письмо по следующему заданию (30 минут):</p>
-    <div class="es" style="font-size:.88rem">«Tu amigo colombiano Miguel te escribe. Te dice que acaba de mudarse a España para trabajar y está muy nervioso. Te pregunta si has vivido alguna vez en otro país y qué consejo le darías para adaptarse. Escríbele una carta de 150–180 palabras.»</div>
-    <div class="hint">Используй структуру: saludo → apertura → dar consejos (2–3) → preguntar a él → cierre. Cuenta las palabras al final!</div>
-  </div>
-</div>
-
-<!-- SECTION 7: CULTURAL NOTE -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">7</div>
-    <h2>Культурная заметка</h2>
-  </div>
-
-  <div class="culture">
-    <div class="ctag">🌍 El español informal</div>
-    <h4>«Tío/tía», «molar», «qué rollo» — испанский сленг</h4>
-    <p>В Испании существует богатый молодёжный сленг, который кардинально отличается от латиноамериканского. «Tío/tía» буквально «дядя/тётя», но в разговоре = «чувак/чувиха». «Mola» от глагола «molar» = круто. «Qué rollo» = какая скукота или какая проблема (зависит от контекста). Важно: на DELE этот сленг НЕ требуется, но его понимание поможет в аудировании (Tarea 3) и сделает твои неформальные письма более натуральными. Dreaming Spanish Intermediate — там испанцы говорят естественно, и ты постепенно впитываешь разговорный регистр.</p>
-  </div>
-</div>
-
-<!-- SECTION 8: DIALOGUE -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-num">8</div>
-    <h2>Диалог — обсуждение письма</h2>
+    <h2>Диалоги — Обсуждаем письмо и экзамен</h2>
   </div>
 
   <div class="dialogue">
     <div class="dlg-header">
-      💬 Обсуждение: что написать другу
-      <button class="dlg-toggle" onclick="toggleTranslation('tr-d2')">Показать перевод</button>
-    </div>
-    <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
+      <span>💬 Диалог 1: Готовимся к письменной части DELE</span>
       <div>
-        <div class="dlg-es">Oye, ¿has recibido carta de Pedro últimamente?</div>
-        <div class="dlg-ru" id="tr-d2" style="display:none">Слушай, ты получал письмо от Педро в последнее время?</div>
+        <button class="dlg-toggle" onclick="toggleAll()">Перевод вкл/выкл</button>
+        <button class="speak-btn" onclick="playDialogue1()" style="margin-left:8px">▶ Весь диалог</button>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
-      <div>
-        <div class="dlg-es">Sí, me escribió la semana pasada. Te cuento que le va muy bien en Barcelona. ¡Me muero de ganas de visitarle!</div>
-        <div class="dlg-ru" id="tr-d2b" style="display:none">Да, написал на прошлой неделе. Расскажу тебе — ему очень хорошо в Барселоне. Не терпится навестить его!</div>
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Oye, ¿cuánto tiempo tenemos para escribir la carta en el examen? <button class="speak-btn" onclick="speak('Oye, ¿cuánto tiempo tenemos para escribir la carta en el examen?')">🔊</button></div>
+        <div class="dlg-ru translation">Слушай, сколько у нас времени на написание письма на экзамене?</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker">A</div>
-      <div>
-        <div class="dlg-es">¡Qué bien! Es una pena que yo no pueda ir este verano por el trabajo.</div>
-        <div class="dlg-ru" id="tr-d2c" style="display:none">Как здорово! Жаль, что я не могу поехать этим летом из-за работы.</div>
+      <div class="dlg-speaker b">Хосе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Treinta minutos, más o menos. Pero primero hay que leer bien la tarea. <button class="speak-btn" onclick="speak('Treinta minutos, más o menos. Pero primero hay que leer bien la tarea.')">🔊</button></div>
+        <div class="dlg-ru translation">Тридцать минут, примерно. Но сначала нужно хорошо прочитать задание.</div>
       </div>
     </div>
     <div class="dlg-line">
-      <div class="dlg-speaker b">B</div>
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y cuántas palabras necesitamos escribir como mínimo? <button class="speak-btn" onclick="speak('¿Y cuántas palabras necesitamos escribir como mínimo?')">🔊</button></div>
+        <div class="dlg-ru translation">А сколько слов нужно написать как минимум?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Хосе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Ciento cincuenta. Si escribes menos, te penalizan. Lo ideal son ciento setenta. <button class="speak-btn" onclick="speak('Ciento cincuenta. Si escribes menos, te penalizan. Lo ideal son ciento setenta.')">🔊</button></div>
+        <div class="dlg-ru translation">Сто пятьдесят. Если напишешь меньше, штрафуют. Идеально — сто семьдесят.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué partes debe tener una carta informal? <button class="speak-btn" onclick="speak('¿Qué partes debe tener una carta informal?')">🔊</button></div>
+        <div class="dlg-ru translation">Какие части должно содержать неформальное письмо?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Хосе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Saludo, apertura, el cuerpo principal, cierre y firma. Cinco partes clave. <button class="speak-btn" onclick="speak('Saludo, apertura, el cuerpo principal, cierre y firma. Cinco partes clave.')">🔊</button></div>
+        <div class="dlg-ru translation">Приветствие, вступление, основная часть, завершение и подпись. Пять ключевых частей.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y hay que usar muchas expresiones diferentes o está bien repetir? <button class="speak-btn" onclick="speak('¿Y hay que usar muchas expresiones diferentes o está bien repetir?')">🔊</button></div>
+        <div class="dlg-ru translation">А нужно использовать много разных выражений или повторять можно?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Хосе</div>
+      <div style="flex:1">
+        <div class="dlg-es">Cuanto más variedad léxica, mejor. Eso es lo que más valoran los examinadores. <button class="speak-btn" onclick="speak('Cuanto más variedad léxica, mejor. Eso es lo que más valoran los examinadores.')">🔊</button></div>
+        <div class="dlg-ru translation">Чем больше лексического разнообразия, тем лучше. Это именно то, что больше всего ценят экзаменаторы.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. ¡Voy a practicar esta noche! <button class="speak-btn" onclick="speak('Perfecto. ¡Voy a practicar esta noche!')">🔊</button></div>
+        <div class="dlg-ru translation">Отлично. Буду практиковаться сегодня вечером!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Хосе</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Ánimo! Ya verás que con práctica se hace más fácil. <button class="speak-btn" onclick="speak('¡Ánimo! Ya verás que con práctica se hace más fácil.')">🔊</button></div>
+        <div class="dlg-ru translation">Удачи! Увидишь, что с практикой становится легче.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>💬 Диалог 2: Друзья обсуждают жизнь в Испании по переписке</span>
       <div>
-        <div class="dlg-es">¡Qué rollo lo del trabajo! Aparte de eso, ¿todo bien por aquí?</div>
-        <div class="dlg-ru" id="tr-d2d" style="display:none">Вот проблема с этой работой! Кроме того, всё хорошо у вас тут?</div>
+        <button class="dlg-toggle" onclick="toggleAll2()">Перевод вкл/выкл</button>
+        <button class="speak-btn" onclick="playDialogue2()" style="margin-left:8px">▶ Весь диалог</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">Querida Sofía, ¡cuánto tiempo sin saber de ti! Espero que todo te vaya bien. <button class="speak-btn" onclick="speak('Querida Sofía, ¡cuánto tiempo sin saber de ti! Espero que todo te vaya bien.')">🔊</button></div>
+        <div class="dlg-ru translation2">Дорогая София! Давно не было от тебя вестей! Надеюсь, у тебя всё хорошо.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Москва</div>
+      <div style="flex:1">
+        <div class="dlg-es">Te escribo porque por fin me he mudado a Barcelona. ¿Puedes creerlo? <button class="speak-btn" onclick="speak('Te escribo porque por fin me he mudado a Barcelona. ¿Puedes creerlo?')">🔊</button></div>
+        <div class="dlg-ru translation2">Пишу, потому что наконец-то переехала в Барселону. Ты можешь поверить?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">El piso es pequeño pero acogedor, en el barrio de Gràcia. Me encanta la zona. <button class="speak-btn" onclick="speak('El piso es pequeño pero acogedor, en el barrio de Gràcia. Me encanta la zona.')">🔊</button></div>
+        <div class="dlg-ru translation2">Квартира маленькая, но уютная, в районе Грасиа. Мне очень нравится район.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por cierto, acabo de empezar un trabajo nuevo en una empresa de tecnología. <button class="speak-btn" onclick="speak('Por cierto, acabo de empezar un trabajo nuevo en una empresa de tecnología.')">🔊</button></div>
+        <div class="dlg-ru translation2">Кстати, я только что начала новую работу в технологической компании.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">Además, estoy aprendiendo catalán. La verdad es que es bastante difícil. <button class="speak-btn" onclick="speak('Además, estoy aprendiendo catalán. La verdad es que es bastante difícil.')">🔊</button></div>
+        <div class="dlg-ru translation2">Кроме того, я учу каталанский. Честно говоря, это довольно сложно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y tú? ¿Cómo te va en Moscú? ¿Sigues trabajando en la misma empresa? <button class="speak-btn" onclick="speak('¿Y tú? ¿Cómo te va en Moscú? ¿Sigues trabajando en la misma empresa?')">🔊</button></div>
+        <div class="dlg-ru translation2">А ты как? Как дела в Москве? Ты по-прежнему работаешь в той же компании?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">Bueno, te dejo por ahora. Espero tu respuesta pronto. ¡Ven a visitarme! <button class="speak-btn" onclick="speak('Bueno, te dejo por ahora. Espero tu respuesta pronto. ¡Ven a visitarme!')">🔊</button></div>
+        <div class="dlg-ru translation2">Ну ладно, пока оставлю тебя. Жду ответа скоро. Приезжай ко мне в гости!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">Un abrazo muy fuerte. Con cariño, Masha. <button class="speak-btn" onclick="speak('Un abrazo muy fuerte. Con cariño, Masha.')">🔊</button></div>
+        <div class="dlg-ru translation2">Крепко обнимаю. С теплом, Маша.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>💬 Диалог 3: Разбор ошибок в письме</span>
+      <button class="speak-btn" onclick="playDialogue3()" style="margin-left:8px">▶ Весь диалог</button>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Профес.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Mira tu carta. Has escrito «Estimado Carlos». Eso no es correcto aquí. <button class="speak-btn" onclick="speak('Mira tu carta. Has escrito Estimado Carlos. Eso no es correcto aquí.')">🔊</button></div>
+        <div class="dlg-ru translation2">Посмотри на своё письмо. Ты написал «Estimado Carlos». Это здесь неверно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Студ.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Por qué? ¿No es una forma de respeto? <button class="speak-btn" onclick="speak('¿Por qué? ¿No es una forma de respeto?')">🔊</button></div>
+        <div class="dlg-ru translation2">Почему? Разве это не форма уважения?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Профес.</div>
+      <div style="flex:1">
+        <div class="dlg-es">«Estimado» es para cartas formales. Para un amigo, escribe «Querido Carlos». <button class="speak-btn" onclick="speak('Estimado es para cartas formales. Para un amigo, escribe Querido Carlos.')">🔊</button></div>
+        <div class="dlg-ru translation2">«Estimado» — для формальных писем. Для друга пиши «Querido Carlos».</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Студ.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Entiendo. Y también he usado «usted» en todo el texto... <button class="speak-btn" onclick="speak('Entiendo. Y también he usado usted en todo el texto...')">🔊</button></div>
+        <div class="dlg-ru translation2">Понял. И ещё я использовал «usted» по всему тексту...</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Профес.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, eso es un error grave. Con un amigo usamos siempre «tú». <button class="speak-btn" onclick="speak('Sí, eso es un error grave. Con un amigo usamos siempre tú.')">🔊</button></div>
+        <div class="dlg-ru translation2">Да, это серьёзная ошибка. С другом мы всегда используем «tú».</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Студ.</div>
+      <div style="flex:1">
+        <div class="dlg-es">Ahora lo entiendo perfectamente. ¡Gracias por la corrección! <button class="speak-btn" onclick="speak('Ahora lo entiendo perfectamente. ¡Gracias por la corrección!')">🔊</button></div>
+        <div class="dlg-ru translation2">Теперь я это прекрасно понимаю. Спасибо за исправление!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Профес.</div>
+      <div style="flex:1">
+        <div class="dlg-es">De nada. La práctica hace al maestro. Escribe una carta cada día esta semana. <button class="speak-btn" onclick="speak('De nada. La práctica hace al maestro. Escribe una carta cada día esta semana.')">🔊</button></div>
+        <div class="dlg-ru translation2">Пожалуйста. Практика делает мастера. Пиши по одному письму каждый день на этой неделе.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Студ.</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡De acuerdo! ¡Voy a mejorar mucho! <button class="speak-btn" onclick="speak('¡De acuerdo! ¡Voy a mejorar mucho!')">🔊</button></div>
+        <div class="dlg-ru translation2">Договорились! Я буду очень улучшаться!</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 9: ANKI + HOMEWORK -->
+<!-- 9. SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Читай и пиши вслух!</h2>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Прочитай образец письма вслух</div>
+    <p>Прочитай следующий отрывок неформального письма вслух, обращая внимание на интонацию и паузы. Это тренирует не только письмо, но и беглость речи:</p>
+    <div class="es">Querida Ana, ¡cuánto tiempo sin saber de ti! Te escribo porque tengo noticias importantes. Por fin me he mudado a un piso nuevo en Barcelona. Es pequeño pero muy acogedor. Por cierto, acabo de encontrar trabajo en una empresa de diseño. ¡Estoy muy emocionada! ¿Y tú? ¿Cómo te va? Bueno, te dejo por ahora. Espero tu respuesta pronto. Un abrazo muy fuerte, Masha.</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Querida Ana, ¡cuánto tiempo sin saber de ti! Te escribo porque tengo noticias importantes. Por fin me he mudado a un piso nuevo en Barcelona. Es pequeño pero muy acogedor. Por cierto, acabo de encontrar trabajo en una empresa de diseño. ¡Estoy muy emocionada! ¿Y tú? ¿Cómo te va? Bueno, te dejo por ahora. Espero tu respuesta pronto. Un abrazo muy fuerte, Masha.')">🔊 Прослушать пример</button>
+    <div class="hint">Повтори 2 раза вслух. На экзамене ты уже будешь знать эти фразы наизусть.</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 2 — Испания на практике: письмо испанскому знакомому</div>
+    <p>Ситуация: ты только получил контракт на аренду квартиры в Барселоне. Напиши своему испанскому знакомому Мигелю — он помог тебе найти квартиру. Поблагодари, расскажи о впечатлениях, задай вопрос о районе. Скажи вслух, что бы ты написал:</p>
+    <div class="es">Querido Miguel, ¡muchas gracias por tu ayuda! Por fin he firmado el contrato del piso en Gràcia. El piso es genial. Por cierto, ¿me recomiendas algún restaurante cerca? Bueno, nos vemos pronto. Un abrazo, [Имя].</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Querido Miguel, muchas gracias por tu ayuda. Por fin he firmado el contrato del piso en Gràcia. El piso es genial. Por cierto, ¿me recomiendas algún restaurante cerca? Bueno, nos vemos pronto. Un abrazo.')">🔊 Пример</button>
+    <div class="hint">Теперь адаптируй письмо под свою ситуацию в Барселоне. Говори вслух! Используй: quería contarte, por cierto, además, bueno te dejo.</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Письмо о контракте и документах</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">📋 Реальная ситуация — Переписка по поводу контракта в Барселоне</div>
+    <p style="margin-bottom:12px">Ты живёшь в Барселоне и получил новый трудовой договор. Твой испанский друг Хавьер — юрист. Ты пишешь ему неформальное письмо с просьбой объяснить некоторые пункты контракта. Это реальная ситуация для эмигранта — и отличная практика письма!</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">He recibido un contrato de trabajo y no entiendo algunas cláusulas. <button class="speak-btn" onclick="speak('He recibido un contrato de trabajo y no entiendo algunas cláusulas.')">🔊</button></div>
+          <div class="phrase-ru">Я получил трудовой контракт и не понимаю некоторые пункты.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Me puedes explicar qué significa «período de prueba»? <button class="speak-btn" onclick="speak('¿Me puedes explicar qué significa período de prueba?')">🔊</button></div>
+          <div class="phrase-ru">Можешь объяснить, что означает «испытательный срок»?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Es normal que el contrato sea temporal y no indefinido? <button class="speak-btn" onclick="speak('¿Es normal que el contrato sea temporal y no indefinido?')">🔊</button></div>
+          <div class="phrase-ru">Нормально ли, что контракт временный, а не бессрочный?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Qué me aconsejas? ¿Debo firmarlo o negociar algo? <button class="speak-btn" onclick="speak('¿Qué me aconsejas? ¿Debo firmarlo o negociar algo?')">🔊</button></div>
+          <div class="phrase-ru">Что посоветуешь? Должен ли я подписать или что-то переговорить?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Gracias de antemano por tu ayuda. ¡Eres un gran amigo! <button class="speak-btn" onclick="speak('Gracias de antemano por tu ayuda. ¡Eres un gran amigo!')">🔊</button></div>
+          <div class="phrase-ru">Заранее спасибо за помощь. Ты отличный друг!</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Cuando tengas un momento, llámame o escríbeme. <button class="speak-btn" onclick="speak('Cuando tengas un momento, llámame o escríbeme.')">🔊</button></div>
+          <div class="phrase-ru">Когда будет минутка, позвони или напиши мне.</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> В испанской деловой культуре нормально обращаться к знакомому специалисту за советом неформально — особенно если вы друзья. Просьба о помощи с документами через личное письмо полностью уместна и ценится. Слова «contrato temporal» (временный контракт) и «contrato indefinido» (бессрочный) — ключевые термины на рынке труда Испании. До 2022 года большинство контрактов были временными; реформа труда изменила это в пользу «contrato indefinido».
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
 <div class="section">
   <div class="section-header">
     <div class="section-num">9</div>
-    <h2>Anki и домашнее задание</h2>
+    <h2>Культурная заметка</h2>
   </div>
+  <div class="culture">
+    <div class="ctag">📮 Эпистолярная традиция в Испании</div>
+    <h4>«Carta» — не просто письмо, это искусство</h4>
+    <p>В Испании традиция личной переписки исторически очень богата — достаточно вспомнить письма Мигеля де Унамуно или переписку поколений испанских эмигрантов во времена франкизма. Даже сегодня, в эпоху WhatsApp, испанцы ценят хорошо написанное письмо — по-настоящему грамотный человек умеет писать по-разному: la carta, el correo, la nota. Примечательно, что в Испании «un abrazo» (буквально «объятие») в конце письма — совершенно стандартная, нежёсткая формула как для близких друзей, так и для не очень близких знакомых. В Латинской Америке часто добавляют «un beso» (поцелуй) даже в деловой переписке — в Испании это чуть более интимно. Знание этих нюансов делает твоё письмо по-настоящему аутентичным.</p>
+  </div>
+</div>
 
-  <!-- .wrap -->
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек письма</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку чтобы перевернуть. Скачай все 18 одним файлом для импорта в Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--purple);font-weight:700">Querido/a</div>
+        <div class="anki-card-back">Приветствие в неф. письме<br>Querida Ana, / Querido Carlos,<br>Не «Estimado» — это формально!</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--gold);font-weight:700">¡Cuánto tiempo!</div>
+        <div class="anki-card-back">Давно не было вестей!<br>Пример: ¡Cuánto tiempo sin saber de ti!<br>Apertura — вступление</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--blue);font-weight:700">Por cierto</div>
+        <div class="anki-card-back">Кстати<br>Por cierto, me he mudado a Barcelona.<br>Переход к новой теме</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--green);font-weight:700">Un abrazo</div>
+        <div class="anki-card-back">Объятие (прощание)<br>Un abrazo muy fuerte, [Nombre]<br>Cierre + Firma в неф. письме</div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front" style="color:var(--red);font-weight:700">Te dejo por ahora</div>
+        <div class="anki-card-back">Ну ладно, пока<br>Bueno, te dejo por ahora.<br>Типичная фраза cierre</div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL117()">📥 Скачать колоду Anki L117 (.txt)</button>
+</div>
 
-<!-- DONE BAR -->
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L118: Формальное письмо DELE B1)</h4>
+    <ul>
+      <li><strong>Задание 1 (обязательно):</strong> Напиши неформальное письмо другу/подруге — 150–180 слов, 30 минут. Тема: ты переехал в Испанию, расскажи о своём опыте, задай 2 вопроса. Используй минимум 5 клише из урока.</li>
+      <li><strong>Задание 2:</strong> Проверь письмо по чеклисту: ✓ saludo ✓ apertura ✓ desarrollo (2 абзаца) ✓ cierre ✓ firma ✓ 150+ слов ✓ вопросы другу ✓ нет «usted»</li>
+      <li><strong>Dreaming Spanish (intermediate+):</strong> 15–20 мин — смотри видео о повседневной жизни в Испании. Обращай внимание на разговорные фразы.</li>
+      <li><strong>Anki:</strong> Повторяй карточки из этого урока ежедневно (10 мин). Особое внимание на clishes письма.</li>
+      <li><strong>Дополнительно:</strong> Напиши второе письмо на другую тему — приглашение друга приехать в гости в Барселону.</li>
+    </ul>
+  </div>
+  <div class="callout info" style="margin-top:14px">
+    <h4>📋 Чеклист DELE B1: неформальное письмо</h4>
+    <ul>
+      <li>✓ Приветствие: Querido/a [Nombre], — НЕ Estimado/a</li>
+      <li>✓ Вступление: спросить как дела / сослаться на причину письма</li>
+      <li>✓ 2–3 абзаца основного содержания по заданию</li>
+      <li>✓ Вопросы к другу (минимум 1)</li>
+      <li>✓ Cierre: Bueno, te dejo / Espero tu respuesta</li>
+      <li>✓ Firma: Un abrazo / Con cariño + имя</li>
+      <li>✓ 150–180 слов (считай!)</li>
+      <li>✓ Только «tú», никогда «usted» с другом</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
 <div class="done-bar">
   <div class="nav-links">
-    <a href="L116.html" class="nav-link-btn">← L116</a>
-    <a href="../index.html" class="nav-link-btn">Дашборд</a>
-    <a href="L118.html" class="nav-link-btn">L118 →</a>
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L118.html" class="nav-link-btn">L118: Формальное письмо →</a>
   </div>
   <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
 </div>
 
 <script>
+// ─── speak() — Web Speech API ─────────────────────────────
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+// ─── Anki deck L117 ───────────────────────────────────────
+const ANKI_DECK_L117 = [
+  {front:"Querido/a [Nombre],",back:"Русский: Дорогой/ая [Имя] — неформальное приветствие письма<br>Пример: Querida Ana,<br>Заметка: НИКОГДА «Estimado/a» с другом — это формально"},
+  {front:"¡Cuánto tiempo sin saber de ti!",back:"Русский: Давно не было от тебя вестей!<br>Пример: ¡Cuánto tiempo sin saber de ti! ¿Cómo estás?<br>Заметка: Apertura — часть вступления"},
+  {front:"¿Cómo estás?",back:"Русский: Как дела? / Как ты?<br>Пример: ¿Cómo estás? Espero que todo te vaya bien.<br>Заметка: Стандартное начало apertura"},
+  {front:"Te escribo porque...",back:"Русский: Пишу тебе, потому что...<br>Пример: Te escribo porque tengo buenas noticias.<br>Заметка: Вводит причину письма"},
+  {front:"Quería contarte que...",back:"Русский: Хотел(а) рассказать тебе, что...<br>Пример: Quería contarte que me he mudado a Barcelona.<br>Заметка: Condicional — более вежливо, чем quiero"},
+  {front:"Por cierto, ...",back:"Русский: Кстати, ...<br>Пример: Por cierto, acabo de empezar un trabajo nuevo.<br>Заметка: Переход к новой теме в desarrollo"},
+  {front:"¿Puedes creerlo?",back:"Русский: Можешь в это поверить? / Представляешь!<br>Пример: ¡Me han dado el trabajo! ¿Puedes creerlo?<br>Заметка: Восклицание для живости письма"},
+  {front:"En cuanto a...",back:"Русский: Что касается... / По поводу...<br>Пример: En cuanto al piso, es pequeño pero acogedor.<br>Заметка: Элегантный переход между темами"},
+  {front:"Además, ...",back:"Русский: Кроме того, ... / Также ...<br>Пример: Además, estoy aprendiendo catalán.<br>Заметка: Добавление информации в desarrollo"},
+  {front:"Por fin...",back:"Русский: Наконец-то...<br>Пример: Por fin he encontrado piso.<br>Заметка: Выражает облегчение/радость"},
+  {front:"La verdad es que...",back:"Русский: Честно говоря... / Правда в том, что...<br>Пример: La verdad es que Barcelona es cara.<br>Заметка: Добавляет искренность, разговорный тон"},
+  {front:"Bueno, te dejo por ahora.",back:"Русский: Ну ладно, пока оставлю тебя.<br>Пример: Bueno, te dejo por ahora. Espero tu respuesta.<br>Заметка: Стандартная фраза CIERRE"},
+  {front:"Espero tu respuesta pronto.",back:"Русский: Жду твоего ответа скоро.<br>Пример: Escríbeme cuando puedas. Espero tu respuesta pronto.<br>Заметка: Часть cierre — показывает желание диалога"},
+  {front:"Un abrazo muy fuerte.",back:"Русский: Крепко обнимаю.<br>Пример: Un abrazo muy fuerte, Masha.<br>Заметка: Cierre+firma — самый частый в неформальном письме"},
+  {front:"Con cariño,",back:"Русский: С любовью / С теплом,<br>Пример: Con cariño, [Nombre]<br>Заметка: Подпись в неформальном письме"},
+  {front:"Cuídate mucho.",back:"Русский: Береги себя.<br>Пример: Cuídate mucho y escríbeme pronto.<br>Заметка: Тёплое прощание — подходит для cierre"},
+  {front:"Me alegra saber de ti.",back:"Русский: Рад(а) узнать о тебе.<br>Пример: ¡Me alegra mucho saber de ti!<br>Заметка: Apertura — реакция на полученное письмо"},
+  {front:"Escríbeme cuando puedas.",back:"Русский: Напиши мне, когда сможешь.<br>Пример: Bueno, te dejo. Escríbeme cuando puedas.<br>Заметка: Завершение cierre — просьба ответить"},
+];
+
+function exportAnkiL117() {
+  const tsv = ANKI_DECK_L117.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L117_spanish.txt';
+  a.click();
+}
+
+// ─── Dialogue playback ────────────────────────────────────
+function playDialogue1() {
+  const lines = [
+    '¿Cuánto tiempo tenemos para escribir la carta en el examen?',
+    'Treinta minutos, más o menos. Pero primero hay que leer bien la tarea.',
+    '¿Y cuántas palabras necesitamos escribir como mínimo?',
+    'Ciento cincuenta. Si escribes menos, te penalizan. Lo ideal son ciento setenta.',
+    '¿Qué partes debe tener una carta informal?',
+    'Saludo, apertura, el cuerpo principal, cierre y firma. Cinco partes clave.',
+    '¿Y hay que usar muchas expresiones diferentes o está bien repetir?',
+    'Cuanto más variedad léxica, mejor. Eso es lo que más valoran los examinadores.',
+    'Perfecto. ¡Voy a practicar esta noche!',
+    '¡Ánimo! Ya verás que con práctica se hace más fácil.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 900);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue2() {
+  const lines = [
+    'Querida Sofía, ¡cuánto tiempo sin saber de ti! Espero que todo te vaya bien.',
+    'Te escribo porque por fin me he mudado a Barcelona. ¿Puedes creerlo?',
+    'El piso es pequeño pero acogedor, en el barrio de Gràcia. Me encanta la zona.',
+    'Por cierto, acabo de empezar un trabajo nuevo en una empresa de tecnología.',
+    'Además, estoy aprendiendo catalán. La verdad es que es bastante difícil.',
+    '¿Y tú? ¿Cómo te va en Moscú? ¿Sigues trabajando en la misma empresa?',
+    'Bueno, te dejo por ahora. Espero tu respuesta pronto. ¡Ven a visitarme!',
+    'Un abrazo muy fuerte. Con cariño, Masha.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 900);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue3() {
+  const lines = [
+    'Mira tu carta. Has escrito Estimado Carlos. Eso no es correcto aquí.',
+    '¿Por qué? ¿No es una forma de respeto?',
+    'Estimado es para cartas formales. Para un amigo, escribe Querido Carlos.',
+    'Entiendo. Y también he usado usted en todo el texto...',
+    'Sí, eso es un error grave. Con un amigo usamos siempre tú.',
+    'Ahora lo entiendo perfectamente. ¡Gracias por la corrección!',
+    'De nada. La práctica hace al maestro. Escribe una carta cada día esta semana.',
+    '¡De acuerdo! ¡Voy a mejorar mucho!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 900);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+// ─── Progress tracking ────────────────────────────────────
 const LESSON_ID = 'L117';
 const LS_KEY = 'esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return{completed:[]};}}
-function markDone(){
-  const s=getState();
-  if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);
-  const today=new Date().toISOString().slice(0,10);
-  if(!s.study_days)s.study_days={};
-  s.study_days[today]=true;
-  localStorage.setItem(LS_KEY,JSON.stringify(s));
-  const btn=document.getElementById('done-btn');
-  btn.textContent='✅ Пройден!';btn.className='done-btn marked';
-}
-const st=getState();
-if(st.completed?.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
 
-const quizExpl={
-  q1:'Неформальное: ¡Hola! / Querido/a... Формальное: Estimado Sr./Sra. НИКОГДА не путай регистры на DELE.',
-  q2:'«Te echo de menos» — разговорное выражение «скучаю по тебе». «Le extraño» — более формально и латиноамериканский вариант.',
-  q3:'150–180 слов — официальный объём Tarea 1. Менее 150 — снижение балла. Более 200 — экзаменатор не читает.',
-  q4:'«Me muero de ganas de» = мне не терпится, очень хочу. Буквально «умираю от желания» — гиперболическое выражение.',
-  q5:'Un abrazo / Besos / Hasta pronto — неформальные прощания. «Atentamente» — только для деловых писем.',
-  q6:'«Oye» = слушай, эй — используется для привлечения внимания или смены темы в разговоре. Очень разговорное.'
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+// ─── Quiz logic ───────────────────────────────────────────
+const quizExpl = {
+  w1:'Стратегия чтения вариантов ДО прослушивания — ключевая для DELE B1 аудирования.',
+  w2:'Shadowing — повторение одновременно с носителем: тренирует слух, интонацию и беглость.',
+  w3:'В DELE B1 аудирование воспроизводится дважды: первый раз — общий смысл, второй — детали.',
+  w4:'Контекст помогает понять слово — останавливаться и паниковать из-за одного слова ошибка.',
+  q1:'Querido/a — обращение в неформальном письме. Estimado — только официальная переписка.',
+  q2:'¡Cuánto tiempo sin saber de ti! — классическая apertura неформального письма.',
+  q3:'Por cierto = кстати — переход к новой теме в desenvolvimento письма.',
+  q4:'Минимум 150 слов на DELE B1. Меньше 140 — штраф. Идеально: 160–175.',
+  q5:'Un beso + имя — типичная подпись неформального письма. Estimada — формально.',
+  q6:'Por cierto = кстати. No obstante = однако (формально). En conclusión = в заключение.',
+  q7:'Bueno, te dejo por ahora — стандартная фраза cierre перед подписью в неформальном письме.',
 };
-let quizScore=0,quizTotal=0;
+
+let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -502,6 +1098,7 @@ function answerQuiz(el, qId, correctKey) {
     if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
   }
 }
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -554,17 +1151,39 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-function toggleTranslation(id){const el=document.getElementById(id);el.style.display=el.style.display==='none'?'block':'none';}
-const totalSections=9;
-function updateProgress(){
-  const scrolled=window.scrollY;const total=document.body.scrollHeight-window.innerHeight;
-  const pct=Math.min(100,Math.round(scrolled/total*100));
-  const sectionsRead=Math.round(pct/100*totalSections);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=`${sectionsRead} / ${totalSections} разделов`;
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
 }
-window.addEventListener('scroll',updateProgress);
+
+let showingTrans2 = false;
+function toggleAll2() {
+  showingTrans2 = !showingTrans2;
+  document.querySelectorAll('.translation2').forEach(el => {
+    el.style.display = showingTrans2 ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+document.querySelectorAll('.translation2').forEach(el => { el.style.display='none'; });
+
+// ─── Progress bar ─────────────────────────────────────────
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>

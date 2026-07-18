@@ -1504,7 +1504,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Написать неформальное письмо другу (150–180 слов, 30 мин)",
-      file:"lessons/L117.html", status:"pending"
+      file:"lessons/L117.html", status:"improved"
     },
     {
       id:"L118", num:118, phase:4, block:"B4B", level:"B1", day:258, week:44,
@@ -1516,7 +1516,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Написать формальную жалобу или статью (150–180 слов, 30 мин)",
-      file:"lessons/L118.html", status:"pending"
+      file:"lessons/L118.html", status:"improved"
     },
     {
       id:"L119", num:119, phase:4, block:"B4B", level:"B1", day:261, week:45,
