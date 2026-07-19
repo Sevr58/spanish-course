@@ -1528,7 +1528,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Тест в реальных условиях",
-      file:"lessons/L119.html", status:"pending"
+      file:"lessons/L119.html", status:"improved"
     },
     {
       id:"L120", num:120, phase:4, block:"B4B", level:"B1", day:264, week:45,
@@ -1540,7 +1540,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Письменная + устная части под таймер",
-      file:"lessons/L120.html", status:"pending"
+      file:"lessons/L120.html", status:"improved"
     },
     {
       id:"L121", num:121, phase:4, block:"B4B", level:"B1", day:267, week:46,
