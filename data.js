@@ -1552,7 +1552,7 @@ const COURSE = {
       ds_level:"intermediate",
       polyglot: null,
       speaking_focus:"Финальный монолог: что изменилось за год — по-испански, 5 минут",
-      file:"lessons/L121.html", status:"pending"
+      file:"lessons/L121.html", status:"improved"
     }
   ]
 };
