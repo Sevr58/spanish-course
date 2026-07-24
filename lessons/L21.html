@@ -1,218 +1,967 @@
 <!DOCTYPE html>
-<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L21: IR и будущее (voy a + inf.)</title>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L21: IR — идти и будущее | Испанский A1</title>
 <style>
 :root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
 .wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
-.nav{display:flex;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
-.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
-.hero{background:linear-gradient(135deg,#f1f3f7,#e8ebf1);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#f1f3f7 0%,#e8ebf1 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
 .hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
-.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
-.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px}.obj .ico{font-size:1.2rem}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
-.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;overflow:hidden}.progress-fill{height:100%;background:var(--gold)}.progress-label{font-size:.72rem;color:var(--muted);text-align:right}
-.section{margin-bottom:36px}.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}.section-header h2{font-size:1.15rem;font-weight:700}
-.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
-.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
-.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}.callout p,.callout ul{font-size:.88rem;color:var(--muted)}.callout ul{margin-left:16px}
-.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;padding:0 4px;color:var(--gold)}.speak-btn:hover{opacity:1;transform:scale(1.25)}
-.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600}
-.conjugation-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.9rem}
-.conjugation-table th{background:var(--bg3);padding:10px 12px;text-align:left;color:var(--blue);font-weight:700;font-size:.78rem;text-transform:uppercase}
-.conjugation-table td{padding:10px 12px;border-top:1px solid var(--border)}.conjugation-table .form{font-weight:700;font-family:Consolas,monospace;color:var(--green)}
-.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
-.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;color:var(--muted);font-size:.78rem;text-transform:uppercase}
-.vocab-table td{padding:10px 12px;border-top:1px solid var(--border)}.vocab-table .es{font-weight:600}
-.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
-.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;color:var(--red)}
-.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border)}.mistakes-table .wrong{color:var(--red);text-decoration:line-through;opacity:.7}.mistakes-table .right{color:var(--green);font-weight:600}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
-.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
-.speak-box .es{font-size:1.05rem;font-weight:600;margin-top:4px}.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
-.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
-.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}.quiz-q:last-child{border-bottom:none}
-.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
 .options{display:flex;flex-wrap:wrap;gap:6px}
-.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem}
-.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
-.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
-.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none}
-.text-input.correct{border-color:var(--green)!important}.text-input.wrong{border-color:var(--red)!important}
-.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
 .show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
-.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}.answer-reveal.show{display:block}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
-.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px}.dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);width:50px;flex-shrink:0}.dlg-speaker.b{color:var(--blue)}
-.dlg-es{font-size:.95rem;font-weight:500}.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
 .dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
 .culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
-.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
-.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}.culture p{font-size:.86rem;color:var(--muted)}
-.spain-card{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(230,57,70,.04));border:1px solid rgba(200,144,0,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
-.spain-card h3{font-size:1.05rem;font-weight:700;color:var(--gold);margin-bottom:8px}
-.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
-.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;gap:10px;flex-wrap:wrap}
-.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px}
-.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
-.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
-.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
-.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
-.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
-.anki-card-front{font-weight:600;font-size:.95rem}.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);background:var(--bg2);overflow-y:auto}
-.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px}
-.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
-.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-weight:700;cursor:pointer}.done-btn.marked{background:var(--muted)}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
 .nav-links{display:flex;gap:10px;flex-wrap:wrap}
-.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;color:var(--text);text-decoration:none;font-weight:600}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style></head>
-<body><div class="wrap">
-<div class="nav"><a href="../index.html">← Дашборд</a><span class="level">A1 · Фаза 1 · День 43</span><a href="L22.html">L22 →</a></div>
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600;margin-top:6px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.conj-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.9rem}
+.conj-table th{background:var(--bg3);padding:10px 12px;text-align:left;color:var(--blue);font-weight:700;font-size:.78rem;text-transform:uppercase}
+.conj-table td{padding:10px 12px;border-top:1px solid var(--border)}
+.conj-table .form{font-weight:700;font-family:Consolas,monospace;color:var(--green)}
+.example-block{background:var(--bg2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 14px;margin:8px 0;font-size:.9rem}
+.example-block .es{font-weight:600;color:var(--text)}
+.example-block .ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
 
-<div class="hero"><div class="phase-tag">🌱 Фаза 1 · Ключевая грамматика</div>
-<h1><span class="hl">IR</span> — идти и будущее</h1>
-<p class="sub">Voy a + infinitivo = «собираюсь делать». Polyglot #3.</p>
-<div class="objectives">
-<div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Говорить о планах через ir + a + inf</p></div></div>
-<div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 мин</p></div></div>
-<div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>LT эп. 27 · Polyglot #3</p></div></div>
-<div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Планы на weekend</p></div></div>
-</div></div>
+<!-- 1. NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A1 · Фаза 1 · День 43</span>
+  <a href="L22.html">L22 →</a>
+</div>
+
+<!-- 2. HERO -->
+<div class="hero">
+  <div class="phase-tag">🌱 Фаза 1 · Ключевая грамматика · Language Transfer эп. 27 · Polyglot #3</div>
+  <h1>Глагол <span class="hl">IR</span> — идти и будущее</h1>
+  <p class="sub">¿Adónde vas? — Куда идёшь? Voy a + infinitivo = собираюсь, планирую. Это расширение урока #3 из курса Polyglot (Дмитрий Петров).</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Выучить все формы неправильного глагола IR</p></div></div>
+    <div class="obj"><div class="ico">🗺️</div><div><strong>Цель 2</strong><p>Использовать IR + a + место (куда идём)</p></div></div>
+    <div class="obj"><div class="ico">⏳</div><div><strong>Цель 3</strong><p>Говорить о планах через voy a + инфинитив</p></div></div>
+    <div class="obj"><div class="ico">🏠</div><div><strong>Цель 4</strong><p>Применить в реальном сценарии аренды жилья</p></div></div>
+  </div>
+</div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 11</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<div class="section"><div class="section-header"><div class="section-num">1</div><h2>Повторение L20</h2></div>
-<div class="quiz">
-<div class="quiz-q" id="r1"><div class="q-text">1. «Я голоден»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r1','a')">Tengo hambre</div><div class="opt" onclick="answerQuiz(this,'r1','b')">Soy hambre</div><div class="opt" onclick="answerQuiz(this,'r1','c')">Estoy hambre</div></div><div class="feedback" id="fb-r1"></div></div>
-<div class="quiz-q" id="r2"><div class="q-text">2. «Должен работать»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r2','b')">Tengo trabajar</div><div class="opt" onclick="answerQuiz(this,'r2','a')">Tengo que trabajar</div><div class="opt" onclick="answerQuiz(this,'r2','c')">Hay trabajar</div></div><div class="feedback" id="fb-r2"></div></div>
-<div class="quiz-q" id="r3"><div class="q-text">3. «Мне жарко»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r3','c')">Soy calor</div><div class="opt" onclick="answerQuiz(this,'r3','a')">Tengo calor</div><div class="opt" onclick="answerQuiz(this,'r3','b')">Estoy caliente</div></div><div class="feedback" id="fb-r3"></div></div>
-<div class="quiz-q" id="r4"><div class="q-text">4. «Tener que» vs «Hay que»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r4','b')">одно и то же</div><div class="opt" onclick="answerQuiz(this,'r4','a')">tener que — для лица, hay que — безлично</div><div class="opt" onclick="answerQuiz(this,'r4','c')">первое для прошлого</div></div><div class="feedback" id="fb-r4"></div></div>
-</div></div>
-
-<div class="section"><div class="section-header"><div class="section-num">2</div><h2>Спряжение IR (неправильный)</h2></div>
-<p>IR — это «идти». Полностью неправильный глагол, нужно заучивать все формы.</p>
-<table class="conjugation-table"><thead><tr><th>Местоимение</th><th>Форма</th><th>🔊</th><th>Пример</th></tr></thead><tbody>
-<tr><td>yo</td><td class="form">voy</td><td><button class="speak-btn" onclick="speak('voy')">🔊</button></td><td>Voy al banco.</td></tr>
-<tr><td>tú</td><td class="form">vas</td><td><button class="speak-btn" onclick="speak('vas')">🔊</button></td><td>¿Adónde vas?</td></tr>
-<tr><td>él/ella/usted</td><td class="form">va</td><td><button class="speak-btn" onclick="speak('va')">🔊</button></td><td>Ella va al gimnasio.</td></tr>
-<tr><td>nosotros</td><td class="form">vamos</td><td><button class="speak-btn" onclick="speak('vamos')">🔊</button></td><td>Vamos al cine.</td></tr>
-<tr><td>vosotros</td><td class="form">vais</td><td><button class="speak-btn" onclick="speak('vais')">🔊</button></td><td>¿Vais a la playa?</td></tr>
-<tr><td>ellos</td><td class="form">van</td><td><button class="speak-btn" onclick="speak('van')">🔊</button></td><td>Mis hijas van al cole.</td></tr>
-</tbody></table>
-<button class="speak-btn-big" onclick="speak('voy, vas, va, vamos, vais, van')">▶ Всё подряд</button>
-<div class="callout tip"><h4>💡 «Vamos» = пошли!</h4><p>«Vamos» — это и «мы идём», и «пошли!» (предложение, приглашение): «¡Vamos!» = поехали!. «¡Vamos al cine!» = идём в кино!</p></div>
+<!-- 3. WARM-UP REVIEW L20 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Повторение L20 — TENER: выражения и обязанности</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">L20 был про глагол <strong>tener</strong> — «иметь» и выражения состояния. Проверь себя!</p>
+  <div class="quiz">
+    <h3>🔁 Проверяем L20 — 4 вопроса</h3>
+    <div class="quiz-q" id="r1">
+      <div class="q-text">1. «Я голоден» по-испански — <strong>tener hambre</strong>. Как сказать правильно?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r1','a')">Tengo hambre</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','b')">Soy hambre</div>
+        <div class="opt" onclick="answerQuiz(this,'r1','c')">Estoy hambre</div>
+      </div>
+      <div class="feedback" id="fb-r1"></div>
+    </div>
+    <div class="quiz-q" id="r2">
+      <div class="q-text">2. «Я должен работать» = <strong>tener que + инфинитив</strong>. Выбери верное:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r2','b')">Tengo trabajar</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','a')">Tengo que trabajar</div>
+        <div class="opt" onclick="answerQuiz(this,'r2','c')">Hay que trabajar yo</div>
+      </div>
+      <div class="feedback" id="fb-r2"></div>
+    </div>
+    <div class="quiz-q" id="r3">
+      <div class="q-text">3. Какое выражение означает «мне жарко»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r3','c')">Soy caliente</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','a')">Tengo calor</div>
+        <div class="opt" onclick="answerQuiz(this,'r3','b')">Estoy calor</div>
+      </div>
+      <div class="feedback" id="fb-r3"></div>
+    </div>
+    <div class="quiz-q" id="r4">
+      <div class="q-text">4. «Нам нужно позвонить» — безличное обязательство. Выбери:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'r4','b')">Tenemos que llamar</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','a')">Hay que llamar</div>
+        <div class="opt" onclick="answerQuiz(this,'r4','c')">Debemos llamar</div>
+      </div>
+      <div class="feedback" id="fb-r4"></div>
+    </div>
+  </div>
 </div>
 
-<div class="section"><div class="section-header"><div class="section-num">3</div><h2>Куда идём — Ir + a + место</h2></div>
-<p>Структура: <strong>ir + a + место</strong>. Помни про a+el=al.</p>
-<div class="speak-box"><div class="es">Voy al banco. <button class="speak-btn" onclick="speak('Voy al banco.')">🔊</button></div><div class="hint">[Иду в банк.] al = a+el</div></div>
-<div class="speak-box"><div class="es">Vamos a la playa. <button class="speak-btn" onclick="speak('Vamos a la playa.')">🔊</button></div></div>
-<div class="speak-box"><div class="es">Mis hijas van al colegio. <button class="speak-btn" onclick="speak('Mis hijas van al colegio.')">🔊</button></div></div>
-<div class="callout warning"><h4>⚠️ A + куда / De + откуда / En + где</h4><p>«Иду В банк» = Voy <strong>al</strong> banco (направление).<br>«Я ИЗ России» = Soy <strong>de</strong> Rusia.<br>«Я В Барселоне» = Estoy <strong>en</strong> Barcelona.<br>Эти 3 предлога нужно различать.</p></div>
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — Глагол IR: спряжение, место, будущее</h2>
+  </div>
+
+  <p style="margin-bottom:14px">Глагол <strong>IR</strong> [ир] = <em>идти, ехать, направляться</em>. В испанском он используется для ЛЮБОГО перемещения — пешком, на машине, на самолёте. Это <strong>полностью неправильный глагол</strong> — его формы нужно заучить наизусть.</p>
+
+  <div class="callout info">
+    <h4>🎧 Language Transfer — эпизод 27 + Polyglot #3</h4>
+    <p>В эпизоде 27 Михаилис объясняет ключевые конструкции с IR. Параллельно открой урок #3 из Polyglot (Дмитрий Петров) — он отлично дополняет эту тему.</p>
+  </div>
+
+  <h3 style="margin-top:20px;margin-bottom:10px;font-size:1rem;font-weight:700">📋 Спряжение IR в настоящем времени</h3>
+  <table class="conj-table">
+    <thead><tr><th>Местоимение</th><th>Форма [транскрипция]</th><th>🔊</th><th>Пример</th></tr></thead>
+    <tbody>
+      <tr><td>yo</td><td class="form">voy [вой]</td><td><button class="speak-btn" onclick="speak('voy')">🔊</button></td><td>Yo voy al banco. [Я иду в банк]</td></tr>
+      <tr><td>tú</td><td class="form">vas [вас]</td><td><button class="speak-btn" onclick="speak('vas')">🔊</button></td><td>¿Adónde vas? [Куда ты идёшь?]</td></tr>
+      <tr><td>él/ella/usted</td><td class="form">va [ва]</td><td><button class="speak-btn" onclick="speak('va')">🔊</button></td><td>Ella va al gimnasio. [Она идёт в зал]</td></tr>
+      <tr><td>nosotros</td><td class="form">vamos [ва́мос]</td><td><button class="speak-btn" onclick="speak('vamos')">🔊</button></td><td>¡Vamos! [Пошли!]</td></tr>
+      <tr><td>vosotros</td><td class="form">vais [вайс]</td><td><button class="speak-btn" onclick="speak('vais')">🔊</button></td><td>¿Vais a la playa? [Едете на пляж?]</td></tr>
+      <tr><td>ellos/ustedes</td><td class="form">van [ван]</td><td><button class="speak-btn" onclick="speak('van')">🔊</button></td><td>Los niños van al cole. [Дети идут в школу]</td></tr>
+    </tbody>
+  </table>
+  <button class="speak-btn-big" onclick="speak('voy, vas, va, vamos, vais, van')">▶ Все формы подряд</button>
+
+  <div class="callout tip">
+    <h4>💡 ¡Vamos! — многозначное слово</h4>
+    <p>«¡Vamos!» — это и «мы идём», и «пошли!» (приглашение), и «давай!» (поддержка). В Испании ты будешь слышать это слово десятки раз в день.</p>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1rem;font-weight:700">📌 Правило 1: IR + a + место (куда?)</h3>
+  <p style="margin-bottom:10px">Формула: <strong>ir + a + место</strong>. Важно: артикль <strong>el</strong> сливается с <strong>a</strong> → <strong>al</strong>. С женским родом: ir + a + la.</p>
+
+  <div class="example-block"><div class="es">Voy al banco. <button class="speak-btn" onclick="speak('Voy al banco.')">🔊</button></div><div class="ru">[Иду в банк.] — al = a + el (banco — мужской род)</div></div>
+  <div class="example-block"><div class="es">Vamos a la playa. <button class="speak-btn" onclick="speak('Vamos a la playa.')">🔊</button></div><div class="ru">[Идём на пляж.] — la playa — женский род</div></div>
+  <div class="example-block"><div class="es">¿Vas al supermercado? <button class="speak-btn" onclick="speak('¿Vas al supermercado?')">🔊</button></div><div class="ru">[Ты идёшь в супермаркет?]</div></div>
+  <div class="example-block"><div class="es">Mis hijos van al colegio. <button class="speak-btn" onclick="speak('Mis hijos van al colegio.')">🔊</button></div><div class="ru">[Мои дети идут в школу.]</div></div>
+  <div class="example-block"><div class="es">Ella va a la farmacia. <button class="speak-btn" onclick="speak('Ella va a la farmacia.')">🔊</button></div><div class="ru">[Она идёт в аптеку.]</div></div>
+  <div class="example-block"><div class="es">¿Vais al médico? — Sí, vamos al médico. <button class="speak-btn" onclick="speak('¿Vais al médico? Sí, vamos al médico.')">🔊</button></div><div class="ru">[Идёте к врачу? — Да, идём к врачу.]</div></div>
+
+  <div class="callout warning">
+    <h4>⚠️ Три предлога — три разных значения</h4>
+    <ul>
+      <li><strong>a</strong> — направление (куда?): Voy <strong>al</strong> banco.</li>
+      <li><strong>en</strong> — нахождение (где?): Estoy <strong>en</strong> el banco.</li>
+      <li><strong>de</strong> — происхождение (откуда?): Vengo <strong>del</strong> banco. (de + el = del)</li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:10px;font-size:1rem;font-weight:700">📌 Правило 2: IR + a + инфинитив (ближайшее будущее)</h3>
+  <p style="margin-bottom:10px">Самый простой и самый используемый способ говорить о будущем. Эквивалент английского «going to». Структура: <strong>спряжённая форма ir + a + инфинитив</strong>.</p>
+
+  <div class="example-block"><div class="es">Voy a estudiar hoy. <button class="speak-btn" onclick="speak('Voy a estudiar hoy.')">🔊</button></div><div class="ru">[Собираюсь учиться сегодня.] — yo + ir + a + estudiar</div></div>
+  <div class="example-block"><div class="es">Mañana vamos a comer juntos. <button class="speak-btn" onclick="speak('Mañana vamos a comer juntos.')">🔊</button></div><div class="ru">[Завтра будем есть вместе.]</div></div>
+  <div class="example-block"><div class="es">¿Qué vas a hacer este fin de semana? <button class="speak-btn" onclick="speak('¿Qué vas a hacer este fin de semana?')">🔊</button></div><div class="ru">[Что будешь делать на выходных?]</div></div>
+  <div class="example-block"><div class="es">No voy a salir esta noche. <button class="speak-btn" onclick="speak('No voy a salir esta noche.')">🔊</button></div><div class="ru">[Не буду выходить этой ночью.] — отрицание перед voy</div></div>
+  <div class="example-block"><div class="es">¿Van a venir a la fiesta? <button class="speak-btn" onclick="speak('¿Van a venir a la fiesta?')">🔊</button></div><div class="ru">[Они придут на вечеринку?]</div></div>
+  <div class="example-block"><div class="es">El sábado voy a buscar piso. <button class="speak-btn" onclick="speak('El sábado voy a buscar piso.')">🔊</button></div><div class="ru">[В субботу буду искать квартиру.] — типичная фраза в Испании</div></div>
+
+  <div class="callout success">
+    <h4>✅ Запомни формулу</h4>
+    <p>Voy/Vas/Va/Vamos/Vais/Van + <strong>a</strong> + инфинитив = БУДУЩЕЕ. Используй это в 80% случаев вместо сложного futuro simple!</p>
+  </div>
+
+  <h3 style="margin-top:24px;margin-bottom:12px;font-size:1rem;font-weight:700">⚠️ Типичные ошибки русскоговорящих с IR</h3>
+  <table class="mistakes">
+    <tr><th>Хотели сказать</th><th>❌ Ошибка</th><th>✅ Правильно</th><th>Причина</th></tr>
+    <tr><td>Иду в банк</td><td class="wrong-ex">Voy a el banco</td><td class="right-ex">Voy al banco</td><td>a + el сливаются в «al»</td></tr>
+    <tr><td>Буду читать</td><td class="wrong-ex">Voy leer / Voy a leer yo</td><td class="right-ex">Voy a leer</td><td>«a» обязательно, местоимение не нужно</td></tr>
+    <tr><td>Куда идёшь?</td><td class="wrong-ex">¿Dónde vas?</td><td class="right-ex">¿Adónde vas?</td><td>adónde = куда (движение), dónde = где (место)</td></tr>
+    <tr><td>Иду из банка</td><td class="wrong-ex">Voy de el banco</td><td class="right-ex">Vengo del banco</td><td>«Откуда» = venir + de; de + el = del</td></tr>
+    <tr><td>Я еду на такси</td><td class="wrong-ex">Voy en el taxi al centro</td><td class="right-ex">Voy al centro en taxi</td><td>Транспорт — через en: en taxi, en metro, en coche</td></tr>
+    <tr><td>Мы пошли (прошлое)</td><td class="wrong-ex">Fuimos a ir</td><td class="right-ex">Fuimos al banco</td><td>«Fuimos» уже значит «мы пошли» — второй IR лишний</td></tr>
+  </table>
 </div>
 
-<div class="section"><div class="section-header"><div class="section-num">4</div><h2>Будущее: Ir + a + infinitivo</h2></div>
-<p>Самый простой способ выразить будущее. Формула: <strong>спряжённое ir + a + инфинитив</strong>.</p>
-<div class="speak-box"><div class="es">Voy a estudiar. <button class="speak-btn" onclick="speak('Voy a estudiar.')">🔊</button></div><div class="hint">[Собираюсь учиться. / Буду учиться.]</div></div>
-<div class="speak-box"><div class="es">Mañana voy a trabajar. <button class="speak-btn" onclick="speak('Mañana voy a trabajar.')">🔊</button></div></div>
-<div class="speak-box"><div class="es">El fin de semana vamos a viajar. <button class="speak-btn" onclick="speak('El fin de semana vamos a viajar.')">🔊</button></div></div>
-<div class="speak-box"><div class="es">¿Vas a venir? <button class="speak-btn" onclick="speak('¿Vas a venir?')">🔊</button></div></div>
-<div class="speak-box"><div class="es">No voy a salir hoy. <button class="speak-btn" onclick="speak('No voy a salir hoy.')">🔊</button></div></div>
-<div class="callout tip"><h4>💡 Простое будущее</h4><p>Это «futuro próximo» — близкое будущее. Используется в 80% случаев когда говорим о планах. Так же как в английском «I'm going to + verb».</p></div>
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — 18 слов: места и выражения с IR</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.9rem">A1: каждое слово с транскрипцией [в скобках]. Нажимай 🔊 чтобы услышать правильное произношение.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item"><div><div class="vocab-es">ir [ир]</div><div class="vocab-ru">идти / ехать / направляться</div></div><button class="speak-btn" onclick="speak('ir')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">voy [вой]</div><div class="vocab-ru">я иду (yo + ir)</div></div><button class="speak-btn" onclick="speak('voy')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¿adónde? [адо́ндэ]</div><div class="vocab-ru">куда? (с движением)</div></div><button class="speak-btn" onclick="speak('¿adónde?')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el banco [ба́нко]</div><div class="vocab-ru">банк</div></div><button class="speak-btn" onclick="speak('el banco')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la farmacia [фарма́сья]</div><div class="vocab-ru">аптека</div></div><button class="speak-btn" onclick="speak('la farmacia')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el médico [мэ́дико]</div><div class="vocab-ru">врач / доктор</div></div><button class="speak-btn" onclick="speak('el médico')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el supermercado [супэрмэрка́до]</div><div class="vocab-ru">супермаркет</div></div><button class="speak-btn" onclick="speak('el supermercado')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el colegio [коле́хьо]</div><div class="vocab-ru">школа (начальная)</div></div><button class="speak-btn" onclick="speak('el colegio')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">la playa [пла́йя]</div><div class="vocab-ru">пляж</div></div><button class="speak-btn" onclick="speak('la playa')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el centro [сэ́нтро]</div><div class="vocab-ru">центр (города)</div></div><button class="speak-btn" onclick="speak('el centro')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">mañana [маньа́на]</div><div class="vocab-ru">завтра</div></div><button class="speak-btn" onclick="speak('mañana')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">esta tarde [э́ста та́рдэ]</div><div class="vocab-ru">этим вечером / сегодня после обеда</div></div><button class="speak-btn" onclick="speak('esta tarde')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">el fin de semana [фин дэ сэма́на]</div><div class="vocab-ru">выходные</div></div><button class="speak-btn" onclick="speak('el fin de semana')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">buscar piso [буска́р пи́со]</div><div class="vocab-ru">искать квартиру</div></div><button class="speak-btn" onclick="speak('buscar piso')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¡Vamos! [ва́мос]</div><div class="vocab-ru">Пошли! / Давай!</div></div><button class="speak-btn" onclick="speak('¡Vamos!')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">¡Vamos a ver! [ва́мос а вэр]</div><div class="vocab-ru">Посмотрим! (идиома)</div></div><button class="speak-btn" onclick="speak('¡Vamos a ver!')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">quedar [кэда́р]</div><div class="vocab-ru">договориться встретиться</div></div><button class="speak-btn" onclick="speak('quedar')">🔊</button></div>
+    <div class="vocab-item"><div><div class="vocab-es">en metro / en bus [эн мэ́тро]</div><div class="vocab-ru">на метро / на автобусе</div></div><button class="speak-btn" onclick="speak('en metro, en bus')">🔊</button></div>
+  </div>
 </div>
 
-<div class="section"><div class="section-header"><div class="section-num">5</div><h2>Типичные ошибки</h2></div>
-<table class="mistakes-table"><thead><tr><th>Хочешь</th><th>❌</th><th>✅</th><th>Почему</th></tr></thead><tbody>
-<tr><td>«Я еду в банк»</td><td><span class="wrong">Voy a el banco</span></td><td><span class="right">Voy al banco</span></td><td>a+el=al</td></tr>
-<tr><td>«Буду читать»</td><td><span class="wrong">Voy leer</span></td><td><span class="right">Voy a leer</span></td><td>«a» обязательно</td></tr>
-<tr><td>«Куда идёшь?»</td><td><span class="wrong">¿Dónde vas?</span></td><td><span class="right">¿Adónde vas?</span></td><td>Куда=adónde</td></tr>
-<tr><td>«Пошли в кино»</td><td><span class="wrong">Vámonos al cine</span></td><td><span class="right">Vamos al cine</span></td><td>Просто vamos</td></tr>
-<tr><td>«Иду из дома»</td><td><span class="wrong">Voy de casa</span></td><td><span class="right">Voy de casa / Salgo de casa</span></td><td>Из=salir + de часто</td></tr>
-</tbody></table></div>
-
-<div class="section"><div class="section-header"><div class="section-num">6</div><h2>Тест 1</h2></div>
-<div class="quiz">
-<div class="quiz-q" id="q1"><div class="q-text">1. «Я иду в супермаркет» = Voy ___ supermercado.</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q1','a')">al</div><div class="opt" onclick="answerQuiz(this,'q1','b')">a el</div><div class="opt" onclick="answerQuiz(this,'q1','c')">en el</div></div><div class="feedback" id="fb-q1"></div></div>
-<div class="quiz-q" id="q2"><div class="q-text">2. «Мы будем работать»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q2','b')">Vamos trabajar</div><div class="opt" onclick="answerQuiz(this,'q2','a')">Vamos a trabajar</div><div class="opt" onclick="answerQuiz(this,'q2','c')">Voy a trabajar</div></div><div class="feedback" id="fb-q2"></div></div>
-<div class="quiz-q" id="q3"><div class="q-text">3. «Куда ты идёшь?»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q3','c')">¿Dónde vas?</div><div class="opt" onclick="answerQuiz(this,'q3','a')">¿Adónde vas?</div><div class="opt" onclick="answerQuiz(this,'q3','b')">¿Cómo vas?</div></div><div class="feedback" id="fb-q3"></div></div>
-<div class="quiz-q" id="q4"><div class="q-text">4. yo + ir = ?</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q4','b')">vas</div><div class="opt" onclick="answerQuiz(this,'q4','a')">voy</div><div class="opt" onclick="answerQuiz(this,'q4','c')">iró</div></div><div class="feedback" id="fb-q4"></div></div>
-<div class="quiz-q" id="q5"><div class="q-text">5. «Завтра поеду» = Mañana ___ viajar.</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q5','c')">voy viajar</div><div class="opt" onclick="answerQuiz(this,'q5','a')">voy a</div><div class="opt" onclick="answerQuiz(this,'q5','b')">vamos a</div></div><div class="feedback" id="fb-q5"></div></div>
-<div class="quiz-q" id="q6"><div class="q-text">6. «Пошли в кафе!»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q6','b')">Vámonos cafetería</div><div class="opt" onclick="answerQuiz(this,'q6','a')">¡Vamos al café!</div><div class="opt" onclick="answerQuiz(this,'q6','c')">Vais café</div></div><div class="feedback" id="fb-q6"></div></div>
-</div></div>
-
-<div class="section"><div class="section-header"><div class="section-num">7</div><h2>Тест 2</h2></div>
-<div class="quiz">
-<div class="text-ex" id="te1"><div class="tex-q">1. nosotros + ir = ?</div><input type="text" class="text-input" id="ti1"><button class="check-btn" onclick="checkText('ti1','vamos','fb-te1')">Проверить</button><button class="show-ans" onclick="showAns('ans-te1')">Показать</button><div class="feedback" id="fb-te1"></div><div class="answer-reveal" id="ans-te1">✅ vamos</div></div>
-<div class="text-ex" id="te2"><div class="tex-q">2. «Будут учиться» = Ellos ___ estudiar.</div><input type="text" class="text-input" id="ti2"><button class="check-btn" onclick="checkText('ti2','van a','fb-te2')">Проверить</button><button class="show-ans" onclick="showAns('ans-te2')">Показать</button><div class="feedback" id="fb-te2"></div><div class="answer-reveal" id="ans-te2">✅ van a</div></div>
-<div class="text-ex" id="te3"><div class="tex-q">3. «Я еду в Мадрид» = Voy ___ Madrid.</div><input type="text" class="text-input" id="ti3"><button class="check-btn" onclick="checkText('ti3','a','fb-te3')">Проверить</button><button class="show-ans" onclick="showAns('ans-te3')">Показать</button><div class="feedback" id="fb-te3"></div><div class="answer-reveal" id="ans-te3">✅ a (без артикля для городов)</div></div>
-<div class="text-ex" id="te4"><div class="tex-q">4. «Что собираешься делать?» = ¿Qué ___ a hacer?</div><input type="text" class="text-input" id="ti4"><button class="check-btn" onclick="checkText('ti4','vas','fb-te4')">Проверить</button><button class="show-ans" onclick="showAns('ans-te4')">Показать</button><div class="feedback" id="fb-te4"></div><div class="answer-reveal" id="ans-te4">✅ vas</div></div>
-<div class="text-ex" id="te5"><div class="tex-q">5. «Дети идут в школу» = Los niños ___ al colegio.</div><input type="text" class="text-input" id="ti5"><button class="check-btn" onclick="checkText('ti5','van','fb-te5')">Проверить</button><button class="show-ans" onclick="showAns('ans-te5')">Показать</button><div class="feedback" id="fb-te5"></div><div class="answer-reveal" id="ans-te5">✅ van</div></div>
-</div></div>
-
-<div class="section"><div class="section-header"><div class="section-num">8</div><h2>Диалоги</h2></div>
-<div class="dialogue"><div class="dlg-header">💬 Планы на выходные<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD1()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
-<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Qué vas a hacer el sábado? <button class="speak-btn" onclick="speak('¿Qué vas a hacer el sábado?')">🔊</button></div><div class="dlg-ru translation">— Что делаешь в субботу?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Por la mañana voy a la playa. Y por la tarde voy a un partido. <button class="speak-btn" onclick="speak('Por la mañana voy a la playa. Y por la tarde voy a un partido.')">🔊</button></div><div class="dlg-ru translation">— Утром на пляж. Днём на матч.</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Vas con tu familia? <button class="speak-btn" onclick="speak('¿Vas con tu familia?')">🔊</button></div><div class="dlg-ru translation">— С семьёй?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">A la playa sí, todos vamos. Al partido voy con amigos. <button class="speak-btn" onclick="speak('A la playa sí, todos vamos. Al partido voy con amigos.')">🔊</button></div><div class="dlg-ru translation">— На пляж — все. На матч — с друзьями.</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Y el domingo? ¿Vais a salir? <button class="speak-btn" onclick="speak('¿Y el domingo? ¿Vais a salir?')">🔊</button></div><div class="dlg-ru translation">— А в воскресенье? Куда-то поедете?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">No, vamos a quedarnos en casa. Vamos a descansar. <button class="speak-btn" onclick="speak('No, vamos a quedarnos en casa. Vamos a descansar.')">🔊</button></div><div class="dlg-ru translation">— Нет, останемся дома. Будем отдыхать.</div></div></div>
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Множественный выбор: формы и конструкции IR</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на вариант — получишь ответ с объяснением сразу. Правильный ответ всегда один.</p>
+  <div class="quiz">
+    <h3>🎯 7 вопросов о глаголе IR</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Я иду в супермаркет» = Voy ___ supermercado.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">al</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">a el</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">en el</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Мы будем работать завтра» = Mañana ___ trabajar.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">vamos trabajar</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">vamos a</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">voy a</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «Куда ты идёшь?» — как правильно спросить?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">¿Dónde vas?</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">¿Adónde vas?</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">¿Cómo vas?</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. yo + ir = ?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">vas</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">voy</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">iró</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Они идут на пляж» = Ellos van ___ playa.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">al</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">a la</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">en la</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Пошли в кафе!» — как сказать по-испански?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Vámonos al café</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">¡Vamos al café!</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">¡Ir café!</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «Не буду выходить сегодня» = No ___ salir hoy.</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">soy a</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">voy a</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">vamos a</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+  <div id="quiz-score" style="margin-top:12px;font-size:.9rem;color:var(--muted)"></div>
 </div>
 
-<div class="dialogue"><div class="dlg-header">💬 Куда направляешься<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD2()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
-<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Adónde vas con tanta prisa? <button class="speak-btn" onclick="speak('¿Adónde vas con tanta prisa?')">🔊</button></div><div class="dlg-ru translation">— Куда так спешишь?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Voy al médico. Tengo cita a las 10. <button class="speak-btn" onclick="speak('Voy al médico. Tengo cita a las diez.')">🔊</button></div><div class="dlg-ru translation">— К врачу. Запись на 10.</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Y después? <button class="speak-btn" onclick="speak('¿Y después?')">🔊</button></div><div class="dlg-ru translation">— А потом?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Después voy a comprar al Mercadona y luego vuelvo a casa. <button class="speak-btn" onclick="speak('Después voy a comprar al Mercadona y luego vuelvo a casa.')">🔊</button></div><div class="dlg-ru translation">— Потом в Mercadona, потом домой.</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Te llamo más tarde? <button class="speak-btn" onclick="speak('¿Te llamo más tarde?')">🔊</button></div><div class="dlg-ru translation">— Позвонить позже?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Sí, a partir de las dos voy a estar libre. <button class="speak-btn" onclick="speak('Sí, a partir de las dos voy a estar libre.')">🔊</button></div><div class="dlg-ru translation">— Да, после 14 буду свободен.</div></div></div>
-</div></div>
-
-<div class="section"><div class="section-header"><div class="section-num">9</div><h2>Говорение</h2></div>
-<div class="speak-box"><div class="speak-tag">🎙 Что собираешься делать</div><div class="es">Esta tarde voy a estudiar español. Mañana voy al banco. El sábado vamos a la playa con la familia. El domingo voy a descansar. <button class="speak-btn" onclick="speak('Esta tarde voy a estudiar español. Mañana voy al banco. El sábado vamos a la playa con la familia. El domingo voy a descansar.')">🔊</button></div></div>
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуски: вставь правильную форму</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Вводи в нижнем регистре. Система допускает 1 опечатку для коротких слов.</p>
+  <div class="quiz">
+    <h3>✏️ 6 упражнений на подстановку</h3>
+    <div class="text-ex">
+      <div class="tex-q">1. nosotros + ir = <em>мы идём</em> = ___</div>
+      <input type="text" class="text-input" placeholder="Напиши форму глагола..." id="ti1">
+      <button class="check-btn" onclick="checkText('ti1','vamos','fb-ti1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti1')">Показать ответ</button>
+      <div class="feedback" id="fb-ti1"></div>
+      <div class="answer-reveal" id="ans-ti1">✅ vamos [ва́мос]</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. «Они будут учиться» = Ellos ___ a estudiar.</div>
+      <input type="text" class="text-input" placeholder="Форма IR для ellos..." id="ti2">
+      <button class="check-btn" onclick="checkText('ti2','van','fb-ti2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti2')">Показать ответ</button>
+      <div class="feedback" id="fb-ti2"></div>
+      <div class="answer-reveal" id="ans-ti2">✅ van — ellos + ir = van</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. «Я еду в Мадрид» = Voy ___ Madrid. (без артикля у городов!)</div>
+      <input type="text" class="text-input" placeholder="Предлог..." id="ti3">
+      <button class="check-btn" onclick="checkText('ti3','a','fb-ti3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti3')">Показать ответ</button>
+      <div class="feedback" id="fb-ti3"></div>
+      <div class="answer-reveal" id="ans-ti3">✅ a — города без артикля: voy a Madrid, voy a Barcelona</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. «Что собираешься делать?» = ¿Qué ___ a hacer? (tú)</div>
+      <input type="text" class="text-input" placeholder="Форма IR для tú..." id="ti4">
+      <button class="check-btn" onclick="checkText('ti4','vas','fb-ti4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti4')">Показать ответ</button>
+      <div class="feedback" id="fb-ti4"></div>
+      <div class="answer-reveal" id="ans-ti4">✅ vas — tú + ir = vas</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. «Дети идут в школу» = Los niños ___ al colegio.</div>
+      <input type="text" class="text-input" placeholder="Форма IR для ellos..." id="ti5">
+      <button class="check-btn" onclick="checkText('ti5','van','fb-ti5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti5')">Показать ответ</button>
+      <div class="feedback" id="fb-ti5"></div>
+      <div class="answer-reveal" id="ans-ti5">✅ van — los niños = ellos → van</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. «Иду в аптеку» = Voy ___ farmacia. (farmacia — женский род)</div>
+      <input type="text" class="text-input" placeholder="a + артикль..." id="ti6">
+      <button class="check-btn" onclick="checkText('ti6','a la','fb-ti6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-ti6')">Показать ответ</button>
+      <div class="feedback" id="fb-ti6"></div>
+      <div class="answer-reveal" id="ans-ti6">✅ a la — женский род, нет слияния: a + la = a la</div>
+    </div>
+  </div>
 </div>
 
-<div class="section"><div class="section-header"><div class="section-num">10</div><h2>🇪🇸 Испания на практике — Планировать</h2></div>
-<div class="spain-card"><div class="stag">📅 Сценарий</div><h3>Записаться куда-то / договориться о встрече</h3>
-<div class="phrase-list">
-<div class="phrase"><span class="es">Voy a ir al banco mañana.</span><button class="speak-btn" onclick="speak('Voy a ir al banco mañana.')">🔊</button><span class="tr">Завтра иду в банк.</span></div>
-<div class="phrase"><span class="es">¿Cuándo vas a venir?</span><button class="speak-btn" onclick="speak('¿Cuándo vas a venir?')">🔊</button><span class="tr">Когда придёшь?</span></div>
-<div class="phrase"><span class="es">No voy a poder ir.</span><button class="speak-btn" onclick="speak('No voy a poder ir.')">🔊</button><span class="tr">Не смогу прийти.</span></div>
-<div class="phrase"><span class="es">¡Vamos a ver!</span><button class="speak-btn" onclick="speak('¡Vamos a ver!')">🔊</button><span class="tr">Посмотрим!</span></div>
-<div class="phrase"><span class="es">Voy a pensarlo.</span><button class="speak-btn" onclick="speak('Voy a pensarlo.')">🔊</button><span class="tr">Подумаю.</span></div>
-<div class="phrase"><span class="es">Vamos a quedar para tomar algo.</span><button class="speak-btn" onclick="speak('Vamos a quedar para tomar algo.')">🔊</button><span class="tr">Договоримся встретиться (поужинать/выпить).</span></div>
-</div></div></div>
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги — Планы и маршруты</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Читай вслух. Нажимай 🔊 у каждой реплики. «Переводы» — показать/скрыть русский.</p>
 
-<div class="section"><div class="section-header"><div class="section-num">11</div><h2>Anki + ДЗ</h2></div>
-<div class="anki"><div class="atag">🃏 15 карточек L21</div>
-<div class="anki-preview" id="anki-preview-L21"></div>
-<a href="../anki_decks/L21.apkg" download class="anki-export-btn" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;">📥 Скачать колоду L21.apkg (с произношением)</a></div>
-<div class="video-block" style="background:linear-gradient(135deg,rgba(69,123,157,.06),rgba(157,78,221,.04));border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin:16px 0;"><h4 style="font-size:.95rem;font-weight:700;margin-bottom:10px;color:var(--text);">🎬 Слушай и смотри сегодня</h4><a href="https://www.youtube.com/@LanguageTransfer/search?query=spanish%2027" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg3);color:var(--gold);text-decoration:none;border-radius:8px;margin:6px 0;font-weight:600;border:1px solid rgba(200,144,0,.3);"><span style="font-size:1.3rem;">🎧</span><span>Language Transfer — Spanish, эпизод 27</span><span style="margin-left:auto;font-size:.8rem;opacity:.6;">YouTube ↗</span></a><a href="https://www.youtube.com/@DreamingSpanish/playlists" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg3);color:var(--blue);text-decoration:none;border-radius:8px;margin:6px 0;font-weight:600;border:1px solid rgba(69,123,157,.3);"><span style="font-size:1.3rem;">📺</span><span>Dreaming Spanish — плейлист Super Beginner (15 мин)</span><span style="margin-left:auto;font-size:.8rem;opacity:.6;">YouTube ↗</span></a><a href="../../lessons/lesson_03.html" target="_blank" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg3);color:#9d4edd;text-decoration:none;border-radius:8px;margin:6px 0;font-weight:600;border:1px solid rgba(157,78,221,.3);"><span style="font-size:1.3rem;">📚</span><span>Polyglot Spanish — урок #3</span><span style="margin-left:auto;font-size:.8rem;opacity:.6;">Локально ↗</span></a></div>
-<div class="callout info" style="margin-top:16px"><h4>📅 До L22</h4><ul><li>LT эп. 27 · Polyglot #3</li><li>Запиши план на 7 дней — каждый день «voy a + что-то»</li></ul></div>
-<div class="callout success" style="margin-top:14px"><h4>🎉 L21 готов!</h4><p>В L22 — модальные: poder, querer, deber.</p></div></div>
+  <div class="dialogue">
+    <div class="dlg-header">
+      💬 Диалог 1: Планы на выходные (10 реплик)
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playD1()">▶ Весь диалог</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué vas a hacer el sábado? <button class="speak-btn" onclick="speak('¿Qué vas a hacer el sábado?')">🔊</button></div>
+        <div class="dlg-ru translation">[Что будешь делать в субботу?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Игорь</div>
+      <div style="flex:1">
+        <div class="dlg-es">Por la mañana voy al Mercadona. Necesito comprar muchas cosas. <button class="speak-btn" onclick="speak('Por la mañana voy al Mercadona. Necesito comprar muchas cosas.')">🔊</button></div>
+        <div class="dlg-ru translation">[Утром иду в Mercadona. Нужно много купить.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y por la tarde? ¿Vas a salir? <button class="speak-btn" onclick="speak('¿Y por la tarde? ¿Vas a salir?')">🔊</button></div>
+        <div class="dlg-ru translation">[А после обеда? Куда-то выйдешь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Игорь</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, voy a ver pisos. Necesito encontrar piso nuevo. <button class="speak-btn" onclick="speak('Sí, voy a ver pisos. Necesito encontrar piso nuevo.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, буду смотреть квартиры. Нужно найти новое жильё.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Adónde vas? ¿Al centro o a un barrio? <button class="speak-btn" onclick="speak('¿Adónde vas? ¿Al centro o a un barrio?')">🔊</button></div>
+        <div class="dlg-ru translation">[Куда именно? В центр или в район?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Игорь</div>
+      <div style="flex:1">
+        <div class="dlg-es">Voy a ver un piso en Gràcia y otro en Sant Andreu. <button class="speak-btn" onclick="speak('Voy a ver un piso en Gràcia y otro en Sant Andreu.')">🔊</button></div>
+        <div class="dlg-ru translation">[Буду смотреть одну квартиру в Грасии и другую в Сант Андреу.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cómo vas? ¿En metro? <button class="speak-btn" onclick="speak('¿Cómo vas? ¿En metro?')">🔊</button></div>
+        <div class="dlg-ru translation">[Как поедешь? На метро?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Игорь</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, voy en metro. Es más rápido. <button class="speak-btn" onclick="speak('Sí, voy en metro. Es más rápido.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, на метро. Так быстрее.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Лена</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y el domingo? ¿Qué vais a hacer tú y Ana? <button class="speak-btn" onclick="speak('¿Y el domingo? ¿Qué vais a hacer tú y Ana?')">🔊</button></div>
+        <div class="dlg-ru translation">[А в воскресенье? Что вы с Аней будете делать?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Игорь</div>
+      <div style="flex:1">
+        <div class="dlg-es">Vamos a quedarnos en casa. ¡Vamos a descansar! <button class="speak-btn" onclick="speak('Vamos a quedarnos en casa. ¡Vamos a descansar!')">🔊</button></div>
+        <div class="dlg-ru translation">[Останемся дома. Будем отдыхать!]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏥 Диалог 2: Куда торопишься? (10 реплик)
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playD2()">▶ Весь диалог</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Соседка</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Buenos días! ¿Adónde vas con tanta prisa? <button class="speak-btn" onclick="speak('¡Buenos días! ¿Adónde vas con tanta prisa?')">🔊</button></div>
+        <div class="dlg-ru translation">[Доброе утро! Куда так спешишь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Я</div>
+      <div style="flex:1">
+        <div class="dlg-es">Voy al médico. Tengo cita a las diez. <button class="speak-btn" onclick="speak('Voy al médico. Tengo cita a las diez.')">🔊</button></div>
+        <div class="dlg-ru translation">[Иду к врачу. У меня запись на 10 утра.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Соседка</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Vas en metro o andando? <button class="speak-btn" onclick="speak('¿Vas en metro o andando?')">🔊</button></div>
+        <div class="dlg-ru translation">[Едешь на метро или идёшь пешком?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Я</div>
+      <div style="flex:1">
+        <div class="dlg-es">Voy andando, el consultorio está cerca. <button class="speak-btn" onclick="speak('Voy andando, el consultorio está cerca.')">🔊</button></div>
+        <div class="dlg-ru translation">[Иду пешком, поликлиника рядом.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Соседка</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Y después del médico? ¿Vas a algún sitio? <button class="speak-btn" onclick="speak('¿Y después del médico? ¿Vas a algún sitio?')">🔊</button></div>
+        <div class="dlg-ru translation">[А после врача? Куда-то пойдёшь?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Я</div>
+      <div style="flex:1">
+        <div class="dlg-es">Voy a ir al banco. Necesito hacer un ingreso. <button class="speak-btn" onclick="speak('Voy a ir al banco. Necesito hacer un ingreso.')">🔊</button></div>
+        <div class="dlg-ru translation">[Пойду в банк. Нужно сделать взнос.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Соседка</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Qué banco? ¿El Sabadell de la calle Mayor? <button class="speak-btn" onclick="speak('¿Qué banco? ¿El Sabadell de la calle Mayor?')">🔊</button></div>
+        <div class="dlg-ru translation">[Какой банк? Sabadell на улице Майор?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Я</div>
+      <div style="flex:1">
+        <div class="dlg-es">No, voy al CaixaBank. Está al lado del Mercadona. <button class="speak-btn" onclick="speak('No, voy al CaixaBank. Está al lado del Mercadona.')">🔊</button></div>
+        <div class="dlg-ru translation">[Нет, иду в CaixaBank. Он рядом с Mercadona.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Соседка</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Ah, perfecto! ¿Y luego vas a volver a casa? <button class="speak-btn" onclick="speak('¡Ah, perfecto! ¿Y luego vas a volver a casa?')">🔊</button></div>
+        <div class="dlg-ru translation">[Отлично! А потом домой?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Я</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, después voy a comer algo y voy a descansar un poco. <button class="speak-btn" onclick="speak('Sí, después voy a comer algo y voy a descansar un poco.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, потом поем что-нибудь и немного отдохну.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      🏠 Диалог 3: Договариваемся о встрече (8 реплик)
+      <div style="display:flex;gap:8px">
+        <button class="speak-btn-big" onclick="playD3()">▶ Весь диалог</button>
+        <button class="dlg-toggle" onclick="toggleAll()">Переводы</button>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Puedes quedar mañana? Voy a ir al centro. <button class="speak-btn" onclick="speak('¿Puedes quedar mañana? Voy a ir al centro.')">🔊</button></div>
+        <div class="dlg-ru translation">[Можешь встретиться завтра? Собираюсь в центр.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">Mañana voy a trabajar hasta las seis. Puedo después. <button class="speak-btn" onclick="speak('Mañana voy a trabajar hasta las seis. Puedo después.')">🔊</button></div>
+        <div class="dlg-ru translation">[Завтра буду работать до 6. Могу потом.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿A las siete? Vamos a tomar algo en el Born. <button class="speak-btn" onclick="speak('¿A las siete? Vamos a tomar algo en el Born.')">🔊</button></div>
+        <div class="dlg-ru translation">[В семь? Пойдём выпьем что-нибудь в Борне.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">Perfecto. ¿Adónde vamos exactamente? <button class="speak-btn" onclick="speak('Perfecto. ¿Adónde vamos exactamente?')">🔊</button></div>
+        <div class="dlg-ru translation">[Отлично. Куда именно идём?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">Voy a mandar la dirección por WhatsApp. <button class="speak-btn" onclick="speak('Voy a mandar la dirección por WhatsApp.')">🔊</button></div>
+        <div class="dlg-ru translation">[Отправлю адрес в WhatsApp.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">¿Cómo vas a ir tú? ¿En metro? <button class="speak-btn" onclick="speak('¿Cómo vas a ir tú? ¿En metro?')">🔊</button></div>
+        <div class="dlg-ru translation">[Ты как поедешь? На метро?]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker">Алекс</div>
+      <div style="flex:1">
+        <div class="dlg-es">Sí, voy en L4, línea amarilla. <button class="speak-btn" onclick="speak('Sí, voy en L4, línea amarilla.')">🔊</button></div>
+        <div class="dlg-ru translation">[Да, еду на L4, жёлтой ветке.]</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <div class="dlg-speaker b">Маша</div>
+      <div style="flex:1">
+        <div class="dlg-es">¡Vamos a ver! Hasta mañana, Alex. <button class="speak-btn" onclick="speak('¡Vamos a ver! Hasta mañana, Alex.')">🔊</button></div>
+        <div class="dlg-ru translation">[Посмотрим! До завтра, Алекс.]</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="done-bar"><div class="nav-links"><a href="../index.html" class="nav-link-btn">← Дашборд</a><a href="L20.html" class="nav-link-btn">← L20</a><a href="L22.html" class="nav-link-btn">L22 →</a></div><button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button></div>
+<!-- 9. SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение — Твоя очередь!</h2>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🎙 Упражнение 1 — Расскажи о своих планах</div>
+    <p>Прочитай этот монолог вслух и замени детали на свои реальные планы:</p>
+    <div class="es">Esta tarde voy a estudiar español. Mañana voy al banco. El sábado vamos a la playa con la familia. El domingo voy a descansar en casa. La semana que viene voy a buscar trabajo.</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('Esta tarde voy a estudiar español. Mañana voy al banco. El sábado vamos a la playa con la familia. El domingo voy a descansar en casa. La semana que viene voy a buscar trabajo.')">🔊 Прослушать</button>
+    <div class="hint">Замени: «al banco» → «al médico / al Mercadona / a la farmacia». Говори медленно, 2–3 раза подряд.</div>
+  </div>
+
+  <div class="speak-box">
+    <div class="speak-tag">🏠 Упражнение 2 — Жизнь в Испании: рассказываешь соседу о своих планах</div>
+    <p>Ты живёшь в Барселоне. Сосед спрашивает про твои планы на субботу. Скажи вслух:</p>
+    <div class="es">El sábado por la mañana voy al Mercadona. Después voy a ver un piso en Gràcia. Por la tarde voy a llamar al casero. ¡Vamos a ver si me gusta!</div>
+    <button class="speak-btn" style="margin-top:8px;font-size:1.2rem" onclick="speak('El sábado por la mañana voy al Mercadona. Después voy a ver un piso en Gràcia. Por la tarde voy a llamar al casero. ¡Vamos a ver si me gusta!')">🔊 Пример</button>
+    <div class="hint">Casero = хозяин квартиры. Этот диалог — реальный сценарий из жизни русскоязычных в Барселоне.</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике: Ищем квартиру в Барселоне</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">🏠 Реальная ситуация — Аренда жилья, звонок хозяину (L21-L40)</div>
+    <p style="margin-bottom:12px">Ты только переехал в Барселону и ищешь пiso. Нужно звонить хозяевам, договариваться о просмотре. Глагол IR — основа этих разговоров: когда <em>идёшь</em> смотреть, куда <em>едешь</em>, что <em>собираешься</em> делать.</p>
+
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Voy a llamar al casero mañana. <button class="speak-btn" onclick="speak('Voy a llamar al casero mañana.')">🔊</button></div>
+          <div class="phrase-ru">Завтра позвоню хозяину квартиры.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Puedo ir a ver el piso el jueves? <button class="speak-btn" onclick="speak('¿Puedo ir a ver el piso el jueves?')">🔊</button></div>
+          <div class="phrase-ru">Можно прийти посмотреть квартиру в четверг?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Voy a ir con mi pareja / con mi marido. <button class="speak-btn" onclick="speak('Voy a ir con mi pareja.')">🔊</button></div>
+          <div class="phrase-ru">Пойду с партнёром / с мужем.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">¿Adónde tengo que ir para firmar el contrato? <button class="speak-btn" onclick="speak('¿Adónde tengo que ir para firmar el contrato?')">🔊</button></div>
+          <div class="phrase-ru">Куда нужно прийти для подписания договора?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">Voy a llevar el NIE y el contrato de trabajo. <button class="speak-btn" onclick="speak('Voy a llevar el NIE y el contrato de trabajo.')">🔊</button></div>
+          <div class="phrase-ru">Принесу NIE и трудовой договор.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div style="flex:1">
+          <div class="phrase-es">El sábado vamos a hacer la mudanza. <button class="speak-btn" onclick="speak('El sábado vamos a hacer la mudanza.')">🔊</button></div>
+          <div class="phrase-ru">В субботу делаем переезд.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="culture-tip">
+      <strong>Важно в Испании:</strong> При съёме квартиры casero (хозяин) всегда спрашивает: «¿Cuándo podéis venir?» (Когда сможете прийти?) Отвечай: «Podemos ir el [día de la semana] a las [час].» Знание IR помогает договориться о просмотре с первого звонка!
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🌍 Почему испанцы говорят «¡Vamos!» по 20 раз в день?</div>
+    <h4>«Vamos» — самое универсальное слово Испании</h4>
+    <p>Глагол IR — один из самых частотных в испанском языке. Испанцы используют «¡Vamos!» не только как «пошли», но и как восклицание поддержки на спортивных матчах (аналог «давай!»), как выражение нетерпения и даже как мягкое отрицание. В Барселоне на улице ты услышишь «¡Venga, vamos!» — это смесь каталонского и испанского, значит «ну давай, пошли». Конструкция «voy a + инфинитив» — самое популярное будущее время: носители используют его в 80% случаев вместо «grammatically correct» futuro simple. Если ты говоришь «voy a estudiar» вместо «estudiaré» — звучишь абсолютно по-испански!</p>
+  </div>
+</div>
+
+<!-- 12. ANKI DECK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>🃏 Anki-колода — 18 карточек L21</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Нажми на карточку, чтобы перевернуть. Скачай все 18 одним файлом для импорта в Anki.</p>
+  <div class="anki-cards-preview" id="anki-preview-L21"></div>
+  <button class="export-btn" onclick="exportAnkiL21()">📥 Скачать колоду Anki L21 (.txt)</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📅 До следующего урока (L22: Модальные глаголы)</h4>
+    <ul>
+      <li><strong>Language Transfer эп. 27</strong> — слушай по дороге, в метро (≈20 мин)</li>
+      <li><strong>Polyglot #3</strong> — открой <a href="../../lessons/lesson_03.html" style="color:var(--gold)">урок #3</a> и сравни с материалом L21</li>
+      <li><strong>Письменно:</strong> напиши 7 планов на следующую неделю — по одному на каждый день. Используй «voy a + инфинитив»</li>
+      <li><strong>Устно:</strong> расскажи вслух план на ближайшую субботу (2–3 минуты, не читая)</li>
+      <li><strong>Dreaming Spanish Super Beginner</strong> — 15 мин просто слушай испанскую речь</li>
+    </ul>
+  </div>
+  <div class="callout info" style="margin-top:14px">
+    <h4>🎬 Смотри и слушай сегодня</h4>
+    <ul>
+      <li>🎧 <a href="https://www.youtube.com/@LanguageTransfer" target="_blank" style="color:var(--blue)">Language Transfer — Spanish, эпизод 27</a></li>
+      <li>📺 <a href="https://www.youtube.com/@DreamingSpanish" target="_blank" style="color:var(--blue)">Dreaming Spanish — Super Beginner (15 мин)</a></li>
+      <li>📚 <a href="../../lessons/lesson_03.html" style="color:var(--purple)">Polyglot Spanish — урок #3</a></li>
+    </ul>
+  </div>
+  <div class="callout success" style="margin-top:14px">
+    <h4>🎉 L21 завершён!</h4>
+    <p>Ты освоил IR — самый нужный глагол для передвижения и планов. В L22 — три модальных глагола: poder, querer, deber.</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L20.html" class="nav-link-btn">← L20</a>
+    <a href="../../lessons/lesson_03.html" class="nav-link-btn">📚 Polyglot #3</a>
+    <a href="L22.html" class="nav-link-btn">L22 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
 
 <script>
-const LESSON_ID='L21';const LS_KEY='esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-function speak(text,lang){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}
-function speakSequence(phrases,delay){delay=delay||2400;window.speechSynthesis.cancel();phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});}
-function playD1(){speakSequence(['¿Qué vas a hacer el sábado?','Por la mañana voy a la playa. Y por la tarde voy a un partido.','¿Vas con tu familia?','A la playa sí, todos vamos. Al partido voy con amigos.','¿Y el domingo? ¿Vais a salir?','No, vamos a quedarnos en casa. Vamos a descansar.'],2700);}
-function playD2(){speakSequence(['¿Adónde vas con tanta prisa?','Voy al médico. Tengo cita a las diez.','¿Y después?','Después voy a comprar al Mercadona y luego vuelvo a casa.','¿Te llamo más tarde?','Sí, a partir de las dos voy a estar libre.'],2700);}
-const quizExpl={r1:'Tengo hambre.',r2:'Tengo que trabajar.',r3:'Tengo calor.',r4:'tener que для лица, hay que безлично.',q1:'al = a+el.',q2:'Vamos a trabajar.',q3:'¿Adónde vas? = куда.',q4:'voy.',q5:'voy a.',q6:'¡Vamos al café!'};
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L21 = [
+  {front:"ir — voy, vas, va", back:"Идти/ехать (yo, tú, él/ella)\n\nПример: Voy al banco. Vas a Madrid.\nЗаметка: ПОЛНОСТЬЮ неправильный глагол — формы нужно заучить"},
+  {front:"ir — vamos, vais, van", back:"Идти/ехать (nos, vos, ellos)\n\nПример: Vamos a la playa. Ellos van al cole.\nЗаметка: vamos = «мы идём» И «пошли!» (приглашение)"},
+  {front:"a + el = al", back:"Слияние предлога и артикля\n\nПример: Voy al banco (не «a el banco»).\nЗаметка: только мужской род! a + la = a la (не сливается)"},
+  {front:"de + el = del", back:"Слияние предлога и артикля\n\nПример: Vengo del banco. Cerca del Mercadona.\nЗаметка: аналогично al, только с «de»"},
+  {front:"ir + a + инфинитив", back:"Ближайшее будущее (futuro próximo)\n\nПример: Voy a estudiar. Vamos a comer.\nЗаметка: эквивалент «going to» — используй вместо futuro simple"},
+  {front:"¿Adónde vas?", back:"Куда ты идёшь?\n\nПример: ¿Adónde vas con tanta prisa?\nЗаметка: adónde = куда (движение), dónde = где (место)"},
+  {front:"¡Vamos!", back:"Пошли! / Давай! (многозначное)\n\nПример: ¡Vamos al cine! ¡Vamos, que llegamos tarde!\nЗаметка: самое универсальное слово испанского"},
+  {front:"¡Vamos a ver!", back:"Посмотрим! (идиома)\n\nПример: ¿Cuánto cuesta? ¡Vamos a ver!\nЗаметка: выражает неопределённость или любопытство"},
+  {front:"en metro / en bus / en coche", back:"На метро / на автобусе / на машине\n\nПример: Voy en metro al centro.\nЗаметка: транспорт всегда через «en»"},
+  {front:"Voy a buscar piso", back:"Буду искать квартиру\n\nПример: Este fin de semana voy a buscar piso.\nЗаметка: базовая фраза для жизни в Испании"},
+  {front:"llamar al casero", back:"Позвонить хозяину квартиры\n\nПример: Voy a llamar al casero mañana.\nЗаметка: casero/a = хозяин/хозяйка (landlord)"},
+  {front:"ver un piso", back:"Посмотреть квартиру\n\nПример: ¿Puedo ir a ver el piso el jueves?\nЗаметка: пiso (муж.р.) = квартира в Испании"},
+  {front:"quedar", back:"Договориться о встрече\n\nПример: ¿Puedes quedar mañana?\nЗаметка: quedar con alguien = встретиться с кем-то"},
+  {front:"la mudanza", back:"Переезд (переноска вещей)\n\nПример: El sábado vamos a hacer la mudanza.\nЗаметка: mudarse = переехать (возвратный)"},
+  {front:"hasta + время / día", back:"До + время/день\n\nПример: Hasta mañana. Voy a trabajar hasta las seis.\nЗаметка: hasta = «до» (временной предел)"},
+  {front:"después de + inf.", back:"После того как + действие\n\nПример: Después de comer, voy al banco.\nЗаметка: после предлога — всегда инфинитив"},
+  {front:"por la mañana / tarde / noche", back:"Утром / после обеда / ночью\n\nПример: Por la mañana voy al Mercadona.\nЗаметка: «por» для частей дня (не «en»)"},
+  {front:"el fin de semana", back:"Выходные (суббота-воскресенье)\n\nПример: ¿Qué vas a hacer el fin de semana?\nЗаметка: el = singulares, los fines de semana = всегда (множ.)"}
+];
+
+function exportAnkiL21() {
+  const tsv = ANKI_DECK_L21.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const header = '#separator:Tab\n#html:true\n#deck:L21 Spanish\n';
+  const blob = new Blob([header + tsv], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L21_spanish.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+function renderAnkiPreview() {
+  const c = document.getElementById('anki-preview-L21');
+  if (!c) return;
+  c.innerHTML = ANKI_DECK_L21.slice(0, 5).map(card =>
+    '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')"><div class="anki-card-inner"><div class="anki-card-front" style="color:var(--gold);font-weight:700">' + card.front + '</div><div class="anki-card-back">' + card.back.replace(/\n/g,'<br>') + '</div></div></div>'
+  ).join('');
+}
+renderAnkiPreview();
+
+function playD1() {
+  const lines = [
+    '¿Qué vas a hacer el sábado?',
+    'Por la mañana voy al Mercadona. Necesito comprar muchas cosas.',
+    '¿Y por la tarde? ¿Vas a salir?',
+    'Sí, voy a ver pisos. Necesito encontrar piso nuevo.',
+    '¿Adónde vas? ¿Al centro o a un barrio?',
+    'Voy a ver un piso en Gràcia y otro en Sant Andreu.',
+    '¿Cómo vas? ¿En metro?',
+    'Sí, voy en metro. Es más rápido.',
+    '¿Y el domingo? ¿Qué vais a hacer tú y Ana?',
+    'Vamos a quedarnos en casa. ¡Vamos a descansar!'
+  ];
+  window.speechSynthesis.cancel();
+  lines.forEach(function(p, i) { setTimeout(function() { speak(p); }, i * 2800); });
+}
+
+function playD2() {
+  const lines = [
+    '¡Buenos días! ¿Adónde vas con tanta prisa?',
+    'Voy al médico. Tengo cita a las diez.',
+    '¿Vas en metro o andando?',
+    'Voy andando, el consultorio está cerca.',
+    '¿Y después del médico? ¿Vas a algún sitio?',
+    'Voy a ir al banco. Necesito hacer un ingreso.',
+    '¿Qué banco? ¿El Sabadell de la calle Mayor?',
+    'No, voy al CaixaBank. Está al lado del Mercadona.',
+    '¡Ah, perfecto! ¿Y luego vas a volver a casa?',
+    'Sí, después voy a comer algo y voy a descansar un poco.'
+  ];
+  window.speechSynthesis.cancel();
+  lines.forEach(function(p, i) { setTimeout(function() { speak(p); }, i * 2800); });
+}
+
+function playD3() {
+  const lines = [
+    '¿Puedes quedar mañana? Voy a ir al centro.',
+    'Mañana voy a trabajar hasta las seis. Puedo después.',
+    '¿A las siete? Vamos a tomar algo en el Born.',
+    'Perfecto. ¿Adónde vamos exactamente?',
+    'Voy a mandar la dirección por WhatsApp.',
+    '¿Cómo vas a ir tú? ¿En metro?',
+    'Sí, voy en L4, línea amarilla.',
+    '¡Vamos a ver! Hasta mañana, Alex.'
+  ];
+  window.speechSynthesis.cancel();
+  lines.forEach(function(p, i) { setTimeout(function() { speak(p); }, i * 2800); });
+}
+
+const LESSON_ID = 'L21';
+const LS_KEY = 'esp_course_progress';
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed && st.completed.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  r1:'Tengo hambre — выражение состояния голода через tener.',
+  r2:'Tengo que trabajar — tener que + инфинитив = конкретная обязанность.',
+  r3:'Tengo calor — «мне жарко». Никогда не estoy caliente (это «горячий по температуре»).',
+  r4:'Hay que llamar — безличное «нужно». Tenemos que = «мы должны» (с лицом).',
+  q1:'al = a + el. Supermercado — мужской род → al.',
+  q2:'vamos a + инфинитив — ближайшее будущее для nosotros.',
+  q3:'¿Adónde? = куда (с движением). ¿Dónde? = где (место без движения).',
+  q4:'yo + ir = voy. Полностью неправильный глагол.',
+  q5:'la playa — женский род → a la. Только el+a сливается в al.',
+  q6:'¡Vamos al café! — vamos = «пошли» + al = a+el.',
+  q7:'No voy a + инфинитив = не буду делать. Отрицание перед voy.'
+};
+
+let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -238,13 +987,12 @@ function answerQuiz(el, qId, correctKey) {
     fb.className = 'feedback show no';
     fb.innerHTML = '❌ <strong>Неверно.</strong> Ты выбрал(а) «' + pickedText + '», а правильный ответ — <strong>«' + correctText + '»</strong> (зелёный).<br>💡 ' + expl;
   }
-  if (typeof quizScore !== 'undefined') {
-    if (isCorrect) quizScore++;
-    quizTotal++;
-    const scoreEl = document.getElementById('quiz-score');
-    if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
-  }
+  if (isCorrect) quizScore++;
+  quizTotal++;
+  const scoreEl = document.getElementById('quiz-score');
+  if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
 }
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -271,8 +1019,7 @@ function checkText(inputId, answer, fbId) {
   }
   const lev = (a, b) => {
     const m = a.length, n = b.length;
-    if (!m) return n;
-    if (!n) return m;
+    if (!m) return n; if (!n) return m;
     let prev = Array.from({length: n+1}, (_,i) => i);
     let curr = new Array(n+1).fill(0);
     for (let i = 1; i <= m; i++) {
@@ -297,31 +1044,28 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-let showingTrans=false;function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
-document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
-const totalSections=11;function updateProgress(){const s=window.scrollY;const t=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(s/t*100));document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=Math.round(pct/100*totalSections)+' / '+totalSections;}
-window.addEventListener('scroll',updateProgress);
-const ANKI_DECK_L21=[
-{front:"ir — voy, vas, va",back:"Идти (yo, tú, él)\n\nИRREGULAR! Полностью неправильный."},
-{front:"ir — vamos, vais, van",back:"Идти (мы, вы, они)\n\nvamos = тоже «пошли!»"},
-{front:"Voy a + место",back:"Иду в...\n\nVoy al banco. Vamos a la playa."},
-{front:"a + el = al",back:"Сокращение\n\nVoy al banco (не «a el»)."},
-{front:"Voy a + infinitivo",back:"Собираюсь + что-то делать\n\nVoy a estudiar. Voy a comer."},
-{front:"¿Adónde vas?",back:"Куда идёшь?\n\nадонде = куда (отличается от dónde = где)."},
-{front:"¿De dónde vienes?",back:"Откуда идёшь?\n\nde dónde = откуда."},
-{front:"Vamos al cine",back:"Пошли в кино\n\nИспанский эквивалент «let's go».."},
-{front:"¡Vamos!",back:"Пошли! / Давай!\n\nУниверсальное приглашение."},
-{front:"voy a estudiar",back:"Я буду учиться\n\n«futuro próximo» — простое будущее."},
-{front:"vamos a quedar",back:"Договоримся встретиться\n\nquedar = встречаться по договорённости."},
-{front:"¡Vamos a ver!",back:"Посмотрим!\n\nИдиома, выражает «посмотрим что будет»."},
-{front:"voy a pensarlo",back:"Подумаю об этом\n\nlo = это (объектное местоимение)."},
-{front:"¿Vas a venir?",back:"Ты придёшь?\n\nПростой вопрос про планы."},
-{front:"No voy a poder",back:"Не смогу\n\nДля вежливого отказа в планах."}
-];
-function renderAnkiPreview(){const c=document.getElementById('anki-preview-L21');if(!c)return;c.innerHTML=ANKI_DECK_L21.slice(0,5).map(function(card){return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')"><div class="anki-card-inner"><div class="anki-card-front">'+card.front+'</div><div class="anki-card-back">'+card.back.replace(/\n/g,'<br>')+'</div></div></div>';}).join('');}
-renderAnkiPreview();
-function exportAnkiL21(){const tsv=ANKI_DECK_L21.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');const header='#separator:Tab\n#html:true\n#deck:L21 Spanish\n';const blob=new Blob([header+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='L21_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(function(el) {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+document.querySelectorAll('.translation').forEach(function(el) { el.style.display = 'none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = sectionsRead + ' / ' + totalSections + ' разделов';
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>
