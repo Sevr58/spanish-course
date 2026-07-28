@@ -1,213 +1,1041 @@
 <!DOCTYPE html>
-<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L23: Gustar — нравится</title>
-<style>:root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L23: Gustar и похожие глаголы — Me gusta, te encanta, le duele</title>
+<style>
+:root{--bg:#ffffff;--bg2:#f8f9fa;--bg3:#eef1f5;--border:#d6dae0;--text:#1a1d24;--muted:#6b7280;--gold:#c89000;--green:#2dc653;--red:#e63946;--blue:#457b9d;--purple:#9d4edd;--r:10px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.7}
 .wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
-.nav{display:flex;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
-.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
-.hero{background:linear-gradient(135deg,#f1f3f7,#e8ebf1);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:24px}
+.nav a{color:var(--muted);font-size:.85rem;text-decoration:none}.nav a:hover{color:var(--text)}
+.nav .level{background:var(--gold);color:#000;font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:12px}
+.hero{background:linear-gradient(135deg,#f1f3f7 0%,#e8ebf1 100%);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;margin-bottom:28px}
 .hero .phase-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
-.hero h1{font-size:1.9rem;font-weight:800;margin-bottom:8px}.hero h1 .hl{color:var(--gold)}.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero h1 .hl{color:var(--gold)}
+.hero .sub{color:var(--muted);font-size:.95rem;margin-bottom:18px}
 .objectives{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px}
-.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px}.obj .ico{font-size:1.2rem}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
-.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;overflow:hidden}.progress-fill{height:100%;background:var(--gold)}.progress-label{font-size:.72rem;color:var(--muted);text-align:right}
-.section{margin-bottom:36px}.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}.section-header h2{font-size:1.15rem;font-weight:700}
-.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
-.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
-.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}.callout p,.callout ul{font-size:.88rem;color:var(--muted)}.callout ul{margin-left:16px}
-.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.6;padding:0 4px;color:var(--gold)}.speak-btn:hover{opacity:1;transform:scale(1.25)}
-.speak-btn-big{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.85rem;cursor:pointer;font-weight:600}
-.vocab-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:.9rem}
-.vocab-table th{background:var(--bg3);padding:10px 12px;text-align:left;color:var(--muted);font-size:.78rem;text-transform:uppercase}
-.vocab-table td{padding:10px 12px;border-top:1px solid var(--border)}.vocab-table .es{font-weight:600}
-.mistakes-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin:14px 0;font-size:.88rem}
-.mistakes-table th{background:rgba(230,57,70,.12);padding:10px 12px;text-align:left;color:var(--red)}
-.mistakes-table td{padding:10px 12px;border-top:1px solid var(--border)}.mistakes-table .wrong{color:var(--red);text-decoration:line-through;opacity:.7}.mistakes-table .right{color:var(--green);font-weight:600}
+.obj{background:var(--bg3);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.obj .ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}.obj p{font-size:.85rem;color:var(--muted)}.obj strong{display:block;font-size:.9rem;margin-bottom:2px}
+.progress-bar{background:var(--bg2);border-radius:4px;height:6px;margin:20px 0;position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);margin-top:4px;text-align:right}
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header h2{font-size:1.15rem;font-weight:700}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;border-left:3px solid}
+.callout.info{background:rgba(69,123,157,.1);border-color:var(--blue)}
+.callout.tip{background:rgba(200,144,0,.08);border-color:var(--gold)}
+.callout.warning{background:rgba(230,57,70,.08);border-color:var(--red)}
+.callout.success{background:rgba(45,198,83,.08);border-color:var(--green)}
+.callout h4{font-size:.85rem;font-weight:700;margin-bottom:4px}
+.callout p,.callout ul{font-size:.88rem;color:var(--muted)}
+.callout ul{margin-left:16px}.callout li{margin-bottom:3px}
 .speak-box{background:var(--bg3);border:1px solid rgba(69,123,157,.4);border-radius:8px;padding:16px 18px;margin:14px 0}
-.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
-.speak-box .es{font-size:1.05rem;font-weight:600;margin-top:4px}.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
-.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
-.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}.quiz-q:last-child{border-bottom:none}
-.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}.quiz-q .q-text strong{color:var(--gold)}
+.speak-box .speak-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px}
+.speak-box p{font-size:.9rem}
+.speak-box .es{font-size:1.05rem;font-weight:600;color:var(--text);margin-top:4px}
+.speak-box .hint{font-size:.8rem;color:var(--muted);margin-top:3px}
+.quiz{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px}
+.quiz h3{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.quiz-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--bg3)}
+.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-q .q-text{font-size:.92rem;margin-bottom:8px}
+.quiz-q .q-text strong{color:var(--gold)}
 .options{display:flex;flex-wrap:wrap;gap:6px}
-.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem}
-.feedback{margin-top:8px;font-size:.82rem;display:none}.feedback.show{display:block}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
-.text-ex{margin-bottom:14px}.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
-.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none}
-.text-input.correct{border-color:var(--green)!important}.text-input.wrong{border-color:var(--red)!important}
-.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px}
+.opt{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;cursor:pointer;font-size:.85rem;transition:.18s;user-select:none}
+.opt:hover{border-color:var(--muted)}
+.feedback{margin-top:8px;font-size:.82rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}
+.text-ex{margin-bottom:14px}
+.text-ex .tex-q{font-size:.9rem;margin-bottom:6px}
+.text-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.9rem;outline:none;transition:.2s}
+.text-input:focus{border-color:var(--blue)}
+.text-input.correct{border-color:var(--green)!important;background:rgba(45,198,83,.05)}
+.text-input.wrong{border-color:var(--red)!important;background:rgba(230,57,70,.05)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:.85rem;margin-top:6px;transition:.2s}
+.check-btn:hover{opacity:.88}
 .show-ans{background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;margin-top:6px;text-decoration:underline}
-.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}.answer-reveal.show{display:block}
+.answer-reveal{background:var(--bg3);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:.85rem;color:var(--green);display:none}
+.answer-reveal.show{display:block}
 .dialogue{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
-.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px}.dlg-line:first-of-type{border-top:none}
-.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);width:50px;flex-shrink:0}.dlg-speaker.b{color:var(--blue)}
-.dlg-es{font-size:.95rem;font-weight:500}.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
+.dlg-header{background:var(--bg3);padding:10px 16px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.dlg-line{padding:10px 16px;border-top:1px solid var(--bg3);display:flex;gap:12px;align-items:flex-start}
+.dlg-line:first-of-type{border-top:none}
+.dlg-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);flex-shrink:0;width:54px}
+.dlg-speaker.b{color:var(--blue)}
+.dlg-es{font-size:.95rem;font-weight:500}
+.dlg-ru{font-size:.82rem;color:var(--muted);margin-top:2px}
 .dlg-toggle{background:none;border:none;color:var(--muted);font-size:.75rem;cursor:pointer;text-decoration:underline}
-.spain-card{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(230,57,70,.04));border:1px solid rgba(200,144,0,.25);border-radius:var(--r);padding:18px 20px;margin:14px 0}
-.spain-card h3{font-size:1.05rem;font-weight:700;color:var(--gold);margin-bottom:8px}
-.spain-card .stag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.phrase-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
-.phrase{background:var(--bg3);border-radius:6px;padding:10px 14px;display:flex;gap:10px;flex-wrap:wrap}
-.phrase .es{font-weight:600;flex:1;min-width:150px}.phrase .tr{color:var(--muted);font-size:.82rem;flex:1;min-width:150px}
-.anki{background:rgba(45,198,83,.05);border:1px solid rgba(45,198,83,.25);border-radius:8px;padding:14px 16px}
-.anki .atag{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--green);margin-bottom:8px}
-.anki-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:center}
-.anki-card{perspective:600px;width:200px;height:120px;cursor:pointer}
-.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.6s;border-radius:8px}
-.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
-.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;text-align:center}
-.anki-card-front{font-weight:600;font-size:.95rem}.anki-card-back{transform:rotateY(180deg);font-size:.78rem;color:var(--muted);background:var(--bg2);overflow-y:auto}
-.anki-export-btn{background:var(--green);color:#000;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:.88rem;margin-top:8px}
-.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
-.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-weight:700;cursor:pointer}.done-btn.marked{background:var(--muted)}
+.culture{background:linear-gradient(135deg,rgba(157,78,221,.08),rgba(69,123,157,.06));border:1px solid rgba(157,78,221,.3);border-radius:8px;padding:16px 18px;margin-top:16px}
+.culture .ctag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px}
+.culture h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.culture p{font-size:.86rem;color:var(--muted)}
+.done-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:50;flex-wrap:wrap;gap:8px}
+.done-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+.done-btn:hover{opacity:.88}
+.done-btn.marked{background:var(--muted)}
 .nav-links{display:flex;gap:10px;flex-wrap:wrap}
-.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;color:var(--text);text-decoration:none;font-weight:600}
-@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.anki-card{width:160px;height:110px}}
-.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}</style></head>
-<body><div class="wrap">
-<div class="nav"><a href="../index.html">← Дашборд</a><span class="level">A1 · Фаза 1 · День 47</span><a href="L24.html">L24 →</a></div>
+.nav-link-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:.85rem;cursor:pointer;color:var(--text);text-decoration:none;font-weight:600}
+.nav-link-btn:hover{border-color:var(--muted)}
+.speak-btn{background:none;border:none;cursor:pointer;font-size:1rem;opacity:.7;transition:.2s;padding:2px 4px}
+.speak-btn:hover{opacity:1;transform:scale(1.2)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:12px}
+.vocab-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.vocab-es{font-weight:600;font-size:.95rem;color:var(--gold)}
+.vocab-ru{font-size:.82rem;color:var(--muted)}
+.vocab-pron{font-size:.75rem;color:var(--blue);margin-top:2px}
+table.mistakes{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+table.mistakes th{background:var(--bg3);color:var(--muted);padding:8px 12px;text-align:left;font-weight:600}
+table.mistakes td{padding:8px 12px;border-bottom:1px solid var(--border)}
+table.mistakes tr:last-child td{border-bottom:none}
+.wrong-ex{color:var(--red)}.right-ex{color:var(--green)}
+.anki-cards-preview{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.anki-card{perspective:600px;width:200px;height:100px;cursor:pointer;display:inline-block}
+.anki-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:.5s}
+.anki-card.flipped .anki-card-inner{transform:rotateY(180deg)}
+.anki-card-front,.anki-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:.9rem}
+.anki-card-back{transform:rotateY(180deg);font-size:.75rem;color:var(--muted)}
+.export-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:.88rem;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.export-btn:hover{opacity:.88}
+.spain-practice{background:linear-gradient(135deg,rgba(200,144,0,.05),rgba(69,123,157,.05));border:1px solid rgba(200,144,0,.2);border-radius:8px;padding:20px}
+.spain-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.phrase-list{margin:14px 0}
+.phrase-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.phrase-item:last-child{border-bottom:none}
+.phrase-es{font-weight:600;font-size:.95rem;flex:1}
+.phrase-ru{font-size:.82rem;color:var(--muted)}
+.culture-tip{background:rgba(157,78,221,.08);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;color:var(--muted)}
+.grammar-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.grammar-box h3{font-size:1rem;font-weight:700;margin-bottom:12px;color:var(--gold)}
+.grammar-table{width:100%;border-collapse:collapse;font-size:.88rem;margin:12px 0}
+.grammar-table th{background:var(--bg3);padding:8px 12px;text-align:left;color:var(--muted);font-weight:600}
+.grammar-table td{padding:8px 12px;border-bottom:1px solid var(--border)}
+.grammar-table .es{color:var(--gold);font-weight:600}
+.grammar-table tr:last-child td{border-bottom:none}
+.example-list{list-style:none;margin:10px 0}
+.example-list li{padding:8px 12px;background:var(--bg3);border-radius:6px;margin-bottom:6px;font-size:.9rem}
+.example-list .es{font-weight:600;color:var(--text)}
+.example-list .ru{color:var(--muted);font-size:.82rem}
+@media(max-width:600px){.hero{padding:20px 16px}.hero h1{font-size:1.45rem}.vocab-grid{grid-template-columns:1fr}}
+.opt.correct{background:rgba(45,143,60,.18);border-color:var(--green)!important;color:var(--green);font-weight:600}.opt.wrong{background:rgba(193,18,31,.13);border-color:var(--red)!important;color:var(--red)}.opt.picked{box-shadow:0 0 0 2px var(--text) inset;font-weight:700}.opt.picked::before{content:'👉 ';margin-right:2px}.opt-note{font-size:.72rem;margin-top:5px;font-style:italic;opacity:.85;line-height:1.4;font-weight:400;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
 
-<div class="hero"><div class="phase-tag">🌱 Фаза 1 · Ключевая грамматика</div>
-<h1><span class="hl">Gustar</span> — нравится, и похожие глаголы</h1>
-<p class="sub">Me gusta el café. Полностью «обратная» структура. Polyglot #7.</p>
-<div class="objectives">
-<div class="obj"><div class="ico">🎯</div><div><strong>Цель</strong><p>Сказать что нравится/не нравится</p></div></div>
-<div class="obj"><div class="ico">⏱</div><div><strong>Время</strong><p>~45 мин</p></div></div>
-<div class="obj"><div class="ico">🎧</div><div><strong>Параллельно</strong><p>LT эп. 29 · Polyglot #7</p></div></div>
-<div class="obj"><div class="ico">🗣</div><div><strong>Говорим</strong><p>Хобби, предпочтения</p></div></div>
-</div></div>
+<!-- 1. NAV -->
+<div class="nav">
+  <a href="../index.html">← Дашборд</a>
+  <span class="level">A1 · Фаза 1 · День 47</span>
+  <a href="L24.html">L24 →</a>
+</div>
+
+<!-- 2. HERO -->
+<div class="hero">
+  <div class="phase-tag">📚 Фаза 1 · Блок 1C · Language Transfer эп. 29</div>
+  <h1><span class="hl">Gustar</span> и похожие глаголы</h1>
+  <p class="sub">Me gusta, te encanta, le duele — «обратные» глаголы, где всё наоборот. Один из главных сюрпризов испанского!</p>
+  <div class="objectives">
+    <div class="obj"><div class="ico">🎯</div><div><strong>Цель 1</strong><p>Понять конструкцию me gusta и почему она «обратная»</p></div></div>
+    <div class="obj"><div class="ico">🔊</div><div><strong>Цель 2</strong><p>Освоить 8 глаголов типа gustar: encantar, molestar, doler</p></div></div>
+    <div class="obj"><div class="ico">💬</div><div><strong>Цель 3</strong><p>Рассказать о своих увлечениях и предпочтениях</p></div></div>
+    <div class="obj"><div class="ico">🃏</div><div><strong>Цель 4</strong><p>Создать 17 Anki-карточек с gustar-конструкциями</p></div></div>
+  </div>
+</div>
 
 <div class="progress-bar"><div class="progress-fill" style="width:0%" id="progress-fill"></div></div>
-<div class="progress-label" id="progress-label">0 / 10</div>
+<div class="progress-label" id="progress-label">0 / 14 разделов</div>
 
-<div class="section"><div class="section-header"><div class="section-num">1</div><h2>Повторение L22 — модальные</h2></div>
-<div class="quiz">
-<div class="quiz-q" id="r1"><div class="q-text">1. «Могу прийти»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r1','a')">Puedo venir</div><div class="opt" onclick="answerQuiz(this,'r1','b')">Podo venir</div><div class="opt" onclick="answerQuiz(this,'r1','c')">Puedo a venir</div></div><div class="feedback" id="fb-r1"></div></div>
-<div class="quiz-q" id="r2"><div class="q-text">2. «Хочу есть»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r2','b')">Quero comer</div><div class="opt" onclick="answerQuiz(this,'r2','a')">Quiero comer</div><div class="opt" onclick="answerQuiz(this,'r2','c')">Querer comer</div></div><div class="feedback" id="fb-r2"></div></div>
-<div class="quiz-q" id="r3"><div class="q-text">3. Вежливая просьба:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r3','c')">¿Puede...?</div><div class="opt" onclick="answerQuiz(this,'r3','a')">¿Podría...?</div><div class="opt" onclick="answerQuiz(this,'r3','b')">¿Quieres...?</div></div><div class="feedback" id="fb-r3"></div></div>
-<div class="quiz-q" id="r4"><div class="q-text">4. «Нужно учиться» (совет):</div><div class="options"><div class="opt" onclick="answerQuiz(this,'r4','b')">Debes a estudiar</div><div class="opt" onclick="answerQuiz(this,'r4','a')">Debes estudiar</div><div class="opt" onclick="answerQuiz(this,'r4','c')">Debes que estudiar</div></div><div class="feedback" id="fb-r4"></div></div>
-</div></div>
-
-<div class="section"><div class="section-header"><div class="section-num">2</div><h2>Gustar — «обратная» логика</h2></div>
-<p>В русском: <strong>Я люблю кофе</strong> (Я — субъект, кофе — объект).<br>В испанском: <strong>Me gusta el café</strong> (Кофе — субъект, мне — кому). Буквально: «Мне НРАВИТСЯ кофе».</p>
-<div class="callout tip"><h4>💡 Формула gustar</h4><p><strong>Pronombre (me/te/le/nos/os/les) + gusta / gustan + thing</strong></p>
-<ul><li><strong>gusta</strong> — если нравится ОДНА вещь: Me gusta el café.</li>
-<li><strong>gustan</strong> — если нравятся МНОЖЕСТВО: Me gustan los gatos.</li>
-<li><strong>gusta + inf.</strong> — если нравится ДЕЙСТВИЕ: Me gusta leer.</li></ul>
-</div>
-<table class="vocab-table"><thead><tr><th>Кому</th><th>gusta(n)</th><th>Что</th><th>🔊</th></tr></thead><tbody>
-<tr><td>Me</td><td>gusta</td><td>el café</td><td><button class="speak-btn" onclick="speak('Me gusta el café.')">🔊</button></td></tr>
-<tr><td>Te</td><td>gusta</td><td>la música</td><td><button class="speak-btn" onclick="speak('Te gusta la música.')">🔊</button></td></tr>
-<tr><td>Le</td><td>gusta</td><td>el cine</td><td><button class="speak-btn" onclick="speak('Le gusta el cine.')">🔊</button></td></tr>
-<tr><td>Nos</td><td>gusta</td><td>viajar</td><td><button class="speak-btn" onclick="speak('Nos gusta viajar.')">🔊</button></td></tr>
-<tr><td>Os</td><td>gustan</td><td>los libros</td><td><button class="speak-btn" onclick="speak('Os gustan los libros.')">🔊</button></td></tr>
-<tr><td>Les</td><td>gustan</td><td>las películas</td><td><button class="speak-btn" onclick="speak('Les gustan las películas.')">🔊</button></td></tr>
-</tbody></table>
-<div class="callout warning"><h4>⚠️ Я НЕ субъект!</h4><p>В предложении «Me gusta el café» субъект = <strong>el café</strong> (кофе). «Me» = просто «мне». Поэтому глагол согласуется с <strong>кофе</strong> (ед.ч.) → gusta.<br>«Me gustan los gatos» — кошки (мн.ч.) → gustan.<br>Главное: глагол согласуется с тем, ЧТО нравится, а не со «мной».</p></div>
-</div>
-
-<div class="section"><div class="section-header"><div class="section-num">3</div><h2>Уточнение: A mí, a ti, a Carlos</h2></div>
-<p>Для уточнения или контраста добавляем <strong>«a + объект»</strong>:</p>
-<div class="speak-box"><div class="es">A mí me gusta el café, pero a ti te gusta el té. <button class="speak-btn" onclick="speak('A mí me gusta el café, pero a ti te gusta el té.')">🔊</button></div><div class="hint">[Мне нравится кофе, а тебе чай.]</div></div>
-<div class="speak-box"><div class="es">A mi mujer le gusta el chocolate. <button class="speak-btn" onclick="speak('A mi mujer le gusta el chocolate.')">🔊</button></div></div>
-<div class="speak-box"><div class="es">A mis hijas les gusta nadar. <button class="speak-btn" onclick="speak('A mis hijas les gusta nadar.')">🔊</button></div></div>
-<div class="callout info"><h4>💡 «A + объект» используется для:</h4>
-<ul><li>Уточнения кто (a Carlos le gusta = Карлосу нравится)</li><li>Контраста (A mí... a ti... — мне... тебе...)</li><li>Подчеркивания (a mí me gusta — МНЕ нравится)</li></ul></div>
-</div>
-
-<div class="section"><div class="section-header"><div class="section-num">4</div><h2>Похожие глаголы</h2></div>
-<p>Та же структура. Учи как gustar.</p>
-<table class="vocab-table"><thead><tr><th>Глагол</th><th>🔊</th><th>Перевод</th><th>Пример</th></tr></thead><tbody>
-<tr><td class="es">encantar</td><td><button class="speak-btn" onclick="speak('encantar')">🔊</button></td><td>обожать (сильнее gustar)</td><td>Me encanta Barcelona.</td></tr>
-<tr><td class="es">interesar</td><td><button class="speak-btn" onclick="speak('interesar')">🔊</button></td><td>интересовать</td><td>Me interesa la historia.</td></tr>
-<tr><td class="es">molestar</td><td><button class="speak-btn" onclick="speak('molestar')">🔊</button></td><td>раздражать, мешать</td><td>Me molesta el ruido.</td></tr>
-<tr><td class="es">doler</td><td><button class="speak-btn" onclick="speak('doler')">🔊</button></td><td>болеть (см. L13)</td><td>Me duele la cabeza.</td></tr>
-<tr><td class="es">faltar</td><td><button class="speak-btn" onclick="speak('faltar')">🔊</button></td><td>не хватать</td><td>Me falta dinero.</td></tr>
-<tr><td class="es">importar</td><td><button class="speak-btn" onclick="speak('importar')">🔊</button></td><td>быть важным</td><td>Me importa mucho.</td></tr>
-<tr><td class="es">parecer</td><td><button class="speak-btn" onclick="speak('parecer')">🔊</button></td><td>казаться</td><td>Me parece interesante.</td></tr>
-</tbody></table>
-</div>
-
-<div class="section"><div class="section-header"><div class="section-num">5</div><h2>Типичные ошибки</h2></div>
-<table class="mistakes-table"><thead><tr><th>Хочешь</th><th>❌</th><th>✅</th><th>Почему</th></tr></thead><tbody>
-<tr><td>«Я люблю кошек»</td><td><span class="wrong">Yo gusto gatos</span></td><td><span class="right">Me gustan los gatos</span></td><td>gustar — обратная структура</td></tr>
-<tr><td>«Мне нравятся книги»</td><td><span class="wrong">Me gusta los libros</span></td><td><span class="right">Me gustan los libros</span></td><td>libros — мн.ч., нужно gustan</td></tr>
-<tr><td>«Нам нравится»</td><td><span class="wrong">Nosotros gusta</span></td><td><span class="right">Nos gusta</span></td><td>Nos = нам (не «мы»)</td></tr>
-<tr><td>«Я люблю учить»</td><td><span class="wrong">Yo amo aprender</span></td><td><span class="right">Me gusta aprender</span></td><td>amar — только для людей</td></tr>
-<tr><td>«Голова болит»</td><td><span class="wrong">La cabeza duele</span></td><td><span class="right">Me duele la cabeza</span></td><td>doler как gustar</td></tr>
-</tbody></table></div>
-
-<div class="section"><div class="section-header"><div class="section-num">6</div><h2>Тест 1</h2></div>
-<div class="quiz">
-<div class="quiz-q" id="q1"><div class="q-text">1. «Мне нравится кофе»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q1','a')">Me gusta el café</div><div class="opt" onclick="answerQuiz(this,'q1','b')">Yo gusto café</div><div class="opt" onclick="answerQuiz(this,'q1','c')">Me gustan café</div></div><div class="feedback" id="fb-q1"></div></div>
-<div class="quiz-q" id="q2"><div class="q-text">2. «Тебе нравятся книги»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q2','b')">Te gusta los libros</div><div class="opt" onclick="answerQuiz(this,'q2','a')">Te gustan los libros</div><div class="opt" onclick="answerQuiz(this,'q2','c')">Tú gustas libros</div></div><div class="feedback" id="fb-q2"></div></div>
-<div class="quiz-q" id="q3"><div class="q-text">3. «Мне нравится плавать»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q3','c')">Me gustan nadar</div><div class="opt" onclick="answerQuiz(this,'q3','a')">Me gusta nadar</div><div class="opt" onclick="answerQuiz(this,'q3','b')">Yo gusto nadar</div></div><div class="feedback" id="fb-q3"></div></div>
-<div class="quiz-q" id="q4"><div class="q-text">4. «Им нравится танцевать»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q4','b')">Ellos gustan bailar</div><div class="opt" onclick="answerQuiz(this,'q4','a')">Les gusta bailar</div><div class="opt" onclick="answerQuiz(this,'q4','c')">Le gusta bailar</div></div><div class="feedback" id="fb-q4"></div></div>
-<div class="quiz-q" id="q5"><div class="q-text">5. «Я обожаю Барселону»:</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q5','c')">Yo encanto Barcelona</div><div class="opt" onclick="answerQuiz(this,'q5','a')">Me encanta Barcelona</div><div class="opt" onclick="answerQuiz(this,'q5','b')">Me encanto Barcelona</div></div><div class="feedback" id="fb-q5"></div></div>
-<div class="quiz-q" id="q6"><div class="q-text">6. «А мне нравится кофе» (контраст):</div><div class="options"><div class="opt" onclick="answerQuiz(this,'q6','b')">Yo me gusta el café</div><div class="opt" onclick="answerQuiz(this,'q6','a')">A mí me gusta el café</div><div class="opt" onclick="answerQuiz(this,'q6','c')">Para mí gusta café</div></div><div class="feedback" id="fb-q6"></div></div>
-</div></div>
-
-<div class="section"><div class="section-header"><div class="section-num">7</div><h2>Тест 2</h2></div>
-<div class="quiz">
-<div class="text-ex" id="te1"><div class="tex-q">1. «Нам нравится паэлья» = ___ gusta la paella.</div><input type="text" class="text-input" id="ti1"><button class="check-btn" onclick="checkText('ti1','nos','fb-te1')">Проверить</button><button class="show-ans" onclick="showAns('ans-te1')">Показать</button><div class="feedback" id="fb-te1"></div><div class="answer-reveal" id="ans-te1">✅ nos</div></div>
-<div class="text-ex" id="te2"><div class="tex-q">2. «Ей нравятся цветы» = Le ___ las flores.</div><input type="text" class="text-input" id="ti2"><button class="check-btn" onclick="checkText('ti2','gustan','fb-te2')">Проверить</button><button class="show-ans" onclick="showAns('ans-te2')">Показать</button><div class="feedback" id="fb-te2"></div><div class="answer-reveal" id="ans-te2">✅ gustan (мн.ч. flores)</div></div>
-<div class="text-ex" id="te3"><div class="tex-q">3. «Меня раздражает шум» = Me ___ el ruido.</div><input type="text" class="text-input" id="ti3"><button class="check-btn" onclick="checkText('ti3','molesta','fb-te3')">Проверить</button><button class="show-ans" onclick="showAns('ans-te3')">Показать</button><div class="feedback" id="fb-te3"></div><div class="answer-reveal" id="ans-te3">✅ molesta</div></div>
-<div class="text-ex" id="te4"><div class="tex-q">4. «Я обожаю шоколад» = Me ___ el chocolate.</div><input type="text" class="text-input" id="ti4"><button class="check-btn" onclick="checkText('ti4','encanta','fb-te4')">Проверить</button><button class="show-ans" onclick="showAns('ans-te4')">Показать</button><div class="feedback" id="fb-te4"></div><div class="answer-reveal" id="ans-te4">✅ encanta</div></div>
-<div class="text-ex" id="te5"><div class="tex-q">5. «Мне не хватает времени» = Me ___ tiempo.</div><input type="text" class="text-input" id="ti5"><button class="check-btn" onclick="checkText('ti5','falta','fb-te5')">Проверить</button><button class="show-ans" onclick="showAns('ans-te5')">Показать</button><div class="feedback" id="fb-te5"></div><div class="answer-reveal" id="ans-te5">✅ falta</div></div>
-</div></div>
-
-<div class="section"><div class="section-header"><div class="section-num">8</div><h2>Диалоги</h2></div>
-<div class="dialogue"><div class="dlg-header">💬 Обсуждение вкусов<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD1()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
-<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Te gusta Barcelona? <button class="speak-btn" onclick="speak('¿Te gusta Barcelona?')">🔊</button></div><div class="dlg-ru translation">— Нравится Барселона?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">¡Me encanta! Sobre todo la playa y la comida. <button class="speak-btn" onclick="speak('¡Me encanta! Sobre todo la playa y la comida.')">🔊</button></div><div class="dlg-ru translation">— Обожаю! Особенно пляж и еду.</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿Y a tu mujer? ¿Le gusta también? <button class="speak-btn" onclick="speak('¿Y a tu mujer? ¿Le gusta también?')">🔊</button></div><div class="dlg-ru translation">— А жене? Тоже нравится?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Sí, a ella le gusta mucho la arquitectura. Le encanta Gaudí. <button class="speak-btn" onclick="speak('Sí, a ella le gusta mucho la arquitectura. Le encanta Gaudí.')">🔊</button></div><div class="dlg-ru translation">— Да, ей нравится архитектура. Обожает Гауди.</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker">А</div><div><div class="dlg-es">¿A tus hijas qué les gusta hacer? <button class="speak-btn" onclick="speak('¿A tus hijas qué les gusta hacer?')">🔊</button></div><div class="dlg-ru translation">— А дочкам что нравится делать?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Б</div><div><div class="dlg-es">Les gusta nadar, leer y jugar al parque. <button class="speak-btn" onclick="speak('Les gusta nadar, leer y jugar al parque.')">🔊</button></div><div class="dlg-ru translation">— Плавать, читать, в парке играть.</div></div></div>
+<!-- 3. WARM-UP -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Повторение L22 — Модальные глаголы poder, querer, deber</h2>
+  </div>
+  <p style="margin-bottom:14px;color:var(--muted);font-size:.9rem">Проверяем материал прошлого урока — 4 вопроса на модальные глаголы.</p>
+  <div class="quiz">
+    <h3>🔁 Вспоминаем L22</h3>
+    <div class="quiz-q" id="w1">
+      <div class="q-text">1. Как сказать «Я могу говорить по-испански»?</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w1','a')">Puedo hablar español</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','b')">Quiero hablar español</div>
+        <div class="opt" onclick="answerQuiz(this,'w1','c')">Debo hablar español</div>
+      </div>
+      <div class="feedback" id="fb-w1"></div>
+    </div>
+    <div class="quiz-q" id="w2">
+      <div class="q-text">2. «Debes estudiar cada día» означает:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w2','b')">Ты хочешь учиться каждый день</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','c')">Ты можешь учиться каждый день</div>
+        <div class="opt" onclick="answerQuiz(this,'w2','a')">Ты должен учиться каждый день</div>
+      </div>
+      <div class="feedback" id="fb-w2"></div>
+    </div>
+    <div class="quiz-q" id="w3">
+      <div class="q-text">3. «Queremos ir a la playa» — перевод:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w3','c')">Мы должны идти на пляж</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','a')">Мы хотим пойти на пляж</div>
+        <div class="opt" onclick="answerQuiz(this,'w3','b')">Мы можем пойти на пляж</div>
+      </div>
+      <div class="feedback" id="fb-w3"></div>
+    </div>
+    <div class="quiz-q" id="w4">
+      <div class="q-text">4. Вежливый вопрос «Вы можете мне помочь?» по-испански:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'w4','b')">¿Debes ayudarme?</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','a')">¿Puede ayudarme?</div>
+        <div class="opt" onclick="answerQuiz(this,'w4','c')">¿Quiere ayudarme?</div>
+      </div>
+      <div class="feedback" id="fb-w4"></div>
+    </div>
+  </div>
 </div>
 
-<div class="dialogue"><div class="dlg-header">💬 Заказ в кафе<div style="display:flex;gap:8px"><button class="speak-btn-big" onclick="playD2()">▶</button><button class="dlg-toggle" onclick="toggleAll()">Переводы</button></div></div>
-<div class="dlg-line"><div class="dlg-speaker">К</div><div><div class="dlg-es">¿Qué le gusta tomar? <button class="speak-btn" onclick="speak('¿Qué le gusta tomar?')">🔊</button></div><div class="dlg-ru translation">— Что Вам нравится пить?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Я</div><div><div class="dlg-es">Me gusta el café con leche. <button class="speak-btn" onclick="speak('Me gusta el café con leche.')">🔊</button></div><div class="dlg-ru translation">— Кофе с молоком.</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker">К</div><div><div class="dlg-es">¿Y le gustan los dulces? <button class="speak-btn" onclick="speak('¿Y le gustan los dulces?')">🔊</button></div><div class="dlg-ru translation">— Сладкое нравится?</div></div></div>
-<div class="dlg-line"><div class="dlg-speaker b">Я</div><div><div class="dlg-es">Me encantan. Pero ahora no tengo hambre. <button class="speak-btn" onclick="speak('Me encantan. Pero ahora no tengo hambre.')">🔊</button></div><div class="dlg-ru translation">— Обожаю. Но сейчас не голоден.</div></div></div>
-</div></div>
+<!-- 4. THEORY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Теория — конструкция gustar и похожие глаголы</h2>
+  </div>
 
-<div class="section"><div class="section-header"><div class="section-num">9</div><h2>🇪🇸 Испания на практике — Small talk</h2></div>
-<div class="spain-card"><div class="stag">💬 Сценарий</div><h3>Вопросы и ответы про вкусы — основа разговора</h3>
-<div class="phrase-list">
-<div class="phrase"><span class="es">¿Te gusta vivir aquí?</span><button class="speak-btn" onclick="speak('¿Te gusta vivir aquí?')">🔊</button><span class="tr">Нравится жить здесь?</span></div>
-<div class="phrase"><span class="es">¿Qué te gusta hacer los fines de semana?</span><button class="speak-btn" onclick="speak('¿Qué te gusta hacer los fines de semana?')">🔊</button><span class="tr">Что любишь делать на выходных?</span></div>
-<div class="phrase"><span class="es">A mí no me gusta el fútbol.</span><button class="speak-btn" onclick="speak('A mí no me gusta el fútbol.')">🔊</button><span class="tr">Я не люблю футбол.</span></div>
-<div class="phrase"><span class="es">Me parece muy interesante.</span><button class="speak-btn" onclick="speak('Me parece muy interesante.')">🔊</button><span class="tr">Кажется очень интересным.</span></div>
-<div class="phrase"><span class="es">No me importa.</span><button class="speak-btn" onclick="speak('No me importa.')">🔊</button><span class="tr">Меня не волнует. (Мне неважно.)</span></div>
-<div class="phrase"><span class="es">A mi marido le encanta el deporte.</span><button class="speak-btn" onclick="speak('A mi marido le encanta el deporte.')">🔊</button><span class="tr">Мой муж обожает спорт.</span></div>
-</div></div></div>
+  <div class="callout info">
+    <h4>🎧 Language Transfer Complete Spanish — эп. 29</h4>
+    <p>Михаилис Элефтерью объясняет конструкцию <strong>gustar</strong>. Послушай сегодня: <a href="https://www.youtube.com/@LanguageTransfer" target="_blank" style="color:var(--gold)">@LanguageTransfer</a></p>
+  </div>
 
-<div class="section"><div class="section-header"><div class="section-num">10</div><h2>Anki + ДЗ</h2></div>
-<div class="anki"><div class="atag">🃏 15 карточек L23</div>
-<div class="anki-preview" id="anki-preview-L23"></div>
-<a href="../anki_decks/L23.apkg" download class="anki-export-btn" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;">📥 Скачать колоду L23.apkg (с произношением)</a></div>
-<div class="video-block" style="background:linear-gradient(135deg,rgba(69,123,157,.06),rgba(157,78,221,.04));border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin:16px 0;"><h4 style="font-size:.95rem;font-weight:700;margin-bottom:10px;color:var(--text);">🎬 Слушай и смотри сегодня</h4><a href="https://www.youtube.com/@LanguageTransfer/search?query=spanish%2029" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg3);color:var(--gold);text-decoration:none;border-radius:8px;margin:6px 0;font-weight:600;border:1px solid rgba(200,144,0,.3);"><span style="font-size:1.3rem;">🎧</span><span>Language Transfer — Spanish, эпизод 29</span><span style="margin-left:auto;font-size:.8rem;opacity:.6;">YouTube ↗</span></a><a href="https://www.youtube.com/@DreamingSpanish/playlists" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg3);color:var(--blue);text-decoration:none;border-radius:8px;margin:6px 0;font-weight:600;border:1px solid rgba(69,123,157,.3);"><span style="font-size:1.3rem;">📺</span><span>Dreaming Spanish — плейлист Super Beginner (15 мин)</span><span style="margin-left:auto;font-size:.8rem;opacity:.6;">YouTube ↗</span></a><a href="../../lessons/lesson_07.html" target="_blank" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg3);color:#9d4edd;text-decoration:none;border-radius:8px;margin:6px 0;font-weight:600;border:1px solid rgba(157,78,221,.3);"><span style="font-size:1.3rem;">📚</span><span>Polyglot Spanish — урок #7</span><span style="margin-left:auto;font-size:.8rem;opacity:.6;">Локально ↗</span></a></div>
-<div class="callout info" style="margin-top:16px"><h4>📅 До L24</h4><ul><li>LT эп. 29 · Polyglot #7</li><li>Запиши 10 вещей с «me gusta(n)» и 5 с «me encanta(n)»</li></ul></div>
-<div class="callout success" style="margin-top:14px"><h4>🎉 L23 готов!</h4><p>L24 — возвратные глаголы и режим дня.</p></div></div>
+  <div class="grammar-box">
+    <h3>🔑 Главный принцип: «нравиться» работает наоборот</h3>
+    <p style="font-size:.9rem;margin-bottom:12px">В русском: <strong>«мне нравится кофе»</strong> — говорящий = подлежащее.<br>
+    В испанском: <strong>«Me gusta el café»</strong> — кофе = подлежащее, а говорящий — косвенный объект.<br>
+    Буквально: «Кофе нравится мне». Поэтому глагол согласуется с кофе (ед.ч.), а не с «я»!</p>
+    <div class="callout warning">
+      <h4>⚠️ Структура: местоимение + gustar + субъект</h4>
+      <p><strong>me / te / le / nos / os / les</strong> + <strong>gusta</strong> (ед.ч.) / <strong>gustan</strong> (мн.ч.) + то, что нравится</p>
+    </div>
+    <table class="grammar-table">
+      <thead><tr><th>Кому нравится</th><th>Местоимение</th><th>Ед.ч. — gusta</th><th>Мн.ч. — gustan</th></tr></thead>
+      <tbody>
+        <tr><td>мне</td><td class="es">me</td><td class="es">me gusta el café</td><td class="es">me gustan los libros</td></tr>
+        <tr><td>тебе</td><td class="es">te</td><td class="es">te gusta la música</td><td class="es">te gustan las películas</td></tr>
+        <tr><td>ему / ей / Вам</td><td class="es">le</td><td class="es">le gusta el deporte</td><td class="es">le gustan las tapas</td></tr>
+        <tr><td>нам</td><td class="es">nos</td><td class="es">nos gusta viajar</td><td class="es">nos gustan los gatos</td></tr>
+        <tr><td>вам</td><td class="es">os</td><td class="es">os gusta la playa</td><td class="es">os gustan las fiestas</td></tr>
+        <tr><td>им / Вам (мн.)</td><td class="es">les</td><td class="es">les gusta cocinar</td><td class="es">les gustan los perros</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grammar-box">
+    <h3>📋 Правило 1: gusta vs gustan — когда что?</h3>
+    <p style="font-size:.88rem;margin-bottom:10px"><strong>gusta</strong> → один предмет или инфинитив. <strong>gustan</strong> → несколько предметов.</p>
+    <ul class="example-list">
+      <li><span class="es">Me <strong>gusta</strong> el fútbol. <button class="speak-btn" onclick="speak('Me gusta el fútbol.')">🔊</button></span><br><span class="example-list .ru" style="color:var(--muted);font-size:.82rem">Мне нравится футбол. [ме гу́ста эль футбо́ль]</span></li>
+      <li><span class="es">Me <strong>gustan</strong> los gatos. <button class="speak-btn" onclick="speak('Me gustan los gatos.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Мне нравятся кошки. [ме густа́н лос га́тос]</span></li>
+      <li><span class="es">Me <strong>gusta</strong> cocinar. <button class="speak-btn" onclick="speak('Me gusta cocinar.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Мне нравится готовить. [ме гу́ста косина́р]</span></li>
+      <li><span class="es">¿Te <strong>gusta</strong> Barcelona? <button class="speak-btn" onclick="speak('¿Te gusta Barcelona?')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Тебе нравится Барселона?</span></li>
+      <li><span class="es">Nos <strong>gusta</strong> mucho vivir aquí. <button class="speak-btn" onclick="speak('Nos gusta mucho vivir aquí.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Нам очень нравится жить здесь.</span></li>
+      <li><span class="es">No me <strong>gustan</strong> los lunes. <button class="speak-btn" onclick="speak('No me gustan los lunes.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Мне не нравятся понедельники.</span></li>
+      <li><span class="es">Te <strong>gustan</strong> las películas españolas. <button class="speak-btn" onclick="speak('Te gustan las películas españolas.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Тебе нравятся испанские фильмы.</span></li>
+    </ul>
+  </div>
+
+  <div class="grammar-box">
+    <h3>📋 Правило 2: уточнение с «a mí», «a él», «a Ana»</h3>
+    <p style="font-size:.88rem;margin-bottom:10px">Для ударения или уточнения добавляй «a + лицо» в начало. Местоимение (me/te/le...) при этом остаётся!</p>
+    <ul class="example-list">
+      <li><span class="es"><strong>A mí</strong> me gusta el café, pero <strong>a él</strong> le gusta el té. <button class="speak-btn" onclick="speak('A mí me gusta el café, pero a él le gusta el té.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Мне нравится кофе, а ему — чай.</span></li>
+      <li><span class="es"><strong>A Ana</strong> le gustan los gatos. <button class="speak-btn" onclick="speak('A Ana le gustan los gatos.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Ане нравятся кошки.</span></li>
+      <li><span class="es"><strong>A mis hijas</strong> les gusta el chocolate. <button class="speak-btn" onclick="speak('A mis hijas les gusta el chocolate.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Моим дочерям нравится шоколад.</span></li>
+      <li><span class="es"><strong>A nosotros</strong> nos encanta Barcelona. <button class="speak-btn" onclick="speak('A nosotros nos encanta Barcelona.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Нам очень нравится Барселона.</span></li>
+      <li><span class="es"><strong>A ti</strong> te gusta la música, ¿verdad? <button class="speak-btn" onclick="speak('A ti te gusta la música, ¿verdad?')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Тебе нравится музыка, правда?</span></li>
+    </ul>
+  </div>
+
+  <div class="grammar-box">
+    <h3>📋 Правило 3: другие глаголы типа gustar</h3>
+    <p style="font-size:.88rem;margin-bottom:10px">Конструкция та же, только смысл другой. Все они: косвенный объект + глагол (согл. с субъектом).</p>
+    <table class="grammar-table">
+      <thead><tr><th>Глагол</th><th>Значение</th><th>Пример</th></tr></thead>
+      <tbody>
+        <tr><td class="es">encantar</td><td>обожать, очень нравиться</td><td class="es">Me encanta el flamenco. <button class="speak-btn" onclick="speak('Me encanta el flamenco.')">🔊</button></td></tr>
+        <tr><td class="es">molestar</td><td>раздражать, беспокоить</td><td class="es">Me molesta el ruido. <button class="speak-btn" onclick="speak('Me molesta el ruido.')">🔊</button></td></tr>
+        <tr><td class="es">interesar</td><td>интересовать</td><td class="es">Me interesa la historia. <button class="speak-btn" onclick="speak('Me interesa la historia.')">🔊</button></td></tr>
+        <tr><td class="es">doler</td><td>болеть (о/ue)</td><td class="es">Me duele la cabeza. <button class="speak-btn" onclick="speak('Me duele la cabeza.')">🔊</button></td></tr>
+        <tr><td class="es">aburrir</td><td>скучать, надоедать</td><td class="es">Me aburre la política. <button class="speak-btn" onclick="speak('Me aburre la política.')">🔊</button></td></tr>
+        <tr><td class="es">parecer</td><td>казаться</td><td class="es">Me parece bien. <button class="speak-btn" onclick="speak('Me parece bien.')">🔊</button></td></tr>
+        <tr><td class="es">faltar</td><td>не хватать</td><td class="es">Me falta tiempo. <button class="speak-btn" onclick="speak('Me falta tiempo.')">🔊</button></td></tr>
+        <tr><td class="es">apetecer</td><td>хотеться (о еде)</td><td class="es">¿Te apetece un café? <button class="speak-btn" onclick="speak('¿Te apetece un café?')">🔊</button></td></tr>
+      </tbody>
+    </table>
+    <ul class="example-list" style="margin-top:12px">
+      <li><span class="es">Me <strong>encantan</strong> las tapas. <button class="speak-btn" onclick="speak('Me encantan las tapas.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Я обожаю тапас. (tapas — мн.ч.)</span></li>
+      <li><span class="es">Le <strong>duelen</strong> los pies. <button class="speak-btn" onclick="speak('Le duelen los pies.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">У него болят ноги. (pies — мн.ч.)</span></li>
+      <li><span class="es">¿Te <strong>interesa</strong> el español? <button class="speak-btn" onclick="speak('¿Te interesa el español?')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Тебе интересен испанский?</span></li>
+      <li><span class="es">No me <strong>molesta</strong> el frío. <button class="speak-btn" onclick="speak('No me molesta el frío.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Меня не беспокоит холод.</span></li>
+      <li><span class="es">Nos <strong>encanta</strong> salir los fines de semana. <button class="speak-btn" onclick="speak('Nos encanta salir los fines de semana.')">🔊</button></span><br><span style="color:var(--muted);font-size:.82rem">Мы обожаем выходить по выходным.</span></li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <h4>💡 Разница: también vs tampoco</h4>
+    <p>— Me gusta el café. — <strong>A mí también.</strong> (Мне тоже.)<br>
+    — No me gustan los lunes. — <strong>A mí tampoco.</strong> (Мне тоже нет.)<br>
+    También (тоже, положит.) / Tampoco (тоже нет, отрицат.)</p>
+  </div>
+
+  <h3 style="margin-bottom:12px;font-size:1rem;font-weight:700">❌ Типичные ошибки русскоговорящих</h3>
+  <table class="mistakes">
+    <thead><tr><th>Ошибка ❌</th><th>Правильно ✅</th><th>Почему</th></tr></thead>
+    <tbody>
+      <tr><td class="wrong-ex">Yo gusto el café</td><td class="right-ex">Me gusta el café</td><td>gustar — «обратный» глагол; субъект = кофе</td></tr>
+      <tr><td class="wrong-ex">Me gusta los libros</td><td class="right-ex">Me gustan los libros</td><td>libros — мн.ч., нужен gustan</td></tr>
+      <tr><td class="wrong-ex">Me encanto la ciudad</td><td class="right-ex">Me encanta la ciudad</td><td>encantar как gustar — субъект ciudad (ед.ч.)</td></tr>
+      <tr><td class="wrong-ex">Él gusta fútbol</td><td class="right-ex">A él le gusta el fútbol</td><td>нужен косвенный объект le + артикль</td></tr>
+      <tr><td class="wrong-ex">Me dole la cabeza</td><td class="right-ex">Me duele la cabeza</td><td>doler — чередование о→ue: duel-</td></tr>
+      <tr><td class="wrong-ex">Me gusta mucho las tapas</td><td class="right-ex">Me encantan las tapas</td><td>«очень нравиться» = encantar; tapas мн.ч.</td></tr>
+      <tr><td class="wrong-ex">¿Tú gustas la música?</td><td class="right-ex">¿Te gusta la música?</td><td>нельзя использовать подлежащее yo/tú с gustar</td></tr>
+    </tbody>
+  </table>
 </div>
 
-<div class="done-bar"><div class="nav-links"><a href="../index.html" class="nav-link-btn">← Дашборд</a><a href="L22.html" class="nav-link-btn">← L22</a><a href="L24.html" class="nav-link-btn">L24 →</a></div><button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button></div>
+<!-- 5. VOCABULARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Словарь — хобби, увлечения и gustar-выражения</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.88rem">Нажимай 🔊 для произношения. В скобках — транскрипция для русских.</p>
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <div><div class="vocab-es">gustar <button class="speak-btn" onclick="speak('gustar')">🔊</button></div><div class="vocab-ru">нравиться</div><div class="vocab-pron">[густа́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">encantar <button class="speak-btn" onclick="speak('encantar')">🔊</button></div><div class="vocab-ru">очень нравиться, обожать</div><div class="vocab-pron">[энканта́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">molestar <button class="speak-btn" onclick="speak('molestar')">🔊</button></div><div class="vocab-ru">раздражать, беспокоить</div><div class="vocab-pron">[молеста́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">doler <button class="speak-btn" onclick="speak('doler')">🔊</button></div><div class="vocab-ru">болеть (doler о→ue)</div><div class="vocab-pron">[доле́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">interesar <button class="speak-btn" onclick="speak('interesar')">🔊</button></div><div class="vocab-ru">интересовать</div><div class="vocab-pron">[интересса́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">aburrir <button class="speak-btn" onclick="speak('aburrir')">🔊</button></div><div class="vocab-ru">скучать, надоедать</div><div class="vocab-pron">[абурри́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">apetecer <button class="speak-btn" onclick="speak('apetecer')">🔊</button></div><div class="vocab-ru">хотеться (о еде)</div><div class="vocab-pron">[апетесе́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">parecer <button class="speak-btn" onclick="speak('parecer')">🔊</button></div><div class="vocab-ru">казаться</div><div class="vocab-pron">[парессе́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">faltar <button class="speak-btn" onclick="speak('faltar')">🔊</button></div><div class="vocab-ru">не хватать</div><div class="vocab-pron">[фальта́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">el fútbol <button class="speak-btn" onclick="speak('el fútbol')">🔊</button></div><div class="vocab-ru">футбол</div><div class="vocab-pron">[эль фу́тболь]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">la música <button class="speak-btn" onclick="speak('la música')">🔊</button></div><div class="vocab-ru">музыка</div><div class="vocab-pron">[ла му́сика]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">la lectura <button class="speak-btn" onclick="speak('la lectura')">🔊</button></div><div class="vocab-ru">чтение</div><div class="vocab-pron">[ла лекту́ра]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">cocinar <button class="speak-btn" onclick="speak('cocinar')">🔊</button></div><div class="vocab-ru">готовить еду</div><div class="vocab-pron">[косина́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">viajar <button class="speak-btn" onclick="speak('viajar')">🔊</button></div><div class="vocab-ru">путешествовать</div><div class="vocab-pron">[виаха́р]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">el cine <button class="speak-btn" onclick="speak('el cine')">🔊</button></div><div class="vocab-ru">кино</div><div class="vocab-pron">[эль си́не]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">nada <button class="speak-btn" onclick="speak('nada')">🔊</button></div><div class="vocab-ru">ничего</div><div class="vocab-pron">[на́да]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">mucho <button class="speak-btn" onclick="speak('mucho')">🔊</button></div><div class="vocab-ru">очень, много</div><div class="vocab-pron">[му́чо]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">tampoco <button class="speak-btn" onclick="speak('tampoco')">🔊</button></div><div class="vocab-ru">тоже нет</div><div class="vocab-pron">[тампо́ко]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">también <button class="speak-btn" onclick="speak('también')">🔊</button></div><div class="vocab-ru">тоже</div><div class="vocab-pron">[тамбье́н]</div></div>
+    </div>
+    <div class="vocab-item">
+      <div><div class="vocab-es">relajante <button class="speak-btn" onclick="speak('relajante')">🔊</button></div><div class="vocab-ru">расслабляющий</div><div class="vocab-pron">[релахан́те]</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. QUIZ 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Тест 1 — Множественный выбор</h2>
+  </div>
+  <div class="quiz">
+    <h3>❓ Выбери правильный вариант (7 вопросов)</h3>
+    <div class="quiz-q" id="q1">
+      <div class="q-text">1. «Мне нравится испанский язык»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q1','a')">Me gusta el español</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','b')">Yo gusto el español</div>
+        <div class="opt" onclick="answerQuiz(this,'q1','c')">Me gustan el español</div>
+      </div>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+    <div class="quiz-q" id="q2">
+      <div class="q-text">2. «Ей нравятся книги»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q2','b')">Ella gusta los libros</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','a')">Le gustan los libros</div>
+        <div class="opt" onclick="answerQuiz(this,'q2','c')">Le gusta los libros</div>
+      </div>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+    <div class="quiz-q" id="q3">
+      <div class="q-text">3. «У меня болит спина» (doler):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q3','c')">Yo dolo la espalda</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','a')">Me duele la espalda</div>
+        <div class="opt" onclick="answerQuiz(this,'q3','b')">Me duelen la espalda</div>
+      </div>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+    <div class="quiz-q" id="q4">
+      <div class="q-text">4. «Нам очень нравится готовить»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q4','b')">Nos gustan cocinar</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','c')">Nos encantamos cocinar</div>
+        <div class="opt" onclick="answerQuiz(this,'q4','a')">Nos encanta cocinar</div>
+      </div>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+    <div class="quiz-q" id="q5">
+      <div class="q-text">5. «Тебе тоже нравится фламенко?»:</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q5','c')">¿A ti también te gustan el flamenco?</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','a')">¿A ti también te gusta el flamenco?</div>
+        <div class="opt" onclick="answerQuiz(this,'q5','b')">¿A ti también gustas el flamenco?</div>
+      </div>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+    <div class="quiz-q" id="q6">
+      <div class="q-text">6. «Меня раздражает шум» (molestar):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q6','b')">Me molestan el ruido</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','c')">Yo molesto el ruido</div>
+        <div class="opt" onclick="answerQuiz(this,'q6','a')">Me molesta el ruido</div>
+      </div>
+      <div class="feedback" id="fb-q6"></div>
+    </div>
+    <div class="quiz-q" id="q7">
+      <div class="q-text">7. «Что ты думаешь о Барселоне?» (parecer):</div>
+      <div class="options">
+        <div class="opt" onclick="answerQuiz(this,'q7','c')">¿Cómo gustas Barcelona?</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','b')">¿Qué piensas Barcelona?</div>
+        <div class="opt" onclick="answerQuiz(this,'q7','a')">¿Qué te parece Barcelona?</div>
+      </div>
+      <div class="feedback" id="fb-q7"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. QUIZ 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Тест 2 — Заполни пропуски</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.88rem">Введи ответ строчными буквами. Ударения засчитываются по желанию.</p>
+  <div class="quiz">
+    <div class="text-ex">
+      <div class="tex-q">1. Мне нравятся испанские фильмы: <em>Me _____ las películas españolas.</em></div>
+      <input class="text-input" id="t1" placeholder="gustan / encanta / encantan...">
+      <button class="check-btn" onclick="checkText('t1','gustan','fb-t1')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t1')">Показать ответ</button>
+      <div class="feedback" id="fb-t1"></div>
+      <div class="answer-reveal" id="ans-t1">✅ gustan (películas — мн.ч.)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">2. Ему нравится готовить: <em>_____ gusta cocinar.</em></div>
+      <input class="text-input" id="t2" placeholder="me / te / le / nos / les...">
+      <button class="check-btn" onclick="checkText('t2','le','fb-t2')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t2')">Показать ответ</button>
+      <div class="feedback" id="fb-t2"></div>
+      <div class="answer-reveal" id="ans-t2">✅ le (ему/ей — le)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">3. У меня болит голова: <em>Me _____ la cabeza.</em></div>
+      <input class="text-input" id="t3" placeholder="duele / duelen...">
+      <button class="check-btn" onclick="checkText('t3','duele','fb-t3')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t3')">Показать ответ</button>
+      <div class="feedback" id="fb-t3"></div>
+      <div class="answer-reveal" id="ans-t3">✅ duele (cabeza — ед.ч.; doler: o→ue)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">4. Мне не хватает времени: <em>Me _____ tiempo.</em></div>
+      <input class="text-input" id="t4" placeholder="falta / faltan...">
+      <button class="check-btn" onclick="checkText('t4','falta','fb-t4')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t4')">Показать ответ</button>
+      <div class="feedback" id="fb-t4"></div>
+      <div class="answer-reveal" id="ans-t4">✅ falta (tiempo — ед.ч.)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">5. Нам очень нравится путешествовать: <em>Nos _____ viajar.</em></div>
+      <input class="text-input" id="t5" placeholder="gusta / gustan / encanta...">
+      <button class="check-btn" onclick="checkText('t5','encanta','fb-t5')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t5')">Показать ответ</button>
+      <div class="feedback" id="fb-t5"></div>
+      <div class="answer-reveal" id="ans-t5">✅ encanta (encantar = очень нравиться; viajar — инф. → ед.ч.)</div>
+    </div>
+    <div class="text-ex">
+      <div class="tex-q">6. Тебя интересует история? <em>¿Te _____ la historia?</em></div>
+      <input class="text-input" id="t6" placeholder="interesa / interesan...">
+      <button class="check-btn" onclick="checkText('t6','interesa','fb-t6')">Проверить</button>
+      <button class="show-ans" onclick="showAns('ans-t6')">Показать ответ</button>
+      <div class="feedback" id="fb-t6"></div>
+      <div class="answer-reveal" id="ans-t6">✅ interesa (historia — ед.ч.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. DIALOGUES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Диалоги</h2>
+  </div>
+  <p style="margin-bottom:12px;color:var(--muted);font-size:.88rem">Читай вслух! Нажимай 🔊 у каждой реплики. <button onclick="toggleAll()" class="dlg-toggle">👁 Показать/скрыть переводы</button></p>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>Диалог 1 — ¿Qué te gusta? (10 реплик)</span>
+      <button class="speak-btn" onclick="playDialogue1()" title="Весь диалог">▶ Весь диалог</button>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Ана</span>
+      <div>
+        <div class="dlg-es">¿Qué te gusta hacer en tu tiempo libre? <button class="speak-btn" onclick="speak('¿Qué te gusta hacer en tu tiempo libre?')">🔊</button></div>
+        <div class="dlg-ru translation">Что тебе нравится делать в свободное время?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Евг.</span>
+      <div>
+        <div class="dlg-es">Me gusta mucho escuchar música y leer. ¿Y a ti? <button class="speak-btn" onclick="speak('Me gusta mucho escuchar música y leer. ¿Y a ti?')">🔊</button></div>
+        <div class="dlg-ru translation">Мне очень нравится слушать музыку и читать. А тебе?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Ана</span>
+      <div>
+        <div class="dlg-es">A mí me encanta cocinar. Hago paella todos los domingos. <button class="speak-btn" onclick="speak('A mí me encanta cocinar. Hago paella todos los domingos.')">🔊</button></div>
+        <div class="dlg-ru translation">Мне обожаю готовить. Я делаю паэлью каждое воскресенье.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Евг.</span>
+      <div>
+        <div class="dlg-es">¡Qué rico! A mí también me gusta la paella. ¿Te gusta el fútbol? <button class="speak-btn" onclick="speak('¡Qué rico! A mí también me gusta la paella. ¿Te gusta el fútbol?')">🔊</button></div>
+        <div class="dlg-ru translation">Как вкусно! Мне тоже нравится паэлья. Тебе нравится футбол?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Ана</span>
+      <div>
+        <div class="dlg-es">No, no me gusta nada el fútbol. Me parece aburrido. <button class="speak-btn" onclick="speak('No, no me gusta nada el fútbol. Me parece aburrido.')">🔊</button></div>
+        <div class="dlg-ru translation">Нет, мне совсем не нравится футбол. Мне кажется, это скучно.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Евг.</span>
+      <div>
+        <div class="dlg-es">¿Sí? A mí me encanta. ¿Qué deportes te gustan entonces? <button class="speak-btn" onclick="speak('¿Sí? A mí me encanta. ¿Qué deportes te gustan entonces?')">🔊</button></div>
+        <div class="dlg-ru translation">Да? Мне он очень нравится. Какие виды спорта тебе нравятся тогда?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Ана</span>
+      <div>
+        <div class="dlg-es">Me gustan la natación y el yoga. Son muy relajantes. <button class="speak-btn" onclick="speak('Me gustan la natación y el yoga. Son muy relajantes.')">🔊</button></div>
+        <div class="dlg-ru translation">Мне нравятся плавание и йога. Это очень расслабляет.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Евг.</span>
+      <div>
+        <div class="dlg-es">El yoga me interesa también. ¿Dónde practicas? <button class="speak-btn" onclick="speak('El yoga me interesa también. ¿Dónde practicas?')">🔊</button></div>
+        <div class="dlg-ru translation">Йога меня тоже интересует. Где ты занимаешься?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Ана</span>
+      <div>
+        <div class="dlg-es">En un estudio cerca del Eixample. ¡Te puedo recomendar! <button class="speak-btn" onclick="speak('En un estudio cerca del Eixample. ¡Te puedo recomendar!')">🔊</button></div>
+        <div class="dlg-ru translation">В студии рядом с Эшампле. Могу порекомендовать!</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Евг.</span>
+      <div>
+        <div class="dlg-es">¡Genial! Muchas gracias. A ver si voy algún día. <button class="speak-btn" onclick="speak('¡Genial! Muchas gracias. A ver si voy algún día.')">🔊</button></div>
+        <div class="dlg-ru translation">Здорово! Большое спасибо. Посмотрим, схожу ли когда-нибудь.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>Диалог 2 — У врача: me duele… (8 реплик)</span>
+      <button class="speak-btn" onclick="playDialogue2()" title="Весь диалог">▶ Весь диалог</button>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Евг.</span>
+      <div>
+        <div class="dlg-es">Buenos días, doctor. Me duele mucho la cabeza desde ayer. <button class="speak-btn" onclick="speak('Buenos días, doctor. Me duele mucho la cabeza desde ayer.')">🔊</button></div>
+        <div class="dlg-ru translation">Добрый день, доктор. У меня очень болит голова со вчера.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Dr.</span>
+      <div>
+        <div class="dlg-es">¿Le duele solo la cabeza o también le duele el cuello? <button class="speak-btn" onclick="speak('¿Le duele solo la cabeza o también le duele el cuello?')">🔊</button></div>
+        <div class="dlg-ru translation">У вас болит только голова или тоже болит шея?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Евг.</span>
+      <div>
+        <div class="dlg-es">Me duele la cabeza y un poco el cuello. También me molesta la luz. <button class="speak-btn" onclick="speak('Me duele la cabeza y un poco el cuello. También me molesta la luz.')">🔊</button></div>
+        <div class="dlg-ru translation">У меня болит голова и немного шея. Ещё мне мешает свет.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Dr.</span>
+      <div>
+        <div class="dlg-es">¿Le duelen también los ojos? ¿Tiene fiebre? <button class="speak-btn" onclick="speak('¿Le duelen también los ojos? ¿Tiene fiebre?')">🔊</button></div>
+        <div class="dlg-ru translation">У вас тоже болят глаза? И есть ли температура?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Евг.</span>
+      <div>
+        <div class="dlg-es">Sí, me duelen los ojos. No sé si tengo fiebre, no me tomé la temperatura. <button class="speak-btn" onclick="speak('Sí, me duelen los ojos. No sé si tengo fiebre, no me tomé la temperatura.')">🔊</button></div>
+        <div class="dlg-ru translation">Да, у меня болят глаза. Не знаю есть ли температура — не измерял.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Dr.</span>
+      <div>
+        <div class="dlg-es">Puede ser migraña. Le receto algo para el dolor. ¿Le molesta algún medicamento? <button class="speak-btn" onclick="speak('Puede ser migraña. Le receto algo para el dolor. ¿Le molesta algún medicamento?')">🔊</button></div>
+        <div class="dlg-ru translation">Возможно мигрень. Выпишу вам что-то от боли. Есть ли лекарства на которые реакция?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Евг.</span>
+      <div>
+        <div class="dlg-es">No, no tengo alergias. ¿Cuántos días debo tomarlo? <button class="speak-btn" onclick="speak('No, no tengo alergias. ¿Cuántos días debo tomarlo?')">🔊</button></div>
+        <div class="dlg-ru translation">Нет, аллергий нет. Сколько дней принимать?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Dr.</span>
+      <div>
+        <div class="dlg-es">Tres días. Si no mejora, vuelva. ¡Que se mejore! <button class="speak-btn" onclick="speak('Tres días. Si no mejora, vuelva. ¡Que se mejore!')">🔊</button></div>
+        <div class="dlg-ru translation">Три дня. Если не станет лучше — возвращайтесь. Выздоравливайте!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialogue">
+    <div class="dlg-header">
+      <span>Диалог 3 — ¿Te apetece…? В кафетерии (8 реплик)</span>
+      <button class="speak-btn" onclick="playDialogue3()" title="Весь диалог">▶ Весь диалог</button>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Ана</span>
+      <div>
+        <div class="dlg-es">¿Te apetece tomar algo? Hay una cafetería muy buena aquí cerca. <button class="speak-btn" onclick="speak('¿Te apetece tomar algo? Hay una cafetería muy buena aquí cerca.')">🔊</button></div>
+        <div class="dlg-ru translation">Хочешь что-нибудь выпить? Здесь рядом есть очень хорошая кафетерия.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Евг.</span>
+      <div>
+        <div class="dlg-es">¡Sí, me apetece un café con leche! ¿A ti qué te apetece? <button class="speak-btn" onclick="speak('¡Sí, me apetece un café con leche! ¿A ti qué te apetece?')">🔊</button></div>
+        <div class="dlg-ru translation">Да, хочу кафе кон лече! А тебе что хочется?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Ана</span>
+      <div>
+        <div class="dlg-es">No me apetece el café hoy. Me apetece un zumo de naranja natural. <button class="speak-btn" onclick="speak('No me apetece el café hoy. Me apetece un zumo de naranja natural.')">🔊</button></div>
+        <div class="dlg-ru translation">Сегодня кофе не хочется. Хочу натуральный апельсиновый сок.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Евг.</span>
+      <div>
+        <div class="dlg-es">¡Buena idea! ¿Te gustan los cruasanes también? <button class="speak-btn" onclick="speak('¡Buena idea! ¿Te gustan los cruasanes también?')">🔊</button></div>
+        <div class="dlg-ru translation">Отличная идея! Тебе нравятся круассаны?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Ана</span>
+      <div>
+        <div class="dlg-es">Me encantan, pero hoy no me apetece nada dulce. <button class="speak-btn" onclick="speak('Me encantan, pero hoy no me apetece nada dulce.')">🔊</button></div>
+        <div class="dlg-ru translation">Обожаю, но сегодня сладкого совсем не хочется.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Евг.</span>
+      <div>
+        <div class="dlg-es">A mí tampoco me apetecen los dulces por la mañana. <button class="speak-btn" onclick="speak('A mí tampoco me apetecen los dulces por la mañana.')">🔊</button></div>
+        <div class="dlg-ru translation">Мне тоже по утрам не хочется сладкого.</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker">Ана</span>
+      <div>
+        <div class="dlg-es">¿Te molesta si pedimos una tostada con tomate? <button class="speak-btn" onclick="speak('¿Te molesta si pedimos una tostada con tomate?')">🔊</button></div>
+        <div class="dlg-ru translation">Ты не против, если закажем тостаду с томатом?</div>
+      </div>
+    </div>
+    <div class="dlg-line">
+      <span class="dlg-speaker b">Евг.</span>
+      <div>
+        <div class="dlg-es">¡Al contrario, me encanta la tostada con tomate! Es el desayuno perfecto. <button class="speak-btn" onclick="speak('¡Al contrario, me encanta la tostada con tomate! Es el desayuno perfecto.')">🔊</button></div>
+        <div class="dlg-ru translation">Наоборот, я обожаю тостаду с томатом! Это идеальный завтрак.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. SPEAKING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Говорение</h2>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🗣 Упражнение 1 — Мои предпочтения</div>
+    <p>Расскажи о 5+ своих предпочтениях. Используй: me gusta(n), me encanta(n), no me gusta, me interesa, me molesta.</p>
+    <div class="es">Me gusta… / Me encanta… / No me gusta nada… / Me interesa mucho… <button class="speak-btn" onclick="speak('Me gusta la música y viajar. Me encanta el café español. No me gusta nada el frío. Me interesa mucho la historia.')">🔊</button></div>
+    <div class="hint">💡 Пример: «Me gusta la música. Me encanta el café. No me gusta nada el frío. Me interesan los idiomas.»</div>
+  </div>
+  <div class="speak-box">
+    <div class="speak-tag">🇪🇸 Упражнение 2 — Жизнь в Барселоне</div>
+    <p>Расскажи соседу Хосе что тебе нравится и не нравится в Барселоне. Минимум 6 предложений.</p>
+    <div class="es">Hola, José. Me encanta Barcelona, especialmente… pero me molesta un poco… <button class="speak-btn" onclick="speak('Hola José. A mí me encanta Barcelona, especialmente la playa y la comida. Me gustan mucho los mercados. Pero me molesta un poco el ruido por la noche.')">🔊</button></div>
+    <div class="hint">💡 Темы: la playa, el clima, la gente, el transporte, el ruido, los precios, la comida catalana</div>
+  </div>
+</div>
+
+<!-- 10. SPAIN IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>🇪🇸 Испания на практике — В Mercadona</h2>
+  </div>
+  <div class="spain-practice">
+    <div class="spain-tag">📍 Реальный сценарий: Mercadona, Барселона</div>
+    <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:10px">Разговор с работником супермаркета</h3>
+    <p style="font-size:.9rem;margin-bottom:14px">Ты в Mercadona. Тебе нравятся определённые продукты, но ты не можешь найти их или хочешь порекомендовать продукт соседу.</p>
+    <div class="phrase-list">
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">¿Le gusta este tipo de queso? <button class="speak-btn" onclick="speak('¿Le gusta este tipo de queso?')">🔊</button></div>
+          <div class="phrase-ru">Вам нравится этот вид сыра?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">Me gustan los quesos manchegos. ¿Tiene? <button class="speak-btn" onclick="speak('Me gustan los quesos manchegos. ¿Tiene?')">🔊</button></div>
+          <div class="phrase-ru">Мне нравятся манчегские сыры. Есть?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">¿Le apetece probar? Es muy rico. <button class="speak-btn" onclick="speak('¿Le apetece probar? Es muy rico.')">🔊</button></div>
+          <div class="phrase-ru">Хотите попробовать? Очень вкусно.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">Me encanta este yogur. ¿Lo tienen en oferta? <button class="speak-btn" onclick="speak('Me encanta este yogur. ¿Lo tienen en oferta?')">🔊</button></div>
+          <div class="phrase-ru">Я обожаю этот йогурт. Есть ли он по акции?</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">No me gusta la marca blanca, prefiero esta. <button class="speak-btn" onclick="speak('No me gusta la marca blanca, prefiero esta.')">🔊</button></div>
+          <div class="phrase-ru">Мне не нравится торговая марка магазина, предпочитаю эту.</div>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div>
+          <div class="phrase-es">¿Le interesa la tarjeta de fidelización? <button class="speak-btn" onclick="speak('¿Le interesa la tarjeta de fidelización?')">🔊</button></div>
+          <div class="phrase-ru">Вас интересует карта лояльности?</div>
+        </div>
+      </div>
+    </div>
+    <div class="culture-tip">
+      <strong>🇪🇸 Важно в Испании:</strong> В Mercadona продавцы нередко предлагают попробовать новые продукты — «¿Le apetece probar?». Это нормально ответить честно: «Sí, me encanta» или «No me convence mucho» (не очень убеждает). Также принято спрашивать «¿Qué le parece?» (Как вам?). В Испании вкусовые предпочтения обсуждаются открыто и с удовольствием.
+    </div>
+  </div>
+</div>
+
+<!-- 11. CULTURE NOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Культурная заметка — Gustar в испанской культуре</h2>
+  </div>
+  <div class="culture">
+    <div class="ctag">🎭 Культура и быт</div>
+    <h4>Почему испанцы так много говорят о вкусах и предпочтениях?</h4>
+    <p>«¡Me encanta!» (Обожаю!) — одна из самых частотных фраз в разговорной испанской речи. Испанцы используют gustar и encantar постоянно — особенно когда речь о еде. Типичный разговор с новым знакомым в Барселоне почти всегда начинается с «¿Qué te gusta de la ciudad?» (Что тебе нравится в городе?). Также gustar широко применяют как вежливую форму просьбы: «¿Te molesta si abro la ventana?» (Тебе не мешает, если открою окно?) — это деликатный способ попросить разрешения. В семейном быту постоянно слышишь «¿Te apetece…?» — предложение что-то поесть или попить. Понять и освоить gustar — значит понять одну из ключевых социальных механик испанского общения.</p>
+  </div>
+</div>
+
+<!-- 12. ANKI -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>Anki-колода — L23: Gustar</h2>
+  </div>
+  <p style="margin-bottom:12px;font-size:.9rem">Нажми на карточку чтобы перевернуть. Скачай все 17 карточек для Anki.</p>
+  <div class="anki-cards-preview">
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">Me gusta el café</div>
+        <div class="anki-card-back">Мне нравится кофе<br><em>gustar ед.ч.</em></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">Me gustan los libros</div>
+        <div class="anki-card-back">Мне нравятся книги<br><em>gustar мн.ч.</em></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">Me encanta viajar</div>
+        <div class="anki-card-back">Я обожаю путешествовать<br><em>encantar + инф.</em></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">Me duele la cabeza</div>
+        <div class="anki-card-back">У меня болит голова<br><em>doler о→ue, ед.ч.</em></div>
+      </div>
+    </div>
+    <div class="anki-card" onclick="this.classList.toggle('flipped')">
+      <div class="anki-card-inner">
+        <div class="anki-card-front">¿Qué te parece?</div>
+        <div class="anki-card-back">Как тебе? Что думаешь?<br><em>parecer — мнение</em></div>
+      </div>
+    </div>
+  </div>
+  <button class="export-btn" onclick="exportAnkiL23()">📥 Скачать колоду Anki (.txt) — 17 карточек</button>
+</div>
+
+<!-- 13. HOMEWORK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Домашнее задание</h2>
+  </div>
+  <div class="callout tip">
+    <h4>📝 Задание</h4>
+    <ul>
+      <li>Запиши 10 предложений о своих предпочтениях: gustar, encantar, molestar, interesar. Минимум 2 в отрицательной форме.</li>
+      <li>Спроси партнёра или ребёнка по-испански: «¿Qué te gusta hacer?» и ответь тоже по-испански.</li>
+      <li><strong>Language Transfer эп. 29</strong> — послушать полностью: <a href="https://www.youtube.com/@LanguageTransfer" target="_blank" style="color:var(--gold)">@LanguageTransfer</a></li>
+    </ul>
+  </div>
+  <div class="callout info">
+    <h4>📺 Dreaming Spanish — Super Beginner</h4>
+    <p>Посмотри 10–15 минут. Обрати внимание когда носители используют «me gusta» и «me encanta» — их слышишь постоянно!</p>
+  </div>
+  <div class="callout success">
+    <h4>✅ Следующий урок: L24 — Возвратные глаголы</h4>
+    <p>В L24 изучаем глаголы на -se: me llamo, me levanto, me ducho — для описания распорядка дня!</p>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<!-- 14. DONE BAR -->
+<div class="done-bar">
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link-btn">← Дашборд</a>
+    <a href="L22.html" class="nav-link-btn">← L22</a>
+    <a href="L24.html" class="nav-link-btn">L24 →</a>
+  </div>
+  <button class="done-btn" id="done-btn" onclick="markDone()">✓ Отметить пройденным</button>
+</div>
 
 <script>
-const LESSON_ID='L23';const LS_KEY='esp_course_progress';
-function getState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{completed:[]};}catch(e){return {completed:[]};}}
-function markDone(){const s=getState();if(!s.completed.includes(LESSON_ID))s.completed.push(LESSON_ID);const today=new Date().toISOString().slice(0,10);if(!s.study_days)s.study_days={};s.study_days[today]=true;localStorage.setItem(LS_KEY,JSON.stringify(s));const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-const st=getState();if(st.completed&&st.completed.includes(LESSON_ID)){const btn=document.getElementById('done-btn');btn.textContent='✅ Пройден!';btn.className='done-btn marked';}
-function speak(text,lang){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(text);u.lang=lang||'es-ES';u.rate=0.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);}
-function speakSequence(phrases,delay){delay=delay||2400;window.speechSynthesis.cancel();phrases.forEach(function(p,i){setTimeout(function(){speak(p);},i*delay);});}
-function playD1(){speakSequence(['¿Te gusta Barcelona?','¡Me encanta! Sobre todo la playa y la comida.','¿Y a tu mujer? ¿Le gusta también?','Sí, a ella le gusta mucho la arquitectura. Le encanta Gaudí.','¿A tus hijas qué les gusta hacer?','Les gusta nadar, leer y jugar al parque.'],2700);}
-function playD2(){speakSequence(['¿Qué le gusta tomar?','Me gusta el café con leche.','¿Y le gustan los dulces?','Me encantan. Pero ahora no tengo hambre.'],2700);}
-const quizExpl={r1:'Puedo venir (без a).',r2:'Quiero comer (e→ie).',r3:'¿Podría...? — вежливо.',r4:'Debes estudiar (без a/que).',q1:'Me gusta el café.',q2:'Te gustan los libros (мн.ч).',q3:'Me gusta nadar (один inf).',q4:'Les gusta bailar.',q5:'Me encanta Barcelona.',q6:'A mí me gusta...'};
+function speak(text, lang) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang || 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+const ANKI_DECK_L23 = [
+  {front:"me gusta",back:"Русский: мне нравится (ед.ч.)\n\nПример: Me gusta el café.\nЗаметка: субъект = то, что нравится"},
+  {front:"me gustan",back:"Русский: мне нравятся (мн.ч.)\n\nПример: Me gustan los libros.\nЗаметка: мн.ч. если нравится несколько предметов"},
+  {front:"me encanta",back:"Русский: я обожаю (ед.ч./инф.)\n\nПример: Me encanta viajar.\nЗаметка: сильнее чем gustar"},
+  {front:"me encantan",back:"Русский: я обожаю (мн.ч.)\n\nПример: Me encantan las tapas.\nЗаметка: encantar мн.ч."},
+  {front:"me duele",back:"Русский: у меня болит (ед.ч.)\n\nПример: Me duele la cabeza.\nЗаметка: doler — чередование о→ue"},
+  {front:"me duelen",back:"Русский: у меня болят (мн.ч.)\n\nПример: Me duelen los pies.\nЗаметка: doler мн.ч."},
+  {front:"me molesta",back:"Русский: меня раздражает\n\nПример: Me molesta el ruido.\nЗаметка: как gustar — субъект = то, что раздражает"},
+  {front:"me interesa",back:"Русский: меня интересует\n\nПример: Me interesa la historia.\nЗаметка: interesar — как gustar"},
+  {front:"me apetece",back:"Русский: мне хочется (о еде)\n\nПример: ¿Te apetece un café?\nЗаметка: apetecer — очень разговорный"},
+  {front:"me falta",back:"Русский: мне не хватает\n\nПример: Me falta tiempo.\nЗаметка: faltar — как gustar"},
+  {front:"me parece",back:"Русский: мне кажется\n\nПример: Me parece bien.\nЗаметка: parecer — выражение мнения"},
+  {front:"a mí me gusta",back:"Русский: именно мне нравится\n\nПример: A mí me gusta, pero a él no.\nЗаметка: a mí для подчёркивания"},
+  {front:"le gustan",back:"Русский: ему/ей нравятся\n\nПример: Le gustan los gatos.\nЗаметка: le = ему или ей"},
+  {front:"nos encanta",back:"Русский: нам очень нравится\n\nПример: Nos encanta Barcelona.\nЗаметка: nos = нам"},
+  {front:"también / tampoco",back:"Русский: тоже / тоже нет\n\nПример: A mí también. / A mí tampoco.\nЗаметка: también для +, tampoco для −"},
+  {front:"¿Qué te parece?",back:"Русский: Что ты думаешь? Как тебе?\n\nПример: ¿Qué te parece Barcelona?\nЗаметка: очень частая разговорная фраза"},
+  {front:"no me gusta nada",back:"Русский: мне совсем не нравится\n\nПример: No me gusta nada el lunes.\nЗаметка: nada усиливает отрицание"},
+];
+
+function exportAnkiL23() {
+  const tsv = ANKI_DECK_L23.map(c => c.front + '\t' + c.back.replace(/\n/g,'<br>')).join('\n');
+  const blob = new Blob(['﻿'+tsv],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'L23_spanish.txt';
+  a.click();
+}
+
+function playDialogue1() {
+  const lines = [
+    '¿Qué te gusta hacer en tu tiempo libre?',
+    'Me gusta mucho escuchar música y leer. ¿Y a ti?',
+    'A mí me encanta cocinar. Hago paella todos los domingos.',
+    '¡Qué rico! A mí también me gusta la paella. ¿Te gusta el fútbol?',
+    'No, no me gusta nada el fútbol. Me parece aburrido.',
+    '¿Sí? A mí me encanta. ¿Qué deportes te gustan entonces?',
+    'Me gustan la natación y el yoga. Son muy relajantes.',
+    'El yoga me interesa también. ¿Dónde practicas?',
+    'En un estudio cerca del Eixample. ¡Te puedo recomendar!',
+    '¡Genial! Muchas gracias. A ver si voy algún día.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue2() {
+  const lines = [
+    'Buenos días, doctor. Me duele mucho la cabeza desde ayer.',
+    '¿Le duele solo la cabeza o también le duele el cuello?',
+    'Me duele la cabeza y un poco el cuello. También me molesta la luz.',
+    '¿Le duelen también los ojos? ¿Tiene fiebre?',
+    'Sí, me duelen los ojos. No sé si tengo fiebre.',
+    'Puede ser migraña. Le receto algo para el dolor. ¿Le molesta algún medicamento?',
+    'No, no tengo alergias. ¿Cuántos días debo tomarlo?',
+    'Tres días. Si no mejora, vuelva. ¡Que se mejore!'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function playDialogue3() {
+  const lines = [
+    '¿Te apetece tomar algo? Hay una cafetería muy buena aquí cerca.',
+    '¡Sí, me apetece un café con leche! ¿A ti qué te apetece?',
+    'No me apetece el café hoy. Me apetece un zumo de naranja natural.',
+    '¡Buena idea! ¿Te gustan los cruasanes también?',
+    'Me encantan, pero hoy no me apetece nada dulce.',
+    'A mí tampoco me apetecen los dulces por la mañana.',
+    '¿Te molesta si pedimos una tostada con tomate?',
+    '¡Al contrario, me encanta la tostada con tomate! Es el desayuno perfecto.'
+  ];
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const u = new SpeechSynthesisUtterance(lines[i++]);
+    u.lang = 'es-ES'; u.rate = 0.85;
+    u.onend = () => setTimeout(next, 800);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+const LESSON_ID = 'L23';
+const LS_KEY = 'esp_course_progress';
+function getState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || {completed:[]}; }
+  catch(e) { return {completed:[]}; }
+}
+function markDone() {
+  const s = getState();
+  if (!s.completed.includes(LESSON_ID)) s.completed.push(LESSON_ID);
+  const today = new Date().toISOString().slice(0,10);
+  if (!s.study_days) s.study_days = {};
+  s.study_days[today] = true;
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+const st = getState();
+if (st.completed?.includes(LESSON_ID)) {
+  const btn = document.getElementById('done-btn');
+  btn.textContent = '✅ Пройден!';
+  btn.className = 'done-btn marked';
+}
+
+const quizExpl = {
+  w1:'puedo = могу (poder). Correcto!',
+  w2:'deber = должен. Debes = ты должен.',
+  w3:'queremos = мы хотим (querer).',
+  w4:'¿Puede ayudarme? — вежливая просьба с Usted.',
+  q1:'Me gusta el español — gustar ед.ч.; субъект = español.',
+  q2:'Le gustan los libros — le (ей), gustan мн.ч. (libros).',
+  q3:'Me duele la espalda — doler ед.ч. (espalda), чередование о→ue.',
+  q4:'Nos encanta cocinar — encantar + инфинитив = ед.ч.',
+  q5:'¿A ti también te gusta el flamenco? — te + gusta ед.ч.',
+  q6:'Me molesta el ruido — molestar ед.ч. (ruido).',
+  q7:'¿Qué te parece Barcelona? — стандартный вопрос о мнении.',
+};
+
+let quizScore = 0, quizTotal = 0;
 function answerQuiz(el, qId, correctKey) {
   const container = el.closest('.quiz-q');
   if (container.dataset.answered === '1') return;
@@ -240,6 +1068,7 @@ function answerQuiz(el, qId, correctKey) {
     if (scoreEl) scoreEl.textContent = 'Правильных ответов: ' + quizScore + ' из ' + quizTotal;
   }
 }
+
 function checkText(inputId, answer, fbId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
@@ -292,31 +1121,28 @@ function checkText(inputId, answer, fbId) {
   fb.className += ' no';
   fb.textContent = '❌ Попробуй ещё. Подсказка: начинается на "' + answer[0] + '"';
 }
-function showAns(id){document.getElementById(id).classList.add('show');}
-let showingTrans=false;function toggleAll(){showingTrans=!showingTrans;document.querySelectorAll('.translation').forEach(function(el){el.style.display=showingTrans?'block':'none';});}
-document.querySelectorAll('.translation').forEach(function(el){el.style.display='none';});
-const totalSections=10;function updateProgress(){const s=window.scrollY;const t=document.body.scrollHeight-window.innerHeight;const pct=Math.min(100,Math.round(s/t*100));document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=Math.round(pct/100*totalSections)+' / '+totalSections;}
-window.addEventListener('scroll',updateProgress);
-const ANKI_DECK_L23=[
-{front:"Me / Te / Le / Nos / Os / Les",back:"Кому: мне / тебе / ему / нам / вам / им\n\nКосвенные местоимения для gustar"},
-{front:"gusta vs gustan",back:"gusta — нравится ОДНА вещь / действие\ngustan — нравится МНОЖЕСТВО вещей\n\nMe gusta el café. Me gustan los gatos."},
-{front:"Me gusta + inf.",back:"Мне нравится + что-то делать\n\nMe gusta leer. Me gusta viajar."},
-{front:"A mí / A ti / A Carlos",back:"Уточнение/контраст\n\nA mí me gusta, a ti te gusta."},
-{front:"Me encanta",back:"Я обожаю (сильнее gusta)\n\nMe encanta Barcelona. — Я люблю Барселону."},
-{front:"Me interesa",back:"Мне интересно\n\nMe interesa la historia."},
-{front:"Me molesta",back:"Меня раздражает\n\nMe molesta el ruido."},
-{front:"Me duele(n)",back:"У меня болит\n\nMe duele la cabeza. Me duelen las piernas."},
-{front:"Me falta",back:"Мне не хватает\n\nMe falta tiempo. Me falta dinero."},
-{front:"Me parece",back:"Мне кажется\n\nMe parece interesante. — Кажется интересным."},
-{front:"Me importa",back:"Мне важно\n\nMe importa mi familia."},
-{front:"No me gusta",back:"Не нравится\n\nNo me gusta el frío."},
-{front:"¿Te gusta...?",back:"Тебе нравится...?\n\n¿Te gusta el café? — Sí, me encanta."},
-{front:"A mi mujer le gusta...",back:"Моей жене нравится...\n\nИспользуй «le» для él/ella/usted."},
-{front:"Glagol gustar — обратная структура",back:"Я (русский subj) = Me (исп. кому)\nКофе (русский obj) = el café (исп. subj)\n\nMe gusta el café = «мне нравится кофе»."}
-];
-function renderAnkiPreview(){const c=document.getElementById('anki-preview-L23');if(!c)return;c.innerHTML=ANKI_DECK_L23.slice(0,5).map(function(card){return '<div class="anki-card" onclick="this.classList.toggle(\'flipped\')"><div class="anki-card-inner"><div class="anki-card-front">'+card.front+'</div><div class="anki-card-back">'+card.back.replace(/\n/g,'<br>')+'</div></div></div>';}).join('');}
-renderAnkiPreview();
-function exportAnkiL23(){const tsv=ANKI_DECK_L23.map(function(c){return c.front+'\t'+c.back.replace(/\n/g,'<br>');}).join('\n');const header='#separator:Tab\n#html:true\n#deck:L23 Spanish\n';const blob=new Blob([header+tsv],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='L23_spanish_anki.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
+
+function showAns(id) { document.getElementById(id).classList.add('show'); }
+
+let showingTrans = false;
+function toggleAll() {
+  showingTrans = !showingTrans;
+  document.querySelectorAll('.translation').forEach(el => {
+    el.style.display = showingTrans ? 'block' : 'none';
+  });
+}
+document.querySelectorAll('.translation').forEach(el => { el.style.display='none'; });
+
+const totalSections = 14;
+function updateProgress() {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = Math.min(100, Math.round(scrolled / total * 100));
+  const sectionsRead = Math.round(pct / 100 * totalSections);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${sectionsRead} / ${totalSections} разделов`;
+}
+window.addEventListener('scroll', updateProgress);
 </script>
 </body>
 </html>
